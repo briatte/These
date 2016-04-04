@@ -1,0 +1,9 @@
+#Ignore latex compilation files
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.toc
+These_main.tex
