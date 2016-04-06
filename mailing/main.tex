@@ -4,8 +4,10 @@
 
 L'étude de la structure des réseaux est un sujet qui est étudié depuis assez longtemps \REF.
 Ces études ont, dans un premier temps, permis de trouver comment caractériser une structure puis, dans un second temps, de proposer des méthodes de détections de ces structures.
-La littérature sur l'étude des flots de liens est encore récente et il n'existe que peu d'études \REF sur les spécificités des structures dans les flots de liens.
+La littérature sur l'étude des flots de liens est encore récente et il n'existe que peu d'études \REF\ sur les spécificités des structures dans les flots de liens.
+
 Nous nous intéressons à une archive de courriels publiquement disponibles\footnote{\url{https://lists.debian.org/debian-user/}}.
+L'étude de fil de discussions a déjà étudié dans le passé~\cite{Dorat2007} mais cela a été fait en utilisant des méthodes statiquement.
 Cette archives l'ensemble des courriels échangés par différent utilisateurs lors de l'utilisation de debian.
 Typiquement, une personne ayant un problème lors de l'installation envoie un courriel à la liste afin de demander de l'aide.
 Toutes personnes inscrites sur la liste reçoit cette demande et peut y répondre.
@@ -28,23 +30,117 @@ Pour avoir ces informations sous la forme d'un flots de liens, un script d'extra
 Lors de l'extraction, 2269 courriels n'ont pas pu être pris en compte car certaines informations étaient manquantes ou mal formées.
 
 Une fois les informations récupérées, il est nécessaire de vérifier leurs cohérences.
-Pour chaque courriel, la date et l'heure d'envoie, l'auteur, le destinataire, le courriel auquel il répond et la discussion dans laquelle il apparait sont connus.
+Pour chaque courriel, sont connus d'envoie, l'auteur, le destinataire, le courriel auquel il répond et la discussion dans laquelle il apparait.
+
 Un message peut être filtré pour différentes raisons: le courriel apparait avant le message auquel il est censé répondre, le message auquel il réponds n'est pas présent dans l'archive, l'auteur et le destinataire sont la même personne\footnote{Ce cas est relativement rare.}.
 Il s'agit de vérifications simple auquel il faut ajouter les vérification de la cohérence de la structure de discussions.
 Ainsi, une discussion est retirée du jeu de donnée si il manque la racine, un de ces messages a été retiré précédemment ou si la discussion a débuté trop récemment ou si elle dure trop longtemps.
 Les deux dernières conditions permettent d'éviter un biais envers les conversations incomplètes car trop longues ou trop récentes.
+La limite pour considérer une discussion trop récente ou trop longue a été fixé à 2 ans en observant la distribution de durées des discussions, voir la figure~\ref{fig:dists_discussion}.
 
 Une fois tout ces messages filtrés, nous obtenons un flot de liens avec 554233 liens entre 34648 personnes pendant presque 19 ans et 116999 discussions.
-Mis à part les courriels de début de discussions, ce sont 53753 courriels qui ont été filtrés car incohérents.
+Mis à part les courriels de début de discussions, ce sont 53753 courriels qui ont été filtrés soit environ $7\%$.
 
-\section{Caractéristiques des threads (COMPLENET)}
+\inline{Parler de la transformation données -> formalismes flot}
+\section{Caractéristiques basiques des discussions}
 
-\begin{figure}[!h]
+Les caractéristiques les plus basiques des discussions sont le nombre de courriels, le nombre de personnes, le nombre de paires de personnes distincte en interaction direct et leur durée.
+Sur la figure~\ref{fig:dists_discussion} sont présentes les distributions cumulatives inverses de ces notions et on remarque qu'elles sont hétérogènes.
+
+\begin{figure}
 \centering
-
-\includegraphics[width=0.9\linewidth]{img/flot_communautes.eps}
-\caption{An example of link stream representing email exchanges between individuals $a$, $b$, $c$, $d$ and $e$, with threads represented by colored areas. For instance, at time $5$, $b$ and $c$ exchange an email, as well as $d$ and $e$. Threads are {\em a priori} dense series of exchanges involving a limited group of nodes during a limited period of time.
-% The more classical graph modeling of such data is displayed in Figure~\ref{fig:communities-in-g}.
-}
-\label{fig:threads-in-ls}
+	\includegraphics[angle=-90, width=0.49\linewidth]{img/mailing/sizes-ccdf.eps}
+	\includegraphics[angle=-90, width=0.49\linewidth]{img/mailing/durations-ccdf.eps}\\
+	\includegraphics[angle=-90, width=0.49\linewidth]{img/mailing/authors-ccdf.eps}
+	\includegraphics[angle=-90, width=0.49\linewidth]{img/mailing/authorpairs-ccdf.eps}
+	
+	\caption{Distribution cumulative inverse de différentes caractéristiques pour les données brutes (ligne pleine) et filtrées (ligne pointillé). En haut à gauche: nombre de courriels dans une discussion; en haut à droite: durée d'une discussion; en bas à gauche: nombre de personnes dans une discussion; en bas à droite: nombre de paires d'auteurs distinct dans une .}
+	\label{fig:dists_discussion}
 \end{figure}
+
+La distribution des durées des discussions, mets en avant que la majorité des discussions dure environ une journée (100000 secondes équivaux à moins de 28 heures).
+Par ailleurs, on remarque qu'il n'existe que quelques discussions durant plus d'un an.
+C'est pourquoi, la limite sur la durée a été fixée à 2 ans.
+Enfin, on remarque que les données filtrées ne diffèrent pas qualitativement des données brutes.
+
+Ces premières observations sont nécessaires mais pas suffisante pour comprendre les caractéristiques d'une discussion.
+Nous avons également étudié la corrélation de ces différentes notions et une partie d'entre elles sont présentées sur la figure~\ref{fig:corr_discussion}.
+
+
+\begin{figure}
+	\includegraphics[angle=-90, width=0.49\linewidth]{img/mailing/sizes-durations-corr.eps}
+	\includegraphics[angle=-90, width=0.49\linewidth]{img/mailing/sizes-authors-corr.eps}
+	\caption{Gauche: Corrélations entre le nombre de courriels et la durée d'une discussion. Droite: Corrélation entre le nombre de courriels et le nombre d'auteurs dans une discussion.}
+	\label{fig:corr_discussion}
+\end{figure}
+
+La corrélation entre la durée et le nombre de courriels, figure de gauche, mets en évidence que plus une discussion est grande en nombre de courriels plus elle dure longtemps ce qui est attendu.
+Par contre, on observe également que les petites discussions ont des durées très variables. 
+Sur la figure de droite présentant la corrélation entre le nombre de courriels et d'auteurs, on observe également un fait attendu~~\cite{Dorat2007} qui est qu'il y a plus de courriels que d'auteurs. Ainsi lors d'une discussion, c'est un petit nombre de personnes qui partagent beaucoup de messages. 
+
+Enfin, il est intéressant d'observer la dynamique des échanges entre deux personnes.
+Soit $\tau(u,v) = (t_{i+1}-t_i)_{i=0..k+1}$ la séquence des temps inter-contacts d'une pair de n\oe uds $u$ et $v$ dans $V$\note{$t_0=\alpha$ et $t_k+1=\omega$}.
+Il s'agit du temps écoulé avant que deux personnes se contactent à nouveau.
+Sur la figure~\ref{fig:ict_discussion} est représentée la distribution cumulative inverse du temps inter-contacts. 
+On remarque que $21\%$ des temps inter-contacts est inférieurs à 30 jours.
+Ce chiffre bien que relativement faible est tout de même important car il s'agit d'un fil de discussions ouvert où tout le monde peut participer. 
+En particuliers, une personne peut envoyer une demande d'aide à un moment donner et ne plus jamais participer.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.49\linewidth]{img/mailing/ict-ccdf.eps}
+	\caption{Distribution des temps inter-contacts dans le fil de discussions.}
+	\label{fig:ict_discussion}
+\end{figure}
+
+\section{Applications de la densité aux discussions}
+
+Jusqu'à maintenant aucune notion intrinsèquement liées aux flot de liens n'a été utilisée pour caractériser les discussion et leur répartition dans le flot de liens.
+Le but est d'évaluer si cette structure de flot peut se rapprocher d'une structure communautaire.
+Comme dit précédemment, les communautés sont souvent définies comme étant des structure devant être densément connectées.
+C'est pourquoi nous nous attachons à étudier la densité des discussions.
+
+Comme ces données se modélisent par un flot de liens ou chaque lien n'a pas de durée, nous étudions la $\Delta$-densité pour différentes valeurs de $\Delta$.
+Tout d'abord sur la figure~\ref{fig:dens_fil_discusion} est représenté la $\Delta$-densité globale de tout le flot de liens.
+En couvrant un spectre aussi large de $\Delta$, on observe que la $\Delta$-densité est croissante avec $\Delta$ mais surtout on observe bien la convergence de $\Delta$-densité vers la densité du graphe agrégé lorsque $\Delta$ est proche de $\omega - \alpha$.
+\inline{Ajout bar horizontal de la densité statique.}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.48\linewidth]{img/mailing/global_linlin.eps}
+	\caption{Évolution de la $\Delta$-densité du flot de liens pour $\Delta$ de $1$ seconde à $20$ ans.}
+	\label{fig:dens_fil_discusion}
+\end{figure}
+
+La $\Delta$-densité du flot liens, cependant, n'apporte que peu d'informations en elle-même.
+Elle est surtout utile pour comparer les valeurs de $\Delta$-densité des sous-flots que sont les discussions.
+Ainsi sur la figure~\ref{fig:intra_dens_discussion} est présentée la distribution cumulative inverse de la $\Delta$-densité des discussions pour différentes valeurs de $\Delta$.
+On remarque que les différentes valeurs de $\Delta$ ne semblent pas influencer qualitativement la distribution de $\Delta$-densité.
+Cette courbe mets surtout en évidence que les discussions sont des structures beaucoup plus denses que le flot.
+En effet, la densité médiane des discussions est, selon la valeur de $\Delta$, entre $2.69 \times 10^{-4}$ et $0.28$ alors que le flot a une densité entre $1.05  \times 10^{-10}$ et $3.42 \times 10^{-5}$.
+La $\Delta$-densité des discussions est donc en moyenne $10^{5}$ fois plus élevé que celle du flot.
+Bien que notable, ce fait est attendu notamment car le flot dure beaucoup plus longtemps et concerne beaucoup plus de n\oe uds.
+\begin{figure}
+\centering
+%\subfloat[Inverse cumulative distribution of intra-threads density.]{
+	\includegraphics[width=0.48\linewidth]{img/mailing/delta.eps}
+%}
+
+\caption{Distribution cumulative inverse de la $\Delta$-densité des discussions pour différentes valeurs de $\Delta$s. Right: Inverse cumulative distributions of values of inter-thread $\Delta$-density for different $\Delta$s.}
+\label{fig:intra_dens_discussion}
+\end{figure}
+
+Afin d'aller plus loin dans l'étude de cette structure, .
+
+
+\begin{figure}
+\centering
+%\subfloat[Inverse cumulative distribution of inter-threads density.]{
+	\includegraphics[width=0.48\linewidth]{img/mailing/inter_delta.eps}
+%}
+\caption{Left: Inverse cumulative distributions of values of intra-thread $\Delta$-density for different $\Delta$s. Right: Inverse cumulative distributions of values of inter-thread $\Delta$-density for different $\Delta$s.}
+\label{fig:inter_dens_discussion}
+\end{figure}
+
+\section{Détection automatique des discussions?}
+
+Nope
