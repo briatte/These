@@ -6,4 +6,6 @@
 *.fls
 *.log
 *.toc
+*.lof
+*.tdo
 These_main.tex
