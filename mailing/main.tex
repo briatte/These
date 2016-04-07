@@ -41,7 +41,7 @@ La limite pour considérer une discussion trop récente ou trop longue a été f
 Une fois tout ces messages filtrés, nous obtenons un flot de liens avec 554233 liens entre 34648 personnes pendant presque 19 ans et 116999 discussions.
 Mis à part les courriels de début de discussions, ce sont 53753 courriels qui ont été filtrés soit environ $7\%$.
 
-\inline{Parler de la transformation données -> formalismes flot}
+\inline{Parler de la transformation données vers formalisme flot}
 \section{Caractéristiques basiques des discussions}
 
 Les caractéristiques les plus basiques des discussions sont le nombre de courriels, le nombre de personnes, le nombre de paires de personnes distincte en interaction direct et leur durée.
@@ -118,26 +118,50 @@ On remarque que les différentes valeurs de $\Delta$ ne semblent pas influencer 
 Cette courbe mets surtout en évidence que les discussions sont des structures beaucoup plus denses que le flot.
 En effet, la densité médiane des discussions est, selon la valeur de $\Delta$, entre $2.69 \times 10^{-4}$ et $0.28$ alors que le flot a une densité entre $1.05  \times 10^{-10}$ et $3.42 \times 10^{-5}$.
 La $\Delta$-densité des discussions est donc en moyenne $10^{5}$ fois plus élevé que celle du flot.
-Bien que notable, ce fait est attendu notamment car le flot dure beaucoup plus longtemps et concerne beaucoup plus de n\oe uds.
+Bien que notable, ce fait est attendu notamment car le flot dure beaucoup plus longtemps et concerne beaucoup plus de n\oe uds que les discussions.
 \begin{figure}
 \centering
 %\subfloat[Inverse cumulative distribution of intra-threads density.]{
 	\includegraphics[width=0.48\linewidth]{img/mailing/delta.eps}
 %}
 
-\caption{Distribution cumulative inverse de la $\Delta$-densité des discussions pour différentes valeurs de $\Delta$s. Right: Inverse cumulative distributions of values of inter-thread $\Delta$-density for different $\Delta$s.}
+\caption{Distribution cumulative inverse de la $\Delta$-densité des discussions pour différentes valeurs de $\Delta$s.}
 \label{fig:intra_dens_discussion}
 \end{figure}
 
-Afin d'aller plus loin dans l'étude de cette structure, .
+Afin d'aller plus loin dans l'étude de cette structure, il faut revenir à une définition plus précise de ce qu'est une bonne communauté.
+En soit, une valeur de densité n'est pas une preuve pour définir une structure comme communautaire.
+En effet, une discussion ayant une densité de $0.8$ peut  ne pas être une communauté tant dis qu'une autre ayant une densité proche de zéro peut être une communauté.
+Il faut définir un point de comparaison pour effectivement affirmer qu'une structure est particulièrement dense.
+La prise en compte de la densité globale est un début mais n'est pas suffisante.
+\note{Faire SNAM sur les threads}
 
+Une autre définition d'une communauté est qu'une communauté devrait être plus densément connecté à l'intérieur qu'avec les autres communautés adjacentes.
+Pour un graphe $G=(V,E)$ et une communauté $C_i$ de la partition $C = \{C_j\}_{j_1..k}$ de $V$ en $k$ communautés, cela se traduit par le calcul de la densité entre les communautés, $\delta^{inter}(C_i)$ :
 
+\begin{equation}
+	\delta^{inter}(C_i) = \frac{1}{|C|-1}\sum_{j, i\ne j}\frac{|\{(u,v)\in E\mbox{ s.t. }u\in C_i\mbox{ and }v\in C_j\}|}{|C_i|\cdot |C_j|}
+\end{equation}
+
+où $\delta(G_{ij})$ est la densité du graphe constitué des n\oe uds des communautés $i$ et $j$ et liens de $G$ entre ces deux communautés.
+Il s'agit tout simplement de la probabilité qu'il y un lien existe entre les n\oe uds des deux communautés.
+Encore une fois, cette notion n'a pas de sens direct dans le formalisme de flot de lien et il est nécessaire de l'adapter.
+Pour ce faire, nous définissons le sous-flot inter-discussion entre les discussion $D_i$ et $D_j$ de la manière suivante:  $L_{ij} = (T_{ij}, V_{ij}, E_{ij})$, avec $T_{ij} = [$min($\alpha_i,\alpha_j$), max($\omega_i, \omega_j$)$]$, $V_{ij} = V_i\cup V_j$ et $E_{ij} = \{(t,u,v): t\in T_{ij}, u,v\in V_{ij}, (t,u,v)\in E\setminus D_i\cup D_j\}$\note{construction via sous-flot induit.}.
+\note{Faire un dessin de cette situation?}.
+La $\Delta$-densité inter discussions entre $D_i$ et $D_j$ est alors la $\Delta$-densité du sous-flot $L_{ij}$.
+Afin d'obtenir la $\Delta$-densité inter discussions entre $D_i$ et tout les autres discussions, nous utilisons la moyenne des densité inter discussion entre $D_i$ et les autres discussions, soit:
+
+\begin{equation}
+	\delta^{inter}_{\Delta}(D_i) = \frac{1}{|C|-1}\sum_{j,i\ne j} \delta_{\Delta}(L_{ij}).
+\end{equation}
+
+La distribution cumulative inverse de la $\Delta$-densité inter discussions est sur la figure~\ref{fig:inter_dens_discussion} pour différentes valeurs de $\Delta$.
 \begin{figure}
 \centering
 %\subfloat[Inverse cumulative distribution of inter-threads density.]{
 	\includegraphics[width=0.48\linewidth]{img/mailing/inter_delta.eps}
 %}
-\caption{Left: Inverse cumulative distributions of values of intra-thread $\Delta$-density for different $\Delta$s. Right: Inverse cumulative distributions of values of inter-thread $\Delta$-density for different $\Delta$s.}
+\caption{Distribution cumulative inverse de la $\Delta$-densité inter discussions pour différentes valeurs de $\Delta$s.}
 \label{fig:inter_dens_discussion}
 \end{figure}
 
