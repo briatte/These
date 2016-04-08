@@ -1,0 +1,4977 @@
+%!PS-Adobe-2.0 EPSF-2.0
+%%Title: mean.eps
+%%Creator: gnuplot 5.0 patchlevel 1
+%%CreationDate: Fri Oct 30 18:57:08 2015
+%%DocumentFonts: (atend)
+%%BoundingBox: 50 50 302 238
+%%EndComments
+%%BeginProlog
+/gnudict 256 dict def
+gnudict begin
+%
+% The following true/false flags may be edited by hand if desired.
+% The unit line width and grayscale image gamma correction may also be changed.
+%
+/Color true def
+/Blacktext false def
+/Solid false def
+/Dashlength 1 def
+/Landscape false def
+/Level1 false def
+/Level3 false def
+/Rounded false def
+/ClipToBoundingBox false def
+/SuppressPDFMark false def
+/TransparentPatterns false def
+/gnulinewidth 5.000 def
+/userlinewidth gnulinewidth def
+/Gamma 1.0 def
+/BackgroundColor {-1.000 -1.000 -1.000} def
+%
+/vshift -66 def
+/dl1 {
+  10.0 Dashlength userlinewidth gnulinewidth div mul mul mul
+  Rounded { currentlinewidth 0.75 mul sub dup 0 le { pop 0.01 } if } if
+} def
+/dl2 {
+  10.0 Dashlength userlinewidth gnulinewidth div mul mul mul
+  Rounded { currentlinewidth 0.75 mul add } if
+} def
+/hpt_ 31.5 def
+/vpt_ 31.5 def
+/hpt hpt_ def
+/vpt vpt_ def
+/doclip {
+  ClipToBoundingBox {
+    newpath 50 50 moveto 302 50 lineto 302 238 lineto 50 238 lineto closepath
+    clip
+  } if
+} def
+%
+% Gnuplot Prolog Version 5.0 (Dec 2014)
+%
+%/SuppressPDFMark true def
+%
+/M {moveto} bind def
+/L {lineto} bind def
+/R {rmoveto} bind def
+/V {rlineto} bind def
+/N {newpath moveto} bind def
+/Z {closepath} bind def
+/C {setrgbcolor} bind def
+/f {rlineto fill} bind def
+/g {setgray} bind def
+/Gshow {show} def   % May be redefined later in the file to support UTF-8
+/vpt2 vpt 2 mul def
+/hpt2 hpt 2 mul def
+/Lshow {currentpoint stroke M 0 vshift R 
+	Blacktext {gsave 0 setgray textshow grestore} {textshow} ifelse} def
+/Rshow {currentpoint stroke M dup stringwidth pop neg vshift R
+	Blacktext {gsave 0 setgray textshow grestore} {textshow} ifelse} def
+/Cshow {currentpoint stroke M dup stringwidth pop -2 div vshift R 
+	Blacktext {gsave 0 setgray textshow grestore} {textshow} ifelse} def
+/UP {dup vpt_ mul /vpt exch def hpt_ mul /hpt exch def
+  /hpt2 hpt 2 mul def /vpt2 vpt 2 mul def} def
+/DL {Color {setrgbcolor Solid {pop []} if 0 setdash}
+ {pop pop pop 0 setgray Solid {pop []} if 0 setdash} ifelse} def
+/BL {stroke userlinewidth 2 mul setlinewidth
+	Rounded {1 setlinejoin 1 setlinecap} if} def
+/AL {stroke userlinewidth 2 div setlinewidth
+	Rounded {1 setlinejoin 1 setlinecap} if} def
+/UL {dup gnulinewidth mul /userlinewidth exch def
+	dup 1 lt {pop 1} if 10 mul /udl exch def} def
+/PL {stroke userlinewidth setlinewidth
+	Rounded {1 setlinejoin 1 setlinecap} if} def
+3.8 setmiterlimit
+% Classic Line colors (version 5.0)
+/LCw {1 1 1} def
+/LCb {0 0 0} def
+/LCa {0 0 0} def
+/LC0 {1 0 0} def
+/LC1 {0 1 0} def
+/LC2 {0 0 1} def
+/LC3 {1 0 1} def
+/LC4 {0 1 1} def
+/LC5 {1 1 0} def
+/LC6 {0 0 0} def
+/LC7 {1 0.3 0} def
+/LC8 {0.5 0.5 0.5} def
+% Default dash patterns (version 5.0)
+/LTw {PL [] 1 setgray} def
+/LTb {BL [] LCb DL} def
+/LTa {AL [1 udl mul 2 udl mul] 0 setdash LCa setrgbcolor} def
+/LT0 {PL [] LC0 DL} def
+/LT1 {PL [2 dl1 3 dl2] LC1 DL} def
+/LT2 {PL [1 dl1 1.5 dl2] LC2 DL} def
+/LT3 {PL [6 dl1 2 dl2 1 dl1 2 dl2] LC3 DL} def
+/LT4 {PL [1 dl1 2 dl2 6 dl1 2 dl2 1 dl1 2 dl2] LC4 DL} def
+/LT5 {PL [4 dl1 2 dl2] LC5 DL} def
+/LT6 {PL [1.5 dl1 1.5 dl2 1.5 dl1 1.5 dl2 1.5 dl1 6 dl2] LC6 DL} def
+/LT7 {PL [3 dl1 3 dl2 1 dl1 3 dl2] LC7 DL} def
+/LT8 {PL [2 dl1 2 dl2 2 dl1 6 dl2] LC8 DL} def
+/SL {[] 0 setdash} def
+/Pnt {stroke [] 0 setdash gsave 1 setlinecap M 0 0 V stroke grestore} def
+/Dia {stroke [] 0 setdash 2 copy vpt add M
+  hpt neg vpt neg V hpt vpt neg V
+  hpt vpt V hpt neg vpt V closepath stroke
+  Pnt} def
+/Pls {stroke [] 0 setdash vpt sub M 0 vpt2 V
+  currentpoint stroke M
+  hpt neg vpt neg R hpt2 0 V stroke
+ } def
+/Box {stroke [] 0 setdash 2 copy exch hpt sub exch vpt add M
+  0 vpt2 neg V hpt2 0 V 0 vpt2 V
+  hpt2 neg 0 V closepath stroke
+  Pnt} def
+/Crs {stroke [] 0 setdash exch hpt sub exch vpt add M
+  hpt2 vpt2 neg V currentpoint stroke M
+  hpt2 neg 0 R hpt2 vpt2 V stroke} def
+/TriU {stroke [] 0 setdash 2 copy vpt 1.12 mul add M
+  hpt neg vpt -1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt 1.62 mul V closepath stroke
+  Pnt} def
+/Star {2 copy Pls Crs} def
+/BoxF {stroke [] 0 setdash exch hpt sub exch vpt add M
+  0 vpt2 neg V hpt2 0 V 0 vpt2 V
+  hpt2 neg 0 V closepath fill} def
+/TriUF {stroke [] 0 setdash vpt 1.12 mul add M
+  hpt neg vpt -1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt 1.62 mul V closepath fill} def
+/TriD {stroke [] 0 setdash 2 copy vpt 1.12 mul sub M
+  hpt neg vpt 1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt -1.62 mul V closepath stroke
+  Pnt} def
+/TriDF {stroke [] 0 setdash vpt 1.12 mul sub M
+  hpt neg vpt 1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt -1.62 mul V closepath fill} def
+/DiaF {stroke [] 0 setdash vpt add M
+  hpt neg vpt neg V hpt vpt neg V
+  hpt vpt V hpt neg vpt V closepath fill} def
+/Pent {stroke [] 0 setdash 2 copy gsave
+  translate 0 hpt M 4 {72 rotate 0 hpt L} repeat
+  closepath stroke grestore Pnt} def
+/PentF {stroke [] 0 setdash gsave
+  translate 0 hpt M 4 {72 rotate 0 hpt L} repeat
+  closepath fill grestore} def
+/Circle {stroke [] 0 setdash 2 copy
+  hpt 0 360 arc stroke Pnt} def
+/CircleF {stroke [] 0 setdash hpt 0 360 arc fill} def
+/C0 {BL [] 0 setdash 2 copy moveto vpt 90 450 arc} bind def
+/C1 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 0 90 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C2 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 90 180 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C3 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 0 180 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C4 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 180 270 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C5 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 0 90 arc
+	2 copy moveto
+	2 copy vpt 180 270 arc closepath fill
+	vpt 0 360 arc} bind def
+/C6 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 90 270 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C7 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 0 270 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C8 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 270 360 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C9 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 270 450 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C10 {BL [] 0 setdash 2 copy 2 copy moveto vpt 270 360 arc closepath fill
+	2 copy moveto
+	2 copy vpt 90 180 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C11 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 0 180 arc closepath fill
+	2 copy moveto
+	2 copy vpt 270 360 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C12 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 180 360 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C13 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 0 90 arc closepath fill
+	2 copy moveto
+	2 copy vpt 180 360 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C14 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 90 360 arc closepath fill
+	vpt 0 360 arc} bind def
+/C15 {BL [] 0 setdash 2 copy vpt 0 360 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/Rec {newpath 4 2 roll moveto 1 index 0 rlineto 0 exch rlineto
+	neg 0 rlineto closepath} bind def
+/Square {dup Rec} bind def
+/Bsquare {vpt sub exch vpt sub exch vpt2 Square} bind def
+/S0 {BL [] 0 setdash 2 copy moveto 0 vpt rlineto BL Bsquare} bind def
+/S1 {BL [] 0 setdash 2 copy vpt Square fill Bsquare} bind def
+/S2 {BL [] 0 setdash 2 copy exch vpt sub exch vpt Square fill Bsquare} bind def
+/S3 {BL [] 0 setdash 2 copy exch vpt sub exch vpt2 vpt Rec fill Bsquare} bind def
+/S4 {BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt Square fill Bsquare} bind def
+/S5 {BL [] 0 setdash 2 copy 2 copy vpt Square fill
+	exch vpt sub exch vpt sub vpt Square fill Bsquare} bind def
+/S6 {BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt vpt2 Rec fill Bsquare} bind def
+/S7 {BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt vpt2 Rec fill
+	2 copy vpt Square fill Bsquare} bind def
+/S8 {BL [] 0 setdash 2 copy vpt sub vpt Square fill Bsquare} bind def
+/S9 {BL [] 0 setdash 2 copy vpt sub vpt vpt2 Rec fill Bsquare} bind def
+/S10 {BL [] 0 setdash 2 copy vpt sub vpt Square fill 2 copy exch vpt sub exch vpt Square fill
+	Bsquare} bind def
+/S11 {BL [] 0 setdash 2 copy vpt sub vpt Square fill 2 copy exch vpt sub exch vpt2 vpt Rec fill
+	Bsquare} bind def
+/S12 {BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt2 vpt Rec fill Bsquare} bind def
+/S13 {BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt2 vpt Rec fill
+	2 copy vpt Square fill Bsquare} bind def
+/S14 {BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt2 vpt Rec fill
+	2 copy exch vpt sub exch vpt Square fill Bsquare} bind def
+/S15 {BL [] 0 setdash 2 copy Bsquare fill Bsquare} bind def
+/D0 {gsave translate 45 rotate 0 0 S0 stroke grestore} bind def
+/D1 {gsave translate 45 rotate 0 0 S1 stroke grestore} bind def
+/D2 {gsave translate 45 rotate 0 0 S2 stroke grestore} bind def
+/D3 {gsave translate 45 rotate 0 0 S3 stroke grestore} bind def
+/D4 {gsave translate 45 rotate 0 0 S4 stroke grestore} bind def
+/D5 {gsave translate 45 rotate 0 0 S5 stroke grestore} bind def
+/D6 {gsave translate 45 rotate 0 0 S6 stroke grestore} bind def
+/D7 {gsave translate 45 rotate 0 0 S7 stroke grestore} bind def
+/D8 {gsave translate 45 rotate 0 0 S8 stroke grestore} bind def
+/D9 {gsave translate 45 rotate 0 0 S9 stroke grestore} bind def
+/D10 {gsave translate 45 rotate 0 0 S10 stroke grestore} bind def
+/D11 {gsave translate 45 rotate 0 0 S11 stroke grestore} bind def
+/D12 {gsave translate 45 rotate 0 0 S12 stroke grestore} bind def
+/D13 {gsave translate 45 rotate 0 0 S13 stroke grestore} bind def
+/D14 {gsave translate 45 rotate 0 0 S14 stroke grestore} bind def
+/D15 {gsave translate 45 rotate 0 0 S15 stroke grestore} bind def
+/DiaE {stroke [] 0 setdash vpt add M
+  hpt neg vpt neg V hpt vpt neg V
+  hpt vpt V hpt neg vpt V closepath stroke} def
+/BoxE {stroke [] 0 setdash exch hpt sub exch vpt add M
+  0 vpt2 neg V hpt2 0 V 0 vpt2 V
+  hpt2 neg 0 V closepath stroke} def
+/TriUE {stroke [] 0 setdash vpt 1.12 mul add M
+  hpt neg vpt -1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt 1.62 mul V closepath stroke} def
+/TriDE {stroke [] 0 setdash vpt 1.12 mul sub M
+  hpt neg vpt 1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt -1.62 mul V closepath stroke} def
+/PentE {stroke [] 0 setdash gsave
+  translate 0 hpt M 4 {72 rotate 0 hpt L} repeat
+  closepath stroke grestore} def
+/CircE {stroke [] 0 setdash 
+  hpt 0 360 arc stroke} def
+/Opaque {gsave closepath 1 setgray fill grestore 0 setgray closepath} def
+/DiaW {stroke [] 0 setdash vpt add M
+  hpt neg vpt neg V hpt vpt neg V
+  hpt vpt V hpt neg vpt V Opaque stroke} def
+/BoxW {stroke [] 0 setdash exch hpt sub exch vpt add M
+  0 vpt2 neg V hpt2 0 V 0 vpt2 V
+  hpt2 neg 0 V Opaque stroke} def
+/TriUW {stroke [] 0 setdash vpt 1.12 mul add M
+  hpt neg vpt -1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt 1.62 mul V Opaque stroke} def
+/TriDW {stroke [] 0 setdash vpt 1.12 mul sub M
+  hpt neg vpt 1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt -1.62 mul V Opaque stroke} def
+/PentW {stroke [] 0 setdash gsave
+  translate 0 hpt M 4 {72 rotate 0 hpt L} repeat
+  Opaque stroke grestore} def
+/CircW {stroke [] 0 setdash 
+  hpt 0 360 arc Opaque stroke} def
+/BoxFill {gsave Rec 1 setgray fill grestore} def
+/Density {
+  /Fillden exch def
+  currentrgbcolor
+  /ColB exch def /ColG exch def /ColR exch def
+  /ColR ColR Fillden mul Fillden sub 1 add def
+  /ColG ColG Fillden mul Fillden sub 1 add def
+  /ColB ColB Fillden mul Fillden sub 1 add def
+  ColR ColG ColB setrgbcolor} def
+/BoxColFill {gsave Rec PolyFill} def
+/PolyFill {gsave Density fill grestore grestore} def
+/h {rlineto rlineto rlineto gsave closepath fill grestore} bind def
+%
+% PostScript Level 1 Pattern Fill routine for rectangles
+% Usage: x y w h s a XX PatternFill
+%	x,y = lower left corner of box to be filled
+%	w,h = width and height of box
+%	  a = angle in degrees between lines and x-axis
+%	 XX = 0/1 for no/yes cross-hatch
+%
+/PatternFill {gsave /PFa [ 9 2 roll ] def
+  PFa 0 get PFa 2 get 2 div add PFa 1 get PFa 3 get 2 div add translate
+  PFa 2 get -2 div PFa 3 get -2 div PFa 2 get PFa 3 get Rec
+  TransparentPatterns {} {gsave 1 setgray fill grestore} ifelse
+  clip
+  currentlinewidth 0.5 mul setlinewidth
+  /PFs PFa 2 get dup mul PFa 3 get dup mul add sqrt def
+  0 0 M PFa 5 get rotate PFs -2 div dup translate
+  0 1 PFs PFa 4 get div 1 add floor cvi
+	{PFa 4 get mul 0 M 0 PFs V} for
+  0 PFa 6 get ne {
+	0 1 PFs PFa 4 get div 1 add floor cvi
+	{PFa 4 get mul 0 2 1 roll M PFs 0 V} for
+ } if
+  stroke grestore} def
+%
+/languagelevel where
+ {pop languagelevel} {1} ifelse
+dup 2 lt
+	{/InterpretLevel1 true def
+	 /InterpretLevel3 false def}
+	{/InterpretLevel1 Level1 def
+	 2 gt
+	    {/InterpretLevel3 Level3 def}
+	    {/InterpretLevel3 false def}
+	 ifelse }
+ ifelse
+%
+% PostScript level 2 pattern fill definitions
+%
+/Level2PatternFill {
+/Tile8x8 {/PaintType 2 /PatternType 1 /TilingType 1 /BBox [0 0 8 8] /XStep 8 /YStep 8}
+	bind def
+/KeepColor {currentrgbcolor [/Pattern /DeviceRGB] setcolorspace} bind def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop 0 0 M 8 8 L 0 8 M 8 0 L stroke} 
+>> matrix makepattern
+/Pat1 exch def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop 0 0 M 8 8 L 0 8 M 8 0 L stroke
+	0 4 M 4 8 L 8 4 L 4 0 L 0 4 L stroke}
+>> matrix makepattern
+/Pat2 exch def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop 0 0 M 0 8 L
+	8 8 L 8 0 L 0 0 L fill}
+>> matrix makepattern
+/Pat3 exch def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop -4 8 M 8 -4 L
+	0 12 M 12 0 L stroke}
+>> matrix makepattern
+/Pat4 exch def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop -4 0 M 8 12 L
+	0 -4 M 12 8 L stroke}
+>> matrix makepattern
+/Pat5 exch def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop -2 8 M 4 -4 L
+	0 12 M 8 -4 L 4 12 M 10 0 L stroke}
+>> matrix makepattern
+/Pat6 exch def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop -2 0 M 4 12 L
+	0 -4 M 8 12 L 4 -4 M 10 8 L stroke}
+>> matrix makepattern
+/Pat7 exch def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop 8 -2 M -4 4 L
+	12 0 M -4 8 L 12 4 M 0 10 L stroke}
+>> matrix makepattern
+/Pat8 exch def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop 0 -2 M 12 4 L
+	-4 0 M 12 8 L -4 4 M 8 10 L stroke}
+>> matrix makepattern
+/Pat9 exch def
+/Pattern1 {PatternBgnd KeepColor Pat1 setpattern} bind def
+/Pattern2 {PatternBgnd KeepColor Pat2 setpattern} bind def
+/Pattern3 {PatternBgnd KeepColor Pat3 setpattern} bind def
+/Pattern4 {PatternBgnd KeepColor Landscape {Pat5} {Pat4} ifelse setpattern} bind def
+/Pattern5 {PatternBgnd KeepColor Landscape {Pat4} {Pat5} ifelse setpattern} bind def
+/Pattern6 {PatternBgnd KeepColor Landscape {Pat9} {Pat6} ifelse setpattern} bind def
+/Pattern7 {PatternBgnd KeepColor Landscape {Pat8} {Pat7} ifelse setpattern} bind def
+} def
+%
+%
+%End of PostScript Level 2 code
+%
+/PatternBgnd {
+  TransparentPatterns {} {gsave 1 setgray fill grestore} ifelse
+} def
+%
+% Substitute for Level 2 pattern fill codes with
+% grayscale if Level 2 support is not selected.
+%
+/Level1PatternFill {
+/Pattern1 {0.250 Density} bind def
+/Pattern2 {0.500 Density} bind def
+/Pattern3 {0.750 Density} bind def
+/Pattern4 {0.125 Density} bind def
+/Pattern5 {0.375 Density} bind def
+/Pattern6 {0.625 Density} bind def
+/Pattern7 {0.875 Density} bind def
+} def
+%
+% Now test for support of Level 2 code
+%
+Level1 {Level1PatternFill} {Level2PatternFill} ifelse
+%
+/Symbol-Oblique /Symbol findfont [1 0 .167 1 0 0] makefont
+dup length dict begin {1 index /FID eq {pop pop} {def} ifelse} forall
+currentdict end definefont pop
+%
+/MFshow {
+   { dup 5 get 3 ge
+     { 5 get 3 eq {gsave} {grestore} ifelse }
+     {dup dup 0 get findfont exch 1 get scalefont setfont
+     [ currentpoint ] exch dup 2 get 0 exch R dup 5 get 2 ne {dup dup 6
+     get exch 4 get {textshow} {stringwidth pop 0 R} ifelse }if dup 5 get 0 eq
+     {dup 3 get {2 get neg 0 exch R pop} {pop aload pop M} ifelse} {dup 5
+     get 1 eq {dup 2 get exch dup 3 get exch 6 get stringwidth pop -2 div
+     dup 0 R} {dup 6 get stringwidth pop -2 div 0 R 6 get
+     textshow 2 index {aload pop M neg 3 -1 roll neg R pop pop} {pop pop pop
+     pop aload pop M} ifelse }ifelse }ifelse }
+     ifelse }
+   forall} def
+/Gswidth {dup type /stringtype eq {stringwidth} {pop (n) stringwidth} ifelse} def
+/MFwidth {0 exch { dup 5 get 3 ge { 5 get 3 eq { 0 } { pop } ifelse }
+ {dup 3 get{dup dup 0 get findfont exch 1 get scalefont setfont
+     6 get Gswidth pop add} {pop} ifelse} ifelse} forall} def
+/MLshow { currentpoint stroke M
+  0 exch R
+  Blacktext {gsave 0 setgray MFshow grestore} {MFshow} ifelse } bind def
+/MRshow { currentpoint stroke M
+  exch dup MFwidth neg 3 -1 roll R
+  Blacktext {gsave 0 setgray MFshow grestore} {MFshow} ifelse } bind def
+/MCshow { currentpoint stroke M
+  exch dup MFwidth -2 div 3 -1 roll R
+  Blacktext {gsave 0 setgray MFshow grestore} {MFshow} ifelse } bind def
+/XYsave    { [( ) 1 2 true false 3 ()] } bind def
+/XYrestore { [( ) 1 2 true false 4 ()] } bind def
+Level1 SuppressPDFMark or 
+{} {
+/SDict 10 dict def
+systemdict /pdfmark known not {
+  userdict /pdfmark systemdict /cleartomark get put
+} if
+SDict begin [
+  /Title (mean.eps)
+  /Subject (gnuplot plot)
+  /Creator (gnuplot 5.0 patchlevel 1)
+  /Author (gaumont)
+%  /Producer (gnuplot)
+%  /Keywords ()
+  /CreationDate (Fri Oct 30 18:57:08 2015)
+  /DOCINFO pdfmark
+end
+} ifelse
+end
+%
+% Support for boxed text - Ethan A Merritt May 2005
+%
+/InitTextBox { userdict /TBy2 3 -1 roll put userdict /TBx2 3 -1 roll put
+           userdict /TBy1 3 -1 roll put userdict /TBx1 3 -1 roll put
+	   /Boxing true def } def
+/ExtendTextBox { Boxing
+    { gsave dup false charpath pathbbox
+      dup TBy2 gt {userdict /TBy2 3 -1 roll put} {pop} ifelse
+      dup TBx2 gt {userdict /TBx2 3 -1 roll put} {pop} ifelse
+      dup TBy1 lt {userdict /TBy1 3 -1 roll put} {pop} ifelse
+      dup TBx1 lt {userdict /TBx1 3 -1 roll put} {pop} ifelse
+      grestore } if } def
+/PopTextBox { newpath TBx1 TBxmargin sub TBy1 TBymargin sub M
+               TBx1 TBxmargin sub TBy2 TBymargin add L
+	       TBx2 TBxmargin add TBy2 TBymargin add L
+	       TBx2 TBxmargin add TBy1 TBymargin sub L closepath } def
+/DrawTextBox { PopTextBox stroke /Boxing false def} def
+/FillTextBox { gsave PopTextBox 1 1 1 setrgbcolor fill grestore /Boxing false def} def
+0 0 0 0 InitTextBox
+/TBxmargin 20 def
+/TBymargin 20 def
+/Boxing false def
+/textshow { ExtendTextBox Gshow } def
+%
+%%EndProlog
+%%Page: 1 1
+gnudict begin
+gsave
+doclip
+50 50 translate
+0.050 0.050 scale
+0 setgray
+newpath
+(Helvetica) findfont 200 scalefont setfont
+BackgroundColor 0 lt 3 1 roll 0 lt exch 0 lt or or not {BackgroundColor C 1.000 0 0 5040.00 3772.00 BoxColFill} if
+1.000 UL
+LTb
+LCb setrgbcolor
+860 640 M
+63 0 V
+3756 0 R
+-63 0 V
+stroke
+740 640 M
+[ [(Helvetica) 200.0 0.0 true true 0 (10)]
+[(Helvetica) 160.0 100.0 true true 0 (-2)]
+] -86.7 MRshow
+1.000 UL
+LTb
+LCb setrgbcolor
+860 1075 M
+31 0 V
+3788 0 R
+-31 0 V
+860 1330 M
+31 0 V
+3788 0 R
+-31 0 V
+860 1510 M
+31 0 V
+3788 0 R
+-31 0 V
+860 1650 M
+31 0 V
+3788 0 R
+-31 0 V
+860 1765 M
+31 0 V
+3788 0 R
+-31 0 V
+860 1862 M
+31 0 V
+3788 0 R
+-31 0 V
+860 1945 M
+31 0 V
+3788 0 R
+-31 0 V
+860 2019 M
+31 0 V
+3788 0 R
+-31 0 V
+860 2086 M
+63 0 V
+3756 0 R
+-63 0 V
+stroke
+740 2086 M
+[ [(Helvetica) 200.0 0.0 true true 0 (10)]
+[(Helvetica) 160.0 100.0 true true 0 (-1)]
+] -86.7 MRshow
+1.000 UL
+LTb
+LCb setrgbcolor
+860 2521 M
+31 0 V
+3788 0 R
+-31 0 V
+860 2775 M
+31 0 V
+3788 0 R
+-31 0 V
+860 2956 M
+31 0 V
+3788 0 R
+-31 0 V
+860 3096 M
+31 0 V
+3788 0 R
+-31 0 V
+860 3210 M
+31 0 V
+3788 0 R
+-31 0 V
+860 3307 M
+31 0 V
+3788 0 R
+-31 0 V
+860 3391 M
+31 0 V
+3788 0 R
+-31 0 V
+860 3465 M
+31 0 V
+3788 0 R
+-31 0 V
+860 3531 M
+63 0 V
+3756 0 R
+-63 0 V
+stroke
+740 3531 M
+[ [(Helvetica) 200.0 0.0 true true 0 (10)]
+[(Helvetica) 160.0 100.0 true true 0 (0)]
+] -86.7 MRshow
+1.000 UL
+LTb
+LCb setrgbcolor
+860 640 M
+0 63 V
+0 2828 R
+0 -63 V
+stroke
+860 440 M
+[ [(Helvetica) 200.0 0.0 true true 0 (10)]
+[(Helvetica) 160.0 100.0 true true 0 (-2)]
+] -86.7 MCshow
+1.000 UL
+LTb
+LCb setrgbcolor
+1435 640 M
+0 31 V
+0 2860 R
+0 -31 V
+1771 640 M
+0 31 V
+0 2860 R
+0 -31 V
+2010 640 M
+0 31 V
+0 2860 R
+0 -31 V
+2195 640 M
+0 31 V
+0 2860 R
+0 -31 V
+2346 640 M
+0 31 V
+0 2860 R
+0 -31 V
+2474 640 M
+0 31 V
+0 2860 R
+0 -31 V
+2584 640 M
+0 31 V
+0 2860 R
+0 -31 V
+2682 640 M
+0 31 V
+0 2860 R
+0 -31 V
+2770 640 M
+0 63 V
+0 2828 R
+0 -63 V
+stroke
+2770 440 M
+[ [(Helvetica) 200.0 0.0 true true 0 (10)]
+[(Helvetica) 160.0 100.0 true true 0 (-1)]
+] -86.7 MCshow
+1.000 UL
+LTb
+LCb setrgbcolor
+3344 640 M
+0 31 V
+0 2860 R
+0 -31 V
+3681 640 M
+0 31 V
+0 2860 R
+0 -31 V
+3919 640 M
+0 31 V
+0 2860 R
+0 -31 V
+4104 640 M
+0 31 V
+0 2860 R
+0 -31 V
+4255 640 M
+0 31 V
+0 2860 R
+0 -31 V
+4383 640 M
+0 31 V
+0 2860 R
+0 -31 V
+4494 640 M
+0 31 V
+0 2860 R
+0 -31 V
+4592 640 M
+0 31 V
+0 2860 R
+0 -31 V
+4679 640 M
+0 63 V
+0 2828 R
+0 -63 V
+stroke
+4679 440 M
+[ [(Helvetica) 200.0 0.0 true true 0 (10)]
+[(Helvetica) 160.0 100.0 true true 0 (0)]
+] -86.7 MCshow
+1.000 UL
+LTb
+LCb setrgbcolor
+1.000 UL
+LTb
+LCb setrgbcolor
+860 3531 N
+860 640 L
+3819 0 V
+0 2891 V
+-3819 0 V
+Z stroke
+0.500 UP
+1.000 UL
+LTb
+LCb setrgbcolor
+LCb setrgbcolor
+160 2085 M
+currentpoint gsave translate -270 rotate 0 0 moveto
+[ [(Helvetica) 200.0 0.0 true true 0 (Inter-thread density)]
+] -66.7 MCshow
+grestore
+LTb
+LCb setrgbcolor
+2769 140 M
+[ [(Helvetica) 200.0 0.0 true true 0 (Intra-thread density)]
+] -66.7 MCshow
+LTb
+% Begin plot #1
+0.500 UP
+0.500 UL
+LTb
+0.82 0.11 0.02 C 3344 2764 Pls
+3118 2418 Pls
+3191 2540 Pls
+3767 2883 Pls
+3529 2767 Pls
+3265 2566 Pls
+3639 2858 Pls
+3127 2430 Pls
+3431 2653 Pls
+3616 2822 Pls
+3007 2397 Pls
+3253 2542 Pls
+3215 2636 Pls
+3193 2715 Pls
+3192 2550 Pls
+2743 2352 Pls
+3265 2469 Pls
+2920 2714 Pls
+2922 2535 Pls
+3482 2643 Pls
+3415 2583 Pls
+3192 2444 Pls
+3193 2567 Pls
+3265 2669 Pls
+3482 2749 Pls
+3091 2587 Pls
+3065 2426 Pls
+3462 2611 Pls
+3616 2833 Pls
+3507 2671 Pls
+2917 2476 Pls
+3265 2468 Pls
+3343 2730 Pls
+3248 2852 Pls
+3240 2711 Pls
+3064 2336 Pls
+2594 2377 Pls
+3183 2414 Pls
+3330 2584 Pls
+2977 2434 Pls
+3525 2661 Pls
+3343 2610 Pls
+3482 2639 Pls
+3431 2650 Pls
+3182 2698 Pls
+3265 2591 Pls
+3331 2590 Pls
+3529 2939 Pls
+3529 2720 Pls
+3529 2699 Pls
+3640 2763 Pls
+3544 2708 Pls
+2618 2520 Pls
+3105 2572 Pls
+2872 2738 Pls
+3496 2774 Pls
+3279 2791 Pls
+3767 2917 Pls
+3640 2819 Pls
+3148 2441 Pls
+3168 2463 Pls
+3503 2712 Pls
+3335 2770 Pls
+3529 2906 Pls
+3529 2877 Pls
+3413 2756 Pls
+3529 2870 Pls
+3141 2582 Pls
+3640 2799 Pls
+3640 2754 Pls
+3481 2627 Pls
+3183 2533 Pls
+3120 2730 Pls
+3265 2540 Pls
+3506 2882 Pls
+3529 2790 Pls
+3617 2870 Pls
+3483 2758 Pls
+3365 2750 Pls
+3495 2816 Pls
+3265 2754 Pls
+3129 2383 Pls
+3432 2756 Pls
+3193 2565 Pls
+3529 2846 Pls
+3175 2720 Pls
+3265 2800 Pls
+3344 2626 Pls
+3265 2750 Pls
+3528 2751 Pls
+3331 2614 Pls
+3529 2677 Pls
+3528 2664 Pls
+3616 2796 Pls
+3344 2527 Pls
+3640 2746 Pls
+3431 2870 Pls
+3215 2759 Pls
+3001 2393 Pls
+2935 2578 Pls
+3311 2573 Pls
+3454 2854 Pls
+3430 2776 Pls
+3529 2704 Pls
+3767 2910 Pls
+2845 2638 Pls
+3265 2532 Pls
+3254 2586 Pls
+3554 2747 Pls
+3105 2379 Pls
+3150 2452 Pls
+3303 2587 Pls
+3126 2538 Pls
+3007 2417 Pls
+3640 2806 Pls
+3343 2664 Pls
+3061 2605 Pls
+3013 2619 Pls
+3129 2534 Pls
+3617 2858 Pls
+3351 2576 Pls
+3193 2774 Pls
+3263 2460 Pls
+3450 2684 Pls
+3088 2544 Pls
+3696 2846 Pls
+3088 2610 Pls
+3431 2747 Pls
+3191 2559 Pls
+3529 2779 Pls
+3432 2675 Pls
+3126 2405 Pls
+3233 2537 Pls
+3483 2629 Pls
+3600 2894 Pls
+3344 2570 Pls
+3057 2460 Pls
+3431 2831 Pls
+3393 2742 Pls
+3000 2760 Pls
+3616 2777 Pls
+3431 2759 Pls
+3616 2824 Pls
+3344 2721 Pls
+2810 2980 Pls
+3183 2788 Pls
+3065 2396 Pls
+3082 2336 Pls
+3639 2835 Pls
+3431 2748 Pls
+3010 2718 Pls
+2759 2504 Pls
+2954 2559 Pls
+2960 2843 Pls
+3117 2672 Pls
+3616 2792 Pls
+3104 2727 Pls
+3150 2756 Pls
+3529 2751 Pls
+3330 2549 Pls
+3180 2466 Pls
+3431 2709 Pls
+3483 2705 Pls
+3638 2809 Pls
+3331 2535 Pls
+3265 2626 Pls
+3193 2574 Pls
+3344 2702 Pls
+3449 2775 Pls
+3182 2772 Pls
+3640 2877 Pls
+3343 2603 Pls
+3265 2700 Pls
+2768 2306 Pls
+3344 2559 Pls
+3640 2773 Pls
+3527 2714 Pls
+3057 2392 Pls
+3050 2805 Pls
+3330 2845 Pls
+3529 2998 Pls
+3511 2758 Pls
+3039 2409 Pls
+3015 2331 Pls
+3343 2719 Pls
+3193 2462 Pls
+3344 2571 Pls
+3344 2546 Pls
+3344 2746 Pls
+3431 2592 Pls
+2942 2711 Pls
+3344 2756 Pls
+3070 2774 Pls
+3529 2731 Pls
+3070 2439 Pls
+3237 2585 Pls
+3126 2446 Pls
+3528 3013 Pls
+3529 2688 Pls
+3768 2910 Pls
+3254 2793 Pls
+3768 2863 Pls
+3416 2636 Pls
+3065 2351 Pls
+2768 2573 Pls
+3510 2711 Pls
+3528 2813 Pls
+3007 2412 Pls
+2810 2477 Pls
+3511 2735 Pls
+3509 2764 Pls
+3431 2632 Pls
+3416 2686 Pls
+3063 2620 Pls
+3344 2714 Pls
+3127 2476 Pls
+3331 2663 Pls
+3414 2590 Pls
+3254 2585 Pls
+3529 2748 Pls
+3168 2535 Pls
+3270 2738 Pls
+3529 2743 Pls
+3344 2575 Pls
+3338 2852 Pls
+3649 2784 Pls
+3216 2712 Pls
+3598 2775 Pls
+3640 2833 Pls
+3327 2731 Pls
+3237 2542 Pls
+3339 2759 Pls
+3639 2758 Pls
+3343 2806 Pls
+3640 2775 Pls
+3344 2578 Pls
+3135 2598 Pls
+3543 2689 Pls
+3554 2808 Pls
+3205 2526 Pls
+3287 2503 Pls
+3261 2709 Pls
+3231 2512 Pls
+2399 2568 Pls
+3001 2643 Pls
+3640 2755 Pls
+3265 2699 Pls
+3640 2879 Pls
+3335 2754 Pls
+3343 2597 Pls
+3640 2761 Pls
+3364 2763 Pls
+3581 2958 Pls
+3528 2739 Pls
+3288 2653 Pls
+3067 2456 Pls
+3008 2322 Pls
+3509 2725 Pls
+3737 2845 Pls
+3260 2514 Pls
+3432 2605 Pls
+3640 2786 Pls
+3344 2771 Pls
+3529 2734 Pls
+3167 2822 Pls
+3207 2467 Pls
+3878 2999 Pls
+3046 2409 Pls
+3526 2870 Pls
+3168 2578 Pls
+2828 2588 Pls
+3633 2775 Pls
+3879 2940 Pls
+3343 2581 Pls
+3482 2782 Pls
+3342 2592 Pls
+3344 2627 Pls
+3040 2507 Pls
+3088 2653 Pls
+3233 2626 Pls
+3583 2747 Pls
+3432 2759 Pls
+3331 2659 Pls
+3696 2830 Pls
+3577 2818 Pls
+3638 2832 Pls
+3637 2770 Pls
+3430 2597 Pls
+3344 2582 Pls
+3432 2658 Pls
+2953 2415 Pls
+3302 2578 Pls
+3365 2605 Pls
+3116 2466 Pls
+3191 2513 Pls
+3432 2612 Pls
+3450 2677 Pls
+3482 2753 Pls
+3529 2740 Pls
+3734 2881 Pls
+3529 2783 Pls
+3451 2993 Pls
+3343 2616 Pls
+3261 2589 Pls
+2674 2481 Pls
+3193 2715 Pls
+3089 2585 Pls
+3126 2624 Pls
+3118 2498 Pls
+3422 2861 Pls
+3647 2772 Pls
+3431 2655 Pls
+3431 2754 Pls
+3544 2783 Pls
+2880 2452 Pls
+3192 2565 Pls
+2769 2510 Pls
+3237 2817 Pls
+3640 2756 Pls
+3529 2710 Pls
+3344 2662 Pls
+3768 2959 Pls
+3463 2613 Pls
+3738 2824 Pls
+3482 2897 Pls
+3738 2826 Pls
+3649 2852 Pls
+3344 2546 Pls
+3303 2675 Pls
+3192 2629 Pls
+3065 2549 Pls
+3432 2704 Pls
+3239 2873 Pls
+3392 2889 Pls
+3510 2743 Pls
+3529 2690 Pls
+3254 2471 Pls
+3529 2792 Pls
+3529 2834 Pls
+3390 2945 Pls
+3109 2592 Pls
+3126 2709 Pls
+3695 2871 Pls
+3432 2668 Pls
+3649 2807 Pls
+3431 2715 Pls
+3768 2904 Pls
+2920 2643 Pls
+2778 2572 Pls
+3064 2618 Pls
+3124 2515 Pls
+3449 2680 Pls
+3342 2674 Pls
+3191 2581 Pls
+2596 2526 Pls
+3183 2727 Pls
+3265 2533 Pls
+3393 2736 Pls
+3264 2480 Pls
+3046 2816 Pls
+3052 2531 Pls
+3254 2684 Pls
+3191 2472 Pls
+3344 2740 Pls
+3529 2774 Pls
+3343 2525 Pls
+3768 2870 Pls
+3193 2451 Pls
+3193 2657 Pls
+2897 2714 Pls
+3344 2642 Pls
+3616 2809 Pls
+3431 2595 Pls
+3528 2660 Pls
+3547 2980 Pls
+2868 2584 Pls
+3482 2669 Pls
+3127 2503 Pls
+3640 2757 Pls
+3431 2642 Pls
+3344 2710 Pls
+3639 2816 Pls
+3528 2736 Pls
+3236 2457 Pls
+3430 2640 Pls
+3511 2877 Pls
+3482 2871 Pls
+3006 2580 Pls
+3528 2923 Pls
+3142 2544 Pls
+3510 2734 Pls
+3344 2629 Pls
+3262 2514 Pls
+2937 2555 Pls
+3344 2795 Pls
+3184 2780 Pls
+2847 2668 Pls
+3528 2665 Pls
+3392 2563 Pls
+3640 2955 Pls
+3340 2590 Pls
+3502 2964 Pls
+3640 2792 Pls
+3058 2325 Pls
+3639 2755 Pls
+3432 2691 Pls
+3123 2359 Pls
+3265 2653 Pls
+3767 2876 Pls
+3526 2791 Pls
+3737 2835 Pls
+3542 2773 Pls
+3529 2732 Pls
+3529 2727 Pls
+3529 2731 Pls
+3254 2678 Pls
+3529 2725 Pls
+3431 2665 Pls
+3416 2747 Pls
+3529 2694 Pls
+3168 2702 Pls
+3045 2418 Pls
+3449 2881 Pls
+3528 2662 Pls
+3768 2912 Pls
+3056 2563 Pls
+3834 2970 Pls
+3254 2601 Pls
+3294 2867 Pls
+3309 2495 Pls
+3344 2597 Pls
+3263 2660 Pls
+3511 2672 Pls
+3158 2944 Pls
+3339 2611 Pls
+2958 2490 Pls
+3262 2550 Pls
+3431 2605 Pls
+3344 2764 Pls
+3001 2796 Pls
+2801 2462 Pls
+3431 2626 Pls
+3312 2658 Pls
+3640 2754 Pls
+3191 2598 Pls
+3616 2850 Pls
+3481 2903 Pls
+3004 2362 Pls
+3635 2803 Pls
+3344 2628 Pls
+3334 2579 Pls
+3126 2535 Pls
+3639 2848 Pls
+3430 2616 Pls
+3509 2821 Pls
+3431 2767 Pls
+3341 2763 Pls
+3344 2702 Pls
+3344 2665 Pls
+3330 2574 Pls
+3265 2593 Pls
+3193 2663 Pls
+3529 2917 Pls
+3177 2560 Pls
+3344 2705 Pls
+3696 2826 Pls
+3639 2822 Pls
+3193 2490 Pls
+3193 2605 Pls
+3422 2773 Pls
+3431 2753 Pls
+3183 2556 Pls
+3426 2702 Pls
+3615 2899 Pls
+2842 2170 Pls
+3656 2784 Pls
+3416 2742 Pls
+3640 2773 Pls
+3307 2801 Pls
+3528 2912 Pls
+3331 2592 Pls
+3432 2866 Pls
+3126 2771 Pls
+3236 2908 Pls
+3393 2691 Pls
+3529 2808 Pls
+3529 2742 Pls
+3135 2526 Pls
+3415 2934 Pls
+3168 2662 Pls
+3410 2686 Pls
+3239 2689 Pls
+3216 2824 Pls
+3184 2554 Pls
+3258 2850 Pls
+2898 2570 Pls
+3343 2965 Pls
+3183 2702 Pls
+3192 2587 Pls
+3032 2442 Pls
+3768 2887 Pls
+3693 2895 Pls
+2953 2729 Pls
+3337 2679 Pls
+3233 2836 Pls
+3639 2806 Pls
+2963 2236 Pls
+3616 2760 Pls
+3089 2337 Pls
+3193 2580 Pls
+3432 2603 Pls
+3616 2868 Pls
+3696 2806 Pls
+3683 2894 Pls
+3199 2550 Pls
+3344 2790 Pls
+3768 2984 Pls
+3124 2640 Pls
+3551 2725 Pls
+3344 2582 Pls
+3344 2813 Pls
+3263 2505 Pls
+3767 2907 Pls
+3000 2654 Pls
+3302 2601 Pls
+3738 2891 Pls
+3583 2830 Pls
+3343 2840 Pls
+3344 2791 Pls
+3216 2844 Pls
+3193 2610 Pls
+3055 2524 Pls
+3288 2486 Pls
+3116 2930 Pls
+3121 2437 Pls
+3008 2664 Pls
+3544 2797 Pls
+3523 2674 Pls
+3344 2690 Pls
+3431 2623 Pls
+3428 2616 Pls
+2623 2521 Pls
+3264 2720 Pls
+3126 2622 Pls
+3344 2567 Pls
+2713 2538 Pls
+3344 2623 Pls
+3416 2641 Pls
+3529 2778 Pls
+2838 2398 Pls
+3551 2747 Pls
+3582 2836 Pls
+3344 2624 Pls
+2987 2650 Pls
+3431 2730 Pls
+3264 2688 Pls
+3431 2715 Pls
+2692 2425 Pls
+3919 2966 Pls
+3344 2544 Pls
+3422 2839 Pls
+3117 2408 Pls
+3262 2665 Pls
+3344 2621 Pls
+3407 2594 Pls
+3084 2457 Pls
+3331 2903 Pls
+3528 3002 Pls
+3344 2543 Pls
+3265 2519 Pls
+3193 2845 Pls
+3529 2790 Pls
+3183 2667 Pls
+3768 2855 Pls
+3414 2702 Pls
+3264 2806 Pls
+3265 2773 Pls
+3431 2760 Pls
+2516 2408 Pls
+3421 2836 Pls
+2866 2533 Pls
+3615 2736 Pls
+3343 2601 Pls
+3191 2445 Pls
+3265 2730 Pls
+3265 2771 Pls
+3537 2708 Pls
+3126 2631 Pls
+3432 2673 Pls
+3767 2850 Pls
+3265 2709 Pls
+3422 2718 Pls
+3032 2575 Pls
+3182 2596 Pls
+2911 2776 Pls
+3380 2809 Pls
+3304 2745 Pls
+3529 2745 Pls
+3268 2793 Pls
+2904 2420 Pls
+3007 2267 Pls
+3528 2692 Pls
+2966 2649 Pls
+3265 2742 Pls
+3427 2711 Pls
+3430 2605 Pls
+3416 2774 Pls
+3343 2868 Pls
+2756 2604 Pls
+2865 2601 Pls
+3088 2414 Pls
+3116 2553 Pls
+3432 2660 Pls
+3582 2754 Pls
+3432 2635 Pls
+3173 2575 Pls
+3298 2548 Pls
+2949 2827 Pls
+3431 2660 Pls
+3454 2723 Pls
+3529 2902 Pls
+2904 2754 Pls
+3251 2666 Pls
+3529 2795 Pls
+3422 2707 Pls
+3617 2755 Pls
+3181 2542 Pls
+2852 2690 Pls
+3262 2687 Pls
+3215 2719 Pls
+3344 2639 Pls
+2813 2630 Pls
+2913 2647 Pls
+2954 2440 Pls
+3582 2772 Pls
+3344 2697 Pls
+3431 2630 Pls
+3640 2835 Pls
+3265 2534 Pls
+2844 2638 Pls
+3126 2564 Pls
+3640 2861 Pls
+3254 2613 Pls
+3415 2879 Pls
+3528 2714 Pls
+3344 2563 Pls
+3118 2697 Pls
+3430 2616 Pls
+3285 2604 Pls
+3344 2643 Pls
+3344 2548 Pls
+2937 2462 Pls
+3168 2554 Pls
+3508 2720 Pls
+3431 2811 Pls
+3640 2902 Pls
+3478 2782 Pls
+2764 2515 Pls
+3046 2518 Pls
+3424 2592 Pls
+3118 2723 Pls
+3640 2817 Pls
+3032 2444 Pls
+3432 2800 Pls
+3343 2648 Pls
+3430 2715 Pls
+3616 2868 Pls
+3343 2601 Pls
+3311 2577 Pls
+3312 2576 Pls
+3343 2521 Pls
+3182 2583 Pls
+3265 2604 Pls
+3529 2688 Pls
+2792 2685 Pls
+3334 2717 Pls
+3065 2340 Pls
+3598 2994 Pls
+3142 2520 Pls
+3265 2684 Pls
+3265 2699 Pls
+2790 2485 Pls
+3311 2701 Pls
+3191 2753 Pls
+3344 2901 Pls
+3167 2445 Pls
+3264 2654 Pls
+3183 2514 Pls
+3311 2602 Pls
+3311 2579 Pls
+3640 2745 Pls
+3344 2716 Pls
+3416 2690 Pls
+3265 2533 Pls
+3416 2617 Pls
+3510 2659 Pls
+3425 2720 Pls
+3601 2787 Pls
+2822 2468 Pls
+3029 2699 Pls
+3501 2830 Pls
+3640 2832 Pls
+3264 2527 Pls
+3064 2432 Pls
+3165 2596 Pls
+3127 2659 Pls
+3735 2887 Pls
+3126 2360 Pls
+3431 2591 Pls
+3431 2741 Pls
+3188 2550 Pls
+3879 2940 Pls
+3192 2849 Pls
+2939 2538 Pls
+3640 2758 Pls
+3365 2558 Pls
+3431 2632 Pls
+3335 2848 Pls
+2855 2631 Pls
+3183 2631 Pls
+3310 2608 Pls
+2797 2425 Pls
+3529 2720 Pls
+3314 2731 Pls
+3482 2848 Pls
+3331 2540 Pls
+3649 2798 Pls
+3193 2805 Pls
+3254 2541 Pls
+3191 2621 Pls
+3265 2609 Pls
+2989 2756 Pls
+3343 2567 Pls
+3582 2718 Pls
+3502 2650 Pls
+3265 2633 Pls
+3250 2882 Pls
+3238 2601 Pls
+3365 2729 Pls
+2857 2570 Pls
+3510 2738 Pls
+2755 2629 Pls
+3125 2481 Pls
+3344 2611 Pls
+3416 2696 Pls
+2847 2488 Pls
+3529 2756 Pls
+3007 2321 Pls
+3529 2788 Pls
+3311 2883 Pls
+2899 2557 Pls
+3288 2567 Pls
+2757 2707 Pls
+3640 2771 Pls
+3233 2692 Pls
+3193 2799 Pls
+3331 2878 Pls
+3209 2767 Pls
+3450 2620 Pls
+3265 2470 Pls
+3254 2635 Pls
+3150 2952 Pls
+3177 2879 Pls
+3483 2671 Pls
+3344 2586 Pls
+3528 2972 Pls
+3107 2354 Pls
+3640 2868 Pls
+3084 2444 Pls
+3393 2743 Pls
+3329 2767 Pls
+3915 2964 Pls
+3068 2769 Pls
+3365 2875 Pls
+3431 2661 Pls
+3768 2897 Pls
+3265 2473 Pls
+3302 2875 Pls
+3529 2823 Pls
+3254 2796 Pls
+3432 2650 Pls
+3046 2430 Pls
+3432 2649 Pls
+3264 2722 Pls
+2939 2257 Pls
+2997 2578 Pls
+3331 2530 Pls
+3265 2550 Pls
+3431 2613 Pls
+3264 2705 Pls
+3344 2708 Pls
+3192 2563 Pls
+3028 2715 Pls
+3264 2558 Pls
+2904 2734 Pls
+3126 2779 Pls
+3265 2754 Pls
+3529 2758 Pls
+3528 2676 Pls
+3264 2699 Pls
+3629 2865 Pls
+3582 2721 Pls
+3286 2699 Pls
+3539 2669 Pls
+3529 2774 Pls
+2949 2234 Pls
+3431 2597 Pls
+3335 2740 Pls
+3415 2846 Pls
+3432 2638 Pls
+3450 2660 Pls
+3415 2593 Pls
+3459 2736 Pls
+3767 2894 Pls
+3183 2670 Pls
+3264 2589 Pls
+3337 2579 Pls
+3529 2699 Pls
+3529 2719 Pls
+3640 2826 Pls
+3334 2876 Pls
+3431 2984 Pls
+3431 2682 Pls
+3614 2927 Pls
+3616 2791 Pls
+2940 2257 Pls
+3527 2707 Pls
+3344 2588 Pls
+3432 2705 Pls
+3431 2782 Pls
+3343 2691 Pls
+3168 2611 Pls
+3330 2695 Pls
+2939 2468 Pls
+3449 2820 Pls
+3344 2666 Pls
+3528 2786 Pls
+3400 2757 Pls
+3738 2849 Pls
+3237 2548 Pls
+3115 2568 Pls
+3264 2554 Pls
+3710 2836 Pls
+3510 2681 Pls
+3736 2838 Pls
+3069 2672 Pls
+3640 2817 Pls
+3582 2749 Pls
+3331 2665 Pls
+3264 2493 Pls
+3415 2751 Pls
+3529 2668 Pls
+3062 2460 Pls
+3030 2541 Pls
+3528 2729 Pls
+3543 2743 Pls
+2978 2629 Pls
+3272 2550 Pls
+3344 2630 Pls
+3529 2766 Pls
+3125 2770 Pls
+3510 2712 Pls
+3037 2607 Pls
+3431 2905 Pls
+3331 2711 Pls
+3502 2844 Pls
+3510 2758 Pls
+3343 2846 Pls
+3640 2771 Pls
+3529 2745 Pls
+3503 2704 Pls
+3529 2728 Pls
+3272 2611 Pls
+3342 2852 Pls
+3312 2569 Pls
+3303 2751 Pls
+3393 2619 Pls
+3529 2699 Pls
+3521 2774 Pls
+3510 2711 Pls
+3431 2673 Pls
+2954 2302 Pls
+3006 2797 Pls
+3528 2750 Pls
+3653 2801 Pls
+3450 2652 Pls
+3343 2573 Pls
+3639 2816 Pls
+2750 2495 Pls
+3262 2644 Pls
+3768 2864 Pls
+3738 2836 Pls
+3102 2703 Pls
+3616 2737 Pls
+3507 2794 Pls
+3254 2538 Pls
+3215 2466 Pls
+3305 2750 Pls
+2892 2458 Pls
+3501 2975 Pls
+3878 2931 Pls
+3344 2680 Pls
+3193 2430 Pls
+3330 2520 Pls
+3216 2615 Pls
+3635 2771 Pls
+3529 2779 Pls
+3265 2583 Pls
+2897 2395 Pls
+3126 2573 Pls
+3308 2525 Pls
+3529 2673 Pls
+3326 2608 Pls
+2931 2510 Pls
+3431 2654 Pls
+3462 2770 Pls
+3192 2701 Pls
+3529 2692 Pls
+3216 2446 Pls
+3415 2762 Pls
+3089 2586 Pls
+3648 2981 Pls
+3551 2725 Pls
+3648 2863 Pls
+3616 2914 Pls
+3582 2814 Pls
+3462 2758 Pls
+3639 2832 Pls
+3393 2717 Pls
+3192 2687 Pls
+3432 2706 Pls
+2867 2608 Pls
+3430 2640 Pls
+2886 2634 Pls
+3288 2557 Pls
+3432 2732 Pls
+3008 2612 Pls
+3125 2661 Pls
+3265 2508 Pls
+3340 2619 Pls
+3768 2926 Pls
+3215 2448 Pls
+2904 2475 Pls
+3356 2670 Pls
+3343 2726 Pls
+3114 2529 Pls
+2956 2430 Pls
+2984 2452 Pls
+3528 2719 Pls
+3821 2883 Pls
+3480 2749 Pls
+3380 2624 Pls
+2170 2279 Pls
+3431 2612 Pls
+3261 2692 Pls
+3526 2806 Pls
+3431 2728 Pls
+3118 2516 Pls
+3190 2906 Pls
+3640 2803 Pls
+3344 2785 Pls
+3344 2671 Pls
+3510 2739 Pls
+3766 2861 Pls
+3058 2562 Pls
+3529 2755 Pls
+3431 2748 Pls
+3193 2446 Pls
+3422 2660 Pls
+3529 2678 Pls
+3344 2617 Pls
+3364 2851 Pls
+3261 2756 Pls
+3147 2769 Pls
+2856 2773 Pls
+3582 2728 Pls
+3529 2718 Pls
+3193 2539 Pls
+3735 2830 Pls
+3528 2664 Pls
+3639 2863 Pls
+3254 2519 Pls
+3341 2729 Pls
+3127 2553 Pls
+3450 2665 Pls
+3213 2605 Pls
+3430 2626 Pls
+3258 2730 Pls
+3381 2726 Pls
+3462 2638 Pls
+3431 2600 Pls
+3700 2857 Pls
+3640 2823 Pls
+3416 2601 Pls
+3431 2696 Pls
+3640 2782 Pls
+3640 2896 Pls
+3237 2644 Pls
+3183 2402 Pls
+3414 2778 Pls
+2856 2512 Pls
+2953 2350 Pls
+3344 2663 Pls
+3183 2529 Pls
+3264 2625 Pls
+3344 2558 Pls
+3216 2565 Pls
+3311 2518 Pls
+3430 2699 Pls
+3006 2586 Pls
+3215 2558 Pls
+3265 2771 Pls
+3529 2712 Pls
+3695 2907 Pls
+3738 2885 Pls
+3344 2678 Pls
+3529 2723 Pls
+3529 2677 Pls
+3529 2798 Pls
+3256 2812 Pls
+2963 2458 Pls
+3331 2731 Pls
+3528 2767 Pls
+% End plot #1
+% Begin plot #2
+0.500 UP
+0.500 UL
+LTb
+0.73 0.85 0.33 C 4343 2857 Crs
+3768 2609 Crs
+4679 2554 Crs
+3767 2575 Crs
+3640 2025 Crs
+3878 2397 Crs
+3919 2778 Crs
+3529 2647 Crs
+3768 2471 Crs
+3344 2345 Crs
+3919 2843 Crs
+4383 2638 Crs
+4046 2647 Crs
+3639 2131 Crs
+4104 2756 Crs
+3529 2635 Crs
+3640 2718 Crs
+3528 2623 Crs
+4046 2817 Crs
+3737 2568 Crs
+3344 2121 Crs
+3510 2507 Crs
+3877 2897 Crs
+3638 2132 Crs
+3768 2430 Crs
+4343 2554 Crs
+3616 2416 Crs
+4104 2337 Crs
+3640 2633 Crs
+4104 2781 Crs
+3265 2449 Crs
+3917 2667 Crs
+3617 2585 Crs
+3767 2687 Crs
+3918 2536 Crs
+3737 2327 Crs
+4046 2744 Crs
+3766 2744 Crs
+4104 2641 Crs
+3767 2518 Crs
+3825 2704 Crs
+3737 2373 Crs
+3825 2790 Crs
+3767 2487 Crs
+3640 2250 Crs
+3767 2498 Crs
+3919 2565 Crs
+3235 1914 Crs
+3582 2492 Crs
+4103 2570 Crs
+3640 2393 Crs
+3918 2866 Crs
+4104 2584 Crs
+3483 2600 Crs
+4047 2538 Crs
+4343 2548 Crs
+3640 2501 Crs
+3976 2338 Crs
+3330 2321 Crs
+3407 2243 Crs
+3091 2224 Crs
+3193 2350 Crs
+3529 2552 Crs
+3639 2613 Crs
+3617 2598 Crs
+3640 2669 Crs
+4104 2603 Crs
+3919 2451 Crs
+3529 2441 Crs
+3918 2822 Crs
+4103 2552 Crs
+4255 2690 Crs
+3504 2374 Crs
+3919 2871 Crs
+3265 2196 Crs
+3875 2619 Crs
+3737 2531 Crs
+3768 2646 Crs
+4678 2813 Crs
+3416 2544 Crs
+4104 2516 Crs
+3125 1804 Crs
+3529 2595 Crs
+4341 2590 Crs
+4047 2656 Crs
+3430 2129 Crs
+3262 2420 Crs
+3529 2524 Crs
+3610 2473 Crs
+3768 2623 Crs
+3768 2566 Crs
+3640 2613 Crs
+3919 2509 Crs
+3737 2341 Crs
+3737 2653 Crs
+3768 2774 Crs
+3640 2009 Crs
+3529 2558 Crs
+3583 2431 Crs
+3431 2580 Crs
+3640 2598 Crs
+4255 2862 Crs
+4343 2570 Crs
+3765 2790 Crs
+3768 2474 Crs
+3736 2539 Crs
+3343 2429 Crs
+3343 2190 Crs
+3976 2287 Crs
+3768 2687 Crs
+3529 2140 Crs
+3462 2329 Crs
+3649 2657 Crs
+4679 2651 Crs
+4104 2560 Crs
+3825 2373 Crs
+4047 2732 Crs
+3976 2547 Crs
+3431 1866 Crs
+3767 2746 Crs
+3918 2708 Crs
+3768 2736 Crs
+3823 2691 Crs
+3918 2404 Crs
+3879 2815 Crs
+3879 2091 Crs
+4104 2590 Crs
+3529 2610 Crs
+3431 2493 Crs
+3919 2765 Crs
+3263 1819 Crs
+3919 2510 Crs
+3919 2747 Crs
+3768 2713 Crs
+3529 2506 Crs
+3767 2232 Crs
+3336 2464 Crs
+4527 2731 Crs
+3511 2354 Crs
+3976 2683 Crs
+3768 2477 Crs
+3616 2491 Crs
+3918 2487 Crs
+4046 2607 Crs
+3768 2651 Crs
+4343 2534 Crs
+3431 2425 Crs
+3344 2242 Crs
+3976 2743 Crs
+3510 2456 Crs
+3264 1781 Crs
+3265 2433 Crs
+3768 2276 Crs
+3431 2057 Crs
+4104 2397 Crs
+3640 2626 Crs
+4255 2872 Crs
+3431 2514 Crs
+3529 2438 Crs
+3767 2227 Crs
+3634 2552 Crs
+3343 2010 Crs
+2851 1976 Crs
+3919 2454 Crs
+3768 2560 Crs
+3617 2594 Crs
+3046 2027 Crs
+3529 2365 Crs
+3878 2245 Crs
+4104 2445 Crs
+3824 2599 Crs
+3767 2550 Crs
+3640 2645 Crs
+3919 2608 Crs
+3582 2533 Crs
+3914 2742 Crs
+4104 2330 Crs
+3878 2773 Crs
+3767 2811 Crs
+3768 2373 Crs
+4104 2534 Crs
+4047 2594 Crs
+3265 2391 Crs
+3919 2359 Crs
+4104 2413 Crs
+4103 2771 Crs
+3919 2374 Crs
+3767 2672 Crs
+4040 2678 Crs
+3529 2453 Crs
+3528 2219 Crs
+3615 2678 Crs
+4383 2582 Crs
+4157 2765 Crs
+4104 2350 Crs
+3918 2401 Crs
+3581 2506 Crs
+3511 2368 Crs
+3582 2692 Crs
+3431 2249 Crs
+3768 2460 Crs
+3330 2391 Crs
+4104 2828 Crs
+3007 2151 Crs
+3649 2523 Crs
+3343 2450 Crs
+3919 2600 Crs
+3768 2567 Crs
+3768 2522 Crs
+3767 2773 Crs
+3919 2198 Crs
+3767 2651 Crs
+4104 2531 Crs
+4047 2554 Crs
+3640 2743 Crs
+3528 2489 Crs
+3878 2522 Crs
+3908 2293 Crs
+3431 2421 Crs
+3768 2540 Crs
+4046 2481 Crs
+3265 2050 Crs
+3529 2499 Crs
+3511 2645 Crs
+3737 2779 Crs
+3878 2623 Crs
+3639 2026 Crs
+3528 2594 Crs
+3730 2537 Crs
+4383 2299 Crs
+3338 1838 Crs
+3878 2626 Crs
+3975 2557 Crs
+3331 2412 Crs
+2977 1932 Crs
+3615 2710 Crs
+4104 2661 Crs
+3419 2474 Crs
+3919 2338 Crs
+3616 2098 Crs
+3919 2571 Crs
+3193 2406 Crs
+3919 2736 Crs
+3529 2272 Crs
+4343 2525 Crs
+3737 2330 Crs
+4047 2437 Crs
+3416 2409 Crs
+4343 2560 Crs
+3919 2662 Crs
+4043 2802 Crs
+3919 2687 Crs
+3529 2633 Crs
+3825 2649 Crs
+4104 2758 Crs
+3640 2581 Crs
+3639 2548 Crs
+3976 2750 Crs
+3193 1718 Crs
+3254 2037 Crs
+3919 2595 Crs
+3184 2265 Crs
+3768 2759 Crs
+3919 2539 Crs
+4255 2581 Crs
+3510 2531 Crs
+3065 2294 Crs
+3529 2610 Crs
+3640 2558 Crs
+3640 2523 Crs
+3766 2647 Crs
+4104 2705 Crs
+3429 2297 Crs
+3529 2428 Crs
+4047 2475 Crs
+3768 2592 Crs
+3695 2666 Crs
+3065 2266 Crs
+3331 2501 Crs
+3919 2506 Crs
+3431 2372 Crs
+4527 2570 Crs
+4103 2594 Crs
+4676 2755 Crs
+3640 2235 Crs
+3640 2430 Crs
+3416 2516 Crs
+3768 2506 Crs
+3768 2475 Crs
+3737 2677 Crs
+4255 2257 Crs
+3544 2584 Crs
+4342 2728 Crs
+3431 2350 Crs
+3918 2633 Crs
+3768 2779 Crs
+3904 2638 Crs
+3543 2271 Crs
+3825 2477 Crs
+3919 2687 Crs
+4104 2864 Crs
+3878 2527 Crs
+3919 2322 Crs
+4047 2583 Crs
+3640 2557 Crs
+3616 2443 Crs
+3616 2631 Crs
+3894 2858 Crs
+3825 2762 Crs
+3511 2612 Crs
+3343 2238 Crs
+3919 2646 Crs
+3917 2739 Crs
+4104 2354 Crs
+3768 2674 Crs
+3431 1816 Crs
+3878 2495 Crs
+3510 2540 Crs
+4104 2732 Crs
+3654 2721 Crs
+3335 2258 Crs
+3393 1814 Crs
+3919 2703 Crs
+3527 2569 Crs
+3529 2565 Crs
+3616 2472 Crs
+3768 2821 Crs
+3640 2614 Crs
+3834 2758 Crs
+3768 2783 Crs
+4343 2235 Crs
+4104 2631 Crs
+3768 2407 Crs
+3919 2458 Crs
+3529 2654 Crs
+3919 2557 Crs
+3640 2493 Crs
+3617 2501 Crs
+4679 2801 Crs
+4102 2655 Crs
+3265 1890 Crs
+4255 2736 Crs
+3918 2702 Crs
+3879 2550 Crs
+3640 2411 Crs
+3919 2595 Crs
+3582 2468 Crs
+3431 2534 Crs
+3918 2731 Crs
+3639 2673 Crs
+3649 2633 Crs
+4342 2660 Crs
+3766 2378 Crs
+4342 2625 Crs
+3878 2387 Crs
+3687 2424 Crs
+3768 2466 Crs
+4104 2787 Crs
+4104 2231 Crs
+3649 2621 Crs
+4104 2621 Crs
+3976 2372 Crs
+3344 2331 Crs
+3617 2678 Crs
+3529 2511 Crs
+3919 2588 Crs
+4342 2858 Crs
+3529 2634 Crs
+4047 2669 Crs
+3767 2738 Crs
+4528 2576 Crs
+3878 2455 Crs
+4098 2623 Crs
+3640 2071 Crs
+3252 2330 Crs
+3527 2260 Crs
+3169 2255 Crs
+3768 2798 Crs
+3919 2592 Crs
+3529 2393 Crs
+3529 2488 Crs
+3419 2551 Crs
+3639 2526 Crs
+4343 2791 Crs
+3616 2604 Crs
+3344 2292 Crs
+4157 2383 Crs
+3528 2361 Crs
+3510 2557 Crs
+4104 2914 Crs
+4255 2494 Crs
+3738 2397 Crs
+4255 2655 Crs
+3765 2561 Crs
+3919 2328 Crs
+3192 2385 Crs
+4255 2775 Crs
+3427 2448 Crs
+3616 2396 Crs
+3432 2546 Crs
+3640 2654 Crs
+3766 2813 Crs
+3878 2689 Crs
+4104 2848 Crs
+3065 2282 Crs
+3919 2389 Crs
+3704 2542 Crs
+3919 2559 Crs
+3768 2558 Crs
+3919 2520 Crs
+3767 2260 Crs
+3768 2429 Crs
+3768 2606 Crs
+3431 2320 Crs
+3919 2266 Crs
+3431 2309 Crs
+3738 2752 Crs
+4255 2572 Crs
+3528 2547 Crs
+3523 2190 Crs
+3766 2444 Crs
+4104 2621 Crs
+3737 2682 Crs
+4091 2584 Crs
+4104 2445 Crs
+3919 2707 Crs
+4047 2512 Crs
+3431 2523 Crs
+3919 2548 Crs
+3640 2623 Crs
+3589 2629 Crs
+3617 2491 Crs
+4343 2639 Crs
+3265 2355 Crs
+4104 2853 Crs
+3878 2737 Crs
+3976 2413 Crs
+3768 2008 Crs
+4047 2492 Crs
+3767 2394 Crs
+4103 2778 Crs
+4158 2657 Crs
+3431 2489 Crs
+3766 2398 Crs
+4046 2364 Crs
+4103 2621 Crs
+3834 2308 Crs
+4043 2673 Crs
+3510 2534 Crs
+3392 2493 Crs
+3917 2346 Crs
+3917 2596 Crs
+3919 2726 Crs
+3825 2287 Crs
+3976 2526 Crs
+3767 2399 Crs
+3918 2271 Crs
+3768 2206 Crs
+3768 2597 Crs
+3734 2395 Crs
+4047 2338 Crs
+3640 2727 Crs
+4047 2720 Crs
+3529 2387 Crs
+3582 2483 Crs
+4343 2650 Crs
+3510 2532 Crs
+3737 2426 Crs
+3343 2231 Crs
+4158 2734 Crs
+3640 2527 Crs
+4343 2490 Crs
+4046 2742 Crs
+3915 2563 Crs
+3392 2475 Crs
+3431 2518 Crs
+3768 2617 Crs
+3737 2659 Crs
+3344 1898 Crs
+4044 2658 Crs
+3919 2374 Crs
+3528 2532 Crs
+4338 2423 Crs
+3820 2111 Crs
+3919 2761 Crs
+3919 2563 Crs
+3617 2559 Crs
+3601 2649 Crs
+4104 2641 Crs
+4343 2617 Crs
+3919 2789 Crs
+3640 2665 Crs
+3529 2527 Crs
+3525 2201 Crs
+3768 2782 Crs
+4104 2596 Crs
+4104 2476 Crs
+3529 2584 Crs
+3952 2795 Crs
+4046 2616 Crs
+4104 2501 Crs
+3975 2533 Crs
+3431 2404 Crs
+3407 2559 Crs
+3640 2618 Crs
+3528 2605 Crs
+3825 2594 Crs
+3919 2392 Crs
+3343 2345 Crs
+3738 2548 Crs
+4383 2815 Crs
+4103 2799 Crs
+3696 2548 Crs
+3879 2791 Crs
+3103 2231 Crs
+4342 2654 Crs
+3065 1886 Crs
+3529 2363 Crs
+4103 2576 Crs
+3919 2910 Crs
+3768 2576 Crs
+3976 2930 Crs
+3767 2523 Crs
+3431 2137 Crs
+3237 2438 Crs
+3919 2662 Crs
+3878 2732 Crs
+3504 2626 Crs
+3918 2470 Crs
+4679 2673 Crs
+3286 2395 Crs
+3767 2832 Crs
+4047 2730 Crs
+3768 2380 Crs
+4104 2701 Crs
+3529 2323 Crs
+3767 2633 Crs
+4104 2790 Crs
+3976 2672 Crs
+3919 2175 Crs
+3639 2585 Crs
+3184 2236 Crs
+3767 2516 Crs
+4342 2758 Crs
+3768 2505 Crs
+3824 2670 Crs
+3976 2478 Crs
+3833 2791 Crs
+3637 2475 Crs
+3919 2633 Crs
+3640 2667 Crs
+3768 2574 Crs
+3617 2719 Crs
+3737 2612 Crs
+3768 2402 Crs
+3640 2290 Crs
+3918 2409 Crs
+4103 2595 Crs
+3919 2650 Crs
+3919 2401 Crs
+3341 2189 Crs
+3876 2434 Crs
+3529 2411 Crs
+4104 2749 Crs
+4047 2756 Crs
+3510 2326 Crs
+3529 2221 Crs
+3640 2551 Crs
+3919 2682 Crs
+3824 2649 Crs
+3768 2447 Crs
+3265 2034 Crs
+3737 2484 Crs
+4339 2394 Crs
+4046 2802 Crs
+3919 2601 Crs
+3582 2468 Crs
+3649 2243 Crs
+3768 2614 Crs
+3878 2663 Crs
+3825 2664 Crs
+3431 2505 Crs
+3640 2475 Crs
+4103 2747 Crs
+3544 2669 Crs
+3768 2390 Crs
+3768 2807 Crs
+3768 2726 Crs
+4342 2550 Crs
+3254 2119 Crs
+3919 2685 Crs
+3825 2615 Crs
+3640 2449 Crs
+3918 2272 Crs
+3450 2482 Crs
+3431 2572 Crs
+4526 2450 Crs
+3528 2551 Crs
+3768 2712 Crs
+4342 2846 Crs
+3919 2559 Crs
+3919 2527 Crs
+4047 2704 Crs
+4104 2301 Crs
+4679 2592 Crs
+4343 2462 Crs
+3529 2498 Crs
+3508 2610 Crs
+3430 2386 Crs
+3767 2779 Crs
+3640 2543 Crs
+3639 2460 Crs
+3918 2573 Crs
+3919 2612 Crs
+3919 2400 Crs
+3919 2773 Crs
+3919 2489 Crs
+3344 2053 Crs
+3768 2512 Crs
+3331 2441 Crs
+3529 2656 Crs
+3879 2480 Crs
+3617 2682 Crs
+3878 2667 Crs
+3344 2509 Crs
+3416 2285 Crs
+3767 2499 Crs
+4047 2631 Crs
+3919 2771 Crs
+4343 2652 Crs
+3452 2566 Crs
+3975 2901 Crs
+3768 2313 Crs
+3768 2513 Crs
+3616 2214 Crs
+4104 2577 Crs
+4104 2584 Crs
+4157 2709 Crs
+3265 1937 Crs
+3580 2646 Crs
+4101 2652 Crs
+3903 2565 Crs
+4104 2522 Crs
+3695 2782 Crs
+3265 2361 Crs
+3919 2530 Crs
+3478 2474 Crs
+4343 2713 Crs
+3737 2531 Crs
+4099 2566 Crs
+3529 2037 Crs
+4255 2470 Crs
+3640 2560 Crs
+3768 2266 Crs
+4679 2627 Crs
+4104 2202 Crs
+3825 2603 Crs
+3640 2427 Crs
+3617 2334 Crs
+3766 2831 Crs
+3126 2233 Crs
+3416 2149 Crs
+3416 2415 Crs
+3265 2010 Crs
+3393 2542 Crs
+4343 2512 Crs
+3919 2211 Crs
+4342 2775 Crs
+4104 2570 Crs
+4047 2167 Crs
+3768 2531 Crs
+3625 2607 Crs
+3581 2039 Crs
+4494 2827 Crs
+3695 2707 Crs
+3738 2658 Crs
+3729 2534 Crs
+3737 2634 Crs
+3768 2664 Crs
+3904 2516 Crs
+3919 2445 Crs
+3919 2670 Crs
+3527 2298 Crs
+3758 2605 Crs
+3640 2608 Crs
+3343 2442 Crs
+4103 2849 Crs
+3768 2567 Crs
+3878 2386 Crs
+3919 2837 Crs
+3767 2503 Crs
+3919 2398 Crs
+3825 2157 Crs
+3768 2362 Crs
+3768 2692 Crs
+4104 2737 Crs
+4046 2655 Crs
+3482 2223 Crs
+3463 2327 Crs
+3919 2730 Crs
+3767 2384 Crs
+3767 2720 Crs
+3635 2400 Crs
+3919 2276 Crs
+3768 2833 Crs
+3529 2466 Crs
+3528 2433 Crs
+3192 2022 Crs
+3510 2096 Crs
+3919 2673 Crs
+3768 2250 Crs
+3529 2464 Crs
+3738 2561 Crs
+3640 2585 Crs
+3768 2819 Crs
+4255 2392 Crs
+3529 2087 Crs
+3767 2680 Crs
+3918 2660 Crs
+3768 2543 Crs
+3529 2241 Crs
+3616 2313 Crs
+3824 2507 Crs
+4104 2614 Crs
+4252 2884 Crs
+3919 2522 Crs
+4104 2763 Crs
+3825 2326 Crs
+3427 2336 Crs
+4252 2674 Crs
+3332 2243 Crs
+3528 2451 Crs
+4104 2530 Crs
+3582 2245 Crs
+3529 2458 Crs
+3764 2671 Crs
+3878 2445 Crs
+4047 2461 Crs
+4342 2693 Crs
+4046 2652 Crs
+3431 2420 Crs
+3510 2424 Crs
+3431 2496 Crs
+3640 2739 Crs
+2954 2144 Crs
+3767 2839 Crs
+3976 2577 Crs
+3640 2286 Crs
+3825 2771 Crs
+3529 2527 Crs
+3919 2528 Crs
+3483 2384 Crs
+3529 2454 Crs
+4046 2830 Crs
+3768 2627 Crs
+3919 2487 Crs
+3640 2472 Crs
+3768 2629 Crs
+3768 2308 Crs
+3065 2253 Crs
+3640 2622 Crs
+4103 2623 Crs
+3919 2604 Crs
+3878 2481 Crs
+3737 2790 Crs
+3737 2526 Crs
+3431 2155 Crs
+3768 2648 Crs
+3462 2421 Crs
+3511 2101 Crs
+3616 2330 Crs
+3529 2656 Crs
+3640 2613 Crs
+3640 1946 Crs
+3919 2539 Crs
+3431 2508 Crs
+3510 2387 Crs
+2717 1916 Crs
+3640 2533 Crs
+4343 2584 Crs
+3463 2303 Crs
+3432 2352 Crs
+4152 2351 Crs
+3640 2668 Crs
+3767 2495 Crs
+3239 2347 Crs
+3581 2506 Crs
+3431 2285 Crs
+3878 2794 Crs
+3767 2285 Crs
+3265 2439 Crs
+3737 2566 Crs
+3510 2462 Crs
+3696 2600 Crs
+3825 2493 Crs
+3640 2436 Crs
+3768 2686 Crs
+3768 2038 Crs
+3640 2739 Crs
+3917 2621 Crs
+3529 2564 Crs
+3583 2527 Crs
+3834 2815 Crs
+4679 2714 Crs
+3695 2715 Crs
+4255 2876 Crs
+3581 2685 Crs
+3915 2557 Crs
+3344 2458 Crs
+3919 2652 Crs
+4064 2367 Crs
+3416 1987 Crs
+3193 2214 Crs
+3821 2623 Crs
+3768 2681 Crs
+3738 2634 Crs
+3767 2655 Crs
+3919 2647 Crs
+3529 2340 Crs
+3529 2485 Crs
+3527 2495 Crs
+3738 2602 Crs
+3821 2819 Crs
+3431 2372 Crs
+3768 2373 Crs
+3640 2495 Crs
+3878 2596 Crs
+3431 2359 Crs
+3529 2248 Crs
+4047 2751 Crs
+3529 2568 Crs
+3952 2577 Crs
+3768 2226 Crs
+3344 2250 Crs
+3738 2687 Crs
+3919 2787 Crs
+4157 2556 Crs
+4104 2618 Crs
+3768 2351 Crs
+3737 2810 Crs
+4104 2415 Crs
+3343 2154 Crs
+4343 2430 Crs
+3737 2661 Crs
+3640 2280 Crs
+3528 2491 Crs
+4102 2532 Crs
+3768 2564 Crs
+3919 2639 Crs
+3878 2564 Crs
+4047 2559 Crs
+3919 2405 Crs
+3529 2471 Crs
+3878 2599 Crs
+3768 2767 Crs
+3263 2274 Crs
+3696 2655 Crs
+3616 2657 Crs
+4342 2602 Crs
+3216 2383 Crs
+3738 2595 Crs
+3768 2041 Crs
+3529 2477 Crs
+3640 2573 Crs
+3640 2492 Crs
+3825 2580 Crs
+3638 2592 Crs
+3767 2041 Crs
+3865 2495 Crs
+3511 2424 Crs
+4104 2388 Crs
+4104 2659 Crs
+3510 1931 Crs
+3529 2204 Crs
+3343 2028 Crs
+4158 2777 Crs
+3430 2424 Crs
+3734 2693 Crs
+3918 2620 Crs
+3737 2551 Crs
+4343 2666 Crs
+3640 2521 Crs
+4255 2561 Crs
+4383 2513 Crs
+4342 2618 Crs
+3768 2587 Crs
+3583 2457 Crs
+4104 2389 Crs
+3919 2409 Crs
+3639 2453 Crs
+3878 2648 Crs
+3695 2686 Crs
+3767 2456 Crs
+4044 2569 Crs
+3767 2785 Crs
+3640 2614 Crs
+3878 2643 Crs
+4528 2467 Crs
+4490 2600 Crs
+3768 2673 Crs
+4255 2565 Crs
+4679 2476 Crs
+3919 2794 Crs
+3527 2645 Crs
+4255 2653 Crs
+4046 2501 Crs
+3640 2572 Crs
+3529 2494 Crs
+3331 2261 Crs
+3629 2663 Crs
+3878 2752 Crs
+3919 2613 Crs
+3737 2134 Crs
+3919 2513 Crs
+3918 2780 Crs
+4104 2559 Crs
+3767 2759 Crs
+3768 2773 Crs
+3265 2360 Crs
+4343 2573 Crs
+3502 2229 Crs
+3767 2797 Crs
+4249 2660 Crs
+3738 2377 Crs
+3639 2617 Crs
+3919 2711 Crs
+3529 2640 Crs
+4343 2882 Crs
+3639 2668 Crs
+3878 2559 Crs
+3976 2623 Crs
+3976 2629 Crs
+3737 2495 Crs
+3640 2219 Crs
+3543 2570 Crs
+4045 2730 Crs
+3640 2647 Crs
+3639 2468 Crs
+3768 2430 Crs
+3649 2557 Crs
+3334 2044 Crs
+4104 2659 Crs
+3529 2455 Crs
+3415 2537 Crs
+3879 2499 Crs
+3768 2754 Crs
+3817 2654 Crs
+3878 2427 Crs
+4255 2917 Crs
+3918 2775 Crs
+4255 2798 Crs
+4255 2649 Crs
+3640 2737 Crs
+3768 2520 Crs
+3192 1856 Crs
+3767 2623 Crs
+4343 2747 Crs
+3529 2367 Crs
+3878 2448 Crs
+4064 1954 Crs
+3600 2436 Crs
+3193 1980 Crs
+4104 2755 Crs
+4255 2327 Crs
+3765 2625 Crs
+3768 2459 Crs
+3582 2395 Crs
+3415 2429 Crs
+4255 2367 Crs
+3767 2339 Crs
+3639 2264 Crs
+3918 2419 Crs
+3528 2606 Crs
+4103 2877 Crs
+3834 2864 Crs
+3616 2486 Crs
+3640 2523 Crs
+3890 2650 Crs
+3236 2402 Crs
+4383 2473 Crs
+4255 2699 Crs
+3768 2521 Crs
+3767 2819 Crs
+3738 2729 Crs
+3737 2632 Crs
+4343 2811 Crs
+3260 2172 Crs
+3761 2035 Crs
+3762 2693 Crs
+3431 2251 Crs
+3768 2482 Crs
+3919 2539 Crs
+3767 2664 Crs
+4047 2468 Crs
+4046 2608 Crs
+3878 2617 Crs
+4047 2564 Crs
+3768 2645 Crs
+3150 2327 Crs
+4103 2418 Crs
+3431 1902 Crs
+3767 2445 Crs
+3768 2672 Crs
+3616 2430 Crs
+3343 2246 Crs
+3529 2507 Crs
+3768 2783 Crs
+3529 2396 Crs
+3768 2786 Crs
+4045 2753 Crs
+3529 2582 Crs
+3879 2682 Crs
+4341 2816 Crs
+3768 2349 Crs
+3640 2211 Crs
+3582 2598 Crs
+3878 2737 Crs
+3919 2700 Crs
+3639 2681 Crs
+3919 2933 Crs
+3616 2325 Crs
+3529 2512 Crs
+3639 2368 Crs
+3919 2838 Crs
+3696 2774 Crs
+3264 2427 Crs
+4104 2670 Crs
+4342 2617 Crs
+3431 2337 Crs
+3919 2902 Crs
+3529 2453 Crs
+3191 1835 Crs
+3640 2339 Crs
+3615 2246 Crs
+3696 2622 Crs
+3767 2413 Crs
+3528 2158 Crs
+3737 2536 Crs
+3529 2571 Crs
+3529 2436 Crs
+4342 2562 Crs
+3737 2487 Crs
+3648 2699 Crs
+4343 2733 Crs
+3768 2325 Crs
+4104 2651 Crs
+4046 2740 Crs
+4103 2613 Crs
+3768 2555 Crs
+3529 2580 Crs
+3640 2318 Crs
+3879 2731 Crs
+4104 2515 Crs
+3616 2351 Crs
+4342 2792 Crs
+3184 2347 Crs
+3899 2521 Crs
+3640 2582 Crs
+3528 2432 Crs
+4047 2550 Crs
+3640 2381 Crs
+3919 2763 Crs
+3527 2372 Crs
+4047 2676 Crs
+4104 2679 Crs
+3822 2704 Crs
+3767 2799 Crs
+3919 2418 Crs
+3765 2435 Crs
+4047 2550 Crs
+3393 2243 Crs
+3767 1918 Crs
+3695 2761 Crs
+3419 2510 Crs
+3919 2676 Crs
+3919 2843 Crs
+3640 2430 Crs
+3636 2639 Crs
+3616 2542 Crs
+3766 2614 Crs
+3768 2688 Crs
+3331 2399 Crs
+3529 2551 Crs
+3767 2829 Crs
+3331 2470 Crs
+3510 2566 Crs
+3738 2623 Crs
+3904 2525 Crs
+3919 2659 Crs
+3896 2538 Crs
+3639 2615 Crs
+3695 2634 Crs
+3767 2780 Crs
+4157 2784 Crs
+3919 2752 Crs
+3431 2431 Crs
+3768 2129 Crs
+3825 2614 Crs
+3919 2731 Crs
+3767 2638 Crs
+4047 2678 Crs
+3430 2579 Crs
+3640 2607 Crs
+3879 2829 Crs
+4047 2457 Crs
+3640 2057 Crs
+3878 2788 Crs
+3767 2612 Crs
+3919 2417 Crs
+3768 2733 Crs
+3768 2778 Crs
+3407 2526 Crs
+4527 2818 Crs
+3640 2133 Crs
+3872 2561 Crs
+3917 2453 Crs
+3617 2521 Crs
+3918 2206 Crs
+3919 2670 Crs
+3919 2277 Crs
+3529 2433 Crs
+3834 2763 Crs
+4104 2586 Crs
+3640 2114 Crs
+3877 2311 Crs
+3918 2605 Crs
+3824 2583 Crs
+3919 2706 Crs
+4104 2725 Crs
+3511 2535 Crs
+3919 2558 Crs
+4238 2657 Crs
+3919 2710 Crs
+4104 2543 Crs
+4383 2643 Crs
+3640 2740 Crs
+3617 2561 Crs
+3877 2204 Crs
+3768 2381 Crs
+4104 2721 Crs
+4103 2496 Crs
+3766 2423 Crs
+3639 2615 Crs
+3878 2246 Crs
+3767 2328 Crs
+3416 1973 Crs
+4343 2600 Crs
+4103 2704 Crs
+4255 2341 Crs
+3649 2401 Crs
+4047 2342 Crs
+3616 2521 Crs
+3765 2820 Crs
+3344 2512 Crs
+3918 2307 Crs
+3265 2116 Crs
+3823 2854 Crs
+4104 2748 Crs
+3528 2346 Crs
+4104 2206 Crs
+4343 2647 Crs
+3341 2515 Crs
+3529 2635 Crs
+4255 2330 Crs
+3737 2533 Crs
+3640 2593 Crs
+3343 2307 Crs
+4102 2750 Crs
+3509 2419 Crs
+3432 2506 Crs
+3640 2496 Crs
+3344 2346 Crs
+3640 2514 Crs
+4104 2677 Crs
+3768 2383 Crs
+3919 2704 Crs
+3288 2389 Crs
+3640 2559 Crs
+3341 2120 Crs
+3767 2594 Crs
+3529 2542 Crs
+4104 2584 Crs
+3270 2450 Crs
+3919 2661 Crs
+3768 2325 Crs
+3767 2536 Crs
+3767 2397 Crs
+3768 2530 Crs
+3919 2749 Crs
+3768 2761 Crs
+3432 2151 Crs
+3265 2085 Crs
+3649 2579 Crs
+3615 2594 Crs
+3766 2134 Crs
+4342 2598 Crs
+3640 2605 Crs
+3919 2643 Crs
+3601 2669 Crs
+3737 2649 Crs
+3265 1977 Crs
+3640 2315 Crs
+3877 2856 Crs
+3919 2611 Crs
+4103 2472 Crs
+4343 2536 Crs
+4100 2173 Crs
+3529 2655 Crs
+2939 2121 Crs
+3601 2415 Crs
+3583 2603 Crs
+3529 2484 Crs
+3640 2293 Crs
+3919 2492 Crs
+4255 2554 Crs
+4104 2315 Crs
+4527 2449 Crs
+3767 2387 Crs
+4104 2802 Crs
+3919 2574 Crs
+3824 2596 Crs
+3767 2832 Crs
+3450 2398 Crs
+3503 2492 Crs
+3918 2551 Crs
+3767 2756 Crs
+3265 2316 Crs
+3640 2379 Crs
+4679 2520 Crs
+3640 2406 Crs
+3570 2662 Crs
+3529 2324 Crs
+3640 2540 Crs
+3767 2516 Crs
+3614 2575 Crs
+3582 2492 Crs
+3529 2430 Crs
+3879 2732 Crs
+3766 2273 Crs
+3640 2582 Crs
+4255 2695 Crs
+3526 2649 Crs
+4104 2183 Crs
+3529 2364 Crs
+3919 2393 Crs
+3344 2340 Crs
+3311 2480 Crs
+3510 2517 Crs
+4046 2736 Crs
+4104 2635 Crs
+3695 2773 Crs
+3768 2790 Crs
+3640 2124 Crs
+3919 2242 Crs
+3528 2352 Crs
+4103 2520 Crs
+4343 2338 Crs
+3430 2543 Crs
+3583 2650 Crs
+3768 2389 Crs
+3640 2118 Crs
+3737 2727 Crs
+3878 2552 Crs
+4157 2797 Crs
+3483 2305 Crs
+4527 2691 Crs
+4343 2475 Crs
+4383 2558 Crs
+3640 2436 Crs
+3573 2683 Crs
+3264 2421 Crs
+3529 2633 Crs
+3953 2762 Crs
+3736 2197 Crs
+3583 2575 Crs
+4255 2637 Crs
+3878 2453 Crs
+4104 2758 Crs
+3877 2546 Crs
+4044 2772 Crs
+4063 2693 Crs
+4104 2529 Crs
+3768 2507 Crs
+4678 2577 Crs
+3738 2305 Crs
+3825 2599 Crs
+4104 2354 Crs
+3529 2615 Crs
+3529 2600 Crs
+3919 2699 Crs
+3416 2446 Crs
+3615 2009 Crs
+3528 2160 Crs
+4104 2631 Crs
+3919 2833 Crs
+3919 2526 Crs
+3812 2557 Crs
+4104 2704 Crs
+3416 2482 Crs
+3737 2648 Crs
+4255 2538 Crs
+3919 2733 Crs
+3639 2447 Crs
+3640 2523 Crs
+4255 2694 Crs
+3696 2278 Crs
+3649 2363 Crs
+3510 2346 Crs
+4255 2582 Crs
+3529 2144 Crs
+3640 2393 Crs
+3432 2245 Crs
+3768 2392 Crs
+3919 2845 Crs
+3105 2305 Crs
+3284 2178 Crs
+4679 2769 Crs
+3768 2318 Crs
+3767 2665 Crs
+3738 2584 Crs
+3431 2450 Crs
+3529 2536 Crs
+4104 2855 Crs
+4157 2398 Crs
+4047 2401 Crs
+3529 2518 Crs
+3766 2742 Crs
+3344 2022 Crs
+3640 2465 Crs
+3510 2263 Crs
+3582 2383 Crs
+3343 2417 Crs
+3825 2625 Crs
+3766 2600 Crs
+4104 2529 Crs
+4255 2955 Crs
+3640 2216 Crs
+3415 2207 Crs
+3640 2365 Crs
+3343 1943 Crs
+3638 2544 Crs
+4047 2612 Crs
+3640 2103 Crs
+3480 2376 Crs
+4343 2680 Crs
+4103 2665 Crs
+3919 2687 Crs
+4104 2461 Crs
+3878 2489 Crs
+3919 2522 Crs
+3919 2627 Crs
+3529 2278 Crs
+3904 2268 Crs
+3767 2453 Crs
+4343 2292 Crs
+3639 2007 Crs
+3919 2709 Crs
+3608 2504 Crs
+3738 2091 Crs
+3237 2420 Crs
+3344 2447 Crs
+4104 2569 Crs
+3192 2388 Crs
+4104 2501 Crs
+3640 2579 Crs
+4158 2743 Crs
+3331 2377 Crs
+3768 2612 Crs
+4343 2800 Crs
+3737 2744 Crs
+3919 2710 Crs
+3768 2510 Crs
+4046 2968 Crs
+4679 2474 Crs
+3640 2613 Crs
+3529 2634 Crs
+3768 2251 Crs
+3919 2427 Crs
+3528 2550 Crs
+3640 1968 Crs
+3768 2639 Crs
+3640 2448 Crs
+4047 2597 Crs
+3919 2646 Crs
+4343 2381 Crs
+3919 2469 Crs
+4104 2573 Crs
+3429 2210 Crs
+3694 2496 Crs
+3975 2763 Crs
+3526 2647 Crs
+3529 2011 Crs
+3976 2677 Crs
+3640 2706 Crs
+3191 2357 Crs
+3975 2424 Crs
+3825 2839 Crs
+3431 2213 Crs
+3768 2441 Crs
+3824 2861 Crs
+4255 2647 Crs
+3768 2791 Crs
+3919 2545 Crs
+3919 2664 Crs
+3529 2482 Crs
+3528 2506 Crs
+3529 2205 Crs
+3877 2558 Crs
+3764 2358 Crs
+4342 2827 Crs
+3264 1683 Crs
+3768 2749 Crs
+3768 2362 Crs
+4339 2722 Crs
+3648 2663 Crs
+3640 2389 Crs
+3638 2718 Crs
+3767 2671 Crs
+3766 2729 Crs
+3919 2630 Crs
+3481 2260 Crs
+3529 1933 Crs
+3879 2752 Crs
+3767 2507 Crs
+3919 2513 Crs
+3343 2232 Crs
+3617 2658 Crs
+3834 2411 Crs
+3689 2725 Crs
+3344 2202 Crs
+3917 2440 Crs
+3616 2220 Crs
+3878 2652 Crs
+3918 2525 Crs
+3919 2772 Crs
+3640 2444 Crs
+3824 2695 Crs
+3527 2086 Crs
+3919 2515 Crs
+3529 2509 Crs
+3431 2410 Crs
+3919 2495 Crs
+3529 2451 Crs
+3193 2402 Crs
+4063 2739 Crs
+4046 2316 Crs
+3737 2756 Crs
+3635 2279 Crs
+3919 2739 Crs
+3065 1662 Crs
+3918 2658 Crs
+3528 2582 Crs
+3265 2427 Crs
+4047 2733 Crs
+3768 2265 Crs
+3527 2450 Crs
+3511 2634 Crs
+3529 2442 Crs
+3825 2561 Crs
+3529 2606 Crs
+3768 2469 Crs
+4341 2809 Crs
+3768 2694 Crs
+3919 2744 Crs
+3448 2320 Crs
+3737 2753 Crs
+3768 2797 Crs
+3767 2643 Crs
+4343 2799 Crs
+3640 2034 Crs
+3510 2341 Crs
+3768 2551 Crs
+3878 2706 Crs
+3529 2521 Crs
+4342 2514 Crs
+3083 2229 Crs
+4104 2604 Crs
+3640 2502 Crs
+3768 2533 Crs
+4679 2610 Crs
+3834 2401 Crs
+3766 2492 Crs
+3528 2340 Crs
+3767 2643 Crs
+3640 2520 Crs
+3169 2336 Crs
+3871 2854 Crs
+3879 2851 Crs
+3524 2433 Crs
+3919 2537 Crs
+4255 2423 Crs
+3647 2596 Crs
+4104 2389 Crs
+3529 2503 Crs
+3600 2348 Crs
+3529 2369 Crs
+4063 2607 Crs
+3768 2717 Crs
+3825 2581 Crs
+3334 2198 Crs
+3877 2682 Crs
+3640 2528 Crs
+3696 2572 Crs
+4104 2444 Crs
+3919 2265 Crs
+3918 2806 Crs
+4104 2872 Crs
+3919 2512 Crs
+4104 2639 Crs
+3919 2785 Crs
+3639 2658 Crs
+3767 2474 Crs
+3640 2738 Crs
+4343 2740 Crs
+3193 2168 Crs
+3879 2794 Crs
+3431 2484 Crs
+3529 2439 Crs
+3768 2626 Crs
+3737 2593 Crs
+3767 2292 Crs
+4104 2560 Crs
+3878 2757 Crs
+3482 2558 Crs
+4104 2711 Crs
+3529 2467 Crs
+3973 2050 Crs
+4343 2674 Crs
+3430 2503 Crs
+3612 2508 Crs
+3638 2563 Crs
+3919 2376 Crs
+3519 2346 Crs
+3878 2383 Crs
+3768 2400 Crs
+3510 2321 Crs
+3737 2600 Crs
+3380 2329 Crs
+4343 2468 Crs
+3640 2569 Crs
+4528 2644 Crs
+3529 2303 Crs
+3768 2717 Crs
+4104 2334 Crs
+3768 2542 Crs
+3768 2439 Crs
+3432 2548 Crs
+3640 2598 Crs
+3432 2231 Crs
+3768 2690 Crs
+3617 2448 Crs
+3768 2209 Crs
+3902 2664 Crs
+3638 2142 Crs
+4343 2742 Crs
+3695 2278 Crs
+3615 2694 Crs
+3432 2507 Crs
+4047 2140 Crs
+3613 2705 Crs
+3640 2682 Crs
+3878 2505 Crs
+3919 2496 Crs
+4104 2538 Crs
+3767 2599 Crs
+3767 2665 Crs
+3264 2398 Crs
+3911 2340 Crs
+3919 2484 Crs
+3919 2661 Crs
+3511 2580 Crs
+3640 2468 Crs
+3640 2342 Crs
+3265 2369 Crs
+3976 2779 Crs
+3693 2024 Crs
+4343 2460 Crs
+4104 2373 Crs
+3919 2812 Crs
+3768 2481 Crs
+3768 2579 Crs
+3976 2789 Crs
+3415 2529 Crs
+3654 2692 Crs
+3768 2398 Crs
+4047 2711 Crs
+4104 2376 Crs
+3431 2534 Crs
+3565 2552 Crs
+3344 2277 Crs
+4104 2619 Crs
+3768 2383 Crs
+3582 2640 Crs
+3639 2438 Crs
+3976 2521 Crs
+3903 2719 Crs
+3233 2339 Crs
+3768 2822 Crs
+3919 2493 Crs
+3236 2305 Crs
+3640 2701 Crs
+3768 2592 Crs
+3919 2579 Crs
+4678 2610 Crs
+3601 2566 Crs
+3834 2321 Crs
+4255 2658 Crs
+4047 2653 Crs
+3430 2464 Crs
+3766 2460 Crs
+3696 2653 Crs
+3878 2779 Crs
+3616 2680 Crs
+3919 2794 Crs
+3768 2714 Crs
+3511 2541 Crs
+4104 2902 Crs
+3919 2571 Crs
+4255 2377 Crs
+3639 2654 Crs
+3768 2584 Crs
+3482 2302 Crs
+3640 2536 Crs
+3918 2628 Crs
+4342 2668 Crs
+3919 2799 Crs
+3616 2561 Crs
+3919 2869 Crs
+3767 2415 Crs
+4342 2842 Crs
+3617 2582 Crs
+4255 2654 Crs
+4343 2433 Crs
+3919 2189 Crs
+3768 2483 Crs
+3688 2739 Crs
+3344 2503 Crs
+4157 2041 Crs
+3482 2448 Crs
+4679 2502 Crs
+3919 2821 Crs
+3639 2458 Crs
+3976 2669 Crs
+4340 2584 Crs
+4528 2774 Crs
+3640 2397 Crs
+3768 2285 Crs
+3767 2119 Crs
+3767 2445 Crs
+3529 2486 Crs
+3878 2893 Crs
+3432 2172 Crs
+3529 2393 Crs
+3617 2605 Crs
+3767 2776 Crs
+3432 2234 Crs
+3768 2693 Crs
+4679 2690 Crs
+3919 2533 Crs
+3393 2112 Crs
+4047 2756 Crs
+3640 2550 Crs
+3344 2073 Crs
+4157 2819 Crs
+3638 1957 Crs
+3617 2584 Crs
+3529 2378 Crs
+3825 2672 Crs
+3768 2759 Crs
+3482 2469 Crs
+3640 2376 Crs
+3529 1945 Crs
+4679 2429 Crs
+3871 2644 Crs
+3919 2706 Crs
+3583 2607 Crs
+3766 2536 Crs
+4045 2891 Crs
+3919 2752 Crs
+4104 2810 Crs
+3919 2485 Crs
+4103 2517 Crs
+3824 2568 Crs
+3640 2735 Crs
+3918 2527 Crs
+3976 2342 Crs
+3529 2371 Crs
+4343 2685 Crs
+3767 2822 Crs
+3766 2546 Crs
+3391 2549 Crs
+3878 2523 Crs
+4104 2653 Crs
+3431 2537 Crs
+3738 2535 Crs
+3065 2205 Crs
+3482 2544 Crs
+3582 2695 Crs
+3430 2223 Crs
+3768 2233 Crs
+3738 2713 Crs
+3768 2650 Crs
+4104 2637 Crs
+3582 2692 Crs
+3529 2314 Crs
+3919 2791 Crs
+3639 2385 Crs
+3640 2377 Crs
+3529 2547 Crs
+3431 2320 Crs
+3640 2563 Crs
+3482 2490 Crs
+3287 2432 Crs
+3873 2457 Crs
+3432 2536 Crs
+3640 2478 Crs
+3344 2410 Crs
+3919 2690 Crs
+4679 2707 Crs
+3343 1759 Crs
+4098 2456 Crs
+3918 2510 Crs
+4342 2755 Crs
+3737 2612 Crs
+3529 2574 Crs
+3919 2691 Crs
+3917 2621 Crs
+3616 2380 Crs
+4103 2719 Crs
+4158 2705 Crs
+3768 2411 Crs
+3431 2224 Crs
+4044 2822 Crs
+3503 2512 Crs
+3482 2592 Crs
+3728 2553 Crs
+3768 2087 Crs
+3582 2503 Crs
+3738 2743 Crs
+3768 2646 Crs
+3383 2431 Crs
+4103 2300 Crs
+4382 2199 Crs
+4104 2489 Crs
+3264 2445 Crs
+3431 2302 Crs
+4102 2790 Crs
+3529 2232 Crs
+3768 2571 Crs
+3919 2866 Crs
+4046 2302 Crs
+3510 2516 Crs
+4255 2508 Crs
+3529 2349 Crs
+3344 2502 Crs
+3365 2351 Crs
+4104 2771 Crs
+3919 2375 Crs
+3528 2597 Crs
+3529 2448 Crs
+4342 2649 Crs
+3529 2182 Crs
+3529 2473 Crs
+3768 2757 Crs
+4047 2733 Crs
+3127 2235 Crs
+4104 2939 Crs
+3616 2707 Crs
+3432 2201 Crs
+3878 2442 Crs
+3919 2436 Crs
+4528 2758 Crs
+3768 2544 Crs
+3640 2447 Crs
+4104 2348 Crs
+3976 2743 Crs
+4047 2841 Crs
+3695 2697 Crs
+3919 2650 Crs
+4103 2799 Crs
+3768 2308 Crs
+3449 2448 Crs
+4104 2647 Crs
+3344 2114 Crs
+3915 2541 Crs
+3737 2685 Crs
+3768 2576 Crs
+3737 2606 Crs
+4158 2860 Crs
+3265 2108 Crs
+3916 2630 Crs
+3742 2580 Crs
+3431 2531 Crs
+4104 2407 Crs
+3616 2633 Crs
+4047 2632 Crs
+3529 2498 Crs
+3639 2216 Crs
+3640 2316 Crs
+4157 2629 Crs
+3737 2669 Crs
+3976 2685 Crs
+3431 2566 Crs
+4158 2701 Crs
+3782 2597 Crs
+3975 2501 Crs
+3416 2551 Crs
+3766 2665 Crs
+3919 2565 Crs
+3640 2410 Crs
+3767 2124 Crs
+3343 1750 Crs
+3638 2285 Crs
+3695 2594 Crs
+3767 2758 Crs
+3638 2376 Crs
+4342 2647 Crs
+4103 2704 Crs
+3483 2568 Crs
+3919 2733 Crs
+3179 2379 Crs
+3919 2821 Crs
+3878 2532 Crs
+3695 2545 Crs
+3640 2411 Crs
+3483 2561 Crs
+3430 2460 Crs
+3738 2611 Crs
+4104 2392 Crs
+3287 2287 Crs
+4047 2441 Crs
+3529 2170 Crs
+3529 2470 Crs
+3767 2413 Crs
+3640 2442 Crs
+3639 2480 Crs
+3767 2201 Crs
+3616 2431 Crs
+3502 2603 Crs
+3312 2315 Crs
+4047 2817 Crs
+3616 2507 Crs
+3695 2380 Crs
+3308 2342 Crs
+3416 2528 Crs
+3768 2245 Crs
+3640 2577 Crs
+4137 2337 Crs
+4104 2664 Crs
+4103 2446 Crs
+3452 2547 Crs
+3767 2404 Crs
+3639 2418 Crs
+3482 2523 Crs
+4156 2579 Crs
+3919 2769 Crs
+3640 2260 Crs
+3529 2556 Crs
+3431 2525 Crs
+3449 2410 Crs
+3640 2534 Crs
+3879 2746 Crs
+3919 2465 Crs
+3640 2319 Crs
+3768 2395 Crs
+3343 2379 Crs
+3432 2540 Crs
+3768 2216 Crs
+3529 2413 Crs
+3919 2775 Crs
+3767 2536 Crs
+3821 2221 Crs
+3976 2495 Crs
+4157 2446 Crs
+3193 2058 Crs
+3431 2411 Crs
+3916 2666 Crs
+3432 2530 Crs
+3416 2554 Crs
+3768 2755 Crs
+3640 2654 Crs
+3649 2655 Crs
+3431 2159 Crs
+3693 2677 Crs
+3919 2615 Crs
+3767 2346 Crs
+4104 2815 Crs
+3431 2504 Crs
+3767 2342 Crs
+4047 2598 Crs
+3192 2330 Crs
+4104 2368 Crs
+3919 2726 Crs
+3919 2260 Crs
+3767 2664 Crs
+4047 2685 Crs
+3768 2642 Crs
+3527 2521 Crs
+4103 2581 Crs
+3616 2235 Crs
+4104 2767 Crs
+3768 2279 Crs
+4104 2761 Crs
+3265 2273 Crs
+3639 2511 Crs
+4104 2729 Crs
+4248 2637 Crs
+3639 2673 Crs
+3767 2640 Crs
+4255 2811 Crs
+3919 2548 Crs
+3529 2642 Crs
+3529 2271 Crs
+3640 2729 Crs
+3529 2540 Crs
+3640 2107 Crs
+3768 2699 Crs
+3919 2555 Crs
+3483 2384 Crs
+4342 2454 Crs
+3918 2678 Crs
+3878 2422 Crs
+3768 2426 Crs
+4103 2505 Crs
+4047 2675 Crs
+3695 2396 Crs
+4342 2509 Crs
+3640 2693 Crs
+3919 2624 Crs
+3640 2614 Crs
+3874 2625 Crs
+3616 2451 Crs
+3768 2775 Crs
+3529 2472 Crs
+3482 2485 Crs
+3193 2217 Crs
+3976 2569 Crs
+3711 2560 Crs
+3125 1625 Crs
+2806 1610 Crs
+3046 2235 Crs
+3617 2638 Crs
+3524 2154 Crs
+3768 2134 Crs
+3768 2641 Crs
+3768 2675 Crs
+3527 1952 Crs
+3710 2175 Crs
+4104 2359 Crs
+3825 2542 Crs
+3529 2547 Crs
+3767 2315 Crs
+3640 2545 Crs
+3639 2468 Crs
+4343 2618 Crs
+3343 2374 Crs
+3768 2414 Crs
+3529 2350 Crs
+3975 2556 Crs
+3766 2268 Crs
+3767 2704 Crs
+3582 2167 Crs
+4047 2493 Crs
+3737 2525 Crs
+3904 2657 Crs
+3738 2574 Crs
+3616 2593 Crs
+3344 2216 Crs
+4528 2793 Crs
+4103 2524 Crs
+3529 2420 Crs
+3192 2275 Crs
+3919 2590 Crs
+3639 2362 Crs
+3768 2596 Crs
+4255 2081 Crs
+3529 2635 Crs
+3529 2379 Crs
+3639 2528 Crs
+4158 2746 Crs
+3424 2181 Crs
+4157 2622 Crs
+3344 2163 Crs
+3767 2746 Crs
+3330 2366 Crs
+4104 2668 Crs
+4679 2443 Crs
+3426 2245 Crs
+3919 2451 Crs
+3529 2211 Crs
+3529 2635 Crs
+3529 2455 Crs
+3601 2619 Crs
+3738 2611 Crs
+4047 2325 Crs
+3825 2467 Crs
+3768 2823 Crs
+4679 2771 Crs
+3919 2597 Crs
+4046 2867 Crs
+3919 2689 Crs
+3976 2714 Crs
+4102 2519 Crs
+3763 2307 Crs
+4046 2224 Crs
+4255 2717 Crs
+3084 2298 Crs
+4047 2307 Crs
+3767 2838 Crs
+3640 2238 Crs
+3768 2782 Crs
+3919 2390 Crs
+4064 2361 Crs
+4383 2528 Crs
+4342 2817 Crs
+3876 2483 Crs
+4103 2729 Crs
+3737 2169 Crs
+3768 2607 Crs
+4255 2668 Crs
+4679 2672 Crs
+4104 2608 Crs
+2991 2129 Crs
+4679 2721 Crs
+3918 2750 Crs
+4104 2685 Crs
+3767 2659 Crs
+3640 2585 Crs
+3919 2185 Crs
+3917 2778 Crs
+3737 2006 Crs
+3640 2466 Crs
+3064 2067 Crs
+3737 2460 Crs
+4104 2720 Crs
+4255 2545 Crs
+3639 2417 Crs
+3877 2917 Crs
+3919 2875 Crs
+4679 2686 Crs
+3640 2507 Crs
+4255 2574 Crs
+3528 2249 Crs
+4157 2996 Crs
+3737 2778 Crs
+3640 2472 Crs
+3640 2415 Crs
+3582 2695 Crs
+3768 2742 Crs
+3638 2542 Crs
+3431 2359 Crs
+3737 2632 Crs
+3874 2653 Crs
+3738 2303 Crs
+3917 2663 Crs
+3919 2837 Crs
+3767 2612 Crs
+4342 2663 Crs
+3504 2366 Crs
+3529 2597 Crs
+3919 2875 Crs
+3767 2827 Crs
+4047 2556 Crs
+3919 2492 Crs
+3919 2528 Crs
+4104 2562 Crs
+3529 2314 Crs
+3639 2740 Crs
+3430 1966 Crs
+3919 2746 Crs
+3393 2284 Crs
+3976 2139 Crs
+3338 2270 Crs
+4142 2672 Crs
+4343 2797 Crs
+3528 2091 Crs
+3640 2518 Crs
+4342 2806 Crs
+3432 2361 Crs
+4104 2660 Crs
+4103 2563 Crs
+3904 2576 Crs
+3918 2581 Crs
+4343 2719 Crs
+3510 2273 Crs
+3431 2474 Crs
+4104 2756 Crs
+3363 2484 Crs
+3640 2184 Crs
+3768 2603 Crs
+3768 2397 Crs
+4064 2680 Crs
+4343 2641 Crs
+3919 2680 Crs
+3768 2699 Crs
+3734 2585 Crs
+3825 2344 Crs
+3616 2608 Crs
+4103 2461 Crs
+4383 2504 Crs
+4339 2618 Crs
+3639 2599 Crs
+3767 2640 Crs
+3616 2277 Crs
+3768 2752 Crs
+3529 2598 Crs
+3918 2222 Crs
+3254 2252 Crs
+3265 2178 Crs
+3529 2417 Crs
+3511 2423 Crs
+3639 2607 Crs
+4103 2740 Crs
+4255 2625 Crs
+3820 2717 Crs
+3529 2319 Crs
+3640 2337 Crs
+3430 2415 Crs
+3825 2828 Crs
+4255 2739 Crs
+4341 2481 Crs
+3919 2412 Crs
+3529 2403 Crs
+3919 2489 Crs
+4343 2545 Crs
+3265 2086 Crs
+4678 2682 Crs
+3529 2638 Crs
+3904 2535 Crs
+3114 2280 Crs
+3639 2311 Crs
+4047 2559 Crs
+3640 2614 Crs
+4104 2526 Crs
+3529 2633 Crs
+4522 2734 Crs
+3768 2657 Crs
+3529 2588 Crs
+3510 2567 Crs
+3344 2282 Crs
+3640 2651 Crs
+3529 2392 Crs
+3529 2137 Crs
+3705 2585 Crs
+3344 2344 Crs
+4104 2653 Crs
+4679 2683 Crs
+3640 2514 Crs
+3919 2651 Crs
+4047 2732 Crs
+4047 2690 Crs
+3919 2553 Crs
+3736 2594 Crs
+4343 2520 Crs
+3311 2413 Crs
+3738 2678 Crs
+3695 2539 Crs
+4104 2204 Crs
+3919 2716 Crs
+3919 2382 Crs
+4255 2470 Crs
+3529 2634 Crs
+3766 2351 Crs
+3695 2580 Crs
+4104 2797 Crs
+3768 2617 Crs
+3825 2694 Crs
+3767 2248 Crs
+3768 2797 Crs
+3416 2262 Crs
+4342 2651 Crs
+4104 2686 Crs
+3639 2223 Crs
+3919 2838 Crs
+3767 2421 Crs
+3878 2849 Crs
+4679 2663 Crs
+3767 2454 Crs
+4157 2387 Crs
+3507 2583 Crs
+3638 2642 Crs
+3431 1951 Crs
+3529 2375 Crs
+4104 2762 Crs
+3640 2405 Crs
+3879 2628 Crs
+3617 2544 Crs
+3767 2359 Crs
+3768 2507 Crs
+3344 2106 Crs
+3976 2390 Crs
+3919 2809 Crs
+3655 2431 Crs
+3768 2360 Crs
+3216 2408 Crs
+3640 2028 Crs
+3529 2083 Crs
+3265 2406 Crs
+3542 2240 Crs
+3640 2585 Crs
+3344 2230 Crs
+4046 2581 Crs
+3265 2216 Crs
+3633 2525 Crs
+3344 2513 Crs
+3768 2314 Crs
+3768 2406 Crs
+4104 2636 Crs
+3529 2562 Crs
+3879 2619 Crs
+4104 2600 Crs
+3265 2320 Crs
+3655 2546 Crs
+3193 2170 Crs
+4103 2567 Crs
+3640 2326 Crs
+3431 2485 Crs
+4157 2932 Crs
+3767 2751 Crs
+4104 2611 Crs
+3919 2588 Crs
+3737 2618 Crs
+3767 2248 Crs
+4528 2551 Crs
+3213 2226 Crs
+4255 2628 Crs
+3640 2540 Crs
+3344 2453 Crs
+3919 2288 Crs
+3261 2403 Crs
+3878 2722 Crs
+3417 2420 Crs
+3919 2599 Crs
+3825 2643 Crs
+4104 2618 Crs
+3583 2566 Crs
+3969 2490 Crs
+4104 2449 Crs
+4250 2658 Crs
+3919 2909 Crs
+4047 2575 Crs
+4104 2577 Crs
+3768 2749 Crs
+4104 2658 Crs
+3694 2644 Crs
+3768 2598 Crs
+4103 2353 Crs
+4047 2736 Crs
+3529 2353 Crs
+3640 2432 Crs
+3919 2601 Crs
+3768 2770 Crs
+3919 2617 Crs
+3393 2296 Crs
+3874 2668 Crs
+3919 2145 Crs
+3767 2568 Crs
+3640 2534 Crs
+3919 2407 Crs
+3878 2537 Crs
+4104 2702 Crs
+3509 2396 Crs
+3640 2537 Crs
+4343 2640 Crs
+3919 2597 Crs
+3431 1934 Crs
+3430 2239 Crs
+3917 2498 Crs
+4340 2432 Crs
+3976 2709 Crs
+3918 2558 Crs
+3432 2434 Crs
+3919 2562 Crs
+3529 2459 Crs
+4158 2766 Crs
+3640 2635 Crs
+3264 2260 Crs
+3529 2060 Crs
+3649 2579 Crs
+4156 2603 Crs
+3529 2603 Crs
+3343 2463 Crs
+3767 2515 Crs
+3764 2570 Crs
+3737 2771 Crs
+3767 2371 Crs
+3918 2436 Crs
+3342 2463 Crs
+3529 2514 Crs
+3583 2497 Crs
+3432 2085 Crs
+3529 2524 Crs
+4255 2685 Crs
+4104 2255 Crs
+3919 2526 Crs
+3383 2420 Crs
+3528 2612 Crs
+3875 2575 Crs
+3874 2487 Crs
+4103 2584 Crs
+3639 2519 Crs
+3874 2363 Crs
+3510 2251 Crs
+4102 2817 Crs
+3415 2295 Crs
+3510 2513 Crs
+4382 2112 Crs
+4151 2638 Crs
+3331 2117 Crs
+4342 2821 Crs
+3919 2655 Crs
+4047 2617 Crs
+3876 2718 Crs
+4103 2448 Crs
+3583 2684 Crs
+3192 2163 Crs
+4155 2239 Crs
+3529 2556 Crs
+3919 2719 Crs
+3747 2767 Crs
+3529 2647 Crs
+3529 2347 Crs
+3529 2654 Crs
+3432 2523 Crs
+3767 2604 Crs
+3344 2366 Crs
+4158 2840 Crs
+3601 2475 Crs
+3878 2657 Crs
+3738 2443 Crs
+3640 2717 Crs
+4678 2548 Crs
+3332 2339 Crs
+3976 2589 Crs
+3478 2382 Crs
+3636 2502 Crs
+4104 2626 Crs
+3737 2711 Crs
+4104 2593 Crs
+3767 2482 Crs
+3736 2728 Crs
+3919 2849 Crs
+3768 2471 Crs
+3529 2323 Crs
+4158 2825 Crs
+3253 2331 Crs
+4047 2757 Crs
+3432 2145 Crs
+3431 2327 Crs
+4343 2669 Crs
+3918 2532 Crs
+3918 2306 Crs
+4103 2414 Crs
+4527 2543 Crs
+3450 2514 Crs
+3766 2736 Crs
+3768 2689 Crs
+3695 2651 Crs
+4104 2540 Crs
+3976 2049 Crs
+3919 2822 Crs
+3431 2378 Crs
+3768 2789 Crs
+3767 2756 Crs
+3427 2301 Crs
+3529 2656 Crs
+3919 2386 Crs
+3768 2471 Crs
+3640 2694 Crs
+3768 2254 Crs
+4255 2664 Crs
+3193 2399 Crs
+3522 2258 Crs
+3510 2423 Crs
+4046 2598 Crs
+4255 2658 Crs
+3431 2545 Crs
+3193 2164 Crs
+3895 2617 Crs
+3767 2678 Crs
+3976 2823 Crs
+4679 2485 Crs
+3736 2533 Crs
+4342 2403 Crs
+3911 2335 Crs
+4343 2483 Crs
+3919 2330 Crs
+3918 2757 Crs
+4342 2457 Crs
+3505 2173 Crs
+3529 2322 Crs
+3510 2413 Crs
+3509 2517 Crs
+4104 2414 Crs
+3529 2497 Crs
+4104 2574 Crs
+4104 2601 Crs
+3125 2143 Crs
+3264 1868 Crs
+3878 2720 Crs
+3834 2625 Crs
+4104 2269 Crs
+3919 2482 Crs
+4104 2757 Crs
+3878 2480 Crs
+4046 2233 Crs
+4104 2571 Crs
+3767 2304 Crs
+3529 2514 Crs
+3768 2186 Crs
+3919 2543 Crs
+3193 2330 Crs
+3508 2221 Crs
+3834 2580 Crs
+3416 2397 Crs
+3529 2618 Crs
+3600 2626 Crs
+3768 2590 Crs
+3875 2441 Crs
+3527 2492 Crs
+4255 2812 Crs
+3767 2680 Crs
+3767 2685 Crs
+3767 2794 Crs
+3822 2705 Crs
+3767 2537 Crs
+4104 2612 Crs
+4047 2699 Crs
+3919 2648 Crs
+4104 2636 Crs
+3528 2510 Crs
+3768 2178 Crs
+3638 2103 Crs
+4679 2521 Crs
+3529 2200 Crs
+4343 2613 Crs
+4254 2571 Crs
+3639 2527 Crs
+3972 2916 Crs
+3976 2615 Crs
+4101 2789 Crs
+4104 2484 Crs
+3463 2353 Crs
+3529 2373 Crs
+3060 2208 Crs
+3237 2116 Crs
+3919 2727 Crs
+3916 2578 Crs
+3392 1916 Crs
+3875 2829 Crs
+3529 2390 Crs
+4046 2658 Crs
+3601 2426 Crs
+3919 2474 Crs
+3767 2732 Crs
+3640 2494 Crs
+4343 2803 Crs
+3544 2235 Crs
+3331 2474 Crs
+3344 2473 Crs
+4255 2454 Crs
+4043 2465 Crs
+3738 2485 Crs
+3431 2481 Crs
+3768 2656 Crs
+3639 2483 Crs
+3825 2531 Crs
+4342 2417 Crs
+3737 2695 Crs
+3237 2140 Crs
+4047 2701 Crs
+3768 2612 Crs
+3529 2432 Crs
+3639 2742 Crs
+4047 2484 Crs
+3344 2455 Crs
+4047 2673 Crs
+3601 2465 Crs
+3738 2194 Crs
+3878 2468 Crs
+3767 2723 Crs
+3737 2440 Crs
+3768 2480 Crs
+4104 2310 Crs
+3639 2203 Crs
+3502 2595 Crs
+3917 2802 Crs
+3919 2694 Crs
+3919 2534 Crs
+3767 2678 Crs
+4047 2751 Crs
+4103 2732 Crs
+4102 2489 Crs
+3767 2733 Crs
+3825 2612 Crs
+3919 2693 Crs
+3768 2533 Crs
+3614 2640 Crs
+4047 2434 Crs
+3265 2413 Crs
+3834 2696 Crs
+3767 2578 Crs
+3738 2682 Crs
+3529 2095 Crs
+3637 2286 Crs
+4679 2438 Crs
+4047 2703 Crs
+4527 2600 Crs
+3311 2241 Crs
+3449 2555 Crs
+3640 2515 Crs
+3065 2265 Crs
+3768 2312 Crs
+4104 2650 Crs
+3430 2408 Crs
+3737 2511 Crs
+3738 2425 Crs
+4342 2752 Crs
+4046 2620 Crs
+3919 2561 Crs
+3768 2485 Crs
+4343 2497 Crs
+3640 2482 Crs
+4047 2741 Crs
+4104 2301 Crs
+3640 2457 Crs
+4255 2523 Crs
+3765 2630 Crs
+3640 2566 Crs
+3904 2875 Crs
+3918 2660 Crs
+3919 2735 Crs
+4104 2498 Crs
+3639 2619 Crs
+3919 2606 Crs
+3735 2769 Crs
+4104 2656 Crs
+3768 2421 Crs
+3919 2719 Crs
+3639 2557 Crs
+3511 2259 Crs
+4678 2571 Crs
+3617 2692 Crs
+3265 2242 Crs
+3918 2737 Crs
+3919 2697 Crs
+3431 2316 Crs
+3768 2700 Crs
+3767 2485 Crs
+3529 2493 Crs
+4104 2592 Crs
+3414 2211 Crs
+3919 2381 Crs
+3879 2015 Crs
+3768 2571 Crs
+3640 2250 Crs
+3581 2493 Crs
+3431 2237 Crs
+4104 2562 Crs
+3448 2026 Crs
+3710 2780 Crs
+3878 2863 Crs
+4678 2816 Crs
+3430 2531 Crs
+3582 2602 Crs
+3767 2721 Crs
+3639 2053 Crs
+3482 2622 Crs
+4343 2412 Crs
+3768 2841 Crs
+3768 2430 Crs
+4104 2615 Crs
+3878 2770 Crs
+3832 2881 Crs
+3696 2720 Crs
+4047 2700 Crs
+4047 2576 Crs
+4103 2791 Crs
+3601 2475 Crs
+4527 2466 Crs
+3918 2333 Crs
+3919 2573 Crs
+3767 2637 Crs
+3430 2322 Crs
+3529 2359 Crs
+3640 2641 Crs
+3976 2889 Crs
+3766 2725 Crs
+4104 2275 Crs
+4101 2380 Crs
+3432 2573 Crs
+3481 2293 Crs
+3736 2458 Crs
+3919 2613 Crs
+3431 2107 Crs
+3529 2527 Crs
+3635 2515 Crs
+3768 2540 Crs
+3738 2427 Crs
+3976 2851 Crs
+4249 2782 Crs
+3640 2744 Crs
+4104 2392 Crs
+3640 2482 Crs
+3919 2550 Crs
+3919 2742 Crs
+3879 2728 Crs
+3918 2550 Crs
+3616 2510 Crs
+3640 2339 Crs
+3919 2752 Crs
+3344 2458 Crs
+3768 2685 Crs
+4383 2482 Crs
+3640 2395 Crs
+3640 2543 Crs
+3919 2800 Crs
+3737 2507 Crs
+3343 2446 Crs
+3344 2112 Crs
+3878 2810 Crs
+4255 2315 Crs
+3919 2713 Crs
+3529 2615 Crs
+3919 2204 Crs
+3617 2517 Crs
+4047 2610 Crs
+3480 2600 Crs
+3411 2458 Crs
+3640 2246 Crs
+3768 2654 Crs
+4341 2631 Crs
+3834 2795 Crs
+3710 2710 Crs
+3639 2701 Crs
+3265 2365 Crs
+3529 2275 Crs
+3878 2591 Crs
+3919 2221 Crs
+3616 2210 Crs
+3919 2552 Crs
+3768 2425 Crs
+3919 2456 Crs
+3737 2739 Crs
+3919 2308 Crs
+3259 2380 Crs
+4255 2499 Crs
+3640 2301 Crs
+4679 2701 Crs
+3640 2606 Crs
+3919 2708 Crs
+3878 2649 Crs
+4342 2396 Crs
+3640 2494 Crs
+3639 2530 Crs
+3529 2322 Crs
+4063 2692 Crs
+3696 2675 Crs
+3919 2849 Crs
+4255 2624 Crs
+3726 2278 Crs
+3640 2742 Crs
+3768 2424 Crs
+3265 2191 Crs
+4104 2248 Crs
+3768 2685 Crs
+3102 2019 Crs
+3919 2710 Crs
+3919 2440 Crs
+3976 2191 Crs
+3616 2245 Crs
+3511 2445 Crs
+3450 2079 Crs
+4679 2694 Crs
+3879 2179 Crs
+3768 2144 Crs
+3383 2474 Crs
+4046 2341 Crs
+3919 2724 Crs
+3637 2500 Crs
+3430 2449 Crs
+4342 2490 Crs
+4341 2610 Crs
+3265 2410 Crs
+3640 2491 Crs
+3768 2564 Crs
+3640 2721 Crs
+3768 2823 Crs
+3432 2395 Crs
+4255 2157 Crs
+3640 2475 Crs
+3767 2673 Crs
+3738 2443 Crs
+3343 2467 Crs
+3431 2497 Crs
+3738 1998 Crs
+4047 2624 Crs
+3639 2432 Crs
+3767 2589 Crs
+3640 2331 Crs
+4103 2742 Crs
+3737 2631 Crs
+3616 2224 Crs
+3344 2484 Crs
+3423 2226 Crs
+4104 2473 Crs
+4343 2666 Crs
+3919 2312 Crs
+3344 2350 Crs
+3640 2128 Crs
+3230 2380 Crs
+3397 2550 Crs
+3529 1877 Crs
+3918 2546 Crs
+3767 2366 Crs
+3344 2387 Crs
+4255 2486 Crs
+3878 2910 Crs
+4679 2662 Crs
+3529 2541 Crs
+4343 2528 Crs
+3638 2450 Crs
+3431 2552 Crs
+3768 2587 Crs
+3528 2602 Crs
+3737 2731 Crs
+3640 2500 Crs
+3919 2429 Crs
+3876 2765 Crs
+3343 2093 Crs
+3640 2540 Crs
+3583 2498 Crs
+4142 2479 Crs
+3529 2123 Crs
+3868 2470 Crs
+4343 2693 Crs
+3919 2651 Crs
+3554 2668 Crs
+4104 2602 Crs
+3528 1868 Crs
+3825 2289 Crs
+3752 2590 Crs
+3919 2555 Crs
+3649 2542 Crs
+3461 2533 Crs
+3504 2546 Crs
+3416 2516 Crs
+4046 2372 Crs
+3529 1850 Crs
+3529 2294 Crs
+3576 1838 Crs
+3919 2319 Crs
+3768 2444 Crs
+3878 2210 Crs
+3919 2437 Crs
+3878 2774 Crs
+3917 2488 Crs
+3640 2718 Crs
+4104 2427 Crs
+3525 2457 Crs
+3481 1783 Crs
+3583 2587 Crs
+3736 2481 Crs
+3640 2385 Crs
+4383 2683 Crs
+3768 2459 Crs
+3878 2582 Crs
+3825 2590 Crs
+3879 2594 Crs
+3768 2567 Crs
+3431 2128 Crs
+3767 2427 Crs
+3640 2349 Crs
+3768 2578 Crs
+3432 2455 Crs
+4061 2756 Crs
+4679 2745 Crs
+4104 2624 Crs
+3919 2305 Crs
+3640 2395 Crs
+4103 2538 Crs
+3919 2692 Crs
+3766 2752 Crs
+3919 2669 Crs
+3894 2920 Crs
+3695 2528 Crs
+3738 2720 Crs
+4255 2682 Crs
+3616 1876 Crs
+3341 2336 Crs
+4158 2771 Crs
+3919 2467 Crs
+4343 2518 Crs
+3528 2489 Crs
+4158 2417 Crs
+3824 2456 Crs
+3738 2369 Crs
+3640 2263 Crs
+3431 2333 Crs
+3340 2136 Crs
+3919 2809 Crs
+3768 2738 Crs
+3765 2727 Crs
+3640 2589 Crs
+4104 2945 Crs
+3640 2737 Crs
+3250 2357 Crs
+4527 2744 Crs
+3918 2488 Crs
+4103 2750 Crs
+3737 2167 Crs
+3343 2433 Crs
+3583 2411 Crs
+4104 2704 Crs
+3253 2411 Crs
+3833 2682 Crs
+3919 2461 Crs
+3767 2798 Crs
+4104 2554 Crs
+3768 2434 Crs
+4342 2728 Crs
+3640 2713 Crs
+3767 2450 Crs
+3798 2446 Crs
+3215 2089 Crs
+3768 2571 Crs
+3639 2257 Crs
+3510 2387 Crs
+4046 2858 Crs
+3329 2455 Crs
+3919 2400 Crs
+3511 2369 Crs
+4103 2486 Crs
+3768 2440 Crs
+3919 2167 Crs
+4102 2503 Crs
+3510 2317 Crs
+3768 2642 Crs
+3919 2744 Crs
+3878 2677 Crs
+3825 2319 Crs
+3529 2589 Crs
+3595 2568 Crs
+3265 2181 Crs
+4255 2706 Crs
+3767 2570 Crs
+3640 2303 Crs
+4104 2746 Crs
+4047 2604 Crs
+3616 2618 Crs
+3825 2815 Crs
+3343 2430 Crs
+4343 2451 Crs
+3431 2572 Crs
+3919 2577 Crs
+3695 2744 Crs
+3767 2663 Crs
+3431 2423 Crs
+3919 2815 Crs
+3919 2558 Crs
+3431 2396 Crs
+3768 2440 Crs
+4157 2849 Crs
+4526 2544 Crs
+4104 2742 Crs
+4104 2789 Crs
+3344 2417 Crs
+3432 2499 Crs
+3344 2027 Crs
+3427 2496 Crs
+4679 2602 Crs
+4526 2576 Crs
+4383 2811 Crs
+4254 2603 Crs
+4383 2807 Crs
+3617 2490 Crs
+4679 2660 Crs
+3904 2929 Crs
+3768 2558 Crs
+3344 2315 Crs
+3415 2513 Crs
+3878 2635 Crs
+3879 2849 Crs
+4046 2334 Crs
+3975 2442 Crs
+3878 2618 Crs
+3640 2619 Crs
+3529 2454 Crs
+3616 2664 Crs
+3737 2251 Crs
+3480 2554 Crs
+3738 2758 Crs
+3737 2652 Crs
+3878 2541 Crs
+3583 2410 Crs
+3344 2217 Crs
+4255 2476 Crs
+3918 2590 Crs
+3768 2307 Crs
+3529 2632 Crs
+3768 2404 Crs
+4255 2656 Crs
+3768 2535 Crs
+3919 2411 Crs
+4527 2218 Crs
+4254 2441 Crs
+3580 2672 Crs
+4046 2498 Crs
+3529 2529 Crs
+3614 2657 Crs
+3825 2704 Crs
+3737 2521 Crs
+3638 2698 Crs
+3616 2502 Crs
+3640 2738 Crs
+3919 2811 Crs
+3511 2392 Crs
+3919 2703 Crs
+4343 2779 Crs
+3768 2467 Crs
+3919 2708 Crs
+3733 2601 Crs
+3640 2703 Crs
+3504 2417 Crs
+3168 2116 Crs
+4343 2615 Crs
+4104 2567 Crs
+3768 2741 Crs
+3737 2554 Crs
+3767 2495 Crs
+3878 2670 Crs
+3768 2727 Crs
+3190 2176 Crs
+4047 2824 Crs
+3529 2305 Crs
+3510 2080 Crs
+3915 2672 Crs
+3640 2126 Crs
+3878 2210 Crs
+3710 2477 Crs
+3414 2428 Crs
+3529 2597 Crs
+3504 2427 Crs
+3529 2275 Crs
+3640 2708 Crs
+3695 1875 Crs
+3237 2383 Crs
+4343 2616 Crs
+3752 2719 Crs
+3919 2867 Crs
+3825 2460 Crs
+3919 2761 Crs
+4343 2828 Crs
+3582 2691 Crs
+3529 2612 Crs
+3343 2362 Crs
+4047 2245 Crs
+3342 2441 Crs
+4047 2626 Crs
+3877 2658 Crs
+3878 2657 Crs
+3878 2575 Crs
+4383 2445 Crs
+4104 2700 Crs
+3831 2756 Crs
+4063 2764 Crs
+3878 2259 Crs
+3768 2324 Crs
+3705 2775 Crs
+3767 2311 Crs
+3431 2136 Crs
+4104 2486 Crs
+4156 2750 Crs
+3976 2834 Crs
+3639 2456 Crs
+4343 2760 Crs
+3737 2813 Crs
+3253 2383 Crs
+3529 2307 Crs
+3919 2736 Crs
+3640 2635 Crs
+4255 2744 Crs
+3430 2388 Crs
+3768 2465 Crs
+4103 2383 Crs
+3767 2652 Crs
+4383 2282 Crs
+3768 2592 Crs
+3617 2361 Crs
+3767 2635 Crs
+3737 2329 Crs
+3529 2408 Crs
+3189 2300 Crs
+3896 2506 Crs
+4343 2363 Crs
+3529 2366 Crs
+3503 1964 Crs
+4343 2727 Crs
+3768 2534 Crs
+3510 2349 Crs
+3365 2337 Crs
+3526 2542 Crs
+4255 2577 Crs
+3737 2768 Crs
+3529 2509 Crs
+3768 2636 Crs
+3529 2334 Crs
+3875 2603 Crs
+3878 2815 Crs
+4104 2264 Crs
+4043 2713 Crs
+3582 2632 Crs
+3529 2610 Crs
+3695 2482 Crs
+3975 2586 Crs
+3824 2799 Crs
+3878 2546 Crs
+4047 2711 Crs
+3767 2410 Crs
+3216 2270 Crs
+3919 2656 Crs
+3904 2706 Crs
+4254 2455 Crs
+3529 2615 Crs
+3690 2756 Crs
+3428 2408 Crs
+3710 2599 Crs
+3190 2403 Crs
+3415 2327 Crs
+4046 2790 Crs
+3695 2087 Crs
+3616 2353 Crs
+4343 2734 Crs
+4211 2454 Crs
+3507 2602 Crs
+4103 2613 Crs
+3918 2775 Crs
+3526 2519 Crs
+3640 2712 Crs
+3617 2286 Crs
+4157 2591 Crs
+3919 2529 Crs
+4342 2552 Crs
+4104 2816 Crs
+4255 2534 Crs
+4047 2672 Crs
+3639 2458 Crs
+4343 2531 Crs
+3877 2486 Crs
+3767 2799 Crs
+3767 2610 Crs
+3919 2666 Crs
+3768 2453 Crs
+3976 2809 Crs
+3976 2398 Crs
+3878 2555 Crs
+3430 2461 Crs
+3918 2525 Crs
+3737 2568 Crs
+3431 2154 Crs
+3919 2379 Crs
+3617 2693 Crs
+3904 2808 Crs
+3637 2339 Crs
+4343 2292 Crs
+3431 2294 Crs
+3640 2537 Crs
+3918 2335 Crs
+4103 2734 Crs
+3878 2460 Crs
+4046 2272 Crs
+3825 2514 Crs
+4046 2272 Crs
+3529 2566 Crs
+3414 2477 Crs
+3529 2600 Crs
+% End plot #2
+% Begin plot #3
+1.000 UL
+LTb
+LT1
+0.75 0.75 0.75 C 2170 1632 M
+25 19 V
+26 19 V
+25 19 V
+25 19 V
+26 20 V
+25 19 V
+25 19 V
+26 19 V
+25 19 V
+25 20 V
+26 19 V
+25 19 V
+25 19 V
+26 19 V
+25 19 V
+25 20 V
+26 19 V
+25 19 V
+25 19 V
+26 19 V
+25 20 V
+26 19 V
+25 19 V
+25 19 V
+26 19 V
+25 19 V
+25 20 V
+26 19 V
+25 19 V
+25 19 V
+26 19 V
+25 20 V
+25 19 V
+26 19 V
+25 19 V
+25 19 V
+26 20 V
+25 19 V
+25 19 V
+26 19 V
+25 19 V
+25 19 V
+26 20 V
+25 19 V
+25 19 V
+26 19 V
+25 19 V
+25 20 V
+26 19 V
+25 19 V
+25 19 V
+26 19 V
+25 19 V
+26 20 V
+25 19 V
+25 19 V
+26 19 V
+25 19 V
+25 20 V
+26 19 V
+25 19 V
+25 19 V
+26 19 V
+25 20 V
+25 19 V
+26 19 V
+25 19 V
+25 19 V
+26 19 V
+25 20 V
+25 19 V
+26 19 V
+25 19 V
+25 19 V
+26 20 V
+25 19 V
+25 19 V
+26 19 V
+25 19 V
+25 19 V
+26 20 V
+25 19 V
+25 19 V
+26 19 V
+25 19 V
+26 20 V
+25 19 V
+25 19 V
+26 19 V
+25 19 V
+25 20 V
+26 19 V
+25 19 V
+25 19 V
+26 19 V
+25 19 V
+25 20 V
+26 19 V
+25 19 V
+% End plot #3
+stroke
+2.000 UL
+LTb
+LCb setrgbcolor
+1.000 UL
+LTb
+LCb setrgbcolor
+860 3531 N
+860 640 L
+3819 0 V
+0 2891 V
+-3819 0 V
+Z stroke
+0.500 UP
+1.000 UL
+LTb
+LCb setrgbcolor
+stroke
+grestore
+end
+showpage
+%%Trailer
+%%DocumentFonts: Helvetica

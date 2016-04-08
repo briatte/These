@@ -92,7 +92,8 @@ En particuliers, une personne peut envoyer une demande d'aide à un moment donne
 	\label{fig:ict_discussion}
 \end{figure}
 
-\section{Applications de la densité aux discussions}
+\section{\'Etude des discussions en tant que sous-flots}
+\subsection{Applications de la densité aux discussions}
 
 Jusqu'à maintenant aucune notion intrinsèquement liées aux flot de liens n'a été utilisée pour caractériser les discussion et leur répartition dans le flot de liens.
 Le but est d'évaluer si cette structure de flot peut se rapprocher d'une structure communautaire.
@@ -146,8 +147,8 @@ Pour un graphe $G=(V,E)$ et une communauté $C_i$ de la partition $C = \{C_j\}_{
 où $\delta(G_{ij})$ est la densité du graphe constitué des n\oe uds des communautés $i$ et $j$ et liens de $G$ entre ces deux communautés.
 Il s'agit tout simplement de la probabilité qu'il y un lien existe entre les n\oe uds des deux communautés.
 Encore une fois, cette notion n'a pas de sens direct dans le formalisme de flot de lien et il est nécessaire de l'adapter.
-Pour ce faire, nous définissons le sous-flot inter-discussion entre les discussion $D_i$ et $D_j$ de la manière suivante:  $L_{ij} = (T_{ij}, V_{ij}, E_{ij})$, avec $T_{ij} = [$min($\alpha_i,\alpha_j$), max($\omega_i, \omega_j$)$]$, $V_{ij} = V_i\cup V_j$ et $E_{ij} = \{(t,u,v): t\in T_{ij}, u,v\in V_{ij}, (t,u,v)\in E\setminus D_i\cup D_j\}$\note{construction via sous-flot induit.}.
-\note{Faire un dessin de cette situation?}.
+Pour ce faire, nous définissons le sous-flot inter-discussion entre les discussion $D_i$ et $D_j$ de la manière suivante:  $L_{ij} = (T_{ij}, V_{ij}, E_{ij})$, avec $T_{ij} = [$min($\alpha_i,\alpha_j$), max($\omega_i, \omega_j$)$]$, $V_{ij} = V_i\cup V_j$ et $E_{ij} = \{(t,u,v): t\in T_{ij}, u,v\in V_{ij}, (t,u,v)\in E\setminus D_i\cup D_j\}$\note{C'est pas vraiment ça ...}.
+\note{Faire un dessin de cette situation?}
 La $\Delta$-densité inter discussions entre $D_i$ et $D_j$ est alors la $\Delta$-densité du sous-flot $L_{ij}$.
 Afin d'obtenir la $\Delta$-densité inter discussions entre $D_i$ et tout les autres discussions, nous utilisons la moyenne des densité inter discussion entre $D_i$ et les autres discussions, soit:
 
@@ -156,6 +157,10 @@ Afin d'obtenir la $\Delta$-densité inter discussions entre $D_i$ et tout les au
 \end{equation}
 
 La distribution cumulative inverse de la $\Delta$-densité inter discussions est sur la figure~\ref{fig:inter_dens_discussion} pour différentes valeurs de $\Delta$.
+Bien que similaire, le comportement qualitatif de la $\Delta$-densité inter discussions diffère de la $\Delta$-densité des discussions.
+La $\Delta$-densité inter discussions croit également en fonction de $\Delta$ mais il y a toujours une différence notable entre $\Delta= 1\  mois$ et $\Delta= 1\ ann\acute{e}e$ ce qui n'est pas le cas pour la $\Delta$-densité.
+Cette différence est normal car lors du calcul de $\Delta$-densité le nombre de liens considérés est fixe peut import $\Delta$ alors qu'il croit avec $\Delta$ lors du calcul de $\Delta$-densité inter discussions.
+\note{Peut etre aussi parce que $L_{ij}$ dure plus longtemps}
 \begin{figure}
 \centering
 %\subfloat[Inverse cumulative distribution of inter-threads density.]{
@@ -164,6 +169,37 @@ La distribution cumulative inverse de la $\Delta$-densité inter discussions est
 \caption{Distribution cumulative inverse de la $\Delta$-densité inter discussions pour différentes valeurs de $\Delta$s.}
 \label{fig:inter_dens_discussion}
 \end{figure}
+
+
+Afin de comparer plus aisément $\Delta$-densité et $\Delta$-densité inter discussions, la corrélation entre ces deux mesures est présentée sur la figure~\ref{fig:corel_inter_discussion} pour différentes valeurs de $\Delta$.
+On remarque que les discussions sont effectivement plus dense intérieurement qu'avec les autres discussions.
+La différence est de plusieurs ordres de grandeur lorsque $\Delta$ est petit et elle diminue lorsque $\Delta$ croit.
+Pour $\Delta=20\ ans$ sur la figure~\ref{fig:corel_inter_discussion_20}, la différence n'est plus visible.
+A cette échelle de temps, l'ancrage temporel des discussions n'est plus décisif.
+On remarque que même pour $\Delta=1\ an$, la différence est notable.
+ 
+
+\begin{figure}[!h]
+\centering
+\subfloat[$\Delta= $1 minute]{
+	\includegraphics[width=0.48\linewidth]{img/mailing/DensityCurve/120/mean.eps}
+}
+\subfloat[$\Delta= $1 jour]{
+	\includegraphics[width=0.48\linewidth]{img/mailing/DensityCurve/172800/mean.eps}
+}
+
+\subfloat[$\Delta= $1 an]{
+	\includegraphics[width=0.48\linewidth]{img/mailing/DensityCurve/63072000/mean.eps}
+}
+\subfloat[$\Delta= $20 ans]{\label{fig:corel_inter_discussion_20}
+	\includegraphics[width=0.48\linewidth]{img/mailing/DensityCurve/1261440000/mean.eps}
+}
+\caption{Corrélations entre $\Delta$-densité et $\Delta$-densité inter discussions pour différentes valeurs de $Delta$. Une discussion est en vert (resp. rouge) si elle a une $\Delta$-densité plus (resp. moins) élevée que sa $\Delta$-densité inter discussions.}
+\label{fig:corel_inter_discussion}
+\end{figure}
+
+\subsection{Graphe et flot quotient des discussions}
+
 
 \section{Détection automatique des discussions?}
 

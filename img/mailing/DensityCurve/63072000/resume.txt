@@ -1,0 +1,2 @@
+mean_sup: 187
+max_sup: 3779

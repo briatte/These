@@ -1,0 +1,5109 @@
+%!PS-Adobe-2.0 EPSF-2.0
+%%Title: mean.eps
+%%Creator: gnuplot 5.0 patchlevel 1
+%%CreationDate: Fri Oct 30 18:57:07 2015
+%%DocumentFonts: (atend)
+%%BoundingBox: 50 50 302 238
+%%EndComments
+%%BeginProlog
+/gnudict 256 dict def
+gnudict begin
+%
+% The following true/false flags may be edited by hand if desired.
+% The unit line width and grayscale image gamma correction may also be changed.
+%
+/Color true def
+/Blacktext false def
+/Solid false def
+/Dashlength 1 def
+/Landscape false def
+/Level1 false def
+/Level3 false def
+/Rounded false def
+/ClipToBoundingBox false def
+/SuppressPDFMark false def
+/TransparentPatterns false def
+/gnulinewidth 5.000 def
+/userlinewidth gnulinewidth def
+/Gamma 1.0 def
+/BackgroundColor {-1.000 -1.000 -1.000} def
+%
+/vshift -66 def
+/dl1 {
+  10.0 Dashlength userlinewidth gnulinewidth div mul mul mul
+  Rounded { currentlinewidth 0.75 mul sub dup 0 le { pop 0.01 } if } if
+} def
+/dl2 {
+  10.0 Dashlength userlinewidth gnulinewidth div mul mul mul
+  Rounded { currentlinewidth 0.75 mul add } if
+} def
+/hpt_ 31.5 def
+/vpt_ 31.5 def
+/hpt hpt_ def
+/vpt vpt_ def
+/doclip {
+  ClipToBoundingBox {
+    newpath 50 50 moveto 302 50 lineto 302 238 lineto 50 238 lineto closepath
+    clip
+  } if
+} def
+%
+% Gnuplot Prolog Version 5.0 (Dec 2014)
+%
+%/SuppressPDFMark true def
+%
+/M {moveto} bind def
+/L {lineto} bind def
+/R {rmoveto} bind def
+/V {rlineto} bind def
+/N {newpath moveto} bind def
+/Z {closepath} bind def
+/C {setrgbcolor} bind def
+/f {rlineto fill} bind def
+/g {setgray} bind def
+/Gshow {show} def   % May be redefined later in the file to support UTF-8
+/vpt2 vpt 2 mul def
+/hpt2 hpt 2 mul def
+/Lshow {currentpoint stroke M 0 vshift R 
+	Blacktext {gsave 0 setgray textshow grestore} {textshow} ifelse} def
+/Rshow {currentpoint stroke M dup stringwidth pop neg vshift R
+	Blacktext {gsave 0 setgray textshow grestore} {textshow} ifelse} def
+/Cshow {currentpoint stroke M dup stringwidth pop -2 div vshift R 
+	Blacktext {gsave 0 setgray textshow grestore} {textshow} ifelse} def
+/UP {dup vpt_ mul /vpt exch def hpt_ mul /hpt exch def
+  /hpt2 hpt 2 mul def /vpt2 vpt 2 mul def} def
+/DL {Color {setrgbcolor Solid {pop []} if 0 setdash}
+ {pop pop pop 0 setgray Solid {pop []} if 0 setdash} ifelse} def
+/BL {stroke userlinewidth 2 mul setlinewidth
+	Rounded {1 setlinejoin 1 setlinecap} if} def
+/AL {stroke userlinewidth 2 div setlinewidth
+	Rounded {1 setlinejoin 1 setlinecap} if} def
+/UL {dup gnulinewidth mul /userlinewidth exch def
+	dup 1 lt {pop 1} if 10 mul /udl exch def} def
+/PL {stroke userlinewidth setlinewidth
+	Rounded {1 setlinejoin 1 setlinecap} if} def
+3.8 setmiterlimit
+% Classic Line colors (version 5.0)
+/LCw {1 1 1} def
+/LCb {0 0 0} def
+/LCa {0 0 0} def
+/LC0 {1 0 0} def
+/LC1 {0 1 0} def
+/LC2 {0 0 1} def
+/LC3 {1 0 1} def
+/LC4 {0 1 1} def
+/LC5 {1 1 0} def
+/LC6 {0 0 0} def
+/LC7 {1 0.3 0} def
+/LC8 {0.5 0.5 0.5} def
+% Default dash patterns (version 5.0)
+/LTw {PL [] 1 setgray} def
+/LTb {BL [] LCb DL} def
+/LTa {AL [1 udl mul 2 udl mul] 0 setdash LCa setrgbcolor} def
+/LT0 {PL [] LC0 DL} def
+/LT1 {PL [2 dl1 3 dl2] LC1 DL} def
+/LT2 {PL [1 dl1 1.5 dl2] LC2 DL} def
+/LT3 {PL [6 dl1 2 dl2 1 dl1 2 dl2] LC3 DL} def
+/LT4 {PL [1 dl1 2 dl2 6 dl1 2 dl2 1 dl1 2 dl2] LC4 DL} def
+/LT5 {PL [4 dl1 2 dl2] LC5 DL} def
+/LT6 {PL [1.5 dl1 1.5 dl2 1.5 dl1 1.5 dl2 1.5 dl1 6 dl2] LC6 DL} def
+/LT7 {PL [3 dl1 3 dl2 1 dl1 3 dl2] LC7 DL} def
+/LT8 {PL [2 dl1 2 dl2 2 dl1 6 dl2] LC8 DL} def
+/SL {[] 0 setdash} def
+/Pnt {stroke [] 0 setdash gsave 1 setlinecap M 0 0 V stroke grestore} def
+/Dia {stroke [] 0 setdash 2 copy vpt add M
+  hpt neg vpt neg V hpt vpt neg V
+  hpt vpt V hpt neg vpt V closepath stroke
+  Pnt} def
+/Pls {stroke [] 0 setdash vpt sub M 0 vpt2 V
+  currentpoint stroke M
+  hpt neg vpt neg R hpt2 0 V stroke
+ } def
+/Box {stroke [] 0 setdash 2 copy exch hpt sub exch vpt add M
+  0 vpt2 neg V hpt2 0 V 0 vpt2 V
+  hpt2 neg 0 V closepath stroke
+  Pnt} def
+/Crs {stroke [] 0 setdash exch hpt sub exch vpt add M
+  hpt2 vpt2 neg V currentpoint stroke M
+  hpt2 neg 0 R hpt2 vpt2 V stroke} def
+/TriU {stroke [] 0 setdash 2 copy vpt 1.12 mul add M
+  hpt neg vpt -1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt 1.62 mul V closepath stroke
+  Pnt} def
+/Star {2 copy Pls Crs} def
+/BoxF {stroke [] 0 setdash exch hpt sub exch vpt add M
+  0 vpt2 neg V hpt2 0 V 0 vpt2 V
+  hpt2 neg 0 V closepath fill} def
+/TriUF {stroke [] 0 setdash vpt 1.12 mul add M
+  hpt neg vpt -1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt 1.62 mul V closepath fill} def
+/TriD {stroke [] 0 setdash 2 copy vpt 1.12 mul sub M
+  hpt neg vpt 1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt -1.62 mul V closepath stroke
+  Pnt} def
+/TriDF {stroke [] 0 setdash vpt 1.12 mul sub M
+  hpt neg vpt 1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt -1.62 mul V closepath fill} def
+/DiaF {stroke [] 0 setdash vpt add M
+  hpt neg vpt neg V hpt vpt neg V
+  hpt vpt V hpt neg vpt V closepath fill} def
+/Pent {stroke [] 0 setdash 2 copy gsave
+  translate 0 hpt M 4 {72 rotate 0 hpt L} repeat
+  closepath stroke grestore Pnt} def
+/PentF {stroke [] 0 setdash gsave
+  translate 0 hpt M 4 {72 rotate 0 hpt L} repeat
+  closepath fill grestore} def
+/Circle {stroke [] 0 setdash 2 copy
+  hpt 0 360 arc stroke Pnt} def
+/CircleF {stroke [] 0 setdash hpt 0 360 arc fill} def
+/C0 {BL [] 0 setdash 2 copy moveto vpt 90 450 arc} bind def
+/C1 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 0 90 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C2 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 90 180 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C3 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 0 180 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C4 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 180 270 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C5 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 0 90 arc
+	2 copy moveto
+	2 copy vpt 180 270 arc closepath fill
+	vpt 0 360 arc} bind def
+/C6 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 90 270 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C7 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 0 270 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C8 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 270 360 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C9 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 270 450 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C10 {BL [] 0 setdash 2 copy 2 copy moveto vpt 270 360 arc closepath fill
+	2 copy moveto
+	2 copy vpt 90 180 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C11 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 0 180 arc closepath fill
+	2 copy moveto
+	2 copy vpt 270 360 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C12 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 180 360 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C13 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 0 90 arc closepath fill
+	2 copy moveto
+	2 copy vpt 180 360 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C14 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 90 360 arc closepath fill
+	vpt 0 360 arc} bind def
+/C15 {BL [] 0 setdash 2 copy vpt 0 360 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/Rec {newpath 4 2 roll moveto 1 index 0 rlineto 0 exch rlineto
+	neg 0 rlineto closepath} bind def
+/Square {dup Rec} bind def
+/Bsquare {vpt sub exch vpt sub exch vpt2 Square} bind def
+/S0 {BL [] 0 setdash 2 copy moveto 0 vpt rlineto BL Bsquare} bind def
+/S1 {BL [] 0 setdash 2 copy vpt Square fill Bsquare} bind def
+/S2 {BL [] 0 setdash 2 copy exch vpt sub exch vpt Square fill Bsquare} bind def
+/S3 {BL [] 0 setdash 2 copy exch vpt sub exch vpt2 vpt Rec fill Bsquare} bind def
+/S4 {BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt Square fill Bsquare} bind def
+/S5 {BL [] 0 setdash 2 copy 2 copy vpt Square fill
+	exch vpt sub exch vpt sub vpt Square fill Bsquare} bind def
+/S6 {BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt vpt2 Rec fill Bsquare} bind def
+/S7 {BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt vpt2 Rec fill
+	2 copy vpt Square fill Bsquare} bind def
+/S8 {BL [] 0 setdash 2 copy vpt sub vpt Square fill Bsquare} bind def
+/S9 {BL [] 0 setdash 2 copy vpt sub vpt vpt2 Rec fill Bsquare} bind def
+/S10 {BL [] 0 setdash 2 copy vpt sub vpt Square fill 2 copy exch vpt sub exch vpt Square fill
+	Bsquare} bind def
+/S11 {BL [] 0 setdash 2 copy vpt sub vpt Square fill 2 copy exch vpt sub exch vpt2 vpt Rec fill
+	Bsquare} bind def
+/S12 {BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt2 vpt Rec fill Bsquare} bind def
+/S13 {BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt2 vpt Rec fill
+	2 copy vpt Square fill Bsquare} bind def
+/S14 {BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt2 vpt Rec fill
+	2 copy exch vpt sub exch vpt Square fill Bsquare} bind def
+/S15 {BL [] 0 setdash 2 copy Bsquare fill Bsquare} bind def
+/D0 {gsave translate 45 rotate 0 0 S0 stroke grestore} bind def
+/D1 {gsave translate 45 rotate 0 0 S1 stroke grestore} bind def
+/D2 {gsave translate 45 rotate 0 0 S2 stroke grestore} bind def
+/D3 {gsave translate 45 rotate 0 0 S3 stroke grestore} bind def
+/D4 {gsave translate 45 rotate 0 0 S4 stroke grestore} bind def
+/D5 {gsave translate 45 rotate 0 0 S5 stroke grestore} bind def
+/D6 {gsave translate 45 rotate 0 0 S6 stroke grestore} bind def
+/D7 {gsave translate 45 rotate 0 0 S7 stroke grestore} bind def
+/D8 {gsave translate 45 rotate 0 0 S8 stroke grestore} bind def
+/D9 {gsave translate 45 rotate 0 0 S9 stroke grestore} bind def
+/D10 {gsave translate 45 rotate 0 0 S10 stroke grestore} bind def
+/D11 {gsave translate 45 rotate 0 0 S11 stroke grestore} bind def
+/D12 {gsave translate 45 rotate 0 0 S12 stroke grestore} bind def
+/D13 {gsave translate 45 rotate 0 0 S13 stroke grestore} bind def
+/D14 {gsave translate 45 rotate 0 0 S14 stroke grestore} bind def
+/D15 {gsave translate 45 rotate 0 0 S15 stroke grestore} bind def
+/DiaE {stroke [] 0 setdash vpt add M
+  hpt neg vpt neg V hpt vpt neg V
+  hpt vpt V hpt neg vpt V closepath stroke} def
+/BoxE {stroke [] 0 setdash exch hpt sub exch vpt add M
+  0 vpt2 neg V hpt2 0 V 0 vpt2 V
+  hpt2 neg 0 V closepath stroke} def
+/TriUE {stroke [] 0 setdash vpt 1.12 mul add M
+  hpt neg vpt -1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt 1.62 mul V closepath stroke} def
+/TriDE {stroke [] 0 setdash vpt 1.12 mul sub M
+  hpt neg vpt 1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt -1.62 mul V closepath stroke} def
+/PentE {stroke [] 0 setdash gsave
+  translate 0 hpt M 4 {72 rotate 0 hpt L} repeat
+  closepath stroke grestore} def
+/CircE {stroke [] 0 setdash 
+  hpt 0 360 arc stroke} def
+/Opaque {gsave closepath 1 setgray fill grestore 0 setgray closepath} def
+/DiaW {stroke [] 0 setdash vpt add M
+  hpt neg vpt neg V hpt vpt neg V
+  hpt vpt V hpt neg vpt V Opaque stroke} def
+/BoxW {stroke [] 0 setdash exch hpt sub exch vpt add M
+  0 vpt2 neg V hpt2 0 V 0 vpt2 V
+  hpt2 neg 0 V Opaque stroke} def
+/TriUW {stroke [] 0 setdash vpt 1.12 mul add M
+  hpt neg vpt -1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt 1.62 mul V Opaque stroke} def
+/TriDW {stroke [] 0 setdash vpt 1.12 mul sub M
+  hpt neg vpt 1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt -1.62 mul V Opaque stroke} def
+/PentW {stroke [] 0 setdash gsave
+  translate 0 hpt M 4 {72 rotate 0 hpt L} repeat
+  Opaque stroke grestore} def
+/CircW {stroke [] 0 setdash 
+  hpt 0 360 arc Opaque stroke} def
+/BoxFill {gsave Rec 1 setgray fill grestore} def
+/Density {
+  /Fillden exch def
+  currentrgbcolor
+  /ColB exch def /ColG exch def /ColR exch def
+  /ColR ColR Fillden mul Fillden sub 1 add def
+  /ColG ColG Fillden mul Fillden sub 1 add def
+  /ColB ColB Fillden mul Fillden sub 1 add def
+  ColR ColG ColB setrgbcolor} def
+/BoxColFill {gsave Rec PolyFill} def
+/PolyFill {gsave Density fill grestore grestore} def
+/h {rlineto rlineto rlineto gsave closepath fill grestore} bind def
+%
+% PostScript Level 1 Pattern Fill routine for rectangles
+% Usage: x y w h s a XX PatternFill
+%	x,y = lower left corner of box to be filled
+%	w,h = width and height of box
+%	  a = angle in degrees between lines and x-axis
+%	 XX = 0/1 for no/yes cross-hatch
+%
+/PatternFill {gsave /PFa [ 9 2 roll ] def
+  PFa 0 get PFa 2 get 2 div add PFa 1 get PFa 3 get 2 div add translate
+  PFa 2 get -2 div PFa 3 get -2 div PFa 2 get PFa 3 get Rec
+  TransparentPatterns {} {gsave 1 setgray fill grestore} ifelse
+  clip
+  currentlinewidth 0.5 mul setlinewidth
+  /PFs PFa 2 get dup mul PFa 3 get dup mul add sqrt def
+  0 0 M PFa 5 get rotate PFs -2 div dup translate
+  0 1 PFs PFa 4 get div 1 add floor cvi
+	{PFa 4 get mul 0 M 0 PFs V} for
+  0 PFa 6 get ne {
+	0 1 PFs PFa 4 get div 1 add floor cvi
+	{PFa 4 get mul 0 2 1 roll M PFs 0 V} for
+ } if
+  stroke grestore} def
+%
+/languagelevel where
+ {pop languagelevel} {1} ifelse
+dup 2 lt
+	{/InterpretLevel1 true def
+	 /InterpretLevel3 false def}
+	{/InterpretLevel1 Level1 def
+	 2 gt
+	    {/InterpretLevel3 Level3 def}
+	    {/InterpretLevel3 false def}
+	 ifelse }
+ ifelse
+%
+% PostScript level 2 pattern fill definitions
+%
+/Level2PatternFill {
+/Tile8x8 {/PaintType 2 /PatternType 1 /TilingType 1 /BBox [0 0 8 8] /XStep 8 /YStep 8}
+	bind def
+/KeepColor {currentrgbcolor [/Pattern /DeviceRGB] setcolorspace} bind def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop 0 0 M 8 8 L 0 8 M 8 0 L stroke} 
+>> matrix makepattern
+/Pat1 exch def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop 0 0 M 8 8 L 0 8 M 8 0 L stroke
+	0 4 M 4 8 L 8 4 L 4 0 L 0 4 L stroke}
+>> matrix makepattern
+/Pat2 exch def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop 0 0 M 0 8 L
+	8 8 L 8 0 L 0 0 L fill}
+>> matrix makepattern
+/Pat3 exch def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop -4 8 M 8 -4 L
+	0 12 M 12 0 L stroke}
+>> matrix makepattern
+/Pat4 exch def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop -4 0 M 8 12 L
+	0 -4 M 12 8 L stroke}
+>> matrix makepattern
+/Pat5 exch def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop -2 8 M 4 -4 L
+	0 12 M 8 -4 L 4 12 M 10 0 L stroke}
+>> matrix makepattern
+/Pat6 exch def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop -2 0 M 4 12 L
+	0 -4 M 8 12 L 4 -4 M 10 8 L stroke}
+>> matrix makepattern
+/Pat7 exch def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop 8 -2 M -4 4 L
+	12 0 M -4 8 L 12 4 M 0 10 L stroke}
+>> matrix makepattern
+/Pat8 exch def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop 0 -2 M 12 4 L
+	-4 0 M 12 8 L -4 4 M 8 10 L stroke}
+>> matrix makepattern
+/Pat9 exch def
+/Pattern1 {PatternBgnd KeepColor Pat1 setpattern} bind def
+/Pattern2 {PatternBgnd KeepColor Pat2 setpattern} bind def
+/Pattern3 {PatternBgnd KeepColor Pat3 setpattern} bind def
+/Pattern4 {PatternBgnd KeepColor Landscape {Pat5} {Pat4} ifelse setpattern} bind def
+/Pattern5 {PatternBgnd KeepColor Landscape {Pat4} {Pat5} ifelse setpattern} bind def
+/Pattern6 {PatternBgnd KeepColor Landscape {Pat9} {Pat6} ifelse setpattern} bind def
+/Pattern7 {PatternBgnd KeepColor Landscape {Pat8} {Pat7} ifelse setpattern} bind def
+} def
+%
+%
+%End of PostScript Level 2 code
+%
+/PatternBgnd {
+  TransparentPatterns {} {gsave 1 setgray fill grestore} ifelse
+} def
+%
+% Substitute for Level 2 pattern fill codes with
+% grayscale if Level 2 support is not selected.
+%
+/Level1PatternFill {
+/Pattern1 {0.250 Density} bind def
+/Pattern2 {0.500 Density} bind def
+/Pattern3 {0.750 Density} bind def
+/Pattern4 {0.125 Density} bind def
+/Pattern5 {0.375 Density} bind def
+/Pattern6 {0.625 Density} bind def
+/Pattern7 {0.875 Density} bind def
+} def
+%
+% Now test for support of Level 2 code
+%
+Level1 {Level1PatternFill} {Level2PatternFill} ifelse
+%
+/Symbol-Oblique /Symbol findfont [1 0 .167 1 0 0] makefont
+dup length dict begin {1 index /FID eq {pop pop} {def} ifelse} forall
+currentdict end definefont pop
+%
+/MFshow {
+   { dup 5 get 3 ge
+     { 5 get 3 eq {gsave} {grestore} ifelse }
+     {dup dup 0 get findfont exch 1 get scalefont setfont
+     [ currentpoint ] exch dup 2 get 0 exch R dup 5 get 2 ne {dup dup 6
+     get exch 4 get {textshow} {stringwidth pop 0 R} ifelse }if dup 5 get 0 eq
+     {dup 3 get {2 get neg 0 exch R pop} {pop aload pop M} ifelse} {dup 5
+     get 1 eq {dup 2 get exch dup 3 get exch 6 get stringwidth pop -2 div
+     dup 0 R} {dup 6 get stringwidth pop -2 div 0 R 6 get
+     textshow 2 index {aload pop M neg 3 -1 roll neg R pop pop} {pop pop pop
+     pop aload pop M} ifelse }ifelse }ifelse }
+     ifelse }
+   forall} def
+/Gswidth {dup type /stringtype eq {stringwidth} {pop (n) stringwidth} ifelse} def
+/MFwidth {0 exch { dup 5 get 3 ge { 5 get 3 eq { 0 } { pop } ifelse }
+ {dup 3 get{dup dup 0 get findfont exch 1 get scalefont setfont
+     6 get Gswidth pop add} {pop} ifelse} ifelse} forall} def
+/MLshow { currentpoint stroke M
+  0 exch R
+  Blacktext {gsave 0 setgray MFshow grestore} {MFshow} ifelse } bind def
+/MRshow { currentpoint stroke M
+  exch dup MFwidth neg 3 -1 roll R
+  Blacktext {gsave 0 setgray MFshow grestore} {MFshow} ifelse } bind def
+/MCshow { currentpoint stroke M
+  exch dup MFwidth -2 div 3 -1 roll R
+  Blacktext {gsave 0 setgray MFshow grestore} {MFshow} ifelse } bind def
+/XYsave    { [( ) 1 2 true false 3 ()] } bind def
+/XYrestore { [( ) 1 2 true false 4 ()] } bind def
+Level1 SuppressPDFMark or 
+{} {
+/SDict 10 dict def
+systemdict /pdfmark known not {
+  userdict /pdfmark systemdict /cleartomark get put
+} if
+SDict begin [
+  /Title (mean.eps)
+  /Subject (gnuplot plot)
+  /Creator (gnuplot 5.0 patchlevel 1)
+  /Author (gaumont)
+%  /Producer (gnuplot)
+%  /Keywords ()
+  /CreationDate (Fri Oct 30 18:57:07 2015)
+  /DOCINFO pdfmark
+end
+} ifelse
+end
+%
+% Support for boxed text - Ethan A Merritt May 2005
+%
+/InitTextBox { userdict /TBy2 3 -1 roll put userdict /TBx2 3 -1 roll put
+           userdict /TBy1 3 -1 roll put userdict /TBx1 3 -1 roll put
+	   /Boxing true def } def
+/ExtendTextBox { Boxing
+    { gsave dup false charpath pathbbox
+      dup TBy2 gt {userdict /TBy2 3 -1 roll put} {pop} ifelse
+      dup TBx2 gt {userdict /TBx2 3 -1 roll put} {pop} ifelse
+      dup TBy1 lt {userdict /TBy1 3 -1 roll put} {pop} ifelse
+      dup TBx1 lt {userdict /TBx1 3 -1 roll put} {pop} ifelse
+      grestore } if } def
+/PopTextBox { newpath TBx1 TBxmargin sub TBy1 TBymargin sub M
+               TBx1 TBxmargin sub TBy2 TBymargin add L
+	       TBx2 TBxmargin add TBy2 TBymargin add L
+	       TBx2 TBxmargin add TBy1 TBymargin sub L closepath } def
+/DrawTextBox { PopTextBox stroke /Boxing false def} def
+/FillTextBox { gsave PopTextBox 1 1 1 setrgbcolor fill grestore /Boxing false def} def
+0 0 0 0 InitTextBox
+/TBxmargin 20 def
+/TBymargin 20 def
+/Boxing false def
+/textshow { ExtendTextBox Gshow } def
+%
+%%EndProlog
+%%Page: 1 1
+gnudict begin
+gsave
+doclip
+50 50 translate
+0.050 0.050 scale
+0 setgray
+newpath
+(Helvetica) findfont 200 scalefont setfont
+BackgroundColor 0 lt 3 1 roll 0 lt exch 0 lt or or not {BackgroundColor C 1.000 0 0 5040.00 3772.00 BoxColFill} if
+1.000 UL
+LTb
+LCb setrgbcolor
+860 640 M
+63 0 V
+3756 0 R
+-63 0 V
+stroke
+740 640 M
+[ [(Helvetica) 200.0 0.0 true true 0 (10)]
+[(Helvetica) 160.0 100.0 true true 0 (-4)]
+] -86.7 MRshow
+1.000 UL
+LTb
+LCb setrgbcolor
+860 858 M
+31 0 V
+3788 0 R
+-31 0 V
+860 985 M
+31 0 V
+3788 0 R
+-31 0 V
+860 1075 M
+31 0 V
+3788 0 R
+-31 0 V
+860 1145 M
+31 0 V
+3788 0 R
+-31 0 V
+860 1202 M
+31 0 V
+3788 0 R
+-31 0 V
+860 1251 M
+31 0 V
+3788 0 R
+-31 0 V
+860 1293 M
+31 0 V
+3788 0 R
+-31 0 V
+860 1330 M
+31 0 V
+3788 0 R
+-31 0 V
+860 1363 M
+63 0 V
+3756 0 R
+-63 0 V
+stroke
+740 1363 M
+[ [(Helvetica) 200.0 0.0 true true 0 (10)]
+[(Helvetica) 160.0 100.0 true true 0 (-3)]
+] -86.7 MRshow
+1.000 UL
+LTb
+LCb setrgbcolor
+860 1580 M
+31 0 V
+3788 0 R
+-31 0 V
+860 1708 M
+31 0 V
+3788 0 R
+-31 0 V
+860 1798 M
+31 0 V
+3788 0 R
+-31 0 V
+860 1868 M
+31 0 V
+3788 0 R
+-31 0 V
+860 1925 M
+31 0 V
+3788 0 R
+-31 0 V
+860 1974 M
+31 0 V
+3788 0 R
+-31 0 V
+860 2015 M
+31 0 V
+3788 0 R
+-31 0 V
+860 2052 M
+31 0 V
+3788 0 R
+-31 0 V
+860 2086 M
+63 0 V
+3756 0 R
+-63 0 V
+stroke
+740 2086 M
+[ [(Helvetica) 200.0 0.0 true true 0 (10)]
+[(Helvetica) 160.0 100.0 true true 0 (-2)]
+] -86.7 MRshow
+1.000 UL
+LTb
+LCb setrgbcolor
+860 2303 M
+31 0 V
+3788 0 R
+-31 0 V
+860 2430 M
+31 0 V
+3788 0 R
+-31 0 V
+860 2521 M
+31 0 V
+3788 0 R
+-31 0 V
+860 2591 M
+31 0 V
+3788 0 R
+-31 0 V
+860 2648 M
+31 0 V
+3788 0 R
+-31 0 V
+860 2696 M
+31 0 V
+3788 0 R
+-31 0 V
+860 2738 M
+31 0 V
+3788 0 R
+-31 0 V
+860 2775 M
+31 0 V
+3788 0 R
+-31 0 V
+860 2808 M
+63 0 V
+3756 0 R
+-63 0 V
+stroke
+740 2808 M
+[ [(Helvetica) 200.0 0.0 true true 0 (10)]
+[(Helvetica) 160.0 100.0 true true 0 (-1)]
+] -86.7 MRshow
+1.000 UL
+LTb
+LCb setrgbcolor
+860 3026 M
+31 0 V
+3788 0 R
+-31 0 V
+860 3153 M
+31 0 V
+3788 0 R
+-31 0 V
+860 3243 M
+31 0 V
+3788 0 R
+-31 0 V
+860 3313 M
+31 0 V
+3788 0 R
+-31 0 V
+860 3371 M
+31 0 V
+3788 0 R
+-31 0 V
+860 3419 M
+31 0 V
+3788 0 R
+-31 0 V
+860 3461 M
+31 0 V
+3788 0 R
+-31 0 V
+860 3498 M
+31 0 V
+3788 0 R
+-31 0 V
+860 3531 M
+63 0 V
+3756 0 R
+-63 0 V
+stroke
+740 3531 M
+[ [(Helvetica) 200.0 0.0 true true 0 (10)]
+[(Helvetica) 160.0 100.0 true true 0 (0)]
+] -86.7 MRshow
+1.000 UL
+LTb
+LCb setrgbcolor
+860 640 M
+0 63 V
+0 2828 R
+0 -63 V
+stroke
+860 440 M
+[ [(Helvetica) 200.0 0.0 true true 0 (10)]
+[(Helvetica) 160.0 100.0 true true 0 (-3)]
+] -86.7 MCshow
+1.000 UL
+LTb
+LCb setrgbcolor
+1243 640 M
+0 31 V
+0 2860 R
+0 -31 V
+1467 640 M
+0 31 V
+0 2860 R
+0 -31 V
+1626 640 M
+0 31 V
+0 2860 R
+0 -31 V
+1750 640 M
+0 31 V
+0 2860 R
+0 -31 V
+1851 640 M
+0 31 V
+0 2860 R
+0 -31 V
+1936 640 M
+0 31 V
+0 2860 R
+0 -31 V
+2010 640 M
+0 31 V
+0 2860 R
+0 -31 V
+2075 640 M
+0 31 V
+0 2860 R
+0 -31 V
+2133 640 M
+0 63 V
+0 2828 R
+0 -63 V
+stroke
+2133 440 M
+[ [(Helvetica) 200.0 0.0 true true 0 (10)]
+[(Helvetica) 160.0 100.0 true true 0 (-2)]
+] -86.7 MCshow
+1.000 UL
+LTb
+LCb setrgbcolor
+2516 640 M
+0 31 V
+0 2860 R
+0 -31 V
+2740 640 M
+0 31 V
+0 2860 R
+0 -31 V
+2899 640 M
+0 31 V
+0 2860 R
+0 -31 V
+3023 640 M
+0 31 V
+0 2860 R
+0 -31 V
+3124 640 M
+0 31 V
+0 2860 R
+0 -31 V
+3209 640 M
+0 31 V
+0 2860 R
+0 -31 V
+3283 640 M
+0 31 V
+0 2860 R
+0 -31 V
+3348 640 M
+0 31 V
+0 2860 R
+0 -31 V
+3406 640 M
+0 63 V
+0 2828 R
+0 -63 V
+stroke
+3406 440 M
+[ [(Helvetica) 200.0 0.0 true true 0 (10)]
+[(Helvetica) 160.0 100.0 true true 0 (-1)]
+] -86.7 MCshow
+1.000 UL
+LTb
+LCb setrgbcolor
+3789 640 M
+0 31 V
+0 2860 R
+0 -31 V
+4013 640 M
+0 31 V
+0 2860 R
+0 -31 V
+4172 640 M
+0 31 V
+0 2860 R
+0 -31 V
+4296 640 M
+0 31 V
+0 2860 R
+0 -31 V
+4397 640 M
+0 31 V
+0 2860 R
+0 -31 V
+4482 640 M
+0 31 V
+0 2860 R
+0 -31 V
+4556 640 M
+0 31 V
+0 2860 R
+0 -31 V
+4621 640 M
+0 31 V
+0 2860 R
+0 -31 V
+4679 640 M
+0 63 V
+0 2828 R
+0 -63 V
+stroke
+4679 440 M
+[ [(Helvetica) 200.0 0.0 true true 0 (10)]
+[(Helvetica) 160.0 100.0 true true 0 (0)]
+] -86.7 MCshow
+1.000 UL
+LTb
+LCb setrgbcolor
+1.000 UL
+LTb
+LCb setrgbcolor
+860 3531 N
+860 640 L
+3819 0 V
+0 2891 V
+-3819 0 V
+Z stroke
+0.500 UP
+1.000 UL
+LTb
+LCb setrgbcolor
+LCb setrgbcolor
+160 2085 M
+currentpoint gsave translate -270 rotate 0 0 moveto
+[ [(Helvetica) 200.0 0.0 true true 0 (Inter-thread density)]
+] -66.7 MCshow
+grestore
+LTb
+LCb setrgbcolor
+2769 140 M
+[ [(Helvetica) 200.0 0.0 true true 0 (Intra-thread density)]
+] -66.7 MCshow
+LTb
+% Begin plot #1
+0.500 UP
+0.500 UL
+LTb
+0.82 0.11 0.02 C 1149 2030 Pls
+2140 2136 Pls
+2331 2376 Pls
+% End plot #1
+% Begin plot #2
+0.500 UP
+0.500 UL
+LTb
+0.73 0.85 0.33 C 4422 2335 Crs
+4037 2143 Crs
+4679 2168 Crs
+3925 2199 Crs
+3967 1566 Crs
+4091 2029 Crs
+4101 2233 Crs
+3768 2314 Crs
+3842 2212 Crs
+3991 2004 Crs
+3761 2027 Crs
+3577 1906 Crs
+4146 2352 Crs
+4454 2227 Crs
+3400 2160 Crs
+3926 2325 Crs
+4173 2246 Crs
+3879 1883 Crs
+4272 2214 Crs
+3882 2213 Crs
+3853 2173 Crs
+3911 2262 Crs
+3724 2231 Crs
+3632 2139 Crs
+4128 2367 Crs
+3942 2063 Crs
+3770 2413 Crs
+3750 1779 Crs
+3576 1988 Crs
+3933 2374 Crs
+3695 1915 Crs
+4052 2021 Crs
+3525 1933 Crs
+4375 1921 Crs
+3788 1898 Crs
+3722 2318 Crs
+4271 1983 Crs
+3888 2061 Crs
+4252 2397 Crs
+3710 2041 Crs
+3898 2270 Crs
+3910 2240 Crs
+3960 2001 Crs
+3997 2233 Crs
+3956 2080 Crs
+3406 2105 Crs
+4000 1936 Crs
+4142 2362 Crs
+3822 2156 Crs
+3532 2056 Crs
+3509 2166 Crs
+3639 2284 Crs
+4284 2251 Crs
+3881 2117 Crs
+4073 2319 Crs
+3927 1939 Crs
+4092 2213 Crs
+3888 2102 Crs
+3473 2202 Crs
+3908 1783 Crs
+1733 1742 Crs
+3906 2024 Crs
+4129 2128 Crs
+3677 1937 Crs
+2836 2256 Crs
+2151 1504 Crs
+3338 2119 Crs
+3703 2081 Crs
+4122 2049 Crs
+3972 1970 Crs
+3977 2445 Crs
+4267 2049 Crs
+2398 2135 Crs
+3712 1933 Crs
+3826 2058 Crs
+4248 2107 Crs
+4429 2004 Crs
+3961 2106 Crs
+3585 2145 Crs
+4129 1984 Crs
+3594 1962 Crs
+3523 1948 Crs
+3520 2145 Crs
+3089 1821 Crs
+3540 1924 Crs
+3645 2040 Crs
+3845 2097 Crs
+3850 2223 Crs
+3931 2136 Crs
+3937 2085 Crs
+4291 2038 Crs
+3755 2269 Crs
+4139 2049 Crs
+3879 2037 Crs
+4027 2302 Crs
+3374 2061 Crs
+4176 1941 Crs
+4333 2173 Crs
+3320 1963 Crs
+4150 2360 Crs
+3686 1775 Crs
+3770 2206 Crs
+3486 2022 Crs
+3928 2120 Crs
+4027 2302 Crs
+3760 2206 Crs
+4585 2397 Crs
+3822 2028 Crs
+4254 2126 Crs
+3418 1700 Crs
+3886 2152 Crs
+4266 2078 Crs
+3808 2449 Crs
+4219 2150 Crs
+3608 1935 Crs
+3390 2043 Crs
+3861 2029 Crs
+3337 2065 Crs
+3796 2147 Crs
+4013 2197 Crs
+3324 1965 Crs
+4034 2178 Crs
+3938 2194 Crs
+4152 2164 Crs
+4003 1926 Crs
+3658 2082 Crs
+3924 2251 Crs
+3389 2184 Crs
+3932 2265 Crs
+3976 1792 Crs
+3894 2058 Crs
+3901 2048 Crs
+2763 2223 Crs
+3799 2273 Crs
+3946 2163 Crs
+3426 2118 Crs
+3375 1961 Crs
+4379 2424 Crs
+4437 2232 Crs
+3762 2370 Crs
+4007 2025 Crs
+3558 1960 Crs
+3440 1941 Crs
+3802 2127 Crs
+3641 2070 Crs
+3584 1837 Crs
+4198 1962 Crs
+4012 2028 Crs
+3750 1875 Crs
+3717 1878 Crs
+3443 1850 Crs
+3947 2101 Crs
+3426 2172 Crs
+4679 2124 Crs
+4219 2079 Crs
+4065 2051 Crs
+4196 2220 Crs
+4167 2148 Crs
+3664 2225 Crs
+3735 1590 Crs
+3812 2157 Crs
+3805 2241 Crs
+3940 2274 Crs
+3970 2070 Crs
+4012 2313 Crs
+3877 2224 Crs
+4004 2041 Crs
+4095 2235 Crs
+4136 1827 Crs
+2859 2137 Crs
+4214 2118 Crs
+3808 2099 Crs
+3748 2041 Crs
+3695 2031 Crs
+3981 2229 Crs
+3516 1407 Crs
+4158 2021 Crs
+4094 2167 Crs
+4039 2186 Crs
+3834 1872 Crs
+3964 1856 Crs
+3694 2065 Crs
+3870 2277 Crs
+3807 2252 Crs
+3809 2352 Crs
+3071 2130 Crs
+4526 2399 Crs
+3757 1917 Crs
+4104 2055 Crs
+3919 2308 Crs
+4047 1863 Crs
+3818 2052 Crs
+4069 2087 Crs
+4168 2286 Crs
+4016 2146 Crs
+3851 2101 Crs
+4309 2067 Crs
+3807 2078 Crs
+3748 1841 Crs
+4205 2350 Crs
+3793 2088 Crs
+3424 1515 Crs
+3691 1922 Crs
+4042 1983 Crs
+3587 1620 Crs
+4266 2034 Crs
+3189 2075 Crs
+3539 1918 Crs
+3921 2248 Crs
+4355 2356 Crs
+3279 2115 Crs
+3206 2204 Crs
+3814 2000 Crs
+3814 2079 Crs
+3900 1672 Crs
+3374 2269 Crs
+3610 1654 Crs
+3247 1667 Crs
+3309 2332 Crs
+4124 2083 Crs
+4040 2098 Crs
+3960 2210 Crs
+3464 1764 Crs
+3875 2000 Crs
+4077 1888 Crs
+4287 1950 Crs
+3908 2287 Crs
+3936 2330 Crs
+4002 2167 Crs
+3965 2196 Crs
+3910 2107 Crs
+4160 2094 Crs
+3884 1967 Crs
+3692 2184 Crs
+4255 1795 Crs
+4065 2167 Crs
+3982 2252 Crs
+4039 1956 Crs
+3585 2091 Crs
+4295 2044 Crs
+4233 2166 Crs
+3699 2090 Crs
+4121 2038 Crs
+4290 1963 Crs
+4124 2192 Crs
+4152 2043 Crs
+3977 2230 Crs
+3945 2229 Crs
+3879 2087 Crs
+3780 1851 Crs
+3780 2145 Crs
+4381 2265 Crs
+4248 2363 Crs
+4245 1928 Crs
+4071 2010 Crs
+3726 2053 Crs
+3866 1907 Crs
+3845 2249 Crs
+3521 1954 Crs
+3815 1941 Crs
+4053 2002 Crs
+3497 2034 Crs
+4272 2224 Crs
+3451 1796 Crs
+3831 2120 Crs
+3898 1895 Crs
+3572 2120 Crs
+4148 2162 Crs
+3841 2025 Crs
+3978 2102 Crs
+3035 2229 Crs
+3882 2202 Crs
+4077 1941 Crs
+3890 2261 Crs
+4278 2039 Crs
+4215 2226 Crs
+3854 2476 Crs
+3918 2301 Crs
+3718 2118 Crs
+4047 2058 Crs
+3379 1888 Crs
+3877 2476 Crs
+3805 1973 Crs
+4025 2265 Crs
+4099 1992 Crs
+3671 1773 Crs
+3887 2144 Crs
+3866 2197 Crs
+3902 2153 Crs
+4116 2202 Crs
+3714 1534 Crs
+3455 2324 Crs
+3871 2244 Crs
+3728 2240 Crs
+3352 2270 Crs
+4437 1931 Crs
+3201 1453 Crs
+4014 2101 Crs
+4017 2207 Crs
+3408 2108 Crs
+3687 1938 Crs
+3914 2296 Crs
+3401 1742 Crs
+3768 2324 Crs
+4212 2191 Crs
+3892 2168 Crs
+3729 1958 Crs
+4170 2006 Crs
+3911 1671 Crs
+4162 2094 Crs
+3593 2124 Crs
+4155 2210 Crs
+3629 2179 Crs
+3840 1976 Crs
+4450 2125 Crs
+3939 1932 Crs
+3477 2192 Crs
+4190 2012 Crs
+3791 2007 Crs
+4448 2220 Crs
+4127 2258 Crs
+4154 2231 Crs
+3490 2128 Crs
+4124 2331 Crs
+3849 2273 Crs
+3671 2118 Crs
+4008 2156 Crs
+4266 2240 Crs
+3902 2116 Crs
+3841 1981 Crs
+3652 2311 Crs
+4177 2198 Crs
+3674 1608 Crs
+3353 1690 Crs
+4070 2065 Crs
+3653 1830 Crs
+3992 2248 Crs
+4109 2015 Crs
+4378 2092 Crs
+3771 2205 Crs
+3830 2016 Crs
+3941 2411 Crs
+3559 1935 Crs
+3751 2015 Crs
+3960 1984 Crs
+3921 2085 Crs
+3851 2132 Crs
+4232 2370 Crs
+3507 1895 Crs
+3847 1991 Crs
+4186 2112 Crs
+4007 2066 Crs
+3902 2217 Crs
+3500 1987 Crs
+3725 2005 Crs
+3760 2128 Crs
+4127 2029 Crs
+3752 2007 Crs
+3763 2319 Crs
+4468 2134 Crs
+3041 2386 Crs
+4180 2271 Crs
+4412 2335 Crs
+3958 1909 Crs
+3909 1979 Crs
+3755 1977 Crs
+4053 1989 Crs
+4027 1947 Crs
+3699 2195 Crs
+3996 2097 Crs
+4265 1957 Crs
+3814 2118 Crs
+3513 2035 Crs
+4404 2136 Crs
+3827 2271 Crs
+3728 1992 Crs
+4055 2285 Crs
+4019 2168 Crs
+3649 1973 Crs
+4125 2166 Crs
+3710 1860 Crs
+4064 2085 Crs
+3905 2167 Crs
+3525 2090 Crs
+4116 2291 Crs
+4225 2344 Crs
+3637 2356 Crs
+4015 2080 Crs
+3698 2116 Crs
+4099 1850 Crs
+4231 2042 Crs
+3692 2223 Crs
+3946 2004 Crs
+3911 1936 Crs
+3929 2144 Crs
+3888 2341 Crs
+4030 2177 Crs
+3833 2047 Crs
+3772 2319 Crs
+3553 1838 Crs
+4156 2269 Crs
+3726 2191 Crs
+3735 2196 Crs
+4081 1834 Crs
+4054 2106 Crs
+3842 2096 Crs
+3770 2314 Crs
+3886 2315 Crs
+3704 2132 Crs
+3765 1365 Crs
+3947 2024 Crs
+3783 2453 Crs
+4065 2034 Crs
+3775 2053 Crs
+4268 2330 Crs
+3860 2161 Crs
+3018 1915 Crs
+3771 1326 Crs
+4115 2106 Crs
+3543 2286 Crs
+3478 2003 Crs
+3590 2089 Crs
+3855 2092 Crs
+3172 2137 Crs
+3846 2106 Crs
+3663 2083 Crs
+4059 2273 Crs
+3932 2162 Crs
+4034 2185 Crs
+4043 2275 Crs
+3736 2481 Crs
+3639 2251 Crs
+4419 1642 Crs
+4268 2205 Crs
+3873 2231 Crs
+4037 1924 Crs
+3967 2432 Crs
+4134 2131 Crs
+3884 2138 Crs
+4137 2101 Crs
+3971 2066 Crs
+3933 2064 Crs
+4655 2308 Crs
+4009 2140 Crs
+3321 2091 Crs
+3633 1800 Crs
+4317 2282 Crs
+4040 2372 Crs
+4111 2064 Crs
+3959 1961 Crs
+4133 2189 Crs
+3881 2006 Crs
+3776 1937 Crs
+3997 2248 Crs
+3703 2167 Crs
+3858 2239 Crs
+3963 2173 Crs
+4401 2044 Crs
+3658 2064 Crs
+3864 2023 Crs
+4358 2175 Crs
+3411 2209 Crs
+4109 1934 Crs
+2228 1947 Crs
+4043 2067 Crs
+4238 2268 Crs
+4253 1900 Crs
+3904 1975 Crs
+4266 2111 Crs
+3422 1852 Crs
+4144 1827 Crs
+3694 2021 Crs
+3925 2096 Crs
+3867 2024 Crs
+3547 2029 Crs
+4143 2126 Crs
+3570 2074 Crs
+4350 2244 Crs
+3735 2143 Crs
+4223 1995 Crs
+3978 2219 Crs
+4520 2044 Crs
+4073 2012 Crs
+3818 2154 Crs
+3588 2163 Crs
+3959 1914 Crs
+3457 1951 Crs
+3570 2042 Crs
+3632 1970 Crs
+3471 2098 Crs
+4068 2427 Crs
+4083 2225 Crs
+3958 2176 Crs
+3788 1942 Crs
+3848 1924 Crs
+3707 2070 Crs
+3852 2067 Crs
+4451 2327 Crs
+3656 2240 Crs
+3899 2052 Crs
+3637 1751 Crs
+4224 1987 Crs
+3153 2140 Crs
+3714 2060 Crs
+3835 2001 Crs
+4256 2332 Crs
+4393 1982 Crs
+4021 2094 Crs
+4266 2133 Crs
+3733 2134 Crs
+4114 2043 Crs
+3568 2005 Crs
+4345 2375 Crs
+3378 2042 Crs
+3407 1963 Crs
+3917 2040 Crs
+3782 1978 Crs
+3944 2079 Crs
+3526 2374 Crs
+4047 2272 Crs
+4258 2448 Crs
+3576 1974 Crs
+3583 1982 Crs
+4166 1954 Crs
+3536 2077 Crs
+4068 1960 Crs
+4061 2188 Crs
+4137 2079 Crs
+3983 2003 Crs
+4062 1985 Crs
+4042 2193 Crs
+3760 2006 Crs
+3932 2348 Crs
+4143 1850 Crs
+3785 2030 Crs
+4024 2177 Crs
+2862 2023 Crs
+4381 2137 Crs
+3764 2202 Crs
+3303 1981 Crs
+3815 2025 Crs
+3572 2243 Crs
+4281 2127 Crs
+3985 2153 Crs
+3408 2264 Crs
+3424 2114 Crs
+4269 1970 Crs
+4133 2231 Crs
+3660 2080 Crs
+3468 2157 Crs
+3991 2461 Crs
+4191 2207 Crs
+3737 2008 Crs
+4134 2144 Crs
+3947 2047 Crs
+3735 2211 Crs
+3944 2049 Crs
+4418 2137 Crs
+3563 1931 Crs
+4248 2328 Crs
+4095 2180 Crs
+4177 2008 Crs
+4042 1549 Crs
+4212 2090 Crs
+3999 1979 Crs
+3474 2177 Crs
+4185 2294 Crs
+3811 2179 Crs
+4305 2200 Crs
+3778 2093 Crs
+3873 1970 Crs
+3441 2111 Crs
+3878 2177 Crs
+4108 2136 Crs
+4204 2027 Crs
+4075 1920 Crs
+4112 2125 Crs
+3842 2236 Crs
+3737 2250 Crs
+3716 2164 Crs
+3915 1917 Crs
+3492 2106 Crs
+3942 2208 Crs
+4105 2065 Crs
+4056 1996 Crs
+3609 2106 Crs
+3847 2131 Crs
+3805 2354 Crs
+4177 1914 Crs
+3990 2025 Crs
+4000 1941 Crs
+3722 2092 Crs
+4013 1748 Crs
+4052 2287 Crs
+3582 1988 Crs
+4199 2014 Crs
+3815 2081 Crs
+4250 2334 Crs
+3798 1952 Crs
+3851 2051 Crs
+4354 1995 Crs
+3830 2209 Crs
+3933 1999 Crs
+3656 2005 Crs
+4260 2130 Crs
+3431 1945 Crs
+3932 2151 Crs
+3781 2138 Crs
+4438 1914 Crs
+3667 1979 Crs
+4125 2258 Crs
+3309 2181 Crs
+3880 2264 Crs
+3726 2275 Crs
+3649 2102 Crs
+3803 2144 Crs
+4058 2216 Crs
+3992 2299 Crs
+3715 2272 Crs
+3701 1468 Crs
+3909 2264 Crs
+4156 2088 Crs
+3768 1997 Crs
+4074 1987 Crs
+3590 1846 Crs
+4132 2292 Crs
+4154 2038 Crs
+3945 2193 Crs
+3921 2156 Crs
+4245 2276 Crs
+4428 2152 Crs
+4152 2303 Crs
+3858 2245 Crs
+3850 2157 Crs
+3881 1997 Crs
+3420 1912 Crs
+4011 2212 Crs
+4249 2031 Crs
+4213 2108 Crs
+3899 2202 Crs
+3724 2384 Crs
+4112 2316 Crs
+3029 2419 Crs
+4142 2245 Crs
+4258 1928 Crs
+4077 2029 Crs
+3719 2106 Crs
+3131 2054 Crs
+3958 2118 Crs
+3544 2322 Crs
+3705 2099 Crs
+4067 2162 Crs
+3567 2008 Crs
+4100 2143 Crs
+3580 1830 Crs
+4034 2031 Crs
+4427 2338 Crs
+4154 2426 Crs
+3991 2065 Crs
+4122 2334 Crs
+3261 1850 Crs
+4349 2085 Crs
+3556 1732 Crs
+3849 1816 Crs
+4158 2138 Crs
+4041 2324 Crs
+4039 2145 Crs
+4087 2240 Crs
+3286 1877 Crs
+3895 1983 Crs
+3774 1823 Crs
+3888 2368 Crs
+3586 2031 Crs
+4162 2067 Crs
+4107 2204 Crs
+3766 2033 Crs
+4015 2064 Crs
+4580 1991 Crs
+3560 1912 Crs
+3894 2343 Crs
+4239 2308 Crs
+4033 2011 Crs
+4169 2016 Crs
+3800 2221 Crs
+3803 2025 Crs
+3194 2213 Crs
+3932 2136 Crs
+3257 2095 Crs
+3462 2156 Crs
+2511 2200 Crs
+4280 2184 Crs
+3306 2134 Crs
+4156 2103 Crs
+4099 1727 Crs
+3807 2064 Crs
+3652 1924 Crs
+3925 2339 Crs
+3959 2130 Crs
+4304 2297 Crs
+3455 2240 Crs
+4008 1975 Crs
+3932 2088 Crs
+3566 2328 Crs
+4165 2135 Crs
+3978 2246 Crs
+3862 2170 Crs
+3631 2001 Crs
+4114 2228 Crs
+3909 2306 Crs
+4040 2103 Crs
+3954 2115 Crs
+3608 2154 Crs
+3911 1968 Crs
+4038 1907 Crs
+3889 1856 Crs
+3974 2064 Crs
+3260 2018 Crs
+4045 2120 Crs
+4137 2159 Crs
+4133 1998 Crs
+3435 1806 Crs
+3815 2073 Crs
+3689 2149 Crs
+3875 2074 Crs
+4237 2164 Crs
+3859 2054 Crs
+4211 2312 Crs
+3822 1892 Crs
+3824 1687 Crs
+3955 2132 Crs
+4090 2056 Crs
+3558 2341 Crs
+4001 2237 Crs
+4033 1944 Crs
+3709 1559 Crs
+3715 1977 Crs
+3898 1980 Crs
+4085 1965 Crs
+4174 2339 Crs
+4117 2073 Crs
+3648 2116 Crs
+3762 2074 Crs
+3867 1829 Crs
+4058 2120 Crs
+3527 1903 Crs
+4071 2171 Crs
+4079 2197 Crs
+3754 2251 Crs
+3814 1948 Crs
+3949 2080 Crs
+4177 2275 Crs
+3892 2256 Crs
+4067 1986 Crs
+4020 2231 Crs
+3663 2237 Crs
+3386 2235 Crs
+4028 2154 Crs
+3945 2443 Crs
+4393 2165 Crs
+3672 1799 Crs
+3593 2051 Crs
+4015 2043 Crs
+4049 2213 Crs
+3928 1970 Crs
+4024 1997 Crs
+3825 1917 Crs
+3730 2237 Crs
+3645 2243 Crs
+4310 2088 Crs
+3726 2072 Crs
+3132 1843 Crs
+4030 2290 Crs
+4405 2411 Crs
+4132 2006 Crs
+4149 2063 Crs
+4241 2166 Crs
+4265 1934 Crs
+4679 2003 Crs
+3741 1989 Crs
+4441 2003 Crs
+3902 2112 Crs
+3575 2188 Crs
+3660 2033 Crs
+3993 2122 Crs
+3961 2295 Crs
+3913 2130 Crs
+3771 2088 Crs
+4058 2053 Crs
+4138 2220 Crs
+4151 1872 Crs
+3312 2160 Crs
+4166 2316 Crs
+3393 1928 Crs
+3539 2311 Crs
+4085 2152 Crs
+3583 2332 Crs
+3765 1845 Crs
+3986 2003 Crs
+3354 1955 Crs
+3878 2094 Crs
+3872 2453 Crs
+4123 1955 Crs
+3943 2209 Crs
+4097 2280 Crs
+3864 2242 Crs
+3764 2012 Crs
+3729 1746 Crs
+3949 2006 Crs
+4217 2097 Crs
+4150 2153 Crs
+4436 2119 Crs
+3558 2112 Crs
+4040 2306 Crs
+2956 2026 Crs
+4023 1899 Crs
+4016 1953 Crs
+3841 1806 Crs
+4266 2204 Crs
+4246 2114 Crs
+4187 2126 Crs
+3685 1800 Crs
+3614 2267 Crs
+3941 2210 Crs
+3932 2062 Crs
+4240 1997 Crs
+3936 2351 Crs
+3721 2010 Crs
+4126 2111 Crs
+3486 1948 Crs
+3365 2019 Crs
+4422 2125 Crs
+3917 1999 Crs
+3660 2252 Crs
+3827 2010 Crs
+3873 1653 Crs
+4331 2104 Crs
+3899 2128 Crs
+4040 1928 Crs
+4512 2023 Crs
+3650 2069 Crs
+4280 1728 Crs
+4068 2174 Crs
+3885 2013 Crs
+3931 2019 Crs
+3788 2431 Crs
+3571 1801 Crs
+3747 2132 Crs
+3802 1899 Crs
+2874 1961 Crs
+3695 1636 Crs
+3743 2187 Crs
+3746 2192 Crs
+3706 2379 Crs
+3787 2153 Crs
+4427 2124 Crs
+4108 1680 Crs
+4338 2228 Crs
+3333 2178 Crs
+3724 2307 Crs
+4267 2191 Crs
+4248 1648 Crs
+3925 2009 Crs
+3469 2248 Crs
+3031 2140 Crs
+3758 1514 Crs
+4523 2276 Crs
+3893 2224 Crs
+4016 2181 Crs
+3336 2192 Crs
+3895 1958 Crs
+4046 2147 Crs
+3818 2104 Crs
+4089 2228 Crs
+4144 2061 Crs
+3528 2116 Crs
+4135 2166 Crs
+3647 2134 Crs
+3581 1995 Crs
+3304 2172 Crs
+3352 2048 Crs
+3948 1990 Crs
+3586 2039 Crs
+4124 2368 Crs
+4030 2090 Crs
+4056 1939 Crs
+4021 2215 Crs
+3979 2010 Crs
+3687 2564 Crs
+3879 2266 Crs
+3870 1870 Crs
+4027 1914 Crs
+4043 2038 Crs
+4057 2411 Crs
+4049 2211 Crs
+4031 2135 Crs
+4145 2226 Crs
+3689 2366 Crs
+3779 1839 Crs
+3800 1761 Crs
+4151 2068 Crs
+3950 1986 Crs
+4000 2185 Crs
+4029 2392 Crs
+3499 2101 Crs
+4116 1704 Crs
+3727 2045 Crs
+4046 2186 Crs
+3817 2095 Crs
+3678 2064 Crs
+3487 1848 Crs
+3475 1809 Crs
+3792 1629 Crs
+4136 2087 Crs
+4042 1884 Crs
+3800 1955 Crs
+4021 2046 Crs
+3950 2093 Crs
+4034 2166 Crs
+4298 2057 Crs
+3170 2102 Crs
+3884 1839 Crs
+3994 2369 Crs
+4043 2194 Crs
+4023 2113 Crs
+3805 1891 Crs
+3920 1870 Crs
+3853 2128 Crs
+4003 2107 Crs
+4277 2079 Crs
+4019 2338 Crs
+4126 1937 Crs
+4231 2377 Crs
+4094 1940 Crs
+3361 2052 Crs
+4063 2089 Crs
+3756 1961 Crs
+3747 2122 Crs
+4253 2127 Crs
+3774 2020 Crs
+3844 1995 Crs
+3687 2213 Crs
+3638 2214 Crs
+4093 1986 Crs
+4186 2101 Crs
+4366 2199 Crs
+4177 2177 Crs
+3683 2006 Crs
+3801 2001 Crs
+3750 2021 Crs
+3917 2380 Crs
+3477 1812 Crs
+3285 1882 Crs
+3890 2372 Crs
+2876 1954 Crs
+4173 2042 Crs
+3869 2149 Crs
+3937 1791 Crs
+4040 2283 Crs
+3849 2215 Crs
+4124 2200 Crs
+3657 2254 Crs
+3834 2091 Crs
+3806 2199 Crs
+3872 1984 Crs
+3945 2352 Crs
+4035 2149 Crs
+4124 2150 Crs
+3969 2090 Crs
+4042 1979 Crs
+3965 1908 Crs
+3820 2160 Crs
+3328 2117 Crs
+3703 2214 Crs
+3494 2030 Crs
+3916 2170 Crs
+4103 2153 Crs
+4079 1992 Crs
+4095 1982 Crs
+3926 2425 Crs
+3958 2142 Crs
+3582 1933 Crs
+3814 1543 Crs
+4008 2205 Crs
+3767 1906 Crs
+3795 1781 Crs
+3799 1906 Crs
+3849 2129 Crs
+3750 2284 Crs
+3942 2051 Crs
+3946 1414 Crs
+4119 2007 Crs
+3802 1967 Crs
+3482 2036 Crs
+3667 2235 Crs
+3808 2011 Crs
+3121 1695 Crs
+3964 2108 Crs
+4442 1960 Crs
+3820 1935 Crs
+3825 1927 Crs
+3721 1714 Crs
+3943 2088 Crs
+3790 2218 Crs
+3994 2069 Crs
+2755 1889 Crs
+3687 2065 Crs
+3498 2063 Crs
+3782 1987 Crs
+4077 2371 Crs
+4001 1982 Crs
+3613 2067 Crs
+3842 2235 Crs
+3676 2209 Crs
+3685 1876 Crs
+3982 2085 Crs
+3826 2018 Crs
+3978 2085 Crs
+4016 2074 Crs
+3253 2309 Crs
+3933 2115 Crs
+3964 2050 Crs
+3653 2310 Crs
+3563 2310 Crs
+4008 2187 Crs
+4033 1507 Crs
+3906 2228 Crs
+3914 2211 Crs
+3844 2210 Crs
+3907 1955 Crs
+4014 2205 Crs
+4679 2260 Crs
+3823 2157 Crs
+3906 2107 Crs
+4383 2266 Crs
+3651 2267 Crs
+3694 2016 Crs
+2554 2144 Crs
+3706 2049 Crs
+3659 1954 Crs
+3223 2284 Crs
+4138 2144 Crs
+3801 2319 Crs
+4245 1859 Crs
+3647 2234 Crs
+3709 1716 Crs
+3609 1993 Crs
+3720 2033 Crs
+4051 2242 Crs
+4034 2139 Crs
+3892 2287 Crs
+4105 2156 Crs
+3898 2027 Crs
+3893 2046 Crs
+3575 2032 Crs
+3938 2152 Crs
+3998 2083 Crs
+3594 2018 Crs
+4015 2230 Crs
+2971 2095 Crs
+3754 1920 Crs
+4048 1953 Crs
+3898 2198 Crs
+4099 2179 Crs
+3768 2033 Crs
+3865 1771 Crs
+4202 2313 Crs
+3765 2045 Crs
+4063 2032 Crs
+4047 1982 Crs
+3794 2269 Crs
+3675 1894 Crs
+4039 2320 Crs
+4108 2384 Crs
+4187 2021 Crs
+4282 2168 Crs
+3868 2098 Crs
+4045 1958 Crs
+3412 2086 Crs
+3943 2317 Crs
+4267 1968 Crs
+3599 1794 Crs
+3666 2146 Crs
+4436 1913 Crs
+3965 2325 Crs
+3962 1830 Crs
+3713 1972 Crs
+4061 2100 Crs
+4007 2240 Crs
+4069 2066 Crs
+4106 2301 Crs
+4237 2075 Crs
+3639 2212 Crs
+4119 1889 Crs
+3873 2171 Crs
+3370 1974 Crs
+4040 2168 Crs
+4050 2344 Crs
+3412 1880 Crs
+3986 2166 Crs
+3895 2188 Crs
+4408 2229 Crs
+3652 1815 Crs
+4017 2028 Crs
+4011 1758 Crs
+3796 2026 Crs
+3011 2049 Crs
+3411 2110 Crs
+3945 2069 Crs
+3961 2286 Crs
+3910 2126 Crs
+4034 2125 Crs
+3706 2116 Crs
+3643 2252 Crs
+3933 1484 Crs
+2581 2021 Crs
+3891 1928 Crs
+4257 2072 Crs
+4272 2184 Crs
+3765 1711 Crs
+3968 2393 Crs
+3870 1942 Crs
+3578 1813 Crs
+4312 2275 Crs
+3637 2179 Crs
+3614 2268 Crs
+4001 2212 Crs
+3959 2005 Crs
+4429 2249 Crs
+3713 2186 Crs
+3950 2066 Crs
+4379 2008 Crs
+4430 2025 Crs
+4382 2200 Crs
+3601 2191 Crs
+4037 2196 Crs
+3892 2008 Crs
+3908 2420 Crs
+3674 2176 Crs
+4280 2036 Crs
+4083 2064 Crs
+3666 2536 Crs
+3836 2020 Crs
+3757 2237 Crs
+4032 2232 Crs
+3941 2255 Crs
+3642 2144 Crs
+3943 2044 Crs
+3914 2201 Crs
+3162 1924 Crs
+3478 1772 Crs
+3955 2147 Crs
+3883 2043 Crs
+3654 2305 Crs
+4104 2218 Crs
+4576 2162 Crs
+4118 2087 Crs
+3682 2138 Crs
+4337 1979 Crs
+4635 1866 Crs
+4112 2221 Crs
+3933 2224 Crs
+3629 2186 Crs
+4334 2092 Crs
+4093 2029 Crs
+3957 2159 Crs
+3584 2039 Crs
+3680 2042 Crs
+3710 1994 Crs
+3752 2082 Crs
+2942 2148 Crs
+4070 2296 Crs
+4138 1965 Crs
+3914 1890 Crs
+4109 2089 Crs
+4030 2280 Crs
+3901 2274 Crs
+4247 2129 Crs
+3982 2197 Crs
+3758 2204 Crs
+4032 2199 Crs
+3709 1836 Crs
+3896 2250 Crs
+4441 2099 Crs
+3475 2400 Crs
+3427 2098 Crs
+3687 2035 Crs
+4097 2539 Crs
+3520 1927 Crs
+3937 2364 Crs
+3553 2168 Crs
+3974 1873 Crs
+3531 2414 Crs
+3888 2195 Crs
+4137 2178 Crs
+3629 2109 Crs
+4422 2416 Crs
+3851 2178 Crs
+4097 2035 Crs
+4131 2118 Crs
+3464 2141 Crs
+4060 2034 Crs
+3223 2014 Crs
+3357 2262 Crs
+4120 2545 Crs
+3659 2163 Crs
+3936 1926 Crs
+3809 2307 Crs
+3903 1829 Crs
+3730 2105 Crs
+3516 2113 Crs
+3643 2051 Crs
+4045 2240 Crs
+3959 2209 Crs
+3852 2035 Crs
+4024 2072 Crs
+3941 2201 Crs
+3461 1928 Crs
+3648 1694 Crs
+3961 2130 Crs
+3373 2065 Crs
+3894 2160 Crs
+3669 2194 Crs
+4127 2112 Crs
+4044 2263 Crs
+3391 2149 Crs
+4080 2067 Crs
+4313 2348 Crs
+4043 2321 Crs
+3626 2168 Crs
+4339 2276 Crs
+4364 2251 Crs
+3976 2187 Crs
+4030 1997 Crs
+3898 2296 Crs
+3540 1721 Crs
+3948 2243 Crs
+4431 2265 Crs
+3802 2020 Crs
+3819 2250 Crs
+4081 2151 Crs
+4234 1505 Crs
+3800 1973 Crs
+3641 1550 Crs
+4268 2248 Crs
+4261 1719 Crs
+3725 2142 Crs
+3682 2206 Crs
+4003 2024 Crs
+3865 1937 Crs
+3756 2150 Crs
+4350 1999 Crs
+3966 1944 Crs
+3887 1973 Crs
+4061 1917 Crs
+3981 2319 Crs
+3547 2027 Crs
+4184 2518 Crs
+3994 2352 Crs
+3834 2068 Crs
+3696 2075 Crs
+3219 2193 Crs
+3385 2380 Crs
+3456 1977 Crs
+4113 1993 Crs
+4362 2071 Crs
+3681 2208 Crs
+4011 2201 Crs
+3608 2363 Crs
+3633 2122 Crs
+3988 2221 Crs
+3465 1966 Crs
+3998 2157 Crs
+3841 2085 Crs
+4435 2196 Crs
+3577 1855 Crs
+3573 1530 Crs
+3538 2150 Crs
+3770 2211 Crs
+3769 1828 Crs
+3959 1905 Crs
+4069 1941 Crs
+3990 2422 Crs
+3258 1990 Crs
+4251 2104 Crs
+4180 2135 Crs
+4100 2176 Crs
+4184 2180 Crs
+4043 2226 Crs
+3302 1803 Crs
+4190 2033 Crs
+2973 2177 Crs
+3743 2062 Crs
+3701 1732 Crs
+3698 1909 Crs
+4051 2153 Crs
+3551 2084 Crs
+3906 2050 Crs
+3597 1849 Crs
+3884 2164 Crs
+4005 2366 Crs
+3447 2124 Crs
+3801 2042 Crs
+4048 2275 Crs
+4033 2240 Crs
+3849 2102 Crs
+3805 2035 Crs
+3838 2197 Crs
+4119 2120 Crs
+4208 2298 Crs
+4037 1974 Crs
+3914 1949 Crs
+3858 2221 Crs
+3730 2209 Crs
+4111 2243 Crs
+4144 2290 Crs
+3814 2190 Crs
+3835 2244 Crs
+3659 2369 Crs
+3892 2334 Crs
+4127 2542 Crs
+3865 2060 Crs
+3439 2532 Crs
+3808 2130 Crs
+3884 2052 Crs
+4128 2274 Crs
+3979 2068 Crs
+3595 2057 Crs
+4271 2221 Crs
+3657 2120 Crs
+3675 2206 Crs
+3151 1975 Crs
+4349 2265 Crs
+3670 1867 Crs
+4166 2351 Crs
+3866 2019 Crs
+3424 1397 Crs
+3968 1770 Crs
+3580 2067 Crs
+3755 1912 Crs
+3979 2121 Crs
+3569 2170 Crs
+3925 1944 Crs
+3728 1882 Crs
+3994 2007 Crs
+3770 2122 Crs
+3841 2095 Crs
+3501 2006 Crs
+4323 2134 Crs
+3538 1994 Crs
+3955 2008 Crs
+3846 2251 Crs
+4431 2134 Crs
+4048 1784 Crs
+3779 2390 Crs
+3312 2234 Crs
+4272 2273 Crs
+3805 2300 Crs
+4111 2222 Crs
+3728 2232 Crs
+4145 2204 Crs
+4047 2287 Crs
+3795 2016 Crs
+3932 2049 Crs
+3846 2143 Crs
+3813 2374 Crs
+4229 1965 Crs
+3879 1944 Crs
+4389 2214 Crs
+3632 2037 Crs
+3126 2048 Crs
+3399 2050 Crs
+3921 2115 Crs
+3763 1951 Crs
+4196 2049 Crs
+3939 2019 Crs
+4157 2236 Crs
+3594 1960 Crs
+3519 1977 Crs
+4218 2292 Crs
+4247 2250 Crs
+3134 1966 Crs
+3746 2085 Crs
+3949 2379 Crs
+4108 2034 Crs
+3756 2053 Crs
+4166 2041 Crs
+3654 2139 Crs
+3751 1830 Crs
+3962 1504 Crs
+3967 2331 Crs
+2979 2100 Crs
+4116 2208 Crs
+4141 2246 Crs
+3967 2121 Crs
+3564 2171 Crs
+3929 2266 Crs
+3858 2037 Crs
+3802 2103 Crs
+4028 2136 Crs
+3691 1943 Crs
+3846 2047 Crs
+3891 2232 Crs
+3750 2125 Crs
+3838 2248 Crs
+3657 2044 Crs
+3852 2081 Crs
+4006 2227 Crs
+4089 2025 Crs
+4010 2511 Crs
+4148 2311 Crs
+4025 1940 Crs
+3790 2058 Crs
+3903 2088 Crs
+3984 2269 Crs
+4249 2363 Crs
+4154 2315 Crs
+3587 2044 Crs
+3731 2120 Crs
+4028 1614 Crs
+4004 2126 Crs
+3993 2122 Crs
+3769 2346 Crs
+4136 2235 Crs
+3991 2098 Crs
+4215 2277 Crs
+3617 2210 Crs
+3962 2240 Crs
+4139 2398 Crs
+4029 2343 Crs
+4104 1891 Crs
+3920 2195 Crs
+3919 1811 Crs
+4042 2229 Crs
+3872 2222 Crs
+3774 2116 Crs
+4117 1997 Crs
+3567 2067 Crs
+4041 2211 Crs
+3577 2177 Crs
+4055 2351 Crs
+3087 2104 Crs
+3510 2164 Crs
+4438 2424 Crs
+3928 1693 Crs
+3497 2189 Crs
+3911 1953 Crs
+3837 2237 Crs
+3504 2445 Crs
+3939 2085 Crs
+3991 1938 Crs
+4138 2028 Crs
+4155 1797 Crs
+3609 2354 Crs
+3873 1968 Crs
+4100 2231 Crs
+3809 2235 Crs
+3767 2176 Crs
+4236 2140 Crs
+3604 1949 Crs
+3958 1742 Crs
+3780 2391 Crs
+3951 1890 Crs
+4038 2114 Crs
+4007 2135 Crs
+4105 2180 Crs
+4226 2154 Crs
+3872 2126 Crs
+4095 2216 Crs
+3416 2139 Crs
+4140 2276 Crs
+4292 2115 Crs
+4455 2212 Crs
+3864 2339 Crs
+3924 2130 Crs
+3937 2210 Crs
+3961 1836 Crs
+4030 2058 Crs
+4271 2214 Crs
+4193 2067 Crs
+3440 2485 Crs
+3843 1991 Crs
+3817 2156 Crs
+4101 1918 Crs
+3339 2032 Crs
+3689 1957 Crs
+3809 1758 Crs
+4421 2261 Crs
+4138 2256 Crs
+4304 1782 Crs
+3877 1916 Crs
+4227 1982 Crs
+2867 2277 Crs
+3860 2034 Crs
+3755 2400 Crs
+3684 1993 Crs
+4055 1921 Crs
+3916 2339 Crs
+3622 1585 Crs
+3863 2389 Crs
+4237 2322 Crs
+3696 1997 Crs
+3842 2069 Crs
+4239 1741 Crs
+4432 2202 Crs
+3407 2109 Crs
+3838 2201 Crs
+4389 2013 Crs
+3948 2126 Crs
+3765 2191 Crs
+3969 2296 Crs
+3597 1727 Crs
+4055 2265 Crs
+2625 1910 Crs
+3788 2255 Crs
+3809 1959 Crs
+3978 2077 Crs
+3748 2000 Crs
+3885 2015 Crs
+4092 2178 Crs
+4017 2458 Crs
+4054 1845 Crs
+4099 2226 Crs
+3415 2074 Crs
+3253 1935 Crs
+3937 2161 Crs
+3022 1960 Crs
+3396 1598 Crs
+3948 2056 Crs
+3818 2070 Crs
+3375 2157 Crs
+3343 2012 Crs
+3699 2078 Crs
+3509 2217 Crs
+4254 2121 Crs
+3601 1996 Crs
+4029 2126 Crs
+4057 1919 Crs
+3881 2206 Crs
+3915 1947 Crs
+4040 2025 Crs
+4162 2242 Crs
+4044 2380 Crs
+3410 2148 Crs
+3804 1713 Crs
+3692 1545 Crs
+3940 2239 Crs
+3737 2058 Crs
+2990 1883 Crs
+3807 1614 Crs
+4315 2281 Crs
+3218 2211 Crs
+3901 2203 Crs
+4138 2156 Crs
+3902 2268 Crs
+3950 2312 Crs
+3622 1722 Crs
+3959 1903 Crs
+3897 2413 Crs
+3633 2064 Crs
+4158 2234 Crs
+4178 1969 Crs
+4434 2190 Crs
+3871 1723 Crs
+3883 2213 Crs
+3394 1919 Crs
+3785 2204 Crs
+3826 1886 Crs
+3830 2055 Crs
+3521 2168 Crs
+3798 1912 Crs
+3923 1922 Crs
+4157 2037 Crs
+3293 2157 Crs
+4359 2127 Crs
+4226 1969 Crs
+4500 1981 Crs
+3889 1959 Crs
+3160 2125 Crs
+4262 2351 Crs
+4136 1984 Crs
+3926 2139 Crs
+3674 2169 Crs
+3962 2379 Crs
+3399 1880 Crs
+3830 2113 Crs
+3615 1979 Crs
+4027 2152 Crs
+3940 2156 Crs
+3670 2329 Crs
+3693 2032 Crs
+3920 2008 Crs
+4679 2125 Crs
+3916 2009 Crs
+3846 2306 Crs
+2996 2095 Crs
+3640 2001 Crs
+3823 1928 Crs
+3926 2166 Crs
+3933 2012 Crs
+3651 2146 Crs
+3827 1962 Crs
+3854 1970 Crs
+4107 2269 Crs
+3809 1965 Crs
+4000 2360 Crs
+3973 2001 Crs
+4210 2179 Crs
+3600 2083 Crs
+3582 2116 Crs
+3599 2098 Crs
+4267 1935 Crs
+3848 1935 Crs
+3216 2217 Crs
+4148 1999 Crs
+3747 2042 Crs
+3592 1960 Crs
+3776 2018 Crs
+3680 2069 Crs
+3824 2336 Crs
+4104 2099 Crs
+3735 2226 Crs
+3661 2054 Crs
+4226 2171 Crs
+3949 2361 Crs
+3556 2500 Crs
+3995 2121 Crs
+3856 1677 Crs
+4149 1702 Crs
+2962 2098 Crs
+3765 2081 Crs
+4186 2106 Crs
+4423 1743 Crs
+3745 2237 Crs
+3677 1960 Crs
+3911 2157 Crs
+4048 2123 Crs
+3914 1770 Crs
+3609 2081 Crs
+3977 2368 Crs
+4035 2084 Crs
+4257 2367 Crs
+3849 1682 Crs
+3951 2253 Crs
+3740 2122 Crs
+3735 2237 Crs
+4524 2120 Crs
+4448 2080 Crs
+4390 2130 Crs
+3976 1993 Crs
+3890 2136 Crs
+3579 2101 Crs
+3894 2228 Crs
+4147 2365 Crs
+3828 1861 Crs
+3912 2061 Crs
+4335 2164 Crs
+3890 2388 Crs
+3687 2245 Crs
+3525 1937 Crs
+3667 2100 Crs
+4016 1975 Crs
+4070 2176 Crs
+3850 2240 Crs
+3734 2380 Crs
+3898 2110 Crs
+3484 2192 Crs
+4210 2266 Crs
+4284 2017 Crs
+3341 2201 Crs
+4045 1996 Crs
+4562 2179 Crs
+4034 1960 Crs
+4065 2110 Crs
+3690 2380 Crs
+4275 1995 Crs
+3874 2158 Crs
+3796 2051 Crs
+4126 2267 Crs
+3406 2135 Crs
+3760 2100 Crs
+3692 1737 Crs
+3767 2299 Crs
+3662 1914 Crs
+3745 2078 Crs
+4250 2172 Crs
+4096 2338 Crs
+4128 2026 Crs
+3358 2148 Crs
+3430 2045 Crs
+3213 2023 Crs
+4257 2170 Crs
+3798 1977 Crs
+3967 2222 Crs
+4340 2108 Crs
+3699 2175 Crs
+4142 2126 Crs
+3857 2177 Crs
+3937 2036 Crs
+4342 2100 Crs
+3609 2249 Crs
+3997 1834 Crs
+3899 2054 Crs
+3830 1998 Crs
+3240 1998 Crs
+4353 2078 Crs
+3734 2168 Crs
+3868 1690 Crs
+3969 1815 Crs
+3515 1980 Crs
+3812 1813 Crs
+3908 2427 Crs
+4027 2067 Crs
+4116 2436 Crs
+3462 1873 Crs
+3314 1795 Crs
+4679 2323 Crs
+4052 1976 Crs
+3953 2174 Crs
+4007 2035 Crs
+3738 1907 Crs
+3790 2010 Crs
+4012 2309 Crs
+4154 1936 Crs
+4222 2002 Crs
+3848 2020 Crs
+3352 2275 Crs
+3676 2402 Crs
+3370 2356 Crs
+3680 1774 Crs
+3877 1979 Crs
+3735 1930 Crs
+3811 2105 Crs
+3577 1941 Crs
+3946 2300 Crs
+4061 2242 Crs
+3486 1905 Crs
+3854 2223 Crs
+4276 2193 Crs
+4321 2473 Crs
+3833 2276 Crs
+3955 1864 Crs
+3658 1863 Crs
+3979 1976 Crs
+3603 1671 Crs
+3612 1936 Crs
+4209 2277 Crs
+3969 1868 Crs
+3815 2159 Crs
+3238 1978 Crs
+3562 1884 Crs
+4424 2244 Crs
+4150 2074 Crs
+4145 2233 Crs
+4244 2135 Crs
+4079 2112 Crs
+4168 2098 Crs
+4159 2228 Crs
+3829 1857 Crs
+3702 2205 Crs
+4103 1899 Crs
+3993 2004 Crs
+4433 1693 Crs
+3985 2283 Crs
+3516 2204 Crs
+3894 2295 Crs
+3856 1799 Crs
+3677 2399 Crs
+3879 2057 Crs
+4126 2164 Crs
+2655 2190 Crs
+4018 1488 Crs
+3581 1999 Crs
+3740 2138 Crs
+3885 2359 Crs
+4217 2083 Crs
+3503 2057 Crs
+4287 2081 Crs
+3967 2278 Crs
+4179 2180 Crs
+3661 1965 Crs
+4049 2190 Crs
+4437 2304 Crs
+3998 2218 Crs
+4136 2244 Crs
+4040 2146 Crs
+4158 2543 Crs
+4651 2045 Crs
+3982 2112 Crs
+3875 2273 Crs
+3640 2173 Crs
+3835 1950 Crs
+3750 2235 Crs
+3758 2245 Crs
+4054 1904 Crs
+4158 2044 Crs
+3697 2107 Crs
+3780 2034 Crs
+3911 1723 Crs
+4015 2196 Crs
+3826 1879 Crs
+4234 2042 Crs
+3900 2344 Crs
+4129 2229 Crs
+4395 1838 Crs
+4141 2096 Crs
+3552 2290 Crs
+4216 2217 Crs
+3509 1978 Crs
+3834 2105 Crs
+4042 2154 Crs
+3402 1965 Crs
+3550 2306 Crs
+3757 1614 Crs
+4111 2101 Crs
+3891 2201 Crs
+3454 1958 Crs
+3672 2280 Crs
+4060 2097 Crs
+4058 2368 Crs
+3668 2145 Crs
+3700 1849 Crs
+4036 2440 Crs
+3275 1994 Crs
+4044 2508 Crs
+3574 2229 Crs
+3174 2382 Crs
+4043 2029 Crs
+3998 2438 Crs
+3439 2047 Crs
+4318 2137 Crs
+4050 2306 Crs
+4167 2197 Crs
+4006 2080 Crs
+3868 2039 Crs
+3732 2130 Crs
+3548 2082 Crs
+3800 1903 Crs
+3962 2082 Crs
+3728 1967 Crs
+4398 2318 Crs
+3557 1285 Crs
+4055 2251 Crs
+2945 2111 Crs
+4040 2073 Crs
+4117 2240 Crs
+3873 2148 Crs
+3811 2190 Crs
+3914 2007 Crs
+3495 2289 Crs
+3215 2224 Crs
+3732 2218 Crs
+3980 2167 Crs
+3886 2224 Crs
+3484 2085 Crs
+4145 2031 Crs
+3659 1854 Crs
+3762 1426 Crs
+4130 2177 Crs
+3314 2129 Crs
+3778 1920 Crs
+4088 1893 Crs
+3663 1914 Crs
+3695 2181 Crs
+3938 2024 Crs
+4043 2031 Crs
+3393 2252 Crs
+3650 1727 Crs
+3739 2348 Crs
+3427 2262 Crs
+3942 1977 Crs
+3905 1748 Crs
+4068 2118 Crs
+3999 1936 Crs
+4112 2346 Crs
+3948 1977 Crs
+3303 1960 Crs
+4007 2318 Crs
+3732 2098 Crs
+3659 1811 Crs
+4121 2209 Crs
+3888 2079 Crs
+3658 1925 Crs
+4131 1984 Crs
+3879 2093 Crs
+3655 1966 Crs
+4013 2182 Crs
+4143 1927 Crs
+3727 2203 Crs
+3907 2380 Crs
+3482 1975 Crs
+3947 2336 Crs
+4126 2108 Crs
+3422 2183 Crs
+3518 1482 Crs
+3991 2163 Crs
+3811 2285 Crs
+3688 2116 Crs
+3716 2101 Crs
+3620 2398 Crs
+1920 1936 Crs
+3461 2288 Crs
+3735 2111 Crs
+4191 2132 Crs
+4027 1848 Crs
+3643 2112 Crs
+3876 2214 Crs
+3881 2118 Crs
+4088 2024 Crs
+3895 2029 Crs
+4023 2039 Crs
+4282 2218 Crs
+3567 2244 Crs
+4152 2210 Crs
+3554 1949 Crs
+3940 2246 Crs
+4043 2236 Crs
+3995 2289 Crs
+3429 2019 Crs
+3588 2186 Crs
+4434 2298 Crs
+3932 1629 Crs
+3774 2309 Crs
+3640 2169 Crs
+3536 2340 Crs
+3821 1951 Crs
+3773 2033 Crs
+3790 2081 Crs
+4013 2230 Crs
+3784 2101 Crs
+4392 2142 Crs
+3470 1893 Crs
+4264 2168 Crs
+3393 2286 Crs
+3773 2231 Crs
+3722 2223 Crs
+3921 1996 Crs
+4043 1976 Crs
+4674 2141 Crs
+3579 1964 Crs
+4023 1938 Crs
+3818 2018 Crs
+3768 2038 Crs
+3880 2215 Crs
+3700 2252 Crs
+3621 2296 Crs
+3662 1995 Crs
+3585 2018 Crs
+4027 2448 Crs
+4062 2313 Crs
+3390 2014 Crs
+4127 2025 Crs
+4394 2054 Crs
+3685 2101 Crs
+4254 1987 Crs
+3907 2023 Crs
+3724 2027 Crs
+3867 1979 Crs
+4224 2226 Crs
+4040 2259 Crs
+4056 2226 Crs
+3595 1826 Crs
+3974 2130 Crs
+3939 2142 Crs
+3982 2058 Crs
+4201 2109 Crs
+3885 2478 Crs
+4106 2008 Crs
+3951 2272 Crs
+4236 2289 Crs
+4095 1997 Crs
+4140 2155 Crs
+3505 2058 Crs
+3770 2184 Crs
+4145 2433 Crs
+3795 2101 Crs
+3971 2059 Crs
+3911 2080 Crs
+4419 2425 Crs
+3494 1718 Crs
+3997 2402 Crs
+4102 2286 Crs
+3777 2086 Crs
+3853 1871 Crs
+3877 2104 Crs
+4044 2099 Crs
+3589 1906 Crs
+3916 2127 Crs
+3976 2126 Crs
+4251 2054 Crs
+3658 2102 Crs
+3995 2208 Crs
+3698 2247 Crs
+3738 2015 Crs
+4150 2265 Crs
+3784 2323 Crs
+3868 2049 Crs
+3869 1558 Crs
+4438 2270 Crs
+3546 1973 Crs
+3460 2090 Crs
+3763 2180 Crs
+4118 2014 Crs
+3104 1906 Crs
+4018 2075 Crs
+4049 1992 Crs
+3807 1749 Crs
+3994 2134 Crs
+3739 1870 Crs
+4403 2012 Crs
+3587 2175 Crs
+3930 1963 Crs
+4556 2012 Crs
+3825 1864 Crs
+4011 2161 Crs
+4276 2039 Crs
+4065 2116 Crs
+3318 2244 Crs
+4055 2023 Crs
+3817 2065 Crs
+3930 2121 Crs
+3764 1785 Crs
+4047 2214 Crs
+3910 1955 Crs
+4029 1831 Crs
+3905 2235 Crs
+3701 2355 Crs
+3678 1961 Crs
+4443 2155 Crs
+3970 1968 Crs
+2499 1771 Crs
+3772 2268 Crs
+3714 2221 Crs
+3783 2050 Crs
+4143 1613 Crs
+3773 2230 Crs
+3966 2350 Crs
+3505 2204 Crs
+3927 2078 Crs
+4113 1933 Crs
+4160 2133 Crs
+4285 2130 Crs
+3534 2217 Crs
+3958 1996 Crs
+3941 2315 Crs
+3615 2068 Crs
+2504 1973 Crs
+4170 2118 Crs
+4077 2182 Crs
+3710 2438 Crs
+3866 2074 Crs
+3667 2087 Crs
+3935 1900 Crs
+3958 1970 Crs
+3701 1888 Crs
+3833 2404 Crs
+4134 2234 Crs
+3626 1616 Crs
+4432 2026 Crs
+3596 2318 Crs
+3545 2437 Crs
+4250 1851 Crs
+4169 2427 Crs
+4049 2103 Crs
+4020 2013 Crs
+4072 2222 Crs
+3591 1979 Crs
+3796 2255 Crs
+3878 2247 Crs
+3878 2027 Crs
+4023 1935 Crs
+4252 2002 Crs
+4269 1841 Crs
+3621 2018 Crs
+2197 2002 Crs
+3762 1911 Crs
+4279 2235 Crs
+3852 2293 Crs
+3384 2066 Crs
+3611 2421 Crs
+4055 1957 Crs
+3868 2048 Crs
+3570 2253 Crs
+3845 2134 Crs
+4204 2125 Crs
+3751 2103 Crs
+4002 2075 Crs
+3646 1929 Crs
+3498 2257 Crs
+3638 2333 Crs
+3492 2018 Crs
+4006 2290 Crs
+3231 2251 Crs
+4112 2211 Crs
+3463 1865 Crs
+3840 2031 Crs
+3334 2146 Crs
+3630 2471 Crs
+3607 2267 Crs
+4032 1975 Crs
+3576 2139 Crs
+4147 2038 Crs
+4591 2217 Crs
+3847 2076 Crs
+3504 1925 Crs
+4079 1766 Crs
+4062 2474 Crs
+3710 2432 Crs
+4341 2118 Crs
+4233 2146 Crs
+3670 2181 Crs
+3794 2025 Crs
+3980 2208 Crs
+4079 2199 Crs
+3655 2143 Crs
+4113 2227 Crs
+4046 2282 Crs
+3877 2073 Crs
+4222 2319 Crs
+2984 2036 Crs
+4123 2267 Crs
+3126 2221 Crs
+3671 2224 Crs
+4389 1909 Crs
+3869 2339 Crs
+3989 2115 Crs
+3814 1920 Crs
+3952 2035 Crs
+3975 2164 Crs
+4375 2000 Crs
+3880 2107 Crs
+4074 2333 Crs
+3928 2182 Crs
+4130 2453 Crs
+3893 2014 Crs
+4395 2388 Crs
+3938 2096 Crs
+4371 2113 Crs
+3305 1913 Crs
+4437 2016 Crs
+4140 1903 Crs
+3917 2131 Crs
+4045 2040 Crs
+3857 2095 Crs
+3532 1956 Crs
+3777 2157 Crs
+3609 2143 Crs
+4228 1535 Crs
+3801 2064 Crs
+4620 2171 Crs
+4152 2175 Crs
+3884 2038 Crs
+4145 2084 Crs
+3817 2224 Crs
+4167 2287 Crs
+4469 2304 Crs
+3957 1828 Crs
+3866 2305 Crs
+3990 2219 Crs
+4050 1932 Crs
+3976 1471 Crs
+3445 2463 Crs
+3994 2159 Crs
+2919 2024 Crs
+3821 2064 Crs
+3721 2235 Crs
+3979 2324 Crs
+3826 1859 Crs
+3898 2085 Crs
+3938 2310 Crs
+3974 2393 Crs
+4064 2590 Crs
+3843 1879 Crs
+4024 2295 Crs
+3322 2162 Crs
+4679 1993 Crs
+4086 2155 Crs
+3575 2173 Crs
+3730 2061 Crs
+3769 2271 Crs
+3783 1624 Crs
+3443 2191 Crs
+4194 2289 Crs
+3956 2128 Crs
+3675 1768 Crs
+4247 2384 Crs
+3765 1513 Crs
+3964 2092 Crs
+3846 2039 Crs
+3945 2258 Crs
+4079 2162 Crs
+4069 2363 Crs
+3802 2076 Crs
+3304 2229 Crs
+3936 1946 Crs
+3827 1479 Crs
+4679 1949 Crs
+3858 2171 Crs
+4115 2215 Crs
+3902 2022 Crs
+3843 2104 Crs
+4026 2314 Crs
+4137 2241 Crs
+3564 2107 Crs
+4268 2369 Crs
+4118 1893 Crs
+4188 2210 Crs
+3923 2168 Crs
+4026 2357 Crs
+3920 2393 Crs
+4055 2104 Crs
+4147 1969 Crs
+3888 2002 Crs
+4431 2202 Crs
+3909 2355 Crs
+3613 2331 Crs
+3929 2370 Crs
+3742 2108 Crs
+3820 2118 Crs
+3622 2243 Crs
+3590 2168 Crs
+3578 2027 Crs
+3246 2022 Crs
+3740 2073 Crs
+4083 2154 Crs
+4266 2137 Crs
+3804 2102 Crs
+3513 2358 Crs
+4012 2046 Crs
+3500 1835 Crs
+3816 2149 Crs
+3814 2101 Crs
+3642 1837 Crs
+4008 1688 Crs
+3083 2075 Crs
+3493 2106 Crs
+4014 2304 Crs
+4067 2253 Crs
+4198 2186 Crs
+3337 2383 Crs
+3879 2273 Crs
+3333 2181 Crs
+3903 1802 Crs
+3717 2113 Crs
+4141 2304 Crs
+3762 2089 Crs
+3458 2168 Crs
+3873 1929 Crs
+3953 1979 Crs
+3847 2143 Crs
+3181 1998 Crs
+3685 1972 Crs
+3498 2284 Crs
+3530 2187 Crs
+3702 2062 Crs
+3973 2120 Crs
+3793 2007 Crs
+3592 1945 Crs
+2809 2038 Crs
+3490 1892 Crs
+3820 2184 Crs
+3963 2046 Crs
+3778 2154 Crs
+3795 2166 Crs
+3853 2267 Crs
+3685 2070 Crs
+4142 2272 Crs
+4616 2107 Crs
+3629 1647 Crs
+3757 2028 Crs
+4064 2136 Crs
+4400 2285 Crs
+3978 2103 Crs
+3879 2179 Crs
+4124 2290 Crs
+3956 2185 Crs
+3839 1975 Crs
+2844 2033 Crs
+4108 2140 Crs
+3534 2335 Crs
+4298 2285 Crs
+4040 2054 Crs
+3788 1922 Crs
+3785 2228 Crs
+3859 2427 Crs
+3690 2235 Crs
+3832 2127 Crs
+3221 2068 Crs
+3763 2108 Crs
+3366 2051 Crs
+3991 1603 Crs
+3636 1916 Crs
+4016 2332 Crs
+3992 2055 Crs
+3768 2136 Crs
+4133 1954 Crs
+4316 1915 Crs
+4279 1996 Crs
+3603 1947 Crs
+3813 2019 Crs
+3679 2145 Crs
+4083 2357 Crs
+3794 1850 Crs
+3930 2132 Crs
+4131 2421 Crs
+4168 1909 Crs
+3734 2092 Crs
+3547 2229 Crs
+4318 1968 Crs
+3816 1847 Crs
+3760 2111 Crs
+3683 2186 Crs
+3519 1836 Crs
+4292 2260 Crs
+4142 1952 Crs
+3710 2203 Crs
+3791 2117 Crs
+3257 2010 Crs
+4113 2486 Crs
+4375 2247 Crs
+3889 1962 Crs
+3866 1878 Crs
+4013 2075 Crs
+4207 2304 Crs
+3611 1931 Crs
+4244 2570 Crs
+3929 2356 Crs
+3810 1780 Crs
+4093 2108 Crs
+4089 2061 Crs
+4570 2187 Crs
+4005 2120 Crs
+3907 2050 Crs
+4194 1690 Crs
+4132 2263 Crs
+4225 2322 Crs
+3832 2095 Crs
+4127 2271 Crs
+4171 2365 Crs
+4010 2011 Crs
+3645 1890 Crs
+4240 2105 Crs
+3769 1907 Crs
+3737 2070 Crs
+3704 2052 Crs
+3853 2250 Crs
+3706 2327 Crs
+3575 2089 Crs
+3344 2188 Crs
+3946 2104 Crs
+3963 2185 Crs
+3733 2094 Crs
+4295 2300 Crs
+3733 1678 Crs
+3799 2235 Crs
+3788 2089 Crs
+2850 2023 Crs
+3514 2009 Crs
+3772 2156 Crs
+3667 2357 Crs
+4210 2033 Crs
+3845 2059 Crs
+3772 2563 Crs
+3741 2138 Crs
+4083 2083 Crs
+3641 2025 Crs
+3648 2256 Crs
+3886 2247 Crs
+3858 2027 Crs
+3869 1906 Crs
+3595 2076 Crs
+4048 2222 Crs
+3857 1859 Crs
+4184 2100 Crs
+3537 2200 Crs
+3538 2337 Crs
+3715 2161 Crs
+3958 2223 Crs
+4142 2114 Crs
+3701 2185 Crs
+3805 2232 Crs
+4294 2159 Crs
+4012 2050 Crs
+3800 2015 Crs
+3851 2282 Crs
+4156 2111 Crs
+3963 2144 Crs
+2887 1943 Crs
+3925 1515 Crs
+3037 2370 Crs
+3266 2008 Crs
+3644 1336 Crs
+3744 1895 Crs
+3952 2117 Crs
+3779 2334 Crs
+3632 2092 Crs
+3999 2298 Crs
+3011 2014 Crs
+3679 2325 Crs
+3748 1985 Crs
+3682 2169 Crs
+3712 2161 Crs
+3580 2179 Crs
+4386 2318 Crs
+4179 2288 Crs
+3855 1890 Crs
+4153 2418 Crs
+3818 2216 Crs
+3970 2346 Crs
+3150 2062 Crs
+4107 2353 Crs
+4061 2060 Crs
+3653 2293 Crs
+3948 1960 Crs
+3909 2165 Crs
+3844 2038 Crs
+3602 2061 Crs
+4024 2225 Crs
+4214 1950 Crs
+3671 1926 Crs
+4143 1996 Crs
+3768 1645 Crs
+3799 2214 Crs
+3874 2096 Crs
+3399 1986 Crs
+4000 2088 Crs
+3420 2145 Crs
+3877 1905 Crs
+3829 2067 Crs
+3367 2132 Crs
+3977 1716 Crs
+3792 2085 Crs
+3533 2136 Crs
+3762 1946 Crs
+4223 2275 Crs
+3877 2023 Crs
+3904 1983 Crs
+3327 1995 Crs
+3743 2092 Crs
+4009 1682 Crs
+3975 2193 Crs
+3764 1928 Crs
+3750 2247 Crs
+4295 2129 Crs
+3655 2071 Crs
+4153 2126 Crs
+3855 2364 Crs
+3410 2031 Crs
+3999 2069 Crs
+3308 2214 Crs
+3838 1898 Crs
+3402 2018 Crs
+3775 1973 Crs
+3390 1834 Crs
+4058 2023 Crs
+4123 2161 Crs
+3929 1972 Crs
+3634 2103 Crs
+3876 2134 Crs
+3437 2068 Crs
+3682 2113 Crs
+3725 1972 Crs
+3667 2080 Crs
+3338 2256 Crs
+3983 2205 Crs
+4071 2156 Crs
+4075 2129 Crs
+3596 2113 Crs
+3975 2069 Crs
+4069 1851 Crs
+3792 2109 Crs
+3665 2012 Crs
+3792 1874 Crs
+4051 1629 Crs
+3780 1985 Crs
+4139 2250 Crs
+3908 2141 Crs
+4073 1749 Crs
+4185 1979 Crs
+4272 1921 Crs
+3551 2190 Crs
+3669 1574 Crs
+3298 2111 Crs
+3750 2043 Crs
+3116 2117 Crs
+3882 2187 Crs
+3823 2154 Crs
+3783 2067 Crs
+4042 2264 Crs
+3939 2262 Crs
+3869 2139 Crs
+3792 1731 Crs
+3671 2168 Crs
+4142 2174 Crs
+3955 1999 Crs
+4275 2390 Crs
+3723 2065 Crs
+3997 1956 Crs
+4236 2217 Crs
+3474 1974 Crs
+3549 1923 Crs
+4265 2014 Crs
+4120 2277 Crs
+4080 1745 Crs
+3972 2048 Crs
+4244 2286 Crs
+4003 2179 Crs
+3625 2145 Crs
+4174 2027 Crs
+3853 2002 Crs
+4239 2182 Crs
+3356 1916 Crs
+3818 2198 Crs
+3789 2252 Crs
+4049 1713 Crs
+4274 2268 Crs
+3650 1890 Crs
+3815 2024 Crs
+4254 2157 Crs
+3768 2140 Crs
+3813 2165 Crs
+3954 2203 Crs
+4307 2335 Crs
+4166 2248 Crs
+3846 2046 Crs
+3873 1718 Crs
+3954 2243 Crs
+3819 2240 Crs
+3853 2209 Crs
+3373 2142 Crs
+3935 1837 Crs
+4028 2202 Crs
+4138 2128 Crs
+3526 2043 Crs
+3808 1880 Crs
+3441 2339 Crs
+3742 2118 Crs
+4379 1986 Crs
+3741 2290 Crs
+4073 2265 Crs
+3870 2487 Crs
+4072 1935 Crs
+4038 1971 Crs
+4126 2138 Crs
+3398 2190 Crs
+4234 2136 Crs
+3959 2102 Crs
+4408 2179 Crs
+3326 2237 Crs
+3943 2037 Crs
+4152 2141 Crs
+3930 2191 Crs
+3651 2152 Crs
+3667 2243 Crs
+3899 2057 Crs
+4063 2272 Crs
+3858 2093 Crs
+3671 2136 Crs
+3743 2099 Crs
+3581 1798 Crs
+3951 2237 Crs
+3354 1956 Crs
+4149 2179 Crs
+3231 2136 Crs
+4004 2165 Crs
+3408 1341 Crs
+3188 1210 Crs
+3418 1827 Crs
+3363 2174 Crs
+3458 2357 Crs
+3929 2142 Crs
+3378 1864 Crs
+3705 2092 Crs
+4024 1665 Crs
+3330 2152 Crs
+4045 2175 Crs
+3355 2132 Crs
+4032 2227 Crs
+3584 1616 Crs
+3972 1956 Crs
+4251 1830 Crs
+4026 2121 Crs
+3417 1911 Crs
+3874 2003 Crs
+3956 1750 Crs
+3940 2042 Crs
+3851 2306 Crs
+3833 2144 Crs
+3762 2303 Crs
+3803 2217 Crs
+4449 2071 Crs
+3601 1847 Crs
+4011 2053 Crs
+3877 2053 Crs
+4009 2098 Crs
+3789 1985 Crs
+3990 2240 Crs
+3893 2285 Crs
+3628 2105 Crs
+3257 1983 Crs
+3810 1773 Crs
+4219 2033 Crs
+3982 2188 Crs
+3593 2114 Crs
+4121 2092 Crs
+3900 2339 Crs
+3984 2008 Crs
+3920 2161 Crs
+3669 2201 Crs
+3726 1895 Crs
+4554 2250 Crs
+3956 1991 Crs
+3874 2083 Crs
+3533 1871 Crs
+4089 2006 Crs
+3639 2398 Crs
+3830 1909 Crs
+3764 2208 Crs
+3773 1954 Crs
+4008 2221 Crs
+4392 1555 Crs
+3813 2045 Crs
+3828 2051 Crs
+3806 2011 Crs
+4303 2245 Crs
+3171 1968 Crs
+3504 2202 Crs
+4232 2030 Crs
+3709 1800 Crs
+3883 2345 Crs
+3516 1904 Crs
+3660 2067 Crs
+4211 2115 Crs
+4653 1775 Crs
+3331 1963 Crs
+4114 1990 Crs
+3859 1826 Crs
+3842 2073 Crs
+3801 2074 Crs
+3805 2042 Crs
+4019 2098 Crs
+4250 1871 Crs
+4087 2055 Crs
+4029 2183 Crs
+3386 2096 Crs
+4647 2137 Crs
+4143 2168 Crs
+4093 2186 Crs
+4090 2284 Crs
+3766 2063 Crs
+3718 2038 Crs
+4168 2290 Crs
+3212 2061 Crs
+4101 2091 Crs
+3586 2025 Crs
+3497 2018 Crs
+4183 1996 Crs
+3832 2179 Crs
+4361 2146 Crs
+3782 2329 Crs
+3474 1882 Crs
+4146 1932 Crs
+3998 2372 Crs
+3899 2306 Crs
+3977 1666 Crs
+4039 2310 Crs
+4123 2020 Crs
+4256 1855 Crs
+4447 2086 Crs
+4337 2277 Crs
+3162 1929 Crs
+3803 2080 Crs
+3494 2119 Crs
+4176 2206 Crs
+3950 1850 Crs
+3999 2063 Crs
+4266 2085 Crs
+4663 2278 Crs
+3167 2179 Crs
+4264 2125 Crs
+3299 1737 Crs
+4679 2158 Crs
+3561 2103 Crs
+3965 2352 Crs
+4078 2169 Crs
+4244 2089 Crs
+3939 2147 Crs
+3972 2057 Crs
+4118 1942 Crs
+3931 2210 Crs
+3974 1454 Crs
+3928 2132 Crs
+3455 1734 Crs
+3031 1932 Crs
+3820 2152 Crs
+3925 1989 Crs
+4279 2147 Crs
+4334 2093 Crs
+3658 2215 Crs
+3847 1980 Crs
+3931 2390 Crs
+3651 2314 Crs
+4163 2371 Crs
+4664 2160 Crs
+3980 2118 Crs
+4361 2111 Crs
+3677 1848 Crs
+4271 2589 Crs
+3922 2484 Crs
+3900 2264 Crs
+3958 2007 Crs
+3946 1920 Crs
+3825 2201 Crs
+4037 2297 Crs
+3645 2222 Crs
+3757 2096 Crs
+3785 1929 Crs
+3686 2125 Crs
+3959 2135 Crs
+3722 2032 Crs
+3649 2142 Crs
+3668 2197 Crs
+4006 1804 Crs
+3878 2253 Crs
+3430 2203 Crs
+4126 2259 Crs
+3653 2067 Crs
+3998 2121 Crs
+4311 2119 Crs
+3265 2102 Crs
+3895 2257 Crs
+3796 2162 Crs
+3004 2042 Crs
+4097 2387 Crs
+3548 2053 Crs
+3847 2150 Crs
+4221 2116 Crs
+4124 2056 Crs
+4133 2004 Crs
+4274 1998 Crs
+3844 1923 Crs
+3427 2252 Crs
+3662 1504 Crs
+4141 2263 Crs
+3772 1843 Crs
+3918 1769 Crs
+3178 1972 Crs
+4194 2155 Crs
+3566 1890 Crs
+4427 2303 Crs
+3667 1546 Crs
+3954 2180 Crs
+4369 2356 Crs
+3565 2544 Crs
+3823 2030 Crs
+3580 1995 Crs
+3421 2098 Crs
+4263 2135 Crs
+4075 2257 Crs
+4049 2023 Crs
+4077 2202 Crs
+4429 2188 Crs
+3767 1977 Crs
+3806 2100 Crs
+4231 2395 Crs
+3449 2001 Crs
+3972 1599 Crs
+4024 2191 Crs
+3659 2028 Crs
+2769 2030 Crs
+4054 2039 Crs
+4265 2114 Crs
+4416 2130 Crs
+4122 2170 Crs
+4041 2243 Crs
+3590 2286 Crs
+4083 1970 Crs
+3705 2235 Crs
+3408 2154 Crs
+3919 2071 Crs
+3741 2479 Crs
+3514 2066 Crs
+4165 2065 Crs
+4427 1906 Crs
+4053 2163 Crs
+3884 2109 Crs
+3508 2164 Crs
+3966 2196 Crs
+3894 2007 Crs
+4065 2194 Crs
+3900 2090 Crs
+3999 1666 Crs
+3580 2012 Crs
+3683 1808 Crs
+3882 2045 Crs
+2860 2100 Crs
+3812 2049 Crs
+3526 2122 Crs
+4106 2081 Crs
+4235 2053 Crs
+2990 2122 Crs
+3802 1891 Crs
+3917 2057 Crs
+3574 2043 Crs
+4080 2371 Crs
+4365 2312 Crs
+4300 2017 Crs
+4106 2157 Crs
+3850 2057 Crs
+4085 2004 Crs
+3662 2120 Crs
+4421 2179 Crs
+3697 1685 Crs
+4592 2120 Crs
+3826 2149 Crs
+3639 2031 Crs
+3897 2348 Crs
+3741 2260 Crs
+3809 2200 Crs
+4010 2011 Crs
+3144 1946 Crs
+3874 2061 Crs
+3622 2170 Crs
+4202 1992 Crs
+3943 2070 Crs
+4265 2091 Crs
+3713 2193 Crs
+3791 2227 Crs
+3876 2148 Crs
+4065 2193 Crs
+3908 1991 Crs
+3859 2217 Crs
+3856 2132 Crs
+3694 2152 Crs
+3743 1965 Crs
+3941 2230 Crs
+3822 2030 Crs
+3867 1811 Crs
+3975 1995 Crs
+3693 2010 Crs
+4261 2173 Crs
+4637 2333 Crs
+3961 2009 Crs
+4116 2210 Crs
+4176 2259 Crs
+4237 2203 Crs
+4080 2065 Crs
+3858 2217 Crs
+4440 2032 Crs
+3651 1886 Crs
+3888 2359 Crs
+3354 2138 Crs
+3375 2107 Crs
+3993 2143 Crs
+3948 2051 Crs
+4288 1846 Crs
+3748 2375 Crs
+4139 2161 Crs
+4158 2054 Crs
+4273 2108 Crs
+3852 2127 Crs
+3797 2118 Crs
+3957 2130 Crs
+4290 2242 Crs
+3941 2242 Crs
+3956 2062 Crs
+4052 2152 Crs
+3996 1911 Crs
+3390 1959 Crs
+4028 2226 Crs
+3818 1922 Crs
+3416 1960 Crs
+4408 2136 Crs
+4265 2307 Crs
+3860 1913 Crs
+4100 2337 Crs
+3994 2026 Crs
+4050 2308 Crs
+3245 2205 Crs
+4679 2248 Crs
+3966 1985 Crs
+3615 2259 Crs
+4250 2027 Crs
+3461 2035 Crs
+3756 2173 Crs
+3773 1452 Crs
+3865 1986 Crs
+4261 2311 Crs
+3723 2346 Crs
+3513 2025 Crs
+3813 2188 Crs
+3755 2155 Crs
+3193 2219 Crs
+4119 2475 Crs
+3932 2099 Crs
+4135 2140 Crs
+3553 2282 Crs
+3953 2054 Crs
+3865 1874 Crs
+4069 1931 Crs
+3778 1559 Crs
+4158 2059 Crs
+2927 2012 Crs
+4135 2360 Crs
+3910 2220 Crs
+3902 1857 Crs
+3748 2161 Crs
+4059 1898 Crs
+3722 2253 Crs
+3694 2256 Crs
+3563 2027 Crs
+3896 1867 Crs
+3878 1534 Crs
+3253 2191 Crs
+3681 2084 Crs
+3656 1950 Crs
+3935 2009 Crs
+3758 1811 Crs
+3095 2108 Crs
+4109 2020 Crs
+3717 1906 Crs
+3348 2194 Crs
+3749 1972 Crs
+4049 1874 Crs
+4037 1911 Crs
+3508 2122 Crs
+4273 2114 Crs
+3831 2226 Crs
+4121 2163 Crs
+2963 1942 Crs
+4218 2114 Crs
+3864 2169 Crs
+3723 1846 Crs
+3874 1983 Crs
+3620 1813 Crs
+4106 2045 Crs
+3619 2242 Crs
+3969 1969 Crs
+3802 2118 Crs
+4287 2546 Crs
+3874 2245 Crs
+4176 2165 Crs
+3776 2300 Crs
+4120 2188 Crs
+3712 2055 Crs
+3987 2221 Crs
+3743 2142 Crs
+3901 2017 Crs
+4509 2003 Crs
+2131 1819 Crs
+4329 2196 Crs
+3636 2261 Crs
+3922 2122 Crs
+3752 2061 Crs
+4154 1704 Crs
+3621 1869 Crs
+4098 2220 Crs
+2909 2177 Crs
+4116 2124 Crs
+3591 1977 Crs
+4018 2083 Crs
+4262 2172 Crs
+3914 2137 Crs
+3529 1971 Crs
+3154 2016 Crs
+4203 2046 Crs
+3918 2239 Crs
+4136 2518 Crs
+3637 2197 Crs
+4195 2121 Crs
+4195 2149 Crs
+4034 2258 Crs
+4253 2095 Crs
+3396 2106 Crs
+3833 2242 Crs
+4004 2107 Crs
+4189 1949 Crs
+3662 2133 Crs
+4199 2121 Crs
+3876 1979 Crs
+3875 2350 Crs
+3570 2013 Crs
+3956 2014 Crs
+4039 2026 Crs
+4066 2220 Crs
+4098 2139 Crs
+3582 1877 Crs
+3668 2283 Crs
+3671 2204 Crs
+4145 1986 Crs
+3989 2081 Crs
+3956 1876 Crs
+4091 1930 Crs
+4054 2096 Crs
+4218 2252 Crs
+3614 2058 Crs
+3957 2141 Crs
+4444 2206 Crs
+4145 2113 Crs
+3760 1390 Crs
+3600 1947 Crs
+3922 2092 Crs
+3244 2494 Crs
+4236 1997 Crs
+4121 2311 Crs
+4026 2221 Crs
+3816 2040 Crs
+3453 2215 Crs
+3562 2131 Crs
+3412 2142 Crs
+3835 2159 Crs
+4125 2057 Crs
+3804 2119 Crs
+4215 2292 Crs
+3653 2030 Crs
+3578 1911 Crs
+3827 1591 Crs
+3928 2205 Crs
+3228 2083 Crs
+4079 2225 Crs
+3412 2046 Crs
+3895 2215 Crs
+3603 2094 Crs
+3961 2136 Crs
+3718 2015 Crs
+3803 2312 Crs
+3672 2162 Crs
+3960 2304 Crs
+3885 1983 Crs
+4057 2070 Crs
+3490 2047 Crs
+3896 2155 Crs
+2161 1934 Crs
+3623 2146 Crs
+3921 1939 Crs
+3442 2031 Crs
+3811 1518 Crs
+3833 2058 Crs
+3495 2197 Crs
+3686 2374 Crs
+4337 1973 Crs
+4222 1896 Crs
+4114 2071 Crs
+3721 1909 Crs
+3761 2271 Crs
+3730 2124 Crs
+3370 2026 Crs
+3721 2052 Crs
+3704 2103 Crs
+4173 2118 Crs
+3098 2303 Crs
+3888 2015 Crs
+3688 1919 Crs
+3759 2028 Crs
+4091 2271 Crs
+3911 2175 Crs
+3646 1913 Crs
+3776 1999 Crs
+3447 2185 Crs
+4392 1492 Crs
+3682 2099 Crs
+3730 1897 Crs
+3220 2284 Crs
+3602 2369 Crs
+4168 2333 Crs
+4247 2126 Crs
+3819 2305 Crs
+4113 2110 Crs
+3637 2468 Crs
+3902 2258 Crs
+3441 2151 Crs
+3816 2255 Crs
+3497 1936 Crs
+4040 1883 Crs
+3793 2210 Crs
+3522 2027 Crs
+4108 2350 Crs
+2947 2394 Crs
+3821 2191 Crs
+3887 2000 Crs
+3685 2071 Crs
+3522 2432 Crs
+3423 2439 Crs
+2496 2178 Crs
+3835 1957 Crs
+3907 2226 Crs
+3846 2317 Crs
+3749 2001 Crs
+3763 2040 Crs
+4228 2320 Crs
+3702 2501 Crs
+3770 1914 Crs
+4083 2210 Crs
+3480 2003 Crs
+4016 1849 Crs
+3917 2201 Crs
+3891 2368 Crs
+3535 2121 Crs
+4570 2078 Crs
+3773 1960 Crs
+3725 2126 Crs
+4172 2166 Crs
+3467 2266 Crs
+3715 2404 Crs
+2507 1908 Crs
+3553 1987 Crs
+4283 2204 Crs
+3246 2234 Crs
+3975 2246 Crs
+3729 2257 Crs
+4229 1933 Crs
+3977 2080 Crs
+3859 2231 Crs
+4151 2308 Crs
+4060 2038 Crs
+3868 1831 Crs
+4294 2207 Crs
+3511 1948 Crs
+4231 2084 Crs
+3830 1964 Crs
+3775 1924 Crs
+3681 2167 Crs
+4036 2355 Crs
+3485 1991 Crs
+3508 2221 Crs
+4421 2387 Crs
+4022 2050 Crs
+3991 2003 Crs
+4138 2026 Crs
+4485 2038 Crs
+3803 1930 Crs
+3836 2197 Crs
+4030 2270 Crs
+3934 2110 Crs
+4209 2055 Crs
+4134 1599 Crs
+4093 2317 Crs
+3752 2039 Crs
+4014 2263 Crs
+3901 2301 Crs
+3379 1970 Crs
+3842 2128 Crs
+4137 2059 Crs
+3897 2262 Crs
+4021 1954 Crs
+3942 2294 Crs
+4020 1714 Crs
+4327 2051 Crs
+3654 2109 Crs
+3284 2061 Crs
+3769 2044 Crs
+4151 2231 Crs
+4313 2174 Crs
+3764 2082 Crs
+3610 2197 Crs
+3641 1852 Crs
+4005 2040 Crs
+3813 1944 Crs
+3966 2093 Crs
+4118 2320 Crs
+4558 2008 Crs
+3824 2012 Crs
+3503 2039 Crs
+4319 2088 Crs
+3480 1943 Crs
+4437 2052 Crs
+4091 2016 Crs
+4056 2303 Crs
+4397 2072 Crs
+3819 2203 Crs
+3313 1857 Crs
+3823 1875 Crs
+3609 2079 Crs
+2560 1834 Crs
+3805 1994 Crs
+3701 2129 Crs
+3488 2152 Crs
+4234 2060 Crs
+3803 2089 Crs
+4279 2220 Crs
+4245 2012 Crs
+3447 1831 Crs
+3575 1424 Crs
+4013 2067 Crs
+4037 2057 Crs
+4284 1854 Crs
+3661 2078 Crs
+3683 2032 Crs
+4124 2076 Crs
+4260 2296 Crs
+4013 2041 Crs
+4074 1864 Crs
+4275 2138 Crs
+3919 1852 Crs
+3782 2101 Crs
+3884 2150 Crs
+4063 1977 Crs
+4002 2037 Crs
+3620 2204 Crs
+3620 1956 Crs
+3676 2287 Crs
+3576 1982 Crs
+4062 2046 Crs
+3790 2050 Crs
+3894 2017 Crs
+3698 2141 Crs
+4060 2144 Crs
+3371 1991 Crs
+3692 2141 Crs
+3371 2138 Crs
+3614 2181 Crs
+4126 2344 Crs
+3990 2130 Crs
+3973 2132 Crs
+3917 2367 Crs
+3757 2231 Crs
+3901 2131 Crs
+3593 2159 Crs
+4189 2143 Crs
+4210 2101 Crs
+4123 2105 Crs
+4203 2092 Crs
+3417 2234 Crs
+3572 2252 Crs
+3777 2162 Crs
+4036 1855 Crs
+3736 1769 Crs
+3632 2250 Crs
+4655 2112 Crs
+3871 1575 Crs
+4384 2158 Crs
+4229 2077 Crs
+3844 2228 Crs
+3865 2068 Crs
+3713 2185 Crs
+3735 2486 Crs
+4174 2062 Crs
+4080 2201 Crs
+4261 2048 Crs
+3095 2178 Crs
+3921 2438 Crs
+3795 1904 Crs
+3823 2119 Crs
+3102 1943 Crs
+3875 2215 Crs
+3278 1872 Crs
+4085 2140 Crs
+3891 2096 Crs
+3604 1633 Crs
+3511 2266 Crs
+3779 2450 Crs
+3891 2030 Crs
+4171 2105 Crs
+3946 1969 Crs
+4148 2007 Crs
+3359 2174 Crs
+3780 2268 Crs
+3470 1948 Crs
+3923 2335 Crs
+3714 2042 Crs
+4420 2268 Crs
+3815 1928 Crs
+3612 1997 Crs
+3683 1952 Crs
+4305 2049 Crs
+3801 2109 Crs
+4038 2072 Crs
+3779 2089 Crs
+4015 2066 Crs
+3783 2100 Crs
+3885 2050 Crs
+3519 2050 Crs
+4022 2098 Crs
+4372 2007 Crs
+3873 2260 Crs
+3653 1669 Crs
+3645 2407 Crs
+3804 2073 Crs
+3803 2217 Crs
+4189 2066 Crs
+4018 2239 Crs
+3828 2014 Crs
+3594 2196 Crs
+3412 2317 Crs
+3856 2336 Crs
+4224 2176 Crs
+3987 2504 Crs
+3701 2103 Crs
+4215 2302 Crs
+3867 2109 Crs
+3994 1758 Crs
+3981 2142 Crs
+3576 2228 Crs
+3975 2192 Crs
+3879 1970 Crs
+3499 2215 Crs
+3955 1836 Crs
+4246 2074 Crs
+3865 2002 Crs
+3606 2074 Crs
+3705 2058 Crs
+3857 2385 Crs
+4171 2280 Crs
+4086 1932 Crs
+3965 2199 Crs
+4242 2280 Crs
+4175 2277 Crs
+4117 2060 Crs
+3660 2157 Crs
+3906 2303 Crs
+4052 2008 Crs
+4147 2158 Crs
+4041 2159 Crs
+3674 2180 Crs
+4201 2000 Crs
+3667 1909 Crs
+3851 2310 Crs
+4028 2178 Crs
+3704 2077 Crs
+4041 2205 Crs
+3896 2150 Crs
+3639 2385 Crs
+3783 1827 Crs
+3430 1767 Crs
+4642 2025 Crs
+4194 2302 Crs
+4406 2107 Crs
+3619 1933 Crs
+3775 2499 Crs
+3662 2041 Crs
+3924 2034 Crs
+3502 1939 Crs
+4030 1936 Crs
+4268 2217 Crs
+3624 1925 Crs
+3971 2116 Crs
+4045 2026 Crs
+4394 2234 Crs
+4173 2289 Crs
+3727 2151 Crs
+4115 2028 Crs
+4008 2144 Crs
+4437 2117 Crs
+3906 2021 Crs
+4196 2222 Crs
+4245 1969 Crs
+3911 2004 Crs
+4304 1951 Crs
+3604 2511 Crs
+3691 2246 Crs
+3903 2165 Crs
+4098 2328 Crs
+3829 2137 Crs
+4170 2305 Crs
+4243 2011 Crs
+3876 2173 Crs
+4138 2160 Crs
+3772 2302 Crs
+4215 2047 Crs
+3809 2433 Crs
+3268 1764 Crs
+4007 2141 Crs
+3654 2301 Crs
+4117 2301 Crs
+3831 2085 Crs
+3867 1977 Crs
+3669 2207 Crs
+4590 2059 Crs
+3934 2206 Crs
+3669 1896 Crs
+4049 2277 Crs
+3734 2157 Crs
+4144 2283 Crs
+3785 2041 Crs
+4032 2276 Crs
+3902 2111 Crs
+3834 2093 Crs
+4210 2075 Crs
+3810 2242 Crs
+3565 2272 Crs
+3491 1855 Crs
+4141 1955 Crs
+4137 1717 Crs
+3566 2197 Crs
+4037 2168 Crs
+3925 1791 Crs
+3741 2054 Crs
+3767 1927 Crs
+4281 2012 Crs
+2906 1822 Crs
+3552 2293 Crs
+3458 1998 Crs
+3941 2245 Crs
+3722 2341 Crs
+4060 2272 Crs
+4573 2275 Crs
+3594 2246 Crs
+3873 2238 Crs
+3932 2256 Crs
+3779 1877 Crs
+3685 2146 Crs
+3775 2167 Crs
+4445 1710 Crs
+3979 2187 Crs
+3667 2284 Crs
+4031 2061 Crs
+4261 2218 Crs
+4032 2205 Crs
+2518 2213 Crs
+3798 2434 Crs
+3960 2380 Crs
+3979 2308 Crs
+4141 2158 Crs
+4146 2027 Crs
+4143 2232 Crs
+3919 2112 Crs
+4422 2112 Crs
+4007 2069 Crs
+4132 2052 Crs
+3595 2168 Crs
+3991 2123 Crs
+3364 2131 Crs
+3614 1932 Crs
+3897 2105 Crs
+3946 2210 Crs
+4172 2178 Crs
+3586 1995 Crs
+3965 2342 Crs
+3844 2127 Crs
+3761 2436 Crs
+3360 2032 Crs
+3862 2436 Crs
+4256 1718 Crs
+3972 2116 Crs
+3891 2288 Crs
+3750 1952 Crs
+3634 2023 Crs
+3789 2021 Crs
+4084 2230 Crs
+3810 2167 Crs
+3798 1659 Crs
+3877 2129 Crs
+3462 2070 Crs
+3721 2171 Crs
+4033 2071 Crs
+3586 2052 Crs
+4044 1975 Crs
+4158 2445 Crs
+3905 2287 Crs
+3731 2218 Crs
+3980 2276 Crs
+3899 2047 Crs
+4293 1897 Crs
+3928 2205 Crs
+4065 2059 Crs
+4107 2202 Crs
+4135 2096 Crs
+3883 2045 Crs
+3923 2125 Crs
+3938 1876 Crs
+3203 2035 Crs
+4164 2252 Crs
+3698 2026 Crs
+3913 2054 Crs
+4471 1992 Crs
+3923 2070 Crs
+3920 2148 Crs
+4084 2249 Crs
+3992 2032 Crs
+3616 1949 Crs
+3773 1872 Crs
+4069 2361 Crs
+4351 2068 Crs
+3348 2002 Crs
+3739 2156 Crs
+4145 2184 Crs
+3780 2174 Crs
+4138 1596 Crs
+3714 2273 Crs
+3932 2061 Crs
+4247 2220 Crs
+3462 2123 Crs
+3577 2170 Crs
+3282 2200 Crs
+3895 1820 Crs
+3954 2095 Crs
+4266 2333 Crs
+4046 2170 Crs
+3783 2214 Crs
+3574 1954 Crs
+3888 2296 Crs
+3686 1911 Crs
+3791 2000 Crs
+4088 2117 Crs
+4060 1785 Crs
+3819 1977 Crs
+4124 2223 Crs
+3772 2163 Crs
+4064 2115 Crs
+3843 2156 Crs
+4143 2116 Crs
+3980 2300 Crs
+4145 1785 Crs
+3424 1985 Crs
+3436 2216 Crs
+4377 2073 Crs
+3908 1888 Crs
+4679 2151 Crs
+3959 2244 Crs
+4146 2366 Crs
+4066 2089 Crs
+4326 2133 Crs
+3930 2162 Crs
+3788 2105 Crs
+3829 1856 Crs
+4162 2160 Crs
+4003 2197 Crs
+3827 2250 Crs
+4049 2275 Crs
+4328 2267 Crs
+2611 1795 Crs
+3122 2050 Crs
+3940 2286 Crs
+4024 2088 Crs
+3708 1897 Crs
+4253 1947 Crs
+4019 2101 Crs
+3228 1699 Crs
+4156 2083 Crs
+4155 1981 Crs
+3787 2523 Crs
+4147 1755 Crs
+3878 1940 Crs
+3799 1894 Crs
+3739 2347 Crs
+3611 2276 Crs
+3719 1676 Crs
+4679 2124 Crs
+4087 1843 Crs
+4066 1839 Crs
+3753 2113 Crs
+4180 2009 Crs
+4098 2074 Crs
+3741 2170 Crs
+3663 1977 Crs
+3602 2374 Crs
+3946 2158 Crs
+3574 1980 Crs
+4375 2067 Crs
+4290 2124 Crs
+3594 1896 Crs
+3953 2010 Crs
+4059 2025 Crs
+3795 2158 Crs
+4018 2194 Crs
+3872 2275 Crs
+3641 2193 Crs
+3904 2236 Crs
+3805 1913 Crs
+4317 1527 Crs
+3956 1937 Crs
+4000 2243 Crs
+3938 1894 Crs
+3554 2095 Crs
+3716 2076 Crs
+3670 2053 Crs
+3294 2305 Crs
+4014 1664 Crs
+4255 2123 Crs
+3576 1892 Crs
+3995 2158 Crs
+3953 1960 Crs
+3724 2121 Crs
+4175 2229 Crs
+3954 2363 Crs
+3928 1878 Crs
+3659 2083 Crs
+3733 2060 Crs
+3756 1918 Crs
+3818 2213 Crs
+3814 2170 Crs
+3121 1944 Crs
+4196 2123 Crs
+3783 2231 Crs
+4453 2214 Crs
+3811 2196 Crs
+4109 1645 Crs
+3408 1923 Crs
+3729 1975 Crs
+3957 1774 Crs
+3333 2277 Crs
+3054 1958 Crs
+3738 2118 Crs
+3842 1444 Crs
+4014 2029 Crs
+3955 1939 Crs
+3721 2032 Crs
+3777 2337 Crs
+3761 2339 Crs
+4369 2043 Crs
+4111 2334 Crs
+4679 2171 Crs
+3853 1993 Crs
+4387 2002 Crs
+3759 2023 Crs
+3740 2090 Crs
+3734 2255 Crs
+4061 2148 Crs
+3720 2178 Crs
+3912 2227 Crs
+3918 2062 Crs
+3689 2122 Crs
+3827 2303 Crs
+3566 1892 Crs
+3639 2009 Crs
+3930 2152 Crs
+3900 2086 Crs
+3889 2320 Crs
+4203 2015 Crs
+3898 1751 Crs
+3152 2103 Crs
+3348 2032 Crs
+4423 2286 Crs
+4066 2167 Crs
+3687 2022 Crs
+4227 2253 Crs
+3782 1376 Crs
+4079 1783 Crs
+3940 2066 Crs
+4096 2043 Crs
+3919 2100 Crs
+3609 2071 Crs
+3878 1911 Crs
+3782 1988 Crs
+4114 1997 Crs
+3334 2164 Crs
+4040 2413 Crs
+3996 2089 Crs
+3209 2256 Crs
+3839 1483 Crs
+3853 2069 Crs
+3439 1400 Crs
+4164 1942 Crs
+3858 2196 Crs
+3754 2279 Crs
+4001 1883 Crs
+3655 2036 Crs
+3521 1997 Crs
+4065 1983 Crs
+4156 1979 Crs
+4003 2381 Crs
+3923 2099 Crs
+3958 2341 Crs
+4286 2083 Crs
+3405 2031 Crs
+3582 1539 Crs
+3908 2261 Crs
+3155 2161 Crs
+3774 2178 Crs
+3106 1995 Crs
+3591 2499 Crs
+3933 1938 Crs
+4457 2140 Crs
+4017 2065 Crs
+4090 2159 Crs
+3986 1935 Crs
+4068 2106 Crs
+3973 2017 Crs
+3757 1911 Crs
+3956 1995 Crs
+3940 1886 Crs
+4010 2068 Crs
+3817 1925 Crs
+3973 2297 Crs
+4665 2157 Crs
+4241 2177 Crs
+4130 1973 Crs
+4006 2367 Crs
+3972 1928 Crs
+4138 2099 Crs
+4149 2235 Crs
+3678 2155 Crs
+3451 2239 Crs
+4119 2116 Crs
+3348 2455 Crs
+3945 1993 Crs
+3637 2005 Crs
+4024 2313 Crs
+3604 2159 Crs
+4364 2028 Crs
+3838 1585 Crs
+3592 2051 Crs
+3412 1829 Crs
+4321 2247 Crs
+4119 1973 Crs
+3471 2352 Crs
+4435 2057 Crs
+3876 2320 Crs
+3621 2181 Crs
+3676 2060 Crs
+4300 1939 Crs
+3907 2086 Crs
+3221 2047 Crs
+4025 2064 Crs
+3490 2118 Crs
+3341 2036 Crs
+3891 2186 Crs
+3203 2021 Crs
+3976 1980 Crs
+3788 2065 Crs
+3320 1873 Crs
+4113 2256 Crs
+3234 2109 Crs
+3786 2123 Crs
+4059 2348 Crs
+3699 2291 Crs
+3695 2161 Crs
+3947 1998 Crs
+4246 2565 Crs
+3965 2183 Crs
+2768 1994 Crs
+4027 2105 Crs
+3512 2272 Crs
+4030 2027 Crs
+3860 2158 Crs
+3645 2111 Crs
+3780 2236 Crs
+4028 2060 Crs
+3953 1655 Crs
+3646 1938 Crs
+3568 1995 Crs
+3874 1833 Crs
+3804 2481 Crs
+4267 2110 Crs
+3519 2141 Crs
+3520 2031 Crs
+3930 2246 Crs
+3808 2415 Crs
+4142 1869 Crs
+3995 2363 Crs
+4250 1998 Crs
+4043 1976 Crs
+4395 2108 Crs
+3958 2139 Crs
+3887 2033 Crs
+3898 2368 Crs
+3827 1869 Crs
+3871 2348 Crs
+3547 1565 Crs
+3998 2017 Crs
+3890 1927 Crs
+3784 2033 Crs
+4154 2391 Crs
+3482 2077 Crs
+4115 1952 Crs
+3755 2225 Crs
+3865 1920 Crs
+4183 2062 Crs
+3325 2016 Crs
+4137 1510 Crs
+3780 2409 Crs
+4014 2256 Crs
+3774 2291 Crs
+3799 1957 Crs
+4019 2258 Crs
+4067 2156 Crs
+3491 2172 Crs
+3914 2179 Crs
+3819 2208 Crs
+2710 2041 Crs
+4068 1979 Crs
+3900 2025 Crs
+3637 2315 Crs
+2843 2017 Crs
+3693 1818 Crs
+4297 2193 Crs
+3990 2239 Crs
+3928 1850 Crs
+2918 2089 Crs
+3706 2065 Crs
+4224 2130 Crs
+3817 2245 Crs
+3537 1953 Crs
+4238 2156 Crs
+3441 2180 Crs
+3854 2193 Crs
+4089 2403 Crs
+3561 2017 Crs
+4439 2024 Crs
+3783 2147 Crs
+4142 2201 Crs
+3953 2136 Crs
+3996 2339 Crs
+3694 2147 Crs
+4148 2367 Crs
+4151 2180 Crs
+3816 1891 Crs
+4057 2046 Crs
+3687 2089 Crs
+4276 2344 Crs
+4313 2164 Crs
+4167 2184 Crs
+4214 2206 Crs
+3742 2056 Crs
+3828 2030 Crs
+3764 1483 Crs
+3388 2049 Crs
+4628 2223 Crs
+4395 2100 Crs
+4420 2318 Crs
+3340 2214 Crs
+4177 2228 Crs
+4391 2335 Crs
+3944 2098 Crs
+4044 2403 Crs
+4637 2133 Crs
+3485 2065 Crs
+3404 2014 Crs
+4054 2307 Crs
+4033 2093 Crs
+3750 1928 Crs
+3803 2057 Crs
+3493 2210 Crs
+3607 2263 Crs
+3900 2058 Crs
+4110 2325 Crs
+3315 1929 Crs
+4163 1991 Crs
+3215 2021 Crs
+2218 1935 Crs
+3704 2409 Crs
+4011 2382 Crs
+3903 1994 Crs
+4104 2219 Crs
+3522 2282 Crs
+3869 2061 Crs
+3782 2186 Crs
+3858 1938 Crs
+3659 2089 Crs
+2781 1857 Crs
+3799 1715 Crs
+3571 2151 Crs
+4008 2265 Crs
+3988 2125 Crs
+3998 1992 Crs
+3887 2003 Crs
+3635 2160 Crs
+3546 2061 Crs
+3760 1971 Crs
+4281 2127 Crs
+3538 2160 Crs
+3973 2195 Crs
+4038 1913 Crs
+3857 2212 Crs
+3812 2256 Crs
+4046 1941 Crs
+4362 2096 Crs
+4019 2009 Crs
+3575 2063 Crs
+4100 1983 Crs
+4486 1769 Crs
+4252 2020 Crs
+3563 2198 Crs
+3344 2453 Crs
+3945 2390 Crs
+3717 2302 Crs
+4165 2097 Crs
+3853 2030 Crs
+3648 2034 Crs
+3839 2247 Crs
+3821 2308 Crs
+3665 2299 Crs
+3501 1951 Crs
+4091 2256 Crs
+3884 2252 Crs
+3735 2206 Crs
+3841 2245 Crs
+3810 2034 Crs
+3939 2275 Crs
+3604 2251 Crs
+4059 2279 Crs
+3871 2089 Crs
+4128 2170 Crs
+4333 2200 Crs
+4042 2056 Crs
+4139 2270 Crs
+3527 2144 Crs
+3896 2281 Crs
+3852 2109 Crs
+3530 1820 Crs
+4449 2126 Crs
+4141 2048 Crs
+4057 2192 Crs
+4005 1977 Crs
+3618 2066 Crs
+3959 2019 Crs
+3766 2090 Crs
+4077 2341 Crs
+4034 2324 Crs
+3271 1793 Crs
+4177 2255 Crs
+3892 2217 Crs
+3865 1891 Crs
+3742 1657 Crs
+3766 2229 Crs
+3725 2038 Crs
+3929 1885 Crs
+4114 1975 Crs
+3992 2146 Crs
+3498 2123 Crs
+3888 2048 Crs
+3844 1949 Crs
+3905 2054 Crs
+3947 2134 Crs
+3941 1475 Crs
+3692 1876 Crs
+4445 2152 Crs
+3967 2263 Crs
+4107 2331 Crs
+4044 2056 Crs
+4078 2249 Crs
+4432 2195 Crs
+3793 2211 Crs
+3896 2057 Crs
+3635 2066 Crs
+4229 1997 Crs
+3631 2298 Crs
+3525 2073 Crs
+4232 2012 Crs
+3948 2207 Crs
+3293 2286 Crs
+3441 2221 Crs
+4070 2151 Crs
+4098 2170 Crs
+4470 2088 Crs
+4190 2082 Crs
+3721 2298 Crs
+4224 2392 Crs
+4090 1966 Crs
+4052 2000 Crs
+3930 2310 Crs
+3883 1809 Crs
+3710 1567 Crs
+3333 2189 Crs
+4194 2110 Crs
+4130 2375 Crs
+3680 2150 Crs
+4097 2259 Crs
+3854 2140 Crs
+4448 2257 Crs
+3902 2326 Crs
+2863 1927 Crs
+3847 2124 Crs
+3645 1971 Crs
+3674 2200 Crs
+3905 1949 Crs
+4140 2311 Crs
+3939 2079 Crs
+3767 2114 Crs
+3885 2402 Crs
+3642 2113 Crs
+4390 2149 Crs
+3402 2146 Crs
+3585 2045 Crs
+3608 2118 Crs
+4028 2004 Crs
+4165 1967 Crs
+3799 2109 Crs
+3995 2276 Crs
+4475 1950 Crs
+4030 2261 Crs
+3434 2098 Crs
+3922 1876 Crs
+3911 2116 Crs
+3815 1819 Crs
+3835 1955 Crs
+3220 1877 Crs
+4093 2012 Crs
+4417 1908 Crs
+3833 2006 Crs
+3773 1623 Crs
+4436 2199 Crs
+4049 2176 Crs
+3836 1957 Crs
+3663 2194 Crs
+3714 2132 Crs
+3316 2355 Crs
+3538 2089 Crs
+3725 2125 Crs
+3556 2104 Crs
+4339 2047 Crs
+3902 2312 Crs
+3646 2044 Crs
+3824 2382 Crs
+3585 1937 Crs
+4054 2245 Crs
+3887 1832 Crs
+3757 2208 Crs
+3929 2304 Crs
+4036 2273 Crs
+4253 1652 Crs
+3854 2192 Crs
+3831 2151 Crs
+3813 2016 Crs
+3917 2055 Crs
+4066 2170 Crs
+3712 2121 Crs
+3856 2260 Crs
+4088 1929 Crs
+4223 2086 Crs
+3941 2035 Crs
+3292 2043 Crs
+3547 1881 Crs
+3936 2224 Crs
+3914 2333 Crs
+4096 2164 Crs
+4094 2331 Crs
+4225 2019 Crs
+3851 2194 Crs
+3461 2056 Crs
+3457 2033 Crs
+3599 2081 Crs
+3958 2075 Crs
+3316 2097 Crs
+3608 1935 Crs
+4180 2279 Crs
+3930 1617 Crs
+3875 1907 Crs
+4415 2329 Crs
+2888 2053 Crs
+3793 2071 Crs
+4150 2248 Crs
+3496 1971 Crs
+4040 2280 Crs
+3523 2352 Crs
+3531 2081 Crs
+3936 2172 Crs
+3961 1937 Crs
+4203 2268 Crs
+4132 2098 Crs
+3312 2080 Crs
+4404 2231 Crs
+4256 2226 Crs
+3262 1906 Crs
+4273 1955 Crs
+3685 2369 Crs
+4224 2144 Crs
+3806 2040 Crs
+4398 2094 Crs
+3493 2194 Crs
+3919 2110 Crs
+3572 2196 Crs
+3714 2122 Crs
+3979 2272 Crs
+3977 2033 Crs
+4137 2355 Crs
+3593 1976 Crs
+4029 2108 Crs
+4125 2201 Crs
+4174 2021 Crs
+3614 1997 Crs
+4059 2117 Crs
+3620 2158 Crs
+4060 2031 Crs
+3625 2181 Crs
+3303 2075 Crs
+3973 2167 Crs
+3454 2024 Crs
+3636 1802 Crs
+4113 2019 Crs
+3944 2142 Crs
+3680 2285 Crs
+3889 2351 Crs
+3881 2207 Crs
+3795 2340 Crs
+4011 2302 Crs
+3620 2011 Crs
+3747 2120 Crs
+4427 1650 Crs
+3784 2028 Crs
+3975 2060 Crs
+4014 1968 Crs
+4094 2289 Crs
+4088 1953 Crs
+3790 2330 Crs
+3903 2143 Crs
+3889 2373 Crs
+4179 2027 Crs
+4093 1953 Crs
+2974 2395 Crs
+3311 1933 Crs
+4146 1909 Crs
+3878 2190 Crs
+3266 2152 Crs
+3519 2180 Crs
+3853 2134 Crs
+3665 2293 Crs
+% End plot #2
+% Begin plot #3
+1.000 UL
+LTb
+LT1
+0.75 0.75 0.75 C 1149 1527 M
+35 20 V
+36 20 V
+35 20 V
+36 21 V
+36 20 V
+35 20 V
+36 20 V
+36 21 V
+35 20 V
+36 20 V
+36 20 V
+35 21 V
+36 20 V
+36 20 V
+35 20 V
+36 21 V
+36 20 V
+35 20 V
+36 20 V
+36 20 V
+35 21 V
+36 20 V
+36 20 V
+35 20 V
+36 21 V
+36 20 V
+35 20 V
+36 20 V
+36 21 V
+35 20 V
+36 20 V
+36 20 V
+35 21 V
+36 20 V
+36 20 V
+35 20 V
+36 21 V
+36 20 V
+35 20 V
+36 20 V
+36 21 V
+35 20 V
+36 20 V
+36 20 V
+35 21 V
+36 20 V
+36 20 V
+35 20 V
+36 21 V
+36 20 V
+35 20 V
+36 20 V
+36 21 V
+35 20 V
+36 20 V
+36 20 V
+35 21 V
+36 20 V
+36 20 V
+35 20 V
+36 21 V
+36 20 V
+35 20 V
+36 20 V
+36 21 V
+35 20 V
+36 20 V
+35 20 V
+36 21 V
+36 20 V
+35 20 V
+36 20 V
+36 21 V
+35 20 V
+36 20 V
+36 20 V
+35 21 V
+36 20 V
+36 20 V
+35 20 V
+36 21 V
+36 20 V
+35 20 V
+36 20 V
+36 21 V
+35 20 V
+36 20 V
+36 20 V
+35 21 V
+36 20 V
+36 20 V
+35 20 V
+36 21 V
+36 20 V
+35 20 V
+36 20 V
+36 21 V
+35 20 V
+36 20 V
+% End plot #3
+stroke
+2.000 UL
+LTb
+LCb setrgbcolor
+1.000 UL
+LTb
+LCb setrgbcolor
+860 3531 N
+860 640 L
+3819 0 V
+0 2891 V
+-3819 0 V
+Z stroke
+0.500 UP
+1.000 UL
+LTb
+LCb setrgbcolor
+stroke
+grestore
+end
+showpage
+%%Trailer
+%%DocumentFonts: Helvetica
