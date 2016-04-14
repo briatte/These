@@ -174,9 +174,8 @@ Cette différence est normal car lors du calcul de $\Delta$-densité le nombre d
 Afin de comparer plus aisément $\Delta$-densité et $\Delta$-densité inter discussions, la corrélation entre ces deux mesures est présentée sur la figure~\ref{fig:corel_inter_discussion} pour différentes valeurs de $\Delta$.
 On remarque que les discussions sont effectivement plus dense intérieurement qu'avec les autres discussions.
 La différence est de plusieurs ordres de grandeur lorsque $\Delta$ est petit et elle diminue lorsque $\Delta$ croit.
-Pour $\Delta=20\ ans$ sur la figure~\ref{fig:corel_inter_discussion_20}, la différence n'est plus visible.
-A cette échelle de temps, l'ancrage temporel des discussions n'est plus décisif.
-On remarque que même pour $\Delta=1\ an$, la différence est notable.
+Pour $\Delta=20\ ans$ sur la figure~\ref{fig:corel_inter_discussion_20}, la différence n'est plus visible car à cette échelle de temps, l'ancrage temporel des discussions n'est plus décisif.
+Pourtant, on remarque que même pour $\Delta=1\ an$, la différence reste notable.
  
 
 \begin{figure}[!h]
@@ -198,7 +197,34 @@ On remarque que même pour $\Delta=1\ an$, la différence est notable.
 \label{fig:corel_inter_discussion}
 \end{figure}
 
-\subsection{Graphe et flot quotient des discussions}
+\subsection{Répartitions des discussions temporellement et structurellement}
+
+Nous avons étudié la densité des discussions et entre les discussions mais il est également intéressant d'observer comment ces discussions sont réparties topologiquement et temporellement.
+Pour étudier la répartition des discussions dans le temps, nous construisons un graphe $X=(V_X,E_X)$ d'intervalle\REF représentant le chevauchement temporel.
+Chaque discussion du flot devient un n\oe uds de $V_X$ et le lien $(i,j)$ existe dans $E_X$ si les discussions $D_i$ et $D_j$ correspondantes ont eu lieu au même instant, \emph{i.e.} $[\alpha_i, \omega_i] \cap [\alpha_j, \omega_j] \neq \emptyset$.
+De manière similaire, nous définissons le graphe de chevauchement topologique $Y=(V_Y,E_Y)$.
+Les n\oe uds de se graphe représente encore une fois les discussions du flot et un lien existe entre discussion si au moins une personne participe aux deux discussions, \emph{i.e.} $V(D_i) \cap V(D_j) \neq \emptyset$.
+
+Ces deux graphes sont constitués de 116999 n\oe uds et de environ 2 millions de liens pour le graphe de chevauchement temporel et de environ 63 millions de liens pour le graphe de chevauchement topologique.
+Par construction, ces graphes contiennent beaucoup d'informations sur les relations entre les discussions.
+\inline{La construction de graphe en sert à rien ou alors il faudrait étudier plus de chose sur X ou Y.}
+
+Sur la figure~\ref{fig:x-y-graphs_discu}(gauche) est représenté la corrélation entre le degré d'une discussion dans le graphe $X$ et sa durée.
+Il y a une corrélation évidente entre ces deux notions lorsque les discussions ont une durée supérieurs à $10^5$ s .
+On observe également que, même lorsque les discussions durent moins d'un jours (<$8.6\time10^4$), il y a jusqu'à une centaine d'autres discussions active sur la même période.
+
+\begin{figure}
+\centering
+	\includegraphics[width=0.49\linewidth]{img/mailing/degree_temp}
+	\hfill
+	\includegraphics[width=0.49\linewidth]{img/mailing/degree_nodes}
+	\caption{Gauche: Corrélation entre le degré des discussions dans le graphe de chevauchement temporel et leur durée. Droite: Corrélation entre le degré des discussions dans le graphe de chevauchement topologique et leur nombre de participants.}
+	\label{fig:x-y-graphs_discu}
+\end{figure}
+
+La figure~\ref{fig:x-y-graphs_discu}(droite) présente la corrélation entre le degré d'une discussion dans le graphe de chevauchement topologique $Y$ et son nombre de participants.
+La corrélation est moins nette mais il y a tout de même une tendance.
+
 
 
 \section{Détection automatique des discussions?}
