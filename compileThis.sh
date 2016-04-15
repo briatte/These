@@ -11,4 +11,4 @@ echo "\input{end.tex}" >> $OUTPUT_TEX
 
 latexmk -pdf $OUTPUT_TEX
 
-evince $OUTPUT_PDF &
+# evince $OUTPUT_PDF &
