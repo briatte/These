@@ -1,5 +1,100 @@
-\chapter{Flots de liens}
-\section{Définition}
+\chapter{Extensions temporelle des graphes}
+
+\section{\`Etat de l'art des formalismes et outils}
+
+\section{L'approche flot de liens}
+\subsection{Définition}
 \label{sec:definition}
-\subsection{Degré}
-\section{Dessin}
+Un flot de liens est défini comme un triplet: $\mathcal{L}=(T,V,E)$, où $T=[\alpha, \omega]$ est un intervalle de temps, $V$ un ensemble de $n$ n\oe uds et $E\subseteq T\times T \times V \times V$ un ensemble de $m$ liens.
+Les liens de $E$ sont des quadruplets $(b,e,u,v)$, signifiant que la paire de n\oe uds $(u, v)$ est connectée sur l'intervalle $[b,e] \subseteq [\alpha,\omega]$.
+Nous considérons un flot non orienté, \emph{i.e.} $(b,e,u,v)=(b,e,v,u)$, et sans boucle, \emph{i.e.} $u \neq v$.
+
+
+Nous dénotons la durée du flot par $\bar{L}=\omega-\alpha$.
+$\beta_E= min_{(b,e,u,v) \in E} (b)$ et $\psi_E= max_{(b,e,u,v) \in E} (e)$ sont respectivement l'apparition du premier lien et la disparition du dernier lien.
+
+Un flot de liens est simple si pour tout $(b,e,u,v) \in E$ et $(b',e',u, v) \in E$, $[b,e]\cap [b', e'] = \emptyset$.
+La simplification d'un flot de liens $\sigma=L$.
+
+$V(E')= {u}_{(b,e,u,v) \ in E'}$ sommets induits par un ensemble de liens.
+
+
+$\xi(L,\Delta)$ ajout de $\Delta$ à chaque lien.
+
+\inline{Que des flots avec durées ou bien delta densité?}
+\subsection{Sous-flot induit}
+Sous flot induit par un ensemble de lien $E'$: $L(E')=([\beta_{E'},\psi_{E'},V(E'),E'])$.
+
+
+ 
+Sous flot induit par un ensemble de paire n\oe uds  $S \in V^ 2$: $L(S)$.
+$L(S)=([\beta{E'},\psi{E'}],V',E')$ avec $E'= \{(b,e,u,v) \in E, (u,v) \in S\}$.
+Par convention, on note $L(v)= L(\{v\}\times V)$.
+
+Sous flot induit par un intervalle de temps $T'=[\alpha', \omega'],\ T' \subseteq T$: $L_{\alpha'..\omega'}$.
+$L_{\alpha'..\omega'}=([\alpha', \omega'],V(E'),E')$ avec $E'= \{(b',e',u,v),\ \exists (b,e,u,v) \in E,\ b'= max(b,\alpha'),\ e'=min(e,\omega')\}$.
+Par convention, on note $L_{t..t}=L_{t}$
+
+
+Il est aussi possible de combiner ces notions.
+Par exemple avec $V' \subset V$, $L_{\alpha'..\omega'}(V'^2)$ est le sous flot correspondant au lien entre les n\oe uds de $V'$ sur l'intervalle $[\alpha', \omega']$.
+
+
+\subsection{Degré et densité}
+Beaucoup de notions sont développées autour de cet objet.
+Degré temporelle d'un n\oe ud $u$:
+
+\begin{equation}
+d_t(u)= |L_t(v)| = |\{(b,e,u,v) \in E,\ b \leq t \leq e\}|
+\end{equation}
+
+Par extension pour un ensemble de sommets $V'$ :
+
+\begin{equation}
+d_t(V')= |L_{t}(V'^2)| = |\{(b,e,u,v) \in E,\ u,v \in V',\ b \leq t \leq e\}|
+\end{equation}
+
+\inline{Degré interne maintenant?}
+
+\begin{equation}
+d_t(E')= |\{(b,e,u,v) \in E',\ b \leq t \leq e\}|
+\end{equation}
+
+Il est possible d'intégrer sur l'ensemble du temps 
+\begin{equation}
+D_{\alpha..\omega}(v)= \int_{\alpha}^{\omega}d(v,t) dt=D(v)
+\end{equation}
+
+Par convention, on notera le degré moyen de $v$: $d(v)= \langle d(v,t) \rangle=\frac{D(v)}{\omega-\alpha}$.
+Il en va de même pour les autres degrés.
+
+C'est le cas de la densité:
+\begin{equation}
+\delta(L)= \frac{2\sum_{l \in E}}{n(n-1)(\bar{L})}
+\end{equation}
+
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline Symbole & description \\
+\hline $L$ & Flot de liens \\ 
+$T$ & intervalle de temps  \\
+$V$ & ensemble de n\oe uds\\
+$E$ & ensemble de liens: $(b,e,u,v)$ \\
+$n$ & nombre de n\oe uds  \\
+$|L|,|E|$ & nombre de liens dans le flot \\
+$\beta_E$ & temps d'apparition du premier lien\\
+$\psi_E$ & temps de disparition du dernier lien\\
+$L(V'^2)$ & sous flot induits par les n\oe uds de $V'$ \\
+$L_{t..t'}$ & sous flot induits par l'intervalle $[t,t']$ \\
+$d_t(v)$ & degré de $v$ à l'instant $t$\\
+$d(v)$ & degré moyen $v$ sur $T$\\
+\hline
+\end{tabular} 
+\end{center}
+
+
+
+\section{Manipulation de flots}
+Existence de la lib
+
+\subsection{Représentation}

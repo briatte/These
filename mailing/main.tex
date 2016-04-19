@@ -150,7 +150,7 @@ Pour un graphe $G=(V,E)$ et une communauté $C_i$ de la partition $C = \{C_j\}_{
 Il s'agit tout simplement de la probabilité qu'un lien existe entre les n\oe uds des deux communautés.
 Encore une fois, cette notion n'a pas de sens direct dans le formalisme de flot de liens et il est nécessaire de l'adapter.
 Pour ce faire, nous définissons la $\Delta$-densité inter discussions entre deux discussions $D_i$ et $D_j$: $\delta^{inter}_{\Delta}(D_i,D_j)$.
-Soit $L'= \Delta(L)$, $V'= V(D_i) \cup V(D_j)$, $t_{\beta}'=t_{\beta}(D_i \cup D_j)$ et $t_{\psi}'=t_{\psi}(D_i \cup D_j)$.
+Soit $L'= \xi(L,\delta)$, $V'= V(D_i) \cup V(D_j)$, $t_{\beta}'=t_{\beta}(D_i \cup D_j)$ et $t_{\psi}'=t_{\psi}(D_i \cup D_j)$.
 La définition de $\delta^{inter}_{\Delta}(D_i,D_j)$ est la suivante: $\delta^{inter}_{\Delta}(D_i,D_j) = d(L_{t_{\beta}'..t_{\psi}'}'(V'))$.
 Il s'agit donc de la $\Delta$-densité du flot de liens induit par l'union des n\oe uds sur l'union de l'intervalle\note{Faire un dessin de cette situation?}.
 Afin d'obtenir la $\Delta$-densité inter discussions entre $D_i$ et tout les autres discussions, nous utilisons la moyenne des densité inter discussion entre $D_i$ et les autres discussions, soit:
@@ -299,4 +299,5 @@ De même via le graphe de chevauchement topologique, on remarque que la structur
 
 \inline{On a pas étudié de mesure spéciale graphe sur X ou Y.}
 \inline{Faire évaluation des threads comme pertinent.}
+
 \section{Détection automatique des discussions?}
