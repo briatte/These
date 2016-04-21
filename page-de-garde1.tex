@@ -1,0 +1,86 @@
+% *-----------------------------------------------------------*
+% *         Page de Garde (basé sur le modèle UPMC)
+% * Dernière modif le : 2012/02/13
+% *-----------------------------------------------------------*
+% * README: 
+% *   - se compile avec pdflatex
+% *   - l'entête de ce fichier sert pour générer une page
+% *     unique. Ce texte latex peut s'inclure (partie comprise 
+% *     entre les lignes et  ) dans un document existant.
+% *-----------------------------------------------------------*
+
+% - - - - - - - entête pour avoir une page unique 
+\documentclass[11pt]{book}
+\usepackage[french]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{graphicx}
+
+\setlength{\textwidth}{16cm}
+\setlength{\textheight}{25cm}
+\setlength{\oddsidemargin}{-0cm}
+\setlength{\topmargin}{-1cm}
+\title{}     
+\date{} 
+\author{}
+\begin{document}
+
+% - - - - - - - début de la page 
+\thispagestyle{empty}
+
+\includegraphics[scale=0.12]{upmc-logo.png}
+
+{\large
+
+\vspace*{1cm}
+
+\begin{center}
+
+{\bf TH\`ESE DE DOCTORAT DE \\ l'UNIVERSIT\'E PIERRE ET MARIE CURIE}
+
+\vspace*{0.5cm}
+
+Sp\'ecialit\'e \\ [2ex]
+{\bf Informatique}\ \\ 
+
+\vspace*{0.5cm}
+
+École doctorale Informatique, Télécommunications et Électronique (Paris)
+
+\vspace*{1cm}
+
+
+Pr\'esent\'ee par \ \\
+
+
+\vspace*{0.5cm}
+
+
+{\Large {\bf Prénom NOM}}
+
+\vspace*{1cm}
+Pour obtenir le grade de \ \\[1ex]
+{\bf DOCTEUR de l'UNIVERSIT\'E PIERRE ET MARIE CURIE} \ \\
+
+\vspace*{1cm}
+
+\end{center}
+
+\flushleft{Sujet de la th\`ese :\ \\
+\ \\
+{\Large {\bf Le titre de ma Thèse \\ }}
+  
+
+\vspace*{1.5cm} 
+\flushleft{soutenue le 30 février 2042}\\[2ex]
+\flushleft{devant le jury composé de :  }\\[1ex]
+\flushleft{\begin{tabular}{r@{\ }ll}
+  & M. Prénom {\sc Nom} & Directeur de thèse\\
+  & M. Prénom {\sc Nom} & Rapporteur \\
+  & M. Prénom {\sc Nom} & Rapporteur  \\
+  & M. Prénom {\sc Nom} & Examinateur  \\
+  & M. Prénom {\sc Nom} & Examinateur  \\
+\end{tabular}}
+
+}
+% - - - - - - - fin de la page 
+\end{document}
