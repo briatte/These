@@ -5,13 +5,13 @@ Temporal Community
 This is my PhD manuscript in French.  
 To compile the whole manuscript:  
 ```
-./compileThis.sh all.tex
+./compileThis.sh
 ```  
 
-To compile a specific chapter:  
+To compile specific chapters:  
 
 ```
-./compileThis.sh CHAPTERFOLDER/main.tex
+./compileThis.sh CHAPTERFOLDER1 CHAPTERFOLDER2
 ```
 
 Good luck with the reading.

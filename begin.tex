@@ -1,6 +1,20 @@
-\documentclass[12pt,a4paper]{book}
+\documentclass[
+11pt, % The default document font size, options: 10pt, 11pt, 12pt
+%oneside, % Two side (alternating margins) for binding by default, uncomment to switch to one side
+%chapterinoneline,% Have the chapter title next to the number in one single line
+french, % ngerman for German
+singlespacing, % Single line spacing, alternatives: onehalfspacing or doublespacing
+%draft, % Uncomment to enable draft mode (no pictures, no links, overfull hboxes indicated)
+%nolistspacing, % If the document is onehalfspacing or doublespacing, uncomment this to set spacing in lists to single
+%liststotoc, % Uncomment to add the list of figures/tables/etc to the table of contents
+%toctotoc, % Uncomment to add the main table of contents to the table of contents
+%parskip, % Uncomment to add space between paragraphs
+%nohyperref, % Uncomment to not load the hyperref package
+headsepline, % Uncomment to get a line under the header
+]{MastersDoctoralThesis} % The class file specifying the document structure
+
 \usepackage[utf8]{inputenc}
-\usepackage[french]{babel}
+%\usepackage[french]{babel}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -9,15 +23,54 @@
 \usepackage{url}
 \usepackage{subfig}
 \usepackage{glossaries}
+\usepackage{hyperref}
+\usepackage{palatino} % Use the Palatino font by default
+%\usepackage[backend=bibtex,style=authoryear,natbib=true]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
  
+%\addbibresource{biblio.bib} % The filename of the bibliography
+ 
+\usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
 
  
 \usepackage[textsize=footnotesize,obeyFinal]{todonotes}
-
+\setlength{\marginparwidth}{2.5cm}
 \newcommand{\note}[1]{\todo[color=orange!80]{#1}\ }
 \newcommand{\inline}[1]{\todo[color=orange!80, inline]{#1}}
-\author{Noé Gaumont}
-\title{Conversations, Groupes et Communautés dans les Flots de Liens}
+%----------------------------------------------------------------------------------------
+%	MARGIN SETTINGS
+%----------------------------------------------------------------------------------------
+
+\geometry{
+	paper=a4paper, % Change to letterpaper for US letter
+	inner=1.5cm, % Inner margin
+	outer=3.3cm, % Outer margin
+	bindingoffset=2cm, % Binding offset
+	top=1.5cm, % Top margin
+	bottom=1.5cm, % Bottom margin
+	%showframe,% show how the type block is set on the page
+}
+
+%----------------------------------------------------------------------------------------
+%	THESIS INFORMATION
+%----------------------------------------------------------------------------------------
+
+\thesistitle{Conversations, Groupes et Communautés dans les Flots de Liens} % Your thesis title, this is used in the title and abstract, print it elsewhere with \ttitle
+\supervisor{Clémence \textsc{Magnien} et Matthieu \textsc{Latapy}} % Your supervisor's name, this is used in the title page, print it elsewhere with \supname
+\examiner{..} % Your examiner's name, this is not currently used anywhere in the template, print it elsewhere with \examname
+\degree{Doctor of Philosophy} % Your degree name, this is used in the title page and abstract, print it elsewhere with \degreename
+\author{Noé \textsc{Gaumont}} % Your name, this is used in the title page and abstract, print it elsewhere with \authorname
+\addresses{} % Your address, this is not currently used anywhere in the template, print it elsewhere with \addressname
+
+\subject{... Sciences} % Your subject area, this is not currently used anywhere in the template, print it elsewhere with \subjectname
+\keywords{} % Keywords for your thesis, this is not currently used anywhere in the template, print it elsewhere with \keywordnames
+\university{\href{http://www.university.com}{University Name}} % Your university's name and URL, this is used in the title page and abstract, print it elsewhere with \univname
+\department{\href{http://department.university.com}{Department or School Name}} % Your department's name and URL, this is used in the title page and abstract, print it elsewhere with \deptname
+\group{\href{http://researchgroup.university.com}{Research Group Name}} % Your research group's name and URL, this is used in the title page, print it elsewhere with \groupname
+\faculty{\href{http://faculty.university.com}{Faculty Name}} % Your faculty's name and URL, this is used in the title page and abstract, print it elsewhere with \facname
+
+\hypersetup{pdftitle=\ttitle} % Set the PDF's title to your title
+\hypersetup{pdfauthor=\authorname} % Set the PDF's author to your name
+\hypersetup{pdfkeywords=\keywordnames} % Set the PDF's keywords to your keywords
 
 \newcommand{\REF}{\textcolor{red}{REF}}
 \newcommand{\com}[1]{\textcolor{red}{#1} }
@@ -25,11 +78,4 @@
 \definecolor{plum}{HTML}{92268F}
 \definecolor{oliveGreen}{HTML}{007E00}
 
-\begin{document}
-\maketitle
-\tableofcontents
-\newpage
-\inline{Les axes des figures sont pour l'instant en anglais.}
-\inline{Tant que la bilbio n'est pas en version finale. Il n'est pas nécessaire de vérifier le formatage.}
-%\listoftodos
 
