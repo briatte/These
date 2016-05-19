@@ -20,16 +20,30 @@ headsepline, % Uncomment to get a line under the header
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{color}
+\usepackage{xcolor}
 \usepackage{url}
 \usepackage{subfig}
 \usepackage{glossaries}
 \usepackage{hyperref}
 \usepackage{palatino} % Use the Palatino font by default
+\usepackage{minitoc}
+
 %\usepackage[backend=bibtex,style=authoryear,natbib=true]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
  
 %\addbibresource{biblio.bib} % The filename of the bibliography
  
 \usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
+
+%-------------------------------
+% COLOR SETTINGS
+
+
+\definecolor{olivegreen}{RGB}{207,228,50}
+\definecolor{briquered}{RGB}{155,61,34}
+\definecolor{semilightblue}{RGB}{52,153,255}
+\definecolor{pinkyred}{RGB}{255,103,103}
+%-------------------------------
+
 
  
 \usepackage[textsize=footnotesize,obeyFinal]{todonotes}
@@ -53,6 +67,7 @@ headsepline, % Uncomment to get a line under the header
 %----------------------------------------------------------------------------------------
 %	THESIS INFORMATION
 %----------------------------------------------------------------------------------------
+\dominitoc
 
 \thesistitle{Conversations, Groupes et Communautés dans les Flots de Liens} % Your thesis title, this is used in the title and abstract, print it elsewhere with \ttitle
 \supervisor{Clémence \textsc{Magnien} Matthieu \textsc{Latapy}} % Your supervisor's name, this is used in the title page, print it elsewhere with \supname

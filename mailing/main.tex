@@ -1,6 +1,7 @@
 
 
 \chapter{Étude d'une archive de courriels}
+\minitoc
 
 L'étude\note{Intro surement trop général qui sera bougée ailleurs.}\ de la structure des réseaux est un sujet qui est étudié depuis assez longtemps \REF.
 Ces études ont, dans un premier temps, permis de trouver comment caractériser une structure puis, dans un second temps, de proposer des méthodes de détections de ces structures.
@@ -40,10 +41,14 @@ Un message peut être filtré pour différentes raisons: le courriel apparait av
 Cette dernière condition permet notamment d'éviter la présence de boucles dans le flot.
 Cela concerne principalement les \emph{racines}.
 Il s'agit de vérifications simple auquel il faut ajouter les vérifications sur la cohérence de la structure des discussions.
-Ainsi, une discussion est entièrement retirée du jeu de données s'il manque la \emph{racine}, si un de ses messages a été retiré à l'étape précédente ou si la discussion a débuté trop récemment ou si elle dure trop longtemps.
-Les deux dernières conditions permettent d'éviter un biais envers les conversations incomplètes car trop longues ou trop récentes.
-La limite pour considérer une discussion trop récente ou trop longue a été fixé à 2 ans ($6.3\times 10^7 s$) en observant la distribution de durées des discussions, voir la figure~\ref{fig:dists_discussion}.
-\inline{Refaire les courbes qui sont avant la suppression à cause de la durée.}
+Ainsi, une discussion est entièrement retirée du jeu de données s'il manque la \emph{racine}, si un de ses messages a été retiré à l'étape précédente.
+Après ces vérifications, environ $7\%$ des discussions sont retirées.
+\'A cela, il faut également tenir compte de notre temps d'observation qui est partiel.
+En effet, une discussion dont le dernier message a lieu 1 semaine avant la fin de la capture peut ne pas être terminée.
+De même, une discussion durant très longtemps n'ont que peu de probabilité d'être capturée en entier.
+Pour corriger ces biais, nous filtrons également les discussions ayant débutées trop récemment ou durant trop longtemps.
+La limite pour considérer une discussion trop récente ou trop longue a été fixé à $4$ ans ($1.26\times 10^8 s$) car nous avons constaté qu'uniquement quelques discussions dépassé ce seuil sur la distribution de durées des discussions dans la figure~\ref{fig:dists_discussion}.
+
 
 Une fois tout ces messages filtrés, nous obtenons un flot de liens avec 316 569 liens entre 34 648 personnes pendant presque 19 ans et 116 999 discussions.
 Mis à part les 237 664 messages de début de discussion, ce sont 168 482 courriels qui ont été filtrés soit environ $23\%$.
@@ -65,9 +70,8 @@ On remarque que les données filtrées ne diffèrent pas qualitativement des don
 	\label{fig:dists_discussion}
 \end{figure}
 
-La distribution des durées des discussions montre que la majorité des discussions dure environ une journée ou moins (100000 secondes équivaut à moins de 28 heures).
+La distribution des durées des discussions montre que la majorité des discussions dure environ une journée ou moins ($10^5$ secondes équivaut à moins de 28 heures).
 Par ailleurs, on remarque qu'il n'existe que quelques discussions durant plus d'un an.
-C'est pourquoi, la limite sur la durée des discussions a été fixée à 2 ans.
 
 Ces premières observations sont nécessaires mais pas suffisantes pour comprendre les caractéristiques d'une discussion.
 Nous avons également étudié la corrélation entre ces différentes notions et une partie d'entre elles sont présentées dans la figure~\ref{fig:corr_discussion}.
@@ -89,7 +93,7 @@ Enfin, il est intéressant d'observer la dynamique des échanges entre deux pers
 Soit $\tau(u,v) = (t_{i+1}-t_i)_{i=0..k+1}$ la séquence des temps inter-contacts des $k$ liens entre les n\oe uds $u$ et $v$, où $t_0$ est le temps entre $\alpha$ et le premier lien et $t_{k+1}$ est le temps entre le dernier lien et $\Omega$.
 Il s'agit du temps écoulé avant que deux personnes se contactent à nouveau, indépendamment peu importe la conversation.
 Dans la figure~\ref{fig:ict_discussion} est représentée la distribution cumulative inverse du temps inter-contacts. 
-$21\%$ des temps inter-contacts sont inférieurs à 30 jours ($2.6\times 10^6 s$)\note{Il faudrait faire un inset}.
+$21\%$ des temps inter-contacts sont inférieurs à 30 jours ($2.6\times 10^6 s$).
 Ce chiffre bien que relativement faible est tout de même important car il s'agit de discussions ouvertes où tout le monde peut participer. 
 En particulier, une personne peut envoyer une demande d'aide à un moment donné et ne plus jamais échanger avec les même personnes.
 Or, on observe que $21\%$ des contacts sont renouvelés en moins de 30 jours.
@@ -117,8 +121,8 @@ En couvrant un spectre aussi large de $\Delta$, on observe que la $\Delta$-densi
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.48\linewidth]{img/mailing/global_linlin.eps}
-	\caption{Évolution de la $\Delta$-densité du flot de liens pour $\Delta$ de $1$ seconde à $20$ ans. \com{Ajout bar horizontal de la densité statique dans le graphe agrégé.}}
+	\includegraphics[width=0.48\linewidth]{img/mailing/global_loglog.eps}
+	\caption{Évolution de la $\Delta$-densité (en vert) du flot de liens pour $\Delta$ de $60$ seconde à $20$ ans. En rouge, la densité dans le graphe agrégé.}
 	\label{fig:dens_fil_discusion}
 \end{figure}
 
@@ -155,9 +159,24 @@ Pour un graphe $G=(V,E)$ et une communauté $C_i$ de la partition $C = \{C_j\}_{
 Il s'agit tout simplement de la probabilité qu'un lien existe entre les n\oe uds des deux communautés.
 Encore une fois, cette notion n'a pas de sens direct dans le formalisme de flot de liens et il est nécessaire de l'adapter.
 Pour ce faire, nous définissons la $\Delta$-densité inter discussions entre deux discussions $D_i$ et $D_j$: $\delta^{inter}_{\Delta}(D_i,D_j)$.
-Soit $L'= \xi(L,\Delta)$, $V'= V(D_i) \cup V(D_j)$, $t_{\beta}'=t_{\beta}(D_i \cup D_j)$ et $t_{\psi}'=t_{\psi}(D_i \cup D_j)$.
-La définition de $\delta^{inter}_{\Delta}(D_i,D_j)$ est la suivante: $\delta^{inter}_{\Delta}(D_i,D_j) = \delta(L_{t_{\beta}'..t_{\psi}'}'(V'))$.
-Il s'agit donc de la $\Delta$-densité du flot de liens induit par l'union des n\oe uds sur l'union de l'intervalle\note{Faire un dessin de cette situation?}.
+Soit $L_{\Delta}= \xi(L,\Delta)$ et $L_{inter}(D_i, D_j) = (T',V',E')$ avec 
+$V'= V(D_i \cup D_j)$, $T'=[t_{\beta}(D_i \cup D_j), t_{\psi}(D_i \cup D_j)]$, et $E' = E_{\Delta} \setminus (D_i \cup D_j)$.
+Avec ces définitions, la définition de $\delta^{inter}_{\Delta}(D_i,D_j)$ est la suivante: $\delta^{inter}_{\Delta}(D_i,D_j) = \delta(L_{inter}(D_i, D_j))$.
+Il s'agit donc de la densité du flot inter discussions.
+Le flot inter discussion est constitué des liens entre les n\oe uds induits par $D_i$ et $D_j$ qui n'appartiennent ni à $D_i$ ni à $D_j$.
+Dans la figure~\ref{fig:inter_dens_discussion_ex}, un exemple de flot inter discussion est représenté.
+
+\begin{figure}
+\centering
+%\subfloat[Inverse cumulative distribution of inter-threads density.]{
+	\includegraphics[width=0.8\linewidth]{img/mailing/inter_flot.eps}
+%}
+\caption{Le flot entre les discussions \textcolor{olivegreen}{vertes} et  \textcolor{briquered}{rouge} est constitué des liens ou partie de liens en noire. Les liens en \textcolor{gray}{gris} ne sont pas pris en compte.}
+\label{fig:inter_dens_discussion_ex}
+\end{figure}
+
+
+
 Afin d'obtenir la $\Delta$-densité inter discussions entre $D_i$ et tout les autres discussions, nous utilisons la moyenne des densité inter discussion entre $D_i$ et les autres discussions, soit:
 
 \begin{equation}
@@ -168,6 +187,9 @@ La distribution cumulative inverse de la $\Delta$-densité inter discussions est
 Bien que similaire, le comportement de la $\Delta$-densité inter discussions diffère qualitativement de celui de la $\Delta$-densité.
 La $\Delta$-densité inter discussions croît également en fonction de $\Delta$ mais il y a toujours une différence notable entre $\Delta= 1\  mois$ et $\Delta= 1\ an$ ce qui n'est pas le cas pour la $\Delta$-densité.
 Cette différence est normale car lors du calcul de $\Delta$-densité le nombre de liens considérés est fixe peut importe $\Delta$ alors qu'il croît avec $\Delta$ lors du calcul de $\Delta$-densité inter discussions.
+Cet effet est visible dans la figure~\ref{fig:inter_dens_discussion_ex}.
+Le lien $(c,d)$ qui apparait peut avant $t_{\beta}$ n'est pas pris en compte si $\Delta$ est proche de $0$ alors qu'il est en parti pris en compte lorsqu'un $\Delta$ plus grand est considéré, ce qui est le cas dans la figure.
+
 Un autre facteur est aussi la duré considérée, $t_{\psi}'-t_{\beta}'$, qui est plus longue que la durée des discussions.
 \begin{figure}
 \centering
@@ -269,6 +291,8 @@ En ajoutant l'information temporelle, les discussions sont séparées par le tem
 C'est pourquoi un grand nombre de discussions n'ont pas de liens dans le flot quotient.
 Ce phénomène est d'autant plus vrai pour les petites discussions.
 
+
+
 Il faut aussi noter qu'il y a environ 20 fois plus de liens dans le flot quotient que dans le flot initial.
 Cela est normal car un lien dans le flot peut donner lieu à plusieurs liens dans le flot quotient.
 Ce cas est visible dans la figure~\ref{fig:graph-quotient}. 
@@ -276,14 +300,17 @@ Le lien $(x,y)$ du groupe violet du flot à gauche donne lieu au lien $(\textcol
 
 \begin{figure}
 \centering
-	\includegraphics[angle=-90, width=0.71\linewidth]{img/mailing/quotient-density}
+	\includegraphics[width=0.71\linewidth]{img/mailing/quotient-density}
 	\caption{$\Delta$-densité du flot de liens et du flot de liens quotien en fonction de $\Delta$ pour $\Delta=1mn, 1h, 12h, 1j, 7j, 30j, 1\ an$ et $20\ ans$.}
 	\label{fig:quotient-stream-density}
 \end{figure}
 
 La figure~\ref{fig:quotient-stream-density} présente la $\Delta$-densité du flot de liens initial et du flot quotient pour différentes valeurs de $\Delta$.
-Le flot quotient est plus $\Delta$-dense que le flot initial pour des valeurs de $\Delta$ importantes.
-Ce résultat est comparable a ce qui est obtenu dans un graphe.
+Le flot initial et le flot quotient ont le même comportant de densité mais le flot quotient est moins $\Delta$-dense que le flot initial.
+Ce résultat diffère par rapport à ce qui est obtenu dans un graphe.
+Cela est dù au nombre de n\oe uds qui augmente dans le flot quotient.
+Mais le flot quotient contient tout de même beaucoup de liens. 
+En effet, le degré moyen dans le flot quotient est moyenne 25 fois plus élevé que dans le flot.
 
 \subsection{Conclusion}
 
@@ -396,7 +423,7 @@ rappel(D_i)= \max_{j} \frac{|\mathfrak{D}_j \cap D_i|}{|D_i|}.
 
 Dans la figure~\ref{fig:rec_inclusion_niveau0}, est présenté la $pr\acute{e}cision$ et le $rappel$ des discussions en fonctions de leurs tailles.
 Chaque point représente la moyenne du $rappel$ et de $pr\acute{e}cision$ pour les groupes d'une taille donné.
-On voit qu'il y a un important rappel et ceux même pour les grandes discussions, ce qui veut dire qu'en générale une discussion $D_i$ est totalement incluse dans un groupe $\mathfrak{D}_j$.
+On voit qu'il y a un important rappel et ce même pour les grandes discussions, ce qui veut dire qu'en générale une discussion $D_i$ est totalement incluse dans un groupe $\mathfrak{D}_j$.
 En revanche, la précision est très faible car un groupe $\mathfrak{D}_j$ contient plusieurs discussions, ce qui est cohérent avec la taille très importante des groupes de $\mathfrak{D}_j$.
 
 \begin{figure}
@@ -423,7 +450,7 @@ Le niveau $0$ est la première partition trouvée par l'algorithme de Louvain su
 
 Soit $D_i \in D$ et $\mathfrak{D}_{\tilde{j}}(h)$ avec $h \in \mathbf{N}$, le groupe trouvé par la méthode de Louvain au niveau $h$ qui soit le plus proche de $D_i$ au niveau $h$, c'est-à-dire $|\mathfrak{D}_{\tilde{j}}(h)\cap D_i|= \max_{j} |\mathfrak{D}_{j}(h) \cap D_i|$.
 Avec ces définitions, on observe la relation suivante: $\mathfrak{D}_{\tilde{j}}(h)\cap D_i \subseteq \mathfrak{D}_{\tilde{j}}(h-1)\cap D_i$.
-La définition de $rappel$ de l'équation~\ref{eq:rappel} n'est donc pas adapté pour les niveaux inférieurs et nous l'adaptons de la manière suivante:
+La définition de $rappel$ de l'équation~\ref{eq:rappel} n'est donc pas adaptée pour les niveaux inférieurs et nous l'adaptons de la manière suivante:
 
 \begin{equation}
 rappel(D_i,h)= \max_{j} \frac{|\mathfrak{D}_j(h) \cap D_i|}{|D_i \cap \mathfrak{D}_{\tilde{j}}(h-1)|}.
