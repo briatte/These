@@ -111,6 +111,110 @@ Cependant, leur méthode semble favoriser les communautés de liens que dans des
 
 
 \section{Définition d'Expected Nodes}
+
+Une idée souvent utilisée lors de la détection de communautés de n\oe uds est qu'une communauté devrait avoir beaucoup de connexion en interne.
+Pour appliquer ce genre de définition intuitive, il est nécessaire de définir à quoi comparer le nombre de connexion interne.
+Le choix qui est fait avec la modularité et d'autres méthodes est de définir un modèle nul aléatoire où il n'existe pas de structure communautaire.
+Le but est de construire un graphe aléatoire qui partage un certains nombre de caractéristiques avec le graphe initial mais dont la structure a été détruite lors du mélange.
+
+Il existe de nombreux modèles et celui utilisé dans la modularité est le modèle de configuration~\cite{Bender1978a}.
+Dans ce modèle, le nombreux de n\oe uds et leur degré sont fixes mais la répartition des liens est aléatoire.
+Ainsi pour chaque n\oe uds, ses voisins sont tirés de manière aléatoire avec une probabilité proportionnelle à leur degré.
+Comme les liens sont mélangés dans ce modèle, on suppose qu'il n'existe plus de structure communautaire dans le graphe.
+
+Pour notre fonction de qualité \emph{Expected Nodes}, nous utilisons également le modèle de configuration.
+Avant d'aller plus loin et de définir formellement \emph{Expected Nodes}, il est utile d'avoir une définition informelle de la fonction de qualité.
+
+Le but est d'évaluer un groupe de liens.
+Afin qu'un groupe de liens soit évalué comme une bonne communauté, les liens devraient induire un nombre relativement faible de n\oe uds internes.
+En effet, plus le nombre de n\oe uds internes est faible, plus le groupe de liens ressemble à une clique.
+De manière similaire à la modularité, nous utilisons le configuration modèle pour calculer le nombre de n\oe uds interne espéré dans un modèle nul.
+Si le groupe de liens a moins de n\oe uds internes qu'espéré alors ça indique que le groupe de liens est plus dense et qu'il devrait donc avoir une évaluation élevée.
+
+Il est donc nécessaire de calculer l'espérance du nombre de n\oe uds interne, $\mu_{G}$, d'un groupe de liens, $L$, dans le modèle nul.
+Un n\oe uds de $G$ est interne si au moins un de ses  demi-liens appartient à $L$.
+Ainsi pour calculer $\mu_{G}$, il faut tirer aléatoirement et sans remise $2|L|$ demi-liens parmi les $2|E|$ demi-liens du  graphe aléatoire avec la m\^eme distribution de degrés.
+Soit $B_u$ la variable aléatoire correspondant au nombre de fois où le sommet $u$ est tiré.
+Cette variable suit une loi  hypergéométrique $B_u \sim \mathcal{G}\left(2|E|,d_G(u),2m\right)$.
+Avec cette notation, on définie $\mu_G$ de la manière suivante:
+
+\begin{equation}
+\label{eq:nbsommet_esp} \mu_{G}(|L|) = \sum_{u\in V} \mathbb{P}( B_u \geq 1 )
+=  \sum_{u \in V} 1 - \dfrac{ \binom{2|E|-d(u)}{2|L|} }{ \binom{2|E|}{2|L|} }. 
+\end{equation}
+
+Voici quelques propriétés de la fonction $\mu_{G}(|L|)$ :
+\begin{itemize}
+\item La fonction $\mu_{G}$ dépend uniquement de la séquence de degrés $\{d_G(v)\}_{v \in V}$. %\noe{ et du nombre d'arêtes}.
+On peut montrer que cette fonction est Schur-concave, ainsi plus les degrés sont uniformément répartis plus il sera surprenant d'observer un groupe de liens correspondant à peu de n\oe uds.
+\item Pour une distribution de degrés donnée, la fonction   $\mu_{G}(|L|)$ est une fonction croissante de $|E|$.
+\item Si $L=E$, alors le nombre de n\oe uds attendus est bien $|V|$.
+\item On a $\mu_{G}(1)\leq 2$, en effet le modèle nul n'interdit pas la présence de boucles.
+\end{itemize}
+
+Avec $\mu_G$, nous pouvons définir la qualité \emph{interne}, $Q_{in}$ d'un groupe de liens $L$:
+  
+\begin{equation}
+\label{eq:qin} Q_{in}(L) = \dfrac{\mu_{G}(|L|) - |V_{in}(L)|}{\mu_{G}(|L|)}.
+\end{equation}
+
+Avec cette formulation, pour un groupe de taille $|L|$, plus le nombre de n\oe uds interne est faible, plus $Q_{in}$ sera élevée.
+
+$Q_{in}$ permet d'évaluer la qualité interne d'un groupe mais il faut aussi tenir compte du voisinage.
+C'est pourquoi, nous définissons également une qualité externe.
+Le but est d'évaluer comment sont répartis les liens et n\oe uds adjacents.
+Pour ce faire, nous allons également comparer le nombre de n\oe uds adjactens observés aux nombre espéré dans le configuration modèle.
+Cependant à l'inverse de la qualité interne, la qualité externe est mauvaise si jamais le nombre de n\oe uds adjacent est plus faible qu'espéré.
+En effet, si il y a beaucoup de liens adjacents pour peu de n\oe uds adjacents, alors cela indique que le voisinage du groupe est dense et devrait être inclus dans le groupe.
+Le cas idéal est quand chaque lien adjacent est relié à un n\oe uds différent.
+
+Soit $\bar{d}(L,u) = \sum_{v \in V} \mathbf{1}_{(u,v) \in E \setminus L}$ le degré de $u$ limité aux liens adjacents et $\bar{d}(L)=\sum_{u \in V_{in}(L)} \bar{d}(L,u)$.
+L'espérance du nombre de n\oe uds adjacents est calculé comme le nombre de n\oe uds qui sont tirés lorsque $\bar{d}(L)$ demi-liens sont choisis aléatoirement et sans remise dans modèle de configuration où les liens de $L$ ont été préalablement retirés.
+Ce graphe aléatoire a la distribution de degré suivante: $\{d_{G \setminus L }(u)\}_{u \in V}$ où $G \setminus L = (V,E\setminus L)$.
+Dans ce cas, on ne tire pas aléatoirement un lien mais uniquement un demis-liens car l'autre demi-lien est un des demi-liens reliés aux n\oe uds internes.
+L'espérance du nombre de n\oe uds adjacents se définit de la manière suivante:
+
+\begin{equation}
+	\mathbb{E}[\bar{d}(L)] = \mu_{G\setminus L}(\bar{d(L)}/2).
+\end{equation}
+
+Une illustration de ce processus est présentée dans la figure~\ref{fig:retourt_ext}.
+Sur cette illustration, le groupe $L$ a un très mauvais voisinages et cela se reflète par un nombre de n\oe uds adjacents observés plus faible qu'espéré.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.7\linewidth]{img/ExpectedNodes/reroutageExt3}
+\caption{Groupe de liens $L$ en \textcolor{semilightblue}{bleu} et ces liens adjacents en \textcolor{pinkyred}{rouges} dans le graphe initial à gauche.
+\`A droite, une réalisation du modèle de configuration où $L$ a été figé.}
+\label{fig:retourt_ext}
+\end{figure}
+
+Comme il est intéressant de pénaliser les groupes ayant de mauvais voisinage mais qu'un bon voisinage n'est pas suffisant pour définir une bonne communauté, nous bornons à $0$ la qualité externe:
+
+\begin{equation}
+\label{eq:qext} Q_{ext}(L) = min \left(0, \dfrac{|V_{out}(L)| - \mu_{G\setminus L}(\bar{d}(L)/2)}{\mu_{G\setminus L}(\bar{d}(L)/2)} \right).
+\end{equation}
+
+
+Enfin, nous définissons \emph{Expected Nodes} pour un groupe $L$:
+\begin{equation}
+	\label{eq:qAlg}
+	Q(L)  =  2\dfrac{ |L|Q_{in}(L) + |L_{out}|Q_{ext}(L)}{|L|+|L_{out}|}.
+\end{equation}
+
+Nous utilisons la moyenne pondérée entre la qualité interne et externe car la qualité interne est dû aux liens de $L$ et la qualité externe par les liens adjacents.
+Nous détaillons certaines propriétés des formules \ref{eq:qext} et \ref{eq:qAlg} découlant des propriétés de $\mu_{G}$ :
+\begin{itemize}
+\item En s'intéressant aux n\oe uds adjacents $V_{out}$, on pénalise la présence de n\oe uds adjacents fortement connectés avec les n\oe uds incidents à $L$.
+\item Ainsi la qualité d'un lien isolé dépend du nombre de triangles dans laquelle il se trouve. Un lien séparant deux groupes de n\oe uds disjoints peut avoir une qualité positive.
+\item La qualité du groupe contenant tout les liens est nulle.
+\end{itemize}
+
+Nous définissons \emph{Expected Nodes} pour une partition de liens $\mathcal{L}$ comme la moyenne pondérée de la qualité de chaque groupe:
+\begin{equation}
+\label{eq:qualite_globale} Q_G(\mathcal{L}) = \dfrac{\sum_{L\in \mathcal{L}} |L|Q(L)}{|E|}.
+\end{equation}
+
 \subsection{Calcul et optimisation}
 
 
