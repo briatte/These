@@ -1,10 +1,8 @@
-\chapter{Extensions temporelle des graphes}
+\chapter{Flots de liens: extensions temporelle des graphes}
 \minitoc
+\label{chap:def_flot}
 
-\section{\`Etat de l'art des formalismes et outils}
-
-\section{L'approche flot de liens}
-\subsection{Définition}
+\section{Définition}
 \label{sec:definition}
 Un flot de liens est défini comme un triplet: $\mathcal{L}=(T,V,E)$, où $T=[\alpha, \omega]$ est un intervalle de temps, $V$ un ensemble de $n$ n\oe uds et $E\subseteq T\times T \times V \times V$ un ensemble de $m$ liens.
 Les liens de $E$ sont des quadruplets $(b,e,u,v)$, signifiant que la paire de n\oe uds $(u, v)$ est connectée sur l'intervalle $[b,e] \subseteq [\alpha,\omega]$.
@@ -23,7 +21,7 @@ $V(E')= {u}_{(b,e,u,v) \ in E'}$ sommets induits par un ensemble de liens.
 $\xi(L,\Delta)$ ajout de $\Delta$ à chaque lien.
 
 \inline{Que des flots avec durées ou bien delta densité?}
-\subsection{Sous-flot induit}
+\section{Sous-flot induit}
 Sous flot induit par un ensemble de lien $E'$: $L(E')=([\beta_{E'},\psi_{E'},V(E'),E'])$.
 
 
@@ -41,7 +39,7 @@ Il est aussi possible de combiner ces notions.
 Par exemple avec $V' \subset V$, $L_{\alpha'..\omega'}(V'^2)$ est le sous flot correspondant au lien entre les n\oe uds de $V'$ sur l'intervalle $[\alpha', \omega']$.
 
 
-\subsection{Degré et densité}
+\section{Degré et densité}
 Beaucoup de notions sont développées autour de cet objet.
 Degré temporelle d'un n\oe ud $u$:
 
@@ -76,10 +74,6 @@ C'est le cas de la densité:
 
 
 
-\section{Manipulation de flots}
-Existence de la lib
-
-\subsection{Représentation}
 
 
 \chapter*{Liste des notations}

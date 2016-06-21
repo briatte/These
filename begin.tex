@@ -14,6 +14,7 @@ headsepline, % Uncomment to get a line under the header
 ]{MastersDoctoralThesis} % The class file specifying the document structure
 
 \usepackage[utf8]{inputenc}
+\DeclareUnicodeCharacter{2010}{-}
 %\usepackage[french]{babel}
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -22,11 +23,12 @@ headsepline, % Uncomment to get a line under the header
 \usepackage{color}
 \usepackage{xcolor}
 \usepackage{url}
-\usepackage{subfig}
+\usepackage{subcaption}
 \usepackage{glossaries}
 \usepackage{hyperref}
 \usepackage{palatino} % Use the Palatino font by default
 \usepackage{minitoc}
+
 
 %\usepackage[backend=bibtex,style=authoryear,natbib=true]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
  
@@ -42,6 +44,16 @@ headsepline, % Uncomment to get a line under the header
 \definecolor{briquered}{RGB}{155,61,34}
 \definecolor{semilightblue}{RGB}{52,153,255}
 \definecolor{pinkyred}{RGB}{255,103,103}
+
+\definecolor{plum}{HTML}{92268F}
+\definecolor{oliveGreen}{HTML}{007E00}
+
+
+
+\definecolor{rose_cochon}{HTML}{CE6363}
+\definecolor{bleu_random}{HTML}{002CA6}
+\definecolor{violet_cool}{HTML}{4E005C}
+\definecolor{vert_fonce}{HTML}{005413}
 %-------------------------------
 
 
@@ -57,8 +69,8 @@ headsepline, % Uncomment to get a line under the header
 \geometry{
 	paper=a4paper, % Change to letterpaper for US letter
 	inner=1.5cm, % Inner margin
-	outer=3.3cm, % Outer margin
-	bindingoffset=2cm, % Binding offset
+	outer=2.5cm, % Outer margin
+	bindingoffset=1cm, % Binding offset
 	top=1.5cm, % Top margin
 	bottom=1.5cm, % Bottom margin
 	%showframe,% show how the type block is set on the page
@@ -90,7 +102,5 @@ headsepline, % Uncomment to get a line under the header
 \newcommand{\REF}{\textcolor{red}{REF}}
 \newcommand{\com}[1]{\textcolor{red}{#1} }
 
-\definecolor{plum}{HTML}{92268F}
-\definecolor{oliveGreen}{HTML}{007E00}
 
 

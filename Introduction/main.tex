@@ -1,5 +1,73 @@
-\chapter{Introduction}
+
+\chapter*{Introduction}
+\addstarredchapter{Introduction}
+
+\chapter{État de l'art sur la détection de communautés et les réseaux dynamiques}
 \minitoc
+Au cours de cette thèse, nous étudions deux axes de recherches lié aux graphes qui sont orthogonaux.
+D'une part, il s'agit de la détection de structures dans les graphes et plus particulièrement de communautés.
+Un communauté est un sous-ensemble de n\oe uds de manière à ce qu'ils soient fortement connectés.
+Il n'existe cependant aucune définition exact et la notion de communauté fortement connectée dépends du contexte et de la méthode.
+Malgré cette définition floue, une structure communautaire a été trouvée dans de nombreux graphes dans plusieurs domaines tel que les réseaux de [..] \REF.
+Ces notions de communautés sont définies dans la section~\ref{sec:intro_communaute}.\\
+
+D'autre part, il a été observé que la modélisation d'un réseau sous la forme d'un graphe peut poser problème notamment quand le réseau change au cours du temps \REF.
+Face à ce problème plusieurs extensions de la théorie des graphes ont été proposées et elles sont résumées dans la section~\ref{sec:intro_extension_temporelle}.
+
+
+
 \section{Communauté dans les graphes}
-\cite{Fortunato2010}
-\section{Extension temporelle}
+\label{sec:intro_communaute}
+
+Ce champs de recherche est très vaste et il est illusoire de vouloir énumérer les méthodes existantes dans ce domaine car les caractéristiques voulues d'une communauté peuvent varier~\cite{Coscia2011}.
+Il y a tout de même deux grandes catégories qui permette de séparer les méthodes existantes.
+Dans ces deux catégories, les méthodes existantes cherchent à capturer 
+des communautés fortement connectées mais elles différent sur ce qu'elles capturent comme structures communautaires.
+Les communautés d'une structure communautaires peuvent être disjointes, c'est-à-dire que deux communautés n'ont aucun n\oe uds en commun, ou alors recouvrantes, c'est-à-dire que deux communautés peuvent avoir plusieurs n\oe uds en commun.
+Dans le premier cas, on parle de partition des n\oe uds et dans le second on parle de couverture ou partitions chevauchantes de n\oe uds.
+Dans ces deux cas, il y a également une contrainte sur le fait que tout les n\oe uds doivent appartenir à au moins une communauté.
+C'est deux structures sont correspondent à deux visions possibles de l'organisation d'un graphe et du réseau sous-jacent.
+Nous présentons ces deux catégories dans les sous-sections suivantes.
+
+\subsection{Parititons de n\oe uds}
+Afin de mieux comprendre ce que peux capturer une parition de n\oe uds, il est plus facile de partir d'un exemple.
+Dans l'étude de Stehlé~\emph{et al.}~\cite{Stehle2011}, des enfants d'une école primaire ont eu pendant 2 jours des capteurs enregistrant lorsque deux enfant sont à une distance de moins de 1m50 l'un de l'autre.
+Ce dispositif permet de mesurer les interactions entre élèves et de construire le graphe des relations entre élève à l'école.
+Une illustration du graphe obtenu est visible dans la figure~\ref{fig:ecole_primaire}.
+La classe de chaque élève est également connue.
+Comme chaque élève appartient à une et une seule classe, les classes forment une partition des élèves.
+Cette partition est une bonne structure communautaire car on remarque que les élèves d'une même classe parle beaucoup entre eux mais ils parlent peu entre élèves de classes différentes.
+Cela se remarque particulièrement bien pour la classe 3A.
+Il existe beaucoup de liens entre les élèves de la classe 3A et aucun entre eux et les élèves de la classe 5A par exemple.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.7\linewidth]{img/Intro/ecole_primaire}
+\caption{Graphe de contact des enfant d'une école primaire. L'épaisseur du lien représente la durée de communication entre deux élèves. La couleur représente la classe de chaque élèves. Les professeurs sont en gris.\protect\footnotemark}
+\label{fig:ecole_primaire}
+\end{figure}
+\footnotetext{Image provenant de \url{http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0023176}.}
+
+Afin de capturer des partitions de n\oe uds, beaucoup de méthodes existent.
+Il y a d'ailleurs régulièrement des état de l'art qui sont publiés~\cite{Fortunato2010,Plantie2013a, Malliaros2013a, Harenberg2014a}
+
+limite modu: \cite{Fortunato2007} extension \cite{Reichardt2006, Delvenne2010}
+modularité~\cite{Newman2004}, infomap SBM \cite{Holland1983a}, LPA, Surprise
+
+lien entre SBM et modularité\cite{Newman2016}
+\subsection{Couverture de n\oe uds}
+\label{subsec:cover}
+infomap, SBM, LPA, fonction de qualité locale (conductance, cohésion), fonction de proximité
+
+\cite{Danisch2012, Kanawati2014, Xie2013}
+\subsection{Comapraison}
+ARI, NMI, F1-score, Omega index.
+
+
+\section{Extension temporelle des graphes}
+\label{sec:intro_extension_temporelle}
+\subsection{snapshot}
+snap + fenetre glissante
+\subsection{TVG/Evolving}
+\subsection{Flots de liens}
+Le formalisme de flot de liens est défini plus en profondeur dans le chapitre~\ref{chap:def_flot}.
