@@ -275,7 +275,7 @@ Sur cette illustration, le groupe $L$ a un très mauvais voisinage et cela se re
 \begin{figure}
 \centering
 \includegraphics[width=0.7\linewidth]{img/ExpectedNodes/reroutageExt3}
-\caption{Groupe de liens $L$ en \textcolor{semilightblue}{bleu} et ces liens adjacents en \textcolor{pinkyred}{rouges} dans le graphe initial à gauche.
+\caption{Groupe de liens $L$ en \textcolor{semilightblue}{\textbf{bleu}} et ces liens adjacents en \textcolor{pinkyred}{\textbf{rose}} pointillés dans le graphe initial à gauche.
 \`A droite, une réalisation du modèle de configuration où $L$ a été figé.}
 \label{fig:retourt_ext}
 \end{figure}
@@ -298,12 +298,26 @@ C'est pourquoi nous pondérons $Q_{in}$ par $|L|$ et $Q_{ext}$ par $|L_{out}|$.
 
 
 
-Nous détaillons certaines propriétés des formules \ref{eq:qext} et \ref{eq:qAlg} découlant des propriétés de $\mu_{G}$ :
-\begin{itemize}
-\item En s'intéressant aux n\oe uds adjacents $V_{out}$, on pénalise la présence de n\oe uds adjacents fortement connectés avec les n\oe uds incidents à $L$.
-\item Ainsi la qualité d'un lien isolé dépend du nombre de triangles dans laquelle il se trouve. Un lien séparant deux groupes de n\oe uds disjoints peut avoir une qualité positive.
-\item La qualité du groupe contenant tout les liens est nulle.
-\end{itemize}
+Nous détaillons maintenant certaines propriétés des formules \ref{eq:qext} et \ref{eq:qAlg} découlant des propriétés de $\mu_{G}$ en nous appuyant sur des exemples.
+En s'intéressant aux n\oe uds adjacents $V_{out}$, on pénalise la présence de n\oe uds adjacents fortement connectés avec les n\oe uds incidents à $L$.
+Prenons le cas extrême où $L$ est une clique qui est incluse dans une plus grande clique alors que le reste du graphe est quelconque.
+Dans cette situation, $Q_{in}(L)$ est maximum car le groupe est une clique.
+En revanche, $Q_{ext}(L)$ va fortement pénaliser la qualité du groupe car il y a dans ce cas beaucoup de liens adjacents pour très peu de n\oe uds adjacents.
+Ainsi, la $Q_{ext}$ permet de pénaliser les n\oe uds adjacents ayant beaucoup de liens avec $L$.
+L'idée est que ces liens adjacents devraient être intégrés à $L$.
+
+Bien évidement, la solution n'est pas de systématiquement d'intégrer les liens adjacents car intégré un lien adjacent peut également faire baisser $Q_{in}$.
+Par exemple, un lien reliant deux groupes denses disjoints peut avoir une qualité positive.
+Cette situation est visible dans la figure~\ref{fig:Partition_Couverture} partie gauche.
+Ce lien tout seul a d'une part une qualité interne positive car $\mu_G(1) \leq 2$ et d'autre part il a une qualité externe nulle car chaque n\oe ud adjacent n'est relié qu'à un seul lien adjacent ce qui est le cas idéale.
+Dans une situation plus générale, la qualité d'un lien isolé dépend du nombre de triangles dans lequel il se trouve.
+Moins le nombre de triangle est élevé, meilleure sera la qualité externe.
+
+Enfin il est intéressant de noter que la qualité du groupe contenant tout les liens est nulle.
+En effet comme dit précédemment, $Q_{in}(E)$ égal à zéro, voir l'équation \ref{eq:nbsommet_esp}.
+De plus, si le groupe contient tout les liens alors il n'y a plus de liens adjacents et donc seule  $Q_{in}(E)$ influe sur $Q(E)$.
+
+
 
 Nous définissons \emph{Expected Nodes} pour une partition de liens $\mathcal{L}$ comme la moyenne pondérée de la qualité de chaque groupe:
 \begin{equation}
@@ -353,9 +367,23 @@ Comme le graphe est un graphe complet, la meilleur solution est d'avoir un seul 
 La figure~\ref{fig:1Cres} présente les résultats.
 Pour chaque valeur de $p$ et chaque fonction de qualité, nous calculons les évaluations des partitions en deux et en trois groupes ainsi que l'évaluation de la partition triviale.
 L'évaluation de la partition triviale n'est pas dépendante de $p$ et n'est calculée qu'une seule fois.
+Tout d'abord, la construction de cet exemple est symétrique pour la partition en deux groupes.
+En effet, la partition en eux groupes lorsque $p$ égal $24$ est complètement équivalente à la partition en deux groupes lorsque $p$ égal $76$.
+Par ailleurs, il est possible de définir formellement la qualité de  chacune de ses partitions selon toutes les fonctions de qualité.
+Cependant, la complexité des équations, surtout pour \emph{Expected Nodes} et $Evans_x$, rend le résultat difficilement interprétable.
+
+
 De manière assez surprenante, les fonctions $Evans1$ et $Evans2$ ne passent pas ce test car elles évaluent la partition en deux ou trois groupes comme meilleure que la partition triviale.
-Selon la \emph{Partition Density}, \emph{Expected Nodes} et $E_3$, la partition triviale est la meilleur des partitions.
+Selon la \emph{Partition Density}, \emph{Expected Nodes} et $Evans3$, la partition triviale est la meilleur des partitions.
 La fonction $Evans3$ diffère légèrement des deux autres car elle a une amplitude plus faible ($\approx 10^{-3}$).
+
+%\begin{equation}
+%Expected\_nodes(p) = \dfrac{1}{C(100)}(C(p) Q(L_{gauche}) + C(100-p) Q(L_{droite}))
+%\end{equation}
+%\begin{equation}
+%Q(L_{gauche})= 2\dfrac{C(p) 100 (1 - \dfrac{ \binom{2C(100) - 99}{2C(p)} }{ \binom{2C(100)}{2C(p)} }) - (100-p)p }{C(p)+ (100-p)p}
+%\end{equation}
+%$C(p)= \dfrac{p(p-1)}{2}$
 
 \begin{figure}
 \centering
@@ -484,6 +512,13 @@ Ce phénomène est très pénalisé par \emph{Expected Nodes}.
 Enfin selon \emph{Expected Nodes}, la partition $E2$ est une mauvaise partition et cela est également dù aux liens inter-communautés.
 En effet en les fusionnant à une communauté adjacente, cela augmente fortement le nombre de n\oe uds interne ce qui fait baisser $Q_{in}$.
 
+Avec ce test, nous mettons en évidence les limites des fonctions de qualités existantes.
+Les fonctions de qualité $Evans_x$ ne peuvent pas permettre de capturer les vérités de terrain généré par LFR.
+En effet, l'algorithme de Louvain est capable de trouver une partition ayant une évaluation plus élevé que la vérité de terrain.
+La \emph{Partition Density}, quant à elle, souffre surtout de son incapacité à différencier clairement des partitions différentes.
+Cela se matérialise par des évaluations très similaires pour les vérités de terrain et la partition $LC$.
+Il en résulte que la \emph{Partition Density} est sensible aux faibles perturbations.
+Lors de ces tests, \emph{Expected Nodes} ne semble pas souffrir de ces défauts.
 Pour ces raisons, nous pensons que \emph{Expected Nodes} est une mesure qui permet de bien évaluer les partitions de liens.
 
 \begin{figure}
@@ -548,7 +583,7 @@ On continue de modifier la solution courante tant qu'elle est améliorable par u
 Malheureusement cette approche souffre de deux problème majeurs.
 Tout d'abord le calcul du gain est couteux et rend impossible l'étude de grands jeux de données.
 Ensuite dans nos tests dans les graphes généré par LFR, il semble que cette méthode reste bloquée sur des optimum locaux bien plus faibles que la vérité de terrain.
-Il faudrait donc tester d'autres heuristiques d'optimisation mais aussi travailler sur une méthode de calcul du gain plus optimisé.
+Il faudrait donc tester d'autres heuristiques d'optimisation mais aussi travailler sur une méthode de calcul du gain plus optimisée.
 
 Malgré ces limitations, nous avons tout de même tiré parti de cet algorithme naïf afin de tester si une partition donnée peut être améliorée.
 En effet même si l'algorithme n'est pas adapté pour trouver une partition ayant une qualité élevée en partant de zéro, il peut modifier une partition donnée pour l'améliorer. 
@@ -563,16 +598,94 @@ Après optimisation, nous constatons que les partitions $TA$ et $TB$ peuvent êt
 \section{Conclusion}
 
 Nous considérons de nouveaux critères pour l'évaluation des partitions de liens tenant compte de la répartition des n\oe uds internes et externes d'un groupe.
-%Afin de détecter des groupes de liens, nous avons définie 
 \`A partir de ces critères, nous définissons une mesure de qualité, \emph{Expected Nodes}, basée sur la différence entre le nombre de n\oe uds induits par un groupe de lien et le nombre de n\oe uds attendu dans un modèle nul.
+Ce processus est similaire à celui qui a donné lieu à la modularité.
+En plus de s'inspirer de la modularité, \emph{Expected Nodes} ne prends pas uniquement en compte la répartition de ses n\oe uds induits mais également celle de n \oe uds et liens adjacents.
+Ce changement permet d'avoir une évaluation plus fine d'une communauté.
 Pour montrer la pertinence de cette nouvelle fonction de qualité, nous évaluons quatre fonctions de qualité de la littérature.
-Nous montrons que sur nos jeux de tests \emph{Expected Nodes} semble être la plus à même de capturer la vérité de terrain.
-Le premier algorithme agglomératif d'optimisation glouton ne permet pas pour l'instant d'obtenir des partitions avec des scores élevés.
+Nous montrons que, sur nos jeux de tests, \emph{Expected Nodes} semble être la plus à même de capturer la vérité de terrain et de différencier des partitions différentes.
+Malgré le coût de calcul élevé d'\emph{Expected Nodes}, nous avons implémenté un premier algorithme d'optimisation agglomératif.
+Cet algorithme n'est, pour l'instant, pas capable d'obtenir des partitions avec des scores élevés.
+Cependant il nous a permis de vérifier que les vérités de terrain généré par LFR sont des quasi-optimum locaux selon \emph{Expected Nodes}.
+Bien qu'il soit possible d'améliorer légèrement les vérités de terrains, la structure de l'optimum local est très proche de la partition initiale.
 
 
 \subsection{Perspective}
 
+Les perspectives autour d'\emph{Expected Nodes} sont nombreuses et portent sur deux points: d'une part le calcul et l'optimisation d'\emph{Expected Nodes} et d'autre part les cas d'applications possibles.
 
-hyper graph
+\subsubsection{Amélioration de l'optimisation d'\emph{Expected Nodes}}
 
-limitation des partitions de liens: chevauchement/hiérarchique, bridge.
+\paragraph{Considérer plus de modifications}
+Il semble que les mouvement envisagés pour modifier une solution courante ne soient pas suffisant pour échapper à des maximums locaux qui sont bien inférieurs à la qualité des vérités de terrain.
+Il faudrait donc en envisager de nouveaux.
+Inclure la possibilité de diviser une communauté en deux ne semble pas envisageable car ils existent de trop nombreuses coupes possible et le coût de calcul associé est trop couteux.
+Il semble, par contre, prometteur de considérer des mouvements associés à un n\oe ud.
+En effet au lieu de changer un à un les lien d'une communauté, il devrait être possible d'intégrer en un seul mouvement tous les liens adjacents qui sont reliés à un n\oe ud adjacent donné.
+Pour l'illustrer ce mouvement, reprenons l'exemple d'une clique incluse dans une autre clique plus grande.
+La solution finale devrait être la clique maximal.
+Si l'on ne considère que l'ajout de lien un à un\,\footnote{Dans le cas où la fusion de communauté n'est pas une option viable.}, alors il n'est pas possible d'atteindre la clique maximal.
+L'algorithme est bloqué car l'ajout d'un unique lien détériore la solution courante.
+Si on considère l'ajout de tous les liens adjacents à un n\oe ud adjacent donné, alors, après l'ajout, le groupe considéré est toujours une clique et la qualité interne ne diminue pas mais en plus on peut espérer faire diminuer la pénalisation de la qualité externe.
+De cette manière, il devrait être possible d'éviter des maximums locaux.
+Plus globalement, les mouvement faisant intervenir plusieurs liens d'un seul coup semblent intéressants.
+
+
+
+\paragraph{Diminuer le coût de calcul du gain}
+Ici, il ne s'agit pas d'améliorer la performance de l'algorithme en terme de qualité obtenue par la partition trouvée par l'algorithme mais de le rendre plus rapide.
+Dans sa version courante, l'algorithme est trop couteux pour traiter des graphes ayant plus de quelques dizaines de milliers de liens.
+La force de l'algorithme de Louvain réside dans l'existence d'une expression analytique du gain de fusion de deux communautés qui est rapide à évaluer.
+Dans notre algorithme, la lenteur est justement due au calcul du gain qui est très coûteux.
+En effet, nous ne calculons pas directement le gain d'un mouvement mais la différence entre la qualité courante et la qualité résultant du mouvement.
+C'est une différence importante car, dans notre cas, il faut calculer de zéro la qualité des communautés impactées.
+Une manière de résoudre ce problème serait de ne pas partir de zéro mais de calculer localement les changements ayant un impact.
+Prenons le cas de la fusion de communautés $A$ et $B$.
+Cela est simple pour la qualité interne car elle ne dépend que du nombre de n\oe uds et liens internes.
+Le nouveau nombre de liens, après fusion, est simplement la somme des liens des communauté initiales.
+Le nouveau nombre de n\oe uds internes est la taille de l'union des n\oe uds internes.
+La situation est plus complexe pour la qualité externe.
+Le nouveau nombre de liens adjacents n'est pas simplement une somme.
+De même, l'identité et le degré des nouveaux n\oe uds adjacents dans $G \setminus (A \cup B)$ ne sont pas triviales à calculer.
+Il faudrait des parcours locaux sur $(A \cup B)$ et son voisinage pour arriver à mettre à jours ces données nécessaires au calcul de $Q_{ext}$. 
+Si ce parcours est fait suffisamment soigneusement, il est surement possible de gagner en terme de vitesse d'exécution.
+
+
+\paragraph{Changer la stratégie d'optimisation}
+Une autre source potentielle de gain en vitesse de l'algorithme est la stratégie d'optimisation.
+Lors d'une itération, nous appliquons la meilleur fusion de communauté ou le meilleur changement de communauté d'un lien.
+Appliquer le meilleur mouvement peut améliorer la convergence de l'algorithme vers l'optimum local mais cela est coûteux car lors d'une itération tous les gains doivent être calculés.
+C'est problématique car c'est justement le calcul du gain qui est très coûteux.
+Une solution face à ce problème est d'utiliser une variante stochastique de l'algorithme.
+Dans cette variante, ce n'est pas le meilleur changement qui est appliqué mais le premier qui mène à une amélioration de la qualité.
+Pour ce faire, il est nécessaire de considérer un ordre aléatoire des mouvements possibles et d'appliquer le premier dont le gain est positif puis de recommencer.
+Avec ce changement, on teste beaucoup moins de mouvements avant d'en appliquer un.
+Cependant, il est possible que plus de mouvements soient nécessaires avant d'arriver à un optimum local.
+Par ailleurs avec ce changement, l'algorithme n'est plus déterministe car il dépend de l'ordre d'évaluation des mouvements.
+Il faudrait donc être très prudent vis-à-vis de ses aspects, lors du test de cette technique.
+
+\subsubsection{Cas d'utilisation d'\emph{Expected Nodes}}
+Nous avons parlé de moyens possible pour trouver une méthode d'optimisation efficace d'\emph{Expected Nodes}.
+Il est également nécessaire de revenir sur l'utilisation d'\emph{Expected Nodes}.
+Nous avons testé \emph{Expected Nodes} sur un algorithme largement utilisé dans la littérature et les résultats sont encourageants.
+Il y a cependant une différence majeur dans la manière dont nous avons testé \emph{Expected Nodes} vis-à-vis des autres fonctions de qualités.
+Il n'existe pas, pour l'instant, d'algorithme efficace pour trouver une partition maximisant \emph{Expected Nodes}.
+C'est pourquoi nous testons des partitions trouvées empiriquement par d'autres moyen.
+Cependant, il existe peut être une partition que nous n'avons pas testé qui aurait une bien meilleur qualité que les vérité de terrains.
+L'amélioration de l'algorithme d'optimisation et le test d'autres partition accroitraient la pertinence des partitions testées et ainsi le bien fondé d'\emph{Expected Nodes}.
+De manière analogue, il serait intéressant d'évaluer \emph{Expected Nodes} sur des jeux de données ayant une réelle vérité de terrain sur les liens, que ce soit des données réelles ou simulées.
+Plus globalement, il serait intéressant de comprendre ce qu'il est possible de capturer et représenter comme structure avec une partition de liens.
+
+Nous avons parlé jusque maintenant de l'application d'\emph{Expected Nodes} sur des graphes non pondérés et non dirigés.
+La question de la pondération est délicate à prendre en compte pour \emph{Expected Nodes}.
+En effet, notre méthode repose sur des tirages aléatoires de demi-liens.
+La notion de tirage est intrinsèquement lié à des valeurs entières.
+En effet, il n'existe pas à ma connaissance de pendant continue à la loi hypergéométrique;
+on ne tire pas aléatoirement $0.6$ demi-liens parmi $14.3$ demi liens possible.
+L'application d'\emph{Expected Nodes} à un graphe pondéré semble donc compromise.
+Cependant, il devrait être trivialement possible de considérer des multigraphes.
+Dans les multigraphes, deux n\oe uds peuvent être relié par plus qu'un lien.
+Les notions de tirages aléatoires peuvent s'adapter à ce genre graphe assez facilement.
+Il y a toute fois une différence majeur lorsque l'on considère les multigraphes par rapport aux graphes classiques: les contraintes sur la partition résultat.
+Dans le cas des multigraphes, il serait surement intéressant d'ajouter la contrainte que chaque communauté ne doit contenir qu'une seule occurrence d'un lien donné.
+Ainsi s'il existe deux liens entre $u$ et $v$, alors ces deux liens devront être dans deux communautés différentes.
