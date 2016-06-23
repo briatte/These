@@ -8,7 +8,7 @@ Au cours de cette thèse, nous étudions deux axes de recherches lié aux graphe
 D'une part, il s'agit de la détection de structures dans les graphes et plus particulièrement de communautés.
 Un communauté est un sous-ensemble de n\oe uds de manière à ce qu'ils soient fortement connectés.
 Il n'existe cependant aucune définition exact et la notion de communauté fortement connectée dépends du contexte et de la méthode.
-Malgré cette définition floue, une structure communautaire a été trouvée dans de nombreux graphes dans plusieurs domaines tel que les réseaux de [..] \REF.
+Malgré cette définition floue, une structure communautaire a été trouvée dans de nombreux graphes dans plusieurs domaines tel que les réseaux de [..] dans le cerveau \cite{DeReus2014}, réseau d'eau \cite{DiNardo2015} , animaux \cite{Farine2015}\REF .
 Ces notions de communautés sont définies dans la section~\ref{sec:intro_communaute}.\\
 
 D'autre part, il a été observé que la modélisation d'un réseau sous la forme d'un graphe peut poser problème notamment quand le réseau change au cours du temps \REF.
@@ -53,21 +53,38 @@ Il y a d'ailleurs régulièrement des état de l'art qui sont publiés~\cite{For
 
 limite modu: \cite{Fortunato2007} extension \cite{Reichardt2006, Delvenne2010}
 modularité~\cite{Newman2004}, infomap SBM \cite{Holland1983a}, LPA, Surprise
-
+extension modularité: \cite{Delvenne2010}
 lien entre SBM et modularité\cite{Newman2016}
 \subsection{Couverture de n\oe uds}
 \label{subsec:cover}
-infomap, SBM, LPA, fonction de qualité locale (conductance, cohésion), fonction de proximité
+infomap\cite{Esquivel2011}, SBM, LPA, fonction de qualité locale (conductance, cohésion), fonction de proximité
+\cite{Evans2009} evans
 
+Demon \cite{Coscia2012c} LPA
 \cite{Danisch2012, Kanawati2014, Xie2013}
 \subsection{Comapraison}
-ARI, NMI, F1-score, Omega index.
+ARI, NMI \cite{Danon2005}, F1-score, Omega index.
 
 
 \section{Extension temporelle des graphes}
 \label{sec:intro_extension_temporelle}
 \subsection{snapshot}
-snap + fenetre glissante
+snap + fenetre glissante \cite{de2016detection} change point snap
+
+\cite{DeDomenico2014} info map sur du multi layer
+
+\cite{Chakrabarti2006,Chen2013} current + stabilité
+\cite{Corneli2016} SBM sur chaque tranche
 \subsection{TVG/Evolving}
+\cite{Figueiredo2012} random walk.
+\cite{Cazabet2010} conductance sur TVG
+Suivi dans les snapshot de la force d'une communauté: \cite{Du2015}
+\cite{Caceres2013} time scale on tmporal networks 
+\cite{Cordeiro2016} évolution modularité
+\cite{Epasto2015} le plus dense à un instant
 \subsection{Flots de liens}
+
+
 Le formalisme de flot de liens est défini plus en profondeur dans le chapitre~\ref{chap:def_flot}.
+
+centralité \cite{Costa2015}
