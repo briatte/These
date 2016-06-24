@@ -4,12 +4,12 @@
 
 \chapter{État de l'art sur la détection de communautés et les réseaux dynamiques}
 \minitoc
-Au cours de cette thèse, nous étudions deux axes de recherches lié aux graphes qui sont orthogonaux.
+Au cours de cette thèse, nous étudions deux axes de recherches liés aux graphes qui sont orthogonaux.
 D'une part, il s'agit de la détection de structures dans les graphes et plus particulièrement de communautés.
 Un communauté est un sous-ensemble de n\oe uds de manière à ce qu'ils soient fortement connectés.
 Il n'existe cependant aucune définition exact et la notion de communauté fortement connectée dépends du contexte et de la méthode.
-Malgré cette définition floue, une structure communautaire a été trouvée dans de nombreux graphes dans plusieurs domaines tel que les réseaux de [..] \REF.
-Ces notions de communautés sont définies dans la section~\ref{sec:intro_communaute}.\\
+Malgré cette définition floue, des structures communautaires ont été trouvées dans de nombreux graphes dans plusieurs domaines tel que les réseaux de [..] \REF.
+Ces notions de communautés et les méthodes de détection sont définies dans la section~\ref{sec:intro_communaute}.\\
 
 D'autre part, il a été observé que la modélisation d'un réseau sous la forme d'un graphe peut poser problème notamment quand le réseau change au cours du temps \REF.
 Face à ce problème plusieurs extensions de la théorie des graphes ont été proposées et elles sont résumées dans la section~\ref{sec:intro_extension_temporelle}.
@@ -52,22 +52,36 @@ Afin de capturer des partitions de n\oe uds, beaucoup de méthodes existent.
 Il y a d'ailleurs régulièrement des état de l'art qui sont publiés~\cite{Fortunato2010,Plantie2013a, Malliaros2013a, Harenberg2014a}
 
 limite modu: \cite{Fortunato2007} extension \cite{Reichardt2006, Delvenne2010}
-modularité~\cite{Newman2004}, infomap SBM \cite{Holland1983a}, LPA, Surprise
+modularité~\cite{Newman2004}, infomap, SBM \cite{Holland1983a}, LPA, Surprise
 
 lien entre SBM et modularité\cite{Newman2016}
 \subsection{Couverture de n\oe uds}
 \label{subsec:cover}
-infomap, SBM, LPA, fonction de qualité locale (conductance, cohésion), fonction de proximité
+Etat de l'art.
+\cite{Danisch2012, Kanawati2014, Xie2013,Bandyopadhyay2015}
 
-\cite{Danisch2012, Kanawati2014, Xie2013}
+infomap, SBM, MMSBM~\cite{Ball2011,Airoldi2008} , LPA, fonction de qualité locale (conductance, cohésion), fonction de proximité
+
+
 \subsection{Comapraison}
 ARI, NMI, F1-score, Omega index.
 
 
 \section{Extension temporelle des graphes}
 \label{sec:intro_extension_temporelle}
+
+application:
+Mobile: \cite{Aledavood2015}
+Diffusions \cite{Backlund2014}
+Face-to-face interaction: \cite{Barrat2013,Asur2009}
+Communauté TVG: \cite{Bassett2013,Bazzi2014}
 \subsection{snapshot}
-snap + fenetre glissante
+snap\cite{Asur2009,Bassett2013,Bazzi2014} + fenetre glissante
 \subsection{TVG/Evolving}
+\cite{Casteigts2011}
 \subsection{Flots de liens}
+Formalisation algébric \cite{Batagelj2015}.
 Le formalisme de flot de liens est défini plus en profondeur dans le chapitre~\ref{chap:def_flot}.
+
+temps intrinseque.
+\cite{Albano2006}

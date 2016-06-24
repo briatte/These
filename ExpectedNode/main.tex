@@ -460,9 +460,9 @@ Le degré est tiré selon une loi exponentielle de paramètre $-2$ et la taille 
 Enfin, 90\% des liens se sont à l'intérieur d'une communauté et les 10\% restant sont répartis de manière aléatoire.
 Avec ces paramètres, il y a en moyenne $5620$ liens intra-communautés, $625$ liens inter-communauté et seulement $5$ liens chevauchant.
 
-Pour chaque graphe généré, nous testons les partitions $TA$ et $TB$ mais aussi la partition $LC$ trouvée par \textit{link clustering}~\cite{Ahn2010a} et la partition $E2$ trouvée par la seconde méthode de Evans \textit{et al.}~\cite{Evans2009}\,\footnote{Les résultats sont similaires en utilisant $E1$ et $E3$.}.
-Ces deux algorithmes optimisent respectivement \emph{Parition Density} et \emph{Evans2}.
-Ces partitions sont ensuite évaluées par les fonctions de qualité \emph{Partition Density}, $Evans2$ et \emph{Expected Node}.
+Pour chaque graphe généré, nous testons les partitions $TA$ et $TB$ mais aussi la partition $LC$ trouvée par \textit{link clustering}~\cite{Ahn2010a} et les partition $EX$ trouvées par laes méthodes de Evans \textit{et al.}~\cite{Evans2009}.
+Ces algorithmes optimisent respectivement \emph{Parition Density}, \emph{Evans1}, \emph{Evans2} et \emph{Evans3}.
+Ces partitions sont ensuite évaluées par les fonctions de qualité \emph{Partition Density}, $Evans1$, $Evans2$, $Evans3$ et \emph{Expected Node}.
 Une illustration d'un graphe généré et des exemples de groupes capturés par $LC$ et $E2$ sont présentés dans la figure~\ref{fig:LFR_Exemple}.
 
 \begin{figure}
@@ -487,11 +487,12 @@ Une illustration d'un graphe généré et des exemples de groupes capturés par 
 \end{figure}
 
 
-Dans $LC$, $TA$, $TB$ et $E2$, il y a $720$, $650$, $70$ et $11$ groupes en moyenne.
+Dans $LC$, $TA$, $TB$ et $EX$, il y a $720$, $650$, $70$ et $11$ groupes en moyenne.
 Afin d'observer la ressemblance de ces partitions, nous avons utilisé la NMI~\cite{Danon2005}.
 Il apparait que les partitions $TA$ et $TB$ sont les plus proches.
-Ensuite, nous remarquons que la partition $E2$ diffère de $TA$ et de $TB$ uniquement sur les liens inter-communautés.
-En effet si ils ne sont pas pris en compte lors de la comparaison, alors $E2$, $TA$ et $TB$ sont équivalentes.
+Nous remarquons les trois fonctions de qualité $EvansX$ et les partitions respectives $EX$ sont similaires
+Ensuite, nous remarquons que les partition $EX$ diffèrent de $TA$ et de $TB$ uniquement sur les liens inter-communautés.
+En effet si ils ne sont pas pris en compte lors de la comparaison, alors $EX$, $TA$ et $TB$ sont équivalentes.
 Il semble en effet que les liens inter-communautés soient arbitrairement distribués entre les plus grosses communautés adjacentes, ce qui est visible dans la figure~\ref{fig:LFR_ExempleE2}.
 Enfin, la partition $LC$, bien que proche de $TA$ et $TB$, est un peu plus différente.
 Ces $720$ groupes semblent plus petit mais aussi plus denses que ceux de $TA$ ou $TB$.
@@ -500,21 +501,21 @@ Les quatre partitions sont donc différentes et mettent en avant différentes ca
 
 Nous procédons maintenant à l'évaluation de ces partitions par les différentes fonctions de qualités.
 Comme le processus de génération de graphe est aléatoire, les évaluations présentées dans la figure~\ref{fig:LF} représentent $30$ générations.
-On remarque tout d'abord que ni $TA$ ni $TB$ n'a la meilleure évaluation selon $Evans2$ (figure ~\ref{fig:LFE2}) ou \emph{Partition Density} (figure ~\ref{fig:LFAhn}) même si $TA$ et $TB$ représentent nos vérités de terrain.
-Dans le cas de $Evans2$, c'est la partition $E2$ qui obtient la meilleur évaluation.
-Cela prouve l'efficacité de l'algorithme $E2$ pour optimiser $Evans2$ mais remet en cause la pertinence du critère $E2$ pour mettre en avant la vérité de terrain.
-Notre fonction \emph{Expected Nodes} se comporte différemment des 2 autres.
+On remarque tout d'abord que ni $TA$ ni $TB$ n'a la meilleure évaluation selon $EvansX$ (figures~\ref{fig:LFE1} à ~\ref{fig:LFE3}) ou \emph{Partition Density} (figure~\ref{fig:LFAhn}) même si $TA$ et $TB$ représentent nos vérités de terrain.
+Dans le cas de $EvansX$, c'est les partitions $EX$ qui obtiennent les meilleures évaluations.
+Cela prouve l'efficacité de l'algorithme pour optimiser $EvansX$ mais remet en cause la pertinence des critères $EX$ pour mettre en avant la vérité de terrain.
+Notre fonction \emph{Expected Nodes} se comporte différemment des 4 autres.
 Tout d'abord, c'est la vérité de terrain $TA$ qui obtient la meilleure évaluation puis il s'agit de $TB$ ou $LC$ selon les générations.
 Notre mesure semble donc bien mettre en avant la vérité de terrain générée.
-De plus, \emph{Expected Nodes} évalue différemment les partitions $TA$ et $TB$ contrairement à \emph{Partition Density} et \emph{Evans2}.
+De plus, \emph{Expected Nodes} évalue différemment les partitions $TA$ et $TB$ contrairement à \emph{Partition Density} et \emph{EvansX}.
 C'est un point important car, dans la partition $TB$, les liens inter-communautés peuvent donner lieu à des groupes non-connexes dans $TB$, voir figure~\ref{fig:Trans}.
 Ce phénomène est très pénalisé par \emph{Expected Nodes}.
-Enfin selon \emph{Expected Nodes}, la partition $E2$ est une mauvaise partition et cela est également dù aux liens inter-communautés.
+Enfin selon \emph{Expected Nodes}, les partitions $EX$ ont une mauvaise partition et cela est également dù aux liens inter-communautés.
 En effet en les fusionnant à une communauté adjacente, cela augmente fortement le nombre de n\oe uds interne ce qui fait baisser $Q_{in}$.
 
 Avec ce test, nous mettons en évidence les limites des fonctions de qualités existantes.
-Les fonctions de qualité $Evans_x$ ne peuvent pas permettre de capturer les vérités de terrain généré par LFR.
-En effet, l'algorithme de Louvain est capable de trouver une partition ayant une évaluation plus élevé que la vérité de terrain.
+Les fonctions de qualité $EvansX$ ne peuvent pas permettre de capturer les vérités de terrain généré par LFR.
+En effet, l'algorithme de Louvain est capable de trouver des partition ayant une évaluation plus élevé que la vérité de terrain.
 La \emph{Partition Density}, quant à elle, souffre surtout de son incapacité à différencier clairement des partitions différentes.
 Cela se matérialise par des évaluations très similaires pour les vérités de terrain et la partition $LC$.
 Il en résulte que la \emph{Partition Density} est sensible aux faibles perturbations.
@@ -528,12 +529,21 @@ Pour ces raisons, nous pensons que \emph{Expected Nodes} est une mesure qui perm
 		\caption{\label{fig:LFAhn}Partition density}		
 	\end{subfigure}
 	\begin{subfigure}{0.31\textwidth}
+		\includegraphics[width=\linewidth]{img/ExpectedNodes/LF/LFR1_ExpectedNodes_ALL.eps}
+		\caption{\label{fig:LFMod}Expected Nodes}		
+	\end{subfigure}
+	
+	\begin{subfigure}{0.31\textwidth}
+		\includegraphics[width=\linewidth]{img/ExpectedNodes/LF/LFR1_Evans1_ALL.eps}
+		\caption{\label{fig:LFE1}Evans1}		
+	\end{subfigure}
+	\begin{subfigure}{0.31\textwidth}
 		\includegraphics[width=\linewidth]{img/ExpectedNodes/LF/LFR1_Evans2_ALL.eps}
 		\caption{\label{fig:LFE2}Evans2}		
 	\end{subfigure}
 	\begin{subfigure}{0.31\textwidth}
-		\includegraphics[width=\linewidth]{img/ExpectedNodes/LF/LFR1_ExpectedNodes_ALL.eps}
-		\caption{\label{fig:LFMod}Expected Nodes}		
+		\includegraphics[width=\linewidth]{img/ExpectedNodes/LF/LFR1_Evans3_ALL.eps}
+		\caption{\label{fig:LFE3}Evans3}		
 	\end{subfigure}
 	\caption{Boite à moustache des évaluations des trois fonctions de qualité pour les différentes partitions de liens. 
 	La boite représente le premier et troisième quartile ainsi que la médiane.
@@ -582,7 +592,7 @@ Les changement de liens se font également que avec une communauté adjacente.
 On continue de modifier la solution courante tant qu'elle est améliorable par un de ces mouvements.
 Malheureusement cette approche souffre de deux problème majeurs.
 Tout d'abord le calcul du gain est couteux et rend impossible l'étude de grands jeux de données.
-Ensuite dans nos tests dans les graphes généré par LFR, il semble que cette méthode reste bloquée sur des optimum locaux bien plus faibles que la vérité de terrain.
+Ensuite dans nos tests dans les graphes généré par LFR, il semble que cette méthode reste bloquée sur des optimum locaux bien plus faibles que la vérité de terrain, voir la figure~\ref{} où la qualité de la partition trouvée par notre algorithme, noté $EN$, est présenté.
 Il faudrait donc tester d'autres heuristiques d'optimisation mais aussi travailler sur une méthode de calcul du gain plus optimisée.
 
 Malgré ces limitations, nous avons tout de même tiré parti de cet algorithme naïf afin de tester si une partition donnée peut être améliorée.
@@ -592,8 +602,20 @@ Les changements qu'apportent notre algorithme se porte principalement sur les li
 Dans le cas de $TA$, chaque lien inter-communauté constitue une communauté.
 Or, il se peut que plusieurs liens inter-communautés soient connectés aux même n\oe uds.
 Dans ce genre de situation, notre algorithme fusionne ces liens dans une communauté augmentant légèrement la qualité globale.
-Après optimisation, nous constatons que les partitions $TA$ et $TB$ peuvent être légèrement améliorées mais qu'elles sont très proche du maximum local lorsque l'on considère notre algorithme d'optimisation.
-
+Après optimisation, nous constatons que les partitions $TA$ et $TB$ peuvent être légèrement améliorées mais qu'elles sont très proche du maximum local lorsque l'on considère notre algorithme d'optimisation,
+voir la figure~\ref{} où les partitions $TA+$ et $TB+$ sont les versions améliorées de $TA$ et $TB$.
+\begin{figure}
+\centering
+	\begin{subfigure}{0.31\textwidth}
+%		\includegraphics[width=\linewidth]{img/ExpectedNodes/LF/LFR1_EN_ALL.eps}
+		\caption{\label{fig:LFEN}Expected nodes}		
+	\end{subfigure}
+	
+	\caption{Boite à moustache des évaluations selon Expected Nodes pour différentes partitions.
+	$TA$ et $TB$ sont les vérités de terrains, $EN$ est la partition trouvée par notre algorithme et enfin $TA+$ et $TB+$ sont les versions améliorées de $TA$ et $TB$.
+	}
+	\label{fig:LF_bis_EN}
+\end{figure}
 
 \section{Conclusion}
 
