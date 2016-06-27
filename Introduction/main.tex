@@ -11,8 +11,17 @@ Il n'existe cependant aucune définition exact et la notion de communauté forte
 Malgré cette définition floue, des structures communautaires ont été trouvées dans de nombreux graphes dans plusieurs domaines tel que les réseaux de dans le cerveau \cite{DeReus2014}, réseau d'eau \cite{DiNardo2015} , animaux \cite{Farine2015}\REF . \REF.
 Ces notions de communautés et les méthodes de détection sont définies dans la section~\ref{sec:intro_communaute}.\\
 
-D'autre part, il a été observé que la modélisation d'un réseau sous la forme d'un graphe peut poser problème notamment quand le réseau change au cours du temps \REF.
-Face à ce problème plusieurs extensions de la théorie des graphes ont été proposées et elles sont résumées dans la section~\ref{sec:intro_extension_temporelle}.
+D'autre part, il a été observé que la modélisation d'un réseau sous la forme d'un graphe peut poser problème notamment quand le réseau change au cours du temps \cite{Holme2015b}.
+D'une part, l'information temporelle est complétement perdue lorsque l'on manipule un graphe.
+Par conséquent, certaines structures peuvent devenir indétectable.
+Imaginons un graphe représentant les alliances politiques dans un pays.
+Si toutes les alliances politiques sont aggrégées sur une trop grande durée temporelle, alors une personne politique changeant de parti politique sera faucement considérée comme influente car connectée à plusieurs partis alors qu'elle peut ne plus avoir de contact dans son ancien parti.
+Ainsi il n'est plus possible d'observer le glissement des alliances politiques dans ce genre de réseau si l'aggrégation temporelle est trop importante~\cite{Mucha2010}.
+
+D'autre part, si on prends en compte le temps, alors il est possible de détecter des structure plus fine que dans le cas statique.
+Il devient possible de détecter des instant où l'organisation générale change~\cite{Rosvall2010}, de comprendre à quels sont les instant où une personnes est importante~\cite{Magnien2015}, ou bien de détecter des groupes temporelles~\cite{Cazabet2010}. 
+
+Face à ces problèmes plusieurs extensions de la théorie des graphes ont été proposées et elles sont résumées dans la section~\ref{sec:intro_extension_temporelle}.
 
 
 
@@ -49,11 +58,15 @@ Il existe beaucoup de liens entre les élèves de la classe 3A et aucun entre eu
 \footnotetext{Image provenant de \url{http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0023176}.}
 
 Afin de capturer des partitions de n\oe uds, beaucoup de méthodes existent.
-Il y a d'ailleurs régulièrement des état de l'art qui sont publiés~\cite{Fortunato2010,Plantie2013a, Malliaros2013a, Harenberg2014a}
-
-limite modu: \cite{Fortunato2007,Good2010,Lancichinetti2011} extension \cite{Reichardt2006,Delvenne2010}, modu + vite \cite{Huang2015,Blondel2008a,Traag2015a}
-modularité~\cite{Newman2004}, infomap\cite{Rosvall2008}, infomap hierachique\cite{Rosvall2011a}, limite infomap\cite{Kawamoto2015}, SBM \cite{Holland1983a}, LPA\cite{Raghavan2007a}, Surprise, méthode spectral
+Il y a d'ailleurs régulièrement des état de l'art qui sont publiés~\cite{Fortunato2010,Plantie2013a, Malliaros2013a, Harenberg2014a}.
+Afin d'aider le lecteur, nous listons ici quelques unes des méthodes les plus utilisées.
+\subsubsection{Méthodes utilisant un modèle nul}
 lien entre SBM et modularité\cite{Newman2016}
+limite modu: \cite{Fortunato2007,Good2010,Lancichinetti2011} extension \cite{Reichardt2006,Delvenne2010}, modu + vite \cite{Huang2015,Blondel2008a,Traag2015a}
+modularité~\cite{Newman2004}, SBM \cite{Holland1983a}, Surprise \cite{Aldecoa2011,Traag2015b}, 
+
+ LPA\cite{Raghavan2007a}, méthode spectral, infomap\cite{Rosvall2008}, infomap hierachique\cite{Rosvall2011a}, limite infomap\cite{Kawamoto2015}
+
 
 
 \subsection{Couverture de n\oe uds}
