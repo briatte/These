@@ -361,7 +361,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2"
-     inkscape:cx="71.335391"
+     inkscape:cx="253.08539"
      inkscape:cy="80.769082"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -384,7 +384,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -898,9 +898,8 @@
          sodipodi:role="line"
          id="tspan6225"
          x="110.13839"
-         y="197.12929">t<tspan
-   style="font-size:65.00000954%;baseline-shift:sub"
-   id="tspan6227">β</tspan></tspan></text>
+         y="197.12929"
+         style="font-size:;baseline-shift:baseline">β</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:22.5px;line-height:125%;font-family:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -911,8 +910,7 @@
          sodipodi:role="line"
          id="tspan6231"
          x="352.53485"
-         y="197.12929">t<tspan
-   style="font-size:65.00000954%;baseline-shift:sub"
-   id="tspan6233">ψ</tspan></tspan></text>
+         y="197.12929"
+         style="font-size:;baseline-shift:baseline">ψ</tspan></text>
   </g>
 </svg>

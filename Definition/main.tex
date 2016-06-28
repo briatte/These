@@ -10,7 +10,7 @@ Nous considérons un flot non orienté, \emph{i.e.} $(b,e,u,v)=(b,e,v,u)$, et sa
 
 
 Nous dénotons la durée du flot par $\bar{L}=\omega-\alpha$.
-$\beta_E= min_{(b,e,u,v) \in E} (b)$ et $\psi_E= max_{(b,e,u,v) \in E} (e)$ sont respectivement l'apparition du premier lien et la disparition du dernier lien.
+$\beta(E)= min_{(b,e,u,v) \in E} (b)$ et $\psi(E)= max_{(b,e,u,v) \in E} (e)$ sont respectivement l'apparition du premier lien et la disparition du dernier lien.
 
 Un flot de liens est simple si pour tout $(b,e,u,v) \in E$ et $(b',e',u, v) \in E$, $[b,e]\cap [b', e'] = \emptyset$.
 La simplification d'un flot de liens $\sigma=L$.
@@ -22,12 +22,12 @@ $\xi(L,\Delta)$ ajout de $\Delta$ à chaque lien.
 
 \inline{Que des flots avec durées ou bien delta densité?}
 \section{Sous-flot induit}
-Sous flot induit par un ensemble de lien $E'$: $L(E')=([\beta_{E'},\psi_{E'},V(E'),E'])$.
+Sous flot induit par un ensemble de lien $E'$: $L(E')=([\beta(E'),\psi(E'),V(E'),E'])$.
 
 
  
 Sous flot induit par un ensemble de paire n\oe uds  $S \in V^ 2$: $L(S)$.
-$L(S)=([\beta{E'},\psi{E'}],V',E')$ avec $E'= \{(b,e,u,v) \in E, (u,v) \in S\}$.
+$L(S)=([\beta(E'),\psi(E')],V',E')$ avec $E'= \{(b,e,u,v) \in E, (u,v) \in S\}$.
 Par convention, on note $L(v)= L(\{v\}\times V)$.
 
 Sous flot induit par un intervalle de temps $T'=[\alpha', \omega'],\ T' \subseteq T$: $L_{\alpha'..\omega'}$.
@@ -76,9 +76,9 @@ C'est le cas de la densité:
 
 
 
-\chapter*{Liste des notations}
+\chapter*{Liste des notations pour les flots de liens}
 
-\addstarredchapter{Liste des notations}
+\addstarredchapter{Liste des notations pour les flots de liens}
 
 \begin{center}
 \begin{tabular}{|c|c|}
@@ -89,8 +89,8 @@ $V$ & ensemble de n\oe uds\\
 $E$ & ensemble de liens: $(b,e,u,v)$ \\
 $n$ & nombre de n\oe uds  \\
 $|L|,|E|$ & nombre de liens dans le flot \\
-$\beta_E$ & temps d'apparition du premier lien\\
-$\psi_E$ & temps de disparition du dernier lien\\
+$\beta(E)$ & temps d'apparition du premier lien\\
+$\psi(E)$ & temps de disparition du dernier lien\\
 $\xi(L,\Delta)$ & Flot de liens où chaque lien dure $\Delta$\\
 $L(V'^2)$ & sous flot induits par les n\oe uds de $V'$ \\
 $L_{t..t'}$ & sous flot induits par l'intervalle $[t,t']$ \\

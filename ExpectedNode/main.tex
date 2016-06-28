@@ -1,7 +1,9 @@
 \chapter{Expected Nodes: communautés de liens dans les graphes statiques}
 \minitoc
 
-Les structures communautaires dans les graphes ont été beaucoup étudiées lorsqu'elles concernent les n\oe uds mais également, dans une moindre mesure, pour les liens.
+\label{chap:Expected_Node}
+Les structures communautaires dans les graphes ont été beaucoup étudiées lorsqu'elles concernent les n\oe uds, voire chapitre~\ref{chap:etat_art}.
+Dans une moindre mesure, elles ont également été étudiées losrqu'elles concernent les liens.
 Par exemple dans un réseau social, chaque personne a plusieurs centres d'intérêts: famille, sport, politique...
 Lorsque deux personnes interagissent, la communication a lieu dans un contexte bien particulier.
 Bien que les personnes aient plusieurs centres d'intérêts, la raison de leur communication est souvent unique.
@@ -117,8 +119,12 @@ Il est nécessaire d'adapter les outils à ce type de graphe.
 
 
 
+
 Il existe différent types de méthode pour la détection et l'évaluation de partitions de liens.
-Il y les méthodes évaluant une partition de liens via la transformation de la partition en une couverture de n\oe uds~\cite{Huang2013,Lim2014,Wu2010a}.
+Yu\emph{et al.}~\cite{Yu2013} ont étendu l'algorithme de propagation de label sur les liens ce qui permet de capturer une partition de liens.
+Cependant cela ne permet d'évaluer le résultat obtenu.
+
+Il y a également les méthodes évaluant une partition de liens via la transformation de la partition en une couverture de n\oe uds~\cite{Huang2013,Lim2014,Wu2010a}.
 Un transformation classiquement utilisée est qu'un n\oe ud dans la couverture prend comme communautés l'ensemble des communautés de ses liens, voir la figure~\ref{fig:Partition_Couverture}.
 Il serait tentant de considérer que les partitions de liens et les couvertures de n\oe uds sont équivalentes.
 Ainsi pour évaluer une partition de liens, il suffirait de transformer la partition en couverture.
@@ -167,6 +173,8 @@ Par ailleurs, la \emph{Partition Density} ne peut pas être directement appliqu�
 Une première proposition de Kim~\cite{Kim2014} a été faite dans ce sens.
 
 
+
+
 Evans~\emph{et al.}~\cite{Evans2009} proposent trois fonctions de qualité pour évaluer les partitions de liens.
 Leurs fonctions de qualité sont basées sur trois marches aléatoires qui se déroulent sur les liens du graphe.
 L'approche est similaire à la modularité car la modularité peut également être définie à l'aide de marche aléatoire sur les n\oe uds du graphe~\cite{Delvenne2010}.
@@ -193,12 +201,14 @@ Cette extension de la \emph{MDL} évalue directement une partition de liens, con
 Un avantage de leur méthode est de pouvoir comparer la qualité d'une partition de liens et d'une partition de n\oe uds avec leur \emph{MDL} respective.
 Cependant, leur méthode ne semble favoriser les communautés de liens que dans des cas très limités.
 
-Pour résumer, il existe des méthodes pour capturer et évaluer des partitions de liens dans un graphe.
+\resume{
+Il existe des méthodes pour capturer et évaluer des partitions de liens dans un graphe.
 Deux d'entre elles semblent faire consensus pour l'instant.
 D'une part, la \emph{Partition density} est une fonction de qualité comparant le nombre de liens observé avec les nombres minium et maximum de liens possibles entre les même n\oe uds induits.
 D'autre part, les fonctions de qualité \emph{$Evans_x$} se basent quand à elles sur des marches aléatoires sur les liens et d'une certaine manière sur un processus similaire à la modularité.
 Il n'existe cependant aucune méthode utilisant une comparaison d'une métrique à ce qui est attendu dans un modèle nul.
 Or, ce processus a été à l'origine de la modularité.
+}
 
 \section{Définition d'Expected Nodes}
 
@@ -469,15 +479,17 @@ Une illustration d'un graphe généré et des exemples de groupes capturés par 
 \centering
 	\begin{subfigure}{0.31\textwidth}
 		\includegraphics[width=\linewidth]{img/ExpectedNodes/LF/Graphe_Complet_select.png}
-		\caption{}		
+		\caption{}
 	\end{subfigure}
 	\begin{subfigure}{0.31\textwidth}
 		\includegraphics[width=\linewidth]{img/ExpectedNodes/LF/E2_bis.png}
-		\caption{}		
+		\caption{}
+		\label{fig:LFR_ExempleE2}
 	\end{subfigure}
 	\begin{subfigure}{0.31\textwidth}
 		\includegraphics[width=\linewidth]{img/ExpectedNodes/LF/Ahn.png}
-		\caption{}		
+		\caption{}
+		\label{fig:LFR_ExempleLC}	
 	\end{subfigure}
 
 	\caption{Exemple de graphe généré par le LFR en (A) avec une communauté de la vérité de terrain mise en avant en vert.
@@ -592,7 +604,7 @@ Les changement de liens se font également que avec une communauté adjacente.
 On continue de modifier la solution courante tant qu'elle est améliorable par un de ces mouvements.
 Malheureusement cette approche souffre de deux problème majeurs.
 Tout d'abord le calcul du gain est couteux et rend impossible l'étude de grands jeux de données.
-Ensuite dans nos tests dans les graphes généré par LFR, il semble que cette méthode reste bloquée sur des optimum locaux bien plus faibles que la vérité de terrain, voir la figure~\ref{} où la qualité de la partition trouvée par notre algorithme, noté $EN$, est présenté.
+Ensuite dans nos tests dans les graphes généré par LFR, il semble que cette méthode reste bloquée sur des optimum locaux bien plus faibles que la vérité de terrain, voir la figure~\ref{fig:LFEN} où la qualité de la partition trouvée par notre algorithme, noté $EN$, est présentée.
 Il faudrait donc tester d'autres heuristiques d'optimisation mais aussi travailler sur une méthode de calcul du gain plus optimisée.
 
 Malgré ces limitations, nous avons tout de même tiré parti de cet algorithme naïf afin de tester si une partition donnée peut être améliorée.
@@ -603,16 +615,16 @@ Dans le cas de $TA$, chaque lien inter-communauté constitue une communauté.
 Or, il se peut que plusieurs liens inter-communautés soient connectés aux même n\oe uds.
 Dans ce genre de situation, notre algorithme fusionne ces liens dans une communauté augmentant légèrement la qualité globale.
 Après optimisation, nous constatons que les partitions $TA$ et $TB$ peuvent être légèrement améliorées mais qu'elles sont très proche du maximum local lorsque l'on considère notre algorithme d'optimisation,
-voir la figure~\ref{} où les partitions $TA+$ et $TB+$ sont les versions améliorées de $TA$ et $TB$.
+voir la figure~\ref{fig:LFEN} où les partitions $TA+$ et $TB+$ sont les versions améliorées de $TA$ et $TB$.
 \begin{figure}
 \centering
 	\begin{subfigure}{0.31\textwidth}
-%		\includegraphics[width=\linewidth]{img/ExpectedNodes/LF/LFR1_EN_ALL.eps}
+		\includegraphics[width=\linewidth]{img/ExpectedNodes/LF/LFR1_Modified_ALL.eps}
 		\caption{\label{fig:LFEN}Expected nodes}		
 	\end{subfigure}
 	
 	\caption{Boite à moustache des évaluations selon Expected Nodes pour différentes partitions.
-	$TA$ et $TB$ sont les vérités de terrains, $EN$ est la partition trouvée par notre algorithme et enfin $TA+$ et $TB+$ sont les versions améliorées de $TA$ et $TB$.
+	$TA$ et $TB$ sont les vérités de terrains, $EN$ est la partition trouvée par notre algorithme et enfin $TA+$ et $TB+$ sont les versions améliorées par notre algorithme de $TA$ et $TB$.
 	}
 	\label{fig:LF_bis_EN}
 \end{figure}

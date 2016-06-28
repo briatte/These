@@ -108,7 +108,7 @@ La participation est donc relativement élevée.
 
 \section{\'Etude des discussions en tant que sous-flots}
 \label{etude_discussion}
-\subsection{Application de la $\Delta$-densité}
+\subsection{Application de la \texorpdfstring{$\Delta$}{delta}-densité}
 \label{delta_densite}
 
 Jusqu'à maintenant aucune notion intrinsèquement liée aux flots de liens n'a été utilisée pour caractériser les discussions.
@@ -161,7 +161,7 @@ Il s'agit tout simplement de la probabilité qu'un lien existe entre un n\oe ud 
 Encore une fois, cette notion n'a pas de sens direct dans le formalisme de flot de liens et il est nécessaire de l'adapter.
 Pour ce faire, nous définissons la $\Delta$-densité inter discussions entre deux discussions $D_i$ et $D_j$: $\delta^{inter}_{\Delta}(D_i,D_j)$.
 Soit $E_{\Delta}= \xi(E,\Delta)$ et $L_{inter}(D_i, D_j) = (T',V',E')$ avec 
-$V'= V(D_i \cup D_j)$, $T'=[t_{\beta}(D_i \cup D_j), t_{\psi}(D_i \cup D_j)]$, et $E' = E_{\Delta} \setminus (D_i \cup D_j)$.
+$V'= V(D_i \cup D_j)$, $T'=[\beta(D_i \cup D_j), \psi(D_i \cup D_j)]$, et $E' = E_{\Delta} \setminus (D_i \cup D_j)$.
 Avec ces définitions, $\delta^{inter}_{\Delta}(D_i,D_j)$ est égale à $\delta^{inter}_{\Delta}(D_i,D_j) = \delta(L_{inter}(D_i, D_j))$.
 Il s'agit donc de la densité du flot inter discussions qui est constitué des liens entre les n\oe uds induits par $D_i$ et $D_j$ qui n'appartiennent ni à $D_i$ ni à $D_j$.
 Dans la figure~\ref{fig:inter_dens_discussion_ex}, un exemple de flot inter discussion est représenté.
@@ -188,7 +188,7 @@ Bien que similaire, le comportement de la $\Delta$-densité inter discussions di
 La $\Delta$-densité inter discussions croît également en fonction de $\Delta$ mais il y a toujours une différence notable entre $\Delta= 1\  mois$ et $\Delta= 1\ an$ ce qui n'est pas le cas pour la $\Delta$-densité.
 Cette différence est normale car lors du calcul de $\Delta$-densité le nombre de liens considérés est fixe peut importe $\Delta$ alors qu'il croît avec $\Delta$ lors du calcul de $\Delta$-densité inter discussions.
 Cet effet est visible dans la figure~\ref{fig:inter_dens_discussion_ex}.
-Le lien $(c,d)$ qui apparait peut avant $t_{\beta}$ n'est pas pris en compte si $\Delta$ est proche de $0$ alors qu'il est en parti pris en compte lorsqu'un $\Delta$ plus grand est considéré, ce qui est le cas dans la figure.
+Le lien $(c,d)$ qui apparait peut avant $\beta$ n'est pas pris en compte si $\Delta$ est proche de $0$ alors qu'il est en parti pris en compte lorsqu'un $\Delta$ plus grand est considéré, ce qui est le cas dans la figure.
 
 Un autre facteur est aussi la duré considérée qui est plus longue que la durée des discussions.
 \begin{figure}
@@ -225,7 +225,8 @@ On remarque tout de même que pour $\Delta=1\ an$, la différence reste notable.
 	\end{subfigure}
 	\begin{subfigure}{0.48\textwidth}
 		\includegraphics[width=\linewidth]{img/mailing/DensityCurve/1261440000/mean.eps}
-		\caption{$\Delta= $20 ans}		
+		\caption{$\Delta= $20 ans}	
+		\label{fig:corel_inter_discussion_20}	
 	\end{subfigure}
 
 \caption{Corrélations entre $\Delta$-densité et $\Delta$-densité inter discussions pour différentes valeurs de $\Delta$. Une discussion est en vert (resp. rouge) si elle a une $\Delta$-densité plus (resp. moins) élevée que sa $\Delta$-densité inter discussions.}

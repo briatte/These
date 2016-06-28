@@ -17,6 +17,7 @@ headsepline, % Uncomment to get a line under the header
 \DeclareUnicodeCharacter{2010}{-}
 %\usepackage[french]{babel}
 \usepackage{amsmath}
+\usepackage{lmodern}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
@@ -48,8 +49,6 @@ headsepline, % Uncomment to get a line under the header
 \definecolor{plum}{HTML}{92268F}
 \definecolor{oliveGreen}{HTML}{007E00}
 
-
-
 \definecolor{rose_cochon}{HTML}{CE6363}
 \definecolor{bleu_random}{HTML}{002CA6}
 \definecolor{violet_cool}{HTML}{4E005C}
@@ -62,6 +61,26 @@ headsepline, % Uncomment to get a line under the header
 \setlength{\marginparwidth}{2.5cm}
 \newcommand{\note}[1]{\todo[color=orange!80]{#1}\ }
 \newcommand{\inline}[1]{\todo[color=orange!80, inline]{#1}}
+
+\newcommand{\resume}[1]{
+	\begin{colbox}{D0D0D0}
+	\textbf{Résumé}
+	
+	#1
+	\end{colbox}
+}
+	
+\newsavebox{\selvestebox}
+\newenvironment{colbox}[1]
+  {\newcommand\colboxcolor{#1}%
+   \begin{lrbox}{\selvestebox}%
+   \begin{minipage}{\dimexpr\columnwidth-2\fboxsep\relax}}
+  {\end{minipage}\end{lrbox}%
+   \begin{center}
+   \colorbox[HTML]{\colboxcolor}{\usebox{\selvestebox}}
+   \end{center}}
+
+
 %----------------------------------------------------------------------------------------
 %	MARGIN SETTINGS
 %----------------------------------------------------------------------------------------
