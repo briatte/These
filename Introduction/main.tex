@@ -2,6 +2,8 @@
 \chapter*{Introduction}
 \addstarredchapter{Introduction}
 
+Appuyer sur le fait que le temps est continu et que l'on veut garder toute l'information pour faire des description super fine temporellement.
+
 \chapter{État de l'art sur la détection de communautés et les réseaux dynamiques}
 \minitoc
 \label{chap:etat_art}
@@ -23,7 +25,7 @@ D'autre part, si on prends en compte le temps, alors il est possible de détecte
 Il devient possible de détecter des instant où l'organisation générale change~\cite{Rosvall2010}, de comprendre à quels sont les instant où une personnes est importante~\cite{Magnien2015}, ou bien de détecter des groupes temporelles~\cite{Cazabet2010}.
 Face à ces problèmes plusieurs extensions de la théorie des graphes ont été proposées et elles sont résumées dans la section~\ref{sec:intro_extension_temporelle}.
 
-Mais avant de présenter ces deux axes de recherches, nous revenons dans la section~\ref{[sec:def_graphe]} sur quelques définitions formelles et notation des graphes que nous utilisons dans cette thèse.
+Mais avant de présenter ces deux axes de recherches, nous revenons dans la section~\ref{sec:def_graphe} sur quelques définitions formelles et notation des graphes que nous utilisons dans cette thèse.
 \section{Définition dans les graphes}
 \label{sec:def_graphe}
 
@@ -36,25 +38,137 @@ Ceci est en opposition avec les graphes multiples où il peut exister plusieurs 
 Par convention, nous définissons $n=|V|$ le nombre de n\oe uds et $m=|E|$ le nombre de liens.
 Il est possible de représenter un graphe $G$ par une matrice carré $A$ de taille $n$ où la case $A_{i,j} \ \forall i,j \in \mathbb{N}^+ \leq n$ est égale à $1$ si un lien relie les n\oe uds $i$ et $j$ et $0$ sinon.
 
+\begin{description}
+\item[Degré] Le degré d'un n\oe ud $i$, noté $d_i$, est égale au nombre de liens reliés à $i$: $d_u = \sum_{j\leq n} A_{i,j}$.
+\item[Densité] La densité, $d(V)$ des n\oe uds d'un graphe est la probabilité que deux n\oe uds soient reliés par un lien: $d(V)=\dfrac{2m}{n(n-1)}$.
+\item[Degré moyen] Le degré moyen $\tilde{d}(V)$ diffère de la densité est égale à : $\tilde{d(V)}=\dfrac{2m}{n}$.
+\item[Chemin] Une chaine ou chemin entre deux n\oe uds dans un graphe est une suite de liens $((u_1,v_1),...,(u_k,v_k))$ de tel sorte que $v_{i}=u_{i+1} \ \forall i \in [0,k-1]$.
+\item[Graphe connexe] Les n\oe uds d'un graphe sont dit connexe s'il existe un chemin entre toute les pairs de n\oe uds.
+\item[Composante Connexe] Une composante connexe est un ensemble de n\oe uds $V'\subseteq V$ qui est connexe et maximal, c'est-à-dire qu'il n'est pas possible d'ajouter un n\oe ud dans $V'$ tel que $V'$ soit toujours connexe.
+\item[Arbre] Le graphe connexe le moins dense est un arbre et est constitué de $n-1$ liens pour $n$ n\oe uds.
+\item[Clique] Le graphe le plus dense est appelé un graphe complet ou un clique et est composé de $\dfrac{n(n-1)}{2}$ pour $n$ n\oe uds.
+\item[Sous-graphe] Un graphe $G'=(V',E')$ est un sous-graphe de $G$ si et seulement si $V' \subset V$ et $|E'\cap E| = |E'|$.
+\item[Graphe induit] Le graphe induit par un $V' \subset V$ est définit par $V'$ et $E'= \{(u,v) \in E,\ u,v \in V'\}$.  
+\end{description}
 
-Le degré d'un n\oe ud $i$, noté $d_i$, est égale au nombre de liens reliés à $i$: $d_u = \sum_{j\leq n} A_{i,j}$.
-
-Une chaine ou chemin entre deux n\oe uds dans un graphe est une suite de liens $((u_1,v_1),...,(u_k,v_k))$ de tel sorte que $v_{i}=u_{i+1} \ \forall i \in [0,k-1]$.
-Les n\oe uds d'un graphe sont dit connexe s'il existe un chemin entre toute les pairs de n\oe uds.
-Une composante connexe est un ensemble de n\oe uds $V'\subseteq V$ qui est connexe et maximal, c'est-à-dire qu'il n'est pas possible d'ajouter un n\oe ud dans $V'$ tel que $V'$ soit toujours connexe.
-
-La densité, $d(G)$ dans un graphe est la probabilité que deux n\oe uds soient reliés par un lien: $d(G)=\dfrac{2m}{n(n-1)}$.
-
-Le graphe connexe le moins dense est un arbre et est constitué de $n-1$ liens pour $n$ n\oe uds.
-Le graphe le plus dense est appelé un graphe complet ou un clique et est composé de $\dfrac{n(n-1)}{2}$ pour $n$ n\oe uds.
 
 
-\subsection{Définition de structure dans un graphe}
+\subsection{Groupes, partitions et couvertures}
+En plus des n\oe uds et des liens, nous manipulons également des ensembles de liens et des ensembles de n\oe uds.
+Par convention, soit $X \subset V$ un ensemble de n\oe uds et $Y \subset E$ un ensemble de liens.
+Nous listons les notations utilisées dans le tableau~\ref{tab:notation_groupe_noeuds}.
 
- partition, couverture,
 
-\subsubsection{Comparaison}
-ARI, NMI \cite{Danon2005}, futur nmi\cite{Zhang2015}, F1-score, Omega index \cite{Porumbel2011}
+\begin{table}
+  \centering
+    \begin{tabular}{|c|c|}
+     \hline
+    \rule[-1ex]{0pt}{4ex} Notation & Définition \\
+  \hline
+		\hline
+		\rule[-1ex]{0pt}{4ex}$V(Y)=\{u,\ \exists (u,v) \in Y \}$ & n\oe uds induits par les liens de $Y$\\
+		\hline
+        \rule[-1ex]{0pt}{4ex}$n_X=|X|$ & nombre de n\oe uds dans $X$\\
+        \hline
+        \rule[-1ex]{0pt}{4ex} $l_{in}(X)=|\{(u,v) \in E,\ u,v \in X\}|$ & nombre de liens entre les n\oe uds de $X$\\
+        \hline
+        \rule[-1ex]{0pt}{4ex} $l_{out}(X)=|\{(u,v) \in E,\ \cap (X \times V \setminus X)\}|$ & nombre de liens entre les n\oe uds de $X$ et de $V \setminus X$ \\
+        \hline
+        \rule[-1ex]{0pt}{4ex} $l(X)=l_{in}(X)+l_{out}(X)$ & nombre de liens reliés aux n\oe uds de $X$\\
+        \hline
+        \rule[-1ex]{0pt}{4ex} $d_{in}(u,X)=|\{(u,v) \in E,\ v \in X\}|$ & nombre de lien que partagent $u$ avec $X$ \\
+        \hline
+        \rule[-1ex]{0pt}{4ex} $d_{in}(X)=\sum_{u \in X} d_{in}(u,X)=2l_{in}(X)$ & somme des degrés internes des n\oe uds dans $X$ \\
+        \hline
+        \rule[-1ex]{0pt}{4ex} $d_{out}(u,X)=|\{(u,v) \in E,\ v \in V \setminus X\}|$ & nombre de lien que partagent $u$ avec $V \setminus X$ \\
+        \hline
+        $d_{out}(X)=\sum_{u \in X} d_{out}(u,X)=l_{out}(X)$ & somme des degrés externes des n\oe uds dans $X$ \\
+        \hline
+        $d(X)=d_{in}(X)+ d_{out}(X)$ & somme des degrés des n\oe uds dans $X$ \\
+        \hline
+    \end{tabular}
+    \caption{Liste des notations utilisées pour un ensemble de n\oe uds $X$ et un ensemble de liens $Y$.}
+         \label{tab:notation_groupe_noeuds}
+\end{table}%
+
+
+\paragraph{Partitions et couvertures}
+Nous définissons ici des structures de partitions et de couvertures appliqué au cadre spécifique des graphes.
+Une partition de n\oe uds, $\mathcal{V}$, est ensemble d'ensemble de n\oe uds: $\mathcal{V}= \{V_1,..., V_k\}$ tel que $V_i \subseteq V \forall i \in [1,k]$.
+Une partition est soumise à deux contraintes:
+\begin{enumerate}
+\item La partition doit \emph{recouvrir} l'ensemble des n\oe uds: $\bigcup_{i}( V_i) = V$.
+\item Les ensembles de n\oe uds doivent être disjoint: $V_i \cap V_j = \emptyset\ \forall i,j \in [1,k]$.
+\end{enumerate}
+Afin de manipuler une partition, nous définissons $\mathcal{V}(u)=V_i$ si et seulement si $u \in V_i$.
+
+
+Une couverture est une extension des partitions car elle relâche la contrainte sur l'intersection.
+Une couverture est parfois aussi appelé partition chevauchante.
+Ainsi, une couverture de n\oe uds, $\mathcal{V}$, est aussi un ensemble d'ensemble de n\oe uds.
+L'union des ensembles doit également être égale à $V$ mais en revanche deux ensembles de n\oe uds peuvent partager un n\oe ud: $\exists i,j \in [1,k]\ V_i \cap V_j \neq \emptyset$.
+
+Nous avons détaillé les notions de partitions et couvertures de n\oe uds mais les même définitions valent pour les partitions et couvertures de liens.
+
+\subsection{Comparaison de partitions et couvertures}
+Une fois définis les partitions et les couvertures, il est intéressant de pouvoir les comparer.
+Le but est de calculer une similarité entre deux structures de telles sorte que la similarité égale $1$ si les deux structures sont identiques et qu'elle soit égale à $0$ ou $-1$ si elles sont complètement différentes.
+Il existe pour ce faire les méthodes tirant partis de la structure d'ensemble et les méthodes provenant de la théorie de l'information.
+
+\paragraph{Approche ensembliste}
+\label{def:graphe_comparaison}
+Il est possible de comparer deux ensembles $X$ et $Y$ en utilisant l'indice de Jaccard: $\mathbb{J}(X,Y) = \dfrac{|X \cap Y|}{|X \cup Y|}$.
+Avec l'indice de Jaccard, il est possible de mesurer la similarité entre deux partitions $\mathcal{X}$ et $\mathcal{Y}$:
+\begin{equation}
+sim(\mathcal{X},\mathcal{Y})=\frac{1}{|\mathcal{X}|}\sum_{X \in \mathcal{X}}\max_{Y\in \mathcal{Y}}\mathbb{J}(X,Y).
+\end{equation}
+
+Avec cette formulation, la similarité n'est pas symétrique.
+C'est pourquoi la formule suivante lui est souvent préférée:
+
+\begin{equation}
+sim_{moy}(\mathcal{X},\mathcal{Y}) = \dfrac{sim(\mathcal{X},\mathcal{Y})+sim(\mathcal{Y},\mathcal{X})}{2}
+\end{equation}
+Il existe d'autres méthodes pour symétriser la similarité.
+Une méthode possible est d'utiliser la moyenne harmonique.
+Cette méthode peut s'appliquer indifféremment aux partitions et aux couvertures.
+
+Il existe également le Rand Index~\cite{Rand1971} qui ne s'applique qu'aux partitions.
+Il mesure le nombre de pairs de n\oe uds qui sont classées de la même manière dans les deux partitions; c'est à dire si pour deux n\oe uds $u$ et $v$ soit $\mathcal{X}(u)=\mathcal{X}(V)$ et $\mathcal{Y}(u)=\mathcal{Y}(V)$ soit $\mathcal{X}(u)\neq \mathcal{X}(V)$ et $\mathcal{Y}(u)\neq \mathcal{Y}(V)$
+Plus formellement, soient $a_{11}$ le nombre de pair de n\oe uds de telle sorte qu'ils soient dans le même ensemble dans les deux partitions, $a_{00}$ le nombre de pair de n\oe uds de telle sorte qu'ils soient dans des ensembles différents dans les deux partitions et $a_{10}$ (resp. $a_{01}$) le nombre de pair de n\oe uds de telle qu'ils soient dans le même ensemble dans $\mathcal{X}$(resp. $\mathcal{Y}$) et dans deux ensembles différents dans $\mathcal{Y}$ (resp. $\mathcal{X}$).
+Avec ces notations, le Rand Index est définit de la manière suivantes:
+
+\begin{equation}
+RI(\mathcal{X},\mathcal{Y}) = \dfrac{a_{11} + a_{00}}{a_{11}+a_{01}+a_{10}+ a_{00}}
+\end{equation}
+Il se peut que, par chance, deux partitions classent deux n\oe uds de la même manière.
+C'est pourquoi une version ajustée du Rand Index (ARI) a été proposé une version~\cite{Hubert1985}.
+Le Rand index et sa version ajustée permette de comparer des partitions.
+Une extension de l'ARI a été Porumbel \emph{et al.} pour comparer des couvertures.
+Il s'agit de l'Omega Index~\cite{Porumbel2011}
+
+\paragraph{Approche venant de la théorie de l'information}
+On peut considérer que l'assignation d'un élément à un ensemble est une variable aléatoire.
+Dans ce cas, la probabilité d'un élément d'être dans un ensemble $X \in \mathcal{X}$ est $P(X)= \dfrac{|X|}{|V|}$.
+De manière similaire, la probabilité jointe est $P(X,Y) = \dfrac{X \cap Y}{|V|}$.
+Avec ces définitions, il est possible de calculer l'\emph{entropie} d'une partition, $H(\mathcal{X})$, l'\emph{entropie conditionnelle}, $H(\mathcal{X}|\mathcal{Y})$ et l'information mutuel $I(\mathcal{X},\mathcal{Y})$.
+Cette dernière est définie par $I(\mathcal{X}, \mathcal{Y}) = H(X) - H(\mathcal{X}|\mathcal{Y})$.
+L'entropie de Shanon est définie par $H(\mathcal{X}) = - \sum_{X \in \mathcal{X}} P(X)log(P(X))$ et l'entropie conditionnelle par $H(\mathcal{X}|\mathcal{Y}) = -\sum_{X \in \mathcal{X},\ Y \in \mathcal{Y}} P(X, Y) log P(X|Y)$.
+Afin de normaliser l'information mutuel, Danon et al. ont définit l'information mutuel normalsée ($NMI_{shanon}$):
+\begin{equation}
+ NMI_{shanon}(\mathcal{X},\mathcal{Y}) = \dfrac{2I(\mathcal{X},\mathcal{Y})}{H(\mathcal{X})+H(\mathcal{Y})}
+\end{equation}
+
+Lancichinetti \emph{et al.} l'ont par la suite étendue pour prendre en compte des couvertures~\cite{Lancichinetti2009c}.
+Le choix de la normalisation dans le cas chevauchant semble cependant toujours ouvert\cite{McDaid2011,Zhang2015}.
+
+\resume{
+Il est intéressant de noter que la littérature sur le problème de la comparaison de structure est assez restreinte comparé à la détection de communautés.
+En effet, il semble qu'uniquement 3 similarités soient utilisées: similarité se basant sur Jaccard, l'Omega index et la NMI.
+Surprenamment, tous les indices de similarité ont été étendues aux couvertures de manière assez convaincantes.
+Il est également important de noter l'existence d'implémentations librement accessible d'une majeure parties de ces métriques\, \footnote{\url{https://github.com/aaronmcdaid/Overlapping-NMI}}\,\footnote{\url{http://scikit-learn.org/stable/modules/clustering.html\#clustering-evaluation}}.
+}
+%\footnotetext[3]{\url{https://github.com/aaronmcdaid/Overlapping-NMI}}
 
 
 \section{Communauté dans les graphes}
@@ -72,9 +186,11 @@ Nous présentons ces deux catégories dans les sous-sections suivantes.
 Il existe également une troisième catégorie qui est la détection de partition de liens qui est un problème à part et qui est présentée dans le chapitre~\ref{chap:Expected_Node}.
 
 \subsection{Parititons de n\oe uds}
+\label{subsec:Part_noeuds}
 Afin de mieux comprendre ce que peux capturer une parition de n\oe uds, il est plus facile de partir d'un exemple.
-Dans l'étude de Stehlé~\emph{et al.}~\cite{Stehle2011}, des enfants d'une école primaire ont eu pendant 2 jours des capteurs enregistrant lorsque deux enfants sont à une distance de moins de 1m50 l'un de l'autre.
+Dans l'étude de Stehlé~\emph{et al.}~\cite{Stehle2011}, des enfants d'une école primaire ont eu pendant 2 jours des capteurs enregistrant lorsque deux enfants sont à une distance de moins de 1m50.
 Ce dispositif permet de mesurer les interactions entre élèves et de construire le graphe des relations entre élève à l'école.
+Un lien existe entre deux élèves si ils ont interagis au moins une fois ensemble.
 Une illustration du graphe obtenu est visible dans la figure~\ref{fig:ecole_primaire}.
 La classe de chaque élève est également connue.
 Comme chaque élève appartient à une et une seule classe, les classes forment une partition des élèves.
@@ -304,59 +420,174 @@ Les méthodes utilisant des fonctions de qualité locales sont quant à elle tr�
 }
 
 
-
-
-%benchmark \cite{Lancichinetti2008,Lancichinetti2009b}
-
 \section{Extension temporelle des graphes}
 \label{sec:intro_extension_temporelle}
 
-\cite{Hartmann2014}
+Les graphes sont utilisés pour représenter une situation ou résoudre un problème réel.
+Dans le chapitre précédent, nous nous sommes attachés à présenter une partie des méthodes considérant le problème de la détection de communautés recouvrantes ou non.
+Cependant toutes ces méthodes reposent sur la validité de la représentation du problème par un graphe.
+Cette hypothèse est justifiée dans énormément de cas.
+Ce n'est par contre pas le cas lorsque l'objet d'étude évolue durant la capture.
 
-application:
-Diffusions \cite{Backlund2014, Gauvin2015} \cite{Karimi2013,Holme2014a,Horvath2014,Karsai2011,Kivela2012,Lambiotte2013,Lee2012,Perotti2014,Rocha2011,Scholtes2014,Scholtes2013}temporal network \cite{Jo2014} impact inter event time
-Face-to-face interaction: \cite{Barrat2013,Asur2009}
-Communauté TVG: \cite{Bassett2013,Bazzi2016}
-Réseau de transport: \cite{Gallotti2015} multilayer
-\subsection{snapshot}
-multylayer \cite{Mucha2010,Kivela2014,Peixoto2015c},mathemical source\cite{DeDomenico2013}, survey générale (génération, percolation, diffusion) \cite{Boccaletti2014}
+Afin d'illustrer ce propos, nous appuyons sur le même exemple de réseau de personnes que nous avons présenté dans la sous-section~\ref{subsec:Part_noeuds} et qui est illustré dans la figure~\ref{fig:ecole_primaire}.
+Dans cet exemple, deux élèves sont reliés dans le graphe si ils ont interagis au moins une fois au cours de la capture.
+Dans ce cas, on parle de graphe agrégé car la dimension temporelle est complètement oubliée.
+Comme la capture n'a duré que deux jours, il est fort probable que les élèves n'aient pas changé d'habitude durant la capture.
+En étudiant le graphe agrégé, il est possible de mettre en avant l'organisation générale des élèves mais déjà de l'information a été perdue.
+En effet, il n'est pas possible de différencier le comportement observé le matin de celui observé le soir car l'ensemble des interactions sont agrégées dans le graphe.
+Ce n'est pas tout, imaginons que la capture ait duré plusieurs mois voir plusieurs années.
+Dans ce cas de figure, il ne sera plus possible de dégager un comportement général des élèves car ils auront changé durant ce laps de temps.
+En particulier, de nouveaux groupes d'amis se seront formés et d'autres auront disparu.
+Tout ces changements impactent le graphe agrégé et tendent au fur et à mesure à le rapprocher à une grande clique ce qui le rend complètement inexploitable.
+Le temps est donc une dimension qu'il est nécessaire de prendre en compte.
 
-snap\cite{Asur2009,Bassett2013,Bazzi2014} + fenetre glissante
-\cite{de2016detection,Rosvall2010} change point snap
+Le domaine de l'épidémiologie sont de très bon exemples de l'importance du temps.
+Un modèle épidémique modélise la propagation d'une maladie dans une population en fonction des contacts qui existent.
+Il est donc tout naturel de s'appuyer initialement sur un graphe où les n\oe uds représentent des personnes et les liens représentent les interaction entre personnes.
+En plus du graphe, il est nécessaire d'ajouter l'états de chaque n\oe uds, \emph{e.g.} n\oe ud sain ou n\oe ud infecté.
+Ainsi, un n\oe ud sain ne peut devenir infecté que s'il est relié à un n\oe ud infecté dans le graphe.
+Ce genre de modèle mettent donc en avant un chemin de diffusions, \emph{e.g.} une suite de personnes transmettant sa maladie à l'autre.
 
-effet time window \cite{Krings2012,Ribeiro2013} (ribeiro effet sur les random walk)
+Afin d'illustrer ce phénomène, les premiers travaux~\cite{Vespignani2008}
+s'appuient sur un graphe d'interaction de personnes agrégeant toute l'information temporelle.
+Or, la prise en compte du temps dans ce contexte est primordiale car il est possible que le chemin d'infections simulé dans le graphe agrégé ne soit pas réalisable si l'on prend en compte le temps.
+Imaginons 3 personnes $A$, $B$, $C$ tel que $A$ et $B$ interagisse à l'instant $1$, $B$ et $C$ interagisse à l'instant $2$.
+Dans le graphe agrégé, il est possible pour $C$ d'infecter $A$ via $B$ alors que dans la réalité cela n'est possible.
+L'ajout du temps impacte donc fortement les résultats obtenus dans le contexte épidémiologique et ce phénomène est d'ailleurs très étudié~\cite{Gauvin2015,Karsai2011,Jo2014,Horvath2014,Holme2014a,Scholtes2014,Perotti2014}.
 
-centralité de lien \cite{Takaguchi2012}
+Une fois reconnue l'importance du temps, il est nécessaire de trouver un nouveau formalisme étendant la théorie des graphes pour tenir compte du temps.
+Nous présentons maintenant différentes extensions possibles de la théorie des graphes, dans les sous-sections~\ref{subsec:perte_info} et \ref{subsec:pasperte_info}.
+Nous détaillons également comment la recherche de communautés se transpose dans ces nouveaux formalismes et plus généralement quelles sont les problèmes qu'ils permettent de résoudre.
+Des états de l'art dans ce domaine ont d'ailleurs déjà été esquissés~\cite{Boccaletti2014,Cazabet2014,hartmann2014clustering}.
 
-Communauté:
-\cite{Sun2007} graphescope
-\cite{Lin2008} facenet
-\cite{DeDomenico2014} info map sur du multi layer
-\cite{Chakrabarti2006,Chen2013} current + stabilité
-Multylayer SBM\cite{Stanley2015} \cite{Corneli2016} SBM sur chaque tranche. proche\cite{Matias2015}
-\cite{Gauvin2014}
-\cite{Guo2014}
-\cite{Hopcroft2004}
-\cite{Kalavathi2015}
-temps intrinsèque.
-\cite{Albano2014}
+\subsection{Extensions avec pertes d'informations temporelles}
+\label{subsec:perte_info}
+\subsubsection{Séries de graphes}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\linewidth]{img/Intro/TVG.eps}
+\caption{Exemple de série de graphes sur trois intervalles de temps.}
+\label{fig:exemple_TVG}
+\end{figure}
+La première solution qui a été apportée ne prends le temps en compte que partiellement.
+Il s'agit de manipuler une série de graphe où chaque graphe représente le système durant un intervalle de temps donné.
+Ainsi, il est possible d'appliquer les outils de la théorie des graphes sur chaque intervalle de temps.
+Cependant chaque intervalle de temps est représenté par un graphe agrégé.
+Il y a donc une perte d'information.
+Plus formellement, une série de graphe est défini par $\mathcal{G}=\{G_i\}_{i < T}$ où $T$ est un entier, voir l'illustration~\ref{fig:exemple_TVG}.
 
-Génération de: \cite{Granell2015, Karsai2014,Perra2012}
+Cette définition initiale laisse le choix sur la découpe du temps en intervalle.
+Il est possible de choisir des intervalles de tailler égale ou non et disjoints ou chevauchant\cite{Wang2012}.
+Utiliser des intervalles à durée variable permet de mieux tenir compte de la dynamique.
+Par exemple lors de l'étude d'interactions de personnes, il est très courant d'observer une très faible activité la nuit et une plus forte le soir.
+Un graphe agrégeant ce qui se passe sur un intervalle de 5h sera vide dans le premier cas et peut être trop dense dans le second.
+La détection d'intervalle pertinent est donc un vaste sujet de recherche~\cite{Rosvall2010,Krings2012,Ribeiro2013,Caceres2013,Peel2015,de2016detection}.
 
-\subsection{TVG/Evolving}
-\cite{Casteigts2011,Wehmuth2014}
-\cite{Figueiredo2012} random walk.
-\cite{Cazabet2010} conductance sur TVG
-Suivi dans les snapshot de la force d'une communauté: \cite{Du2015}
-\cite{Caceres2013} time scale on temporal networks 
-\cite{Cordeiro2016} évolution modularité
-\cite{Epasto2015} le plus dense à un instant
-\cite{Sun2014}
+La notion même de temps est importante.
+Albano \emph{et al.}~\cite{Albano2014} propose même d'utiliser une autre mesure que la seconde ou la journée mais plutôt le nombre de changement comme mesure du temps.
+Ainsi, le temps n'avance pas si aucun changement n'a lieu et au contraire il avance beaucoup si énormément de changement apparaissent.
+Cette manière de procéder se rapproche des travaux de Lamport~\cite{Lamport1978} dans les système distribués.
 
-\subsection{Flots de liens}
+\paragraph{Détection de communautés}
+Dans ce contexte de série de graphe, il y a eu assez tôt des méthodes de détection de communautés~\cite{Hopcroft2004,Sun2007,Lin2008,Asur2009}.
+Il est, en effet, assez naturel d'appliquer une méthode de détection statique sur chaque graphe puis d'essayer de faire du suivie de communautés.
+Le suivi de communauté consiste en étant une série de graphe et une série de partition comprendre comme un communauté donnée à évoluer.
+Palla \emph{et al.}~\cite{Palla2007} ont été parmi les premier à décrire les évolution possible d'une communauté.
+Muni d'indicateur de similarité tel que l'indice de Jaccard, voir~\ref{def:graphe_comparaison}, il est possible de trouver les communautés les plus proches aux instant précédant et suivant.
+\`A partir de ces informations, il est défini 5 type d'évolutions d'une communauté:
+\begin{description}
+\item[Naissance] il n'existait pas de communauté proche précédemment.
+\item[Agrandissement] La communauté continue d'exister et s'agrandit.
+\item[Fusion] Deux communautés fusionnent pour donner lieu à une nouvelle communauté.
+\item[Division] Une communauté se sépare en deux nouvelles communautés à l'étape suivante.
+\item[Mort] Une communauté cesse d'exister dans les graphes suivants.
+\end{description}
+
+Ce type de méthode souffre souvent de l'instabilité des méthodes de détections~\cite{Aynaud2010,Harenberg2014a}.
+Si les partitions changent complètement entre deux graphes consécutif, alors il est difficile de faire un réel suivi de communautés.
+C'est pourquoi des méthodes essayent de forcer une certaine stabilité de la partition en ajoutant un coût de transition~\cite{Chakrabarti2006,Chen2013,Kalavathi2015}.
+Une approche détournée pour garder une certaine stabilité est d'utiliser la partition trouvé précédemment comme base de recherche pour l'intervalle suivant~\cite{Lancichinetti2011a,Corneli2016}.
+
+\subsubsection{Tenseur 3D}
+Les tenseurs 3D ne sont pas en soi différent des séries de graphes.
+Il est possible de voir un graphe comme une matrice carré d'adjacence.
+Il est donc normal de concevoir une série de graphe comme un tenseur appartenant à $\mathcal{R}_{nnT}$.
+Ce changement de point de vue permet ainsi d'appliquer les méthodes d'algèbre linéaire, notamment la décomposition de tenseur.
+C'est la méthode proposée par Gauvin~\emph{et al.}~\cite{Gauvin2014} pour étudier la structure communautaire des interactions d'élèves.
+
+
+
+\subsubsection{Graphes multicouche}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\linewidth]{img/Intro/multiplex.eps}
+\caption{Graphe multicouche avec trois couches représentant le temps.
+Les liens pleins (resp. pointillés) sont les liens intra-couches (resp. inter-couches).}
+\label{fig:exemple_multiplex}
+\end{figure}
+La construction de graphes multicouche (\emph{multilayer} ou \emph{multiplex}) est proche de l'idée des séries de graphes.
+Tout comme les séries de graphes, des n\oe uds et des liens sont créés à chaque intervalle pour représenter ce qui s'est déroulé l'intervalle de temps.
+Cependant, le graphe multicouche ajoute des liens entre les n\oe uds de deux intervalles si'ls sont identiques, voire l'illustration~\ref{fig:exemple_multiplex}.
+Par conséquent, un graphe multicouche est un graphe où il existe deux type de liens dans un graphe multicouche: les liens intra-couches et les liens inter-couches.
+Les liens intra-couches représentent un connexion entre entre deux n\oe uds durant un intervalle de temps.
+Les liens inter-couches représentent un lien entre deux n\oe uds sur deux intervalles différents.
+Ces derniers sont utilisés pour identifier un même n\oe ud sur plusieurs intervalles et sont en générales limités à relier deux couches consécutives.
+
+Les graphes multicouches représentent très bien les donnée évoluant dans le temps mais ils modélisent aussi très bien d'autres situations.
+Par exemple, ils permettent de représenter facilement les différent moyens de transport dans une ville où chaque moyen de transport (bus, voiture, métro ...) est représenté par une couche.
+Plusieurs travaux~\cite{DeDomenico2013,Kivela2014,Boccaletti2014} décrivent les graphes multicouches et leurs applications.
+
+
+
+\paragraph{Détection de communautés}
+Grâce au formalisme de graphe multicouche, il est possible de traiter le temps de manière un peu plus fine que dans les séries de graphes car il permet de mieux suivre l'évolution des n\oe uds.
+Comme un graphe multicouche est un graphe, il est possible d'adapter les méthodes existantes pour tenir compte des différents type de liens.
+C'est le cas d'infomap~\cite{DeDomenico2014}, de la modularité~\cite{Mucha2010,Bassett2013,Bazzi2016} et du SBM~\cite{Stanley2015,Peixoto2015c}.
+
+
+\subsubsection{Bilan}
+Les séries de graphes, les tenseurs et les graphes multicouches permettent de prendre en compte le temps tout en autorisant l'utilisation de méthode conçu sur un graphe statique.
+Cette liberté d'utilisation à un coût.
+Ces approches reposent sur une découpe du temps en sous-intervalles durant lesquelles il est possible d'agrégé temporellement pour obtenir un graphe statique.
+Il peut être délicat de définir un intervalle de temps qui permet de construire des graphes qui aient du sens.
+La construction des graphes agrégés entraine une perte d'information temporelle et cela impacte la précision temporelle des structures communautaires qui sont manipulables.
+Il n'est pas envisageable d'augmenter le nombre d'intervalle de temps car cela induirait d'une part des graphes agrégés avec très peu de liens et d'autre part le temps de calcul serait très fortement impacté.
+
+
+\subsection{Extension sans pertes d'informations temporelles}
+\label{subsec:pasperte_info}
+\subsubsection{Graphe temporel}
+Les graphes temporels (\emph{Time Varying Graph} ou \emph{Evolving Graph})
+permettent de tenir compte de l'ensemble de l'information temporelle.
+Pour cela au lieu de considérer des intervalles de temps, ils considèrent l'ensemble des modifications qui affectent le graphe: les ajouts et retraits de liens.
+En pratique, cela revient à considérer sur chaque lien une fonction de la présence en fonction de temps qui vaut $1$ à un instant $t$ si le lien existe à cet instant et $0$ sinon.
+Ce formalisme est présenté dans différents travaux~\cite{Casteigts2011,Wehmuth2014}.
+
+\paragraph{Détection de communautés}
+Dans un graphe temporel, une structure de graphe existe à chaque instant.
+Il est donc possible de calculer après chaque modification l'évolution d'une métrique.
+Par exemple, il est possible de calculer après l'ajout d'un lien le nouveau degré interne des n\oe uds impacté par ce changement..
+En fonction de l'évolution de cette métrique, il est alors décidé d'ajouter ou retirer un n\oe ud voir même de fusionner deux communautés.
+Li \emph{et al.}~\cite{Li2012a} se base sur le nombre de liens que partage un n\oe uds avec les communautés environnantes.
+Ainsi, un n\oe ud est toujours dans la communauté avec laquelle il partage le plus de liens.
+Shang\emph{et al.}~\cite{Shang2014a} et Cordeiro~\emph{et al.}~\cite{Cordeiro2016} se basent sur l'évolution de la modularité.
+Cependant, ces approches ne permettent pas l'ensemble des évolutions possibles de communauté, en particulier l'apparition d'une nouvelle communauté.
+C'est pourquoi l'évolution de la structure courante peut mener à une structure ayant une faible qualité.
+Une autre approche a été proposée par Cazabet~\emph{et al.}~\cite{Cazabet2010}.
+Elle se utilise sur une métrique locale basé sur le nombre de chemins de longueur $2$ existant entre un n\oe ud et une communauté.
+Après chaque modification, ils considèrent également la possibilité de créer une nouvelle communauté sous la forme d'une petite clique.
+
+%\cite{Sun2014}
+
+
+\subsubsection{Flots de liens}
+Dans les approches précédentes, 
+
+proche\cite{Matias2015}
+
 \cite{Holme2013a,Holme2015b,Holme2015} plein d'étude possible
 Formalisation algébric \cite{Batagelj2015}.
-bursty \cite{Karsai2012a,Karsai2011,Moinet2015,Stehle2010} inter event time \cite{Kivela2014a}, \cite{Malmgren2008,Malmgren2009} heavy tail, \cite{Rocha2013}
+bursty \cite{Karsai2012a,Karsai2011,Moinet2015,Stehle2010} \cite{Malmgren2008,Malmgren2009} heavy tail, \cite{Rocha2013}
 
 motif \cite{Kovanen2011a,Kovanen2013}.
 Le formalisme de flot de liens est défini plus en profondeur dans le chapitre~\ref{chap:def_flot}.
@@ -366,4 +597,10 @@ randomwalk\cite{Starnini2012b}
 centralité \cite{Costa2015,Kim2012, Pfitzner2013a, Praprotnik2015,Scholtes2015,Takaguchi2016}
 densité \cite{Viard2014a}
 
-generateur \cite{Starnini2013,Vestergaard2014}
+
+
+\resume{
+L'extension temporelle des graphes est un champ de recherche très récent et il est difficile d'avoir du recul sur les possibilités qu'offre chaque méthodes.
+Il semble tout de même se dessiner différentes catégories.
+
+C'est le bordel plein de notation et tout ça.}
