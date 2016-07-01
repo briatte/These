@@ -557,11 +557,21 @@ Il n'est pas envisageable d'augmenter le nombre d'intervalle de temps car cela i
 \subsection{Extension sans pertes d'informations temporelles}
 \label{subsec:pasperte_info}
 \subsubsection{Graphe temporel}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\linewidth]{img/Intro/evolvingGraph.eps}
+\caption{Graphe temporel avec des ajouts de lien représentés en trait épais vert et des retraits de lien représentés par des liens pointillés rouge.
+}
+\label{fig:exemple_evolving}
+\end{figure}
 Les graphes temporels (\emph{Time Varying Graph} ou \emph{Evolving Graph})
 permettent de tenir compte de l'ensemble de l'information temporelle.
 Pour cela au lieu de considérer des intervalles de temps, ils considèrent l'ensemble des modifications qui affectent le graphe: les ajouts et retraits de liens.
 En pratique, cela revient à considérer sur chaque lien une fonction de la présence en fonction de temps qui vaut $1$ à un instant $t$ si le lien existe à cet instant et $0$ sinon.
-Ce formalisme est présenté dans différents travaux~\cite{Casteigts2011,Wehmuth2014}.
+Ainsi, il est possible de connaitre la structure de graphe à chaque instant.
+Ce formalisme est présenté dans différents travaux~\cite{Casteigts2011,Wehmuth2014} et illustré dans la figure~\ref{fig:exemple_evolving}.
+Dans cette figure, on voit apparaitre l'ordre de modification du graphe.
+Tout d'abord, les lien $(b,f)$ et $(c,d)$ disparaissent puis les liens $(b,e)$ et $(f,c)$ apparaissent chacun leur tour. 
 
 \paragraph{Détection de communautés}
 Dans un graphe temporel, une structure de graphe existe à chaque instant.
@@ -570,18 +580,29 @@ Par exemple, il est possible de calculer après l'ajout d'un lien le nouveau deg
 En fonction de l'évolution de cette métrique, il est alors décidé d'ajouter ou retirer un n\oe ud voir même de fusionner deux communautés.
 Li \emph{et al.}~\cite{Li2012a} se base sur le nombre de liens que partage un n\oe uds avec les communautés environnantes.
 Ainsi, un n\oe ud est toujours dans la communauté avec laquelle il partage le plus de liens.
-Shang\emph{et al.}~\cite{Shang2014a} et Cordeiro~\emph{et al.}~\cite{Cordeiro2016} se basent sur l'évolution de la modularité.
+Shang\emph{et al.}~\cite{Shang2014a}, Cordeiro~\emph{et al.}~\cite{Cordeiro2016} et Sun\emph{et al.}~\cite{Sun2014} se basent sur l'évolution de la modularité.
 Cependant, ces approches ne permettent pas l'ensemble des évolutions possibles de communauté, en particulier l'apparition d'une nouvelle communauté.
 C'est pourquoi l'évolution de la structure courante peut mener à une structure ayant une faible qualité.
-Une autre approche a été proposée par Cazabet~\emph{et al.}~\cite{Cazabet2010}.
-Elle se utilise sur une métrique locale basé sur le nombre de chemins de longueur $2$ existant entre un n\oe ud et une communauté.
+Une autre approche a été proposée par Cazabet~\emph{et al.}~\cite{Cazabet2010} afin d'améliorer l'évolution de la partition.
+ils utilisent sur une métrique locale basé sur le nombre de chemins de longueur $2$ existant entre un n\oe ud et une communauté.
 Après chaque modification, ils considèrent également la possibilité de créer une nouvelle communauté sous la forme d'une petite clique.
+Ainsi, ils assurent une meilleur qualité de la partition au cours de l'évolution.
 
-%\cite{Sun2014}
 
-
-\subsubsection{Flots de liens}
-Dans les approches précédentes, 
+\subsubsection{Flot de liens}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\linewidth]{img/Intro/Flot_de_liens.eps}
+\caption{...}
+\label{fig:exemple_Flot_de_liens}
+\end{figure}
+Dans les approches précédentes utilisant des graphes temporels, toute l'information temporelle est gardé.
+Cependant, l'idéologie derrière cette méthode est qu'il existe une structure de graphe à chaque instant.
+Cette hypothèse n'est pas toujours vérifiée, en particulier lorsque les liens apparaissent et disparaissent très rapidement.
+C'est le cas des appels téléphoniques qui durent rarement plus d'une heure ou bien de manière plus frappante les SMS et les courriels qui n'ont même pas de durées.
+Dans ces contextes, il n'est pas possible d'assumer qu'à chaque instant une structure de graphe existe.
+Il faut donc un formalisme et des mesures qui s'adaptent à ce contexte.
+C'est pour répondre à ce besoin que le formalisme de flot de liens a été pensé.
 
 proche\cite{Matias2015}
 
@@ -590,13 +611,14 @@ Formalisation algébric \cite{Batagelj2015}.
 bursty \cite{Karsai2012a,Karsai2011,Moinet2015,Stehle2010} \cite{Malmgren2008,Malmgren2009} heavy tail, \cite{Rocha2013}
 
 motif \cite{Kovanen2011a,Kovanen2013}.
-Le formalisme de flot de liens est défini plus en profondeur dans le chapitre~\ref{chap:def_flot}.
+Le formalisme de flot de liens est défini plus en profondeur dans le 
 randomwalk\cite{Starnini2012b}
 
 \cite{Gaumont2016}
 centralité \cite{Costa2015,Kim2012, Pfitzner2013a, Praprotnik2015,Scholtes2015,Takaguchi2016}
-densité \cite{Viard2014a}
 
+
+chapitre~\ref{chap:def_flot}.
 
 
 \resume{
