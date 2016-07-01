@@ -596,26 +596,44 @@ Ainsi, ils assurent une meilleur qualité de la partition au cours de l'évoluti
 \caption{...}
 \label{fig:exemple_Flot_de_liens}
 \end{figure}
-Dans les approches précédentes utilisant des graphes temporels, toute l'information temporelle est gardé.
+Dans les graphes temporels, toute l'information temporelle est gardée.
 Cependant, l'idéologie derrière cette méthode est qu'il existe une structure de graphe à chaque instant.
 Cette hypothèse n'est pas toujours vérifiée, en particulier lorsque les liens apparaissent et disparaissent très rapidement.
 C'est le cas des appels téléphoniques qui durent rarement plus d'une heure ou bien de manière plus frappante les SMS et les courriels qui n'ont même pas de durées.
 Dans ces contextes, il n'est pas possible d'assumer qu'à chaque instant une structure de graphe existe.
 Il faut donc un formalisme et des mesures qui s'adaptent à ce contexte.
 C'est pour répondre à ce besoin que le formalisme de flot de liens a été pensé.
+Le but est de construire un objet ne présupposant aucune structure et qui stocke toute l'information disponible.
+
+
+Prenons l'exemple des appels téléphoniques.
+Les informations disponibles sont les appels, c'est-à-dire qui parle avec qui à quelle heure et pendant combien de temps.
+Un appel peut donc être représenté par un quadruplet $(b,e,u,v)$ où $b$ (res. $e$) est le début (resp. la fin) de l'appel et $u$ et $v$ représentent des personnes.
+Il est donc possible de modéliser des appels téléphoniques par un ensemble de quadruplet.
+En faisant cela, aucune information n'est perdue et, en ce sens, flots de liens et graphes temporels sont équivalent. 
+Cependant, ce changement de perspective induit une réflexion différente selon le formalisme considéré.
+
+Les différences dans les méthodes de représentation des graphes temporels~\ref{fig:exemple_evolving} et celle des flots de liens~\ref{fig:exemple_Flot_de_liens} illustrent bien ce changement de perspective, bien que les deux figures ne représentent pas la même information.
+Dans l'exemple de la figure~\ref{fig:exemple_Flot_de_liens}, les n\oe uds sont représentés sur l'axe des ordonnées et le temps sur l'axe des abscisses.
+Un lien dans cette visualisation est représenté par un arc verticale reliant deux axes de n\oe uds et un trait horizontale représentant la durée.
+Ainsi dans l'exemple, il existe un lien entre les n\oe uds $a$ et $b$ dans l'intervalle $[4,6]$.
+Dans un graphe temporel, on abordera plus souvent les questions d'évolution de communautés de n\oe uds ou de l'importance d'un n\oe ud.
+Dans un flot de liens, on s'intéressera plus souvent au temps nécessaire pour que deux n\oe uds soient de nouveau en contact ou à l'importance d'un lien.
+De manière très manichéenne et inexacte, le formalisme de graphe temporel pousse à étudier les n\oe uds et leur évolution alors que celui de flot de liens mets plus l'accent sur les liens.
+%C'est pourquoi il existe autant de travaux étudiant la centralité
 
 proche\cite{Matias2015}
-
 \cite{Holme2013a,Holme2015b,Holme2015} plein d'étude possible
 Formalisation algébric \cite{Batagelj2015}.
+
 bursty \cite{Karsai2012a,Karsai2011,Moinet2015,Stehle2010} \cite{Malmgren2008,Malmgren2009} heavy tail, \cite{Rocha2013}
 
 motif \cite{Kovanen2011a,Kovanen2013}.
 Le formalisme de flot de liens est défini plus en profondeur dans le 
 randomwalk\cite{Starnini2012b}
 
-\cite{Gaumont2016}
-centralité \cite{Costa2015,Kim2012, Pfitzner2013a, Praprotnik2015,Scholtes2015,Takaguchi2016}
+
+% centralité \cite{Costa2015,Kim2012, Pfitzner2013a, Praprotnik2015,Scholtes2015,Takaguchi2016}
 
 
 chapitre~\ref{chap:def_flot}.
