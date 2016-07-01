@@ -211,7 +211,7 @@ Il y a d'ailleurs régulièrement des état de l'art qui sont publiés~\cite{For
 Afin d'aider le lecteur, nous détaillons ici quelques unes des méthodes les plus utilisées.
 
 \subsubsection{Méthodes utilisant un modèle pour la comparaison}
-
+\label{def:Modularite}
 Comme une communauté est souvent définie comme devant être très connectée, le problème est de trouver une fonction capable d'évaluer la connexité d'une communauté.
 Pour ce faire, deux \emph{ingrédients} sont nécessaires.
 Tout d'abord, il faut définir une métrique qui mesure la connexité, \emph{e.g.} le nombre de liens dans un groupe.
@@ -227,7 +227,7 @@ Or, le graphe constitué d'une unique clique ne possède pas de structure commun
 Il est donc nécessaire de trouver une autre approche.
 
 Plutôt que de normaliser une métrique par ces valeurs minimum et maximum, il est intéressant de considérer l 'écart à une valeur moyenne.
-L'idée est la suivante: si le graphe n'avait pas de structure communautaire qu'elle serait la valeur attendue de la métrique considérée?
+L'idée est la suivante: quelle serait la valeur attendue de la métrique considérée si le graphe n'avait pas de structure communautaire.
 Le problème est alors de définir des graphes qui n'ont pas de structures communautaires.
 L'ensemble des graphes similaires définit alors un \emph{modèle nul}.
 Détecter des communautés se traduit alors en trouver des groupes qui s'éloignent du modèle nul considéré où il n'existe pas de communauté.
@@ -237,8 +237,8 @@ Afin que les graphes aléatoires puissent être comparable au graphe initiale, d
 Le premier modèle nul de graphe est celui de Erdös-Rényi~\cite{Erdos1959} où le nombre de liens et le nombre de n\oe uds des graphes aléatoires doivent être les mêmes que dans le graphe initial.
 Un autre modèle très couramment utilisé est le modèle de configuration~\cite{Bender1978a}.
 Dans ce modèle, la distribution des degrés est également fixe.
-Le modèle est de configuration est souvent utilisé car il a été souvent observé que les graphes provenant de données réelles ont une distribution des degrés très éloignés d'une distribution uniforme.
-C'est pourquoi l'ajout de la contrainte sur les degrés permet de considérer des graphes dans le modèle nul plus similaire au graphe initiale. 
+Le modèle de configuration est souvent utilisé car il a été observé que les graphes provenant de données réelles ont une distribution des degrés très éloignés d'une distribution uniforme.
+C'est pourquoi l'ajout de la contrainte dans le modèle nul sur les degrés permet de considérer des graphes plus similaire au graphe initiale. 
 Ils existent bien évidement d'autres modèles possibles considérant d'autres contraintes~\cite{Newman2009}.
 
 \paragraph{Modularité}
@@ -314,7 +314,7 @@ Au bout d'un certain nombre d'itération ou l'équilibre, il ne reste que beauco
 Jusqu'à maintenant nous avons considérons les communautés comme des partition de n\oe uds.
 Or, les partitions sont très restrictives et ne peuvent pas capturer toutes les situations possibles.
 Reprenons l'exemple d'un graphe reflétant des interactions de personnes comme dans la section~\ref{sec:intro_communaute}.
-Ils existent des communautés qui sont disjointes comme le travail et la famille mais bien souvent des personnes appartenant à plusieurs groupes, voire l'exemple dans la figure~\ref{fig:ex_overlap_communaute}.
+Ils existent des communautés qui sont disjointes comme le travail et la famille mais bien souvent des personnes appartenant à plusieurs groupes, voir l'exemple dans la figure~\ref{fig:ex_overlap_communaute}.
 Ainsi le groupe de personnes faisant du sport ensemble et le groupe des personnes travaillant ensemble peuvent ne pas être disjoint.
 Si tel est le cas, alors il n'est plus possible de représenter des communautés avec une partition.
 Il est nécessaire de manipuler une couverture de n\oe uds.
@@ -527,7 +527,7 @@ Les liens pleins (resp. pointillés) sont les liens intra-couches (resp. inter-c
 \end{figure}
 La construction de graphes multicouche (\emph{multilayer} ou \emph{multiplex}) est proche de l'idée des séries de graphes.
 Tout comme les séries de graphes, des n\oe uds et des liens sont créés à chaque intervalle pour représenter ce qui s'est déroulé l'intervalle de temps.
-Cependant, le graphe multicouche ajoute des liens entre les n\oe uds de deux intervalles si'ls sont identiques, voire l'illustration~\ref{fig:exemple_multiplex}.
+Cependant, le graphe multicouche ajoute des liens entre les n\oe uds de deux intervalles si'ls sont identiques, voir l'illustration~\ref{fig:exemple_multiplex}.
 Par conséquent, un graphe multicouche est un graphe où il existe deux type de liens dans un graphe multicouche: les liens intra-couches et les liens inter-couches.
 Les liens intra-couches représentent un connexion entre entre deux n\oe uds durant un intervalle de temps.
 Les liens inter-couches représentent un lien entre deux n\oe uds sur deux intervalles différents.

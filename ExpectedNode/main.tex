@@ -1,10 +1,10 @@
-\chapter{Expected Nodes: communautés de liens dans les graphes statiques}
+\chapter{\emph{Expected Nodes}: communautés de liens dans les graphes statiques}
 \minitoc
 
 \label{chap:Expected_Node}
-Les structures communautaires dans les graphes ont été beaucoup étudiées lorsqu'elles concernent les n\oe uds, voire chapitre~\ref{chap:etat_art}.
-Dans une moindre mesure, elles ont également été étudiées losrqu'elles concernent les liens.
-Par exemple dans un réseau social, chaque personne a plusieurs centres d'intérêts: famille, sport, politique...
+Les structures communautaires dans les graphes ont été beaucoup étudiées lorsqu'elles concernent les n\oe uds, voir le chapitre~\ref{chap:etat_art}.
+Dans une moindre mesure, elles ont également été étudiées lorsqu'elles concernent les liens.
+Par exemple dans un réseau social, chaque personne a plusieurs centres d'intérêt: famille, sport, politique...
 Lorsque deux personnes interagissent, la communication a lieu dans un contexte bien particulier.
 Bien que les personnes aient plusieurs centres d'intérêts, la raison de leur communication est souvent unique.
 Il semble donc qu'une information importante soit intrinsèquement liée au lien.
@@ -16,11 +16,11 @@ Via la recherche de partitions de liens d'un graphe, c'est cette information que
 \caption{Exemple de de réseau de personne avec une structure communautaire sur les liens qui est représentée par la couleur et le style de chaque lien.}
 \label{fig:linkpartition_exemple_expected}
 \end{figure}
-Afin d'illustrer ce que capture une partition, prenons l'exemple d'un réseau de personnes fictif où le contexte de l'interaction est connue.
+Afin d'illustrer ce que capture une partition, prenons l'exemple d'un réseau de personnes fictif où le contexte de l'interaction est connu.
 Certaines personnes communiquent ensemble car elles sont de la même \textbf{\textcolor{bleu_random}{famille}}, pratiquent le même \textbf{\textcolor{rose_cochon}{sport}}, jouent au \textbf{\textcolor{vert_fonce}{go}} ensemble ou bien encore car elles \textbf{\textcolor{violet_cool}{travaillent}} ensemble.
 Nous illustrons cet exemple dans la figure~\ref{fig:linkpartition_exemple_expected} où les interactions sont colorées en fonction de leur contexte.
 Il est intéressant de noter que les interactions d'un même type se regroupent ensemble.
-Un n\oe ud peut avoir des interactions de plusieurs types, c'est le cas du n\oe ud central qui a des interactions de type \textbf{\textcolor{bleu_random}{famille}}, \textbf{\textcolor{rose_cochon}{sport}} et \textbf{\textcolor{vert_fonce}{go}}.
+Un n\oe ud peut avoir des interactions de plusieurs types; c'est le cas du n\oe ud central qui a des interactions de type \textbf{\textcolor{bleu_random}{famille}}, \textbf{\textcolor{rose_cochon}{sport}} et \textbf{\textcolor{vert_fonce}{go}}.
 De même, certaines interactions font le lien entre différent groupes.
 C'est le cas du lien pointillé \textbf{noir} qui relie le \textbf{\textcolor{rose_cochon}{sport}} et le \textbf{\textcolor{violet_cool}{travail}} ce qui pourrait se traduire par le financement de l'équipe par l'entreprise.
 Ainsi, les partitions de liens peuvent capturer des situations assez variées.
@@ -34,32 +34,34 @@ De plus, elles permettent de mettre en avant une autre structure ayant égalemen
 
 
 
-Il apparait donc les partitions de liens sont des objets à part entières pertinent à étudier.
-Pour ce faire, il est nécessaire d'adapter les outils d'analyses pour évaluer directement les partitions de liens.
+Il apparaît donc que les partitions de liens sont des objets à part entiers.
+Pour ce faire, il est nécessaire d'adapter les outils d'analyse pour évaluer directement les partitions de liens.
 Nous développons ici une approche similaire à ce qui est fait pour les partitions de n\oe uds et la modularité~\cite{Newman2004}.
 Le but est de créer une fonction de qualité permettant d'évaluer une partition de liens d'un graphe.
 
-
-\section{Travaux existants}
-Les notations utilisées sont les suivantes. Soit $G=(V,E)$ un graphe non-orienté avec $V$ l'ensemble des n\oe uds de taille $n$ et $E \subseteq V \times V$ l'ensemble des liens de taille $m$. 
+Dans la suite, nous utiliserons les notations suivantes.
+Soit $G=(V,E)$ un graphe non-orienté avec $V$ l'ensemble des n\oe uds de taille $n$ et $E \subseteq V \times V$ l'ensemble des liens de taille $m$. 
 Le degré d'un sommet $u$ de $G$ est noté $d_G(u)$.
 Une partition des liens en $k$ groupes est notée $\mathcal{L}=(L_1,L_2,\ldots,L_k)$ avec $L_i \subseteq E \ \forall i$, $L_i\cap L_j=\emptyset \ \forall i\neq j$ et $\bigcup_i L_i=E$.
-Pour un groupe de liens $L \in \mathcal{L}$, on pose $V_{in}=\{u \in V, \exists (u,v) \in L\}$ l'ensemble des n\oe uds internes au groupe $L$, $V_{out}=\{u \in V\setminus V_{in}, (u,v) \in E \wedge v \in V_{in} \}$ représente les n\oe uds adjacents au groupe $L$ et enfin $L_{out}=\{(u,v) \in E \setminus L, u \in V_{in} \vee v \in V_{in} \}$ l'ensemble des liens adjacents au groupe $L$ (voir Figure~\ref{fig:example_def_expected}).
+Pour un groupe de liens $L \in \mathcal{L}$, on pose $V_{in}=\{u \in V, \exists (u,v) \in L\}$ l'ensemble des n\oe uds internes au groupe $L$, $V_{out}=\{u \in V\setminus V_{in}, (u,v) \in E \wedge v \in V_{in} \}$ représente les n\oe uds adjacents au groupe $L$ et enfin $L_{out}=\{(u,v) \in E \setminus L, u \in V_{in} \vee v \in V_{in} \}$ l'ensemble des liens adjacents au groupe $L$ (voir la figure~\ref{fig:example_def_expected}).
+
+\section{Travaux existants}
 
 \begin{figure}
 \centering
 \includegraphics[width=0.4\linewidth]{img/ExpectedNodes/exemple2}
-\caption{Exemple d'un groupe de liens $L$ (en \textcolor{semilightblue}{bleu}). Les liens \textcolor{pinkyred}{rouges} sont les liens adjacents $L_{out}$ connectant les n\oe uds internes $V_{in}$ (en \textcolor{semilightblue}{bleu}) aux n\oe uds adjacents $V_{out}$ (en  \textcolor{pinkyred}{rouge}).}
+\caption{Exemple d'un groupe de liens $L$ (en \textcolor{semilightblue}{\textbf{bleu}}). Les liens \textcolor{pinkyred}{\textbf{rouges}} sont les liens adjacents $L_{out}$.
+Les n\oe uds internes $V_{in}$ sont en \textcolor{semilightblue}{\textbf{bleu}} et les n\oe uds adjacents $V_{out}$ en  \textcolor{pinkyred}{\textbf{rouge}}.}
 \label{fig:example_def_expected}
 \end{figure}
 
 Une approche naïve serait de transformer le graphe initial en un \emph{line-graph}.
 Un \emph{line-graph} est un graphe où chaque lien du graphe initial est transformé en un n\oe ud dans le \emph{line-graph}.
-Deux n\oe uds du \emph{line-graph} sont reliés si les liens correspondant ont au moins un n\oe ud en commun, voir la figure~\ref{fig:ex_construction_lineG}.
+Deux n\oe uds du \emph{line-graph} sont reliés si les liens correspondants ont au moins un n\oe ud en commun, voir la figure~\ref{fig:ex_construction_lineG}.
 Comme un \emph{line-graph} est un graphe classique, on peut y appliquer toutes les méthodes déjà existantes, \emph{e.g.} les algorithmes de détection de communautés.
-Ainsi, une partition des n\oe uds du \emph{line-graph} représente une partition des liens du graphe initiale.
-Sur l'exemple~\ref{fig:ex_construction_lineG}, les liens $(1,4)$, $(1,3)$ et $(3, 4)$ du graphe forment un triangle dans le \emph{line-graph} et pourraient être capturés comme étant une communauté.
-Ces liens dans le graphe initial forme également un triangle et peuvent être considérés comme une communauté valide.
+Ainsi, une partition des n\oe uds du \emph{line-graph} représente une partition des liens du graphe initial.
+Sur l'exemple de la figure~\ref{fig:ex_construction_lineG}, les liens $(1,4)$, $(1,3)$ et $(4, 3)$ du graphe forment un triangle dans le \emph{line-graph} et pourraient être capturés comme étant une communauté.
+Ces liens dans le graphe initial forment également un triangle et peuvent être considérés comme une communauté valide.
 \begin{figure}
 \centering
 	\begin{subfigure}{0.25\textwidth}
@@ -79,24 +81,24 @@ Ces liens dans le graphe initial forme également un triangle et peuvent être c
 \end{figure}
 \footnotetext{Image provenant de \url{https://en.wikipedia.org/wiki/Line_graph}.}
 
-Cepdant pour que ce type de méthode fonctionne, il est nécessaire que le \emph{line-graph} résultant puisse être analysé comme un graphe.
-En particulier, il est nécessaire que la notion de communauté dans le \emph{line-graph} est un sens dans le graphe initial.
+Cependant pour que ce type de méthode fonctionne, il est nécessaire que le \emph{line-graph} résultant puisse être analysé comme un graphe.
+En particulier, il est nécessaire que la notion de communauté dans le \emph{line-graph} ait un sens dans le graphe initial.
 Or, un \emph{line-graph} a une structure très différente du graphe initial.
 
 
-Prenons pour l'exemple: la clique qui est la meilleur communauté possible et l'étoile qui est une des pires communautés possible.
-Le but est d'observer comment ses structures sont transformées dans le \emph{line-graph}.
+Prenons pour l'exemple, la clique qui est la meilleure communauté possible et l'étoile qui est une des pires communautés possibles.
+Le but est d'observer comment ces structures sont transformées dans le \emph{line-graph}.
 Ces situations sont représentées dans la figure~\ref{fig:fail_construction_lineG}.
 L'étoile dans la figure~\ref{fig:ex_lineG_etoile} est transformée en une clique de 4 n\oe uds.
-Une des pires structures communautaires d'un graphe est transformé dans le \emph{line-graph} en la meilleur structure communautaire.
-En effet, chaque n\oe uds de degré $k$ du graphe initial donne lieu à une clique de taille $k$ dans le \emph{line-graph}.
+Une des pires structures communautaires d'un graphe est transformée dans le \emph{line-graph} en la meilleur structure communautaire.
+En effet, chaque n\oe ud de degré $k$ du graphe initial donne lieu à une clique de taille $k$ dans le \emph{line-graph}.
 Les cliques du \emph{line-graph} ne sont donc pas forcément des communautés dans le graphe.
-Dans le cas de la clique $4$ dans la figure~\ref{fig:ex_lineG_clique}, on remarque que le \emph{line-graph} est composé de $6$ n\oe uds et de uniquement $12$ liens.
+Dans le cas de la clique de taile $4$ dans la figure~\ref{fig:ex_lineG_clique}, on remarque que le \emph{line-graph} est composé de $6$ n\oe uds et de uniquement $12$ liens.
 Plus généralement une clique de taille $n$ dans le graphe initial donne lieu dans le \emph{line-graph} à $\dfrac{n(n-1)}{2}$ n\oe uds et $(n-1)n$ liens.
 Ainsi, plus la clique est grande dans le graphe, moins la structure résultante dans le \emph{line-graph} est dense.
 Les cliques du graphe sont donc moins denses que ses étoiles, lorsqu'on les observe dans le \emph{line-graph}.
 
-Il n'est donc pas innocent d'utiliser le \emph{line-graph} pour trouver des communautés de liens.
+Il n'est donc pas trivial d'utiliser le \emph{line-graph} pour trouver des communautés de liens.
 Il est nécessaire d'adapter les outils à ce type de graphe.
 \begin{figure}
 \centering
@@ -120,17 +122,18 @@ Il est nécessaire d'adapter les outils à ce type de graphe.
 
 
 
-Il existe différent types de méthode pour la détection et l'évaluation de partitions de liens.
-Yu\emph{et al.}~\cite{Yu2013} ont étendu l'algorithme de propagation de label sur les liens ce qui permet de capturer une partition de liens.
-Cependant cela ne permet d'évaluer le résultat obtenu.
+Il existe d'autres méthodes que le \emph{line-graph} pour la détection et l'évaluation de partitions de liens.
 
-Il y a également les méthodes évaluant une partition de liens via la transformation de la partition en une couverture de n\oe uds~\cite{Huang2013,Lim2014,Wu2010a}.
-Un transformation classiquement utilisée est qu'un n\oe ud dans la couverture prend comme communautés l'ensemble des communautés de ses liens, voir la figure~\ref{fig:Partition_Couverture}.
-Il serait tentant de considérer que les partitions de liens et les couvertures de n\oe uds sont équivalentes.
+Les algorithmes de propagation de labels ont été étendus pour capturer des partitions de liens~\cite{Yu2013}
+Cependant, ils ne permettent pas d'évaluer la qualité de la partition obtenue.
+
+Il y a les méthodes évaluant une partition de liens via la transformation de la partition en une couverture de n\oe uds~\cite{Huang2013,Lim2014,Wu2010a}.
+Une transformation classiquement utilisée est qu'un n\oe ud dans la couverture prend comme communautés l'ensemble des communautés de ses liens, voir la figure~\ref{fig:Partition_Couverture}.
+Il serait alors tentant de considérer que les partitions de liens et les couvertures de n\oe uds sont équivalentes.
 Ainsi pour évaluer une partition de liens, il suffirait de transformer la partition en couverture.
 Or, ce changement n'est pas anodin.
 D'une part, les couvertures de n\oe uds permettent de modéliser beaucoup plus de situations car il n'y a aucune contrainte sur les couvertures.
-D'autre part, il n'est pas trivial de transformer une partition de liens en couverture de n\oe uds, et \emph{vice versa}.
+D'autre part, transformer une partition de liens en couverture de n\oe uds impose des contraintes sur la couverture résultante.
 
 \begin{figure}
 \centering
@@ -140,7 +143,7 @@ D'autre part, il n'est pas trivial de transformer une partition de liens en couv
 \end{figure}
 
 
-Dans l'exemple de la figure~\ref{fig:Partition_Couverture}, il n'est évident pas que la communauté \textcolor{briquered}{\textbf{rouge}} constituée des deux n\oe uds centraux soit une communauté légitime.
+Par exemple dans l'exemple de la figure~\ref{fig:Partition_Couverture}, il n'est pas évident que la communauté \textcolor{briquered}{\textbf{rouge}} constituée des deux n\oe uds centraux soit une communauté légitime.
 Selon le contexte, elle peut être considérée comme un artefact de la transformation.
 La transformation d'une partition n'est donc pas un acte neutre.
 Cet aspect a d'ailleurs été mis en avant par Esquivel~\emph{et al}~\cite{Esquivel2011}.
@@ -148,16 +151,15 @@ Face à ce problème, nos travaux ainsi que quelques méthodes existantes propos
 
 Ahn~\emph{et al.}~\cite{Ahn2010a} sont parmi les premiers à avoir proposé une méthode détectant les communautés de liens.
 Leur méthode \emph{link clustering} est une méthode hiérarchique d'agglomération.
-Elle construit un dendrogramme en agglomérant de manière itérative les groupes de liens en fonction de leur similarité calculée par l'indice de Jaccard.
+Elle construit un dendrogramme en agglomérant de manière itérative les groupes de liens en fonction de leur similarité, calculée par l'indice de Jaccard.
 Afin de décider de la coupe du dendrogramme et de la partition résultante, la fonction \emph{Partition Density} est utilisée.
 Pour une partition de liens donnée $\mathcal{L}$, la \emph{Partition Density} est définie de la manière suivante:
 \begin{equation}
-D(\mathcal{L}) = \dfrac{\sum_{L \in \mathcal{L}} |L|D(L)}{m} \quad D(L) = \dfrac{|L|- min_D(|V_{in}|) }{max_D(|V_{in}|) - min_D(|V_{in}|)},
+D(\mathcal{L}) = \dfrac{\sum_{L \in \mathcal{L}}|L|D(L)}{m},\ avec \quad  D(L) = \dfrac{|L|- min_D(|V_{in}|) }{max_D(|V_{in}|) - min_D(|V_{in}|)},
 \end{equation}
 
-où $min_D(N) = N - 1$ est le nombre minimum de liens pour relier $N$ n\oe uds et $max_D(N) = \dfrac{N(N - 1)}{2}$ est le nombre maximum de liens qu'il puisse exister entre $N$ n\oe uds.
-Malgré son nom la \emph{Partition Density} n'est pas une densité mais le nombre de liens du groupe normalisé par le nombre de liens minimum et maximum pour un groupe de $|V_{in}|$ n\oe uds.
-\\
+où $min_D(N) = N - 1$ est le nombre minimum de liens nécessaire pour relier $N$ n\oe uds et $max_D(N) = \dfrac{N(N - 1)}{2}$ est le nombre maximum de liens qu'il puisse exister entre $N$ n\oe uds.
+Malgré son nom la \emph{Partition Density} n'est pas une densité mais le nombre de liens du groupe normalisé par le nombre de liens minimum et maximum possible pour un groupe de $|V_{in}|$ n\oe uds.
 Après simplification, on obtient la formule suivante:
 
 \begin{equation}
@@ -166,7 +168,7 @@ Après simplification, on obtient la formule suivante:
 
 Par convention, un groupe constitué d'un unique lien, et qui n'a donc que deux n\oe uds internes, a une qualité nulle.
 
-D'autres chercheurs~\cite{Li2013,Shi2013} ont par la suite utilisé la \emph{Partition Density} comme fonction à optimiser dans des algorithmes génétique.
+D'autres chercheurs~\cite{Li2013,Shi2013} ont par la suite utilisé la \emph{Partition Density} comme fonction à optimiser dans des algorithmes génétiques.
 Leurs solutions semblent pour l'instant difficilement utilisable car leurs algorithmes reposent sur de nombreux critères et sont limités à de petit graphes.
 
 Par ailleurs, la \emph{Partition Density} ne peut pas être directement appliquée aux graphes pondérés.
@@ -177,13 +179,13 @@ Une première proposition de Kim~\cite{Kim2014} a été faite dans ce sens.
 
 Evans~\emph{et al.}~\cite{Evans2009} proposent trois fonctions de qualité pour évaluer les partitions de liens.
 Leurs fonctions de qualité sont basées sur trois marches aléatoires qui se déroulent sur les liens du graphe.
-L'approche est similaire à la modularité car la modularité peut également être définie à l'aide de marche aléatoire sur les n\oe uds du graphe~\cite{Delvenne2010}.
+L'approche est similaire à la modularité car la modularité peut également être définie à l'aide d'une marche aléatoire sur les n\oe uds du graphe~\cite{Delvenne2010}.
 Leurs trois fonctions de qualité peuvent être calculées et optimisées sur le graphe mais les auteurs ont montré que l'on pouvait, de manière complètement équivalente, utiliser la modularité sur des \emph{line-graph} pondérés ($LG_1$, $LG_2$, $LG_3$).
 Ainsi, il suffit de construire le \emph{line-graph} approprié puis d'utiliser un algorithme existant d'optimisation de la modularité tel que l'algorithme de \emph{Louvain}~\cite{Blondel2008a}.
 
 
-Pour construire les \emph{line-graphs}  $LG_1$, $LG_2$ et $LG_3$, nous définissons $B\in \mathcal{M}_{n,m}$ la matrice d'incidence du graphe $G$: un élément $B_{i\alpha}$ de cette matrice $|V| \times |E|$ est égale à $1$ si le lien $\alpha$ est relié au n\oe ud $i$ et 0 sinon.
-Les matrices $LG_1$, $LG_2$ et $LG_3$ sont alors définies de la manières suivante:
+Pour construire les \emph{line-graphs}  $LG_1$, $LG_2$ et $LG_3$, nous définissons $B\in \mathcal{M}_{n,m}$ la matrice d'incidence du graphe $G$: un élément $B_{i\alpha}$ de cette matrice $|V| \times |E|$ est égal à $1$ si le lien $\alpha$ est relié au n\oe ud $i$ et 0 sinon.
+Les matrices $LG_1$, $LG_2$ et $LG_3$ sont alors définies de la manière suivante:
 \begin{center}
 	\begin{tabular}{|c|c|c|c|}
 		\hline  & $x=1$ & $x=2$ &  $x=3$\\ 
@@ -205,35 +207,42 @@ Cependant, leur méthode ne semble favoriser les communautés de liens que dans 
 Il existe des méthodes pour capturer et évaluer des partitions de liens dans un graphe.
 Deux d'entre elles semblent faire consensus pour l'instant.
 D'une part, la \emph{Partition density} est une fonction de qualité comparant le nombre de liens observé avec les nombres minium et maximum de liens possibles entre les même n\oe uds induits.
-D'autre part, les fonctions de qualité \emph{$Evans_x$} se basent quand à elles sur des marches aléatoires sur les liens et d'une certaine manière sur un processus similaire à la modularité.
+D'autre part, les fonctions de qualité \emph{$Evans_x$} se basent quant à elles sur des marches aléatoires sur les liens et d'une certaine manière sur un processus similaire à la modularité.
 Il n'existe cependant aucune méthode utilisant une comparaison d'une métrique à ce qui est attendu dans un modèle nul.
-Or, ce processus a été à l'origine de la modularité.
+Or, ce processus, qui est à l'origine de la modularité, permet de mettre en avant des structures qui différent du modèle nul et qui sont donc intéressantes à capturer.
 }
 
-\section{Définition d'Expected Nodes}
+\section{Définition d'\emph{Expected Nodes}}
 
-Une idée souvent utilisée lors de la détection de communautés de n\oe uds est qu'une communauté devrait avoir beaucoup de connexion en interne.
-Pour évaluer ce genre de définition intuitive, il est nécessaire de définir à quoi comparer le nombre de connexions interne.
-Le choix qui est fait avec la modularité et d'autres méthodes est de définir un modèle nul aléatoire où il n'existe pas de structure communautaire.
-Le but est de construire un graphe aléatoire qui partage un certain nombre de caractéristiques avec le graphe initial mais dont la structure communautaire a été détruite lors du mélange.
-
-Il existe de nombreux modèles et celui utilisé dans la modularité est le modèle de configuration~\cite{Bender1978a}.
-Dans ce modèle, le nombre de n\oe uds et leurs degrés sont fixes mais la répartition des liens est aléatoire.
-Ainsi pour chaque n\oe ud, ses voisins sont tirés de manière aléatoire avec une probabilité proportionnelle à leur degré.
-Comme les liens sont mélangés dans ce modèle, on suppose qu'il n'existe plus de structure communautaire dans le graphe.
-
-Pour notre fonction de qualité \emph{Expected Nodes}, nous utilisons également le modèle de configuration.
-Avant d'aller plus loin et de définir formellement \emph{Expected Nodes}, il est utile d'avoir une définition informelle de la fonction de qualité.
+Une idée souvent utilisée lors de la détection de communautés de n\oe uds est qu'une communauté devrait avoir beaucoup de liens en interne.
+Pour ce faire, la modularité compare le nombre de liens partagés par un groupe de n\oe uds au nombre attendu dans le modèle de configuration, que nous avons évoqué dans la section~\ref{def:Modularite}.
+Pour notre fonction de qualité \emph{Expected Nodes}, nous utilisons également le modèle de configuration mais avant de définir formellement \emph{Expected Nodes}, il est utile d'avoir une définition informelle de la fonction de qualité.
 
 Le but est d'évaluer un groupe de liens.
 Afin qu'un groupe de liens soit évalué comme une bonne communauté, les liens devraient induire un nombre relativement faible de n\oe uds internes.
 En effet, plus le nombre de n\oe uds internes est faible, plus le groupe de liens ressemble à une clique.
-De manière similaire à la modularité, nous utilisons le configuration modèle pour calculer le nombre de n\oe uds interne espéré dans le modèle de configuration.
-Si le groupe de liens a moins de n\oe uds internes qu'espéré alors ça indique que le groupe de liens est plus dense et qu'il devrait donc avoir une évaluation élevée.
+De manière similaire à la modularité, nous utilisons le configuration modèle pour calculer le nombre de n\oe uds internes attendu dans le modèle de configuration.
+Si le groupe de liens a moins de n\oe uds internes qu'attendu alors cela indique que le groupe de liens est plus dense et qu'il devrait donc avoir une évaluation élevée.
 
-Il est donc nécessaire de calculer l'espérance du nombre de n\oe uds interne, $\mu_{G}$, d'un groupe de liens, $L$, dans le modèle nul.
-Un n\oe ud de $G$ est interne si au moins un de ses liens appartient à $L$.
-Ainsi pour calculer $\mu_{G}$, il faut tirer aléatoirement et sans remise $2|L|$ demi-liens parmi les $2|E|$ demi-liens du  graphe aléatoire avec la même distribution de degrés.
+
+Il est donc nécessaire de calculer l'espérance du nombre de n\oe uds interne, $\mu_{G}$, d'un groupe de liens, $L$, dans le modèle de configuration.
+Afin d'y parvenir, il est nécessaire de comprendre en détail le modèle de configuration.
+Le modèle de configuration permet de mélanger les liens d'un graphes de tel sorte que les n\oe uds aient toujours autant de liaisons que dans le graphe initial.
+Un moyen de se représenter ce mélange est présenté dans la figure~\ref{fig:exemple_modele_configuration}.
+De manière imagée, il s'agit de couper tous les liens en deux pour créer des demi-liens.
+Puis, il suffit de reconnecter aléatoirement tous les demi-liens pour obtenir une génération du modèle de configuration.
+Donc afin d'étudier comment un groupe de $|L|$ liens est transformé dans le configuration modèle, il est nécessaire d'étudier comment $2|L|$ demi-liens sont mélangés dans le modèle.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.8\linewidth]{img/ExpectedNodes/Example/modele_configuration.eps}
+\caption{Exemple d'une génération du modèle de configuration avec à gauche le graphe initial, au milieu la mise en avant des demi-liens et à droite une génération aléatoire du modèle de configuration}
+\label{fig:exemple_modele_configuration}
+\end{figure}
+
+
+Un n\oe ud est interne à $L$ si au moins un de ses liens appartient à $L$.
+Ainsi pour calculer la probabilité qu'un n\oe ud soit interne dans le modèle de configuration, il faut donc calculer la probabilité qu'au moins un de ses demi-liens soit choisi lors du tirage aléatoire et sans remise de $2|L|$ demi-liens parmi les $2|E|$ demi-liens du graphe.
 Soit $B_u$ la variable aléatoire correspondant au nombre de fois où le n\oe ud $u$ est tiré.
 Cette variable suit une loi  hypergéométrique $B_u \sim \mathcal{G}\left(2|E|,d_G(u),2m\right)$.
 Avec cette notation, on définie $\mu_G$ de la manière suivante:
@@ -269,7 +278,7 @@ Cependant à l'inverse de la qualité interne, la qualité externe est \textbf{m
 En effet, si il y a beaucoup de liens adjacents pour peu de n\oe uds, alors cela indique que le voisinage du groupe est dense et devrait être inclus dans le groupe.
 Le cas idéal est que chaque lien adjacent soit relié à un n\oe ud différent.
 
-Soit $\bar{d}(L,u) = \sum_{v \in V} \mathbf{1}_{(u,v) \in E \setminus L}$ le degré de $u$ limité aux liens adjacents et $\bar{d}(L)=\sum_{u \in V_{in}(L)} \bar{d}(L,u)$.
+Pour un n\oe ud interne $u$, soit $\bar{d}(L,u) = \sum_{v \in V} \mathbf{1}_{(u,v) \in E \setminus L}$ le degré de $u$ limité aux liens adjacents et $\bar{d}(L)=\sum_{u \in V_{in}(L)} \bar{d}(L,u)$.
 L'espérance du nombre de n\oe uds adjacents est calculé comme le nombre de n\oe uds tirés lorsque $\bar{d}(L)$ demi-liens sont choisis aléatoirement et sans remise dans le modèle de configuration où les liens de $L$ ont été préalablement retirés.
 Ce graphe aléatoire a la distribution de degrés suivante: $\{d_{G \setminus L }(u)\}_{u \in V}$ où $G \setminus L = (V,E\setminus L)$.
 Dans ce cas, on ne tire pas aléatoirement un lien mais uniquement un demi-lien car l'autre demi-lien est un des demi-liens reliés aux n\oe uds internes.
@@ -281,6 +290,7 @@ L'espérance du nombre de n\oe uds adjacents se définit de la manière suivante
 
 Une illustration de ce processus est présentée dans la figure~\ref{fig:retourt_ext}.
 Sur cette illustration, le groupe $L$ a un très mauvais voisinage et cela se reflète par un nombre de n\oe uds adjacents observés plus faible qu'espéré.
+En particulier, se sont les liens adjacents reliant deux n\oe uds internes qui pénalisent l'évaluation car ils comptent chacun pour deux demi-liens adjacents.
 
 \begin{figure}
 \centering
@@ -309,22 +319,22 @@ C'est pourquoi nous pondérons $Q_{in}$ par $|L|$ et $Q_{ext}$ par $|L_{out}|$.
 
 
 Nous détaillons maintenant certaines propriétés des formules \ref{eq:qext} et \ref{eq:qAlg} découlant des propriétés de $\mu_{G}$ en nous appuyant sur des exemples.
-En s'intéressant aux n\oe uds adjacents $V_{out}$, on pénalise la présence de n\oe uds adjacents fortement connectés avec les n\oe uds incidents à $L$.
+En s'intéressant aux n\oe uds adjacents $V_{out}$, on pénalise la présence de liens adjacents entre deux n\oe uds internes et la présence de n\oe uds adjacents fortement connectés avec les n\oe uds internes à $L$.
 Prenons le cas extrême où $L$ est une clique qui est incluse dans une plus grande clique alors que le reste du graphe est quelconque.
 Dans cette situation, $Q_{in}(L)$ est maximum car le groupe est une clique.
 En revanche, $Q_{ext}(L)$ va fortement pénaliser la qualité du groupe car il y a dans ce cas beaucoup de liens adjacents pour très peu de n\oe uds adjacents.
 Ainsi, la $Q_{ext}$ permet de pénaliser les n\oe uds adjacents ayant beaucoup de liens avec $L$.
 L'idée est que ces liens adjacents devraient être intégrés à $L$.
 
-Bien évidement, la solution n'est pas de systématiquement d'intégrer les liens adjacents car intégré un lien adjacent peut également faire baisser $Q_{in}$.
+Bien évidement, la solution n'est pas de systématiquement intégrer les liens adjacents car intégrer un lien adjacent peut également faire baisser $Q_{in}$.
 Par exemple, un lien reliant deux groupes denses disjoints peut avoir une qualité positive.
 Cette situation est visible dans la figure~\ref{fig:Partition_Couverture} partie gauche.
-Ce lien tout seul a d'une part une qualité interne positive car $\mu_G(1) \leq 2$ et d'autre part il a une qualité externe nulle car chaque n\oe ud adjacent n'est relié qu'à un seul lien adjacent ce qui est le cas idéale.
+Ce lien tout seul a d'une part une qualité interne positive car $\mu_G(1) \leq 2$ et d'autre part il a une qualité externe nulle car chaque n\oe ud adjacent n'est relié qu'à un seul lien adjacent ce qui est le cas idéal.
 Dans une situation plus générale, la qualité d'un lien isolé dépend du nombre de triangles dans lequel il se trouve.
 Moins le nombre de triangle est élevé, meilleure sera la qualité externe.
 
 Enfin il est intéressant de noter que la qualité du groupe contenant tout les liens est nulle.
-En effet comme dit précédemment, $Q_{in}(E)$ égal à zéro, voir l'équation \ref{eq:nbsommet_esp}.
+En effet comme dit précédemment, $Q_{in}(E)$est  égal à zéro, voir l'équation \ref{eq:nbsommet_esp}.
 De plus, si le groupe contient tout les liens alors il n'y a plus de liens adjacents et donc seule  $Q_{in}(E)$ influe sur $Q(E)$.
 
 
@@ -347,14 +357,14 @@ Pour chaque graphe de test, nous créons empiriquement plusieurs partitions de l
 \label{Completegraph}
 Le premier jeu de test est assez simple puisqu'il s'agit d'un graphe complet.
 Le but est de vérifier que \emph{Expected Nodes} n'a pas un comportement dégénéré.
-Nous étudions un graphe complet de $100$ n\oe uds\,\footnote{Nous avons obtenus des résultats similaires pour un graphe de $500$ n\oe uds.}.
+Nous étudions un graphe complet de $100$ n\oe uds\,\footnote{Nous avons obtenu des résultats similaires pour un graphe de $500$ n\oe uds.}.
 Sur ce graphe, nous définissons plusieurs partitions.
 La première est la partition triviale où tout les liens sont dans un unique groupe.
 Nous définissons également deux familles de partitions: une séparant les liens en deux groupes et une séparant les liens en 3 groupes.
 Soit $V'$ un ensemble de $p$ n\oe uds où $p$ est un paramètre $p<|V|$.
 Les deux familles de partitions placent les liens de $V' \times V'$ dans un groupe.
 Pour la partition en 2 groupes, tout les autres liens sont mis dans un second groupe.
-Pour la partition en 3 groupes, les liens de $V \times V\setminus V'$ sont dans un second groupe et le reste dans un troisième.
+Pour la partition en 3 groupes, les liens de $V' \times V\setminus V'$ sont dans un second groupe et les liens de $V \setminus V' \times V\setminus V'$ sont dans un troisième.
 Ces répartitions sont illustrées dans la figure~\ref{fig:1C}.
 
 \begin{figure}
@@ -373,18 +383,18 @@ Ces répartitions sont illustrées dans la figure~\ref{fig:1C}.
 \end{figure}
 
 
-Comme le graphe est un graphe complet, la meilleur solution est d'avoir un seul groupe contenant l'ensemble des liens, \textit{i.e.} la partition triviale devrait avoir une meilleur évaluation que les autres partitions.
+Comme le graphe est un graphe complet, la meilleure solution est d'avoir un seul groupe contenant l'ensemble des liens, \textit{i.e.} la partition triviale devrait avoir une meilleur évaluation que les autres partitions.
 La figure~\ref{fig:1Cres} présente les résultats.
 Pour chaque valeur de $p$ et chaque fonction de qualité, nous calculons les évaluations des partitions en deux et en trois groupes ainsi que l'évaluation de la partition triviale.
 L'évaluation de la partition triviale n'est pas dépendante de $p$ et n'est calculée qu'une seule fois.
 Tout d'abord, la construction de cet exemple est symétrique pour la partition en deux groupes.
-En effet, la partition en eux groupes lorsque $p$ égal $24$ est complètement équivalente à la partition en deux groupes lorsque $p$ égal $76$.
-Par ailleurs, il est possible de définir formellement la qualité de  chacune de ses partitions selon toutes les fonctions de qualité.
+En effet, la partition en deux groupes lorsque $p$ est égal à $24$ est complètement équivalente à la partition en deux groupes lorsque $p$ est égal à $76$.
+Par ailleurs, il est possible de définir formellement la qualité de  chacune de ces partitions selon toutes les fonctions de qualité.
 Cependant, la complexité des équations, surtout pour \emph{Expected Nodes} et $Evans_x$, rend le résultat difficilement interprétable.
 
 
 De manière assez surprenante, les fonctions $Evans1$ et $Evans2$ ne passent pas ce test car elles évaluent la partition en deux ou trois groupes comme meilleure que la partition triviale.
-Selon la \emph{Partition Density}, \emph{Expected Nodes} et $Evans3$, la partition triviale est la meilleur des partitions.
+Selon la \emph{Partition Density}, \emph{Expected Nodes} et $Evans3$, la partition triviale est la meilleure des partitions.
 La fonction $Evans3$ diffère légèrement des deux autres car elle a une amplitude plus faible ($\approx 10^{-3}$).
 
 %\begin{equation}
@@ -415,13 +425,12 @@ La fonction $Evans3$ diffère légèrement des deux autres car elle a une amplit
 		\caption{\label{fig:1CMod}\emph{Expected Nodes}}		
 	\end{subfigure}
 		
-		\caption{\`Evaluation des 5 fonctions de qualité sur un graphe complet  de $100$ n\oe uds pour trois type de partitions.
+		\caption{\'Evaluation des 5 fonctions de qualité sur un graphe complet  de $100$ n\oe uds pour trois type de partitions.
 		Les partitions testées sont présentées dans la section~\ref{Completegraph}.
 		Par définition, les résultats pour $Evans1$ et $Evans2$ sont identiques.
 		Les lignes en gris, noir et pointillées représentent respectivement la partition triviale, les partitions en deux groupes et les partitions en trois groupes.}
 		\label{fig:1Cres}
 \end{figure}
-
 
 \subsection{Graphe LFR}
 
@@ -435,7 +444,7 @@ Nous introduisons deux transformations de la couverture des n\oe uds en deux par
 
 Reprenons l'exemple d'un réseau d'interactions de personnes où chaque personne appartient à différents groupes.
 Afin de simplifier l'exemple, nous considérons qu'il n'existe que deux groupes: \emph{travail} et \emph{amis}.
-Le but est de déterminé le type d'une interaction à partir des groupes des personnes.
+Le but est de déterminer le type d'une interaction à partir des groupes des personnes.
 
 Si deux personnes partagent un seul groupe, par exemple \emph{travail}, alors il est clair que l'interaction entre ces deux personnes devraient également être de type \emph{travail}.
 
@@ -446,13 +455,13 @@ Soit l'interaction a son propre type car on considère qu'elle est unique.
 Enfin, deux personnes peuvent partager plus qu'une communauté si les deux sont dans les communautés \emph{travail} et \emph{amis}.
 Dans ce cas, l'interaction peut être due à l'un de ces deux groupe indépendamment.
 
-On définit maintenant de manière plus formel cette transformation qui également illustrée dans la figure~\ref{fig:Trans}.
+On définit maintenant de manière plus formelle cette transformation qui également illustrée dans la figure~\ref{fig:Trans}.
 Soit $u,v \in V$, $C_{u,v}$ désigne l'intersection des communautés de $u$ et $v$ dans la couverture et $U_{u,v}$ désigne leur union.
 Nous définissons le groupe d'un lien $(u,v) \in E$ dans $TA$ et $TB$ de la manière suivante:
 \begin{description}
 \item[\textbf{intra-communauté}] si $|C_{u,v}| = 1$ alors $(u,v)$ est dans la communauté $C_{u,v}$;
 \item[\textbf{inter-communauté}] si $|C_{u,v}| = 0$ alors dans $TA$, $(u,v)$ appartient à sa propre communauté.
-Dans $TB$, le liens appartient à la communauté $U_{u,v}$, qui contient l'ensemble des liens $(u',v')$ tel que $U_{u',v'}=U_{u,v}$;
+Dans $TB$, le lien appartient à la communauté $U_{u,v}$, qui contient l'ensemble des liens $(u',v')$ tel que $U_{u',v'}=U_{u,v}$;
 \item[\textbf{chevauchant}] si $|C_{u,v}| > 1$ alors le lien $(u,v)$ appartient aléatoirement à une des communautés appartenant à $C_{u,v}$.
 \end{description}
 
@@ -623,7 +632,7 @@ voir la figure~\ref{fig:LFEN} où les partitions $TA+$ et $TB+$ sont les version
 		\caption{\label{fig:LFEN}Expected nodes}		
 	\end{subfigure}
 	
-	\caption{Boite à moustache des évaluations selon Expected Nodes pour différentes partitions.
+	\caption{Boite à moustache des évaluations selon \emph{Expected Nodes} pour différentes partitions.
 	$TA$ et $TB$ sont les vérités de terrains, $EN$ est la partition trouvée par notre algorithme et enfin $TA+$ et $TB+$ sont les versions améliorées par notre algorithme de $TA$ et $TB$.
 	}
 	\label{fig:LF_bis_EN}
