@@ -506,7 +506,18 @@ Muni d'indicateur de similarité tel que l'indice de Jaccard, voir~\ref{def:grap
 Ce type de méthode souffre souvent de l'instabilité des méthodes de détections~\cite{Aynaud2010,Harenberg2014a}.
 Si les partitions changent complètement entre deux graphes consécutif, alors il est difficile de faire un réel suivi de communautés.
 C'est pourquoi des méthodes essayent de forcer une certaine stabilité de la partition en ajoutant un coût de transition~\cite{Chakrabarti2006,Chen2013,Kalavathi2015}.
-Une approche détournée pour garder une certaine stabilité est d'utiliser la partition trouvé précédemment comme base de recherche pour l'intervalle suivant~\cite{Lancichinetti2011a,Corneli2016}.
+Une approche détournée pour garder une certaine stabilité est d'utiliser la partition trouvé précédemment comme base de recherche pour l'intervalle suivant~\cite{Lancichinetti2011a}.
+
+Des extensions du Stochastic Block Models ont également étaient proposés par différents auteurs dans le cadre des séries de graphes.
+Yang~\emph{et al.}~\cite{Yang2011} est parmi les premier à considérer ce cas de figure.
+Ils considèrent que le nombre de liens partagé par une pair de communauté est fixe et que ce qui change est l'affiliation d'un n\oe uds à une communauté.
+Ce processus de changement de communauté suit une chaine de markov cachée.
+\`A l'inverce, Corneli~\emph{et al.}~\cite{Corneli2016} considèrent le cas opposé.
+La partition de n\oe uds est fixe tout au long du temps et c'est l'activité entre deux communauté qui change selon l'intervalle de temps.
+Xu~\emph{et al.}~\cite{Xu2014} permettent à l'affiliation et à l'activité entre deux communautés de changer selon l'intervalle de temps.
+Cependant, il semblerait que cette relaxation se fasse au dépens de l'identifiabilité des paramètres d'après Matias~\emph{et al.}~\cite{Matias2015}.
+Ils ont donc proposé une nouvelle méthode afin résoudre ce problème.
+De plus, leur méthode permet de traiter des séries de graphes pondérés.
 
 \subsubsection{Tenseur 3D}
 Les tenseurs 3D ne sont pas en soi différent des séries de graphes.
@@ -545,16 +556,16 @@ Comme un graphe multicouche est un graphe, il est possible d'adapter les méthod
 C'est le cas d'infomap~\cite{DeDomenico2014}, de la modularité~\cite{Mucha2010,Bassett2013,Bazzi2016} et du SBM~\cite{Stanley2015,Peixoto2015c}.
 
 
-\subsubsection{Bilan}
+\resume{
 Les séries de graphes, les tenseurs et les graphes multicouches permettent de prendre en compte le temps tout en autorisant l'utilisation de méthode conçu sur un graphe statique.
-Cette liberté d'utilisation à un coût.
-Ces approches reposent sur une découpe du temps en sous-intervalles durant lesquelles il est possible d'agrégé temporellement pour obtenir un graphe statique.
+Cette liberté d'utilisation a un coût.
+Ces approches reposent sur une découpe du temps en sous-intervalles durant lesquelles le temps n'est plus pris en compte afin d'obtenir un graphe statique.
 Il peut être délicat de définir un intervalle de temps qui permet de construire des graphes qui aient du sens.
 La construction des graphes agrégés entraine une perte d'information temporelle et cela impacte la précision temporelle des structures communautaires qui sont manipulables.
 Il n'est pas envisageable d'augmenter le nombre d'intervalle de temps car cela induirait d'une part des graphes agrégés avec très peu de liens et d'autre part le temps de calcul serait très fortement impacté.
+}
 
-
-\subsection{Extension sans pertes d'informations temporelles}
+\subsection{Extension sans perte d'information temporelle}
 \label{subsec:pasperte_info}
 \subsubsection{Graphe temporel}
 \begin{figure}[h]
@@ -620,27 +631,98 @@ Ainsi dans l'exemple, il existe un lien entre les n\oe uds $a$ et $b$ dans l'int
 Dans un graphe temporel, on abordera plus souvent les questions d'évolution de communautés de n\oe uds ou de l'importance d'un n\oe ud.
 Dans un flot de liens, on s'intéressera plus souvent au temps nécessaire pour que deux n\oe uds soient de nouveau en contact ou à l'importance d'un lien.
 De manière très manichéenne et inexacte, le formalisme de graphe temporel pousse à étudier les n\oe uds et leur évolution alors que celui de flot de liens mets plus l'accent sur les liens.
-%C'est pourquoi il existe autant de travaux étudiant la centralité
-
-proche\cite{Matias2015}
-\cite{Holme2013a,Holme2015b,Holme2015} plein d'étude possible
-Formalisation algébric \cite{Batagelj2015}.
-
-bursty \cite{Karsai2012a,Karsai2011,Moinet2015,Stehle2010} \cite{Malmgren2008,Malmgren2009} heavy tail, \cite{Rocha2013}
-
-motif \cite{Kovanen2011a,Kovanen2013}.
-Le formalisme de flot de liens est défini plus en profondeur dans le 
-randomwalk\cite{Starnini2012b}
 
 
-% centralité \cite{Costa2015,Kim2012, Pfitzner2013a, Praprotnik2015,Scholtes2015,Takaguchi2016}
+Plusieurs travaux~\cite{Holme2013a,Holme2015b,Holme2015} font un tour d'horizon des méthodes existantes pour étudier des flots de liens qui sont souvent appelés \emph{temporal networks}.
+Il existe, à notre connaissance, qu'un seul travail donnant un fondement théorique solide.
+Il s'agit de Batagel~\emph{et al.}~\cite{Batagelj2015} qui se basent sur l'algèbre et donc les notions de chemins semblent difficile à représenter dans ce contexte pour l'instant.\bigskip
 
 
-chapitre~\ref{chap:def_flot}.
+Avec ce formalisme, la majorité des travaux sont encore descriptifs car ce type d'objet n'a jamais été étudié sous cet angle.
+Il existe de nombreux travaux étudiant le temps séparant l'apparition de deux liens pour un n\oe uds~\cite{Malmgren2008,Malmgren2009}.
+Il semblerait que ces temps inter-contacts soient très hétérogène avec de nombreuses connexions dans un faible intervalle de temps suivie de longue durée sans activité.
+On parle alors de temps inter-contact \emph{bursty}.
+Les effets des temps inter-contacts sur les phénomènes de diffusions et de marches aléatoires ont été étudiés~\cite{Karsai2011,Karsai2012a,Starnini2012b,Rocha2013}.
+Il semble cependant ne pas y avoir de conclusion définitive sur le sujet car la diffusion est peut être accélérée ou ralentie par les temps inter-contacts selon la structure sous-jacentes.
 
+Il existe également quelques méthodes qui s'intéressent plus à la structure des flots de liens.
+Des études~\cite{Kovanen2011a,Kovanen2013} s'intéressent à la présence de motif.
+Un motif dans un graphe est un sous-graphe; le triangle est l'un des motifs les plus étudiés car il a été montré qu'il existe énormément de triangles dans les graphes ayant une structure communautaire.
+Dans les flots de liens, le temps est également pris en compte dans les motifs.
+Il y a donc plusieurs variantes temporelles d'un même motif dans un graphes.
+Prenons l'exemple d'un chemin entre quatre n\oe uds $A$, $B$, $C$ et $D$ qui est représenté dans le graphe par  $\{(A,B), (B,C), (C,D)\}$.
+Dans un flot de liens, il existe deux variantes à ce motif soit
+$\{(t_1,A,B), (t_2,B,C), (t_3,C,D)\}$ soit $\{(t_1,A,B), (t_2,C,D), (t_3,B,C)\}$ avec $t_1<t_2<t_3$.
+Dans un cas,  une information peut être propagée au fur et à mesure de $A$ vers $D$ tant dis que dans l'autre ce n'est pas possible.
+L'étude de la fréquence d'apparition de ces motifs dans le cas temporelle permet d'observer si le flot de liens à une structure particulière. 
+
+
+
+\paragraph{Détection de structures}
+Il existe peu de méthodes détectant des structures décrivant l'ensemble des données.
+Rozenshtein~\emph{et al.}~\cite{rozenshtein2014} se penchent sur la détection de la zone la plus dense dans les flots de liens.
+Ils permettent de capturer un ensemble de n\oe uds et plusieurs intervalles de temps disjoints tel que ces n\oe uds sur ces intervalles aient le degré moyen le plus élevé dans le graphe agrégé sur ces intervalles.
+Bien que la mesure utilisé ne tienne pas directement compte du temps, leur méthode permet ainsi de mettre en évidence une partie du flot de liens.
+
+Une méthode de type Stochastic Block Model a été proposée par Matias~\emph{et al.}~\cite{Matias2015a}.
+Elle est très proche de celle proposé par Corneli~\emph{et al.}~\cite{Corneli2016}.
+En effet, l'affiliation des n\oe uds est fixe et c'est l'activité d'une communauté qui change au cours du temps.
+La grosse différence ici est que l'activité varie de manière continue dans le temps.
+Ainsi l'apparition d'un lien dépend de la réalisation d'un processus de poisson non homogène.
+Cependant, leur méthode ne permet pas de considérer le changement de communauté d'un n\oe ud.
+
+% centralité \cite{Costa2015,Kim2012, Pfitzner2013a,Praprotnik2015,Scholtes2015,Takaguchi2016}
 
 \resume{
-L'extension temporelle des graphes est un champ de recherche très récent et il est difficile d'avoir du recul sur les possibilités qu'offre chaque méthodes.
+Les graphes temporelles et les flots de liens ne souffrent pas d'agrégation temporelle.
+Ils ont donc un pouvoir expressif plus important que les formalismes présentés précédemment.
+Formellement, flots de liens et graphes temporels sont équivalent dans le sens où un graphe temporel peut être représenté en un flot de liens et \emph{vice versa}.
+En revanche, ils différent dans le point de vue considéré.
+Dans un graphe temporel, il existe une structure de graphe représentant le réseau à chaque instant et les métriques de graphes sont pertinentes.
+Dans un flot de liens, il n'existe pas de structure pertinente à un instant donné et par conséquent les métriques de graphes ne sont pas pertinentes dans ce contexte.
+Cette différence implique d'utiliser des mesures différentes et, en particulier, de créer de nouvelle métrique pour les flots de liens.
+Cela explique notamment pourquoi il n'existe pour l'instant qu'assez peu de travaux traitant de flots de liens.
+Cette différence de perspective entraine également un déplacement du centre d'intérêt.
+Dans les graphes temporels, on aura plutôt tendance à étudier les n\oe uds du graphes et leur évolution.
+\`A l'inverse, on s'intéresse plutôt aux liens et leur répartition dans les flots de liens.
+
+Ainsi, les deux formalismes coexistent et répondent à des besoins différents.}
+
+\section{Bilan}
+
+Dans un graphe statique, il existe de très nombreuses méthodes capturant une structure des n\oe uds soit via une partition soit via une couverture.
+L'abondance de méthodes existantes s'explique par la diversité des définitions de communautés existantes.
+Les structures capturées permettent de mieux comprendre l'organisation générale du graphe mais aussi de mieux comprendre le rôle d'un n\oe ud.
+Il semble cependant qu'il existe relativement peu de méthodes considérant les liens comme unité de base.
+Pourtant, une partition de liens permet également de représenter la structure d'un graphe.
+
+La question de la structure des lien est d'autant plus importante lorsque l'on considère la temporalité de l'information.
+En effet jusque maintenant, beaucoup de graphes étudiés sont en fait le résultat d'une agrégation temporelle tel que les graphes d'interactions de personnes.
+Avec l'émergence de nouvelles données incorporant l'information temporelle, il est pertinent d'utiliser de nouvelles méthodes.
+
+L'extension temporelle des graphes est un champ de recherche très récent et il est difficile d'avoir du recul sur les possibilités qu'offrent les formalismes existants.
 Il semble tout de même se dessiner différentes catégories.
 
-C'est le bordel plein de notation et tout ça.}
+Il y a d'une part les formalismes se rapprochant de la théorie des graphes: séries de graphes, tenseurs 3d et graphes multicouches.
+Ces formalismes sont proches des graphes statiques et il est même possible d'y appliquer des méthodes statiques.
+En revanche, la prise en compte du temps n'est que partielle.
+Il y a toujours une forme agrégation temporelle et il n'est pas possible d'avoir une vision très fine de l'objet d'étude.
+En particulier, le suivi de communautés dans ce contexte n'est pas un problème résolu.
+C'est pourquoi ce type de formalisme ne semble pas adapter à la recherche de structure des liens.
+
+D'autre part, les formalismes de graphes temporels et de flots de liens capturent tout l'information temporelle existante.
+Ils ne souffrent donc pas de perte d'informations.
+Ces deux formalismes, bien qu'équivalent, ne présupposent pas la même structure sur les données sous-jacentes.
+Dans un graphe temporel, les liens durent assez longtemps et par conséquent il existe une structure de graphe pertinente à chaque instant.
+Dans les flots de liens, les liens sont plus court et il n'existe aucune structure de graphe à un instant donné.
+Par conséquent, ces deux formalismes répondent à des situations différentes.
+En particuliers vu la littérature, il semble plus aisé d'étudier la structure des liens dans un flot de liens que dans un graphe temporel.
+Par exemple, les études des temps inter-contacts sont très majoritairement conduites en utilisant le formalisme de flot de liens.
+
+
+Au cours de cette thèse, nous nous intéressons à la structure communautaire que peuvent former les liens dans le temps.
+il ne semble exister que peu de méthodes traitant de ce sujet aussi bien dans le 
+cadre statique que dynamique.
+Beaucoup de formalismes souffrent de l'agrégation temporelle ou bien s'appliquent à des cas d'applications différent.
+C'est pourquoi le formalisme de flot de liens semble être le seul permettant une étude fine de la structure des liens.
+Dans le chapitre~\ref{chap:def_flot}, nous définissons plus formellement ce qu'est un flot de liens ainsi que les métriques utilisées tout au long de cette thèse avant de présenter nos travaux sur la structure des liens dans les chapitres suivants.
