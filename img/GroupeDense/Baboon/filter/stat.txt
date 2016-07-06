@@ -1,0 +1,3 @@
+Nodes: 2 Big group 7
+Link: 1 Big group 16
+Duration: 18.0 Big group 129.0

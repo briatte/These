@@ -1,0 +1,43 @@
+top 155  = groupe de plus de 10 liens
+La discrimination rand et fix duration ne limite rien
+
+
+
+
+La relation percent/percent montre que des groupes différents sont discriminés.
+Pas facile déterminer quoi que ce soit par rapport à la distance en densité par contre... (ça semble proche)
+
+
+
+
+La distance de temsp début, montre que nous chopons le bon temps:
+	Médianne de la diff =0 et 50% entre 240 plus tot et 40 seconde plus tard
+	 0.25 : -40.0
+	 0.5 : 0.0
+	 0.75 : 240.0
+
+La distance sur la durée est plutot bonne:
+	0.1 : 20.0
+	 0.25 : 40.0
+	 0.5 : 100.0
+	 0.75 : 180.0
+	 0.9 : 420.0
+On a donc des communauté plus longues que prévu entre 80% se trouvent dans [+20; +420]
+
+
+
+dur dens:
+A la fin on peut etre loin mais sinon on est quand meme super proche 75% à moins de 22%.
+	 0.1 : -0.44736842105147356
+	 0.25 : -0.2272727272724363
+	 0.5 : -0.03333333333336001
+	 0.75 : 0.0
+	 0.9 : 2.405483220018666e-16
+
+time dens:
+On est un peu moins bien que pour dur dens mais similaire avec 75% à moins de 22%
+	 0.1 : -0.4177777777773601
+	 0.25 : -0.2499999999997501
+	 0.5 : -0.10599636583877933
+	 0.75 : -0.038961038961032826
+	 0.9 : -1.197640117917994e-15

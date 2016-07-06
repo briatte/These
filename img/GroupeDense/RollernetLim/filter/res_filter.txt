@@ -1,0 +1,6 @@
+Nb com utilise 37/75/(uber total)559
+duration: 315.892/385.173/69.678
+link_size: 167.081/201.16/28.2701
+node_size: 24.973/30.6533/6.18068
+Nb assignation 924/62. Non utilisé:0
+Time proportion used 1.17597. Interval vide:0.253245
