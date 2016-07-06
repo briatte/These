@@ -1,6 +1,6 @@
 
 
-\chapter{Étude d'une archive de courriels}
+\chapter{Étude de la structure d'une archive de courriels en tant que flot de liens}
 \minitoc
 
 %L'étude de la structure des réseaux est un sujet qui est étudié depuis assez longtemps \REF.
@@ -91,7 +91,7 @@ Dans la partie droite de la figure~\ref{fig:corr_discussion} présentant la corr
 Ainsi lors d'une discussion, c'est un petit nombre de personnes qui échangent potentiellement beaucoup de messages. 
 
 Enfin, il est intéressant d'observer la dynamique des échanges entre deux personnes.
-Soit $\tau(u,v) = (t_{i+1}-t_i)_{i=0..k+1}$ la séquence des temps inter-contacts des $k$ liens entre les n\oe uds $u$ et $v$, où $t_0$ est le temps entre $\alpha$ et le premier lien et $t_{k+1}$ est le temps entre le dernier lien et $\Omega$.
+Soit $\tau(u,v) = (t_{i+1}-t_i)_{i=0..k+1}$ la séquence des temps inter-contacts des $k$ liens entre les n\oe uds $u$ et $v$, où $t_0$ est le temps entre $\alpha$ et le premier lien et $t_{k+1}$ est le temps entre le dernier lien et $\omega$.
 Il s'agit du temps écoulé avant que deux personnes se contactent à nouveau, indépendamment peu importe la conversation.
 Dans la figure~\ref{fig:ict_discussion} est représentée la distribution cumulative inverse du temps inter-contacts. 
 $21\%$ des temps inter-contacts sont inférieurs à 30 jours ($2.6\times 10^6 s$).
@@ -116,7 +116,8 @@ Le but est d'évaluer si cette structure de flot peut se rapprocher d'une struct
 Comme dit précédemment, les communautés sont souvent définies comme étant des structures devant être densément connectées.
 C'est pourquoi nous nous attachons à étudier la densité des discussions.
 
-Comme ces données se modélisent par un flot de liens où les liens n'ont pas de durée, nous étudions la $\Delta$-densité pour différentes valeurs de $\Delta$ entre 1 seconde et 20 ans.
+Comme ces données se modélisent par un flot de liens où les liens n'ont pas de durée, nous étudions la densité non pas dans le flot de liens initial mais dans $\sigma(\xi(\Delta,L))$  pour différentes valeurs de $\Delta$ entre 1 seconde et 20 ans.
+La notation $\delta(\sigma(\xi(\Delta,L)))$ est cependant très lourde et nous simplifions par $\delta_{\Delta}(L)$ et nous parlons donc de $\Delta$-densité.
 Tout d'abord dans la figure~\ref{fig:dens_fil_discusion} est représentée la $\Delta$-densité globale du le flot.
 En couvrant un spectre aussi large de $\Delta$, on observe que la $\Delta$-densité est croissante avec $\Delta$ mais surtout on observe bien la convergence de $\Delta$-densité vers $3.139\times 10^{-4}$, la densité du graphe agrégé, lorsque $\Delta$ est proche de $\omega - \alpha$.
 
@@ -128,7 +129,7 @@ En couvrant un spectre aussi large de $\Delta$, on observe que la $\Delta$-densi
 \end{figure}
 
 Cependant, la $\Delta$-densité du flot n'apporte que peu d'informations en elle-même.
-Elle est surtout utile pour comparer les valeurs de $\Delta$-densité des sous-flots que sont les discussions.
+Elle est surtout utile pour comparer les valeurs de $\Delta$-densité des sous-flots que sont les discussions, c'est-à-dire  $\delta(\sigma(\xi(\Delta,D_i)))$.
 Ainsi dans la figure~\ref{fig:intra_dens_discussion}, est présentée la distribution cumulative inverse de la $\Delta$-densité des discussions pour différentes valeurs de $\Delta$.
 On remarque que les différentes valeurs de $\Delta$ ne semblent pas influencer qualitativement la distribution de $\Delta$-densité.
 Cette courbe met surtout en évidence que les discussions sont des structures beaucoup plus denses que le flot.
@@ -160,7 +161,7 @@ Pour un graphe $G=(V,E)$ et une communauté $C_i$ de la partition $C = \{C_j\}_{
 Il s'agit tout simplement de la probabilité qu'un lien existe entre un n\oe ud de $C_i$ et un n\oe ud d'une autre communauté.
 Encore une fois, cette notion n'a pas de sens direct dans le formalisme de flot de liens et il est nécessaire de l'adapter.
 Pour ce faire, nous définissons la $\Delta$-densité inter discussions entre deux discussions $D_i$ et $D_j$: $\delta^{inter}_{\Delta}(D_i,D_j)$.
-Soit $E_{\Delta}= \xi(E,\Delta)$ et $L_{inter}(D_i, D_j) = (T',V',E')$ avec 
+Soit $E_{\Delta}= \xi(\Delta,E)$ et $L_{inter}(D_i, D_j) = (T',V',E')$ avec 
 $V'= V(D_i \cup D_j)$, $T'=[\beta(D_i \cup D_j), \psi(D_i \cup D_j)]$, et $E' = E_{\Delta} \setminus (D_i \cup D_j)$.
 Avec ces définitions, $\delta^{inter}_{\Delta}(D_i,D_j)$ est égale à $\delta^{inter}_{\Delta}(D_i,D_j) = \delta(L_{inter}(D_i, D_j))$.
 Il s'agit donc de la densité du flot inter discussions qui est constitué des liens entre les n\oe uds induits par $D_i$ et $D_j$ qui n'appartiennent ni à $D_i$ ni à $D_j$.
