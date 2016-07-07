@@ -191,7 +191,7 @@ Cette différence est normale car lors du calcul de $\Delta$-densité le nombre 
 Cet effet est visible dans la figure~\ref{fig:inter_dens_discussion_ex}.
 Le lien $(c,d)$ qui apparait peut avant $\beta$ n'est pas pris en compte si $\Delta$ est proche de $0$ alors qu'il est en parti pris en compte lorsqu'un $\Delta$ plus grand est considéré, ce qui est le cas dans la figure.
 
-Un autre facteur est aussi la duré considérée qui est plus longue que la durée des discussions.
+Un autre facteur est aussi la durée considérée qui est plus longue que la durée des discussions.
 \begin{figure}
 \centering
 %\subfloat[Inverse cumulative distribution of inter-threads density.]{
@@ -351,6 +351,7 @@ C'est pourquoi nous avons construit une autre projection du flot en un graphe st
 Le problème est alors de réussir à créer une transformation de telle sorte que les informations temporelles et topologiques ne soient pas complètement détruites.
 
 \subsection{Méthode de détection}
+\label{sec:fail_mailing}
 Afin de créer une transformation du flot vers un graphe, nous définissons un autre flot de liens, $\mathfrak{L}$, dont les liens ont une durée.
 \`A partir de $\mathfrak{L}$, nous créons un graphe non-orienté et non-pondéré $\mathcal{G} = (\mathcal{V},\mathcal{E})$.
 

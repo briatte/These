@@ -58,6 +58,9 @@ headsepline, % Uncomment to get a line under the header
 \definecolor{brique}{HTML}{B9655E}
 \definecolor{vert_turquoise}{HTML}{53C36A}
 \definecolor{bleu_window}{HTML}{3E9BDA}
+
+
+\definecolor{bleu_transparent}{HTML}{0088B1}
 %-------------------------------
 
 
@@ -87,6 +90,70 @@ headsepline, % Uncomment to get a line under the header
 
 
 \DeclareMathOperator*{\argmin}{arg\,min}
+
+\newcommand{\groupcharac}[3]{
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}{0.4\linewidth}
+		\includegraphics[width=\linewidth]{img/GroupeDense/#1/filter/Distrib_avant_filtre_best}
+	\end{subfigure}\hspace{0.03\linewidth}
+	\begin{subfigure}{0.4\linewidth}
+		\includegraphics[width=\linewidth]{img/GroupeDense/#1/filter/Distrib_avant_dens.eps}
+	\end{subfigure}
+	\caption{Inverse cumulative distributions of the number of links, nodes and duration in (a) and density in (b) for the candidates found by the Louvain method on the #2 dataset.}
+	\label{fig:distri_group_#3}
+\end{figure}
+}
+
+\newcommand{\groupsPerNode}[3]{
+	\begin{figure}[h]
+	\centering
+	
+	\includegraphics[width=0.5\linewidth]{img/GroupeDense/#1/filter/Prop_node.eps}
+	\caption{Inverse cumulative distribution of the number of groups captured per node for the #2 dataset.}
+	\label{fig:ditribnodes_#3}
+	\end{figure}
+}
+
+\newcommand{\percentile}[3]{
+	\begin{figure}[h]
+	\centering
+	
+	\begin{subfigure}{0.48\linewidth}
+		\includegraphics[width=\linewidth]{img/GroupeDense/#1/Percentil/Distribution_percentil_FixDuration_top155.eps}
+		\caption{Start time: $p_{t}$}
+	\end{subfigure}\hfill
+	\begin{subfigure}{0.48\linewidth}
+		\includegraphics[width=\linewidth]{img/GroupeDense/#1/Percentil/Distribution_percentil_FixTime_top155.eps}
+		\caption{Duration: $p_{\delta}$}
+	\end{subfigure}
+	
+	\begin{subfigure}{0.48\linewidth}
+		\includegraphics[width=\linewidth]{img/GroupeDense/#1/Percentil/Distribution_percentil_Rand_top155.eps}
+		\caption{Node set:$p_{node}$}
+	\end{subfigure}\hfill
+	\begin{subfigure}{0.48\linewidth}
+		\includegraphics[width=\linewidth]{img/GroupeDense/#1/ecart/relationFixTime_FixDuration.eps}
+		\caption{Correlation between start time and duration aspects.}
+	\end{subfigure}
+	\caption{Inverse cumulative distribution of scores for each aspect for the dataset #2.}
+	\label{fig:dit_#3}
+	\end{figure}
+}
+\newcommand{\groupcharacFilter}[3]{
+	\begin{figure}[h]
+	\centering
+	
+	\begin{subfigure}{0.45\linewidth}
+		\includegraphics[width=\linewidth]{img/GroupeDense/#1/filter/Distrib_apres_filtre_best}
+	\end{subfigure}\hfill
+	\begin{subfigure}{0.45\linewidth}
+		\includegraphics[width=\linewidth]{img/GroupeDense/#1/filter/Distrib_apres_dens.eps}
+	\end{subfigure}
+	\caption{Inverse cumulative distributions of the number of links, nodes and duration in (a) and density in (b) for the candidates captured by our method on the #2 dataset.}
+	\label{fig:distri_group_#3_filter}
+	\end{figure}
+}
 
 %----------------------------------------------------------------------------------------
 %	MARGIN SETTINGS

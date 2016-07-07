@@ -10,7 +10,7 @@ Nous nous attachons maintenant à définir plus formellement les flots de liens 
 Un flot de liens est défini comme un triplet: $\mathcal{L}=(T,V,E)$, où $T=[\alpha, \omega]$ est un intervalle de temps, $V$ un ensemble de $n$ n\oe uds et $E\subseteq T\times T \times V \times V$ un ensemble de $m$ liens.
 Les liens de $E$ sont des quadruplets $(b,e,u,v)$, signifiant que la paire de n\oe uds $(u, v)$ est connectée sur l'intervalle $[b,e] \subseteq [\alpha,\omega]$.
 Nous dénotons la durée du flot par $\bar{L}=\omega-\alpha$.
-De manière analogue, la duré d'un lien $l=(b,e,u,v) \in E$ est notée   $\bar{l}=e-b$.
+De manière analogue, la durée d'un lien $l=(b,e,u,v) \in E$ est notée   $\bar{l}=e-b$.
 $\beta(E)= min_{(b,e,u,v) \in E} (b)$ et $\psi(E)= max_{(b,e,u,v) \in E} (e)$ sont respectivement l'apparition du premier lien et la disparition du dernier lien.
 
 Nous considérons les flots de liens non orientés, \emph{i.e.} $(b,e,u,v)=(b,e,v,u)$, et sans boucle, \emph{i.e.} $u \neq v$.
@@ -76,6 +76,7 @@ Par exemple avec $V' \subset V$, $L_{\alpha'..\omega'}(V'^2)$ est le sous flot c
 
 
 \section{Degré et densité}
+\label{sec:def_densite}
 Nous avons défini des outils pour manipuler et extraire un flot de liens.
 Nous nous intéressons maintenant à étendre quelques notions de connexité qui existe dans le graphe, en particulier le degré et la densité.
 
