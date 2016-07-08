@@ -526,7 +526,7 @@ Les distributions pour les autres jeux de données sont en appendice pages \page
 En plus de ces distributions, nous avons également étudié comment ces groupes de liens se répartissent dans le temps et la topologie de l'ensemble du flot de liens.
 \groupcharacFilter{Sociopattern}{Socio Pattern}{SP}{}
 
-\section{Caractéristiques topologiques}
+\subsection{Caractéristiques topologiques}
 Pour la répartition topologique des groupes, la distribution du nombre de groupes pertinent par n\oe uds est présenté dans la figure~\ref{fig:PropNode_SP} pour le jeu de donnée Socio Pattern.
 Tous les n\oe uds appartiennent à au moins un groupe et quelques n\oe uds appartiennent même à plus de 20 groupes.
 Avec une moyenne de $7.4$ groupes par n\oe uds, les groupes pertinents forment donc une structure très recouvrantes sur les n\oe uds.
@@ -544,6 +544,14 @@ C'set pourquoi il est nécessaire de transformé le graphe pondéré en graphe n
 Comme aucune valeur singulière de pondération n'est apparue lors de l'étude de la distribution des poids des liens, nous avons avons créé plusieurs graphe non pondérés selon une règle simple.
 La règle est la suivante un lien existe dans le graphe non pondéré si le poids associé au lien est plus important ou égale à $\lambda\%$ des poids de tous les liens du graphe.
 Ainsi en faisant varier $\lambda$, il est possible de prendre en compte dans une certaine mesure l'information temporelle.
+Une fois les graphes construits, nous appliquons l'algorithme \textsc{BIGCLAM} sur chaque graphe et obtenons des partitions chevauchantes de n\oe uds.
+
+Nous utilisons l'indice de Jaccard afin de comparer les partitions chevauchantes obtenues par \textsc{BIGCLAM} et celle définie par les n\oe uds induits par les groupes pertinent.
+L'indice de Jaccard, défini dans la section~\ref{sec:def_graphe}, nous permet de trouver pour chaque groupe pertinent quel est le groupe trouvé par \textsc{BIGCLAM} qui est le plus proche.
+La table~\ref{tab:Jaccard} liste les similarités médianes et maximums entre les groupes pertinents et ceux trouvés par \textsc{BIGCLAM} selon la valeur de $\lambda$ utilisée.
+Lorsque l'on étudie cette table, on remarque que les groupes pertinents et les groupes trouvés par \textsc{BIGCLAM} sont différent car les indices de Jaccard médians sont très faibles.
+Il y a toute fois quelques groupes pertinents qui sont retrouvés par \textsc{BIGCLAM} dans certains jeu de données, seulement cela n'arrive que pour quelques valeurs de $\lambda$ et très peu de groupes.
+C'set pourquoi notre méthode a permis de mettre en valeur une structure des n\oe uds qui n'est pas retrouvée par une méthode classique sur le graphe agrégé.
 
 \begin{table*}
 \centering
@@ -555,12 +563,26 @@ Ainsi en faisant varier $\lambda$, il est possible de prendre en compte dans une
 \hline Baboons & 0.33 (\textbf{0.95}) & 0.38 (\textbf{1}) & 0.40 (\textbf{0.84}) & 0.46 (\textbf{0.94}) & 0.46 (\textbf{0.93}) & 0.44 (\textbf{0.85}) \\ 
 \hline 
 \end{tabular} 
-\caption{Median (and maximum) Jaccard index between the groups uncovered and the communities found by bigclam in the aggregated graph where  a proportion of $\lambda$ edges having the smallest weight have been removed.
-Values which are above $0.8$ are in bold.}
+\caption{Indice de Jaccard médian (et maximum) entre les groupes pertinents et les groupes trouvés par \textsc{BIGCLAM} dans le graphe agrégé où  les liens ayant un poids inférieur à $\lambda\%$ des liens ont été retirés.
+Les indices de Jaccard suppérieurs à $0.8$ sont en gras.}
 \label{tab:Jaccard}  
 \end{table*}
 
-\section{Caractéristiques temporelles}
+\subsection{Caractéristiques temporelles}
+Pour l'aspect temporel, nous avons également étudié le chevauchement temporel entre les groupes pertinents.
+Pour ce faire, nous regardons la proportions du temps durant laquelle il n'existe aucun groupe présent.
+Pour tous les jeux de données excepté Rollernet, entre $82\%$ et $95\%$ du temps il n'y a aucun groupes présents.
+Cette proportion élevée s'explique par la nature des jeux de données qui couvrent de longue périodes, ce qui inclut des nuits où aucun liens n'apparait.
+Pour le jeu de donnée Rollernet, cette proportion de temps sans groupes pertinents n'est que de $15\%$ car il est beaucoup plus dense.
+
+De manière plus importante, il existe également des instants où plusieurs groupes pertinents sont présents.
+Dans le jeu de donnée Socio Pattern, c'est notamment le cas lors des instants importants de la journée tel que les pauses ou le repas du midi.
+Durant ces instants, il peut y avoir jusque $4$ groupes présents en même temps.
+Ces instants important sont visibles via notre méthode mais ils sont bien évidement facilement identifiable par d'autres méthodes plus simple tel que le degré temporel.
+De manière globale, la structure temporelle des groupes pertinents est très différentes de la structure topologique car une part importante du temps n'est impacté par aucun groupe pertinent.
+Il est toute fois intéressant de noter que les deux structures sont chevauchantes. 
+
+
 
 \section{Conclusion et perspective}
 
