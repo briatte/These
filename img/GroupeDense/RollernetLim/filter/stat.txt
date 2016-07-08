@@ -1,3 +1,4 @@
+Nb_group: 559 Big group 75
 Nodes: 2 Big group 31
 Link: 1 Big group 194
 Duration: 15.0 Big group 378.0

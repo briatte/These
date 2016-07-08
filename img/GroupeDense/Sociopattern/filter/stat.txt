@@ -1,3 +1,4 @@
+Nb_group: 12532 Big group 155
 Nodes: 2.0 Big group 9
 Link: 1.0 Big group 15
 Duration: 20.0 Big group 300.0

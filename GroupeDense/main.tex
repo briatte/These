@@ -296,21 +296,9 @@ Quelques statistiques obtenues pour chaque partition sont listées dans la table
 La première chose qui est frappante est qu'il existe énormément de très petits groupes.
 On remarque également que seul le jeu de données Rollernet se distingue des autres en ayant des groupes plus gros.
 Cette différence est probablement due au flot de liens qui contient beaucoup de liens pour uniquement 3 heures de durée.
-Afin d'avoir une vision plus précise pour le jeu de données Socio Pattern, nous présentons dans la figure~\ref{fig:distri_group_SP} les distributions cumulatives inverses du nombre de n\oe uds, du nombre de liens, de la durée et de la densité des groupes.
-
-
-\groupcharac{Sociopattern}{Socio Pattern}{SP}
-
-%\groupcharac{RollernetLim}{Rollernet}{rollernet}
-%\groupsPerNode{RollernetLim}{Rollernet}{rollernet}
-%\percentile{RollernetLim}{Rollernet}{rollernet}
-%\groupcharacFilter{RollernetLim}{Rollernet}{rollernet}
 
 \begin{table}
 \centering
-% table caption is above the table
-
-% For LaTeX tables use
 \begin{tabular}{|c|c|c|c|}
 \hline \rule[-1ex]{0pt}{3.5ex}
 Datasets & $|\mathcal{C}|$ & $\langle|V|\rangle$  & $\langle|L|\rangle$ \\
@@ -327,29 +315,237 @@ Les valeurs en parenthèses correspondent à la valeur quand uniquement les grou
 \end{table}
 
 
+Afin d'avoir une vision plus précise pour le jeu de données Socio Pattern, nous présentons dans la figure~\ref{fig:distri_group_SP} les distributions cumulatives inverses du nombre de n\oe uds, du nombre de liens, de la durée et de la densité des groupes.
+Les distributions sont toutes hétérogènes sauf pour la densité.
+Les irrégularités dans la distribution de la densité sont dues aux petits candidats; typiquement un groupe de 2 liens entre 3 n\oe uds ont une densité de $0.33$ et un groupe avec un seul lien\,\footnote{Ils représentent $83\%$ de tous les candidats.} a une densité de 1.
+Les distributions pour les autres jeux de données sont en appendice pages \pageref{fig:distri_group_rollernet} à \pageref{fig:distri_group_RM} dans les figures~\ref{fig:distri_group_rollernet},\ref{fig:distri_group_baboon}et \ref{fig:distri_group_RM}
+Pour ces jeux de données, les distributions du nombre de liens, du nombre de n\oe uds et de la durée sont également hétérogènes mais les distributions de densité sont légèrement moins irrégulières.
+
+\groupcharac{Sociopattern}{Socio Pattern}{SP}{}
+
+Comme les très petits groupes de liens ont un intérêt limité pour décrire un flot de liens, nous commençons par écarter les groupes ayant moins de 10 liens.
+Même si cela filtre énormément de groupes, il reste tout de même beaucoup de groupes dont il faut encore évaluer la pertinence.
+
+%\groupcharac{RollernetLim}{Rollernet}{rollernet}
+%\groupsPerNode{RollernetLim}{Rollernet}{rollernet}
+%\percentile{RollernetLim}{Rollernet}{rollernet}
+%\groupcharacFilter{RollernetLim}{Rollernet}{rollernet}
 
 
+
+\section{\`Evalution des groupes candidats}
+
+Pour séparer les groupes qui sont pertinents des autres, nous utilisons des seuils.
+Un candidat est ensuite considéré comme pertinent si ses scores sont au dessus des seuils choisis.
+Baisser les valeurs des seuils entraine la capture de plus de groupes comme pertinents mais cela ne change pas les évaluations des groupes candidats.
+Ainsi, si un groupe est capturé pour un seuil donné alors il le sera également pour tout autre seuil inférieur.
+C'est pourquoi les seuils sont fixés après avoir étudié les distributions cumulatives inverses de score pour chaque voisinages.
+Elles sont représentées pour le jeux de données Socio Pattern dans la figure~\ref{fig:dit_SP}.
+Pour ce jeu de données, les scores sont très élevés, c'est-à-dire proche de $1$, peu importe le voisinage considéré.
+On remarque également que les distributions cumulatives inverses chutent toutes à partir de certaines valeurs de scores et nous les utilisons comme seuils.
+
+\percentile{Sociopattern}{Socio Pattern}{SP}{}
+
+Nous utilisons pour le vosinage au temps de début, à la durée et aux n\oe uds les valeurs de seuils suivantes: $0.998$, $0.85$ et $0.98$.
+Pour les autres jeux de données, les distributions de scores sont en appendice page \pageref{fig:dit_rollernet} à \pageref{fig:dit_RM} dans les figures~\ref{fig:dit_rollernet},\ref{fig:dit_baboon}et \ref{fig:dit_RM}.
+Elles sont similaires à celles obtenues pour Socio Pattern mis à part pour le jeu de données Rollernet dont les scores sont plus faible.
+Cette différence est surement par la structure plus dense du flot de liens globale dans le cas de Rollernet.
+Enfin, la table~\ref{tab:thresholds} liste les seuils utilisés pour chaque jeu de données.
 \begin{table}
 \centering
-% table caption is above the table
-
-% For LaTeX tables use
-\begin{tabular}{|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|c|c|}
 \hline \rule[-1ex]{0pt}{3.5ex}
-Datasets & $p_{node}$ & $p_t$  & $p_\delta$ & $N_c$  & execution \\
+ & $p_{noeuds}$ & $p_{d\acute{e}but}$  & $p_{dure\acute{e}e}$ & $N_c$ & Représentativité  & temps d'exécution \\
 \hline
-Socio Pattern & 0.98 & 0.998 & 0.85 & 136 & 2 min \\
-Rollernet& 0.9 & 0.7 & 0.6 & 37 & 4 min \\
-Reality Mining & 0.97  & 0.98 & 0.8 & 394 & 1h \\
-Babouin & 0.95  &  0.99  & 0.85 & 1023 & 52 min\\
+Socio Pattern & 0.98 & 0.998 & 0.85 & 136 & $17.7\%$ & 2 min \\
+Rollernet& 0.9 & 0.7 & 0.6 & 37 & $95.4\%$ & 4 min \\
+Reality Mining & 0.97  & 0.98 & 0.8 & $80.9\%$ & 394 & 1h \\
+Babouin & 0.95  &  0.99  & 0.85 & 1023 & $39\%$ & 52 min\\
 \hline
 \end{tabular}
-\caption{Threshold used, number of groups captured and execution time for each dataset. $p_{node}$,$p_t$,$p_\delta$ and $N_c$ are respectively the node aspect threshold, the start time aspect threshold, the duration aspect threshold and the number of group captured.}
+\caption{$p_{noeuds}$, $p_{d\acute{e}but}$et  $p_{dure\acute{e}e}$: seuils utilités pour chaque voisinage, $N_C$ nombre de groupes capturés, proportion de liens appartenant à un groupe pertinent, et temps d'exécution pour chaque jeu de données}
 \label{tab:thresholds}       % Give a unique label
 \end{table}
 
+Un candidat est écarté si un a de ses scores est en dessous du seuil correspondant. 
+C'est pourquoi il est important d'analyser quels sont les groupes filtrés par quels voisinages.
+Les corrélations entre chaque voisinage sont présentées pour le jeu de données Socio Pattern dans la figure~\ref{fig:correlation_SP}.
+Les trois voisinages filtrent des candidats.
+Ils ne sont donc pas redondant.
+Même si un score élevé dans un voisinage est souvent corrélé avec un score élevé dans les autres, il arrive qu'un candidat est un score parfait dans un voisinage et score très faible dans les autres.
+Les corrélations entre chaque voisinage pour les autres jeux de données sont présentéesen appendice pages \pageref{fig:correlation_rollernet} à \pageref{fig:correlation_RM} dans les figure~\ref{fig:correlation_rollernet},\ref{fig:correlation_baboon}et \ref{fig:correlation_RM}.
 
-\begin{table*}[t]
+
+\correlation{Sociopattern}{Socio Pattern}{SP}{}
+
+Nous présentons maintenant une analyse manuel pour deux candidats extraits des jeux de données Socio Pattern et Rollernet, afin d'illustrer les scores définis précédemment.
+Nous avons choisi ces jeux de données pour une analyse manuelle car, en plus des données butes, des méta-données sont également associées ce qui aident la validation des résultats.
+
+\subsection{\'Etude manuel d'un groupde de Socio Pattern}
+Dans les données Socio Pattern, la classe de chaque participant est connue et nous connaissons également quand commencent les premiers cours et quand ont lieu les pauses.
+Le groupe que nous considérons contient $50$ liens entre $17$ n\oe uds et dure environ 15 minutes, ce qui en fait un des plus gros groupes trouvés.
+Comme ce groupe commence à 7h44 le deuxième lundi de la capture, il précède le premier cours de la journée qui a lieu à 8h.
+De plus parmi les élèves participant à ce groupe, $16$ font parti de la même classe.
+C'est pourquoi il est fort probable que ce groupe corresponde à un regroupement des élèves avant le premier cours.
+
+Cette analyse est une première étape mais ne suffit pas.
+En effet, il est possible que ce regroupement ait en réalité concerné d'autres n\oe uds, duré plus longtemps ou même commencé à un autre instant.
+C'est pourquoi nous avons développé les notions de voisinages et nous avons calculé les scores associé à ce groupe.
+
+\subsubsection*{Voisinage aux n\oe uds}
+Pour ce voisinage, le groupe a un score de $0.987$.
+Cela implique que ce groupe a une densité plus importante $98\%$ des sous flots ayant des n\oe uds similaires et exactement le même intervalle de temps.
+Dans le cas de ce groupe à 17 n\oe uds, il y a $2771=17(180-17)$ sous flots dans le voisinage aux n\oe uds.
+Ce score élevé nous permet d'être raisonnablement sûr que cet ensemble de n\oe uds est véritablement important dans cet intervalle. de temps
+
+\subsubsection*{Voisinage au temps de début}
+Pour ce voisinage, la densité en fonction du temps de début du sous flot voisin est présentée dans la figure~\ref{fig:g9522_debut}.
+Les cycles circadiens sont clairement ainsi que la fin de semaine.
+Par ailleurs, on remarque qu'avec une densité de $0.04$ le groupe est plus dense que tous les sous flots ayant la même durée et les même n\oe uds mais un temps de début différent.
+C'est pourquoi le groupe obtient un score de $1$ pour ce voisinage.
+
+
+\subsubsection*{Voisinage à la durée}
+Pour finir, le groupe a un score de $0.95$ pour le voisinage à la durée et donc le groupe a capturé une durée particulièrement  pertinente.
+La densité en fonction de la durée des sous flots voisins est présentée dans la figure~\ref{fig:g9522_duree}.
+La densité du sous flot est légèrement plus importante si une durée plus longue est utilisée.
+Ce n'est pas complètement surprenant car la durée du sous flot impacte la densité.
+
+Par ailleurs, il est important de noter deux chose lorsque l'on observe cette courbe.
+Tout d'abord, on se rend compte que considérer des durées plus longue n'est pas vraiment utile.
+En effet pour ces jeux de données, la fonction de densité tend vers $0$ lorsque la durée est très longue.
+C'est pourquoi, augmenter l'intervalle de durée pris en compte ne fait qu'augmenter les scores sans apporter d'information.
+Par ailleurs avec une durée arbitraire pour un sous flot du voisinage, il est possible qu'il n'existe aucun groupe de liens exhibant exactement cette durée.
+En effet, un sous flot induit par un ensemble de n\oe uds, $V'$ sur un intervalle donné, $I$, peut mener à considérer des liens seulement une partie de leur durée.
+C'est le cas notamment si il existe un lien, $(b,e,u,v) \in E$ tel qu'il relie des n\oe uds de $V'$ et qu'il commence pendant l'intervalle $I$ mais finisse après.
+C'est pourquoi trouver un groupe de liens avec un score parfait pour la durée serait très surprenant.
+
+\bigskip
+
+Enfin, nous avons de plus fait un parcours extensif de l'ensemble des densité $d(V(C_i),y,z)$ pour $y \in [\alpha, \omega - \bar{C_i}]$ et $z \in [0.8\Delta_{min}, 1.2\Delta_{max}]$ pour ce groupe en particulier et nous obtenons qu'il est très souvent le plus dense.
+
+\begin{figure}
+\centering
+\begin{subfigure}{0.45\linewidth}
+	\includegraphics[width=\linewidth]{img/GroupeDense/GroupExample/SocioPattern/vairable_start9522.eps}
+	\caption{}
+	\label{fig:g9522_debut}
+\end{subfigure}
+\begin{subfigure}{0.45\linewidth}
+	\includegraphics[width=\linewidth]{img/GroupeDense/GroupExample/SocioPattern/vairable_duration9522}
+	\caption{}
+	\label{fig:g9522_duree}
+\end{subfigure}
+\caption{
+Les figures représentent les densités du voisinage d'un groupe dans Socio Pattern.
+En trait plein: la fonction $d(V(C_i),z,\bar{C_i})$ en (A) et la fonction  $d(V(C_i),\beta(C_i),y)$ en (B) .
+En pointillé, est rappelée la densité du groupe.
+}
+\label{fig:Sp_g9522_exemple}
+\end{figure}
+
+\subsection{\'Etude manuel d'un groupde de Rollernet}
+Dans le jeu de donnée Rollernet, nous connaissons le rôle des participants.
+Certains des participants ne sont connus que comme membres d'une association de roller mais d'autres ont des rôle plus précis tel que membre organisateur à l'arrière gauche du peloton.
+Ce genre d'information aide lors de l'étude d'un groupe.
+Le groupe que nous considérons contient $38$ liens, $9$ n\oe uds et dure pendant environ $5$ minutes.
+Ce groupe de liens commence juste au début de la randonnée et $8$ des membres du groupes font partis des membres organisateurs à l'arrière de la randonnée.
+Le dernier fait parti des membres organisateurs mais à l'avant.
+Ce groupe pourrait indiquer une discussion rapide avant le début du tour.
+Comme pour le groupe de Socio pattern, nous analysons les scores obtenus par ce groupe.
+
+
+\subsubsection*{Voisinage aux n\oe uds}
+Pour ce voisinage, le groupe a un score de $0.99$ ce qui indique une fois de plus que cet ensemble de n\oe uds est important lorsque l'on considère le même intervalle de temps.
+
+\subsubsection*{Voisinage au temps de début}
+Pour le voisinage au temps de début, le groupe a un score de $0.85$, voir la figure~\ref{fig:g7_debut}.
+Comme le jeu de données Rollernet est plus dense que Socio Pattern, la densité est beaucoup plus stable en fonction du temps de début.
+Cela se reflète d'ailleurs sur le score obtenu qui est plus faible.
+Cependant comme le groupe de liens en question apparait 5 minutes après le début de la randonnée, il correspond tout de même à un maximum local de la densité.
+
+
+\subsubsection*{Voisinage à la durée}
+Pour le voisinage à la durée, le groupe a un score de $0.86$, voir la figure~\ref{fig:g7_duree}.
+Encore une fois, le profil de la densité est plus lisse que dans le cas de Socio Pattern et une durée un peu plus courte donnerait lieu à une densité plus élevée.
+Enfin on remarque que, même si Rollernet est beaucoup plus dense que Socio Pattern, la densité décroit tout de même en fonction de la durée considérée.
+
+\bigskip
+
+Même si ces scores ne sont pas optimum et sont plus faibles que ceux obtenus dans l'exemple précédent, il faut les considérer dans le contexte du flot de liens de Rollernet qui est plus dense.
+Comme Rollernet est globalement dense, il est moins surprenant d'observer des sous flots qui soient denses.
+ 
+
+\begin{figure}
+\centering
+\begin{subfigure}{0.45\linewidth}
+	\includegraphics[width=\linewidth]{img/GroupeDense/GroupExample/Rollernet/vairable_start7}
+	\caption{}
+	\label{fig:g7_debut}
+\end{subfigure}
+\begin{subfigure}{0.45\linewidth}
+	\includegraphics[width=\linewidth]{img/GroupeDense/GroupExample/Rollernet/vairable_duration7}
+	\caption{}
+	\label{fig:g7_duree}
+\end{subfigure}
+\caption{
+Les figures représentent les densités du voisinage d'un groupe dans Rollernet.
+En trait plein: la fonction $d(V(C_i),z,\bar{C_i})$ en (A) et la fonction  $d(V(C_i),\beta(C_i),y)$ en (B) .
+En pointillé, est rappelée la densité du groupe.
+}
+\label{fig:Rollernet_exemple}
+\end{figure}
+
+
+
+
+
+\bigskip
+Pour résumer, il y a $12 532$  groupes candidats initialement dans le cas de Socio Pattern.
+Parmi eux, $155$ ont plus de $10$ liens et $136$ sont considérés comme pertinents.
+C'est $136$ groupes représentent $3507$ liens soit $17.7\%$ du flot de liens initial.
+La table~\ref{tab:thresholds} résume également le nombre de final de groupes pertinents capturé pour chaque jeux de données.
+On remarque notamment que même si peu de groupes sont capturés, ils représentent un très grande proportion des liens du flots de liens.
+
+Tous ces groupes ont des scores plus élevés que les seuils que nous avons fixé mais pour la plupart ils n'ont pas des scores parfaits.
+Cela implique qu'il existe des sous flots voisins ayant une densité plus importante.
+C'est pourquoi nous avons également comparé la densité obtenue par le groupe à celle obtenue par le meilleur des sous flots dans un voisinage donné.
+Nous observons que dans $75\%$ des cas la densité des groupes est à moins de $20\%$ de l'optimale.
+C'est écart est relativement stable selon les jeux de données et les voisinages.
+
+Les groupes que nous considérons comme pertinent ont donc une densité proche de l'optimum quand bien même cet optimum n'est pas atteignable par un groupe de liens.
+De plus, nous avons considéré les voisinages de manière séparée.
+Or, il se peut que le sous flot optimum dans le voisinage au temps de début ne soit pas l'optimum dans le voisinage à la durée.
+
+
+\section{Caractéristiques des groupes pertinents}
+
+Afin d'avoir une vision plus précises des groupes capturés comme pertinents, nous présentons encore une fois la distribution cumulative inverse du nombre de liens, de n\oe uds, de la durée et de la densité sont présentées dans la figure~\ref{fig:distri_group_SP_filter}.
+Les distributions sont encore une fois hétérogènes sauf pour la densité.
+Les distributions pour les autres jeux de données sont en appendice pages \pageref{fig:distri_group_rollernet_filter} à \pageref{fig:distri_group_RM_filter} dans les figures~\ref{fig:distri_group_rollernet_filter},\ref{fig:distri_group_baboon_filter}et \ref{fig:distri_group_RM_filter}
+En plus de ces distributions, nous avons également étudié comment ces groupes de liens se répartissent dans le temps et la topologie de l'ensemble du flot de liens.
+\groupcharacFilter{Sociopattern}{Socio Pattern}{SP}{}
+
+\section{Caractéristiques topologiques}
+Pour la répartition topologique des groupes, la distribution du nombre de groupes pertinent par n\oe uds est présenté dans la figure~\ref{fig:PropNode_SP} pour le jeu de donnée Socio Pattern.
+Tous les n\oe uds appartiennent à au moins un groupe et quelques n\oe uds appartiennent même à plus de 20 groupes.
+Avec une moyenne de $7.4$ groupes par n\oe uds, les groupes pertinents forment donc une structure très recouvrantes sur les n\oe uds.
+Pour les autres jeux données voir les figures~\ref{fig:PropNode_rollernet},\ref{fig:PropNode_baboon} et \ref{fig:PropNode_RM}.
+Nous observons également sur ces jeux de données un structure très chevauchante sur les n\oe uds, en particuliers pour le jeu de donnée Babouin.
+Cette différence est sûrement due au relative faible nombre de n\oe uds comparé au nombre de liens, $28$ n\oe uds pour $95616$ liens.
+
+\bigskip
+
+Il serait possible de penser que cette structure très chevauchante aurait pu être détectée par une méthode sur capturant des communautés chevauchantes de n\oe uds dans un graphe.
+Enfin de tester cette hypothèse, nous créons un graphe agrégé pondéré tel que le poids d'un lien entre deux n\oe uds soit égale à la somme des durées liens entre ces deux n\oe uds dans le flot de liens.
+Comme algorithme de détection de communauté chevauchante, nous avons utilisé l'algorithme \textsc{bigclam} proposé par Yang~\emph{et al.}~\cite{Yang2013} que nous avons décris dans le chapitre~\ref{chap:etat_art}.
+Cette méthode ne considère que des graphes non pondérés.
+C'set pourquoi il est nécessaire de transformé le graphe pondéré en graphe non pondéré.
+Comme aucune valeur singulière de pondération n'est apparue lors de l'étude de la distribution des poids des liens, nous avons avons créé plusieurs graphe non pondérés selon une règle simple.
+La règle est la suivante un lien existe dans le graphe non pondéré si le poids associé au lien est plus important ou égale à $\lambda\%$ des poids de tous les liens du graphe.
+Ainsi en faisant varier $\lambda$, il est possible de prendre en compte dans une certaine mesure l'information temporelle.
+
+\begin{table*}
 \centering
 \begin{tabular}{|c|c|c|c|c|c|c|}
 \hline  \rule[-1ex]{0pt}{3.5ex}  & $\lambda= 0.05$ &$\lambda= 0.1$ & $\lambda=0.2$ & $\lambda=0.3$ & $\lambda=0.5$ & $\lambda=0.7$ \\ 
@@ -363,7 +559,12 @@ Babouin & 0.95  &  0.99  & 0.85 & 1023 & 52 min\\
 Values which are above $0.8$ are in bold.}
 \label{tab:Jaccard}  
 \end{table*}
+
+\section{Caractéristiques temporelles}
+
 \section{Conclusion et perspective}
 
 
+
+groupes pertinent se chevauchant avec amélioration greedy des groupes.
 \subsection{Jeux de test ?}

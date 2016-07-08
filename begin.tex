@@ -91,66 +91,92 @@ headsepline, % Uncomment to get a line under the header
 
 \DeclareMathOperator*{\argmin}{arg\,min}
 
-\newcommand{\groupcharac}[3]{
-\begin{figure}[h]
+
+\newcommand{\largeurGroupeDense}{0.28}
+\newcommand{\groupcharac}[4]{
+\begin{figure}[#4]
 	\centering
-	\begin{subfigure}{0.4\linewidth}
+	\begin{subfigure}{\largeurGroupeDense\linewidth}
 		\includegraphics[width=\linewidth]{img/GroupeDense/#1/filter/Distrib_avant_filtre_best}
 	\end{subfigure}\hspace{0.03\linewidth}
-	\begin{subfigure}{0.4\linewidth}
+	\begin{subfigure}{\largeurGroupeDense\linewidth}
 		\includegraphics[width=\linewidth]{img/GroupeDense/#1/filter/Distrib_avant_dens.eps}
 	\end{subfigure}
-	\caption{Inverse cumulative distributions of the number of links, nodes and duration in (a) and density in (b) for the candidates found by the Louvain method on the #2 dataset.}
+	\caption{Distribution cumulative inverse du nombre de liens, de n\oe uds et de la durée en (A) et de la densité en (B) pour les candidats trouvés par la méthode de Louvain dans le jeu de données #2.}
 	\label{fig:distri_group_#3}
 \end{figure}
 }
 
-\newcommand{\groupsPerNode}[3]{
-	\begin{figure}[h]
+\newcommand{\groupsPerNode}[4]{
+	\begin{figure}[#4]
 	\centering
 	
 	\includegraphics[width=0.5\linewidth]{img/GroupeDense/#1/filter/Prop_node.eps}
-	\caption{Inverse cumulative distribution of the number of groups captured per node for the #2 dataset.}
+	\caption{Distribution cumulative inverse du nombre de groupes pertinent auquel un n\oe ud appartient dans le jeu de données #2.}
 	\label{fig:ditribnodes_#3}
 	\end{figure}
 }
 
-\newcommand{\percentile}[3]{
-	\begin{figure}[h]
+\newcommand{\percentile}[4]{
+	\begin{figure}[#4]
 	\centering
 	
-	\begin{subfigure}{0.48\linewidth}
+	\begin{subfigure}{\largeurGroupeDense\linewidth}
 		\includegraphics[width=\linewidth]{img/GroupeDense/#1/Percentil/Distribution_percentil_FixDuration_top155.eps}
-		\caption{Start time: $p_{t}$}
+		\caption{Temps de début: $p_{d\acute{e}but}$}
 	\end{subfigure}\hfill
-	\begin{subfigure}{0.48\linewidth}
+	\begin{subfigure}{\largeurGroupeDense\linewidth}
 		\includegraphics[width=\linewidth]{img/GroupeDense/#1/Percentil/Distribution_percentil_FixTime_top155.eps}
-		\caption{Duration: $p_{\delta}$}
-	\end{subfigure}
-	
-	\begin{subfigure}{0.48\linewidth}
-		\includegraphics[width=\linewidth]{img/GroupeDense/#1/Percentil/Distribution_percentil_Rand_top155.eps}
-		\caption{Node set:$p_{node}$}
+		\caption{Durée: $p_{dur\acute{e}e}$}
 	\end{subfigure}\hfill
-	\begin{subfigure}{0.48\linewidth}
-		\includegraphics[width=\linewidth]{img/GroupeDense/#1/ecart/relationFixTime_FixDuration.eps}
-		\caption{Correlation between start time and duration aspects.}
-	\end{subfigure}
-	\caption{Inverse cumulative distribution of scores for each aspect for the dataset #2.}
+	\begin{subfigure}{\largeurGroupeDense\linewidth}
+		\includegraphics[width=\linewidth]{img/GroupeDense/#1/Percentil/Distribution_percentil_Rand_top155.eps}
+		\caption{N\oe uds:$p_{noeuds}$}
+	\end{subfigure}\hfill
+	\caption{Distribution cumulative inverse des scores pour chaque voisinage dans le jeu de données #2.}
 	\label{fig:dit_#3}
 	\end{figure}
 }
-\newcommand{\groupcharacFilter}[3]{
-	\begin{figure}[h]
+
+\newcommand{\correlation}[4]{
+	\begin{figure}[#4]
 	\centering
 	
-	\begin{subfigure}{0.45\linewidth}
-		\includegraphics[width=\linewidth]{img/GroupeDense/#1/filter/Distrib_apres_filtre_best}
+	\begin{subfigure}{\largeurGroupeDense\linewidth}
+		\includegraphics[width=\linewidth]{img/GroupeDense/#1/ecart/relationFixTime_Rand}
+		\caption{} %Corrélation entre les score au temps de début et aux n\oe uds.}
 	\end{subfigure}\hfill
-	\begin{subfigure}{0.45\linewidth}
-		\includegraphics[width=\linewidth]{img/GroupeDense/#1/filter/Distrib_apres_dens.eps}
+	\begin{subfigure}{\largeurGroupeDense\linewidth}
+		\includegraphics[width=\linewidth]{img/GroupeDense/#1/ecart/relationFixTime_FixDuration.eps}
+		\caption{}%Corrélation entre les score au temps de début et à la durée.}
+	\end{subfigure}\hfill
+	\begin{subfigure}{\largeurGroupeDense\linewidth}
+		\includegraphics[width=\linewidth]{img/GroupeDense/#1/ecart/relationFixDuration_Rand.eps}
+		\caption{} %Corrélation entre les score aux n\oe uds et à la durée.}
 	\end{subfigure}
-	\caption{Inverse cumulative distributions of the number of links, nodes and duration in (a) and density in (b) for the candidates captured by our method on the #2 dataset.}
+	\caption{Corrélations des scores selon le voisinage dans le jeu de données #2.}
+	\label{fig:correlation_#3}
+	\end{figure}
+}
+
+\newcommand{\groupcharacFilter}[4]{
+	\begin{figure}[#4]
+	\centering
+	
+	\begin{subfigure}{\largeurGroupeDense\linewidth}
+		\includegraphics[width=\linewidth]{img/GroupeDense/#1/filter/Distrib_apres_filtre_best}
+		\caption{}
+	\end{subfigure}\hfill
+	\begin{subfigure}{\largeurGroupeDense\linewidth}
+		\includegraphics[width=\linewidth]{img/GroupeDense/#1/filter/Distrib_apres_dens.eps}
+		\caption{}
+	\end{subfigure}\hfill
+	\begin{subfigure}{\largeurGroupeDense\linewidth}
+			\includegraphics[width=\linewidth]{img/GroupeDense/#1/filter/Prop_node.eps}
+			\caption{}
+			\label{fig:PropNode_#3}
+	\end{subfigure}
+	\caption{Distributions cumulatives inverses du nombre de liens, de n\oe uds et de la durée en (A), de la densité en (B), du nombre de groupes par n\oe ud en (C) pour les groupes capturés par notre méthode dans les données #2.}
 	\label{fig:distri_group_#3_filter}
 	\end{figure}
 }
