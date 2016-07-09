@@ -70,9 +70,35 @@ Il est intéressant de noter que le sous flot $L_t..t$ est équivalent au graphe
 	\caption{Exemple de différents sous-flots, (B) et (C), du flot initial en (A). Les liens en noirs sont les liens sélectionnés dans le sous-flot. }
 \label{fig:exemple_sous_flot}
 \end{figure}
-
 Il est aussi possible de combiner ces notions.
 Par exemple avec $V' \subset V$, $L_{\alpha'..\omega'}(V'^2)$ est le sous flot correspondant au lien entre les n\oe uds de $V'$ sur l'intervalle $[\alpha', \omega']$.
+\bigskip
+Enfin de il est intéressant de noter que la construction de ces sous flots peut être fait de manière sous linéaire au nombre de liens total pour les sous flots induits par un ensemble de n\oe uds, un ensemble de liens mais pas pour un intervalle de temps.
+Pour l'ensemble de n\oe uds, il suffit d'itérer sur l'ensemble des liens qui sont reliés à un des n\oe uds de l'ensemble.
+Cela peut être fait rapidement si chaque n\oe uds a la connaissance des ces liens.
+
+Pour l'intervalle de temps, la situation est plus compliquée car il n'existe d'ordre total des liens que sur leur apparition ou sur leur disparition.
+Il n'y a pas d'ordre total sur la présence qui permettrait de considérer uniquement les liens appartenant au sous flot.
+Pour qu'un lien, $l= (b,e,u,v)$ appartienne au sous flot temporel sur $[t,t']$, il doit remplir une des ces conditions, qui ne sont pas exclusives:
+\begin{description}
+\item[$t \leq b \leq t'$] le lien commence dans l'intervalle $[t,t']$.
+\item[$t \leq e \leq t'$] le lien fini dans l'intervalle $[t,t']$.
+\item[$ b \leq t \, \wedge \, t' \leq e$] le lien couvre tout l'intervalle $[t,t']$.
+\end{description}
+
+Avec ces conditions, on peut tirer deux conclusions.
+Pour qu'un lien $l=(b,e,u,v)$ puisse appartenir au sous flot, il est nécessaire que $e \geq t$.
+Il n'est donc pas nécessaire de considérer les liens ayant un temps de fin inférieur à $t$.
+De manière analogue, il n'est pas nécessaire de considérer les liens ayant un temps de début supérieur $t'$.
+Cependant ces deux conditions ne peuvent pas être combinées pour restreindre l'espace de recherche.
+Une manière de construire le sous flot temporel est d'itérer sur tous les liens dans l'ordre temporel d'apparition et d'arrêter le parcours dès qu'un lien a un temps de début supérieur à $t'$.
+Il faut cependant tester l'appartenance de chaque lien parcouru.
+De manière analogue, il set possible d'itérer sur les liens dans l'ordre inverse de disparition des liens et de s'arrêter dès qu'un lien a une temps de fin inférieur à $t$.
+
+
+Dans le pire des cas, ces méthodes sont donc linéaire sur le nombre total de liens dans le flot et non dans le sous flot comme précédemment.
+La seul optimisation possible est le choix du sens du parcours si les deux ordres sont disponibles.
+
 
 
 \section{Degré et densité}
@@ -107,6 +133,9 @@ d_t(E')=2|L_{t}(E')|= 2|\{(b,e,u,v) \in E',\ b \leq t \leq e\}|\,.
 \end{equation}
 
 Avec ces définitions, il est aussi possible définir les notions de degré temporel interne, $d_t^{in}$, et externe $d_t^{out}$.
+Les degrés temporels d'un n\oe uds, d'un ensemble de n\oe uds ou de liens peuvent se calculer rapidement.
+Pour ce faire, il faut d'abord transformer les liens $(b,e,u,v)$ en une suite de modifications de la forme $(b,u,v,+1)$ et $(e,u,v,-1)$ ce qui coûte $O(m)$.
+Une fois cette liste créée, il suffit d'ordonner ces modifications dans l'ordre temporelle, $O(2mlog(2m))$, puis d'itérer sur l'ensemble des modification en sommant au fur et à mesure les apparitions et disparition de lien, $O(2m)$.
 \bigskip
 
 Les degrés sont des fonctions du temps mais il est souvent intéressant de regarder la valeur moyenne du degré:
@@ -149,7 +178,8 @@ La notion de densité que nous avons définie est donc cohérente avec notre not
 De plus, la densité dans les flots de liens est aussi comprise entre à $0$ et $1$.
 Enfin, cette formulation de densité est une généralisation de la densité proposée par Viard~\emph{et al.}~\cite{Viard2014a} qui ne considérait que les liens sans durée.
 
-
+Le calcul de la densité d'un flot est linéaire en le nombre de liens car elle est dépendante du calcul de $d_{\alpha..\omega}(V)$  qui est fait de manière linéaire.
+\clearpage
 \section*{Liste des notations pour les flots de liens}
 \begin{table}[h]
 	\centering
