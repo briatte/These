@@ -232,6 +232,70 @@ La définition de ces seuils est difficile et dépend des caractéristiques du f
 C'est pourquoi nous ne les fixons pas \emph{a priori} mais \emph{a posteriori} après avoir examiner la distribution des scores.
 Le choix des seuil est décris plus amplement dans la section~\ref{sec:groupe_dense_result}.
 
+\subsection{Algorithme de calcul des scores}
+Nous avons défini formellement les trois voisinages mais il faut encore définir un algorithme efficace pour les calculer.
+Si le problème n'est pas crucial pour le voisinage aux n\oe uds, il est plus délicat lorsqu'on considère le voisinage au temps de début ou à la durée car le temps est continu.
+
+\subsubsection{Voisinage au n\oe uds}
+Pour ce voisinage, il est nécessaire d'analyser des sous flots durant le même intervalle, $[t,t']$, mais pour différents ensembles n\oe uds, $V'$.
+Il existe plusieurs stratégies possibles pour calculer la densité  de ces sous flots mais dans tous les cas il n'est pas nécessaire de créer explicitement le sous flot.
+Il suffit de pouvoir itérer sur les liens le composants pour calculer leur densité, voir la section~\ref{sec:def_densite}.
+
+La première méthode consiste en manipuler chaque sous flot de manière indépendante et de calculer leur densité.
+Pour extraire le sous flot induit par un ensemble de n\oe uds sur un intervalle,
+il est judicieux de d'abord considérer le sous flot sur les n\oe uds puis d'intégrer le temps  car la construction du sous flot induit par un ensemble de n\oe uds est plus rapide.
+Le calcul de la densité d'un sous flot induit par un ensemble de n\oe uds, $V'$ sur intervalle de temps $[t,t']$ est alors dépendant du nombre de liens existant entre les n\oe uds de $V'$ avant $t'$ et de la taille de $V'$: $C_{V'}=O(|L_{\alpha..t'}(V'^2)|log(|V'|))$.
+$|L_{\alpha..t'}(V'^2)|$ correspond au coût nécessaire pour parcourir l'ensemble des liens ayant un de leur n\oe uds dans $V'$  qui sont potentiellement dans $[t,t']$.
+Pour chacun de ces liens, il faut également tester que l'autre n\oe ud du lien appartienne également à $V'$ ce qui se fait en $log(|V'|)$.
+Pour calculer l'ensemble du voisinage pour un groupe de n\oe uds de taille $k$, il est alors nécessaire de répéter ce processus pour chaque ensemble de n\oe uds ce qui donne une complexité de $O(k(|V-k) \tilde{C_{V'}})$.
+Cette méthode est facilement parallélisable.
+C'est cette méthode que nous avons implémentée dans sa version non parallèle.
+
+La deuxième méthode consisterait en tirer parti de la ressemblance des ensembles de n\oe uds dans le voisinage.
+La première étape est alors de calculer $d_{t..t'}(V'^2)$, le degré moyen du groupe de n\oe uds initial.
+Puis lors de l'évaluation d'un autre groupe de n\oe uds $V''$, nous savons que $V'$ et $V''$ ne diffère que sur un n\oe ud, $v'$ qui est remplacé par $v''$.
+Pour calculer la densité de $V''$ sur $[t,t']$, il suffit de mettre à jour $d_{t..t'}(V'^2)$ en fonction des liens qui ne sont plus pris en compte et des nouveaux liens pris en compte.
+C'est à dire qu'il faut considérer $|L_{\alpha..t'}({v'} \cap V')|$ suppressions de liens et  $|L_{\alpha..t'}({v''} \cap V'')|$ ajouts de liens.
+Il faut de même répéter ce processus pour chaque groupe de n\oe uds pour évaluer l'ensemble du voisinage.
+Cette méthode peut également être parallélisée.
+
+
+\subsubsection{Voisinage à la durée}
+Pour le voisinage à la duré, l'ensemble de n\oe uds est fixe et il faut de manière continue augmenter l'intervalle du sous flot.
+Pour réussir à faire cela, il est nécessaire de se baser encore une fois sur le degré temporel de l'ensemble de n\oe uds en question.
+La densité dépend d'une part de la somme des degrés et d'autre part de la la durée de l'intervalle.
+Comme les degrés temporels sont des fonctions constantes par morceaux, la somme des degrés, qui est l'intégrale des degrés, est une fonction linéaire par morceaux dont les points de changement sont les instants où un lien apparaît ou disparaît.
+C'est pourquoi, il est possible de définir la densité en fonction de la durée par une fonction par morceaux, voir l'exemple dans la figure~\ref{fig:calcul_var_dure}.
+L'idée est de mettre à jour au fur et à mesure la somme des degrés en fonction des liens tout en temps compte de la durée du sous flots qui augmente linéairement.
+La complexité est donc $O(|L_{t..t+\Delta_{max}}(V'^2)|)$ si le degré de temporel du groupe est connu.
+
+\begin{figure}
+\centering
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width=\linewidth]{img/GroupeDense/duration.eps}
+		\caption{Voisinage à la durée}
+		\label{fig:calcul_var_dure}
+	\end{subfigure}\hspace*{0.05\textwidth}
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width=\linewidth]{img/GroupeDense/start_time.eps}
+		\caption{Voisinage au temps de début}
+		\label{fig:calcul_var_debut.}
+	\end{subfigure}\hspace*{0.05cm}
+
+	\caption{Calcul du voisinage à la duré en (A) et au temps de début en (B) pour un groupe ayant un degré temporel donné. L'exemple en question est le même que celui dans la figure~\ref{fig:exemple_degre}.}
+	\label{fig:calcul_var_dure_debut.}
+\end{figure}
+
+\subsubsection{Voisinage au temps de début}
+Pour le voisinage au temps début, l'approche est similaire.
+Il faut mettre à jour la somme des degrés.
+La principale différence est qu'il faut cette fois tenir compte de l'apparition et de la disparition des liens.
+Le parcours est donc un peu plus complexe mais la durée est fixe.
+C'est pourquoi la densité en fonction du temps de début est une fonction linéaire par morceaux.
+Il existe d'ailleurs une unique bijection entre la somme des degrés et la densité qui est $\delta(V',\beta, \Delta)= \dfrac{D(V')}{|V'|(|V|-1)}$.
+Voir l'exemple dans la figure~\ref{fig:calcul_var_dure}.
+La complexité est donc $O(|L_{\alpha..\omega-\Delta}(V'^2)|)$ où $\Delta$ est la duré du groupe.
+
 
 \section{Jeux de données}
 \label{sec:groupe_dense_data}
@@ -333,7 +397,7 @@ Même si cela filtre énormément de groupes, il reste tout de même beaucoup de
 
 
 
-\section{\`Evalution des groupes candidats}
+\subsection{\`Evalution des groupes candidats}
 
 Pour séparer les groupes qui sont pertinents des autres, nous utilisons des seuils.
 Un candidat est ensuite considéré comme pertinent si ses scores sont au dessus des seuils choisis.
@@ -381,7 +445,7 @@ Les corrélations entre chaque voisinage pour les autres jeux de données sont p
 Nous présentons maintenant une analyse manuel pour deux candidats extraits des jeux de données Socio Pattern et Rollernet, afin d'illustrer les scores définis précédemment.
 Nous avons choisi ces jeux de données pour une analyse manuelle car, en plus des données butes, des méta-données sont également associées ce qui aident la validation des résultats.
 
-\subsection{\'Etude manuel d'un groupde de Socio Pattern}
+\subsubsection{\'Etude manuel d'un groupe de Socio Pattern}
 Dans les données Socio Pattern, la classe de chaque participant est connue et nous connaissons également quand commencent les premiers cours et quand ont lieu les pauses.
 Le groupe que nous considérons contient $50$ liens entre $17$ n\oe uds et dure environ 15 minutes, ce qui en fait un des plus gros groupes trouvés.
 Comme ce groupe commence à 7h44 le deuxième lundi de la capture, il précède le premier cours de la journée qui a lieu à 8h.
@@ -444,7 +508,7 @@ En pointillé, est rappelée la densité du groupe.
 \label{fig:Sp_g9522_exemple}
 \end{figure}
 
-\subsection{\'Etude manuel d'un groupde de Rollernet}
+\subsubsection{\'Etude manuel d'un groupde de Rollernet}
 Dans le jeu de donnée Rollernet, nous connaissons le rôle des participants.
 Certains des participants ne sont connus que comme membres d'une association de roller mais d'autres ont des rôle plus précis tel que membre organisateur à l'arrière gauche du peloton.
 Ce genre d'information aide lors de l'étude d'un groupe.
@@ -518,7 +582,7 @@ De plus, nous avons considéré les voisinages de manière séparée.
 Or, il se peut que le sous flot optimum dans le voisinage au temps de début ne soit pas l'optimum dans le voisinage à la durée.
 
 
-\section{Caractéristiques des groupes pertinents}
+\subsection{Caractéristiques des groupes pertinents}
 
 Afin d'avoir une vision plus précises des groupes capturés comme pertinents, nous présentons encore une fois la distribution cumulative inverse du nombre de liens, de n\oe uds, de la durée et de la densité sont présentées dans la figure~\ref{fig:distri_group_SP_filter}.
 Les distributions sont encore une fois hétérogènes sauf pour la densité.
@@ -526,7 +590,7 @@ Les distributions pour les autres jeux de données sont en appendice pages \page
 En plus de ces distributions, nous avons également étudié comment ces groupes de liens se répartissent dans le temps et la topologie de l'ensemble du flot de liens.
 \groupcharacFilter{Sociopattern}{Socio Pattern}{SP}{}
 
-\subsection{Caractéristiques topologiques}
+\subsubsection{Caractéristiques topologiques}
 Pour la répartition topologique des groupes, la distribution du nombre de groupes pertinent par n\oe uds est présenté dans la figure~\ref{fig:PropNode_SP} pour le jeu de donnée Socio Pattern.
 Tous les n\oe uds appartiennent à au moins un groupe et quelques n\oe uds appartiennent même à plus de 20 groupes.
 Avec une moyenne de $7.4$ groupes par n\oe uds, les groupes pertinents forment donc une structure très recouvrantes sur les n\oe uds.
@@ -568,7 +632,7 @@ Les indices de Jaccard suppérieurs à $0.8$ sont en gras.}
 \label{tab:Jaccard}  
 \end{table*}
 
-\subsection{Caractéristiques temporelles}
+\subsubsection{Caractéristiques temporelles}
 Pour l'aspect temporel, nous avons également étudié le chevauchement temporel entre les groupes pertinents.
 Pour ce faire, nous regardons la proportions du temps durant laquelle il n'existe aucun groupe présent.
 Pour tous les jeux de données excepté Rollernet, entre $82\%$ et $95\%$ du temps il n'y a aucun groupes présents.

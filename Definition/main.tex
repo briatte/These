@@ -39,7 +39,7 @@ Nous illustrons ces notions dans la figure~\ref{fig:exemple_sous_flot} avec le f
 Nous définissons $L(E')$ , le sou-flot de $L$ inuit par un ensemble de liens $E' \subset E$: $L(E')=([\beta(E'),\psi(E'),V(E'),E'])$.
 
  
-Nous définissons $L(S)$ , le sou-flot de $L$ induit par un ensemble de paire n\oe uds $S \in V^ 2$: $L(S)$: $L(S)=([\beta(E'),\psi(E')],V',E')$ avec $E'= \{(b,e,u,v) \in E, (u,v) \in S\}$.
+Nous définissons $L(S)$ , le sou-flot de $L$ induit par un ensemble de paires n\oe uds $S \in V^ 2$: $L(S)$: $L(S)=([\beta(E'),\psi(E')],V',E')$ avec $E'= \{(b,e,u,v) \in E, (u,v) \in S\}$.
 Un exemple de sous-flot induit par un ensemble de n\oe uds est dans la figure~\ref{fig:exemple_sous_flot1}.
 Par abus de notation, on note $L(v)= L(\{v\}\times V)$, le sous-flot induit par un n\oe uds.
 
@@ -73,9 +73,10 @@ Il est intéressant de noter que le sous flot $L_t..t$ est équivalent au graphe
 Il est aussi possible de combiner ces notions.
 Par exemple avec $V' \subset V$, $L_{\alpha'..\omega'}(V'^2)$ est le sous flot correspondant au lien entre les n\oe uds de $V'$ sur l'intervalle $[\alpha', \omega']$.
 \bigskip
-Enfin de il est intéressant de noter que la construction de ces sous flots peut être fait de manière sous linéaire au nombre de liens total pour les sous flots induits par un ensemble de n\oe uds, un ensemble de liens mais pas pour un intervalle de temps.
-Pour l'ensemble de n\oe uds, il suffit d'itérer sur l'ensemble des liens qui sont reliés à un des n\oe uds de l'ensemble.
-Cela peut être fait rapidement si chaque n\oe uds a la connaissance des ces liens.
+Enfin de il est intéressant de noter que la construction de ces sous flots peut être fait de manière linéaire au nombre de liens dans le sous flot pour les sous flots induits par un ensemble de de paires de n\oe uds, un ensemble de liens mais pas pour un intervalle de temps.
+Pour un ensemble de paires de n\oe uds $S= V_1 \times V_2$, il suffit d'itérer sur l'ensemble des liens qui sont reliés aux n\oe uds de $V_1$ et de vérifier que l'autre n\oe ud relié au lien appartienne à $V_2$ ce qui se fait en $O(log(|V_2|))$ pour chaque lien.
+Cela peut être fait rapidement si chaque n\oe ud a la connaissance des ces liens.
+Il faut tout de fois distinguer le cas où $S= V_1 \times V$ car il n'est alors pas nécessaire de faire la vérification d'appartenance à $V_2$.
 
 Pour l'intervalle de temps, la situation est plus compliquée car il n'existe d'ordre total des liens que sur leur apparition ou sur leur disparition.
 Il n'y a pas d'ordre total sur la présence qui permettrait de considérer uniquement les liens appartenant au sous flot.
@@ -97,7 +98,9 @@ De manière analogue, il set possible d'itérer sur les liens dans l'ordre inver
 
 
 Dans le pire des cas, ces méthodes sont donc linéaire sur le nombre total de liens dans le flot et non dans le sous flot comme précédemment.
-La seul optimisation possible est le choix du sens du parcours si les deux ordres sont disponibles.
+Il n'y a alors que deux optimisations possibles.
+il est possible de choisir le sens du parcours si les deux ordres sont disponibles.
+Si la plus longue durée de liens,$\bar{l}_{max}$, est connue, alors il est possible de commencer la recherche à partir du premier lien respectant $b+\bar{l}_{max} \geq t$.
 
 
 
@@ -148,7 +151,7 @@ Lorsque cela n'est pas ambigu, nous notons $d_{\alpha..\omega}(u) = d(u)$.
 Il est intéressant de noter dans cette formulation que si tout les liens durent tout au long du flot de liens alors le degré dans le graphe agrégé et le degré moyen dans le flot de liens sont égaux, c'est-à-dire  $d_{\alpha..\omega}(u) = d_G(u), \forall u \in V$.
 
 \'A partir du degré, il est possible de définir beaucoup de notions différentes et notamment la densité.
-Pour rappel, la densité dans un graphe est définie par $\delta(G)=2m/(n(n-1))=d(V)/(n-1)$ et est égale à la probabilité qu'il existe un lien entre 2 n\oe uds.
+Pour rappel, la densité dans un graphe est définie par $\delta(G)=2m/(n(n-1))=d(V)/n(n-1)$ et est égale à la probabilité qu'il existe un lien entre 2 n\oe uds.
 Si l'on transpose l'idée au formalisme de flot de liens, la densité dans un flot de liens est la probabilité qu'il existe un lien entre 2 n\oe uds à un instant donné aléatoire.
 Cela se traduit par la formule suivante:
 \begin{equation}
@@ -198,7 +201,8 @@ Le calcul de la densité d'un flot est linéaire en le nombre de liens car elle 
 	$L(V'^2)$ & sous flot induits par les n\oe uds de $V'$ \\
 	$L_{t..t'}$ & sous flot induits par l'intervalle $[t,t']$ \\
 	$d_t(v)$ & degré de $v$ à l'instant $t$\\
-	$d_t(C)$ & Somme des degrés des n\oe uds dans $V$ à l'instant $t$\\
+	$d_t(V)$ & Somme des degrés des n\oe uds dans $V$ à l'instant $t$\\
+	$d_{t..t'}(v)$ & degré moyen de $v$ sur $[t,t']$\\
 	$d(v)$ & degré moyen $v$ sur $T$\\
 	$\delta(L)$ & densité du flot\\
 %	$\delta_{\Delta}(L)$ & densité du flot où chaque lien dure $\Delta$\\
