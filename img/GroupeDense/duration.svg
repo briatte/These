@@ -468,9 +468,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.7"
-     inkscape:cx="274.16051"
-     inkscape:cy="983.20122"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="-371.55812"
+     inkscape:cy="718.34013"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -479,8 +479,8 @@
      fit-margin-right="1"
      fit-margin-bottom="1"
      inkscape:window-width="1920"
-     inkscape:window-height="1022"
-     inkscape:window-x="0"
+     inkscape:window-height="1143"
+     inkscape:window-x="1366"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:snap-grids="true" />
@@ -492,7 +492,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -714,14 +714,16 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:83.72008514px;line-height:125%;font-family:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;enable-background:new"
-       x="454.2984"
+       x="480.2984"
        y="233.12796"
        id="text4814-7"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan4816-3"
-         x="454.2984"
-         y="233.12796">D(V')</tspan></text>
+         x="480.2984"
+         y="233.12796">D<tspan
+   style="font-size:65.00000954%;baseline-shift:sub"
+   id="tspan4350">β..β+Δ</tspan>(V')</tspan></text>
     <path
        style="fill:none;fill-rule:evenodd;stroke:#bdbdbd;stroke-width:3.15531731;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.98431373;marker-end:url(#marker4386-7-7);enable-background:new"
        d="m 436.4477,501.57957 657.7405,0"

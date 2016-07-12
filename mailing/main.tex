@@ -116,8 +116,8 @@ Le but est d'évaluer si cette structure de flot peut se rapprocher d'une struct
 Comme dit précédemment, les communautés sont souvent définies comme étant des structures devant être densément connectées.
 C'est pourquoi nous nous attachons à étudier la densité des discussions.
 
-Comme ces données se modélisent par un flot de liens où les liens n'ont pas de durée, nous étudions la densité non pas dans le flot de liens initial mais dans $\sigma(\xi(\Delta,L))$  pour différentes valeurs de $\Delta$ entre 1 seconde et 20 ans.
-La notation $\delta(\sigma(\xi(\Delta,L)))$ est cependant très lourde et nous simplifions par $\delta_{\Delta}(L)$ et nous parlons donc de $\Delta$-densité.
+Comme ces données se modélisent par un flot de liens où les liens n'ont pas de durée, nous étudions la densité non pas dans le flot de liens initial mais dans $\sigma(\xi(L,\Delta))$  pour différentes valeurs de $\Delta$ entre 1 seconde et 20 ans.
+La notation $\delta(\sigma(\xi(L,\Delta)))$ est cependant très lourde et nous simplifions par $\delta_{\Delta}(L)$ et nous parlons donc de $\Delta$-densité.
 Tout d'abord dans la figure~\ref{fig:dens_fil_discusion} est représentée la $\Delta$-densité globale du le flot.
 En couvrant un spectre aussi large de $\Delta$, on observe que la $\Delta$-densité est croissante avec $\Delta$ mais surtout on observe bien la convergence de $\Delta$-densité vers $3.139\times 10^{-4}$, la densité du graphe agrégé, lorsque $\Delta$ est proche de $\omega - \alpha$.
 
@@ -271,7 +271,7 @@ Par contre, on remarque de manière frappante que même une petite discussions p
 
 Le graphe quotient est une autre notion clef pour étudier les relations entre les communautés d'un graphe $G=(V,E)$.
 Soit une partition $C= \{C_i\}_{1 .. k}$ des n\oe uds de $G$ en $k$ communautés, chaque communauté est représentée dans le graphe quotient $\bar{G}$ par un n\oe uds dans $V$.
-Il y a un lien entre deux communauté $C_i$ et $C_j$ dans $E$ si il existe au moins un lien entre un n\oe uds de $C_i$ et un n\oe uds de $C_j$.
+Il y a un lien entre deux communauté $C_i$ et $C_j$ dans $E$ s'il existe au moins un lien entre un n\oe uds de $C_i$ et un n\oe uds de $C_j$.
 Voir une illustration sur la figure~\ref{fig:graph-quotient}.
 Il est possible d'ajouter un poids sur les liens de $\bar{G}$ égale au nombre de liens reliant les communautés.
 Le graphe quotient permet de facilement étudier, dans un graphe, les relations entre les communautés.
@@ -289,7 +289,7 @@ Le graphe quotient permet de facilement étudier, dans un graphe, les relations 
 Nous étendons ici cette notion de graphe quotient aux flots de liens.
 Nous définissons le flot quotient, $Q=(T_Q,V_Q,E_Q)$, induit par une partition $P=\{{P_i}\}_{1..k}$ en $k$ sous-flots de la manière suivante.
 Chaque sous-flot $P_i$ est représenté par un n\oe ud dans $V_Q$.
-Il existe un lien $(t,P_i,P_j)$ dans $E_Q$ si il existe $(t_1,u,v) \in P_i$, $(t_2,u,v') \in P_j$ et $(t_3,u,v'') \in P_i$ avec $t_1 \leq t_2 \leq t_3$.
+Il existe un lien $(t,P_i,P_j)$ dans $E_Q$ s'l existe $(t_1,u,v) \in P_i$, $(t_2,u,v') \in P_j$ et $(t_3,u,v'') \in P_i$ avec $t_1 \leq t_2 \leq t_3$.
 En d'autre termes, il y a un lien dans $E_Q$ si un n\oe ud $u$ a un lien dans $P_j$ qui apparait entre deux autres de ses liens du groupe $P_i$.
 
 Le flot quotient induit par les discussions dans le jeu de données contient 12 281 269 liens impliquant 68 524 discussions différentes.
@@ -321,24 +321,6 @@ Cela est dù au nombre de n\oe uds qui augmente dans le flot quotient.
 Mais le flot quotient contient tout de même beaucoup de liens. 
 En effet, le degré moyen dans le flot quotient est moyenne 25 fois plus élevé que dans le flot.
 
-\subsection{Conclusion}
-
-Nous avons utilisé le modèle de flot de liens pour étudier une archive de courriels provenant du projet Debian.
-Grâce au modèle de flot de liens, nous avons étudié des notions clefs pour mieux comprendre la répartition temporelle et topologique des discussions.
-Nous avons étudié la notion de $\Delta$-densité sur les discussions en elles mêmes.
-Puis, nous avons étudié les relations entre les discussions avec la $\Delta$-densité inter discussions, les projections en graphe de chevauchement temporel ou topologique et le flot quotient.
-
-Cette étude repose en grande partie sur la notion de $\Delta$-densité qui nécessite un paramètre fixé arbitrairement.
-Nous avons à chaque fois testé un ensemble de valeurs de $\Delta$ variant d'une seconde jusque parfois 20 ans et, lors de ces tests, aucune valeurs $\Delta$ caractéristique n'a pu être identifiée.
-Il semble donc que la $\Delta$-densité soit relativement robuste vis-à-vis de $\Delta$ dans ce contexte.
-
-Nous avons tout d'abord observé que les discussions forment une structure plus dense que le flot de liens.
-De manière encore plus forte, nous avons constaté, grâce à la  $\Delta$-densité inter discussion, que les discussions sont plus denses en interne qu'en externe.
-C'est une caractéristique importante des communautés que l'on trouve dans les graphes mais qui n'avait pas été observée dans un contexte temporel.
-\`A partir de ces observations, nous avons également observé les relations entre les discussions.
-Via le graphe de chevauchement temporel, nous avons validé le fait que différentes discussions ont lieu en même temps et que par conséquent une agrégation temporelle entrainerait une perte d'information.
-De même via le graphe de chevauchement topologique, on remarque que la structure est très recouvrante sur les n\oe uds, rendant ainsi l'utilisation de partitions statiques de n\oe uds difficilement envisageable pour décrire les discussions.
-
 
 \section{Détection de structures denses}
 
@@ -356,7 +338,7 @@ Afin de créer une transformation du flot vers un graphe, nous définissons un a
 \`A partir de $\mathfrak{L}$, nous créons un graphe non-orienté et non-pondéré $\mathcal{G} = (\mathcal{V},\mathcal{E})$.
 
 Chaque lien du flot est représenté par un n\oe ud.
-Deux liens $(b,e,u,v)$ et $(b',e',u',v') \in \mathfrak{L}$ sont connectés dans le graphe s'ils partagent un n\oe ud et si les intervalles s'intersectent, \emph{i.e.} $\{u,v\} \cap \{u',v'\} \neq \emptyset$ et $[b,e]\cap[b',e'] \neq \emptyset$, voir figure~\ref{fig:Transformation}.
+Deux liens $(b,e,u,v)$ et $(b',e',u',v') \in \mathfrak{L}$ sont connectés dans le graphe s'ils partagent un n\oe ud et si les intervalles s'intersectent, \emph{i.e.} $\{u,v\} \cap \{u',v'\} \neq \emptyset$ et $[b,e]\cap[b',e'] \neq \emptyset$, voir la figure~\ref{fig:Transformation}.
 Ainsi, un lien dans le graphe représente une connexion structurelle et temporelle entre deux liens du flot de liens.
 Les groupes denses dans le graphe représentent donc des groupes de liens connectés temporellement et topologiquement dans le flot.
 
@@ -522,13 +504,56 @@ La couleur du point indique le nombre de groupes ayant la même taille.
 \label{fig:rec_inclusion}
 \end{figure}
 
+\subsection{Conclusion et perspectives}
 
-\subsection{Conclusion}
+\subsubsection{Conclusion}
+
+Nous avons utilisé le modèle de flot de liens pour étudier une archive de courriels provenant du projet Debian.
+Grâce au modèle de flot de liens, nous avons étudié des notions clefs pour mieux comprendre la répartition temporelle et topologique des discussions.
+Nous avons étudié la notion de $\Delta$-densité sur les discussions en elles mêmes.
+Puis, nous avons étudié les relations entre les discussions avec la $\Delta$-densité inter discussions, les projections en graphe de chevauchement temporel ou topologique et le flot quotient.
+
+Cette étude repose en grande partie sur la notion de $\Delta$-densité qui nécessite un paramètre fixé arbitrairement.
+Nous avons à chaque fois testé un ensemble de valeurs de $\Delta$ variant d'une seconde jusque parfois 20 ans et, lors de ces tests, aucune valeurs $\Delta$ caractéristique n'a pu être identifiée.
+Il semble donc que la $\Delta$-densité soit relativement robuste vis-à-vis de $\Delta$ dans ce contexte.
+
+Nous avons tout d'abord observé que les discussions forment une structure plus dense que le flot de liens.
+De manière encore plus forte, nous avons constaté, grâce à la  $\Delta$-densité inter discussion, que les discussions sont plus denses en interne qu'en externe.
+C'est une caractéristique importante des communautés que l'on trouve dans les graphes mais qui n'avait pas été observée dans un contexte temporel.
+\`A partir de ces observations, nous avons également observé les relations entre les discussions.
+Via le graphe de chevauchement temporel, nous avons validé le fait que différentes discussions ont lieu en même temps et que par conséquent une agrégation temporelle entrainerait une perte d'information.
+De même via le graphe de chevauchement topologique, on remarque que la structure est très recouvrante sur les n\oe uds, rendant ainsi l'utilisation de partitions statiques de n\oe uds difficilement envisageable pour décrire les discussions.
+
+
+Par la suite, nous avons mis en place un première méthode de détection de partition de liens.
+Cette méthode se base sur la projection du flot de liens en un graphe statique sur lequel nous appliquons un algorithme de détection de communautés.
 Nous avons avec cette méthode mis en évidence des groupes denses.
 Les groupes trouvés sont plus gros et plus denses que la structure des discussions.
-Cependant, ces observations ne remettent pas en cause les conclusions faites dans la section~\ref{etude_discussion} pour plusieurs raisons.
+Il semble donc qu'il existe une autre structure que celle des discussions.
+
+Cependant, ces observations ne remettent pas en cause les conclusions faites sur le discussions pour plusieurs raisons.
 Tout d'abord, les flots de lien étudiés ne sont pas exactement les-mêmes ($L\neq \mathfrak{L}$).
-Ce changement de flot est nécessaire pour le fonctionnement de la méthode de détection.
+Ce changement de flot est nécessaire pour le fonctionnement de la méthode de détection mais cela change l'objet d'étude.
 Ensuite, les deux structures ne sont pas complètement différentes car les groupes trouvés semblent en fait agréger plusieurs discussions.
 Malheureusement, nous n'avons pas réussi avec notre méthode à isoler chaque discussion malgré notre approche récursive.
 Pourtant, il semble que la structure trouvée ai du sens au vu des valeurs de densité des groupes.
+
+\subsubsection{Perspectives}
+
+Ce jeux de données de courriels est intéressant.
+D'une part, il couvre une très longue période de temps et, d'autre part, il existe de nombreuses informations associées.
+Nous avons utilisé ici la connaissance de la discussions associée à chaque courriel pour étudier la notion de communautés.
+D'autres notions pourraient être développées en s'appuyant sur ce jeu de donnée, notamment les notions de centralité et de rôle des n\oe uds.
+Grâce à la durée du jeu de données, il serait intéressant de mesurer l'évolution de l'implication et du rôle d'une personne.
+Il serait ainsi possible de mieux comprendre la participation de personnes à un projet cet ampleur.
+
+Il y a également le texte brut du mail qui est accessible et dont nous n'avons pas tiré parti.
+Il serait sûrement intéressant pour des linguistes de quantifier l'évolution du vocabulaire.
+De même, nous nous sommes focalisé sur la liste de discussion anglaise, alors qu'il est possible avec le script d'extraction de considérer les listes de discussions dans d'autres langues.
+Il pourrait être intéressant de comparer les structures de ces deux sources de données.
+
+\bigskip
+
+Dans le cadre de la manipulation de flot de liens, une perspective importante est la compréhension plus en détail de la structure de liens que nous avons capturée.
+C'est cette perspective que nous poursuivons dans le chapitre suivant.
+

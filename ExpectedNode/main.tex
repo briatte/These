@@ -2,6 +2,8 @@
 \minitoc
 
 \label{chap:Expected_Node}
+Nous avons vu précédemment les structures de liens dans les flots de liens dans le but de détecter des partitions de liens dans les flots de liens.
+Avant de s'attaquer à ce problème, il est important de comprendre les solutions existantes dans le cas statique.
 Les structures communautaires dans les graphes ont été beaucoup étudiées lorsqu'elles concernent les n\oe uds, voir le chapitre~\ref{chap:etat_art}.
 Dans une moindre mesure, elles ont également été étudiées lorsqu'elles concernent les liens.
 Par exemple dans un réseau social, chaque personne a plusieurs centres d'intérêt: famille, sport, politique...
@@ -275,7 +277,7 @@ C'est pourquoi, nous définissons également une qualité externe.
 Le but est d'évaluer comment sont répartis les liens et n\oe uds adjacents.
 Pour ce faire, nous allons également comparer le nombre de n\oe uds adjacents observé au nombre espéré dans le modèle de configuration.
 Cependant à l'inverse de la qualité interne, la qualité externe est \textbf{mauvaise} si jamais le nombre de n\oe uds adjacent est plus faible qu'espéré.
-En effet, si il y a beaucoup de liens adjacents pour peu de n\oe uds, alors cela indique que le voisinage du groupe est dense et devrait être inclus dans le groupe.
+En effet, s'il y a beaucoup de liens adjacents pour peu de n\oe uds, alors cela indique que le voisinage du groupe est dense et devrait être inclus dans le groupe.
 Le cas idéal est que chaque lien adjacent soit relié à un n\oe ud différent.
 
 Pour un n\oe ud interne $u$, soit $\bar{d}(L,u) = \sum_{v \in V} \mathbf{1}_{(u,v) \in E \setminus L}$ le degré de $u$ limité aux liens adjacents et $\bar{d}(L)=\sum_{u \in V_{in}(L)} \bar{d}(L,u)$.
@@ -513,7 +515,7 @@ Afin d'observer la ressemblance de ces partitions, nous avons utilisé la NMI~\c
 Il apparait que les partitions $TA$ et $TB$ sont les plus proches.
 Nous remarquons les trois fonctions de qualité $EvansX$ et les partitions respectives $EX$ sont similaires
 Ensuite, nous remarquons que les partition $EX$ diffèrent de $TA$ et de $TB$ uniquement sur les liens inter-communautés.
-En effet si ils ne sont pas pris en compte lors de la comparaison, alors $EX$, $TA$ et $TB$ sont équivalentes.
+En effet s'ils ne sont pas pris en compte lors de la comparaison, alors $EX$, $TA$ et $TB$ sont équivalentes.
 Il semble en effet que les liens inter-communautés soient arbitrairement distribués entre les plus grosses communautés adjacentes, ce qui est visible dans la figure~\ref{fig:LFR_ExempleE2}.
 Enfin, la partition $LC$, bien que proche de $TA$ et $TB$, est un peu plus différente.
 Ces $720$ groupes semblent plus petit mais aussi plus denses que ceux de $TA$ ou $TB$.
@@ -579,7 +581,7 @@ Pour ces raisons, nous pensons que \emph{Expected Nodes} est une mesure qui perm
 Jusqu'à maintenant, nous avons évalué \emph{Expected Nodes} sans nous attacher ni à son calcul ni à son optimisation.
 Nous discutons maintenant de la complexité de calcul d'\emph{Expected Nodes} pour une partition donnée.
 Le calcul de la qualité interne \ref{eq:qin} nécessite d'évaluer la probabilité qu'un n\oe ud soit tiré.
-Ce calcul de probabilité nécessite d'évaluer pour un n\oe ud $u$: $1 - \dfrac{ \binom{2|E|-d(u)}{2|L|} }{ \binom{2|E|}{2|L|} }$, ce qui peut être assez couteux.
+Ce calcul de probabilité nécessite d'évaluer pour un n\oe ud $u$: $1 - \dfrac{ \binom{2|E|-d(u)}{2|L|} }{ \binom{2|E|}{2|L|} }$, ce qui peut être assez coûteux.
 Ce calcul correspond à une loi hypergéométrique.
 Or sous certaines conditions, une loi hypergéométrique peut être approché par une loi binomiale ce qui simplifie le calcul à: $1 - (1- \dfrac{|L|}{|E|})^{|L|}$ ce qui est plus rapide.
 Lors de nos tests, le biais induit par cette approximation reste assez faible, de l'ordre de $0.01\%$ en moyenne.
@@ -612,7 +614,7 @@ Les fusions considérées sont les fusions entre des communautés adjacentes.
 Les changement de liens se font également que avec une communauté adjacente.
 On continue de modifier la solution courante tant qu'elle est améliorable par un de ces mouvements.
 Malheureusement cette approche souffre de deux problème majeurs.
-Tout d'abord le calcul du gain est couteux et rend impossible l'étude de grands jeux de données.
+Tout d'abord le calcul du gain est coûteux et rend impossible l'étude de grands jeux de données.
 Ensuite dans nos tests dans les graphes généré par LFR, il semble que cette méthode reste bloquée sur des optimum locaux bien plus faibles que la vérité de terrain, voir la figure~\ref{fig:LFEN} où la qualité de la partition trouvée par notre algorithme, noté $EN$, est présentée.
 Il faudrait donc tester d'autres heuristiques d'optimisation mais aussi travailler sur une méthode de calcul du gain plus optimisée.
 
@@ -662,7 +664,7 @@ Les perspectives autour d'\emph{Expected Nodes} sont nombreuses et portent sur d
 \paragraph{Considérer plus de modifications}
 Il semble que les mouvement envisagés pour modifier une solution courante ne soient pas suffisant pour échapper à des maximums locaux qui sont bien inférieurs à la qualité des vérités de terrain.
 Il faudrait donc en envisager de nouveaux.
-Inclure la possibilité de diviser une communauté en deux ne semble pas envisageable car ils existent de trop nombreuses coupes possible et le coût de calcul associé est trop couteux.
+Inclure la possibilité de diviser une communauté en deux ne semble pas envisageable car ils existent de trop nombreuses coupes possible et le coût de calcul associé est trop coûteux.
 Il semble, par contre, prometteur de considérer des mouvements associés à un n\oe ud.
 En effet au lieu de changer un à un les lien d'une communauté, il devrait être possible d'intégrer en un seul mouvement tous les liens adjacents qui sont reliés à un n\oe ud adjacent donné.
 Pour l'illustrer ce mouvement, reprenons l'exemple d'une clique incluse dans une autre clique plus grande.
@@ -677,7 +679,7 @@ Plus globalement, les mouvement faisant intervenir plusieurs liens d'un seul cou
 
 \paragraph{Diminuer le coût de calcul du gain}
 Ici, il ne s'agit pas d'améliorer la performance de l'algorithme en terme de qualité obtenue par la partition trouvée par l'algorithme mais de le rendre plus rapide.
-Dans sa version courante, l'algorithme est trop couteux pour traiter des graphes ayant plus de quelques dizaines de milliers de liens.
+Dans sa version courante, l'algorithme est trop coûteux pour traiter des graphes ayant plus de quelques dizaines de milliers de liens.
 La force de l'algorithme de Louvain réside dans l'existence d'une expression analytique du gain de fusion de deux communautés qui est rapide à évaluer.
 Dans notre algorithme, la lenteur est justement due au calcul du gain qui est très coûteux.
 En effet, nous ne calculons pas directement le gain d'un mouvement mais la différence entre la qualité courante et la qualité résultant du mouvement.
@@ -691,7 +693,7 @@ La situation est plus complexe pour la qualité externe.
 Le nouveau nombre de liens adjacents n'est pas simplement une somme.
 De même, l'identité et le degré des nouveaux n\oe uds adjacents dans $G \setminus (A \cup B)$ ne sont pas triviales à calculer.
 Il faudrait des parcours locaux sur $(A \cup B)$ et son voisinage pour arriver à mettre à jours ces données nécessaires au calcul de $Q_{ext}$. 
-Si ce parcours est fait suffisamment soigneusement, il est surement possible de gagner en terme de vitesse d'exécution.
+Si ce parcours est fait suffisamment soigneusement, il est sûrement possible de gagner en terme de vitesse d'exécution.
 
 
 \paragraph{Changer la stratégie d'optimisation}
@@ -730,5 +732,5 @@ Cependant, il devrait être trivialement possible de considérer des multigraphe
 Dans les multigraphes, deux n\oe uds peuvent être relié par plus qu'un lien.
 Les notions de tirages aléatoires peuvent s'adapter à ce genre graphe assez facilement.
 Il y a toute fois une différence majeur lorsque l'on considère les multigraphes par rapport aux graphes classiques: les contraintes sur la partition résultat.
-Dans le cas des multigraphes, il serait surement intéressant d'ajouter la contrainte que chaque communauté ne doit contenir qu'une seule occurrence d'un lien donné.
+Dans le cas des multigraphes, il serait sûrement intéressant d'ajouter la contrainte que chaque communauté ne doit contenir qu'une seule occurrence d'un lien donné.
 Ainsi s'il existe deux liens entre $u$ et $v$, alors ces deux liens devront être dans deux communautés différentes.
