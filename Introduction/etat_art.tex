@@ -159,8 +159,8 @@ Afin de normaliser l'information mutuelle, Danon~\emph{et al.}~\cite{Danon2005a}
  NMI_{shanon}(\mathcal{X},\mathcal{Y}) = \dfrac{2I(\mathcal{X},\mathcal{Y})}{H(\mathcal{X})+H(\mathcal{Y})}.
 \end{equation}
 
-Lancichinetti \emph{et al.} l'ont par la suite étendue pour prendre en compte les couvertures~\cite{Lancichinetti2009c}.
-Le choix de la normalisation dans le cas chevauchant semble cependant toujours ouvert~\cite{McDaid2011,Zhang2015}.
+Lancichinetti \emph{et al.} l'ont par la suite étendue pour prendre en compte les couvertures~\cite{Lancichinetti2009d}.
+Le choix de la normalisation dans le cas chevauchant semble cependant toujours ouvert~\cite{McDaid2011,Zhang2015c}.
 
 \resume{
 Il est intéressant de noter que la littérature sur la comparaison de structures est assez restreinte comparé à celle sur la détection de communautés.
@@ -253,7 +253,7 @@ De très nombreux travaux ont par la suite étudié les caractéristiques de la 
 Tout d'abords, il a été montré que l'optimisation de la modularité est un problème NP-Complet~\cite{Brandes2007}.
 Il est donc nécessaire de recourir à des heuristiques afin de trouver rapidement une partition proche de l'optimum.
 Parmi l'ensemble des algorithmes existants, l'algorithme de Louvain~\cite{Blondel2008a} est un des plus rapide.
-Il existe également des variantes de cet algorithme~\cite{Huang2015,Traag2015a}.
+Il existe également des variantes de cet algorithme~\cite{Huang2015,Traag2015c}.
 
 D'autres travaux se sont attachés à l'étude de la modularité.
 Il a été montré que la modularité souffre du problème de \emph{résolution limite}~\cite{Fortunato2007,Lancichinetti2011} car le modèle de configuration présuppose une répartition uniforme des tailles des communautés.
@@ -449,7 +449,7 @@ En effet, il n'est pas possible de différencier le comportement observé le mat
 Ce n'est pas tout, imaginons que la capture ait duré plusieurs mois voir plusieurs années.
 Dans ce cas de figure, il ne sera plus possible de dégager un comportement général des élèves car il aura changé durant ce laps de temps.
 En particulier, de nouveaux groupes d'amis se seront formés et d'autres auront disparu.
-Tout ces changements impactent le graphe agrégé et tendent au fur et à mesure à le rapprocher à une clique ce qui le rend complètement inexploitable.
+Tout ces changements impactent le graphe agrégé et tendent au fur et à mesure à le rapprocher d'une clique ce qui le rend complètement inexploitable.
 Le temps est donc une dimension qu'il est nécessaire de prendre en compte.
 
 Le domaine de l'épidémiologie est un très bon exemple de l'importance du temps.
@@ -457,14 +457,14 @@ Un modèle épidémique modélise la propagation d'une maladie dans une populati
 Il est donc tout naturel de s'appuyer initialement sur un graphe où les n\oe uds représentent des personnes et les liens représentent les interactions entre personnes.
 En plus du graphe, il est nécessaire d'ajouter l'état de chaque n\oe ud, \emph{e.g.} sain ou infecté.
 Ainsi, un n\oe ud sain ne peut devenir infecté que s'il est relié à un n\oe ud infecté dans le graphe.
-Ce genre de modèle mettent donc en avant un chemin de diffusion, \emph{e.g.} une suite de personnes transmettant la maladie à l'autre.
+Ce genre de modèles mette donc en avant un chemin de diffusion, \emph{e.g.} une suite de personnes transmettant la maladie à l'autre.
 
 Afin d'illustrer ce phénomène, les premiers travaux~\cite{Vespignani2008}
 s'appuient sur un graphe d'interactions de personnes agrégeant toute l'information temporelle.
 Or, la prise en compte du temps dans ce contexte est primordiale car il est possible que le chemin d'infections simulé dans le graphe agrégé ne soit pas réalisable si l'on prend en compte le temps.
 Imaginons 3 personnes $A$, $B$, $C$ tel que $A$ et $B$ interagissent à l'instant $1$, $B$ et $C$ interagissent à l'instant $2$.
-Dans le graphe agrégé, il est possible pour $C$ d'infecter $A$ via $B$ alors que dans la réalité cela n'est possible.
-L'ajout du temps impacte donc fortement les résultats obtenus dans le contexte épidémiologique et ce phénomène est d'ailleurs très étudié~\cite{Gauvin2015,Karsai2011,Jo2014,Horvath2014,Holme2014a,Scholtes2014,Perotti2014}.
+Dans le graphe agrégé, il est possible pour $C$ d'infecter $A$ via $B$ alors que dans la réalité cela n'est pas possible.
+L'ajout du temps impacte donc fortement les résultats obtenus dans le contexte épidémiologique et ce phénomène est d'ailleurs très étudié~\cite{Gauvin2015a,Karsai2011,Jo2014,Horvath2014,Holme2014a,Scholtes2014,Perotti2014a}.
 
 Une fois reconnue l'importance du temps, il est nécessaire de trouver un nouveau formalisme étendant la théorie des graphes pour en tenir compte.
 Nous présentons maintenant différentes extensions possibles de la théorie des graphes, dans les sous-sections~\ref{subsec:perte_info} et \ref{subsec:pasperte_info}.
@@ -481,14 +481,14 @@ Des états-de-l'art dans ce domaine ont d'ailleurs déjà été esquissés~\cite
 \label{fig:exemple_TVG}
 \end{figure}
 La première solution qui a été apportée ne prend le temps en compte que partiellement.
-Il s'agit de manipuler une série de graphe où chaque graphe représente le réseau durant un intervalle de temps donné.
+Il s'agit de manipuler une série de graphes où chaque graphe représente le réseau durant un intervalle de temps donné.
 Ainsi, il est possible d'appliquer les outils de la théorie des graphes sur chaque intervalle.
 Cependant chaque intervalle de temps est représenté par un graphe agrégé.
 Il y a donc toujours une perte d'information.
 Plus formellement, une série de graphe est définie par $\mathcal{G}=\{G_i\}_{i < T}$ où $T$ est un entier, voir l'illustration~\ref{fig:exemple_TVG}.
 
 Cette définition initiale laisse le choix sur la découpe du temps en intervalle.
-Il est possible de choisir des intervalles de taille égales ou non et disjoints ou chevauchant\cite{Wang2012}.
+Il est possible de choisir des intervalles de tailles égales ou non et disjoints ou chevauchants~\cite{Wang2012}.
 Utiliser des intervalles à durée variable permet de mieux tenir compte de la dynamique.
 Par exemple lors de l'étude d'interactions de personnes, il est très courant d'observer une très faible activité la nuit et une plus forte la journée.
 Un graphe agrégeant ce qui se passe sur un intervalle de 5h sera vide dans le premier cas et peut être trop dense dans le second.
@@ -504,7 +504,7 @@ Dans ce contexte de série de graphes, il y a eu assez tôt des méthodes de dé
 Il est, en effet, assez naturel d'appliquer une méthode de détection statique sur chaque graphe puis d'essayer de faire du suivi de communautés.
 Le suivi de communautés consiste à comprendre comme une communauté donnée évolue, étant donné une série de graphes et une série de partitions.
 Palla~\emph{et al.}~\cite{Palla2007} ont été parmi les premiers à décrire les évolutions possibles d'une communauté.
-Muni d'indicateur de similarité tel que l'indice de Jaccard, voir~\ref{def:graphe_comparaison}, il est possible de trouver les communautés les plus proches aux instants précédant et suivant.
+Muni d'indicateurs de similarité tels que l'indice de Jaccard, voir~\ref{def:graphe_comparaison}, il est possible de trouver les communautés les plus proches aux instants précédent et suivant.
 \`A partir de ces informations, 5 type d'évolutions d'une communauté sont définis:
 \begin{description}
 \item[Naissance] Une nouvelle communauté apparait.
@@ -519,19 +519,19 @@ Si les partitions changent complètement entre deux graphes consécutif, alors i
 C'est pourquoi des méthodes essayent de forcer une certaine stabilité de la partition en ajoutant un coût de transition~\cite{Chakrabarti2006,Chen2013,Kalavathi2015}.
 Une approche détournée pour garder une certaine stabilité est d'utiliser la partition trouvée précédemment comme base de recherche pour l'intervalle suivant~\cite{Lancichinetti2011a}.
 
-Des extensions du Stochastic Block Models ont également étaient proposées par différents auteurs dans le cadre des séries de graphes.
+Des extensions des Stochastic Block Models ont également été proposées par différents auteurs dans le cadre des séries de graphes.
 Yang~\emph{et al.}~\cite{Yang2011} sont parmi les premiers à considérer ce cas de figure.
 Ils considèrent que la probabilité d'un lien entre deux communautés est fixe et que ce qui change est l'affiliation des n\oe uds au cours du temps.
 Ce processus de changement de communauté suit alors une chaine de markov cachée.
 \`A l'inverse, Corneli~\emph{et al.}~\cite{Corneli2016} considèrent une partition de n\oe uds fixe tout au long du temps et c'est l'activité entre deux communautés qui change selon l'intervalle de temps.
 Xu~\emph{et al.}~\cite{Xu2014} permettent à l'affiliation et à l'activité entre deux communautés de changer selon l'intervalle de temps.
 Cependant, il semblerait que cette relaxation se fasse au dépens de l'identifiabilité des paramètres d'après Matias~\emph{et al.}~\cite{Matias2015}.
-Ils ont donc proposé une nouvelle méthode afin résoudre ce problème.
+Ils ont donc proposé une nouvelle méthode afin de résoudre ce problème.
 De plus, leur méthode permet de traiter des séries de graphes pondérés.
 
 \subsubsection{Tenseur 3D}
-Les tenseurs 3D ne sont pas en soi différent des séries de graphes.
-Il est possible de voir un graphe comme une matrice carré d'adjacence.
+Les tenseurs 3D ne sont pas en soi différents des séries de graphes.
+Il est possible de voir un graphe comme une matrice carrée d'adjacence.
 Il est donc normal de concevoir une série de graphes comme un tenseur appartenant à $\mathcal{R}_{nnT}$.
 Ce changement de point de vue permet ainsi d'appliquer les méthodes d'algèbre linéaire, notamment la décomposition de tenseur.
 C'est la méthode proposée par Gauvin~\emph{et al.}~\cite{Gauvin2014} pour étudier la structure communautaire des interactions d'élèves.
@@ -552,7 +552,7 @@ Cependant, le graphe multicouches ajoute des liens entre les n\oe uds de deux in
 Par conséquent, un graphe multicouches est un graphe où il existe deux types de liens, les liens intra-couches et les inter-couches et il existe $T$ répliques d'un même n\oe ud, une par intervalle de temsp.
 Les liens intra-couches représentent un connexion entre deux n\oe uds durant un intervalle de temps.
 Les liens inter-couches représentent un lien entre deux n\oe uds sur deux intervalles différents.
-Ces derniers sont utilisés pour identifier un même n\oe ud sur plusieurs intervalles et sont en générales limités à relier deux couches consécutives.
+Ces derniers sont utilisés pour identifier un même n\oe ud sur plusieurs intervalles et sont en général limités à relier deux couches consécutives.
 
 Les graphes multicouches représentent les données évoluant dans le temps mais ils modélisent aussi très bien d'autres situations.
 Par exemple, ils permettent de représenter facilement les différents moyens de transport dans une ville où chaque moyen de transport (bus, voiture, métro ...) est représenté par une couche.
@@ -563,7 +563,7 @@ Plusieurs travaux~\cite{DeDomenico2013,Kivela2014,Boccaletti2014} décrivent les
 \paragraph{Détection de communautés}
 Grâce au formalisme de graphe multicouches, il est possible de traiter le temps de manière un peu plus fine que dans les séries de graphes car il permet de mieux suivre l'évolution des n\oe uds.
 Comme un graphe multicouches est un graphe, il est possible d'adapter les méthodes existantes pour tenir compte des différents types de liens.
-C'est le cas d'infomap~\cite{DeDomenico2014}, de la modularité~\cite{Mucha2010,Bassett2013,Bazzi2016} et du SBM~\cite{Stanley2015,Peixoto2015c}.
+C'est le cas d'infomap~\cite{DeDomenico2014}, de la modularité~\cite{Mucha2010,Bassett2013,Bazzi2016} et du SBM~\cite{Stanley,Peixoto2015c}.
 
 
 \resume{
@@ -590,7 +590,7 @@ permettent de tenir compte de l'ensemble de l'information temporelle.
 Pour cela au lieu de considérer des intervalles de temps, ils considèrent l'ensemble des modifications qui affectent le graphe: les ajouts et retraits de liens.
 En pratique, cela revient à considérer sur chaque lien une fonction de présence en fonction de temps qui vaut $1$ à un instant $t$ si le lien existe à cet instant et $0$ sinon.
 Ainsi, il est possible de connaitre la structure de graphe à chaque instant.
-Ce formalisme est présenté dans différents travaux~\cite{Casteigts2011,Wehmuth2014} et illustré dans la figure~\ref{fig:exemple_evolving}.
+Ce formalisme est présenté dans différents travaux~\cite{Casteigts2011,Wehmuth2015} et illustré dans la figure~\ref{fig:exemple_evolving}.
 Dans cette figure, on voit apparaitre l'ordre de modification du graphe.
 Tout d'abord, les lien $(b,f)$ et $(c,d)$ disparaissent puis les liens $(b,e)$ et $(f,c)$ apparaissent chacun leur tour. 
 
@@ -598,14 +598,14 @@ Tout d'abord, les lien $(b,f)$ et $(c,d)$ disparaissent puis les liens $(b,e)$ e
 Dans un graphe temporel, une structure de graphe existe à chaque instant.
 Il est donc possible de calculer après chaque modification l'évolution d'une métrique.
 Par exemple, il est possible de calculer après l'ajout d'un lien le nouveau degré interne des n\oe uds impactés par ce changement.
-En fonction de l'évolution de cette métrique, il est alors décidé d'ajouter ou retirer un n\oe ud voir même de fusionner deux communautés.
+En fonction de l'évolution de cette métrique, il est alors décidé d'ajouter ou retirer un n\oe ud voire de fusionner deux communautés.
 Li \emph{et al.}~\cite{Li2012a} se base sur le nombre de liens que partage un n\oe ud avec les communautés environnantes.
 Ainsi, un n\oe ud est toujours dans la communauté avec laquelle il partage le plus de liens.
 Shang\emph{et al.}~\cite{Shang2014a}, Cordeiro~\emph{et al.}~\cite{Cordeiro2016} et Sun\emph{et al.}~\cite{Sun2014} se basent sur l'évolution de la modularité.
 Cependant, ces approches ne permettent pas l'ensemble des évolutions de communauté possibles, en particulier l'apparition d'une nouvelle communauté.
 C'est pourquoi l'évolution de la structure courante peut mener à une structure ayant une faible qualité.
 Une autre approche a été proposée par Cazabet~\emph{et al.}~\cite{Cazabet2010} afin d'améliorer l'évolution de la partition.
-ils utilisent une métrique locale basée sur le nombre de chemins de longueur $2$ existant entre un n\oe ud et une communauté.
+Ils utilisent une métrique locale basée sur le nombre de chemins de longueur $2$ existant entre un n\oe ud et une communauté.
 Après chaque modification, ils considèrent également la possibilité de créer une nouvelle communauté sous la forme d'une petite clique.
 Ainsi, ils assurent une meilleure qualité de la partition au cours de l'évolution.
 
@@ -614,21 +614,23 @@ Ainsi, ils assurent une meilleure qualité de la partition au cours de l'évolut
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.9\linewidth]{img/Intro/Flot_de_liens.eps}
-\caption{Flot de lien entre $6$ n\oe ds, représenté sur l'axe des ordonées, au cours du temps représenté sur l'axe des abscisses.
+\caption{Flot de liens entre $6$ n\oe uds, représentés sur l'axe des ordonnées, au cours du temps représenté sur l'axe des abscisses.
 Dans l'exemple, il existe un lien entre $a$ et $b$ durant l'intervalle $[4,6]$.
 }
 \label{fig:exemple_Flot_de_liens}
 \end{figure}
 Dans les graphes temporels, toute l'information temporelle est gardée.
-Cependant, l'idéologie derrière cette méthode est qu'il existe une structure de graphe à chaque instant.
+Cependant, l'intuition derrière cette méthode est qu'il existe une structure de graphe à chaque instant.
 Cette hypothèse n'est pas toujours vérifiée, en particulier lorsque les liens apparaissent et disparaissent très rapidement.
-C'est le cas des appels téléphoniques qui durent rarement plus d'une heure ou bien de manière plus frappante avec les SMS et les courriels qui n'ont même pas de durées.
+C'est le cas des appels téléphoniques qui durent rarement plus d'une heure ou bien de manière plus frappante avec les SMS et les courriels qui n'ont même pas de durée.
 Dans ces contextes, il n'est pas possible d'assumer qu'à chaque instant une structure de graphe existe.
 Il faut donc un formalisme et des mesures qui s'adaptent à ce contexte.
 C'est pour répondre à ce besoin que le formalisme de flot de liens a été pensé.
 Le but est de construire un objet ne présupposant aucune structure et qui stocke toute l'information disponible.
-Plusieurs travaux~\cite{Holme2013a,Holme2015b,Holme2015} font un tour d'horizon des méthodes existantes pour étudier les flots de liens qui sont souvent appelés \emph{temporal networks} mais il n'existe, à notre connaissance, qu'un seul travail donnant un fondement théorique solide au flot de liens.
-Il s'agit de Batagel~\emph{et al.}~\cite{Batagelj2015} qui se basent sur l'algèbre.
+Même si le formalisme ne présuppose aucune contrainte structurel, il se peut en revanche que le reseau représenté en ait.
+Par exemple dans les télécommunications, une personne ne peut appeler qu'une ou deux personnes en même temps.
+Plusieurs travaux~\cite{Holme2013a,Holme2015b,Holme2015e} font un tour d'horizon des méthodes existantes pour étudier les flots de liens qui sont souvent appelés \emph{temporal networks} mais il n'existe, à notre connaissance, qu'un seul travail donnant un fondement théorique solide au flot de liens.
+Il s'agit de Batagel~\emph{et al.}~\cite{Batagelj2016} qui se basent sur l'algèbre.
 Malheureusement avec une formulation purement algébrique, il semble difficile de transcrire l'ensemble des notions de graphes pour l'instant.
 \bigskip
 
@@ -638,14 +640,14 @@ Il est donc possible de modéliser des appels téléphoniques par un ensemble de
 En faisant cela, aucune information n'est perdue et, en ce sens, flots de liens et graphes temporels sont équivalents. 
 Cependant, ce changement de perspective induit une réflexion différente selon le formalisme considéré.
 
-Les différences dans les méthodes de représentation des graphes temporels~\ref{fig:exemple_evolving} et celle des flots de liens~\ref{fig:exemple_Flot_de_liens} illustrent bien ce changement de perspective, bien que les deux figures ne représentent pas le même réseau.
+Les différences dans les méthodes de représentation des graphes temporels de la figure~\ref{fig:exemple_evolving} et celle des flots de liens de la figure~\ref{fig:exemple_Flot_de_liens} illustrent bien ce changement de perspective, bien que les deux figures ne représentent pas le même réseau.
 Dans l'exemple de la figure~\ref{fig:exemple_Flot_de_liens}, les n\oe uds sont représentés sur l'axe des ordonnées et le temps sur l'axe des abscisses.
-Un lien dans cette visualisation est représenté par: un arc verticale reliant deux axes de n\oe uds et un trait horizontal représentant la durée du lien.
+Un lien dans cette visualisation est représenté par: un arc vertical reliant deux axes de n\oe uds et un trait horizontal représentant la durée du lien.
 Ainsi dans l'exemple, il existe un lien entre les n\oe uds $a$ et $b$ dans l'intervalle $[4,6]$.
 
 Dans un graphe temporel, on abordera plus souvent les questions d'évolution de communautés de n\oe uds ou de l'importance d'un n\oe ud.
 Dans un flot de liens, on s'intéressera plus souvent au temps nécessaire pour que deux n\oe uds soient de nouveau en contact ou à l'importance d'un lien.
-De manière très manichéenne et inexacte, le formalisme de graphe temporel pousse à étudier les n\oe uds et leur évolution alors que celui de flot de liens mets plus l'accent sur les liens.
+De manière très manichéenne et inexacte, le formalisme de graphe temporel pousse à étudier les relations et leur évolution alors que celui de flot de liens mets plus l'accent sur les interactions et leur dynamique.
 
 \bigskip
 
@@ -655,19 +657,19 @@ Avec ce formalisme, la majorité des travaux sont encore descriptifs car ce type
 Il existe de nombreux travaux étudiant le temps séparant l'apparition de deux liens pour un n\oe ud~\cite{Malmgren2008,Malmgren2009}.
 Il semblerait que ces temps inter-contacts soient très hétérogènes et que de nombreuses connexions apparaissent dans un faible intervalle de temps suivie de longues durées sans activité.
 On parle alors de temps inter-contact \emph{bursty}.
-Les effets des temps inter-contacts sur les phénomènes de diffusions et de marches aléatoires ont été très étudiés~\cite{Karsai2011,Karsai2012a,Starnini2012b,Rocha2013}.
+Les effets des temps inter-contacts sur les phénomènes de diffusions et de marches aléatoires sont très étudiés~\cite{Karsai2011,Karsai2012a,Starnini2012b,Rocha2013}.
 Il semble cependant ne pas y avoir de conclusion définitive sur le sujet car la diffusion peut être accélérée ou ralentie par les temps inter-contacts selon la structure sous-jacente.
 
 Il existe également quelques méthodes qui s'intéressent plus à la structure des flots de liens.
-Des études~\cite{Kovanen2011a,Kovanen2013} s'intéressent à la présence de motif.
-Un motif dans un graphe est un sous-graphe comme le triangle qui est l'un des motifs les plus étudiés.
+Des études~\cite{Kovanen2011a,Kovanen2013a} s'intéressent à la présence de motifs.
+Un motif dans un graphe est un petit sous-graphe comme le triangle qui est l'un des motifs les plus étudiés.
 Dans les flots de liens, le temps est également pris en compte dans les motifs.
 Il y a donc plusieurs variantes temporelles d'un même motif dans un graphe.
 Prenons l'exemple d'un chemin entre quatre n\oe uds $A$, $B$, $C$ et $D$ qui est représenté dans le graphe par  $\{(A,B), (B,C), (C,D)\}$.
 Dans un flot de liens, il existe deux variantes à ce motif soit
 $\{(t_1,A,B), (t_2,B,C), (t_3,C,D)\}$ soit $\{(t_1,A,B), (t_2,C,D), (t_3,B,C)\}$ avec $t_1<t_2<t_3$.
 Dans un cas,  une information peut être propagée au fur et à mesure de $A$ vers $D$ tant dis que dans l'autre ce n'est pas possible.
-L'étude de la fréquence d'apparition de ces motifs dans le cas temporelle permet d'observer si le flot de liens à une structure particulière. 
+L'étude de la fréquence d'apparition de ces motifs dans le cas temporel permet d'observer si le flot de liens à une structure particulière. 
 
 
 
@@ -675,30 +677,31 @@ L'étude de la fréquence d'apparition de ces motifs dans le cas temporelle perm
 Il existe peu de méthodes détectant des structures décrivant l'ensemble d'un flot de liens.
 Rozenshtein~\emph{et al.}~\cite{rozenshtein2014} se penchent sur la détection de la zone la plus dense dans les flots de liens.
 Ils permettent de capturer un ensemble de n\oe uds et plusieurs intervalles de temps disjoints tel que ces n\oe uds sur ces intervalles aient le degré moyen le plus élevé dans le graphe agrégé sur ces intervalles.
-Bien que la mesure utilisé ne tienne pas directement compte du temps, leur méthode permet ainsi de mettre en évidence une partie du flot de liens.
+Bien que la mesure utilisée ne tienne pas directement compte du temps, leur méthode permet ainsi de mettre en évidence une partie du flot de liens.
+
+\cite{Viard2016,viard:hal-01208330}
 
 Une méthode de type Stochastic Block Model a été proposée par Matias~\emph{et al.}~\cite{Matias2015a}.
 Elle est très proche de celle proposé par Corneli~\emph{et al.}~\cite{Corneli2016}.
 En effet, l'affiliation des n\oe uds est fixe et c'est l'activité d'une communauté qui change au cours du temps.
 La grosse différence ici est que l'activité varie de manière continue dans le temps.
-Ainsi l'apparition d'un lien dépend de la réalisation d'un processus de poisson non homogène qui change selon les communautés.
+Ainsi l'apparition d'un lien dépend de la réalisation d'un processus de Poisson non homogène qui change selon les communautés.
 Cependant, leur méthode ne permet pas de considérer les changements de communauté.
 
 % centralité \cite{,Kim2012, Pfitzner2013a,Praprotnik2015,Scholtes2015,Costa2015,Takaguchi2016}
 
 \resume{
-Les graphes temporelles et les flots de liens ne souffrent pas d'agrégation temporelle.
+Les graphes temporels et les flots de liens ne souffrent pas d'agrégation temporelle.
 Ils ont donc un pouvoir expressif plus important que les formalismes présentés précédemment.
 Formellement, flots de liens et graphes temporels sont équivalent dans le sens où un graphe temporel peut être représenté en un flot de liens et \emph{vice versa}.
-En revanche, ils différent dans le point de vue considéré.
+En revanche, ils diffèrent dans le point de vue considéré.
 Dans un graphe temporel, il existe une structure de graphe représentant le réseau à chaque instant et les métriques de graphes sont pertinentes.
 Dans un flot de liens, il n'existe pas de structure pertinente à un instant donné et par conséquent les métriques de graphes ne sont pas pertinentes dans ce contexte.
-Cette différence implique d'utiliser des mesures différentes et, en particulier, de créer de nouvelle métrique pour les flots de liens.
+Cette différence implique d'utiliser des mesures différentes et, en particulier, de créer de nouvelles métriques pour les flots de liens.
 Cela explique notamment pourquoi il n'existe pour l'instant qu'assez peu de travaux traitant de la structure des flots de liens.
 Cette différence de perspective entraine également un déplacement du centre d'intérêt.
-Dans les graphes temporels, on aura plutôt tendance à étudier les n\oe uds du graphes et leur évolution.
-\`A l'inverse, on s'intéresse plutôt aux liens et leur répartition dans les flots de liens.
-
+Dans les graphes temporels, on aura plutôt tendance à étudier les relations et leur évolution.
+\`A l'inverse, on s'intéresse plutôt aux interactions et leur répartition dans les flots de liens.
 Ainsi, les deux formalismes coexistent et répondent à des besoins différents.}
 
 \section{Bilan}
