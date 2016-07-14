@@ -57,22 +57,67 @@ Comme il dure presque 20 ans, il est donc possible que les caractéristiques du 
 Ce jeu de données est par ailleurs suffisamment précis car la minute d’envoi ainsi que la discussion de chaque courriel sont connues.
 Grâce à ces informations, nous avons pu étudier la structure de discussions du point de vue de la densité.
 Nous avons notamment pu mettre en évidence que les discussions sont plus densément connectées en interne qu'avec le reste du réseau.
-Ces travaux ont donné lieu à une publication~\cite{Gaumont2016}.
+Ces travaux ont donné lieu à une publication dans une conférence internationale~\cite{Gaumont2016}.
 Suite à ce constat, nous avons essayé retrouver automatiquement les discussions.
 Bien que la partition trouvées ne correspondent pas exactement aux discussions, il semble cependant que les groupes de la partition n'aient pas des caractéristiques triviales.
 Ces travaux ont ainsi donné lieu à la partie la plus importante de cette thèse sur la détection de groupes denses.
+
+\bigskip
 
 Pour détecter une partition de liens dans le flots de liens, nous nous avons tout d'abord défini une projection du flot de liens en un graphe statique.
 Dans cette projection, un lien du flot de liens est représenté par un n\oe uds dans la projection.
 Un lien existe entre deux n\oe uds de la projection si les liens correspondant dans le flot de liens sont relié au même n\oe ud durant au moins un instant.
 Sur cette projection, nous appliquons un algorithme de détection de communautés et obtenons une partition de liens.
 Il se peut que parmi tout ces groupes de liens certains ne soient pas pertinents car ils sont obtenus via une optimisation de la modularité sur un graphe agrégé.
+Il est donc nécessaire de pouvoir distinguer les groupes pertinents des autres groupes.
 
 
+Comme nous l'avons constaté dans les chapitres~\ref{chap:def_flot} et \ref{chap:mailing}, la densité permet d'évaluer un groupe mais, seule, elle ne suffit pas définir un groupe pertinent.
+En effet, un groupe n'est pertinent que par rapport au reste du flot de liens.
+Par exemple, un groupe ayant une densité de $0.4$ est très pertinent dans un flot de liens ayant une densité globale de $0.01$ mais il ne l'est pas du tout si le flot de liens à une densité de $0.6$.
+Pour évaluer un groupe, il est donc nécessaire de prendre en compte le contexte dans lequel il apparait.
+Pour ce faire, nous avons définis trois voisinage constitués de sous-flots qui change du sous-flot du groupe sur le temps de début, la duré ou l'ensemble de n\oe uds.
+Un groupe est ensuite jugé pertinent si le groupe est plus dense que ses voisinages.
+
+Nous avons appliqué notre méthode sur quatre jeux de données et nous avons pu valider manuellement quelques groupes grâce aux méta-données présentes.
+La structure des groupes pertinents est une partition partition partielle des liens du flot de liens.
+Cependant en observant les n\oe uds induits et les instants de présences des groues, nous avons constaté que les groupes forment une structure très chevauchante sur la n\oe uds et uniquement partiellement chevauchante sur le temps.
+Nous avons testé si une méthode statique pouvait retrouver cette même structure chevauchante et nous avons constaté qu'uniquement quelques groupes pertinents étaient capturé par la méthode statique.
+Nous avons donc mis avant une structure nouvelle via la partition partielle que sont les groupes pertinents.
+Ces travaux ont donné lieu à une première publication dans une conférence nationale~\cite{Gaumont2016} et sont soumis au journal \emph{Social Network Analysis and Mining}.
+
+
+\bigskip
+
+\`A partir de cette structure partielle, il est intéressant d'essayer de détecter une partition complète du flot de liens.
 La détection de structure dans un réseau dynamique ou non nécessite un moyen d'évaluer le résultat obtenu.
-Pour ce faire, il est possible de définir des fonctions de qualité globales évaluant l'ensemble d'une partition ou bien des fonctions de qualité locales évaluant une unique communauté.
+C'est pourquoi nous avons étudié plus en détails la détection de communautés sous forme de partition de liens et ceux dans le cas statique et dynamique.
+Comme nous l'avons vu dans le chapitre~\ref{chap:Expected_Node}, il existe assez peu de méthodes pour la détection de communauté sous la forme de partition de liens et aucune ne s'est vraiment attachée à reproduire ce qui a fait le succès de la modularité.
+C'est pourquoi avons proposé une nouvelle méthode pour l'évaluation d'une partition de liens qui se base également sur la notion de modèle nul.
+Un groupe de liens est ainsi une bonne communauté si il induit moins de n\oe uds qu'attendu dans le modèle nul.
+De plus, un groupe de liens est également évalué en fonction de voisinage.
+Cette fois ci, un voisinage est bon lorsqu'il consiste en moins de n\oe uds adjacents qu'attendu dans le modèle nul car le vosinage doit être peu dense.
+
+Nous avons mené des tests sur des graphes ayant une structure simple, une clique ou deux cliques se chevauchant, et sur des graphes générés aléatoirement.
+Sur ces exemples, notre fonction de qualité, \emph{Expected Nodes} est la seule à différencier la vérité de terrain d'autres partitions moins pertinentes.
+Ces travaux ont été publié dans une conférence nationale~\cite{Gaumont2014} et une conférence internationale~\cite{Gaumont2015}.
+Fort de ces premiers constats, nous avons implémenté un premier algorithme d'optimisation d'\emph{Expected Nodes}.
+Cependant malgré nos efforts pour rendre plus efficace l'évaluation d'\emph{Expected Nodes}, notre algorithme est trop lent pour traiter des graphes réels.
+
+\bigskip
 
 
 
 
 \section{Perspectives}
+
+L'ensemble de ces travaux ouvre de nombreuses pistes de recherche que nous déjà avons évoqué de manière individuelle à la fin de chaque chapitre.
+
+Plein de mesures pour les flots de liens.
+Chemin-> centralité
+
+Prise en compte de l'orientation/poids/bipartie.
+
+
+Fonction de qualité locale pour flots de liens
+
