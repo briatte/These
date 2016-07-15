@@ -1,46 +1,10 @@
-\chapter{Conclusion et perspectives}
-
+\chapter{Bilan}
+\label{Conclusion}
 
 \section{Résumé et contributions apportées}
 
-L'étude des réseaux complexes est un très vaste sujet d'étude et les graphes y ont une place particulière.
-Les questions posées sur ces réseaux ont permis la formalisation de nouveaux problèmes et ont donné lieu à de nombreux axes de recherche dans la théorie des graphes.
-De plus, des jeux de données de tailles très variées sont depuis plusieurs années disponibles et permettent de tester l'efficacité des algorithmes en terme de rapidité et de qualité de la solution trouvée.
-La recherche de structures dans les graphes est un des sujets extensivement étudiés de la littérature dans ce domaine, comme nous l'avons vu dans la section~\ref{sec:intro_communaute}.
-Il n'est cependant pas toujours de représenter un réseau par un graphe.
-C'est le cas lorsque le réseau évolue vite dans le temps, \emph{e.g.} les réseaux de télécommunications ou même le réseau des interactions des personnes sur Facebook.
-Les réseaux de ce type ne peuvent pas être représentés par un graphe, à cause de leur dynamique.
-C'est pourquoi il faut tenir compte de la temporalité du réseau.
-
-
-Comme nous l'avons vu dans le chapitre~\ref{chap:etat_art}, il existe déjà plusieurs formalismes qui prennent en compte l'information temporelle.
-En particulier, il y a deux formalismes capturant l'ensemble de l'information temporelles: les graphes temporels et les flots de liens.
-Bien qu'équivalent, ces deux formalismes modélisent des situations différentes.
-Dans les graphes temporels, il existe une structure de graphes à chaque instant et par conséquent les liens durent assez longtemps.
-C'est le cas d'un réseau d'amitié lorsqu'il est étudié sur une longue période.
-Dans ce genre de réseau, il est plus judicieux de détecter une première structure communautaire puis de la faire évoluer de manière continue en fonction des évolutions du réseau.
-Le point de vue est donc plus centré sur les n\oe uds et leur évolution.
-Un lien dure alors quelques mois ou années avant de disparaître.
-Dans les flots de liens, la dynamique est beaucoup plus rapide et il n'existe \emph{a priori} aucune structure de graphe pertinente à un instant donné.
-C'est le cas des réseaux d'interactions où il est très rare d'interagir avec quelqu'un pendant plus d'une heure.
-Dans cette situation, il est plus aisé de considérer les liens comme objets d'études.
-C'est ce type de situation que nous considérons et c'est pourquoi nous utilisons le formalisme de flot de liens.
-
-
-La théorie des graphes a évolué et mûri pendant plusieurs dizaines d'années avant que l'émergence de grand graphe ne pose la question de la potentielle structures communautaires.
-Toute la base formelle de la théorie des graphes était donc déjà développée lors de l'apparition des méthodes de détections de communautés dans les années 2000.
-La formalisation des graphes a grandement aidé l'émergence des premiers travaux et des premières mesures décrivant les structures communautaires dans les réseaux réelles.
-Le processus de recherche est complètement inverse dans le cas des réseaux dynamiques.
-Ils existent de plus en plus de données et d'applications possibles alors qu'il n'existait jusque récemment aucune théorie générale sur laquelle s'appuyer.
-C'est pourquoi les solutions apportées dépendent beaucoup des cas d'applications et sont difficilement applicables et compréhensibles dans d'autres contextes.
-Cependant, quelques caractéristiques semblent être communes aux réseaux provenant de données réelles, \emph{e.g.} une distribution inter-contacts hétérogènes.
-Ce résultat est à mettre en parallèle avec les premières similitudes observées dans les graphes de terrains.
-
-\bigskip
-
-
-Dans cette thèse, nous nous efforçons de poursuivre ces efforts de descriptions et de capture de la structure des réseaux dynamiques tout en nous basant sur une base formelle la plus solide possible.
-Nous nous sommes donc basé sur le formalisme de flot de liens qui fait le lien entre les propriétés temporelles et topologiques des réseaux.
+Dans cette thèse, nous nous efforçons à poursuivre les travaux de descriptions et de capture de la structure des réseaux dynamiques tout en nous basant sur une base formelle la plus solide possible.
+Nous nous sommes basé sur le formalisme de flot de liens qui fait le lien entre les propriétés temporelles et topologiques des réseaux.
 Ce formalisme est suffisamment expressif pour définir énormément de notions.
 Dans cette thèse nous nous sommes focalisés sur les notions de degrés et de densités, que nous avons présentés dans le chapitre~\ref{chap:def_flot}.
 En plus d'aider à définir ces notions, nous les avons également implémentées dans une libraire de manipulation de flots de liens\,\footnote{\url{A FAIRE}}\note{A faire}.
@@ -49,26 +13,19 @@ Ainsi avec d'une part un formalisme clairement défini et d'autre part une impl�
 \`A partir de ce formalisme, il nous a été possible de commencer à décrire les structures existantes dans les flots de liens, dans le chapitre~\ref{chap:mailing}.
 Pour ce faire, il est nécessaire de connaître un objet d'étude où la structure est connue.
 Il n'existe quasiment\,\footnote{Un jeu de données représentant le forum reddit a été rendu publique juillet 2015.} aucun réseau réel évoluant dans le temps qui ait une structure connue au niveau des liens.
-C'est pourquoi, nous avons collecté un nouveau jeu de données regroupant les courriels d'une liste de discussions.
-Ce jeu de données est très intéressant par sa temporalité et sa précision.
-Comme il dure presque 20 ans, il est donc possible que les caractéristiques du réseau aient changées au cours de laps de temps.
-Ce jeu de données est par ailleurs suffisamment précis car la minute d’envoi ainsi que la discussion de chaque courriel sont connues.
+C'est pourquoi, nous avons collecté un jeu de données regroupant les courriels d'une liste de discussions.
+Ce jeu de données est très intéressant par sa temporalité, presque 20 ans, et sa précision, de l'ordre de la seconde.
+Il est donc possible que les caractéristiques du réseau aient changées au cours du temps.
 Grâce à ces informations, nous avons pu étudier la structure de discussions du point de vue de la densité.
 Nous avons notamment pu mettre en évidence que les discussions sont plus densément connectées en interne qu'avec le reste du réseau.
 Ces travaux ont donné lieu à une publication dans une conférence internationale~\cite{Gaumont2016}.
-Suite à ce constat, nous avons essayé retrouver automatiquement les discussions.
-Bien que la partition trouvées ne correspondent pas exactement aux discussions, il semble cependant que les groupes de la partition n'aient pas des caractéristiques triviales.
-Ces travaux ont ainsi donné lieu à la partie la plus importante de cette thèse sur la détection de groupes denses.
+Suite à ce constat, nous avons essayé retrouver automatiquement les discussions via une projection du flot de lien en un graphe statique.
+Bien que la partition trouvée ne correspondent pas exactement aux discussions, il semble cependant que les groupes de la partition n'aient pas des caractéristiques triviales.
+
 
 \bigskip
-
-Pour détecter une partition de liens dans le flots de liens, nous nous avons tout d'abord défini une projection du flot de liens en un graphe statique.
-Dans cette projection, un lien du flot de liens est représenté par un n\oe uds dans la projection.
-Un lien existe entre deux n\oe uds de la projection si les liens correspondant dans le flot de liens sont relié au même n\oe ud durant au moins un instant.
-Sur cette projection, nous appliquons un algorithme de détection de communautés et obtenons une partition de liens.
-Il se peut que parmi tout ces groupes de liens certains ne soient pas pertinents car ils sont obtenus via une optimisation de la modularité sur un graphe agrégé.
-Il est donc nécessaire de pouvoir distinguer les groupes pertinents des autres groupes.
-
+Dans le chapitre~\ref{groupesDense}, nous étudions plus en détails comment valider les groupes de liens détectés dans une projection du flot de liens en un graphe statique pour ne retenir que les groupes pertinents.
+En effet, il se peut que parmi tout ces groupes de liens certains ne soient pas pertinents car ils sont obtenus via un graphe statique.
 
 Comme nous l'avons constaté dans les chapitres~\ref{chap:def_flot} et \ref{chap:mailing}, la densité permet d'évaluer un groupe mais, seule, elle ne suffit pas définir un groupe pertinent.
 En effet, un groupe n'est pertinent que par rapport au reste du flot de liens.
