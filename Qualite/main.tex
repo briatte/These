@@ -19,7 +19,7 @@ Plus ils partagent de communautés, plus il y existera de liens entre ces n\oe u
 De plus comme un lien est généré à cause d'une communauté partagée par deux n\oe uds, il est possible d'assigner à ce lien la communauté partagée par ces n\oe uds.
 Grâce à ce générateur, il est possible de générer différents flots de liens et de tester des fonctions de qualité et des méthodes de détections.
 
-Nous tirons partis de ce générateur de deux façon différentes.
+Nous tirons partis de ce générateur de deux façon différentes sur des pistes qui sont encore exploratoires.
 Tout d'abord, nous testons différentes méthodes de détections de communautés statique sur des projections du flot de liens.
 Puis, nous proposons et étudions différentes fonctions de qualité dans une approche similaire à \emph{Expeted Nodes}.
 
@@ -33,7 +33,7 @@ Enfin dans la section~\ref{sec:versqualite_Applications}, nous présentons l'uti
 \section{Travaux existants}
 \label{sec:versqualite_existant}
 
-Comme nous l'avons vu dans le chapitre~\ref{chap:etat_art}, il existe plusieurs formalisme tenant compte et cela impacte les méthodes proposées.
+Comme nous l'avons vu dans le chapitre~\ref{chap:etat_art}, il existe plusieurs formalismes tenant compte et cela impacte les méthodes proposées.
 
 \subsection{Séries de graphes}
 Dans le cas de séries de graphes, il est possible de générer un graphe en fonction du graphe précédant dans la série.
@@ -98,23 +98,71 @@ Dans le cadre de flots de liens, les générateurs ne permettent pas ou alors pa
 \label{sec:versqualite_methode}
 
 Nous proposons un générateur de flots de liens sans durée s'appuyant sur une structure communautaire connue.
+L'idée est de ce générateur est la suivante.
+Dans un réseau de personnes, une interaction existe entre deux personnes car elle partage un point commun.
+Ce point commun peut être par exemple l'intérêt pour le sport, le travail ou la famille.
+Toutes les personnes partageant le même point commun interagissent entre elle de la même manière.
+Cela signifie les spécificités de communications sont principalement lié à la raison de communications.
+Par exemple, des collègues de travail communiquent principalement pendant la journée et rarement le soir.
+Au contraire, un groupe de d'amis communiquent principalement le soir et le week end.
+Avec cette hypothèse, il suffit de connaitre l'ensemble des intérêts d'une personne pour comprendre la dynamique de ses interactions.
+C'est selon ce principe, proche du SBM, que nous construisons notre générateur.
 
 
-Nous présentons d'abords comment sont générés les flots de liens puis comment la structure communautaire est incluse.
+L'ensemble des intérêts de l'ensemble des personnes d'un réseau se représente de la même manière que dans le SBM.
+Il s'agit d'un graphe bipartie avec d'une part l'ensemble des n\oe uds et de l'autre l'ensemble des communautés.
+Il existe un lien entre un n\oe ud et une communauté si le n\oe ud appartient à la communauté.
+Une communauté représente un intérêt et une personne peut avoir plusieurs communautés.
+Ainsi en reprenant l'exemple précédent, il existe dans le graphe bipartie autant de n\oe uds que de personnes et il y a les communautés sport, collègue et famille.
 
-Nous proposons d'approcher la distribution des temps inter-contacts avec un processus de poisson non-homogène.
-Un processus de poisson homogène permet de générer des temps inter-contacts suivant une loi exponentielle de paramètre donné, $\lambda$.
-Si $\lambda$ varie au cours du temps $\lambda(t)$, alors un processus non-poissonnien est simulé et cela permet de simuler l'aspect \emph{bursty} observé dans les données.
-Formellement, le nombre espéré d'activations entre deux instants $a$ et $b$ est $\int_a^b \lambda(t)\,dt=N_{a,b}$.
-Avec $N_t$ représentant le nombre d'activations jusque l'instant $t$, le nombre d'activations entre deux instant suit alors la distribution suivante:
+De ce graphe bipartie, les approches statiques générant un graphe déduisent la probabilité que deux n\oe uds soient reliés par un lien.
+Dans le contexte de flots de liens, il ne suffit pas de calculer la probabilité qu'un lien apparaisse dans le cadre d'une communauté.
+Il est nécessaire de générer un ensemble d'interactions temporelles entre ces deux n\oe uds au sein de cette communauté.
+C'est pourquoi à chaque communauté est associé un processus stochastique de génération de liens qui dépend du temps.
+Ainsi, chaque communauté partagée par deux n\oe ud donne lieu à la génération d'un ensemble de liens selon le processus stochastique de la communauté.
+Par exemple, le processus stochastique de la communauté sport est défini par une forte activité durant les séances entrainements et une faible en dehors de ses instants.
+Une représentation schématique de cette situation est présentée dans la figure~\ref{fig:qualite_Generator}.
+
+
+
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{img/Qualite/Generator}
+\caption{Schéma de la structure communautaire considérée.
+\`A gauche: un n\oe ud rond est un individu et un n\oe ud carré est une communauté.
+\`A droite: Activité au cours du temps associée à chaque communauté du graphe bipartie de gauche.}
+\label{fig:qualite_Generator}
+\end{figure}
+
+Le problème est alors de définir un processus de génération pour chaque communauté représentant les liens existant entre deux n\oe uds de cette communauté.
+Un processus de Poisson homogène permet de générer des temps inter-contacts suivant une loi exponentielle de paramètre $\lambda$.
+Cela implique que des liens apparaissent régulièrement avec une moyenne de $\dfrac{1}{\lambda}$ par unité de temps.
+Or, cette hypothèse d'activité constante au cours du temps n'est pas cohérente avec notre modèle.
+Si $\lambda$ varie au cours du temps, alors un processus de Poisson non-homogène est simulé et cela permet de faire varier l'activité en fonction du temps
+C'est pourquoi, la distribution des temps inter-contacts des liens d'une même communauté entre deux n\oe uds est simulée via un processus de Poisson non-homogène.
+
+
+Avec $N(t)$ représentant le nombre de liens existants dans l'intervalle $[\alpha,t]$, le nombre de liens entre deux instants, $a$ et $b$, suit alors la distribution suivante:
 \begin{equation}
-P [N(b) - N(a) = k] = \frac{e^{-N_{a,b}} (N_{a,b})^k}{k!} \qquad k= 0,1,\ldots \ .
+P [N(b) - N(a) = k] = \frac{e^{-\Lambda_{a,b}} (\Lambda_{a,b})^k}{k!} \qquad k= 0,1,\ldots \ ,
 \end{equation}
-Par conséquent la probabilité qu'il y ait une et une seul activation ($k=1$) dans l'intervalle suit une loi exponentiel de paramètre $N_{a,b})$.
-Pour simuler ce processus, nous utilisons une méthode d'inversion.
-La figure~\ref{fig:qualite_Activation} montre un exemple d'activation.
-Ce modèle d'activations des liens reste une approximation car il n'y a aucune prise en compte des possibles corrélations dans le flot de liens. \\
-En répétant le processus ci-dessus pour chaque pair de n\oe uds du flot, on obtient un flot de liens sans structure communautaire.
+où $\Lambda_{a,b}=\int_a^b \lambda(t)\,dt$ est l'intégrale de $\lambda$ sur $[a,b]$.
+Par conséquent la probabilité qu'il y ait un et un seul lien ($k=1$) dans l'intervalle suit une loi exponentiel de paramètre $\Lambda_{a,b}$: $P [N(b) - N(a) = 1]=e^{-\Lambda_{a,b}} (\Lambda_{a,b})$.
+Pour une valeur de $a$ fixée, cette probabilité est une fonction continue, croissante en fonction de $b$ et injective.
+Si cette fonction également surjective si elle est strictement croissante, c'est à dire si $\Lambda_{a,b}$ est strictement croissant.
+
+Pour générer un ensemble de liens entre une paire de n\oe uds dans une communauté, le processus est le suivant.
+On commence la génération à l'instant $t_0=\alpha$ puis il est nécessaire de générer $t_1$, l'instant d'apparition du prochain lien.
+Cet instant est le premier instant $t'$ tel que $N(t')- N(t_0)=1$.
+La probabilité que cela arrive à cette instant est égale à $P [N(t_1) - N(t_0) = 1]=e^{-\Lambda_{t_0,t_1}} (\Lambda_{t_0,t_1})$.
+Or, cette application est bijective.
+Il est donc possible de l'inverser et de retrouver à partir d'une probabilité l'instant ayant cette probabilité.
+Ainsi pour générer $t_1$, on génère une valeur aléatoire uniformément répartie entre $0$ et $1$.
+\`A partir de cette probabilité, il suffit alors de trouver l'instant ayant exactement cette probabilité d'occurrence.
+Comme $\lambda(t)$ peut être quelconque, le calcul de l'instant ayant cette probabilité se fait via une recherche dichotomique.
+C'est à dire qu'un instant d'apparition de lien est choisi au hasard et sa probabilité d'occurrence est calculée, puis selon la probabilité l'instant est déplacé plus tôt ou plus tard pour se rapprocher de la probabilité voulue.
+Pour générer les apparitions de liens suivantes, il suffit de recommencer ce processus à partir de $t_1$ et de chercher l'instant $t_2$ tel que $N(t_2)- N(t_1)=1$.
+Un exemple de génération de temps d'apparition est présenté dans la figure~\ref{fig:qualite_Activation}.
 
 
 \begin{figure}
@@ -125,53 +173,156 @@ En répétant le processus ci-dessus pour chaque pair de n\oe uds du flot, on ob
 \end{figure}
 
 
+En répétant le processus ci-dessus pour chaque pair de n\oe uds appartenant à une même communauté, on obtient un flot de liens avec une structure communautaire.
 
+\subsection{Caractéristiques du générateur}
 
+Nous discutons maintenant des situations modèlisable avec ce générateur.
+Tout d'abord au seine d'une communauté, il est possible de représenter énormément d'activités temporelles différentes.
+Une intensification (resp. baisse) des interactions au cours du temps est représentée par une activité croissante (resp. décroissante).
+Il est possible représenter des réunions cycliques par une activité cyclique avec une activité positive uniquement lors des réunions. 
+Ce modèle d'activations des liens reste  cependant une approximation car il n'y a aucune prise en compte des possibles corrélations au sein d'une communauté.
+De même, l'ensemble des paires de n\oe uds d'une communauté sont des processus indépendant et identiquement distribué.
+Il n'y a donc au sein d'une communauté aucune différence entre les n\oe uds.
+Il n'est, de plus, pas possible de représenter l'intégration progressive d'un n\oe ud à une communauté.
 
-Dans notre modèle au lieu d'avoir une probabilité fixe de création, nous utilisons une fonction $\lambda(t)$ permettant de simuler un processus de poisson.
-Ainsi à chaque communauté est associé une fonction et plus $\lambda(t)$ est élevé, plus la fréquence d'activation des liens internes à la communautés sera importante.
-Avec cette modélisation, le résultat obtenu est un flot de liens ayant une structure communautaire sur les liens.
-Il est possible de modéliser des communautés ayant différentes tailles et activités.
-Par contre, il n'est pas possible de représenter l'intégration progressive d'un n\oe ud à une communauté et nous laissons cet aspect pour de futur travaux.
+Vis-à-vis de l'ensemble des communautés, le modèle est encore une fois assez libre car un n\oe ud peut appartenir à plusieurs communautés.
+Chaque communauté est traitée de manière indépendante et une même paire de n\oe uds peut donner lieu à la génération de liens de différentes communautés selon plusieurs processus indépendants.
+Ainsi même si les n\oe uds sont équivalent au sein d'une communauté, il existe tout de même une hétérogénéité des n\oe uds en fonction du nombre de communautés auquel il appartient.
 
+\bigskip
 
+Avec cette formulation, le générateur dépend du graphe bipartie d'affiliation des n\oe uds aux communautés et de l'activité temporelle de chaque activité.
+L'approche que suivons est purement générative.
+Le but n'est donc pas d'inférer ces paramètres sur un exemple mais de pouvoir les fixer manuellement.
+Afin de faciliter l'utilisation de ce générateur, nous utilisons différentes méthodes pour fixer ces nombreux paramètres dans la section suivante.
 
-\begin{figure}
-\centering
-\includegraphics[width=0.5\linewidth]{img/Qualite/Generator}
-\caption{Modèle de génération de flots de liens.\com{Ajout d'une représentation du flot de lien généré par ça}}
-\label{fig:qualite_Generator}
-\end{figure}
-
-opération de naissance/grow/merge/split/shrink/death
 
 \section{Applications}
 \label{sec:versqualite_Applications}
 
-Grâce à générateur, il est possible de créer des flots ayant une vérité de terrain ce qui facilite l'élaboration de méthodes de détections.
+Il est donc possible de créer des flots de liens ayant une vérité de terrain sur les liens.
+Les paramètres générant le flot de liens et la vérité de terrain associé peuvent être minutieusement choisis afin que le flot de liens exhibe des caractéristiques spécifiques.
+C'est cette approche que nous utilisons pour tester deux méthodes de détection statique dans la sous-section~\ref{sec:versqualite_statique}.
+
+Les paramètre peuvent être choisi aléatoirement selon certain critère  afin de générer des structures plus diverses.
+C'est cette approche que nous utilisons pour l'étude de fonctions de qualité dans la sous-section~\ref{sec:versqualite_qualite}.
+
 
 
 \subsection{Étude de méthodes statiques}
 \label{sec:versqualite_statique}
-Nous avons donc essayer différentes approches utilisant une transformation du flot en un graphe classique.
-Chaque lien du flot est transformé en un n\oe uds dans le graphe statique et il y un lien entre deux n\oe uds du graphe statique si les liens correspondant ont un n\oe uds en commun.
-Le poids d'un lien dans le graphe statique est déterminé par une fonction décroissante dépendante du temps séparant les deux liens dans le flot\note{On devrait peut être essayer ça sur sociopattern}.
+
+Lors de la génération de graphes statiques avec structure communautaire chevauchante, il y a principalement deux critères impactant une réalisation: la densité à l'intérieur d'une communauté et le chevauchement de la structure.
+Dans le cas des flots de liens, il faut aussi ajouter le chevauchement temporelle.
+C'est pourquoi, nous générons différentes situations avec recouvrement topologique et/ou temporelle des communautés. 
+Ces types de génération sont présentés dans la figure~\ref{fig:versqualite_gen_test}.
+Il s'agit d'un exemple avec $15$ n\oe uds pendant $30$ unité de temps où il existe cinq communautés qui dure chacune $10$ unité de temps.
+Afin de simplifier la méthode de tests, chaque communauté a une activité constante durant l'intervalle où elle existe.
+Avec ces paramètre fixés, nous étudions quatre type de flots de liens qui sont représentés dans les figures suivantes:
+
+\begin{description}
+\item[\ref{fig:versqualite_gen_test1}] chaque communauté est bien séparée des quatre autres. Il s'agit de l'exemple le plus simple car il n'y a aucun chevauchement topologique des communautés;
+\item[\ref{fig:versqualite_gen_test2}] il n'y aucun chevauchement temporel mais il existe un chevauchement topologique au niveau de la communauté trois;
+\item[\ref{fig:versqualite_gen_test3}] il y a un léger chevauchement topologique entre les communautés $1$ et $2$ et entre les communautés $4$ et $5$.
+\item[\ref{fig:versqualite_gen_test4}] il y a un fort chevauchement topologique entre les communautés $1$ et $2$ et entre les communautés $4$ et $5$.
+\end{description}
+
+
+ 
+\begin{figure}
+\centering
+	\begin{subfigure}{0.3\textwidth}
+		\includegraphics[width=\textwidth]{img/Qualite/topologie1.eps}
+		\caption{}
+		\label{fig:versqualite_gen_test1}
+	\end{subfigure}\hspace*{0.1\textwidth}
+	\begin{subfigure}{0.3\textwidth}
+		\includegraphics[width=\textwidth]{img/Qualite/topologie2.eps}
+		\caption{}
+		\label{fig:versqualite_gen_test2}
+	\end{subfigure}
+	
+	\begin{subfigure}{0.3\textwidth}
+		\includegraphics[width=\textwidth]{img/Qualite/topologie3.eps}
+		\caption{}
+		\label{fig:versqualite_gen_test3}
+	\end{subfigure}\hspace*{0.1\textwidth}
+	\begin{subfigure}{0.3\textwidth}Une
+		\includegraphics[width=\textwidth]{img/Qualite/topologie4.eps}
+		\caption{}
+		\label{fig:versqualite_gen_test4}
+	\end{subfigure}	
+	\caption{Représentation schématique de quatre types de flot de liens ayant une structure communautaire avec 5 communautés.
+	Chaque rectangle de couleur représente une communauté ayant une activité constante.}
+	\label{fig:versqualite_gen_test}
+\end{figure}
+
+\bigskip
+Pour chacun de ses type de flots de liens, nous avons appliqué une méthode d'optimisation de modularité~\cite{Blondel2008a} et une méthode de communauté égo-centrée~\cite{Danisch2012} sur une projection du flot de liens en un graphe statique.
+Ces méthodes ont été présentées dans le chapitre~\ref{chap:etat_art}.
+
+
+Nous avons défini  dans le chapitre une projection du flot de liens en un graphe statique dans le cas où les liens ont une durée.
+Dans les flots de liens générés, il n'y a pas de durée sur les liens.
+C'est pourquoi nous utilisons une projection différentes qui transforme le flot de liens en un graphe statique pondéré.
+Chaque lien du flot est toujours représenté par un n\oe ud dans le graphe statique et il y un lien entre deux n\oe uds du graphe statique si les liens correspondants ont un n\oe uds en commun.
+Afin de tenir compte de la séparation temporelle, un lien dans le graphe statique est pondéré par une fonction décroissante dépendante du temps séparant les deux liens dans le flot.
 Nous avons choisi comme fonction décroissante: $e^{-\lambda d}$ où $d$ est le temps séparant les deux liens et $\lambda$ une constante positive.
+Ainsi, les poids de la projection sont répartis entre $0$ et $1$.
+Dans la suite, nous avons à chaque fois fait varier $\lambda$ de manière exhaustive.
+Plus $\lambda$ a une valeur importante, plus le temps a de l'importance.
+Par exemple pour $\lambda=3$, une séparation temporelle de $1$ unité de temps donne lieu à poids de $0.05$ dans la projection.
+Dans cette situation, le graphe de la projection ne capture plus vraiment de relation topologique car un lien n'est alors relié que avec ses voisins les plus proches.
+Dans le cas inverse quand $\lambda$ est égale à zéro, la projection du flot de liens est complètement identique au \emph{line-graph} du multigraphe agrégé.
 
-Sur ce graphe statique, nous avons testé une méthode d'optimisation de modularité~\cite{Blondel2008a} et une méthode de communauté égo-centrée~\cite{Danisch2012}\note{Ajouter des images des résultats et explication méthode de max}.
+Lors de nos tests,  nous avons comparé visuellement\,\footnote{Une évaluation plus quantitative avec la \emph{NMI} est possible mais ne semble pas nécessaire à cette étape.} la vérité de terrain et la meilleure partition trouvée par la méthode de Louvain et la méthode proximité CarOp selon le $\lambda$ choisi.
+La méthode CarOp nécessite d'initialiser les communautés avec un lien.
+Nous choisissons pour chaque  communauté un lien apparaissant au milieu de sa duré de vie; par exemple un lien à l'instant $15$ est choisi pour initialiser une communauté qui sera \emph{a prioi} proche de la communauté $3$.
 
-Les premiers tests sur ces méthodes ont permis de mettre en avant certaines caractéristiques.
-En effet, on remarque qu'aucune méthode ne peut trouver  la vérité de terrain sur toutes les topologies.
-Il est donc nécessaire de trouver d'autre méthodes.
+Dans ce cadre, nous observons que les deux méthodes sont capables de retrouver la structure exhibée dans la figure~\ref{fig:versqualite_gen_test1}.
+
+La structure présentée dans la figure~\ref{fig:versqualite_gen_test2} est retrouvée par CarOp mais non par Louvain.
+La communauté $3$ n'est jamais détectée par Louvain peu importe le $\lambda$ utilisé pour la projection.
+Selon la valeur de $\lambda$, les liens de la communauté $3$ sont soit répartis entre les autres communautés soit répartis en plusieurs communautés autonomes.
+En effet, cette méthode utilise la modularité sur une structure proche du \emph{line-graphe} d'un multigraphe.
+Elle est donc proche des méthodes de Evans~\emph{et al.}~\cite{Evans2009} que nous avons présentés dans la section~\ref{sec:expected_travaux} et souffre des même biais\,\footnote{Plus une clique d'un graphe est grande, moins sa transformation dans le \emph{line-graph} est dense.}.
+
+La structure présentée dans la figure~\ref{fig:versqualite_gen_test3} est retrouvée par Louvain mais non par CarOp.
+Comme les communautés de liens sont plus petites et ne se chevauchent que peu, la méthode de Louvain arrive à capturer les différentes partitions.
+La méthode CarOp, quant à elle, n'est pas capable de différencier les communautés $1$ et $2$.
+CarOp détecte comme communauté des ensembles de n\oe uds proche dans la projection.
+Or, un lien au début de la communauté $1$ est plus proches des liens au débuts de la communauté $2$ que des liens à la fin de la communauté $1$.
+C'est pourquoi, CarOp ne différencie pas les communautés $1$ et $2$.
+
+La structure présentée dans la figure~\ref{fig:versqualite_gen_test4} n'est retrouvée ni par la de Louvain ni par CarOp.
+Comme la situation dans la figure~\ref{fig:versqualite_gen_test4} est proche de celle dans la figure~\ref{fig:versqualite_gen_test3}, il est normal que CarOp ne parvienne toujours pas à différencier les communautés $1$ et $2$.
+Pour la méthode de Louvain, les communautés $1$ et $2$ ne sont pas détectées.
+Pour des valeurs faible de $\lambda$, les communautés $1$ et $2$ sont séparés en  $4$ ou $5$ plusieurs communautés sans logique apparentes.
+Pour des valeurs élevés de $\lambda$, il existe bien deux communautés correspondants aux communautés $1$ et $2$ mais la partie chevauchante est complètement intégrée dans l'une de ces deux communautés.
 
 
 
+\resume{
+Il s'agit de premier tests sur des méthodes existantes de détections statique de communautés sur la projection du flot de liens en un graphe pondéré.
+Les méthodes que nous avons testés ne permettent pas de capturer l'ensemble des topologiques généré par notre générateur.
+Ce fait est attendu car nous les appliquons sur des projections du flots de liens.
+Il est toute fois intéressant qu'il est possible de retrouver la vérité de terrain par une méthode statique dans certaines conditions.
+}
 
-
-
-
-
-
-\subsection{Tests de fonctions de qualité}
+\subsection{Étude de fonctions de qualité}
+\label{sec:versqualite_qualite}
 
 \section{Conclusion}
+
+
+\subsection{Perspectives}
+
+test plus quantitaifs sur les méthodes existantes et sur l'impacte de l'activité.
+
+étude de la vraisemblence des flots de liens généré et l'inférence de quelques paramètres.
+
+Ajout de durée selon une distribution
+
+Preferential attachment temporel
+
