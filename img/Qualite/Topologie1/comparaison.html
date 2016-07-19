@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <title>Comparaison linkstream</title>
+   <meta name="description" content="Velicity">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+</head>
+<body>
+   <div id="visu">
+   </div>
+   <div id="inter">
+     <select name="select" id="source"></select>
+     <select name="select" id="lambda"></select>
+   </div>
+   <div id="visu_orig">
+     <img id="svg-image-orig" src="original.svg">
+   </div>
+</body>
+<script type="text/javascript" defer>
+  var source = document.getElementById("source");
+  var image = document.getElementById("svg-image-00");
+  var lambda = document.getElementById("lambda");
+  var possibles_sources = ["Louvain", "Prox5", "Prox35", "Prox110", "Prox300"];
+  var possibles_Lambda = [0.001, 0.01, 0.1, 0.3, 0.5, 0.8, 1, 2, 3];
+  var shown;
+  function initDropdownList( select, tab) {
+    var i;
+    var option;
+    var max = tab.length;
+    for ( i = 0; i < max; i += 1 ) {
+        option = document.createElement( 'option' );
+        option.value = i;
+        option.text = tab[i];
+        select.add(option);
+    }
+  }
+  initDropdownList(source,possibles_sources);
+  initDropdownList(lambda,possibles_Lambda);
+  function changeImage(i,j){
+    shown.style.display = "none";
+    shown = document.getElementById("svg-image-"+i+j);
+    shown.style.display = "block";
+  }
+
+  function initImage(){
+    var visu = document.getElementById("visu");
+    var cur_image;
+    var i, j;
+    var max_s = possibles_sources.length;
+    var max_l = possibles_Lambda.length;
+    for(i=0; i<max_s; i+=1){
+      for(j=0; j<max_l; j+=1){
+        cur_image = document.createElement( 'img' );
+        cur_image.id ="svg-image-"+i+j
+        cur_image.src = "lambda_"+possibles_Lambda[j]+"/"+possibles_sources[i]+".svg";
+        cur_image.style.display = "none";
+        visu.appendChild(cur_image)
+      }
+    }
+  }
+  initImage();
+  var shown = document.getElementById("svg-image-00");
+  shown.style.display = "block";
+  function draw(){
+    console.log(possibles_Lambda[lambda.value], lambda.value);
+    //image.src= "lambda_"+possibles_Lambda[lambda.value]+"/"+possibles_sources[source.value]+".svg";
+    changeImage(source.value,lambda.value);
+  }
+  source.onchange= draw;
+  lambda.onchange= draw;
+</script>
+</html>

@@ -1,48 +1,62 @@
 
-\chapter{Introduction}
+\chapter*{Introduction}
+\addstarredchapter{Introduction}
 
-Un réseau complexe est constitué d'un grand ensemble éléments interagissants entre eux.
-Avec cette définition, le nombre de situations pouvant être considérée comme un réseau complexe est énorme.
-Il peut s'agir de réseaux sociaux constitués de personnes communiquant entre eux, de réseaux d'ordinateurs échangeant de l'information ou bien même de réseaux de neurones collaborant entre eux via leur synapse.
-Les réseaux complexes est donc un très vaste sujet d'étude et les graphes y ont une place prépondérante.
+Un réseau complexe est constitué d'un grand ensemble d'éléments interagissants entre eux.
+Avec cette définition, le nombre de situations pouvant être considérées comme un réseau complexe est énorme.
+Il peut s'agir de réseaux sociaux constitués de personnes communiquant entre eux, de réseaux de routes entre des villes, de réseaux d'ordinateurs échangeant de l'information ou bien même de réseaux de neurones collaborant entre eux via leur synapse.
+Les réseaux complexes sont donc un très vaste sujet d'étude et les graphes y ont une place prépondérante.
 En effet, les graphes sont constitués de n\oe uds et de liens où chaque lien relie deux n\oe uds.
-Ainsi, il est naturel de représenter un réseau de personnes par un graphe où les personnes sont représentés par un n\oe ud et une interaction entre deux personnes par un lien entre deux n\oe uds.
+Ainsi, il est naturel de représenter un réseau de personnes par un graphe où une personne est représentée par un n\oe ud et une interaction entre deux personnes par un lien entre deux n\oe uds.
 
 Les questions posées sur les réseaux complexes donnent ainsi lieu à de nombreux axes de recherche dans la théorie des graphes.
 La recherche de structures communautaire dans les graphes en est un exemple et il s'agit d'ailleurs d'un sujet activement étudié.
-On peut définir intuitivement une communauté comme étant un sous-ensemble d’éléments densément connectés entre eux mais peu connectés avec le reste du réseau.
+On peut définir intuitivement une communauté comme étant un sous-ensemble d’éléments densément connectés entre eux mais peu densément connectés avec le reste du réseau.
 Dans le cas d'un réseau de personnes, une communauté est un groupe de personnes, par exemple un groupe d'amis communiquant beaucoup entre eux.
-Avec l'ensemble des communautés existantes dans un réseau, il est ainsi plus simple d'étudier le réseau.
+Avec l'ensemble des communautés existantes dans un réseau, il est ainsi simple d'étudier l'ensemble du réseau.
 La recherche de communautés est donc un moyen de construire une vue d'ensemble du réseau.
-Cette vue d'ensemble devient cruciale lorsque le réseau étudié est grand; jusque un milliard d'utilisateur dans le cas de Facebook.
+Cette vue d'ensemble devient cruciale lorsque le réseau étudié est grand; jusque un milliard d'utilisateurs dans le cas de Facebook.
 Or, de plus en plus de jeux de données de tailles comparables sont disponibles depuis plusieurs années.
 
 
 Il n'est cependant pas toujours possible de représenter un réseau par un graphe.
-C'est le cas lorsque le réseau évolue dans le temps: deux personnes communiquent pendant une certaine période, un neurone envoie un signal électrique à un moment donné, \emph{etc}.
-Dans ce cas, l'ancrage temporelles des interactions est très importante et on parle alors de réseau dynamique.
-Pour étudier un réseau dynamique, il est nécessaire de pour différencier un lien apparaissant au début du réseau d'un lien apparaissant à la fni
+C'est le cas lorsque le réseau évolue dans le temps.
+Par exemple, deux personnes communiquent seulement durant les intervalles de temps où elles se téléphone et les routes d'un réseau routier sont construites, voir détruites, au fur et à mesure.
+L'information temporelle est alors très importante et on parle de réseau dynamique.
+Tous les réseaux dynamiques ne sont cependant pas équivalents dans leur évolution.
+Le réseau routier évolue lentement et il existe en permanence une structure en réseau.
+Le réseau des personnes communiquant par téléphone change très vite et les interactions existantes à un instant donné ne permettent pas de représenter le réseau dans sa globalité.
+Dans ce dernier cas, on parle alors de séquence d'interactions plutôt que de réseau dynamique car il n'existe pas de structure de réseau pertinente à un instant donné dans les séquence d'interactions.
+
+
+Il est nécessaire de différencier un lien apparaissant au début du réseau d'un lien apparaissant à la fin pour étudier les réseaux dynamiques et les séquences d'interactions.
 Or, un graphe ne permet pas de tirer parti de cette information temporelle car tous les liens sont équivalents. 
 il faut donc transformer la notion même de graphe afin de tenir compte de la temporalité du réseau.
-L'approche que nous utilisons est la manipulation de flots de liens qui sont des ensembles de quadruplet $(b, e, u, v)$ où chaque quadruplet représente l’apparition d’un lien entre $u$ et $v$ durant l'intervalle $[b,e]$.
-Avec ce formalisme, il est alors possible de représenter que deux personnes ont interagis durant un intervalle de temps donné.
+Les graphes temporels sont une extension des graphes afin de représenter les réseaux dynamiques mais ils ne sont pas adaptés pour l'analyse de séquences d'interactions.
+L'approche que nous utilisons est la manipulation de flots de liens qui sont des ensembles de quadruplets $(b, e, u, v)$ où chaque quadruplet représente l’apparition d’un lien entre les n\oe uds $u$ et $v$ durant l'intervalle $[b,e]$.
+Avec ce formalisme, on représente ainsi facilement que deux personnes ont interagis durant un intervalle de temps donné.
 
 
-Ainsi avec toute l'information temporelle, on peut décrire un réseau dynamique de manière plus fine que dans un graphe.
+Avec toute l'information temporelle, on peut décrire une séquence d'interactions de manière plus fine que dans un graphe.
 Par exemple dans un réseau de personnes, une fête de famille ou une réunion de travail se matérialisent dans le flot de liens par des ensembles d'interactions reliant un ensemble de personnes durant un intervalle de temps.
-Il est alors intéressant de décrire ce type de structures et d'essayer de les détecter automatiquement.
+Ces ensembles d'interactions sont particuliers car ils concernent un nombre réduit de n\oe uds durant un court intervalle de temps.
+Avec un graphe, ces interactions ne sont plus distinguables de l'ensemble des interactions ayant eu lieu à un moment donné.
+C'est pourquoi, le formalisme de flots de liens permet une description plus fine de ce type de structure.
 Pour arriver à ce résultat, il est nécessaire de pouvoir évaluer les caractéristiques d'un ensemble de liens.
-Or dans le formalisme de flots de liens, il n'est pas possible de s'appuyer sur la théorie des graphes pour analyser le réseau.
-Il faut donc construire de nouveaux concepts et métriques qui peuvent être similaire à ceux existants dans les graphes.
+Comme le formalisme de flots ne repose pas sur la théorie des graphes, nous construisons de nouveaux concepts et métriques adaptés à ce contexte.
+
 
 \bigskip
 
-Dans cette thèse, nous nous attachons donc à la découverte des possibilités offertes par le formalisme de flots de liens lorsqu'il est appliqué à l'étude de la structure communautaire des les réseaux dynamique sous la forme d'ensembles d'interactions.
+
+Contrairement aux approches existantes manipulant des séquences d'interactions, nous nous basons sur un formalisme globale tel que l'ensemble des notions définies soient cohérentes entre elles.
+Nous utilisons le formalisme de flot de liens et non celui de graphe temporel car les flots de liens sont plus à même de modéliser les séquences d'interactions.
+Dans cette thèse, nous nous attachons donc à la découverte des possibilités offertes par le formalisme de flots de liens lorsqu'il est appliqué à l'étude de la structure communautaire sous la forme d'ensembles d'interactions.
 
 \section*{Plan du manuscrit}
 
 
-Dans le chapitre~\ref{chap:etat_art}, nous présentons l'état de l'art d'une part sur la détection de communauté dans les graphes et d'autres part sur les formalismes étendant la théorie des graphes pour prendre en compte le temps.
+Dans le chapitre~\ref{chap:etat_art}, nous présentons l'état de l'art en deux parties: la détection de communauté dans les graphes et les formalismes étendant la théorie des graphes pour prendre en compte le temps.
 La première partie est importante pour comprendre en détails les différentes définitions de communautés qui existent et les algorithmes de détections qui en découlent.
 La deuxième partie sur les extensions de graphe est primordiale pour comprendre les intuitions derrières chaque extension et ce qu'elles impliquent comme structures détectables.
 Nous présentons par la suite l'ensemble des définitions et notations que nous utilisons pour étudier un flot de liens dans le chapitre~\ref{chap:def_flot}.
@@ -55,19 +69,19 @@ Ces travaux sont à mettre en parallèle avec les résultats décrivant les stru
 
 
 \`A partir de ces observations, nous développons, dans le chapitre~\ref{groupesDense}, une méthode permettant de trouver automatiquement des ensembles d'interactions qui sont jugés pertinents.
-Un ensemble d'interaction est jugé pertinent s’il est plus dense que son voisinage temporel et topologique.
-Ainsi, nous évaluons si les échanges ayant eu lieu entre différentes personnes sur un intervalle donné sont surprenants.
-Cela nous permet de mettre en avant une structure partielle du flot de liens.
+Un ensemble d'interactions est jugé pertinent s’il est plus dense que son voisinage temporel et topologique.
+Ainsi, nous évaluons si les liens ayant eu lieu entre différents n\oe uds sur un intervalle donné sont surprenants.
+Les  ensembles de liens pertinents forment ainsi une structure partielle du flot de liens car certains liens ne sont dans aucun groupe pertinent.
 Nous testons cette méthode sur quatre jeux de données réels.
-Ces travaux forment une part importante de cette thèse sur la structure communautaire dans les flots de liens.
+Ces travaux forment une part importante de cette thèse sur les structures communautaires dans les flots de liens.
 
-Dans le chapitre~\ref{chap:Expected_Node}, nous revenons au cas statique pour étudier les structures communautaires sous la forme de partition de liens dans les graphes.
-En effet, il n'existe que peu méthodes traitant de sujet.
-C'est pourquoi nous proposons une nouvelle méthode pour évaluer la qualité d'une partitions de liens.
+Dans le chapitre~\ref{chap:Expected_Node}, nous revenons sur les structures communautaires des graphes sous la forme de partitions de liens.
+En effet, il n'existe que peu de méthodes traitant de sujet.
+Nous proposons une nouvelle méthode pour évaluer la qualité d'une partition de liens qui s'inspire de ce qui est fait pour les partitions de n\oe uds avec la modularité.
 Nous testons notre fonction de qualité et les méthodes existantes sur des exemples synthétiques.
 
 Fort des observations faites dans l'ensemble de ces travaux, nous esquissons de premiers travaux sur la génération de flots de liens et sur les fonctions de qualité dans les flots de liens dans le chapitre~\ref{versQualite}.
-Nous proposons dans ce chapitre un modèle de génération de flot de liens et nous testons différentes méthodes de détections et d'évaluation de la structure générée.
+Nous proposons dans ce chapitre un modèle de génération de flots de liens et nous testons différentes méthodes de détection et d'évaluation de la structure générée.
 
 
 Enfin nous revenons dans le chapitre~\ref{Conclusion} sur les travaux réalisés au cours de cette thèse et des contributions apportées avant de discuter quelques pistes de recherches qu'ouvrent nos travaux.

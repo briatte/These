@@ -455,16 +455,16 @@ La couleur du point indique le nombre de groupes ayant la même taille.}
 
 Il semble donc que la partition $\mathfrak{D}$ soit proche de $D$ mais que ses groupes soient plus gros.
 Pour circonvenir à ce problème, nous appliquons de manière récursive l'algorithme de Louvain sur chaque graphe induit par un groupe $\mathfrak{D}_j$.
-Ce processus permet de subdiviser de manière récursive chaque groupe $\mathfrak{D}_j$.
-Soit $\mathfrak{D}_{j'}(h)$ un groupe trouvé au niveau $h$, par construction, il est inclus dans un groupe trouvé au niveau $h-1$, c'est à dire $\mathfrak{D}_{j'}(h) \subseteq \mathfrak{D}_{j}(h-1)$.
-Le niveau $0$ est la première partition trouvée par l'algorithme de Louvain dans $\mathfrak{G}$.
+Ce processus permet de subdiviser chaque groupe $\mathfrak{D}_j$.
+Soit $\mathfrak{D}_{h,j'}$ un groupe trouvé au niveau $h$, par construction, il est inclus dans un groupe trouvé au niveau $h-1$, c'est à dire $\mathfrak{D}_{h,j'} \subseteq \mathfrak{D}_{h-1,j}$.
+Le niveau $0$ est la première partition trouvée par l'algorithme de Louvain dans $\mathfrak{G}$, c'est-à-dire $\mathfrak{D}_{0,j}=\mathfrak{D}_j$.
 
-Soit $D_i \in D$, notons $\mathfrak{D}_{\tilde{j}}(h)$ avec $h \in \mathbf{N}$ le groupe trouvé par la méthode de Louvain au niveau $h$ qui soit le plus proche de $D_i$ au niveau $h$, c'est-à-dire $|\mathfrak{D}_{\tilde{j}}(h)\cap D_i|= \max_{j} |\mathfrak{D}_{j}(h) \cap D_i|$.
-Avec ces définitions, on observe la relation suivante: $\mathfrak{D}_{\tilde{j}}(h)\cap D_i \subseteq \mathfrak{D}_{\tilde{j}}(h-1)\cap D_i$.
+Soit $D_i \in D$, notons $\mathfrak{D}_{h,\tilde{i}}$ le groupe trouvé par la méthode de Louvain au niveau $h$ qui soit le plus proche de $D_i$ au niveau $h$, c'est-à-dire $|\mathfrak{D}_{h,\tilde{i}}\cap D_i|= \max_{j} |\mathfrak{D}_{h,j} \cap D_i|$.
+Avec ces définitions, on observe la relation suivante: $\mathfrak{D}_{h,\tilde{i}}\cap D_i \subseteq \mathfrak{D}_{h-1,\tilde{i}}\cap D_i$.
 La définition de $rappel$ de l'équation~\ref{eq:rappel} n'est donc pas adaptée pour les niveaux inférieurs et nous l'adaptons de la manière suivante:
 
 \begin{equation}
-rappel(D_i,h)= \max_{j} \frac{|\mathfrak{D}_j(h) \cap D_i|}{|D_i \cap \mathfrak{D}_{\tilde{j}}(h-1)|}.
+rappel(D_i,h)= \max_{j} \frac{|\mathfrak{D}_{h,j} \cap D_i|}{|D_i \cap \mathfrak{D}_{h-1,\tilde{j}}|}.
 \end{equation}
 
 Ainsi, le $rappel$ au niveau $h$ prends en compte le maximum d'élément qu'il est possible de trouver à ce niveau.
