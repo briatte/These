@@ -379,7 +379,7 @@ Ces répartitions sont illustrées dans la figure~\ref{fig:1C}.
 			\includegraphics[width=\linewidth]{img/ExpectedNodes/1Clique/Clique3}
 			\caption{\label{fig:1C3}}		
 	\end{subfigure}
-	\caption{Deux partitions de liens pour un graphe complet à $10$ n\oe uds avec $p=5$: (a) partition en deux groupes et (b) partition en trois groupes.
+	\caption{Deux partitions de liens pour un graphe complet à $10$ n\oe uds avec $p=5$: (A) partition en deux groupes et (B) partition en trois groupes.
 	Les n\oe uds noirs sont les n\oe uds appartenant à $V'$ et la couleur d'un lien correspond à son groupe.}
 	\label{fig:1C}
 \end{figure}
@@ -407,7 +407,7 @@ La fonction $Evans3$ diffère légèrement des deux autres car elle a une amplit
 %\end{equation}
 %$C(p)= \dfrac{p(p-1)}{2}$
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 	\begin{subfigure}{0.4\linewidth}
 		\includegraphics[width=\linewidth]{img/ExpectedNodes/1Clique/Clique_Partitiondensity.eps}
@@ -433,6 +433,120 @@ La fonction $Evans3$ diffère légèrement des deux autres car elle a une amplit
 		Les lignes en gris, noir et pointillées représentent respectivement la partition triviale, les partitions en deux groupes et les partitions en trois groupes.}
 		\label{fig:1Cres}
 \end{figure}
+
+\subsection{Cas de deux cliques chevauchentes}
+\label{subsec:2cliques}
+
+Le second jeu de test est un peu plus évolué puisqu'il s'agit deux cliques de $100$ n\oe uds chacune se chevauchant de plus en plus.
+Ainsi, nous générons les graphes en fonction du nombre de n\oe uds appartenant aux deux cliques.
+Sur ce graphe, nous définissons également plusieurs partitions.
+La première est la partition triviale où tout les liens sont dans un unique groupe.
+Nous définissons également cinq autres partitions qui contiennent 2, 3 ou cinq groupes.
+Soit $V_1$ l'ensemble de n\oe uds de la première clique, $V_2$ celui de la deuxième clique et $V_{12}=V_1 \cap V_2$ l'ensemble de n\oe uds commun à $V_1$ et $V_2$.
+Cette taxonomie des n\oe uds est illustrée dans la figure~\ref{fig:2Ctaxo}.
+
+Par abus de notations, nous notons également $V_{11}=V_1\setminus V_2$ et  $V_{22}=V_2\setminus V_1$
+Il y a deux partitions en deux groupes: la partition $2A$ et $2B$.
+Dans la partition $2A$, les liens entre les n\oe uds de $V_{22}$ forment un groupe alors que le reste des liens forme l'autre groupe.
+Dans la partition $2B$, les liens entre les n\oe uds de $V_{1}$ forment un groupe alors que le reste des liens forme l'autre groupe.
+
+Il y a également deux partitions en trois groupes: la partition $3A$ et $3B$.
+Dans la partition $3A$, les liens entre les n\oe uds de $V_{12}$ forment un premier groupe et les liens appartenant à $V_1\times V_{11}$ (resp. $V_2\times V_{22}$) forment un deuxième (resp. troisième) groupe.
+Dans la partition $3B$, les liens entre les n\oe uds de $V_{11}$ (resp. $V_{22}$) forment un premier (resp. deuxième) groupe alors que le reste des liens forme un troisième groupe.
+
+Enfin dans la partition $5$ en cinq groupes, il existe 3 groupes correspondant aux liens entre les n\oe uds de respectivement $V_{11}$, $V_{12}$ et $V_{22}$.
+Il y a également un groupe pour les liens appartenant à $V_{11} \times V_{12}$ et un autre pour ceux appartenant à $V_{12} \times V_{22}$.
+
+Ces partitions sont illustrées dans la figure~\ref{fig:2C}.
+
+\begin{figure}[h]
+\centering
+	\begin{subfigure}[b]{0.3\linewidth}
+		\includegraphics[width=\linewidth]{img/ExpectedNodes/2Cliques/PartitionExamples/Clique2A}
+		\caption{2A\label{fig:2C2A}}	
+	\end{subfigure}	
+	\begin{subfigure}[b]{0.3\linewidth}
+		\includegraphics[width=\linewidth]{img/ExpectedNodes/2Cliques/PartitionExamples/Clique2}
+		\caption{Taxonomie\label{fig:2Ctaxo}}	
+	\end{subfigure}	
+	\begin{subfigure}[b]{0.3\linewidth}
+			\includegraphics[width=\linewidth]{img/ExpectedNodes/2Cliques/PartitionExamples/Clique2B}
+			\caption{2B\label{fig:2C2B}}		
+	\end{subfigure}
+
+	\begin{subfigure}{0.3\linewidth}
+			\includegraphics[width=\linewidth]{img/ExpectedNodes/2Cliques/PartitionExamples/Clique3A}
+			\caption{3A\label{fig:2C3A}}		
+	\end{subfigure}
+	\begin{subfigure}{0.3\linewidth}
+		\includegraphics[width=\linewidth]{img/ExpectedNodes/2Cliques/PartitionExamples/Clique3B}
+		\caption{3B\label{fig:2C3B}}	
+	\end{subfigure}
+	\begin{subfigure}{0.3\linewidth}
+			\includegraphics[width=\linewidth]{img/ExpectedNodes/2Cliques/PartitionExamples/Clique5}
+			\caption{5\label{fig:2C5}}		
+	\end{subfigure}
+	\caption{Différentes partitions d'un graphe constitué de deux cliques de $9$ se chevauchant sur $3$ n\oe uds.
+	En (B), taxonomie des n\oe uds du graphes.
+	En (A) et (C), deux partitions en deux groupes.
+	En (D) et (E), deux partitions en trois groupes.
+	En (F), une partition en cinq groupes.
+	La couleur d'un lien correspond à son groupe.}
+	\label{fig:2C}
+\end{figure}
+
+Pour chaque graphe en fonction du chevauchement $p$, nous testons ces cinq partitions mais aussi la partition $LC$ trouvée par \textit{link clustering}~\cite{Ahn2010a} et les partitions $EX$ trouvées par les méthodes de Evans \textit{et al.}~\cite{Evans2009}.
+Ces algorithmes optimisent respectivement \emph{Parition Density}, \emph{Evans1}, \emph{Evans2} et \emph{Evans3}.
+Ces partitions sont ensuite évaluées par les fonctions de qualité \emph{Partition Density}, $Evans1$, $Evans2$, $Evans3$ et \emph{Expected Node}.
+La figure~\ref{fig:2Cres} présente les résultats.
+
+
+\begin{figure}[h]
+\centering
+	\begin{subfigure}{0.31\textwidth}
+		\includegraphics[width=\linewidth]{img/ExpectedNodes/2Cliques/2Clique_Partition_density.eps}
+		\caption{\label{fig:2CAhn}Partition density}		
+	\end{subfigure}
+	\begin{subfigure}{0.31\textwidth}
+		\includegraphics[width=\linewidth]{img/ExpectedNodes/2Cliques/2Clique_Expected_Nodes.eps}
+		\caption{\label{fig:2CMod}Expected Nodes}		
+	\end{subfigure}
+	\begin{subfigure}{0.07\textwidth}
+		\includegraphics[width=\linewidth]{img/ExpectedNodes/2Cliques/legend.eps}
+	\end{subfigure}
+	
+	\begin{subfigure}{0.31\textwidth}
+		\includegraphics[width=\linewidth]{img/ExpectedNodes/2Cliques/2Clique_Evans1.eps}
+		\caption{\label{fig:2CE1}Evans1}		
+	\end{subfigure}
+	\begin{subfigure}{0.31\textwidth}
+		\includegraphics[width=\linewidth]{img/ExpectedNodes/2Cliques/2Clique_Evans2.eps}
+		\caption{\label{fig:2CE2}Evans2}		
+	\end{subfigure}
+	\begin{subfigure}{0.31\textwidth}
+		\includegraphics[width=\linewidth]{img/ExpectedNodes/2Cliques/2Clique_Evans3.eps}
+		\caption{\label{fig:2CE3}Evans3}		
+	\end{subfigure}
+	\caption{\'Evaluation des cinq fonctions de qualité sur un graphe composé de deux cliques de $100$ n\oe uds se chevauchant sur $p$ n\oe uds pour dix partitions différentes.
+	Les partitions testées sont présentées dans la section~\ref{subsec:2cliques}.
+	Les lignes en trait plein et pointillé représentent respectivement les partitions fixées arbitrairement et les partitions trouvées empiriquement.}
+	\label{fig:2Cres}
+\end{figure}
+
+Comme le graphe étudié est composé de deux cliques se chevauchant de plus en plus, il n'y a pas une seule vérité de terrain.
+Lorsque le chevauchement est faible, les partitions $2B$ et $3A$ devraient avoir les meilleures évaluations.
+Lorsque le chevauchement est plus important, c'est la partition $1$ en une seule communauté qui devrait avoir la meilleure évaluation.
+
+Dans le cas de $EvansX$, ce sont les partitions $EX$ qui obtiennent les meilleures évaluations, en particulier pour $Evans1$ et $Evans2$.
+L'optimisation de ces fonctions de qualité mène donc à trouver des partitions qui ont une qualité plus élevée que la vérité de terrain mais qui sont différentes.
+Ces fonctions de qualités ne sont donc pas à même de capturer une vérité de terrain comme la meilleure partition.
+Il est toutefois important de noter que dans le cas de $Evans3$, la différence entre $E3$ et $2B$ reste faible.
+
+Pour les fonctions de qualité \emph{Partition density} et \emph{Expected Nodes}, c'est bien la partition $2B$ qui obtient le meilleur score lorsque le chevauchement est faible.
+Lorsque le chevauchement est plus important, c'est la partition $1$ qui obtient la meilleure évaluation.
+La principale différence entre ces deux fonctions de qualité est la proportion de chevauchement à partir duquel la meilleur partition change.
+Dans le cas de \emph{Partition density}, ce changement intervient lorsque le chevauchement dépasse $40$ n\oe uds.
+Pour \emph{Expected Nodes}, ce changement intervient lorsque le chevauchement dépasse $30$ n\oe uds.
 
 \subsection{Graphe LFR}
 Nous utilisons maintenant un jeu de test plus évolué.
@@ -481,7 +595,6 @@ Enfin, 90\% des liens sont à l'intérieur d'une communauté et les 10\% restant
 Avec ces paramètres, il y a en moyenne $5620$ liens intra-communauté, $625$ liens inter-communauté et seulement $5$ liens chevauchants.
 
 Pour chaque graphe généré, nous testons les partitions $TA$ et $TB$ mais aussi la partition $LC$ trouvée par \textit{link clustering}~\cite{Ahn2010a} et les partitions $EX$ trouvées par les méthodes de Evans \textit{et al.}~\cite{Evans2009}.
-Ces algorithmes optimisent respectivement \emph{Parition Density}, \emph{Evans1}, \emph{Evans2} et \emph{Evans3}.
 Ces partitions sont ensuite évaluées par les fonctions de qualité \emph{Partition Density}, $Evans1$, $Evans2$, $Evans3$ et \emph{Expected Node}.
 Une illustration d'un graphe généré et des exemples de groupes capturés par $LC$ et $E2$ sont présentés dans la figure~\ref{fig:LFR_Exemple}.
 
@@ -526,7 +639,7 @@ Les quatre partitions sont donc différentes et mettent en avant différentes ca
 Nous procédons maintenant à l'évaluation de ces partitions par les différentes fonctions de qualité.
 Comme le processus de génération de graphe est aléatoire, les évaluations présentées dans la figure~\ref{fig:LF} représentent $30$ générations.
 On remarque tout d'abord que ni $TA$ ni $TB$ n'a la meilleure évaluation selon $EvansX$ (figures~\ref{fig:LFE1} à ~\ref{fig:LFE3}) ou \emph{Partition Density} (figure~\ref{fig:LFAhn}) même si $TA$ et $TB$ représentent nos vérités de terrain.
-Dans le cas de $EvansX$, c'est les partitions $EX$ qui obtiennent les meilleures évaluations.
+Dans le cas de $EvansX$, ce sont les partitions $EX$ qui obtiennent les meilleures évaluations.
 Cela prouve l'efficacité de l'algorithme pour optimiser $EvansX$ mais remet en cause la pertinence des critères $EX$ pour mettre en avant la vérité de terrain.
 Notre fonction \emph{Expected Nodes} se comporte différemment des 4 autres.
 Tout d'abord, c'est la vérité de terrain $TA$ qui obtient la meilleure évaluation puis il s'agit de $TB$ ou $LC$ selon les générations.

@@ -1,0 +1,207 @@
+import sys # needed in order to read the command line argument
+import matplotlib.pyplot as plt
+import pprint
+import os
+import statistics
+from itertools import zip_longest,combinations
+import numpy as np
+import string
+import math
+
+def grayCol(mini,maxi, number,step,order):
+	# print(number, step,maxi-(maxi-mini)/number*step)
+	if order:
+		return (maxi-(maxi-mini)/number*step, maxi-(maxi-mini)/number*step, maxi-(maxi-mini)/number*step)
+	else:
+		return (mini+(maxi-mini)/number*step, mini+(maxi-mini)/number*step, mini+(maxi-mini)/number*step)
+
+def warning(*objs):
+    print("WARNING: ", *objs, file=sys.stderr)
+
+def boxGraph():
+	for fPath in  sys.argv[2:]:
+		with open(fPath, 'r') as f:
+			tab={ line.split(' ')[0]: [float(x) for x in line.split(' ')[1:]] for line in f }
+			name=os.path.basename(fPath).split('.')[0]
+			fig = plt.figure()
+			ax = plt.subplot(111)
+			# ax.set_title("Evaluating "+name+" on LF generations.", fontsize=28) #"Différente réalisation de LF et leur valeur de fonction de qualitée."+name
+			# ax.set_xlabel("",fontsize=30)
+			if name == "Ahn":
+				name = "Partition density"
+			elif name == "Modified":
+				name ="Expected Nodes"		
+			ax.set_ylabel(name, fontsize=22)
+
+			filtre=['X','rand_2','rand_2','rand_10','rand_50','Intern','Mo']
+			toPrint=[k for k in tab if not k in filtre]
+			toPrint.sort(reverse=True)
+			toPrint=["TA","TB","E2","Ahn"]
+			values=[tab[k] for k in toPrint]
+			toPrint=[x if x!="Ahn" else "LC" for x in toPrint]
+			ax.boxplot(values)
+			xtickNames = plt.setp(ax, xticklabels=toPrint)
+			plt.setp(xtickNames, fontsize=22)
+			fig.savefig('LFR1_'+name+'_ALL.png',bbox_inches='tight')
+			plt.close()
+
+def FctGraph():
+	for fPath in  sys.argv[2:]:
+		with open(fPath, 'r') as f:
+			tab={ line.split(' ')[0]: [float(x) for x in line.split(' ')[1:]] for line in f }
+			name=os.path.basename(fPath).split('.')[0]
+			fig = plt.figure()
+			fig.set_size_inches(8,6)
+			# print(fig.get_size_inches())
+			ax = plt.subplot(111)
+			# ax.set_title(name+" on two overlaping complete graphs.", fontsize=28) #  on two overlaping complete graphs on a complete graph of 100 nodes.
+			ax.set_xlabel("p", fontsize=22) # Overlap group size
+			if name == "Ahn":
+				name = "Partition density"
+			elif name == "Modified":
+				name ="Expected Nodes"
+			elif name == "Evans1":
+				name = "Evans1, Evans2"
+			ax.set_ylabel(name, fontsize=22)
+			liste=[]
+			leg=[]
+
+			filtre=['X','rand_2','rand_2','rand_10','rand_50','Intern',"Mo"]
+			wanted=['truth','truth2','ahn']
+			toPrint=[k for k in tab if not k in filtre]
+			toPrint.sort(reverse=True)
+			midleToprint= int(len(toPrint)/2.0)-1
+			count=0
+			col1=0
+			col2=0
+			values=[tab[k] for k in toPrint]
+
+			# Pour clique qualite*
+			min_Print=1
+			max_Print=0
+			for k in toPrint:
+				min_k=min(tab[k])
+				# index=tab[k].index(min_k)
+				# print("Min de ", min_k," à l'index",index, " pour la partition ",k)
+				if min_k<min_Print:
+					min_Print=min_k
+				max_k=max(tab[k])
+				if max_k>max_Print:
+					max_Print=max_k
+				# index=tab[k].index(max_k)
+				# print("Max de ", max_k," à l'index",index, " pour la partition ",k)
+				
+				if count < midleToprint or k == "2" :
+					# col=(0.1+(0.8/4.0*col1),0.1+(0.8/4.0*col1),0.1+(0.8/4.0*col1))
+					col= grayCol(0,0.8,len(toPrint)-1,col2,False)
+					p1,=plt.plot(tab['X'],tab[k],'--',color=col,zorder =10-count,linewidth=2.5)
+					col2+=1
+				else:
+					# col=((1/6.0*col2),(1/6.0*col2),(1/6.0*col2))
+					col= grayCol(0,0.8,len(toPrint)-1,col2,False)
+					
+					p1,=plt.plot(tab['X'],tab[k],color=col,zorder =10-count,linewidth=2.5)
+					col2+=1
+				liste.append(p1)
+				if k =="Ahn":
+					k="LC"
+				leg.append(k)
+				count+=1
+			# ax.hlines(0,min(tab['X']),max(tab['X']))
+
+			# lgd=ax.legend(liste,leg,loc='center left', bbox_to_anchor=(1, 0.5))
+
+			ymin,ymax=ax.get_ylim()
+			yRange= abs(max_Print - min_Print)
+			ax.set_ylim(min_Print- 0.05*yRange,max_Print+ 0.05*yRange)
+			xmin,xmax=ax.get_xlim()
+			ax.set_xlim((max(0,float(xmin)-0.1),min(100,xmax+0.1)))
+			# setFigLinesBW(fig)
+			fig.savefig('Clique_'+name.strip(" ")+'.png', bbox_inches='tight',dpi=100)
+			plt.close()
+	exit(1)
+
+
+def DistGraph():
+	for fPath in  sys.argv[2:]:
+		PartType=[]
+		distType=[]
+		edgeType=[]
+		with open(fPath, 'r') as f:
+			line=f.readline().strip('\r\n')
+			header= line.split(" ")
+			data={ dist: [] for dist in header}
+			for dist in header:
+				element=dist.split(".")
+				PartType.append(element[0])
+				distType.append(element[2])
+				edgeType.append(element[1])
+			PartType=list(set(PartType))
+			PartType.remove('Mo')
+			PartType=sorted(PartType,reverse=True)
+			distType=list(set(distType))
+			edgeType=list(set(edgeType))
+			print(PartType)
+
+			for line in f:
+				tab=line.split(" ")
+				for dist,val in zip(header,tab):
+					data[dist].append(float(val))
+
+		for dist in distType:
+			for edge in edgeType:
+				n_groups = len(PartType)
+				std = [statistics.stdev(data[part+'.'+edge+'.'+dist]) for part in PartType if part != 'Mo']
+				mean= [statistics.mean(data[part+'.'+edge+'.'+dist]) for part in PartType if part != 'Mo']
+				
+
+				tmpParType=PartType.copy()
+
+				fig, ax = plt.subplots()
+				index = np.arange(n_groups)
+				bar_width = 0.35
+
+				opacity = 0.4
+				error_config = {'ecolor': '0.3'}
+				#mean,std,tmpParType = zip(*sorted(zip(mean,std, tmpParType)))
+
+				rects1 = plt.bar(index, mean, bar_width,
+				                 alpha=opacity,
+				                 color='b',
+				                 yerr=std,
+				                 error_kw=error_config,
+				                 label='Men')
+
+				plt.xlabel('Partitions')
+				if edge == 'overless':
+					plt.title(dist+' values on the graph without overlap links')
+				else:
+					plt.title(dist+' values on the graph without external links')
+				tmpParType=[x if x!="Ahn" else "LC" for x in tmpParType]
+				plt.xticks(index + bar_width/2, tmpParType)
+				ymin,ymax=plt.ylim()
+				if dist=="NMI":
+					plt.ylim(0.8,1.01)
+					plt.ylabel('Normalized Mutual Information')
+				else :
+					plt.ylim(0,1.5)
+					plt.ylabel('Metrics used: '+dist)
+				plt.tight_layout()
+				# plt.show()
+				name=os.path.basename(fPath).split('.')[0]
+				plt.savefig(name+'_'+dist+'_'+edge+'.png')
+				plt.close()
+
+
+if __name__ == '__main__':
+	if len(sys.argv)<3:
+		print('Fail. At least one file needed')
+
+	if(sys.argv[1]== "-fct"):
+		FctGraph()
+	elif(sys.argv[1]== "-dist"):
+		DistGraph()
+	elif  sys.argv[1]== "-box" :
+		boxGraph()
+	else:
+		warning("Option unknown")

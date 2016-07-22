@@ -453,7 +453,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.49497475"
-     inkscape:cx="-249.84085"
+     inkscape:cx="196.64657"
      inkscape:cy="702.94549"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -495,8 +495,9 @@
          sodipodi:role="line"
          id="tspan4816"
          x="418.56461"
-         y="-194.91515">d<tspan
-   style="font-size:54.4180603px;baseline-shift:sub"
+         y="-194.91515"
+         style="font-size:62.50000559px">d<tspan
+   style="font-size:62.50000559px;baseline-shift:sub"
    id="tspan4818">t</tspan>(V')</tspan></text>
     <rect
        y="-167.28973"
@@ -721,8 +722,9 @@
          sodipodi:role="line"
          id="tspan4816-3"
          x="480.29843"
-         y="233.12796">D<tspan
-   style="font-size:65.00000954%;baseline-shift:sub"
+         y="233.12796"
+         style="font-size:62.50000559px">D<tspan
+   style="font-size:62.50000559px;baseline-shift:sub"
    id="tspan4345">β..β+Δ</tspan>(V')</tspan></text>
     <g
        id="g4741"
@@ -797,7 +799,8 @@
          sodipodi:role="line"
          id="tspan4816-3-3"
          x="456.09705"
-         y="649.16534">δ(V',β,Δ)</tspan></text>
+         y="649.16534"
+         style="font-size:62.50000559px">δ(V',β,Δ)</tspan></text>
     <g
        id="g4684">
       <path

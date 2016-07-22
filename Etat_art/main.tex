@@ -679,7 +679,12 @@ Rozenshtein~\emph{et al.}~\cite{rozenshtein2014} se penchent sur la détection d
 Ils permettent de capturer un ensemble de n\oe uds et plusieurs intervalles de temps disjoints tel que ces n\oe uds sur ces intervalles aient le degré moyen le plus élevé dans le graphe agrégé sur ces intervalles.
 Bien que la mesure utilisée ne tienne pas directement compte du temps, leur méthode permet ainsi de mettre en évidence une partie du flot de liens.
 
-\cite{Viard2016,viard:hal-01208330}
+Il existe également des travaux conduits dans l'équipe~\cite{Viard2016,viard:hal-01208330} sur la notion de clique  dans les flots de liens sans durée, c'est à dire un ensemble de $(b,b,u,v)$.
+Ils généralisent la notion de cliques à ces flots de liens: pour un delta donné, une delta-clique est un ensemble de n\oe uds et un intervalle de temps, tels que toutes les paires de n\oe uds dans cet ensemble interagissent au moins tous les delta sur cet intervalle.
+Dans ce cadre, ils proposent un premier algorithme permettant d’énumérer les delta-cliques.
+Ils ont de plus appliqué leur algorithme avec succès sur différents jeux de données.
+
+
 
 Une méthode de type Stochastic Block Model a été proposée par Matias~\emph{et al.}~\cite{Matias2015a}.
 Elle est très proche de celle proposé par Corneli~\emph{et al.}~\cite{Corneli2016}.
@@ -687,6 +692,8 @@ En effet, l'affiliation des n\oe uds est fixe et c'est l'activité d'une communa
 La grosse différence ici est que l'activité varie de manière continue dans le temps.
 Ainsi l'apparition d'un lien dépend de la réalisation d'un processus de Poisson non homogène qui change selon les communautés.
 Cependant, leur méthode ne permet pas de considérer les changements de communauté.
+
+
 
 % centralité \cite{,Kim2012, Pfitzner2013a,Praprotnik2015,Scholtes2015,Costa2015,Takaguchi2016}
 

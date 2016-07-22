@@ -52,8 +52,8 @@ La limite pour considérer une discussion trop récente ou trop longue a été f
 Toutes les discussions qui ont débutées moins de 4 ans avant la capture du jeu de données ne sont donc pas prises en comptes.
 
 
-Une fois tout ces messages filtrés, nous obtenons un flot de liens avec 316 569 liens entre 34 648 personnes pendant presque 19 ans et 116 999 discussions.
-Mis à part les 237 664 messages de début de discussion, ce sont 168 482 courriels qui ont été filtrés soit environ $23\%$.
+Une fois tout ces messages filtrés, nous obtenons un flot de liens avec $316\ 569$ liens entre $34\ 648$ personnes pendant presque 19 ans et $116\ 999$ discussions.
+Mis à part les $237\ 664$ messages de début de discussion, ce sont $168\ 482$ courriels qui ont été filtrés soit environ $23\%$.
 La majorité des courriels filtrés l'ont été car ils appartiennent à une discussions trop récente.
 
 \section{Caractéristiques élémentaires des discussions}
@@ -119,7 +119,7 @@ Comme dit précédemment, les communautés sont souvent définies comme étant d
 C'est pourquoi nous nous attachons à étudier la densité des discussions.
 
 Comme ces données se modélisent par un flot de liens où les liens n'ont pas de durée, nous étudions la densité non pas dans le flot de liens initial mais dans $\sigma(\xi(L,\Delta))$  pour différentes valeurs de $\Delta$ entre 1 seconde et 20 ans.
-La notation $\delta(\sigma(\xi(L,\Delta)))$ est cependant très lourde et nous simplifions par $\delta_{\Delta}(L)$ et nous parlons donc de $\Delta$-densité.
+La notation $\delta{\alpha..\omega}(\sigma(\xi(L,\Delta)))$ est cependant très lourde et nous la simplifions par $\delta_{\Delta}(L)$ et nous parlons donc de $\Delta$-densité.
 Tout d'abord dans la figure~\ref{fig:dens_fil_discusion} est représentée la $\Delta$-densité globale du le flot.
 En couvrant un spectre aussi large de $\Delta$, on observe que la $\Delta$-densité est croissante avec $\Delta$ mais surtout on observe bien la convergence de $\Delta$-densité vers $3.139\times 10^{-4}$, la densité du graphe agrégé, lorsque $\Delta$ est proche de $\omega - \alpha$.
 
@@ -144,7 +144,7 @@ Bien que notable, ce fait est attendu notamment car le flot dure beaucoup plus l
 	\includegraphics[width=0.48\linewidth]{img/mailing/delta.eps}
 %}
 
-\caption{Distribution cumulative inverse de la $\Delta$-densité des discussions pour différentes valeurs de $\Delta$s.}
+\caption{Distribution cumulative inverse de la $\Delta$-densité des discussions pour différentes valeurs de $\Delta$.}
 \label{fig:intra_dens_discussion}
 \end{figure}
 
@@ -158,21 +158,22 @@ Une autre définition d'une communauté est qu'elle devrait être plus densémen
 Pour un graphe $G=(V,E)$ et une communauté $C_i$ de la partition $C = \{C_j\}_{j_1..k}$ de $V$ en $k$ communautés, cela se traduit par le calcul de la densité entre les communautés, $\delta^{inter}(C_i)$ :
 
 \begin{equation}
-	\delta^{inter}(C_i) = \frac{1}{|C|-1}\sum_{j, i\ne j}\frac{|\{(u,v)\in E\mbox{ t.q. }u\in C_i\mbox{ and }v\in C_j\}|}{|C_i|\cdot |C_j|}.
+	\delta^{inter}(C_i) = \frac{1}{|C|-1}\sum_{j, i\ne j}\frac{|\{(u,v)\in E\mbox{ t.q. }u\in C_i\mbox{ et }v\in C_j\}|}{|C_i|\cdot |C_j|}.
 \end{equation}
-Il s'agit tout simplement de la probabilité qu'un lien existe entre un n\oe ud de $C_i$ et un n\oe ud d'une autre communauté.
+Il s'agit simplement de la probabilité qu'un lien existe entre un n\oe ud de $C_i$ et un n\oe ud d'une autre communauté.
 Encore une fois, cette notion n'a pas de sens direct dans le formalisme de flot de liens et il est nécessaire de l'adapter.
 Pour ce faire, nous définissons la $\Delta$-densité inter discussions entre deux discussions $D_i$ et $D_j$: $\delta^{inter}_{\Delta}(D_i,D_j)$.
-Soit $E_{\Delta}= \xi(\Delta,E)$ et $L_{inter}(D_i, D_j) = (T',V',E')$ avec 
-$V'= V(D_i \cup D_j)$, $T'=[\beta(D_i \cup D_j), \psi(D_i \cup D_j)]$, et $E' = E_{\Delta} \setminus (D_i \cup D_j)$.
-Avec ces définitions, $\delta^{inter}_{\Delta}(D_i,D_j)$ est égale à $\delta^{inter}_{\Delta}(D_i,D_j) = \delta(L_{inter}(D_i, D_j))$.
+Soit $\Delta_{ij}=\xi(\Delta,D_i \cup D_j)$ et $L_{inter}(D_i, D_j) = (T',V',E')$ avec 
+$V'= V(\Delta_{ij})$, $T'=[\beta(\Delta_{ij}), \psi(\Delta_{ij})]$, et $E' = \xi(\Delta,E) \setminus \Delta_{ij}$.
+Avec ces notation, $\delta^{inter}_{\Delta}(D_i,D_j)$ est égale à $\delta^{inter}_{\Delta}(D_i,D_j) = \delta(L_{inter}(D_i, D_j))$.
 Il s'agit donc de la densité du flot inter discussions qui est constitué des liens entre les n\oe uds induits par $D_i$ et $D_j$ qui n'appartiennent ni à $D_i$ ni à $D_j$.
 Dans la figure~\ref{fig:inter_dens_discussion_ex}, un exemple de flot inter discussion est représenté.
+Il est important de noter que le nombre de liens pris en compte dans le flot inter-discussions varie selon le $\Delta$ utilisé.
 
 \begin{figure}
 \centering
 %\subfloat[Inverse cumulative distribution of inter-threads density.]{
-	\includegraphics[width=0.8\linewidth]{img/mailing/inter_flot.eps}
+	\includegraphics[width=0.65\linewidth]{img/mailing/inter_flot.eps}
 %}
 \caption{Le flot entre les discussions \textcolor{olivegreen}{\textbf{verte}} et  \textcolor{briquered}{\textbf{rouge}} est constitué des liens ou partie de liens en \textbf{noire}. Les liens en \textcolor{gray}{\textbf{gris}} ne sont pas pris en compte.}
 \label{fig:inter_dens_discussion_ex}
@@ -257,9 +258,9 @@ On observe également que, même pour les discussions durant moins d'un jour ($8
 
 \begin{figure}
 \centering
-	\includegraphics[width=0.49\linewidth]{img/mailing/degree_temp}
-	\hfill
-	\includegraphics[width=0.49\linewidth]{img/mailing/degree_nodes}
+	\includegraphics[width=0.45\textwidth]{img/mailing/degree_temp}
+	\hspace*{0.025\textwidth}
+	\includegraphics[width=0.45\textwidth]{img/mailing/degree_nodes}
 	\caption{Gauche: Corrélation entre le degré des discussions dans le graphe de chevauchement temporel et leur durée. Droite: Corrélation entre le degré des discussions dans le graphe de chevauchement topologique et leur nombre de participants.}
 	\label{fig:x-y-graphs_discu}
 \end{figure}
@@ -311,7 +312,7 @@ Le lien $(x,y)$ du groupe violet du flot à gauche donne lieu au lien $(\textcol
 
 \begin{figure}
 \centering
-	\includegraphics[width=0.71\linewidth]{img/mailing/quotient-density}
+	\includegraphics[width=0.45\linewidth]{img/mailing/quotient-density}
 	\caption{$\Delta$-densité du flot de liens et du flot de liens quotien en fonction de $\Delta$ pour $\Delta=1mn, 1h, 12h, 1j, 7j, 30j, 1\ an$ et $20\ ans$.}
 	\label{fig:quotient-stream-density}
 \end{figure}
@@ -383,7 +384,7 @@ Avant de comparer la structure des discussions, $D$, et la partition, $\mathfrak
 Dans la figure~\ref{fig:carac_mail_louvain}, les distributions cumulatives inverses du nombre de liens, du nombre n\oe uds et de leur durée sont présentées pour les groupes de $\mathfrak{D}$.
 Pour rappel, les même données sont représentées pour les discussions.
 On remarque tout de suite que $\mathfrak{D}$ contient des groupes beaucoup plus gros en nombre de n\oe uds et de liens alors qu'ils ont des durées similaires.
-\begin{figure}[]
+\begin{figure}[h]
 \centering
 	\begin{subfigure}{0.4\textwidth}
 		\includegraphics[width=\linewidth]{img/mailing/Detection/linksize}\hfill
@@ -436,11 +437,11 @@ En revanche, la précision est très faible car un groupe $\mathfrak{D}_j$ conti
 \centering
 
 \hfill
-	\begin{subfigure}{0.49\textwidth}
+	\begin{subfigure}{0.4\textwidth}
 		\includegraphics[width=\linewidth]{img/mailing/Detection/Rappel_0.eps}
 		\caption{}		
 	\end{subfigure}\hfill
-	\begin{subfigure}{0.49\textwidth}
+	\begin{subfigure}{0.4\textwidth}
 		\includegraphics[width=\linewidth]{img/mailing/Detection/Precision_0.eps}
 		\caption{}		
 	\end{subfigure}\hfill
@@ -456,8 +457,9 @@ La couleur du point indique le nombre de groupes ayant la même taille.}
 Il semble donc que la partition $\mathfrak{D}$ soit proche de $D$ mais que ses groupes soient plus gros.
 Pour circonvenir à ce problème, nous appliquons de manière récursive l'algorithme de Louvain sur chaque graphe induit par un groupe $\mathfrak{D}_j$.
 Ce processus permet de subdiviser chaque groupe $\mathfrak{D}_j$.
-Soit $\mathfrak{D}_{h,j'}$ un groupe trouvé au niveau $h$, par construction, il est inclus dans un groupe trouvé au niveau $h-1$, c'est à dire $\mathfrak{D}_{h,j'} \subseteq \mathfrak{D}_{h-1,j}$.
 Le niveau $0$ est la première partition trouvée par l'algorithme de Louvain dans $\mathfrak{G}$, c'est-à-dire $\mathfrak{D}_{0,j}=\mathfrak{D}_j$.
+Soit $\mathfrak{D}_{h,j'}$ un groupe trouvé au niveau $h$, par construction, il est inclus dans un groupe trouvé au niveau $h-1$, c'est à dire $\mathfrak{D}_{h,j'} \subseteq \mathfrak{D}_{h-1,j}$.
+
 
 Soit $D_i \in D$, notons $\mathfrak{D}_{h,\tilde{i}}$ le groupe trouvé par la méthode de Louvain au niveau $h$ qui soit le plus proche de $D_i$ au niveau $h$, c'est-à-dire $|\mathfrak{D}_{h,\tilde{i}}\cap D_i|= \max_{j} |\mathfrak{D}_{h,j} \cap D_i|$.
 Avec ces définitions, on observe la relation suivante: $\mathfrak{D}_{h,\tilde{i}}\cap D_i \subseteq \mathfrak{D}_{h-1,\tilde{i}}\cap D_i$.
@@ -479,21 +481,21 @@ Il semble donc qu'il ne soit pas possible avec cette approche de retrouver autom
 \begin{figure}
 \centering
 	\hfill
-	\begin{subfigure}{0.49\textwidth}
+	\begin{subfigure}{0.4\textwidth}
 		\includegraphics[width=\linewidth]{img/mailing/Detection/Rappel_1.eps}
 		\caption{niveau 1}		
 	\end{subfigure}
-	\begin{subfigure}{0.49\textwidth}
+	\begin{subfigure}{0.4\textwidth}
 		\includegraphics[width=\linewidth]{img/mailing/Detection/Precision_1.eps}
 		\caption{niveau 1}		
 	\end{subfigure}\hfill
 	
 	\hfill
-	\begin{subfigure}{0.49\textwidth}
+	\begin{subfigure}{0.4\textwidth}
 		\includegraphics[width=\linewidth]{img/mailing/Detection/Rappel_2.eps}
 		\caption{niveau 2}		
 	\end{subfigure}
-	\begin{subfigure}{0.49\textwidth}
+	\begin{subfigure}{0.4\textwidth}
 		\includegraphics[width=\linewidth]{img/mailing/Detection/Precision_2.eps}
 		\caption{niveau 2}		
 	\end{subfigure}\hfill

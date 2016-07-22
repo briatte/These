@@ -468,9 +468,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.49497475"
-     inkscape:cx="-371.55812"
-     inkscape:cy="718.34013"
+     inkscape:zoom="0.35"
+     inkscape:cx="281.05622"
+     inkscape:cy="627.90222"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -503,7 +503,7 @@
      transform="translate(-276.73338,262.0661)">
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:83.72008514px;line-height:125%;font-family:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="font-style:normal;font-weight:normal;font-size:62.50000559px;line-height:125%;font-family:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
        x="453.98694"
        y="-194.91515"
        id="text4814"
@@ -512,7 +512,7 @@
          id="tspan4816"
          x="453.98694"
          y="-194.91515">d<tspan
-   style="font-size:54.4180603px;baseline-shift:sub"
+   style="font-size:62.50000559px;baseline-shift:sub;"
    id="tspan4818">t</tspan>(V')</tspan></text>
     <rect
        style="opacity:1;fill:#0088b1;fill-opacity:0.295082;stroke:none;stroke-width:3.36414099;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:10.09242234, 10.09242234;stroke-dashoffset:0;stroke-opacity:1;enable-background:new"
@@ -721,8 +721,9 @@
          sodipodi:role="line"
          id="tspan4816-3"
          x="480.2984"
-         y="233.12796">D<tspan
-   style="font-size:65.00000954%;baseline-shift:sub"
+         y="233.12796"
+         style="font-size:62.50000559px">D<tspan
+   style="font-size:62.50000559px;baseline-shift:sub"
    id="tspan4350">β..β+Δ</tspan>(V')</tspan></text>
     <path
        style="fill:none;fill-rule:evenodd;stroke:#bdbdbd;stroke-width:3.15531731;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.98431373;marker-end:url(#marker4386-7-7);enable-background:new"
@@ -799,7 +800,8 @@
          sodipodi:role="line"
          id="tspan4816-3-3"
          x="456.09705"
-         y="649.16534">δ(V',β,Δ)</tspan></text>
+         y="649.16534"
+         style="font-size:62.50000559px">δ(V',β,Δ)</tspan></text>
     <path
        style="fill:none;fill-rule:evenodd;stroke:#bdbdbd;stroke-width:3.15531731;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.98431373;marker-end:url(#marker4386-7);enable-background:new"
        d="m 436.44771,923.99405 657.74049,0"
