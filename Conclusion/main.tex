@@ -7,7 +7,7 @@ Dans cette thèse, nous nous sommes efforcés de décrire et de capturer les str
 Nous avons utilisé le formalisme de flot de liens qui relie les propriétés temporelles et topologiques des séquences d'interactions.
 Ce formalisme est suffisamment expressif pour définir des métriques évaluant des groupes de liens sans déformer ou perdre de l'information sur leur dynamique.
 Les notions de degré et de densité, que nous avons présentées dans le chapitre~\ref{chap:def_flot}, en sont des exemples.
-En plus d'aider à définir ces notions, nous les avons également implémentées dans une libraire de manipulation de flots de liens\,\footnote{\url{A FAIRE}}\note{A faire}.
+En plus d'aider à définir ces notions, nous les avons également implémentées dans une libraire de manipulation de flots de liens\,\footnote{\url{https://bitbucket.org/nGaumont/liblinkstream/}}.
 Ainsi avec d'une part un formalisme clairement défini et d'autre part une implémentation accessible, on peut espérer faciliter l'utilisation de la densité mais surtout permettre à quiconque d'étendre ce formalisme en définissant d'autres métriques.
 
 \`A partir de ce formalisme, nous avons décrit les structures existantes dans les flots de liens, dans le chapitre~\ref{chap:mailing}.
@@ -24,7 +24,7 @@ Bien que la partition trouvée ne corresponde pas exactement aux discussions, le
 
 \bigskip
 
-Dans le chapitre~\ref{groupesDense}, nous avons étudié plus en détails comment évaluer la pertinence de groupes de liens et nous avons utilisé les groupes détectés dans la projection du flot de liens en un graphe statique comme candidats en tant que groupes pertinents.
+Dans le chapitre~\ref{groupesDense}, nous avons étudié plus en détail comment évaluer la pertinence de groupes de liens et nous avons utilisé les groupes détectés dans la projection du flot de liens en un graphe statique comme candidats en tant que groupes pertinents.
 Le but est de réussir à identifier les groupes pertinents parmi les groupes de cette partition.
 Cette identification est nécessaire car il se peut que parmi tous ces groupes de liens certains ne soient pas pertinents.
 En effet, ils ne sont pas obtenus directement sur le flot de liens mais sur une projection de ce flot en un graphe statique.
@@ -32,7 +32,7 @@ Or, il y a perte d'information lorsque l'on manipule un graphe statique au lieu 
 
 Comme nous l'avons constaté dans les chapitres~\ref{chap:def_flot} et \ref{chap:mailing}, la densité permet d'évaluer un groupe mais, seule, elle ne suffit pas pour définir un groupe pertinent.
 En effet, un groupe n'est pertinent que par rapport au reste du flot de liens.
-Par exemple, un groupe ayant une densité de $0.4$ est très pertinent dans un flot de liens ayant une densité globale de $0.01$ mais il ne l'est pas du tout si le flot de liens à une densité de $0.6$.
+Par exemple, un groupe ayant une densité de $0.4$ est très pertinent dans un flot de liens ayant une densité globale de $0.01$ mais il ne l'est pas du tout si le flot de liens a une densité de $0.6$.
 Pour évaluer un groupe, il est donc nécessaire de prendre en compte le contexte dans lequel il apparaît.
 Nous avons défini trois voisinages constitués de sous-flots différant du sous-flot du groupe soit sur le temps de début, soit sur la durée, soit sur l'ensemble de n\oe uds.
 Un groupe est ensuite jugé pertinent si le groupe est plus dense qu'une grande partie de ses voisinages.
@@ -60,7 +60,7 @@ Nous avons mené des tests sur des graphes ayant une structure simple: une cliqu
 Sur ces exemples, notre fonction de qualité, \emph{Expected Nodes}, est la seule à différencier la vérité de terrain d'autres partitions moins pertinentes.
 Ces travaux ont été publiés dans une conférence nationale~\cite{Gaumont2014} et une conférence internationale~\cite{Gaumont2015}.
 Fort de ces premiers constats, nous avons implémenté un premier algorithme d'optimisation d'\emph{Expected Nodes}.
-Cependant malgré nos efforts pour rendre plus efficace l'évaluation d'\emph{Expected Nodes}, notre algorithme n'est pas adapté à l'étude de grand graphes.
+Cependant malgré nos efforts pour rendre plus efficace l'évaluation d'\emph{Expected Nodes}, notre algorithme n'est pas adapté à l'étude de grands graphes.
 
 \bigskip
 
@@ -71,7 +71,7 @@ Ainsi, les liens entre deux n\oe uds sont générés dans le cadre d'une communa
 Ainsi, il est possible de générer des flots de liens très variés tout en ayant une vérité de terrain sur les liens.
 
 \`A partir de ce mécanisme de génération, nous avons dans un premier temps mis en avant l'inefficacité de certaines méthodes statiques dans une projection du flot de liens à retrouver la structure générée.
-Dans un second temps, nous avons esquissé de premier travaux étudiant des extensions de la modularité dans les flots de liens.
+Dans un second temps, nous avons esquissé de premiers travaux étudiant des extensions de la modularité dans les flots de liens.
 Ces résultats nous ont permis d'entrevoir de nombreuses possibilités pour définir une fonction de qualité dans les flots de liens.
 
 \section{Perspectives}
@@ -94,7 +94,7 @@ Nous avons principalement discuté des notions de degré et de densité dans cet
 Il existe bien évidement d'autres notions qui ont déjà été définies dans un cadre temporel comme les notions de chemin et de centralité.
 Il serait intéressant d'intégrer ces notions dans le formalisme de flots de liens afin de rendre l'ensemble des notions cohérentes entre elles.
 Par exemple, il serait intéressant de définir une mesure de centralité à partir du degré temporel.
-Par exemple, on peut comparer le degré temporel d'un n\oe uds vis-à-vis du degré temporel moyen de ses voisins afin de définir une forme de centralité locale.
+On pourrait comparer le degré temporel d'un n\oe uds vis-à-vis du degré temporel moyen de ses voisins afin de définir une forme de centralité locale.
 
 En plus de l'extension des métriques de la théorie  des graphes, il est intéressant de considérer d'autres types de mesures.
 En effet, les flots de liens regroupent de l'information structurelle et temporelle.

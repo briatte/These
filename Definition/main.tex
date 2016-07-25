@@ -9,7 +9,7 @@ Nous avons décrit rapidement le formalisme de flot de liens dans le chapitre pr
 Nous nous attachons maintenant à définir plus formellement les flots de liens et quelques notions utilisées dans le reste de cette thèse.
 Un flot de liens est défini par un triplet $L=(T,V,E)$ où $T=[\alpha, \omega]$ est un intervalle de temps, $V$ un ensemble de $n$ n\oe uds et $E\subseteq T\times T \times V \times V$ un ensemble de $m$ liens.
 Les liens de $E$ sont des quadruplets $(b,e,u,v)$, signifiant que le lien $(u, v)$ existe sur l'intervalle $[b,e] \subseteq [\alpha,\omega]$.
-Nous dénotons le nombre de liens dans le flot par $|L|=|E|=m$ et sa par $\bar{L}=\omega-\alpha$.
+Nous dénotons le nombre de liens dans le flot par $|L|=|E|=m$ et sa durée par $\bar{L}=\omega-\alpha$.
 De manière analogue, la durée d'un lien $l=(b,e,u,v) \in E$ est notée   $\bar{l}=e-b$.
 On note $\beta(E)= min_{(b,e,u,v) \in E} (b)$ et $\psi(E)= max_{(b,e,u,v) \in E} (e)$ l'apparition du premier lien et la disparition du dernier lien dans le flot de liens.
 
@@ -43,7 +43,7 @@ Nous illustrons ces notions dans les figures~\ref{fig:exemple_sous_flot1} et \re
 Nous définissons $L(E')$ , le sous-flot de $L$ induit par un ensemble de liens $E' \subset E$: $L(E')=([\beta(E'),\psi(E')],V(E'),E')$ où $V(E')=\{u, \exists (b,e,u,v) \in E\}$ est l'ensemble des n\oe uds induits par $E'$.
 
  
-Nous définissons $L(S)$ , le sous-flot de $L$ induit par un ensemble de paires n\oe uds $S \in V2$: $L(S)=([\beta(E'),\psi(E')],V',E')$ avec $E'= \{(b,e,u,v) \in E, (u,v) \in S\}$ et $V'=\{u, \exists (u,v) \in S\}$.
+Nous définissons $L(S)$ , le sous-flot de $L$ induit par un ensemble de paires de n\oe uds $S \in V2$: $L(S)=([\beta(E'),\psi(E')],V',E')$ avec $E'= \{(b,e,u,v) \in E, (u,v) \in S\}$ et $V'=\{u, \exists (u,v) \in S\}$.
 Par convention, on note $L(v)= L(\{v\}\times V)$, le sous-flot induit par un n\oe ud.
 Un exemple de sous-flot induit par un n\oe ud est dans la figure~\ref{fig:exemple_sous_flot1}.
 
@@ -89,7 +89,7 @@ Il faut tout de fois distinguer le cas où $S= V_1 \times V$ car il n'est alors 
 
 Pour l'intervalle de temps, la situation est plus compliquée car il n'est pas facile de connaitre l'ensemble des liens existant à un instant donné.
 Il est possible de les trier par ordre d'apparition ou de disparition mais il n'y a pas d'ordre total sur la présence des liens.
-Pour qu'un lien, $l= (b,e,u,v)$ appartienne au sous-flot temporel sur $[t,t']$, il doit remplir mes deux conditions suivantes:
+Pour qu'un lien, $l= (b,e,u,v)$ appartienne au sous-flot temporel sur $[t,t']$, il doit remplir les deux conditions suivantes:
 \begin{itemize}
 \item \textbf{$b \leq t'$} le lien commence avant la fin de l'intervalle $[t,t']$.
 \item \textbf{$e \geq t$} le lien finit après le début de l'intervalle $[t,t']$.
@@ -147,7 +147,7 @@ d(t, E')=2|L_{t}(E')| \,.
 Avec ces définitions, il est aussi possible définir les notions de degré temporel interne, $d_{in}(t,V') = 2 |L_{t}(V'\times V')|$, et externe $d_{out}(t,V')=|L_{t}(V'\times V \setminus V')|$.
 Les degrés temporels d'un n\oe ud, d'un ensemble de n\oe uds ou de liens peuvent se calculer rapidement.
 Il faut pour ce faire considérer les liens appartenant au sous-flot induit respectivement par un n\oe ud, ensemble de liens ou un ensemble de paires de n\oe uds.
-Puis, il faut d'abord transformer les liens $(b,e,u,v)$ du sous-flot en une suite de modifications de la forme $(b,+1)$ et $(e,-1)$ ce qui a une complexité en $O(m)$.
+Il faut d'abord transformer les liens $(b,e,u,v)$ du sous-flot en une suite de modifications de la forme $(b,+1)$ et $(e,-1)$ ce qui a une complexité en $O(m)$.
 Une fois cette liste créée, il suffit d'ordonner ces modifications dans l'ordre temporel, ce qui peut être fait en temps $O(2m\log(2m))$, puis d'itérer sur l'ensemble des modification en sommant au fur et à mesure les apparitions et disparitions de lien, ce qui peut être fait en temps $O(2m)$.
 Ainsi, le degré temporel à un instant $t$ est égal à la valeur de la somme des modification à cet instant.
 \bigskip
@@ -215,7 +215,7 @@ Le calcul de la densité d'un flot est linéaire en le nombre de liens car il es
 	$L_{t}$ & sous-flot induit par un instant $t$\\
 	$d_t(v)$ & degré de $v$ à l'instant $t$\\
 	$d_t(V)$ & somme des degrés des n\oe uds dans $V$ à l'instant $t$\\
-	$d_{in}(t,V')$ somme des degrés internes des n\oe uds dans $V'$ à l'instant $t$\\
+	$d_{in}(t,V')$ & somme des degrés internes des n\oe uds dans $V'$ à l'instant $t$\\
 	$d_{t..t'}(v)$ & degré moyen de $v$ sur $[t,t']$\\
 	$D_{t..t'}(u)$ & somme pondérée du degré de $v$ sur $[t,t']$\\
 	$d(v)$ & degré moyen $v$ sur $T$\\
@@ -235,7 +235,7 @@ Ainsi, il sera possible à n'importe qui de calculer ces notions.
 La démarche, bien que beaucoup plus modeste, est similaire à ce qui est fait pour les graphes avec \emph{networkx}\,\footnote{\url{https://networkx.github.io/}}.
 
 L'implémentation est en \emph{C++} pour la rapidité avec un export en \emph{python} pour faciliter l'utilisation.
-Le code de cette implémentation est en ligne\,\footnote{\url{XXX}}\note{A Mettre} et la documentation également\,\footnote{\url{XXX}}\note{A Mettre}.
+Le code de cette implémentation est en ligne\,\footnote{\url{https://bitbucket.org/nGaumont/liblinkstream/}} et la documentation également\,\footnote{\url{https://linkstream.ngaumont.fr/}}.
 Il est, par exemple, possible avec la librairie de lire un flot de liens et de calculer la densité moyenne d'un sous-ensemble de n\oe uds sur un intervalle arbitraire.
 Comme le but de cette librairie est d'être généraliste, l'implémentation n'est pas optimisée pour un calcul spécifique.
 Ainsi, il est aisé d'étendre la librairie afin de permettre le calcul de nouvelles notions.
@@ -258,10 +258,10 @@ La lisibilité de ce genre de visualisation est très dépendante de l'ordre att
 C'est pourquoi avec notre outil, il est également possible de fixé un ordre arbitraire.
 Comme il peut être fastidieux d'écrire un ordre, nous avons implémenté un algorithme rudimentaire pour améliorer l'ordonnancement des n\oe uds dans la visualisation.
 Afin de pouvoir améliorer une visualisation, il est nécessaire de pouvoir quantifier la complexité de la visualisation actuelle.
-Empiriquement, on se rend vite compte que ce sont les long traits verticaux qui rendent la visualisation complexe.
+Empiriquement, on se rend vite compte que ce sont les longs traits verticaux qui rendent la visualisation complexe.
 Il faut donc les limiter.
 
-C'est pourquoi nous décidons d'évaluer une ordonnancement en fonction de la somme des longueurs des traits représentant les liens.
+C'est pourquoi nous décidons d'évaluer un ordonnancement en fonction de la somme des longueurs des traits représentant les liens.
 Avec la fonction d'ordre $Ordre: V \longmapsto \mathbb{N}$, trouver le meilleur ordonnancement se résume à résoudre:
 
 \begin{equation}

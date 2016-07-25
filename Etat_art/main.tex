@@ -3,7 +3,7 @@
 \minitoc
 \label{chap:etat_art}
 Dans cette thèse, nous étudions deux axes de recherches liés aux graphes qui sont orthogonaux.
-Mais avant de présenter ces deux axes de recherches dans les sections~\ref{sec:intro_communaute} et \ref{sec:intro_extension_temporelle}, nous revenons dans la section~\ref{sec:def_graphe} sur quelques définitions et notations utiles pour manipuler des graphes.
+Avant de présenter ces deux axes de recherches dans les sections~\ref{sec:intro_communaute} et \ref{sec:intro_extension_temporelle}, nous revenons dans la section~\ref{sec:def_graphe} sur quelques définitions et notations utiles pour manipuler des graphes.
 
 Le premier axe de recherche est la détection de structures dans les graphes et plus particulièrement de communautés.
 Une communauté est une partie du graphe telle qu'il existe beaucoup de liens à l'intérieur de la communauté et moins avec le reste du graphe.
@@ -171,7 +171,7 @@ Il est également important de noter l'existence d'implémentations librement ac
 }
 
 
-\section{Communauté dans les graphes}
+\section{Communautés dans les graphes}
 \label{sec:intro_communaute}
 
 Ce champ de recherche est très vaste et il est illusoire de vouloir énumérer les méthodes existantes dans ce domaine car elles sont extrêmement nombreuses et les caractéristiques voulues d'une communauté peuvent varier selon le contexte~\cite{Leskovec2008,Coscia2011,Yang2015,Jeub2015}.
@@ -182,7 +182,7 @@ Il existe également une troisième catégorie qui est la détection de communau
 
 \subsection{Parititons de n\oe uds}
 \label{subsec:Part_noeuds}
-Afin de mieux comprendre ce que peux capturer une partition de n\oe uds, il est plus facile de partir d'un exemple.
+Afin de mieux comprendre ce que peut capturer une partition de n\oe uds, il est plus facile de partir d'un exemple.
 Dans l'étude de Stehlé~\emph{et al.}~\cite{Stehle2011}, des enfants d'une école primaire ont eu pendant 2 jours des capteurs enregistrant lorsque deux enfants sont à une distance de moins de 1 mètre 50.
 Ce dispositif permet de mesurer les interactions entre élèves et de construire le graphe des relations à l'école.
 Un lien existe entre deux élèves s'ils ont interagi au moins une fois ensemble.
@@ -231,7 +231,7 @@ Détecter des communautés se traduit ainsi en trouver des groupes qui s'éloign
 
 Ce changement est astucieux car il est relativement aisé de définir des graphes n'ayant pas de structure.
 Il suffit de créer des graphes complètement aléatoires~\cite{Erdos1959} où les liens du graphes sont tirés de manière uniforme.
-Afin que les graphes aléatoires puissent être comparé au graphe initial, des contraintes sont généralement ajoutées et donnent lieu à différents modèles nuls.
+Afin que les graphes aléatoires puissent être comparés au graphe initial, des contraintes sont généralement ajoutées et donnent lieu à différents modèles nuls.
 Le premier modèle nul de graphe est celui de Erdös-Rényi~\cite{Erdos1959} où le nombre de liens et le nombre de n\oe uds des graphes aléatoires doivent être les mêmes que dans le graphe initial.
 Un autre modèle très couramment utilisé est le modèle de configuration~\cite{Bender1978a}.
 Dans ce modèle, la distribution des degrés est également fixe.
@@ -248,7 +248,7 @@ La modularité est définie de la manière suivante pour une partition $\mathcal
 Q(\mathcal{C}) = \dfrac{1}{2m}\sum_{i,j \in V} \left(A_{ij} - \dfrac{d_id_j}{2m}\right)\ \delta_{\mathcal{C}(i)=\mathcal{C}(j)} \ ,
 \end{equation}
 où $\delta_{C(i)=C(j)}$ est égale à $1$ si $i$ et $j$ sont dans la même communauté et $0$ sinon.
-Il s'agit pour deux n\oe uds d'une même communauté de comparer la présence ou l'absence d'un lien, $A_{ij}$, à la probabilité que ces des n\oe uds soient reliés dans le modèle de configuration, $\dfrac{d_id_j}{2m}$.
+Il s'agit pour deux n\oe uds d'une même communauté de comparer la présence ou l'absence d'un lien, $A_{ij}$, à la probabilité que ces n\oe uds soient reliés dans le modèle de configuration, $\dfrac{d_id_j}{2m}$.
 L'idée sous-jacente est que les n\oe uds d'une communauté devraient partager plus de liens qu'espéré dans le modèle de configuration.
 De très nombreux travaux ont par la suite étudié les caractéristiques de la modularité et son optimisation.
 Tout d'abords, il a été montré que l'optimisation de la modularité est un problème NP-Complet~\cite{Brandes2007}.
@@ -278,7 +278,7 @@ Trouver une partition de n\oe uds dans ce contexte est alors équivalent à trou
 
 Dans le SBM, tout les n\oe uds sont considérés comme équivalents en particulier vis-a-vis du degré ce qui n'est pas le cas dans beaucoup de graphes provenant de données réelles.
 C'est pourquoi une version tenant compte du degré des n\oe uds a été proposée: le Degree-corrected Stochastic Block Model (DSBM)~\cite{Karrer2011}.
-Enfin d'après de récents travaux~\cite{Newman2016}, il semblerait que le DSBM et l'optimisation de la modularité soient liés.
+Enfin d'après des récents travaux~\cite{Newman2016}, il semblerait que le DSBM et l'optimisation de la modularité soient liés.
 
 \subsubsection{Méthodes utilisant des marches aléatoires}
 Il existe d'autres approches que celles utilisant un modèle nul ou un modèle génératif.
@@ -333,7 +333,7 @@ Ainsi dans l'exemple dans la figure~\ref{fig:ex_overlap_communaute}, les n\oe ud
 \footnotetext{Image provenant de \url{https://en.wikipedia.org/wiki/Clique_percolation_method}.}
 
 Une fois encore, la littérature est très vaste dans ce domaine et nous ne ferons pas une liste exhaustive des méthodes existantes.
-Il existe de nombreux état-de-l'art dans le domaine~\cite{ Kanawati2014, Xie2013,Bandyopadhyay2015, Hric2014a}.
+Il existe de nombreux état de l'art dans le domaine~\cite{ Kanawati2014, Xie2013,Bandyopadhyay2015, Hric2014a}.
 
 Une des premières méthodes de détection de couverture de n\oe uds est la \emph{Clique Percolation Method} (CPM)~\cite{Palla2005}.
 L'algorithme CPM repose sur le principe de transitivité qui serait à l'origine des communautés: si $i$ et $j$ sont reliés par un lien, alors un n\oe ud $k$ qui serait relié à $i$ aurait une forte chance d'être également connecté à $j$.
@@ -356,7 +356,7 @@ Dans~\cite{Gopalan2013a}, les auteurs utilisent la même méthode mais en échan
 Il existe d'autres méthodes à base de modèle génératif~\cite{Ball2011,Yang2013}.
 Ces méthodes se basent sur des graphes d'affiliations~\cite{BreigerRonald1974}.
 Un graphe d'affiliation est un graphe biparti entre les n\oe uds d'une part et les communautés de l'autre part.
-Dans la méthode de Ball~\emph{et al.}~\cite{Ball2011}, ce graphe d'affiliation est pondéré et la pondération représente la propension d'un n\oe ud à créer des liens dans un groupe donné tant dis que pour Yang~\emph{et al.} il s'agit du facteur d'appartenance du n\oe uds au groupe.
+Dans la méthode de Ball~\emph{et al.}~\cite{Ball2011}, ce graphe d'affiliation est pondéré et la pondération représente la propension d'un n\oe ud à créer des liens dans un groupe donné tandis que pour Yang~\emph{et al.} il s'agit du facteur d'appartenance du n\oe ud au groupe.
 Une fois le graphe d'affiliation défini, il est nécessaire de savoir recréer la matrice d'adjacence et, en ce sens, ces méthodes se rapprochent des méthodes de factorisation en matrices non-négatives~\cite{Lee1999}.
 Le but de la factorisation non-négative d'une matrice donnée est d'être capable de trouver deux matrices dont les entrées sont non-négatives telles que leur combinaison permette de retrouver la matrice initiale.
 
@@ -371,7 +371,7 @@ Le principal changement est qu'un n\oe ud ne stocke plus un unique label mais so
 Ainsi à la fin de l'algorithme, il suffit de choisir les labels les plus fréquents.
 Cependant ce mécanisme de propagation change radicalement l'idée initiale.
 En effet, la diffusion d'un label n'est plus directement contrainte par la diffusion des autres labels.
-Dans cette nouvelle configuration, il est possible qu'un label soit présent dans tout les n\oe uds.
+Dans cette nouvelle configuration, il est possible qu'un label soit présent dans tous les n\oe uds.
 De plus selon les auteurs de ces méthodes, des communautés non connexes peuvent apparaître ce qui nécessite l’ajout d’un mécanisme de \emph{post-processing}.
 
 
@@ -395,10 +395,10 @@ Danisch~\emph{et al.}~\cite{Danisch2012} utilise une méthode de diffusion pour 
 Ces méthodes ne sont cependant pas à même d'évaluer les communautés qu'elles trouvent.
 \bigskip
 
-D'autres méthodes prennent le contre pied des méthodes de proximité en utilisant des fonctions de qualité locales.
+D'autres méthodes prennent le contre-pied des méthodes de proximité en utilisant des fonctions de qualité locales.
 Il s'agit d'algorithmes qui initialement considèrent de très petites communautés puis essayent de les étendre itérativement en ajoutant des n\oe uds.
 Afin de ne pas étendre un groupe indéfiniment, un ajout n'est fait que s'il améliore la fonction de qualité locale.
-Ainsi dans ce type d'algorithme, il y a principalement deux critères important:
+Ainsi dans ce type d'algorithme, il y a deux critères important:
 le choix des communautés initiales et le critère d'évaluation.
 Dans la majorité des cas, chaque n\oe ud constitue initialement une communauté. 
 OSLOM\cite{Lancichinetti2011a} diffère de cette situation car OSLOM utilise comme point de départ une partition trouvée par l'algorithme de Louvain ou par infomap.
@@ -448,14 +448,14 @@ Dans cet exemple, deux élèves sont reliés dans le graphe s'ils ont interagi a
 Comme la capture n'a duré que deux jours, il est fort probable que les élèves n'aient pas changé d'habitude durant la capture.
 En étudiant le graphe agrégé, il est possible de mettre en avant l'organisation générale des élèves mais déjà de l'information a été perdue.
 En effet, il n'est pas possible de différencier le comportement observé le matin de celui observé le soir car l'ensemble des interactions sont agrégées dans le graphe.
-Ce n'est pas tout, imaginons que la capture ait duré plusieurs mois voir plusieurs années.
+Ce n'est pas tout, imaginons que la capture ait duré plusieurs mois voire plusieurs années.
 Dans ce cas de figure, il ne sera plus possible de dégager un comportement général des élèves car il aura changé durant ce laps de temps.
 En particulier, de nouveaux groupes d'amis se seront formés et d'autres auront disparu.
 Tout ces changements impactent le graphe agrégé et tendent au fur et à mesure à le rapprocher d'une clique ce qui le rend complètement inexploitable.
 Le temps est donc une dimension qu'il est nécessaire de prendre en compte.
 
 Le domaine de l'épidémiologie est un très bon exemple de l'importance du temps.
-Un modèle épidémique modélise la propagation d'une maladie dans une population en fonction des contacts qui existent.
+Un modèle épidémique représente la propagation d'une maladie dans une population en fonction des contacts qui existent.
 Il est donc tout naturel de s'appuyer initialement sur un graphe où les n\oe uds représentent des personnes et les liens représentent les interactions entre personnes.
 En plus du graphe, il est nécessaire d'ajouter l'état de chaque n\oe ud, \emph{e.g.} sain ou infecté.
 Ainsi, un n\oe ud sain ne peut devenir infecté que s'il est relié à un n\oe ud infecté dans le graphe.
@@ -471,7 +471,7 @@ L'ajout du temps impacte donc fortement les résultats obtenus dans le contexte 
 Une fois reconnue l'importance du temps, il est nécessaire de trouver un nouveau formalisme étendant la théorie des graphes pour en tenir compte.
 Nous présentons maintenant différentes extensions possibles de la théorie des graphes, dans les sous-sections~\ref{subsec:perte_info} et \ref{subsec:pasperte_info}.
 Nous détaillons également comment la recherche de communautés se transpose dans ces nouveaux formalismes et plus généralement quels sont les problèmes qu'ils permettent de résoudre.
-Des états-de-l'art dans ce domaine ont d'ailleurs déjà été esquissés~\cite{Boccaletti2014,Cazabet2014,hartmann2014clustering}.
+Des états de l'art dans ce domaine ont d'ailleurs déjà été esquissés~\cite{Boccaletti2014,Cazabet2014,hartmann2014clustering}.
 
 \subsection{Extensions avec pertes d'informations temporelles}
 \label{subsec:perte_info}
@@ -504,9 +504,9 @@ Cette manière de procéder se rapproche des travaux de Lamport~\cite{Lamport197
 \paragraph{Détection de communautés}
 Dans ce contexte de série de graphes, il y a eu assez tôt des méthodes de détection de communautés~\cite{Hopcroft2004,Sun2007,Lin2008,Asur2009}.
 Il est, en effet, assez naturel d'appliquer une méthode de détection statique sur chaque graphe puis d'essayer de faire du suivi de communautés.
-Le suivi de communautés consiste à comprendre comme une communauté donnée évolue, étant donné une série de graphes et une série de partitions.
+Le suivi de communautés consiste à comprendre comment une communauté donnée évolue, étant donné une série de graphes et une série de partitions.
 Palla~\emph{et al.}~\cite{Palla2007} ont été parmi les premiers à décrire les évolutions possibles d'une communauté.
-Muni d'indicateurs de similarité tels que l'indice de Jaccard, voir~\ref{def:graphe_comparaison}, il est possible de trouver les communautés les plus proches aux instants précédent et suivant.
+Muni d'indicateurs de similarité tels que l'indice de Jaccard, voir la section~\ref{def:graphe_comparaison}, il est possible de trouver les communautés les plus proches aux instants précédent et suivant.
 \`A partir de ces informations, six type d'évolutions d'une communauté sont définis:
 \begin{description}
 \item[Naissance] Une nouvelle communauté apparait.
@@ -518,7 +518,7 @@ Muni d'indicateurs de similarité tels que l'indice de Jaccard, voir~\ref{def:gr
 \end{description}
 
 Ce type de méthodes souffre souvent de l'instabilité des méthodes de détection~\cite{Aynaud2010,Harenberg2014a}.
-Si les partitions changent complètement entre deux graphes consécutif, alors il est difficile de faire un réel suivi de communautés.
+Si les partitions changent complètement entre deux graphes consécutifs, alors il est difficile de faire un réel suivi de communautés.
 C'est pourquoi des méthodes essayent de forcer une certaine stabilité de la partition en ajoutant un coût de transition~\cite{Chakrabarti2006,Chen2013,Kalavathi2015}.
 Une approche détournée pour garder une certaine stabilité est d'utiliser la partition trouvée précédemment comme base de recherche pour l'intervalle suivant~\cite{Lancichinetti2011a}.
 
@@ -671,8 +671,8 @@ Il y a donc plusieurs variantes temporelles d'un même motif dans un graphe.
 Prenons l'exemple d'un chemin entre quatre n\oe uds $A$, $B$, $C$ et $D$ qui est représenté dans le graphe par  $\{(A,B), (B,C), (C,D)\}$.
 Dans un flot de liens, il existe deux variantes à ce motif soit
 $\{(t_1,A,B), (t_2,B,C), (t_3,C,D)\}$ soit $\{(t_1,A,B), (t_2,C,D), (t_3,B,C)\}$ avec $t_1<t_2<t_3$.
-Dans un cas,  une information peut être propagée au fur et à mesure de $A$ vers $D$ tant dis que dans l'autre ce n'est pas possible.
-L'étude de la fréquence d'apparition de ces motifs dans le cas temporel permet d'observer si le flot de liens à une structure particulière. 
+Dans un cas,  une information peut être propagée au fur et à mesure de $A$ vers $D$ tandis que dans l'autre ce n'est pas possible.
+L'étude de la fréquence d'apparition de ces motifs dans le cas temporel permet d'observer si le flot de liens a une structure particulière. 
 
 
 
