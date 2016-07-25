@@ -6,14 +6,14 @@ Dans cette thèse, nous étudions deux axes de recherches liés aux graphes qui 
 Mais avant de présenter ces deux axes de recherches dans les sections~\ref{sec:intro_communaute} et \ref{sec:intro_extension_temporelle}, nous revenons dans la section~\ref{sec:def_graphe} sur quelques définitions et notations utiles pour manipuler des graphes.
 
 Le premier axe de recherche est la détection de structures dans les graphes et plus particulièrement de communautés.
-Une communauté est une partie du graphe tel qu'il existe beaucoup de liens à l'intérieur de la communauté et moins avec le reste du graphe.
-Il n'existe cependant aucune définition unique et exacte d'une communauté.
+Une communauté est une partie du graphe telle qu'il existe beaucoup de liens à l'intérieur de la communauté et moins avec le reste du graphe.
+Cependant aucune définition ne fait l'unanimité.
 La notion de communauté dépend du contexte et de la méthode.
-Malgré cette définition floue, des structures communautaires ont été trouvées dans de nombreux graphes dans plusieurs domaines tel que le réseau constitué des régions du cerveau \cite{DeReus2014}, un réseau de distribution d'eau \cite{DiNardo2015} et un réseau d'interactions d'animaux \cite{Farine2015}.
+Malgré cette définition floue, des structures communautaires ont été trouvées dans de nombreux graphes dans plusieurs domaines tels que le réseau constitué des régions du cerveau \cite{DeReus2014}, un réseau de distribution d'eau \cite{DiNardo2015} et un réseau d'interactions d'animaux \cite{Farine2015}.
 Ces notions de communautés et les méthodes de détection sont définies dans la section~\ref{sec:intro_communaute}.
 
 Le second axe de recherche est la prise en compte du temps dans la théorie des graphes.
-La première approche fût de complètement ignorer l'information temporelle et de considérer que tout les liens apparaissent en même temps; on parle alors de graphe agrégé.
+La première approche fût de complètement ignorer l'information temporelle et de considérer que tous les liens apparaissent en même temps; on parle alors de graphe agrégé.
 Cependant, la modélisation d'un réseau sous la forme d'un graphe agrégé manque de pertinence, lorsque le réseau change trop au cours du temps~\cite{Holme2015b}.
 Si tel est le cas, certaines structures présentes dans le graphe peuvent n'être que des artefacts de l'agrégation temporelle.
 Imaginons par exemple un graphe représentant les alliances politiques dans un pays sur une longue période.
@@ -48,7 +48,7 @@ Avec ces notations, nous définissons les notions suivantes:
 \item[Arbre] Un arbre est le graphe connexe le moins dense et il est constitué de $n-1$ liens pour $n$ n\oe uds;
 \item[Clique] Une clique, aussi appelée graphe complet, est le graphe le plus dense et elle est composée de $\dfrac{n(n-1)}{2}$ liens pour $n$ n\oe uds;
 \item[Sous-graphe] Un graphe $G'=(V',E')$ est un sous-graphe de $G$ si et seulement si $V' \subseteq V$ et $E' \subseteq E$;
-\item[Graphe induit] Le graphe induit par un ensemble de n\oe uds $V' \subseteq V$ est défini par $V'$ et $E'= E \cap V' \times V'$.  
+\item[Graphe induit] Le graphe induit par un ensemble de n\oe uds $V' \subseteq V$ est défini par $V'$ et $E'= E \cap (V' \times V')$.  
 \end{description}
 
 
@@ -94,7 +94,7 @@ Nous listons les notations utilisées dans le tableau~\ref{tab:notation_groupe_n
 
 \paragraph{Partitions et couvertures}
 Nous définissons ici les structures de partitions et de couvertures appliquées au cadre spécifique des graphes.
-Une partition de n\oe uds, $\mathcal{V}$, est un ensemble d'ensembles de n\oe uds: $\mathcal{V}= \{V_1,..., V_k\}$ tel que $V_i \subseteq V\ \forall i \in [1,k]$ et tel que:
+Une partition de n\oe uds, $\mathcal{V}$, est un ensemble d'ensembles de n\oe uds: $\mathcal{V}= \{V_1,..., V_k\}$ tel que $\forall i \in [1,k]\ V_i \subseteq V$ et tel que:
 \begin{enumerate}
 \item La partition \emph{recouvre} l'ensemble des n\oe uds: $\bigcup_{i} V_i = V$.
 \item Les ensembles de n\oe uds sont disjoints: $V_i \cap V_j = \emptyset\ \forall i,j \in [1,k],\ i \neq j$.
@@ -107,7 +107,8 @@ Ainsi, une couverture de n\oe uds, $\mathcal{V}$, est aussi un ensemble d'ensemb
 L'union des ensembles doit également être égale à $V$ mais en revanche deux ensembles de n\oe uds peuvent partager un n\oe ud: $\exists i,j \in [1,k],\ i \neq j\ V_i \cap V_j \neq \emptyset$.
 Une couverture est parfois aussi appelée partition chevauchante.
 
-Nous avons détaillé les notions de partitions et couvertures de n\oe uds mais les même définitions valent pour les partitions et couvertures de liens.
+Nous avons détaillé les notions de partitions et couvertures de n\oe uds mais les mêmes définitions valent pour les partitions et couvertures de liens.
+Enfin, il existe d'autres structures possibles comme les structures non-exhaustives où un élément peut n'appartenir à aucun ensemble.
 
 \subsection{Comparaison de partitions et couvertures}
 Il est souvent utile de pouvoir comparer deux partitions ou deux couvertures entre elles.
@@ -116,8 +117,8 @@ Il existe pour ce faire des méthodes tirant parti de la structure d'ensembles e
 
 \paragraph{Approches ensemblistes}
 \label{def:graphe_comparaison}
-Il est possible de comparer deux ensembles $X$ et $Y$ en utilisant l'indice de Jaccard: $\mathbb{J}(X,Y) = \dfrac{|X \cap Y|}{|X \cup Y|}$.
-Avec l'indice de Jaccard, il est possible de mesurer la similarité entre deux partitions $\mathcal{X}$ et $\mathcal{Y}$:
+Il est possible de comparer deux ensembles $X$ et $Y$ en utilisant l'indice de Jaccard, $\mathbb{J}(X,Y) = \dfrac{|X \cap Y|}{|X \cup Y|}$, ou le \emph{F1 score} $F_1(X,Y) = 2\dfrac{|X \cap Y|}{|X| + |Y|}$.
+Avec l'indice de Jaccard ou le \emph{F1 score}, il est possible de mesurer la similarité entre deux partitions $\mathcal{X}$ et $\mathcal{Y}$:
 \begin{equation}
 sim(\mathcal{X},\mathcal{Y})=\frac{1}{|\mathcal{X}|}\sum_{X \in \mathcal{X}}\max_{Y\in \mathcal{Y}}\mathbb{J}(X,Y).
 \end{equation}
@@ -139,7 +140,7 @@ Avec ces notations, le \emph{Rand Index} est défini de la manière suivante:
 \begin{equation}
 RI(\mathcal{X},\mathcal{Y}) = \dfrac{a_{11} + a_{00}}{a_{11}+a_{01}+a_{10}+ a_{00}}
 \end{equation}
-Il se peut que, par chance, deux partitions classent de la même manière une paire de n\oe uds.
+Il se peut que, par chance, deux partitions classent de la même manière une paire de n\oe uds, notamment à cause de $a_{00}$.
 C'est pourquoi une version ajustée du \emph{Rand Index} (ARI) a été proposée~\cite{Hubert1985}.
 Le \emph{Rand Index} et sa version ajustée permettent de comparer des partitions.
 Porumbel~\emph{et al.}~\cite{Porumbel2011} ont proposé l'Omega Index qui est une extension de l'ARI pour les couvertures.
@@ -149,10 +150,10 @@ On peut considérer que l'assignation d'un élément à un ensemble est une vari
 Dans ce cas, la probabilité d'un élément d'être dans un ensemble $X \in \mathcal{X}$ est $P(X)= n_X/|V|$.
 De manière similaire, la probabilité jointe est $P(X,Y) = |X \cap Y|/|V|$.
 Avec ces définitions, il est possible de calculer l'entropie d'une partition, $H(\mathcal{X})$, l'entropie conditionnelle, $H(\mathcal{X}|\mathcal{Y})$ et l'information mutuelle $I(\mathcal{X},\mathcal{Y})$.
-Cette dernière est définie par $I(\mathcal{X}, \mathcal{Y}) = H(X) - H(\mathcal{X}|\mathcal{Y})$.
+Cette dernière est définie par $I(\mathcal{X}, \mathcal{Y}) = H(\mathcal{X}) - H(\mathcal{X}|\mathcal{Y})$.
 L'entropie, $H(\mathcal{X})$, et l'entropie conditionnelle, $H(\mathcal{X}|\mathcal{Y})$, sont définies dans le sens de Shanon par: 
 \begin{equation}
-H(\mathcal{X}) = - \sum_{X \in \mathcal{X}} P(X)log(P(X)),\quad H(\mathcal{X}|\mathcal{Y}) = -\sum_{X \in \mathcal{X},\ Y \in \mathcal{Y}} P(X, Y) log \dfrac{P(X,Y)}{P(Y)}.
+H(\mathcal{X}) = - \sum_{X \in \mathcal{X}} P(X)\log(P(X)),\quad H(\mathcal{X}|\mathcal{Y}) = -\sum_{X \in \mathcal{X},\ Y \in \mathcal{Y}} P(X, Y) \log \dfrac{P(X,Y)}{P(Y)}.
 \end{equation}
 Afin de normaliser l'information mutuelle, Danon~\emph{et al.}~\cite{Danon2005a} ont défini l'information mutuelle normalsée ($NMI_{shanon}$):
 \begin{equation}
@@ -174,7 +175,7 @@ Il est également important de noter l'existence d'implémentations librement ac
 \label{sec:intro_communaute}
 
 Ce champ de recherche est très vaste et il est illusoire de vouloir énumérer les méthodes existantes dans ce domaine car elles sont extrêmement nombreuses et les caractéristiques voulues d'une communauté peuvent varier selon le contexte~\cite{Leskovec2008,Coscia2011,Yang2015,Jeub2015}.
-Les méthodes se séparent tout de même en deux catégories selon si elles capturent une partition ou une couverture de n\oe uds.
+Les méthodes se séparent tout de même en plusieurs catégories selon qu'elles capturent une partition ou une couverture de n\oe uds.
 Ces deux structures correspondent à deux visions possibles de l'organisation d'un graphe et du réseau sous-jacent.
 Nous présentons ces deux catégories dans les sous-sections suivantes.
 Il existe également une troisième catégorie qui est la détection de communautés sous la forme de partitions de liens que nous traitons dans le chapitre~\ref{chap:Expected_Node}.
@@ -189,13 +190,13 @@ Une illustration du graphe obtenu est visible dans la figure~\ref{fig:ecole_prim
 La classe de chaque élève est également connue.
 Comme chaque élève appartient à une et une seule classe, les classes forment une partition des élèves.
 Cette partition est une bonne structure communautaire car on remarque que les élèves d'une même classe interagissent beaucoup entre eux mais peu avec les élèves des autres classes.
-Cela se remarque particulièrement bien pour la classe 3A.
+Cela se remarque particulièrement bien pour la classe $3A$.
 Il existe beaucoup de liens entre les élèves de la classe $3A$ mais aucun avec les élèves de la classe $5A$ par exemple.
 
 \begin{figure}
 \centering
 \includegraphics[width=0.6\linewidth]{img/Intro/ecole_primaire}
-\caption{Graphe de contact des enfants d'une école primaire. L'épaisseur du lien représente la durée de communication entre deux élèves. La couleur représente la classe de chaque élève. Les professeurs sont en gris.\protect\footnotemark}
+\caption{Graphe de contact des enfants d'une école primaire. L'épaisseur du lien représente la durée de communication entre deux élèves. La couleur représente la classe de chaque élève et la taille représente le degré du n\oe ud. Les professeurs sont en gris.\protect\footnotemark}
 \label{fig:ecole_primaire}
 \end{figure}
 \footnotetext{Image provenant de \url{http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0023176}.}
@@ -212,7 +213,7 @@ Puis, il est nécessaire de définir comment évaluer cette métrique.
 
 Il est possible d'utiliser une métrique en la normalisant par ses bornes minimum et maximum.
 Avec une métrique normalisée entre $0$ et $1$, un groupe est alors considéré comme très connecté si son évaluation est supérieure à un certain seuil.
-Par exemple, le nombre de lien entre $n$ n\oe uds peut être normalisé par le nombre de liens dans un arbre et dans une clique de taille $n$. 
+Par exemple, le nombre de liens entre $n$ n\oe uds peut être normalisé par le nombre de liens dans un arbre et dans une clique de taille $n$. 
 Cette approche n'est cependant pas adaptée pour la recherche de communautés car elle ne tient pas compte de la structure du graphe\,\footnote{Cette approche est plus appropriée dans la recherche des groupes les plus denses~\cite{Balalau2015}.}.
 Prenons l'exemple du graphe constitué d'une unique clique.
 Dans ce graphe, tout groupe de n\oe uds est également une clique et par conséquent tout groupe de n\oe uds a une évaluation parfaite de $1$.
@@ -247,7 +248,7 @@ La modularité est définie de la manière suivante pour une partition $\mathcal
 Q(\mathcal{C}) = \dfrac{1}{2m}\sum_{i,j \in V} \left(A_{ij} - \dfrac{d_id_j}{2m}\right)\ \delta_{\mathcal{C}(i)=\mathcal{C}(j)} \ ,
 \end{equation}
 où $\delta_{C(i)=C(j)}$ est égale à $1$ si $i$ et $j$ sont dans la même communauté et $0$ sinon.
-Il s'agit pour deux n\oe uds d'une même communauté de comparer la présence ou l'absence d'un lien,$A_{ij}$, à la probabilité que ces des n\oe uds soient reliés dans le modèle de configuration, $\dfrac{d_id_j}{2m}$.
+Il s'agit pour deux n\oe uds d'une même communauté de comparer la présence ou l'absence d'un lien, $A_{ij}$, à la probabilité que ces des n\oe uds soient reliés dans le modèle de configuration, $\dfrac{d_id_j}{2m}$.
 L'idée sous-jacente est que les n\oe uds d'une communauté devraient partager plus de liens qu'espéré dans le modèle de configuration.
 De très nombreux travaux ont par la suite étudié les caractéristiques de la modularité et son optimisation.
 Tout d'abords, il a été montré que l'optimisation de la modularité est un problème NP-Complet~\cite{Brandes2007}.
@@ -268,15 +269,16 @@ Nous avons défini précédemment la notion de modèle nul permettant de se comp
 Il est également possible de modéliser une structure communautaire puis de vérifier \emph{a posteriori} si ce modèle pourrait être à l'origine du graphe observé.
 Le problème de détection de communauté est alors un problème d'inférence qui est traité avec des outils statistiques tel que le \emph{stochastic block model} (SBM)~\cite{Holland1983a,Nowicki2001}.
 L'idée derrière le SBM est la suivante: la probabilité que deux n\oe uds soient reliés dépend uniquement de leur groupe respectif.
-Si le graphe a une structure communautaire, alors deux n\oe uds d'une même communauté devraient avoir une forte chance d'être connecté.
+Si le graphe a une structure communautaire\,\footnote{Il est également possible de représenter d'autres type de structures.}, alors deux n\oe uds d'une même communauté devraient avoir une forte chance d'être connecté.
 \`A l'inverse, deux n\oe uds de deux communautés différentes devraient avoir une probabilité assez faible d'être connecté.
 Le SBM est défini par de nombreux paramètres: le nombre de groupes, l'assignation d'un groupe à chaque n\oe ud et les probabilités d'interactions entre les groupes.
 Avec un jeu de paramètres donné, il est possible de calculer la vraisemblance que ce jeu de paramètres soit à l'origine du graphe.
 Trouver une partition de n\oe uds dans ce contexte est alors équivalent à trouver le jeu de paramètre qui est le plus vraisemblablement à l'origine du graphe.
 
+
 Dans le SBM, tout les n\oe uds sont considérés comme équivalents en particulier vis-a-vis du degré ce qui n'est pas le cas dans beaucoup de graphes provenant de données réelles.
 C'est pourquoi une version tenant compte du degré des n\oe uds a été proposée: le Degree-corrected Stochastic Block Model (DSBM)~\cite{Karrer2011}.
-Enfin d'après de récents travaux\cite{Newman2016}, il semblerait que le DSBM et l'optimisation de la modularité soient liés.
+Enfin d'après de récents travaux~\cite{Newman2016}, il semblerait que le DSBM et l'optimisation de la modularité soient liés.
 
 \subsubsection{Méthodes utilisant des marches aléatoires}
 Il existe d'autres approches que celles utilisant un modèle nul ou un modèle génératif.
@@ -359,7 +361,7 @@ Une fois le graphe d'affiliation défini, il est nécessaire de savoir recréer 
 Le but de la factorisation non-négative d'une matrice donnée est d'être capable de trouver deux matrices dont les entrées sont non-négatives telles que leur combinaison permette de retrouver la matrice initiale.
 
 Jusque récemment ce genre de technique généralisant le SBM ne pouvait s'appliquer qu'à des graphes relativement petits.
-Il semble cependant que les méthodes récentes~\cite{Gopalan2013a, Yang2013} arrivent à traiter des graphes ayant énormément de liens, de l'ordre $10^{9}$ à $10^{12}$ liens.
+Cependant les méthodes récentes~\cite{Gopalan2013a, Yang2013} arrivent à traiter des graphes ayant énormément de liens, de l'ordre $10^{9}$ à $10^{12}$ liens.
 
 
 
@@ -457,7 +459,7 @@ Un modèle épidémique modélise la propagation d'une maladie dans une populati
 Il est donc tout naturel de s'appuyer initialement sur un graphe où les n\oe uds représentent des personnes et les liens représentent les interactions entre personnes.
 En plus du graphe, il est nécessaire d'ajouter l'état de chaque n\oe ud, \emph{e.g.} sain ou infecté.
 Ainsi, un n\oe ud sain ne peut devenir infecté que s'il est relié à un n\oe ud infecté dans le graphe.
-Ce genre de modèles mette donc en avant un chemin de diffusion, \emph{e.g.} une suite de personnes transmettant la maladie à l'autre.
+Ce genre de modèles met donc en avant un chemin de diffusion, \emph{e.g.} une suite de personnes transmettant la maladie à l'autre.
 
 Afin d'illustrer ce phénomène, les premiers travaux~\cite{Vespignani2008}
 s'appuient sur un graphe d'interactions de personnes agrégeant toute l'information temporelle.
@@ -505,12 +507,13 @@ Il est, en effet, assez naturel d'appliquer une méthode de détection statique 
 Le suivi de communautés consiste à comprendre comme une communauté donnée évolue, étant donné une série de graphes et une série de partitions.
 Palla~\emph{et al.}~\cite{Palla2007} ont été parmi les premiers à décrire les évolutions possibles d'une communauté.
 Muni d'indicateurs de similarité tels que l'indice de Jaccard, voir~\ref{def:graphe_comparaison}, il est possible de trouver les communautés les plus proches aux instants précédent et suivant.
-\`A partir de ces informations, 5 type d'évolutions d'une communauté sont définis:
+\`A partir de ces informations, six type d'évolutions d'une communauté sont définis:
 \begin{description}
 \item[Naissance] Une nouvelle communauté apparait.
 \item[Agrandissement] La communauté continue d'exister et s'agrandit.
 \item[Fusion] Deux communautés fusionnent pour donner lieu à une nouvelle communauté.
 \item[Division] Une communauté se sépare en deux nouvelles communautés à l'étape suivante.
+\item[Retrescissement] La communauté continue d'exister mais perd quelques n\oe uds.
 \item[Mort] Une communauté cesse d'exister dans les graphes suivants.
 \end{description}
 
@@ -542,7 +545,7 @@ Cependant ce genre de décomposition semble moins expressive que les SBM.
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.7\linewidth]{img/Intro/multiplex.eps}
-\caption{Graphe multicouche avec trois couches représentant le temps.
+\caption{Graphe multicouches avec trois couches représentant le temps.
 Les liens pleins (resp. pointillés) sont les liens intra-couches (resp. inter-couches).}
 \label{fig:exemple_multiplex}
 \end{figure}
@@ -592,7 +595,7 @@ En pratique, cela revient à considérer sur chaque lien une fonction de présen
 Ainsi, il est possible de connaitre la structure de graphe à chaque instant.
 Ce formalisme est présenté dans différents travaux~\cite{Casteigts2011,Wehmuth2015} et illustré dans la figure~\ref{fig:exemple_evolving}.
 Dans cette figure, on voit apparaitre l'ordre de modification du graphe.
-Tout d'abord, les lien $(b,f)$ et $(c,d)$ disparaissent puis les liens $(b,e)$ et $(f,c)$ apparaissent chacun leur tour. 
+Tout d'abord, les liens $(b,f)$ et $(c,d)$ disparaissent puis les liens $(b,e)$ et $(f,c)$ apparaissent chacun leur tour. 
 
 \paragraph{Détection de communautés}
 Dans un graphe temporel, une structure de graphe existe à chaque instant.
@@ -627,7 +630,7 @@ Dans ces contextes, il n'est pas possible de supposer qu'à chaque instant une s
 Il faut donc un formalisme et des mesures qui s'adaptent à ce contexte.
 C'est pour répondre à ce besoin que le formalisme de flot de liens a été pensé.
 Le but est de construire un objet ne présupposant aucune structure et qui stocke toute l'information disponible.
-Même si le formalisme ne présuppose aucune contrainte structurel, il se peut en revanche que le reseau représenté en ait.
+Même si le formalisme ne présuppose aucune contrainte structurel, il se peut en revanche que le réseau représenté en ait.
 Par exemple dans les télécommunications, une personne ne peut appeler qu'une ou deux personnes en même temps.
 Plusieurs travaux~\cite{Holme2013a,Holme2015b,Holme2015e} font un tour d'horizon des méthodes existantes pour étudier les flots de liens qui sont souvent appelés \emph{temporal networks} mais il n'existe, à notre connaissance, qu'un seul travail donnant un fondement théorique solide au flot de liens.
 Il s'agit de Batagel~\emph{et al.}~\cite{Batagelj2016} qui se basent sur l'algèbre.
@@ -676,7 +679,7 @@ L'étude de la fréquence d'apparition de ces motifs dans le cas temporel permet
 \paragraph{Détection de structures}
 Il existe peu de méthodes détectant des structures décrivant l'ensemble d'un flot de liens.
 Rozenshtein~\emph{et al.}~\cite{rozenshtein2014} se penchent sur la détection de la zone la plus dense dans les flots de liens.
-Ils permettent de capturer un ensemble de n\oe uds et plusieurs intervalles de temps disjoints tel que ces n\oe uds sur ces intervalles aient le degré moyen le plus élevé dans le graphe agrégé sur ces intervalles.
+Ils permettent de capturer un ensemble de n\oe uds et plusieurs intervalles de temps disjoints tels que ces n\oe uds sur ces intervalles aient le degré moyen le plus élevé dans le graphe agrégé sur ces intervalles.
 Bien que la mesure utilisée ne tienne pas directement compte du temps, leur méthode permet ainsi de mettre en évidence une partie du flot de liens.
 
 Il existe également des travaux conduits dans l'équipe~\cite{Viard2016,viard:hal-01208330} sur la notion de clique  dans les flots de liens sans durée, c'est à dire un ensemble de $(b,b,u,v)$.
