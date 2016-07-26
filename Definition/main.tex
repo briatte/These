@@ -81,7 +81,7 @@ Par exemple avec $V' \subset V$, $L_{t..t'}(V'\,^2)$ est le sous-flot correspond
 
 \bigskip
 
-Un sous-flot induit par un ensemble de paires de n\oe uds peut être construit de manière quasiment linéaire au nombre de liens dans le sous-flot.
+Un sous-flot induit par un ensemble de paires de n\oe uds peut être construit de manière quasiment linéaire en nombre de liens dans le sous-flot.
 Pour un ensemble de paires de n\oe uds $S= V_1 \times V_2$, il suffit d'itérer sur l'ensemble des liens qui sont reliés aux n\oe uds de $V_1$ et de vérifier que l'autre n\oe ud du lien appartient à $V_2$. ce qui se fait en $O(\log(|V_2|))$ pour chaque lien.
 Le parcours des liens reliés à $V_1$ peut être fait en $O(|L(V_1 \times V)|)$ si chaque n\oe ud a la connaissance des liens auxquels il est relié.
 Si tel est le cas alors il est possible de construire le sous-flot en $O(|L(V_1\times V)|\log(|V_2|))$.
@@ -255,7 +255,7 @@ La couleur des liens a été fixée par l'utilisateur de la librairie.
 \end{figure}
 
 La lisibilité de ce genre de visualisation est très dépendante de l'ordre attribué aux n\oe uds sur l'axes des ordonnées.
-C'est pourquoi avec notre outil, il est également possible de fixé un ordre arbitraire.
+C'est pourquoi avec notre outil, il est également possible de fixer un ordre arbitraire.
 Comme il peut être fastidieux d'écrire un ordre, nous avons implémenté un algorithme rudimentaire pour améliorer l'ordonnancement des n\oe uds dans la visualisation.
 Afin de pouvoir améliorer une visualisation, il est nécessaire de pouvoir quantifier la complexité de la visualisation actuelle.
 Empiriquement, on se rend vite compte que ce sont les longs traits verticaux qui rendent la visualisation complexe.
