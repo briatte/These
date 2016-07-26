@@ -7,7 +7,7 @@
 
 Nous avons décrit rapidement le formalisme de flot de liens dans le chapitre précédent.
 Nous nous attachons maintenant à définir plus formellement les flots de liens et quelques notions utilisées dans le reste de cette thèse.
-Un flot de liens est défini par un triplet $L=(T,V,E)$ où $T=[\alpha, \omega]$ est un intervalle de temps, $V$ un ensemble de $n$ n\oe uds et $E\subseteq T\times T \times V \times V$ un ensemble de $m$ liens.
+Un flot de liens est défini par un triplet $L=(T,V,E)$ où $T=[\alpha, \omega]$ est un intervalle de temps, $V$ un ensemble de $n$ n\oe{}uds et $E\subseteq T\times T \times V \times V$ un ensemble de $m$ liens.
 Les liens de $E$ sont des quadruplets $(b,e,u,v)$, signifiant que le lien $(u, v)$ existe sur l'intervalle $[b,e] \subseteq [\alpha,\omega]$.
 Nous dénotons le nombre de liens dans le flot par $|L|=|E|=m$ et sa durée par $\bar{L}=\omega-\alpha$.
 De manière analogue, la durée d'un lien $l=(b,e,u,v) \in E$ est notée   $\bar{l}=e-b$.
@@ -40,12 +40,12 @@ Un flot de liens $L'=(T',V',E')$ est un sous-flot de $L$, ce que l'on note $L' \
 Cette notion est en particulier utile pour définir des sous-flots induits par différents ensembles d'éléments.
 Nous illustrons ces notions dans les figures~\ref{fig:exemple_sous_flot1} et \ref{fig:exemple_sous_flot2} avec le flot initial dans la figure~\ref{fig:exemple_sous_flot_init}.
  
-Nous définissons $L(E')$ , le sous-flot de $L$ induit par un ensemble de liens $E' \subset E$: $L(E')=([\beta(E'),\psi(E')],V(E'),E')$ où $V(E')=\{u, \exists (b,e,u,v) \in E\}$ est l'ensemble des n\oe uds induits par $E'$.
+Nous définissons $L(E')$ , le sous-flot de $L$ induit par un ensemble de liens $E' \subset E$: $L(E')=([\beta(E'),\psi(E')],V(E'),E')$ où $V(E')=\{u, \exists (b,e,u,v) \in E\}$ est l'ensemble des n\oe{}uds induits par $E'$.
 
  
-Nous définissons $L(S)$ , le sous-flot de $L$ induit par un ensemble de paires de n\oe uds $S \in V2$: $L(S)=([\beta(E'),\psi(E')],V',E')$ avec $E'= \{(b,e,u,v) \in E, (u,v) \in S\}$ et $V'=\{u, \exists (u,v) \in S\}$.
-Par convention, on note $L(v)= L(\{v\}\times V)$, le sous-flot induit par un n\oe ud.
-Un exemple de sous-flot induit par un n\oe ud est dans la figure~\ref{fig:exemple_sous_flot1}.
+Nous définissons $L(S)$ , le sous-flot de $L$ induit par un ensemble de paires de n\oe{}uds $S \in V2$: $L(S)=([\beta(E'),\psi(E')],V',E')$ avec $E'= \{(b,e,u,v) \in E, (u,v) \in S\}$ et $V'=\{u, \exists (u,v) \in S\}$.
+Par convention, on note $L(v)= L(\{v\}\times V)$, le sous-flot induit par un n\oe{}ud.
+Un exemple de sous-flot induit par un n\oe{}ud est dans la figure~\ref{fig:exemple_sous_flot1}.
 
 
 Enfin, nous définissons $L_{t..t'}=([t, t'], V,E')$, le sous-flot de $L$ induit par l'intervalle de temps $[t,t'] \subset [\alpha, \omega]$ où $E'= \{(b',e',u,v),\ \exists (b,e,u,v) \in E,\ b'= max(b,t),\ e'=min(e,t'),\ [b,e]\cap [t,t']\neq \emptyset\}$.
@@ -65,7 +65,7 @@ Ce graphe statique à un instant correspond au formalisme de graphe temporel pr�
 	\end{subfigure}\hspace{0.1\linewidth}
 	\begin{subfigure}{0.25\linewidth}
 		\includegraphics[width=\linewidth]{img/Intro/sous_flots1.eps}\hfill
-		\caption{Sous-flot induit par des n\oe uds: $L(b)$}	
+		\caption{Sous-flot induit par des n\oe{}uds: $L(b)$}	
 		\label{fig:exemple_sous_flot1}	
 	\end{subfigure}\hspace{0.1\linewidth}
 	\begin{subfigure}{0.25\linewidth}
@@ -77,17 +77,17 @@ Ce graphe statique à un instant correspond au formalisme de graphe temporel pr�
 \label{fig:exemple_sous_flot}
 \end{figure}
 Enfin, il est aussi possible de combiner ces notions.
-Par exemple avec $V' \subset V$, $L_{t..t'}(V'\,^2)$ est le sous-flot correspondant aux liens entre les n\oe uds de $V'$ sur l'intervalle $[t, t']$.
+Par exemple avec $V' \subset V$, $L_{t..t'}(V'\,^2)$ est le sous-flot correspondant aux liens entre les n\oe{}uds de $V'$ sur l'intervalle $[t, t']$.
 
 \bigskip
 
-Un sous-flot induit par un ensemble de paires de n\oe uds peut être construit de manière quasiment linéaire en nombre de liens dans le sous-flot.
-Pour un ensemble de paires de n\oe uds $S= V_1 \times V_2$, il suffit d'itérer sur l'ensemble des liens qui sont reliés aux n\oe uds de $V_1$ et de vérifier que l'autre n\oe ud du lien appartient à $V_2$. ce qui se fait en $O(\log(|V_2|))$ pour chaque lien.
-Le parcours des liens reliés à $V_1$ peut être fait en $O(|L(V_1 \times V)|)$ si chaque n\oe ud a la connaissance des liens auxquels il est relié.
+Un sous-flot induit par un ensemble de paires de n\oe{}uds peut être construit de manière quasiment linéaire en nombre de liens dans le sous-flot.
+Pour un ensemble de paires de n\oe{}uds $S= V_1 \times V_2$, il suffit d'itérer sur l'ensemble des liens qui sont reliés aux n\oe{}uds de $V_1$ et de vérifier que l'autre n\oe{}ud du lien appartient à $V_2$. ce qui se fait en $O(\log(|V_2|))$ pour chaque lien.
+Le parcours des liens reliés à $V_1$ peut être fait en $O(|L(V_1 \times V)|)$ si chaque n\oe{}ud a la connaissance des liens auxquels il est relié.
 Si tel est le cas alors il est possible de construire le sous-flot en $O(|L(V_1\times V)|\log(|V_2|))$.
 Il faut tout de fois distinguer le cas où $S= V_1 \times V$ car il n'est alors pas nécessaire de faire la vérification et la complexité est alors $O(|L(V_1\times V)|)$.
 
-Pour l'intervalle de temps, la situation est plus compliquée car il n'est pas facile de connaitre l'ensemble des liens existant à un instant donné.
+Pour l'intervalle de temps, la situation est plus compliquée car il n'est pas facile de connaître l'ensemble des liens existant à un instant donné.
 Il est possible de les trier par ordre d'apparition ou de disparition mais il n'y a pas d'ordre total sur la présence des liens.
 Pour qu'un lien, $l= (b,e,u,v)$ appartienne au sous-flot temporel sur $[t,t']$, il doit remplir les deux conditions suivantes:
 \begin{itemize}
@@ -118,7 +118,7 @@ Nous avons défini des outils pour manipuler et extraire des sous-flots d'un flo
 Nous nous intéressons maintenant à étendre quelques notions existantes dans les graphes, en particulier le degré et la densité.
 
 
-Il est assez trivial de définir le degré temporel d'un n\oe ud $u$ de la manière suivante:
+Il est assez trivial de définir le degré temporel d'un n\oe{}ud $u$ de la manière suivante:
 \begin{equation}
 d(t,u)= |L_t(u)|= \sum_{v \in V} \zeta_{L}(u,v,t).
 \end{equation}
@@ -129,12 +129,12 @@ Un exemple de degré temporel est présenté dans la figure~\ref{fig:exemple_deg
 \begin{figure}
 \centering
 \includegraphics[width=0.35\linewidth]{img/Intro/degre2.eps}
-\caption{Degré temporel du n\oe ud $b$ dans le flot de liens dans la figure~\ref{fig:exemple_sous_flot_init} qui est également rappelé en grisé dans cette figure.
+\caption{Degré temporel du n\oe{}ud $b$ dans le flot de liens dans la figure~\ref{fig:exemple_sous_flot_init} qui est également rappelé en grisé dans cette figure.
 }
 \label{fig:exemple_degre}
 \end{figure}
 
-De manière analogue aux graphes, il est également possible de définir le degré temporel d'un ensemble de n\oe uds, $d_t(V')$ , ou d'un ensemble de liens, $d_t(E')$:
+De manière analogue aux graphes, il est également possible de définir le degré temporel d'un ensemble de n\oe{}uds, $d_t(V')$ , ou d'un ensemble de liens, $d_t(E')$:
 
 \begin{equation}
 d(t, V') = \sum_{v \in V'} d(t,v) = 2 |L_{t}(V'\times V')|+ |L_{t}(V'\times V \setminus V')|\,,
@@ -145,8 +145,8 @@ d(t, E')=2|L_{t}(E')| \,.
 \end{equation}
 
 Avec ces définitions, il est aussi possible définir les notions de degré temporel interne, $d_{in}(t,V') = 2 |L_{t}(V'\times V')|$, et externe $d_{out}(t,V')=|L_{t}(V'\times V \setminus V')|$.
-Les degrés temporels d'un n\oe ud, d'un ensemble de n\oe uds ou de liens peuvent se calculer rapidement.
-Il faut pour ce faire considérer les liens appartenant au sous-flot induit respectivement par un n\oe ud, ensemble de liens ou un ensemble de paires de n\oe uds.
+Les degrés temporels d'un n\oe{}ud, d'un ensemble de n\oe{}uds ou de liens peuvent se calculer rapidement.
+Il faut pour ce faire considérer les liens appartenant au sous-flot induit respectivement par un n\oe{}ud, ensemble de liens ou un ensemble de paires de n\oe{}uds.
 Il faut d'abord transformer les liens $(b,e,u,v)$ du sous-flot en une suite de modifications de la forme $(b,+1)$ et $(e,-1)$ ce qui a une complexité en $O(m)$.
 Une fois cette liste créée, il suffit d'ordonner ces modifications dans l'ordre temporel, ce qui peut être fait en temps $O(2m\log(2m))$, puis d'itérer sur l'ensemble des modification en sommant au fur et à mesure les apparitions et disparitions de lien, ce qui peut être fait en temps $O(2m)$.
 Ainsi, le degré temporel à un instant $t$ est égal à la valeur de la somme des modification à cet instant.
@@ -163,8 +163,8 @@ Lorsque cela n'est pas ambigu, nous notons $d_{\alpha..\omega}(u) = d(u)$.
 Il est intéressant de noter dans cette formulation que si tous les liens durent tout au long du flot de liens alors le degré dans le graphe agrégé et le degré moyen dans le flot de liens sont égaux, c'est-à-dire  $d_{\alpha..\omega}(u) = d_{G(L)}(u), \forall u \in V$.
 
 \`A partir du degré, il est possible de définir beaucoup de notions différentes et notamment la densité.
-Pour rappel, la densité dans un graphe est définie par $\delta(G)=2m/(n(n-1))=d(V)/n(n-1)$ et est égale à la probabilité qu'il existe un lien entre 2 n\oe uds.
-Si l'on transpose l'idée au formalisme de flot de liens, la densité dans un flot de liens est la probabilité qu'il existe un lien entre 2 n\oe uds à un instant donné aléatoire.
+Pour rappel, la densité dans un graphe est définie par $\delta(G)=2m/(n(n-1))=d(V)/n(n-1)$ et est égale à la probabilité qu'il existe un lien entre 2 n\oe{}uds.
+Si l'on transpose l'idée au formalisme de flot de liens, la densité dans un flot de liens est la probabilité qu'il existe un lien entre 2 n\oe{}uds à un instant donné aléatoire.
 Cela se traduit par la formule suivante:
 \begin{equation}
 \delta(L)= \dfrac{2 \sum_{l \in E}\bar{l}}{n(n-1) (\omega-\alpha)}.
@@ -202,7 +202,7 @@ Le calcul de la densité d'un flot est linéaire en le nombre de liens car il es
 	\hline Symbole & description \\
 	\hline $L$ & Flot de liens \\ 
 	$T$ & intervalle de temps  \\
-	$V$ & ensemble de n\oe uds\\
+	$V$ & ensemble de n\oe{}uds\\
 	$E$ & ensemble de liens: $(b,e,u,v)$ \\
 	$|L|,|E|$ & nombre de liens dans le flot \\
 	$\beta(E)$ & temps d'apparition du premier lien\\
@@ -210,12 +210,12 @@ Le calcul de la densité d'un flot est linéaire en le nombre de liens car il es
 	$\xi(L,\Delta)$ & augmentation de la durée de chaque lien de $\Delta$\\
 	$\sigma(L)$ & Simplification du flot de liens $L$\\
 	$G(L)$ & graphe agrégé de $L$\\
-	$L(V_1\times V_2)$ & sous-flot induit par l'ensemble de paires de n\oe uds $V_1\times V_2$ \\
+	$L(V_1\times V_2)$ & sous-flot induit par l'ensemble de paires de n\oe{}uds $V_1\times V_2$ \\
 	$L_{t..t'}$ & sous-flot induit par l'intervalle $[t,t']$ \\
 	$L_{t}$ & sous-flot induit par un instant $t$\\
 	$d_t(v)$ & degré de $v$ à l'instant $t$\\
-	$d_t(V)$ & somme des degrés des n\oe uds dans $V$ à l'instant $t$\\
-	$d_{in}(t,V')$ & somme des degrés internes des n\oe uds dans $V'$ à l'instant $t$\\
+	$d_t(V)$ & somme des degrés des n\oe{}uds dans $V$ à l'instant $t$\\
+	$d_{in}(t,V')$ & somme des degrés internes des n\oe{}uds dans $V'$ à l'instant $t$\\
 	$d_{t..t'}(v)$ & degré moyen de $v$ sur $[t,t']$\\
 	$D_{t..t'}(u)$ & somme pondérée du degré de $v$ sur $[t,t']$\\
 	$d(v)$ & degré moyen $v$ sur $T$\\
@@ -236,27 +236,27 @@ La démarche, bien que beaucoup plus modeste, est similaire à ce qui est fait p
 
 L'implémentation est en \emph{C++} pour la rapidité avec un export en \emph{python} pour faciliter l'utilisation.
 Le code de cette implémentation est en ligne\,\footnote{\url{https://bitbucket.org/nGaumont/liblinkstream/}} et la documentation également\,\footnote{\url{https://linkstream.ngaumont.fr/}}.
-Il est, par exemple, possible avec la librairie de lire un flot de liens et de calculer la densité moyenne d'un sous-ensemble de n\oe uds sur un intervalle arbitraire.
+Il est, par exemple, possible avec la librairie de lire un flot de liens et de calculer la densité moyenne d'un sous-ensemble de n\oe{}uds sur un intervalle arbitraire.
 Comme le but de cette librairie est d'être généraliste, l'implémentation n'est pas optimisée pour un calcul spécifique.
 Ainsi, il est aisé d'étendre la librairie afin de permettre le calcul de nouvelles notions.
  
 
 Un intérêt de cette implémentation est de permettre, en python, la génération de visualisation\,\footnote{Pour  l'instant, uniquement un export en svg est possible.}, voir le dessin dans la figure~\ref{fig:exemple_Flot_de_liens_lib}.
-Parmi les possibilités offertes par la visualisation, il est possible de n'afficher qu'une partie des n\oe uds ou de ne garder qu'un sous intervalle de temps.
+Parmi les possibilités offertes par la visualisation, il est possible de n'afficher qu'une partie des n\oe{}uds ou de ne garder qu'un sous intervalle de temps.
 De plus, il est possible de choisir la couleur des liens de manière manuelle ou en fonction d'une partition de liens.
 
 \begin{figure}
 \centering
 \includegraphics[width=\linewidth]{img/Intro/Dessin_Flot.eps}
-\caption{Exemple d'une visualisation d'un flot de liens sans durées entre $15$ n\oe ds au cours du temps qui a été généré par notre librairie.
+\caption{Exemple d'une visualisation d'un flot de liens sans durées entre $15$ n\oe{}ds au cours du temps qui a été généré par notre librairie.
 La couleur des liens a été fixée par l'utilisateur de la librairie.
 }
 \label{fig:exemple_Flot_de_liens_lib}
 \end{figure}
 
-La lisibilité de ce genre de visualisation est très dépendante de l'ordre attribué aux n\oe uds sur l'axes des ordonnées.
+La lisibilité de ce genre de visualisation est très dépendante de l'ordre attribué aux n\oe{}uds sur l'axes des ordonnées.
 C'est pourquoi avec notre outil, il est également possible de fixer un ordre arbitraire.
-Comme il peut être fastidieux d'écrire un ordre, nous avons implémenté un algorithme rudimentaire pour améliorer l'ordonnancement des n\oe uds dans la visualisation.
+Comme il peut être fastidieux d'écrire un ordre, nous avons implémenté un algorithme rudimentaire pour améliorer l'ordonnancement des n\oe{}uds dans la visualisation.
 Afin de pouvoir améliorer une visualisation, il est nécessaire de pouvoir quantifier la complexité de la visualisation actuelle.
 Empiriquement, on se rend vite compte que ce sont les longs traits verticaux qui rendent la visualisation complexe.
 Il faut donc les limiter.
@@ -274,4 +274,4 @@ Une permutation est appliquée si elle améliore l'évaluation de la visualisati
 Il s'agit bien sûr d'une première approche qu'il est possible d'améliorer.
 
 Une piste possible est la construction d'un ordre potentiellement proche de l'optimum.
-Par exemple, il serait intéressant de trier chaque paire de n\oe uds $(u,v)$ en fonction du nombre de liens existants entre $u$ et $v$ puis de construire itérativement un ordre des n\oe uds en fonction de l'ordre des paires de n\oe uds.
+Par exemple, il serait intéressant de trier chaque paire de n\oe{}uds $(u,v)$ en fonction du nombre de liens existants entre $u$ et $v$ puis de construire itérativement un ordre des n\oe{}uds en fonction de l'ordre des paires de n\oe{}uds.

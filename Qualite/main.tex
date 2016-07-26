@@ -17,7 +17,7 @@ Par exemple, des collègues communiquent principalement pendant la journée et r
 Au contraire, un groupe d'amis communiquent principalement le soir et le week end.
 Ainsi, toutes les personnes partageant le même point commun interagissent entre elle aux mêmes instants.
 Cela signifie que les dynamiques de communications entre deux personnes sont principalement liées à la raison de la communication.
-Avec cette hypothèse, il suffit alors de connaitre l'ensemble des intérêts d'une personne pour comprendre la dynamique de ses interactions.
+Avec cette hypothèse, il suffit alors de connaître l'ensemble des intérêts d'une personne pour comprendre la dynamique de ses interactions.
 De plus comme un lien est généré à cause d'un intérêt commun, il est possible d'assigner à ce lien la communauté correspondant à cet intérêt.
 Pour générer un flot de liens, il suffit alors de répartir des points d'intérêt à chaque personne puis de générer des liens entre deux personnes lorsqu'un intérêt commun les relie.
 C'est selon ce principe que nous construisons notre générateur de flots de liens avec structure communautaire sur les liens.
@@ -46,8 +46,8 @@ Dans le cas de séries de graphes, il est possible de générer un graphe en fon
 Par exemple, les \emph{edge-Markovian dynamic graphs}~\cite{Clementi2008} génèrent l'apparition et la disparition de liens à l'aide d'un processus de Markov à deux états: lien présent ou lien absent.
 
 Les \emph{activity driven model}~\cite{Perra2012,Laurent2015a,Moinet2015} reposent également sur le graphe généré à l'instant précédent.
-Dans ce genre de modèles, un lien est créé entre deux n\oe uds en fonction de la propension intrinsèque de ces n\oe uds à créer des liens~\footnote{Le degré dans le graphe précédent est généralement utilisé.} et potentiellement de l'existence ou de l'absence de ce lien dans le graphe précédent.
-Ce genre de modèles capture très bien l'hétérogénéité des n\oe uds mais ne permet pas de générer une structure communautaire.
+Dans ce genre de modèles, un lien est créé entre deux n\oe{}uds en fonction de la propension intrinsèque de ces n\oe{}uds à créer des liens~\footnote{Le degré dans le graphe précédent est généralement utilisé.} et potentiellement de l'existence ou de l'absence de ce lien dans le graphe précédent.
+Ce genre de modèles capture très bien l'hétérogénéité des n\oe{}uds mais ne permet pas de générer une structure communautaire.
 
 
 Il est également possible d'appliquer un modèle génératif sur chaque graphe de la série indépendamment.
@@ -90,7 +90,7 @@ Barrat~\emph{et al.}~\cite{Barrat2013a} proposent une autre méthode basée sur 
 Ils utilisent un graphe statique pondéré et orienté qui représente l'ensemble des interactions qui pourront exister dans le flot de liens.
 Ce graphe peut provenir de données réelles ou être généré.
 \`A partir de ce graphe, différentes marches aléatoires sont simulées.
-Chaque marche est caractérisée par un temps de début, un n\oe ud de départ, un nombre de sauts et les temps séparant chaque saut.
+Chaque marche est caractérisée par un temps de début, un n\oe{}ud de départ, un nombre de sauts et les temps séparant chaque saut.
 Ces caractéristiques peuvent être définies arbitrairement ou selon des distributions données.
 Chaque marche donne lieu à une liste d'interactions: $\{(t_1,u0,u1), ..., (t_k,u_{k-1}, u_k)\}$ pour une marche de $k$ sauts.
 Lors de la marche aléatoire, le prochain lien est choisi en fonction de son poids dans le graphe pondéré et le poids du lien choisi est décrémenté de $1$ dans le graphe pondéré.
@@ -114,20 +114,20 @@ Dans le cadre de flots de liens, les générateurs ne permettent pas ou alors qu
 \label{sec:versqualite_methode}
 
 Nous définissons maintenant notre générateur de flots de liens sans durée ayant une structure communautaire.
-Notre approche est similaire au SBM car nous considérons que l'apparition de liens entre deux n\oe uds ne dépend que des communautés auxquelles ils appartiennent.
-Plus ils ont de communautés en commun, plus il existera de liens entre ces n\oe uds.
-S'ils n'ont aucune communauté en commun, alors il n'y aura pas ou peu de liens entre ces n\oe uds.
-Tout comme le SBM, nous utilisons un graphe d'affiliation des n\oe uds aux communautés où il existe un lien entre un n\oe ud et une communauté si le n\oe ud appartient à la communauté.
+Notre approche est similaire au SBM car nous considérons que l'apparition de liens entre deux n\oe{}uds ne dépend que des communautés auxquelles ils appartiennent.
+Plus ils ont de communautés en commun, plus il existera de liens entre ces n\oe{}uds.
+S'ils n'ont aucune communauté en commun, alors il n'y aura pas ou peu de liens entre ces n\oe{}uds.
+Tout comme le SBM, nous utilisons un graphe d'affiliation des n\oe{}uds aux communautés où il existe un lien entre un n\oe{}ud et une communauté si le n\oe{}ud appartient à la communauté.
 
 Dans le cadre de notre générateur, une communauté représente un intérêt et une personne peut naturellement avoir plusieurs intérêts.
-Ainsi en reprenant l'exemple précédent, il existe dans le graphe d'affiliation autant de n\oe uds que de personnes et il existe une communauté représentant les entraînements de sport du mercredi soir, une représentant une réunion de famille, \emph{etc}.
+Ainsi en reprenant l'exemple précédent, il existe dans le graphe d'affiliation autant de n\oe{}uds que de personnes et il existe une communauté représentant les entraînements de sport du mercredi soir, une représentant une réunion de famille, \emph{etc}.
 
-De ce graphe biparti, les approches statiques déduisent la probabilité que deux n\oe uds soient reliés par un lien.
+De ce graphe biparti, les approches statiques déduisent la probabilité que deux n\oe{}uds soient reliés par un lien.
 Dans le contexte de flots de liens, il ne suffit pas de calculer la probabilité qu'un lien apparaisse dans le cadre d'une communauté.
-Il faut générer un ensemble d'interactions temporelles entre ces deux n\oe uds au sein de cette communauté.
+Il faut générer un ensemble d'interactions temporelles entre ces deux n\oe{}uds au sein de cette communauté.
 C'est pourquoi à chaque communauté est associé un processus stochastique de génération de liens dépendant du temps.
-Ainsi, chaque communauté partagée par deux n\oe uds donne lieu à la génération d'un ensemble de liens selon le processus stochastique de cette communauté.
-Par exemple, le processus stochastique de la communauté sport est défini par une forte activité durant les séances d'entrainement et une faible activité en dehors de ces instants.
+Ainsi, chaque communauté partagée par deux n\oe{}uds donne lieu à la génération d'un ensemble de liens selon le processus stochastique de cette communauté.
+Par exemple, le processus stochastique de la communauté sport est défini par une forte activité durant les séances d'entraînement et une faible activité en dehors de ces instants.
 Une représentation schématique de cette situation est présentée dans la figure~\ref{fig:qualite_Generator}.
 
 
@@ -136,7 +136,7 @@ Une représentation schématique de cette situation est présentée dans la figu
 \centering
 \includegraphics[width=0.45\textwidth]{img/Qualite/Generator}
 \caption{Schéma représentant la structure communautaire d'un flot de liens dans notre générateur.
-\`A gauche: un n\oe ud rond est un individu et un n\oe ud carré est une communauté.
+\`A gauche: un n\oe{}ud rond est un individu et un n\oe{}ud carré est une communauté.
 \`A droite: Activité au cours du temps associée à chaque communauté du graphe biparti de gauche.}
 \label{fig:qualite_Generator}
 \end{figure}
@@ -162,7 +162,7 @@ La fonction de répartition associée est $P [N(b) - N(a) \leq x]= 1 - ^{-\Lambd
 Pour des valeurs de $a$ et $x$ fixées, cette fonction de répartition est une fonction continue, croissante avec $b$ et elle est injective.
 Cette fonction est également surjective si elle est strictement croissante, c'est à dire si $\Lambda_{a,b}$ est strictement croissant.
 
-Le processus pour générer un ensemble de liens entre deux n\oe uds dans une communauté est le suivant.
+Le processus pour générer un ensemble de liens entre deux n\oe{}uds dans une communauté est le suivant.
 La génération commence à l'instant $t_0=\alpha$ puis il est nécessaire de générer $t_1$, l'instant d'apparition du prochain lien.
 Cet instant est le premier instant $t'$ tel que $N(t')- N(t_0)=1$ et il est relié à la probabilité suivante: $P [N(t_1) - N(t_0) \leq 1] = 1]=1-e^{-\Lambda_{t_0,t_1}}$.
 Or, cette application est bijective.
@@ -178,12 +178,12 @@ Un exemple de génération de temps d'apparition est présenté dans la figure~\
 \begin{figure}
 \centering
 \includegraphics[width=0.6\linewidth]{img/Qualite/Activation}
-\caption{Exemple des temps d'activation du lien entre deux n\oe uds donnés.}
+\caption{Exemple des temps d'activation du lien entre deux n\oe{}uds donnés.}
 \label{fig:qualite_Activation}
 \end{figure}
 
 
-En répétant le processus ci-dessus pour chaque paire de n\oe uds appartenant à une même communauté, on obtient un flot de liens avec une structure communautaire sur les liens.
+En répétant le processus ci-dessus pour chaque paire de n\oe{}uds appartenant à une même communauté, on obtient un flot de liens avec une structure communautaire sur les liens.
 
 \subsection{Caractéristiques du générateur}
 
@@ -192,17 +192,17 @@ Tout d'abord au sein d'une communauté, il est possible de représenter énormé
 Une intensification (resp. baisse) des interactions au cours du temps est représentée par une activité croissante (resp. décroissante).
 Il est possible de représenter des réunions cycliques par une activité périodique. 
 Ce modèle d'activation des liens reste  cependant une approximation car il n'y a aucune prise en compte des possibles corrélations au sein d'une communauté.
-De même, les paires de n\oe uds d'une communauté correspondent des processus indépendants et identiquement distribués.
-Il n'y a donc au sein d'une communauté aucune différence entre les n\oe uds.
-Il n'est, de plus, pas possible de représenter l'intégration progressive de n\oe uds dans une communauté.
+De même, les paires de n\oe{}uds d'une communauté correspondent des processus indépendants et identiquement distribués.
+Il n'y a donc au sein d'une communauté aucune différence entre les n\oe{}uds.
+Il n'est, de plus, pas possible de représenter l'intégration progressive de n\oe{}uds dans une communauté.
 
-Vis-à-vis de l'ensemble des communautés, le modèle est encore une fois assez libre car un n\oe ud peut appartenir à plusieurs communautés.
-Chaque communauté est traitée de manière indépendante et une même paire de n\oe uds peut donner lieu à la génération de liens de différentes communautés.
-Ainsi même si les n\oe uds sont équivalents au sein d'une communauté, il existe tout de même une hétérogénéité des n\oe uds en fonction du nombre de communautés auxquels ils appartiennent.
+Vis-à-vis de l'ensemble des communautés, le modèle est encore une fois assez libre car un n\oe{}ud peut appartenir à plusieurs communautés.
+Chaque communauté est traitée de manière indépendante et une même paire de n\oe{}uds peut donner lieu à la génération de liens de différentes communautés.
+Ainsi même si les n\oe{}uds sont équivalents au sein d'une communauté, il existe tout de même une hétérogénéité des n\oe{}uds en fonction du nombre de communautés auxquels ils appartiennent.
 
 \bigskip
 
-Avec cette formulation, le générateur dépend du graphe biparti d'affiliation des n\oe uds aux communautés et de l'activité temporelle de chaque communauté.
+Avec cette formulation, le générateur dépend du graphe biparti d'affiliation des n\oe{}uds aux communautés et de l'activité temporelle de chaque communauté.
 L'approche que nous suivons est purement générative.
 Le but n'est donc pas d'inférer ces paramètres sur un exemple mais de pouvoir les fixer manuellement.
 Afin de faciliter l'utilisation de ce générateur, nous utilisons différentes méthodes pour fixer ces nombreux paramètres dans la sous-section~\ref{subsec:versqualite_qualite_param}.
@@ -228,7 +228,7 @@ Dans le cas des flots de liens, il faut aussi ajouter le chevauchement temporel.
 Afin de faciliter l'étude, nous ne générons aucun lien en dehors des communautés définies.
 C'est pourquoi les différentes situations dépendent uniquement du recouvrement topologique et temporel des communautés.
  
-Les flots de liens que nous générons contiennent $15$ n\oe uds pendant $30$ unités de temps et il y existe cinq communautés ayant chacune une durée de $10$ unités de temps.
+Les flots de liens que nous générons contiennent $15$ n\oe{}uds pendant $30$ unités de temps et il y existe cinq communautés ayant chacune une durée de $10$ unités de temps.
 Afin de simplifier la méthode de test, chaque communauté a une activité constante de $0.5$ durant l'intervalle où elle existe.
 Avec ces paramètres fixés, nous faisons varier le chevauchement topologique de trois manières différentes qui sont représentées dans les figures suivantes:
 
@@ -269,15 +269,15 @@ Avec ces paramètres fixés, nous faisons varier le chevauchement topologique de
 
 \bigskip
 Pour ces trois types de flots de liens, nous avons appliqué, Louvain, une méthode d'optimisation de modularité~\cite{Blondel2008a} et CarOp, une méthode égo-centrée~\cite{Danisch2012} sur une projection du flot de liens en un graphe statique.
-La méthode CarOp permet de trouver une communauté égo-centrée à partir d'un n\oe ud du graphe.
+La méthode CarOp permet de trouver une communauté égo-centrée à partir d'un n\oe{}ud du graphe.
 Il est donc nécessaire de fournir un lien initial qui servira à retrouver les communautés générées.
-Nous choisissons pour chaque communauté générée un lien apparaissant au milieu de sa duré de vie; par exemple un lien à l'instant $15$ est choisi pour initialiser une communauté qui sera \emph{a prioi} proche de la communauté $3$.
+Nous choisissons pour chaque communauté générée un lien apparaissant au milieu de sa duré de vie; par exemple un lien à l'instant $15$ est choisi pour initialiser une communauté qui sera \emph{a priori} proche de la communauté $3$.
 
 
 Nous avons défini précédemment une projection du flot de liens en un graphe statique mais uniquement dans le cas où les liens ont une durée.
 Dans les flots de liens générés ici, il n'y a pas de durée sur les liens.
 C'est pourquoi nous utilisons une projection différente qui transforme le flot de liens en un graphe statique pondéré.
-Chaque lien du flot est toujours représenté par un n\oe ud dans le graphe statique et il y a un lien entre deux n\oe uds du graphe si les liens correspondants ont un n\oe ud en commun.
+Chaque lien du flot est toujours représenté par un n\oe{}ud dans le graphe statique et il y a un lien entre deux n\oe{}uds du graphe si les liens correspondants ont un n\oe{}ud en commun.
 Afin de tenir compte de la séparation temporelle, un lien dans le graphe statique est pondéré par une fonction décroissante du temps séparant les deux liens dans le flot.
 Nous avons choisi comme fonction décroissante: $e^{-\lambda d}$ où $d$ est le temps séparant les deux liens et $\lambda$ une constante positive.
 Ainsi, les poids dans la projection sont répartis entre $0$ et $1$.
@@ -296,7 +296,7 @@ Dans la situation la plus simple représentée dans la figure~\ref{fig:versquali
 Dans la situation représentée dans la figure~\ref{fig:versqualite_gen_test2}, la vérité de terrain est retrouvée par CarOp mais non par Louvain.
 Dans les partitions trouvées par Louvain, la communauté $3$ n'est jamais détectée peu importe la valeur de $\lambda$ utilisée pour la projection.
 Selon la valeur de $\lambda$, les liens de la communauté $3$ sont soit distribués entre les autres communautés soit répartis en plusieurs communautés autonomes.
-Comme cette méthode optimise la modularité sur une structure proche du \emph{line-graphe} d'un multigraphe, elle est similaire aux méthodes proposées par Evans~\emph{et al.}~\cite{Evans2009} que nous avons présentées dans la section~\ref{sec:expected_travaux}.
+Comme cette méthode optimise la modularité sur une structure proche du \emph{line-graph} d'un multigraphe, elle est similaire aux méthodes proposées par Evans~\emph{et al.}~\cite{Evans2009} que nous avons présentées dans la section~\ref{sec:expected_travaux}.
 Elle souffre donc des mêmes biais\,\footnote{Plus une clique d'un graphe est grande, moins sa transformation dans le \emph{line-graph} est dense.}.
 
 Dans la situation représentée dans la figure~\ref{fig:versqualite_gen_test3}, la vérité de terrain est retrouvée par Louvain mais non par CarOp.
@@ -339,9 +339,9 @@ Il faut définir un graphe biparti d'affiliation des individus aux communautés 
 Afin de simplifier ce processus, il est possible de s'appuyer sur un générateur de graphe biparti.
 
 De manière analogue au graphe, un graphe biparti peut être généré de telle sorte qu'il ait une densité donnée ou qu'il ait une distribution des degrés particulière.
-Nous faisons le choix de générer des graphes biparti où le degré moyen des n\oe uds est fixé et où chaque individu est relié à au moins une communauté.
+Nous faisons le choix de générer des graphes biparti où le degré moyen des n\oe{}uds est fixé et où chaque individu est relié à au moins une communauté.
 Ainsi, un degré moyen de $1$ implique qu'il n'y a aucun chevauchement entre les communautés.
-Un degré moyen de $1.8$ implique qu'un n\oe ud d'une communauté est relié en moyenne à $0.8$ autres communautés et donc qu'une communauté de taille $k$ partage des n\oe uds avec au maximum $0.8k$ autres communautés.
+Un degré moyen de $1.8$ implique qu'un n\oe{}ud d'une communauté est relié en moyenne à $0.8$ autres communautés et donc qu'une communauté de taille $k$ partage des n\oe{}uds avec au maximum $0.8k$ autres communautés.
 
 Pour l'activité des communautés, nous imposons la même activité constante et la même durée d'activité pour toutes les communautés.
 Les communautés se différencient ainsi par le moment où cet intervalle commence.
@@ -351,19 +351,19 @@ Ainsi, plus le flot de liens est long par rapport à la durée d'activité des c
 
 \bigskip
 Pour générer un flot de liens, le nombre de paramètres est maintenant plus restreint.
-Il suffit de fixer manuellement le nombre de n\oe uds, le nombre de communautés, le degré moyen dans le graphe biparti, la durée d'une communauté, l'activité d'une communauté et la durée totale du flot de liens.
+Il suffit de fixer manuellement le nombre de n\oe{}uds, le nombre de communautés, le degré moyen dans le graphe biparti, la durée d'une communauté, l'activité d'une communauté et la durée totale du flot de liens.
 Les trois premiers paramètres permettent de contrôler le chevauchement topologique alors que les trois derniers permettent de contrôler le chevauchement temporel.
 
 \subsubsection{Proposition de fonctions de qualité}
 
 Nous l'avons évoquée à de nombreuses reprises.
-La modularité est une fonction de qualité évaluant une partition de n\oe uds, $\mathcal{V}=\{V_1,..,V_k\}$, d'un graphe.
+La modularité est une fonction de qualité évaluant une partition de n\oe{}uds, $\mathcal{V}=\{V_1,..,V_k\}$, d'un graphe.
 Une des formulations pour la calculer est la suivante:
 \begin{equation}
 Q_G(\mathcal{V}) =  \sum_{i=1}^{k} Q_G(V_i) =\sum_{i=1}^{k} \left( \dfrac{d_{in}(V_i)}{2m}- \left(\dfrac{d(V_i)}{2m}\right)^2\right)\,.
 \end{equation}
-Pour rappel, $d(V_i)$ est la somme des degrés des n\oe uds de $V_i$ et $d_{in}(V_i)$ est la somme des degrés des n\oe uds de $V_i$ lorsqu'uniquement les liens inclus dans $V_i \times V_i$ sont considérés.
-Il est possible de généraliser la modularité aux flots de liens en manipulant une partition des n\oe uds à chaque instant.
+Pour rappel, $d(V_i)$ est la somme des degrés des n\oe{}uds de $V_i$ et $d_{in}(V_i)$ est la somme des degrés des n\oe{}uds de $V_i$ lorsqu'uniquement les liens inclus dans $V_i \times V_i$ sont considérés.
+Il est possible de généraliser la modularité aux flots de liens en manipulant une partition des n\oe{}uds à chaque instant.
 Cette partition temporelle, $\mathcal{V}(t)$, doit respecter les contraintes d'une partition pour tout instant $t \in [\alpha,\omega]$.
 Avec ces notations, on peut calculer la modularité moyenne de $\mathcal{V}(t)$ sur un flot de liens $L$:
 
@@ -372,35 +372,35 @@ Q_L(\mathcal{V}) = \dfrac{1}{\omega-\alpha} \int_{\alpha}^{\omega} Q_{G(L_t)}(\m
 \label{eq:temp_modu}
 \end{equation}
 
-Cette formulation met en avant l'intégrale de la modularité du graphe mais la modularité, elle même, est une somme sur les groupes de n\oe uds.
-Nous transformons donc l'équation précédente pour mettre en avant la modularité d'un groupe de n\oe uds sur un intervalle de temps.
-Si dans la partition temporelle un groupe de n\oe ud $V'$ est une communauté sur un intervalle $[\beta, \psi]$ alors sa qualité,$Q_L(V', \beta, \psi)$, peut se calculer de la manière suivante:
+Cette formulation met en avant l'intégrale de la modularité du graphe mais la modularité, elle même, est une somme sur les groupes de n\oe{}uds.
+Nous transformons donc l'équation précédente pour mettre en avant la modularité d'un groupe de n\oe{}uds sur un intervalle de temps.
+Si dans la partition temporelle un groupe de n\oe{}ud $V'$ est une communauté sur un intervalle $[\beta, \psi]$ alors sa qualité,$Q_L(V', \beta, \psi)$, peut se calculer de la manière suivante:
 
 \begin{equation}
 Q_L(V', \beta, \psi)  = \int_{\beta}^{\psi} \! \dfrac{d_{in}(t,V')}{d(t,V)} - \left( \dfrac{d(V',t)}{d(V,t)} \right)^2  \, dt\, .
 \end{equation}
 
-$d_(t,V')$ et $d_{in}(t,V')$ sont définis dans la section~\ref{sec:def_densite} et sont respectivement la somme des degrés temporels des n\oe uds de $V_i$ et la somme des degrés temporels des n\oe uds de $V_i$ lorsqu'uniquement les liens inclus dans $V_i \times V_i$ sont considérés.
-Avec cette formulation, on voit apparaitre le degré temporel dans le calcul de cette version temporelle de la modularité d'un groupe.
-La vérité de terrain générée n'est cependant pas une partition temporelle des n\oe uds mais une partition de liens du flot de liens.
-Il faut donc adapter la formulation précédente pour manipuler des groupes de liens au lieu de groupes de n\oe uds sur un intervalle de temps.
+$d_(t,V')$ et $d_{in}(t,V')$ sont définis dans la section~\ref{sec:def_densite} et sont respectivement la somme des degrés temporels des n\oe{}uds de $V_i$ et la somme des degrés temporels des n\oe{}uds de $V_i$ lorsqu'uniquement les liens inclus dans $V_i \times V_i$ sont considérés.
+Avec cette formulation, on voit apparaître le degré temporel dans le calcul de cette version temporelle de la modularité d'un groupe.
+La vérité de terrain générée n'est cependant pas une partition temporelle des n\oe{}uds mais une partition de liens du flot de liens.
+Il faut donc adapter la formulation précédente pour manipuler des groupes de liens au lieu de groupes de n\oe{}uds sur un intervalle de temps.
 Ainsi, nous définissons la modularité d'un groupe de liens $C_i$:
 \begin{equation}
 Q_L(C_i)  = \int_{\beta(C_i)}^{\psi(C_i)} \! \dfrac{d(t,C_i)}{d(t,V)} -  \left( \dfrac{d(t,V(C_i))}{d(t,V)} \right)^2 \, dt \,.
 \label{}
 \end{equation}
-Il s'agit de l'intégrale de la différence entre la probabilité qu'un lien appartienne à $C_i$ et la probabilité qu'il existe un lien entre les n\oe uds induits par $C_i$.
-Lsa qualité d'une partition de liens $\mathcal{C}$:
+Il s'agit de l'intégrale de la différence entre la probabilité qu'un lien appartienne à $C_i$ et la probabilité qu'il existe un lien entre les n\oe{}uds induits par $C_i$.
+La qualité d'une partition de liens $\mathcal{C}$:
 \begin{equation}
 Q_L(\mathcal{C}) = \dfrac{1}{\omega-\alpha} \sum_{C_i \in C} Q_L(C_i)\, .
 \label{eq:temp_modu_liens}
 \end{equation}
 
-Cependant en considérant un groupe de liens au lieu d'un groupe de n\oe uds, la modularité n'est plus bornée entre $-1$ et $1$.
+Cependant en considérant un groupe de liens au lieu d'un groupe de n\oe{}uds, la modularité n'est plus bornée entre $-1$ et $1$.
 La modularité classique est bornée entre $-1$ et $1$ et par conséquent la version temporelle de la modularité de l'équation~\ref{eq:temp_modu} est également bornée car il s'agit de la moyenne de la modularité au cours du temps.
 La modularité temporelle de groupes de liens de l'équation~\ref{eq:temp_modu_liens} n'est pas bornée.
-En effet, cette formulation utilise le degré temporel des n\oe uds induits ce qui implique qu'un n\oe ud peut être considéré à plusieurs reprises par différent groupes de liens.
-C'est le cas lorsqu'un n\oe ud a des liens appartenant à plusieurs groupes différents.
+En effet, cette formulation utilise le degré temporel des n\oe{}uds induits ce qui implique qu'un n\oe{}ud peut être considéré à plusieurs reprises par différent groupes de liens.
+C'est le cas lorsqu'un n\oe{}ud a des liens appartenant à plusieurs groupes différents.
 
  
 
@@ -435,14 +435,14 @@ La simplification de ce flot de liens est problématique pour le lien entre $b$ 
 \end{figure}
 
 Il est donc nécessaire de différencier la simplification lorsque l'on s'intéresse au degré d'une communauté en particulier ou au degré du flot de liens en général.
-Dans le premier cas, on étudie $\sigma(\xi(L(C_i),\Delta))$, le sou-flot induit par les liens de la communauté et dans le second on étudie $\sigma(\xi(L,\Delta))$.
-Ces changements, bien que lourds, sont nécessaires pour rendre simple le flot de liens et pouvoir calculer le degré temporel d'une communauté, d'un ensemble de n\oe uds et du flot de liens.
+Dans le premier cas, on étudie $\sigma(\xi(L(C_i),\Delta))$, le sous-flot induit par les liens de la communauté et dans le second on étudie $\sigma(\xi(L,\Delta))$.
+Ces changements, bien que lourds, sont nécessaires pour rendre simple le flot de liens et pouvoir calculer le degré temporel d'une communauté, d'un ensemble de n\oe{}uds et du flot de liens.
 Afin de tester plusieurs $\Delta$ rapidement, nous nous sommes appuyés sur l'outil \emph{parallel}~\cite{Tange2011a}.
 
 
 \bigskip
-Pour la génération, nous considérons $100$ n\oe uds entre $10$ communautés durant chacune $20$ unité de temps avec une activité constante de $0.1$.
-Avec une activité de $0.1$, il y a en moyenne deux liens appartenant à la communauté pour chaque paire de n\oe uds.
+Pour la génération, nous considérons $100$ n\oe{}uds entre $10$ communautés durant chacune $20$ unité de temps avec une activité constante de $0.1$.
+Avec une activité de $0.1$, il y a en moyenne deux liens appartenant à la communauté pour chaque paire de n\oe{}uds.
 Nous choisissons une durée totale du flot de liens de $50$ ou $200$ pour contrôler le chevauchement temporel.
 Nous choisissons un degré moyen dans le biparti de $1.1$ ou $2$ pour contrôler le chevauchement temporel.
 Les flots de liens ainsi générés ont entre $1 200$ et $4 000$ liens selon le chevauchement choisi.
@@ -510,11 +510,11 @@ Il est en particulier important de tester d'autres partitions trouvées empiriqu
 Dans ce chapitre, nous nous sommes intéressés à la génération de flots de liens avec une structure communautaire sur les liens.
 Il s'agit de la première méthode de ce genre car les méthodes existantes se focalisent sur la génération de flot de liens ayant des distributions des temps inter-contact similaires à celles observées dans les jeux de données réelles.
 Notre approche est différente.
-Nous modélisons l'existence de groupes de n\oe uds communiquant pendant des intervalles de temps donnés.
+Nous modélisons l'existence de groupes de n\oe{}uds communiquant pendant des intervalles de temps donnés.
 Ainsi, il est possible de simuler des événements durant lesquels des liens apparaissent entre les personnes concernées par ces événements.
 Pour ce faire, notre méthode s'inspire du SBM.
-Il faut définir un graphe biparti d'affiliation des n\oe uds aux communautés et l'activité temporelle de chaque communauté.
-Une fois ces paramètres définis, des liens entre deux n\oe uds sont générés en fonction de processus de Poisson non-homogènes qui sont spécifiques aux communautés partagées par ces deux n\oe uds.
+Il faut définir un graphe biparti d'affiliation des n\oe{}uds aux communautés et l'activité temporelle de chaque communauté.
+Une fois ces paramètres définis, des liens entre deux n\oe{}uds sont générés en fonction de processus de Poisson non-homogènes qui sont spécifiques aux communautés partagées par ces deux n\oe{}uds.
 
 Grâce à ce générateur, nous avons pu tester deux méthodes de détection de communautés sur des projections du flot de liens en graphes statiques pondérés.
 Ces premiers résultats sont très intéressants car ces méthodes sont parfois à même de retrouver la vérité de terrain alors qu'elles se basent sur un graphe statique.
@@ -551,13 +551,13 @@ Il serait intéressant de tirer la durée d'un lien selon une distribution donn�
 Il se pose alors la question de la cohérence entre la durée d'un lien et le processus de Poisson non-homogène sous-jacent: est-il normal de générer un lien de longue durée durant une activité faible de la communauté?
 Encore une fois pour répondre à ce genre de question, il est nécessaire de s'appuyer sur des observations empiriques.
 
-Enfin, une des hypothèses de notre générateur est l'équivalence des n\oe uds au sein d'une communauté.
-Or, il se peut que certains n\oe uds participent plus que d'autres.
+Enfin, une des hypothèses de notre générateur est l'équivalence des n\oe{}uds au sein d'une communauté.
+Or, il se peut que certains n\oe{}uds participent plus que d'autres.
 Un moyen de prendre en compte cette diversité est d'incorporer un système d'attachement préférentiel.
 Dans les graphes, le système préférentiel se définit de la manière suivante.
-Chaque n\oe ud a un score de popularité~\footnote{Le degré est généralement utilisé comme score de popularité.} qui détermine la propension des autres n\oe uds à créer un lien avec lui.
-Ainsi plus un n\oe ud est populaire, plus il a de liens avec les autres n\oe uds.
-Dans le cadre de la génération de flot de liens, il serait possible que le processus de génération des liens entre deux n\oe uds ne dépende plus uniquement de la communauté mais également de la popularité respective des n\oe uds.
+Chaque n\oe{}ud a un score de popularité~\footnote{Le degré est généralement utilisé comme score de popularité.} qui détermine la propension des autres n\oe{}uds à créer un lien avec lui.
+Ainsi plus un n\oe{}ud est populaire, plus il a de liens avec les autres n\oe{}uds.
+Dans le cadre de la génération de flot de liens, il serait possible que le processus de génération des liens entre deux n\oe{}uds ne dépende plus uniquement de la communauté mais également de la popularité respective des n\oe{}uds.
 Cette popularité, temporelle ou non, devrait également être fixée par l'utilisateur mais elle permettrait de mettre en avant un leader au sein d'une communauté.
 
 

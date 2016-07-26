@@ -34,12 +34,12 @@ Comme nous l'avons constaté dans les chapitres~\ref{chap:def_flot} et \ref{chap
 En effet, un groupe n'est pertinent que par rapport au reste du flot de liens.
 Par exemple, un groupe ayant une densité de $0.4$ est très pertinent dans un flot de liens ayant une densité globale de $0.01$ mais il ne l'est pas du tout si le flot de liens a une densité de $0.6$.
 Pour évaluer un groupe, il est donc nécessaire de prendre en compte le contexte dans lequel il apparaît.
-Nous avons défini trois voisinages constitués de sous-flots différant du sous-flot du groupe soit sur le temps de début, soit sur la durée, soit sur l'ensemble de n\oe uds.
+Nous avons défini trois voisinages constitués de sous-flots différant du sous-flot du groupe soit sur le temps de début, soit sur la durée, soit sur l'ensemble de n\oe{}uds.
 Un groupe est ensuite jugé pertinent si le groupe est plus dense qu'une grande partie de ses voisinages.
 Nous avons appliqué notre méthode sur quatre jeux de données et nous avons pu valider manuellement quelques groupes grâce aux méta-données existantes.
 
 La structure résultant des groupes pertinents est une partition partielle des liens du flot de liens.
-Cependant en observant les n\oe uds induits et les instants de présence des groupes, nous avons constaté que les groupes forment une structure très chevauchante sur les n\oe uds et uniquement partiellement chevauchante sur le temps.
+Cependant en observant les n\oe{}uds induits et les instants de présence des groupes, nous avons constaté que les groupes forment une structure très chevauchante sur les n\oe{}uds et uniquement partiellement chevauchante sur le temps.
 Nous avons testé si une méthode statique pouvait retrouver cette même structure chevauchante et nous avons constaté qu'uniquement quelques groupes pertinents étaient capturés par la méthode statique.
 Ceci montre que nous avons mis avant une structure nouvelle via la partition partielle que sont les groupes pertinents.
 Ces travaux ont donné lieu à une première publication dans une conférence nationale~\cite{gaumont:hal-01305118} et sont soumis au journal \emph{Social Network Analysis and Mining}.
@@ -52,9 +52,9 @@ La détection de structure dans un réseau dynamique ou non nécessite un moyen 
 C'est pourquoi, nous avons étudié plus en détails la détection de communautés sous la forme de partitions de liens et ce dans le cas statique et dynamique.
 Comme nous l'avons vu dans le chapitre~\ref{chap:etat_art}, il existe assez peu de méthodes de détection de communautés sous la forme de partitions de liens et aucune ne s'est vraiment attachée à reproduire ce qui a fait le succès de la modularité.
 C'est pourquoi, dans le chapitre~\ref{chap:Expected_Node}, nous avons proposé une nouvelle méthode pour l'évaluation d'une partition de liens dans le cas statique qui se base également sur la notion de modèle nul.
-Un groupe de liens est ainsi une bonne communauté s'il induit moins de n\oe uds qu'attendu dans le modèle nul.
+Un groupe de liens est ainsi une bonne communauté s'il induit moins de n\oe{}uds qu'attendu dans le modèle nul.
 De plus, un groupe de liens est également évalué en fonction de son voisinage.
-Cette fois ci, un voisinage est jugé bon lorsqu'il consiste en moins de n\oe uds adjacents qu'attendu dans le modèle nul car le voisinage doit être peu dense.
+Cette fois ci, un voisinage est jugé bon lorsqu'il consiste en moins de n\oe{}uds adjacents qu'attendu dans le modèle nul car le voisinage doit être peu dense.
 
 Nous avons mené des tests sur des graphes ayant une structure simple: une clique ou deux cliques se chevauchant et sur des graphes générés aléatoirement.
 Sur ces exemples, notre fonction de qualité, \emph{Expected Nodes}, est la seule à différencier la vérité de terrain d'autres partitions moins pertinentes.
@@ -67,7 +67,7 @@ Cependant malgré nos efforts pour rendre plus efficace l'évaluation d'\emph{Ex
 Fort de nos observations dans le cas dynamique et de notre proposition dans le cas statique, nous avons considéré les partitions de liens dans les flots de liens dans le chapitre~\ref{versQualite}.
 Pour ce faire, nous nous sommes intéressé à la génération de flots de liens avec une structure donnée et à la manière d'évaluer une telle partition.
 Pour générer un flot de liens, nous nous inspirons du \emph{Stochactic Block Model}.
-Ainsi, les liens entre deux n\oe uds sont générés dans le cadre d'une communauté commune et le temps d'attente entre deux apparitions d'un lien dépend de l'activité de cette communauté.
+Ainsi, les liens entre deux n\oe{}uds sont générés dans le cadre d'une communauté commune et le temps d'attente entre deux apparitions d'un lien dépend de l'activité de cette communauté.
 Ainsi, il est possible de générer des flots de liens très variés tout en ayant une vérité de terrain sur les liens.
 
 \`A partir de ce mécanisme de génération, nous avons dans un premier temps mis en avant l'inefficacité de certaines méthodes statiques dans une projection du flot de liens à retrouver la structure générée.
@@ -88,13 +88,13 @@ Ces ajouts peuvent se faire de manière assez simple: respectivement $(b,e,u,v)\
 Il est alors seulement nécessaire d'adapter les notions de degré et de densité pour tenir compte de ces spécificités.
 
 L'ajout de poids sur les liens est bien sûr une extension possible mais il y a cependant deux extensions possibles: soit le poids est fixe; soit il peut changer au cours du temps.
-Le second cas englobe le premier et permet de représenter beaucoup plus de situations comme par exemple les flots de liens non simples, \emph{i.e.} plusieurs liens peuvent exister en même temps entre deux n\oe uds.
+Le second cas englobe le premier et permet de représenter beaucoup plus de situations comme par exemple les flots de liens non simples, \emph{i.e.} plusieurs liens peuvent exister en même temps entre deux n\oe{}uds.
 
 Nous avons principalement discuté des notions de degré et de densité dans cette thèse.
 Il existe bien évidement d'autres notions qui ont déjà été définies dans un cadre temporel comme les notions de chemin et de centralité.
 Il serait intéressant d'intégrer ces notions dans le formalisme de flots de liens afin de rendre l'ensemble des notions cohérentes entre elles.
 Par exemple, il serait intéressant de définir une mesure de centralité à partir du degré temporel.
-On pourrait comparer le degré temporel d'un n\oe uds vis-à-vis du degré temporel moyen de ses voisins afin de définir une forme de centralité locale.
+On pourrait comparer le degré temporel d'un n\oe{}uds vis-à-vis du degré temporel moyen de ses voisins afin de définir une forme de centralité locale.
 
 En plus de l'extension des métriques de la théorie  des graphes, il est intéressant de considérer d'autres types de mesures.
 En effet, les flots de liens regroupent de l'information structurelle et temporelle.
@@ -112,14 +112,14 @@ Cette notion, bien que très spécifique, mène à de nombreuses perspectives su
 Mais il y a bien d'autres pistes.
 
 Il serait, par exemple, intéressant de comparer des groupes de liens.
-En effet, deux groupes de liens distincts peuvent partager exactement les même n\oe uds et apparaître dans le même intervalle et donc être similaires.
-Le simple indice de jaccard n'est donc pas suffisant pour comparer deux groupes de liens.
+En effet, deux groupes de liens distincts peuvent partager exactement les même n\oe{}uds et apparaître dans le même intervalle et donc être similaires.
+Le simple indice de Jaccard n'est donc pas suffisant pour comparer deux groupes de liens.
 Il faut donc une similarité tirant parti de la topologie et du temps.
 Si une telle relation existe, alors il serait très intéressant d'étudier le graphe des similarités entre les groupes pertinents.
 Il s'agirait d'un graphe orienté par le temps et pondéré par la similarité entre les groupes.
-On peut espérer trouver dans un tel graphe les groupes de liens reliant des n\oe uds similaires.
-Il serait aussi surement possible de faire un parallèle entre ce graphe et les évolutions des communautés dans une série de graphes.
-Par exemple, un n\oe ud ayant deux fils (resp. parents) représenterait alors la séparation d'une communauté en deux (resp. la fusion de deux communautés).
+On peut espérer trouver dans un tel graphe les groupes de liens reliant des n\oe{}uds similaires.
+Il serait aussi sûrement possible de faire un parallèle entre ce graphe et les évolutions des communautés dans une série de graphes.
+Par exemple, un n\oe{}ud ayant deux fils (resp. parents) représenterait alors la séparation d'une communauté en deux (resp. la fusion de deux communautés).
 
 Par ailleurs dans le chapitre~\ref{versQualite}, nous avons tenté de définir une fonction de qualité globale pour évaluer une partition de lien.
 Il serait intéressant de poursuivre la piste inverse et d'essayer de définir une fonction de qualité locale.
@@ -130,8 +130,8 @@ La compression de l'information en est un exemple car une structure communautair
 Avec ce point de vue, il se pose alors la question de la perte d'information induite par l'utilisation d'une structure communautaire pour représenter le flot de liens globale.
 
 La prédiction de liens est un autre exemple.
-Dans un graphe, la prédiction de liens consiste en trouver les paires de n\oe uds qui devraient être reliées dans le graphe.
-Comme les n\oe uds d'une communauté sont densément reliés entre eux, connaître la structure communautaire aide à prédire les paires de n\oe uds qui devraient être reliées.
+Dans un graphe, la prédiction de liens consiste en trouver les paires de n\oe{}uds qui devraient être reliées dans le graphe.
+Comme les n\oe{}uds d'une communauté sont densément reliés entre eux, connaître la structure communautaire aide à prédire les paires de n\oe{}uds qui devraient être reliées.
 Dans les flots de liens, la situation est tout de fois plus complexe car, en plus de prédire une interaction, il faut également prédire le temps d'apparition et la durée de l'interaction.
 
 

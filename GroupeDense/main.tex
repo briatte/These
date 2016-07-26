@@ -48,7 +48,7 @@ Enfin, les jeux de données que nous utilisons sont présentés dans la section~
 Comme nous l'avons vu dans le chapitre~\ref{chap:etat_art}, il existe assez peu de méthodes cherchant des structures dans un formalisme sans perte d'information.
 
 Mitra~\emph{et al.}~\cite{Mitra2012a} et Speidel~\emph{et al.}~\cite{Speidel2015} ont développé une méthode de détection de communautés mais dans les réseaux diachroniques.
-Dans un tel réseau, ce sont les n\oe uds qui ont un \emph{timestamp} et non les liens.
+Dans un tel réseau, ce sont les n\oe{}uds qui ont un \emph{timestamp} et non les liens.
 Ce cas de figure s'applique parfaitement aux réseaux de citations car une citation relie bien deux publications apparues à deux dates spécifiques.
 Cependant ce genre de situation est particulier et ne peut pas être trivialement représenté par le formalisme de flot de liens.
 C'est pourquoi nous ne pouvons utiliser la même méthode. 
@@ -56,7 +56,7 @@ C'est pourquoi nous ne pouvons utiliser la même méthode.
 Il existe également des méthodes capturant la partie la plus dense d'un réseau.
 C'est le cas de Bogdanov~\emph{et al.}~\cite{Bogdanov2011} qui considèrent  un graphe dont la topologie n'évolue pas mais dont les poids des liens changent entre $-1$ et $1$ en fonction du temps.
 Ce formalisme est encore une fois très différent de celui de flot de liens.
-De plus, la notion de densité utilisée ne tient pas vraiment compte du temps car un groupe de n\oe uds sur un intervalle est évalué par la somme des liens entre ces n\oe uds sur tout l'intervalle.
+De plus, la notion de densité utilisée ne tient pas vraiment compte du temps car un groupe de n\oe{}uds sur un intervalle est évalué par la somme des liens entre ces n\oe{}uds sur tout l'intervalle.
 
 
 Epasto~\emph{et. al}~\cite{Epasto2015} capturent le sous-graphe le plus dense dans un graphe temporel.
@@ -67,9 +67,9 @@ La notion de densité est donc statique car elle ne considère que la structure 
 
 Enfin les travaux de Rozenshtein~\emph{et. al}~\cite{rozenshtein2014} sont ceux qui se rapprochent le plus de notre méthode.
 Leur méthode utilise le formalisme de flots de liens et ne suppose pas de structure de graphe à un instant donné.
-Elle capture un groupe de n\oe uds et plusieurs intervalles disjoints de telle sorte que ce groupe de n\oe uds dans le graphe agrégé sur ces intervalles ait le degré moyen le plus élevé.
-Plus formellement, un groupe de n\oe uds $V'\subset V$ et un ensemble d'intervalles $\{I_1,..,I_k\} = \mathcal{I} \subset T$ doivent maximiser $\tilde{d}_\mathcal{G}(V')$ où  $\mathcal{G}= \bigcup G(L_t),\,\forall t \in \mathcal{I}$.
-Ainsi même si la méthode permet de capturer un groupe de n\oe uds sur des intervalles de temps, elle évalue un candidat sur un graphe agrégé pour appliquer une métrique de graphe.
+Elle capture un groupe de n\oe{}uds et plusieurs intervalles disjoints de telle sorte que ce groupe de n\oe{}uds dans le graphe agrégé sur ces intervalles ait le degré moyen le plus élevé.
+Plus formellement, un groupe de n\oe{}uds $V'\subset V$ et un ensemble d'intervalles $\{I_1,..,I_k\} = \mathcal{I} \subset T$ doivent maximiser $\tilde{d}_\mathcal{G}(V')$ où  $\mathcal{G}= \bigcup G(L_t),\,\forall t \in \mathcal{I}$.
+Ainsi même si la méthode permet de capturer un groupe de n\oe{}uds sur des intervalles de temps, elle évalue un candidat sur un graphe agrégé pour appliquer une métrique de graphe.
 Le temps n'a donc une influence qu'indirecte sur l'évaluation.
 Par ailleurs, leur méthode repose sur plusieurs paramètres qui doivent être fixés \emph{a priori}: le nombre maximum d'intervalles disjoints et la durée cumulée maximum de ces intervalles.
 Le premier paramètre permet d'éviter d'utiliser une infinité d'intervalles qui seraient chacun centré sur un lien.
@@ -79,19 +79,19 @@ Ainsi, leur méthode dépend de manière non triviale du choix des paramètres.
 \bigskip
 
 Pour résumer, il existe des méthodes cherchant la structure la plus dense dans un contexte dynamique; soit en considérant un graphe temporel soit en considérant un flot de liens.
-Cependant, ces méthodes utilisent des métriques de graphes pour évaluer un groupe de n\oe uds.
+Cependant, ces méthodes utilisent des métriques de graphes pour évaluer un groupe de n\oe{}uds.
 Le temps n'est donc pas complètement pris en compte dans l'évaluation.
 De manière plus importante, ces méthodes évaluent de manière absolue un groupe sans prendre en compte son voisinage.
-Enfin, nous capturons plusieurs groupes de liens alors que les autres méthodes capturent un groupe n\oe uds.
-Certaines de ces méthodes peuvent être étendues pour capturer les $k$ groupes de n\oe uds les plus denses mais cela se fait au prix de l'ajout d'un paramètre pour contrôler le chevauchement entre deux groupes.
+Enfin, nous capturons plusieurs groupes de liens alors que les autres méthodes capturent un groupe n\oe{}uds.
+Certaines de ces méthodes peuvent être étendues pour capturer les $k$ groupes de n\oe{}uds les plus denses mais cela se fait au prix de l'ajout d'un paramètre pour contrôler le chevauchement entre deux groupes.
 
 
 \section{Détection de groupes pertinents}
 \label{sec:groupe_dense_method}
 
 Nous avons défini dans le chapitre précédent~\ref{sec:fail_mailing} une projection du flot de liens en un graphe statique.
-Dans cette projection, chaque lien du flot est représenté par un n\oe ud.
-Deux liens $(b,e,u,v)$ et $(b',e',u',v') \in L$ sont reliés dans le graphe s'ils partagent un n\oe ud et si les intervalles s'intersectent, \emph{i.e.} $\{u,v\} \cap \{u',v'\} \neq \emptyset$ et $[b,e]\cap[b',e'] \neq \emptyset$, voir la figure~\ref{fig:Transformation}.
+Dans cette projection, chaque lien du flot est représenté par un n\oe{}ud.
+Deux liens $(b,e,u,v)$ et $(b',e',u',v') \in L$ sont reliés dans le graphe s'ils partagent un n\oe{}ud et si les intervalles s'intersectent, \emph{i.e.} $\{u,v\} \cap \{u',v'\} \neq \emptyset$ et $[b,e]\cap[b',e'] \neq \emptyset$, voir la figure~\ref{fig:Transformation}.
 Sur cette projection, nous appliquons l'algorithme de Louvain pour la détection de communautés.
 Les communautés trouvées par l'algorithme sont des groupes potentiellement pertinents et nous les appelons donc groupes candidats.
 
@@ -122,16 +122,16 @@ Il est donc nécessaire de définir une notion de voisinage qui puisse tenir com
 Pour ce faire, il faut utiliser une autre formulation de la densité pour comprendre quels sont les paramètres qui influent sur la densité.
 Jusqu'à maintenant pour un candidat $C_i$, nous considérons la densité du sous-flot induit par ses liens, $\delta(L(C_i))$.
 Pour faire apparaître l'influence de la structure et du temps, nous utilisons $\delta(L_{\beta(C_i)..\psi(C_i)}(V(C_i)^2))$ que nous notons, par abus de notation, $\delta(V(C_i),\beta(C_i), \bar{C_i})$ où $\bar{C_i} = \psi(C_i)-\beta(C_i)$.
-Il s'agit de la densité des n\oe uds induits par $C_i$ sur la durée du groupe.
+Il s'agit de la densité des n\oe{}uds induits par $C_i$ sur la durée du groupe.
 Ces deux quantités ne sont pas complètement équivalentes car les deux sous-flots sont différents, en particulier $L(C_i) \subseteq L_{\beta(C_i)..\psi(C_i)}(V(C_i)^2)$.
 De cette inclusion découle le fait $\delta(L(C_i)) \leq \delta(V(C_i),\beta(C_i), \bar{C_i})$.
 C'est le cas dans l'exemple de la figure~\ref{fig:exemple_groupe_dens} si l'on calcule la densité des liens noirs.
-Dans ce cas,  tous les n\oe uds sont induits par ces liens et l'intervalle de temps est égal à $[2,11]$.
+Dans ce cas,  tous les n\oe{}uds sont induits par ces liens et l'intervalle de temps est égal à $[2,11]$.
 Le sous-flot induit par $V$ sur $[2,11]$ comprend l'ensemble des liens noirs mais aussi des liens \textcolor{vert_turquoise}{\textbf{verts}} et \textcolor{bleu_window}{\textbf{bleus}}.
 
 
-Cependant avec cette formulation, on fait apparaitre 3 dimensions: l'ensemble de n\oe uds, le temps de début et la durée.
-Il devient alors aisé de considérer comme voisins les sous-flots qui diffèrent sur une seule dimension: soit le temps de début, soit la durée soit l'ensemble de n\oe uds.
+Cependant avec cette formulation, on fait apparaître 3 dimensions: l'ensemble de n\oe{}uds, le temps de début et la durée.
+Il devient alors aisé de considérer comme voisins les sous-flots qui diffèrent sur une seule dimension: soit le temps de début, soit la durée soit l'ensemble de n\oe{}uds.
 Cette différence entre les voisinages est illustrée dans la figure~\ref{fig:voisinage_groupe}.
 
 \begin{figure}
@@ -143,7 +143,7 @@ Cette différence entre les voisinages est illustrée dans la figure~\ref{fig:vo
 
 	\begin{subfigure}{0.31\textwidth}
 		\includegraphics[height=3cm]{img/GroupeDense/GroupExample/Voisinage/Variable_Nodes.eps}
-		\caption{Voisinage sur les n\oe uds}
+		\caption{Voisinage sur les n\oe{}uds}
 	\end{subfigure}\hspace*{0.02cm}
 	\begin{subfigure}{0.31\textwidth}
 		\includegraphics[height=3cm]{img/GroupeDense/GroupExample/Voisinage/Variable_duration.eps}
@@ -161,16 +161,16 @@ Cette différence entre les voisinages est illustrée dans la figure~\ref{fig:vo
 \end{figure}
 
 
-Pour le voisinage aux n\oe uds, il est impossible de considérer l'ensemble de tous les ensembles de n\oe uds car il est beaucoup trop grand.
-De plus, il est probable que ces groupes de n\oe uds ne soient même pas connexes dans le graphe agrégé si le flot de liens est peu dense.
-C'est pourquoi, si $V(C_i)$ est constitué de $k$ n\oe uds, nous nous limitons à l'ensemble des groupes de $k$ n\oe uds qui partagent $k-1$ n\oe uds avec $V(C_i)$.
-De cette manière, uniquement des groupes de n\oe uds similaires au candidat sont considérés.
-Cette comparaison nous semble plus stricte mais plus équitable que celles utilisant l'ensemble des groupes de n\oe uds ou des groupes de n\oe uds pris aléatoirement.
-Il serait possible de considérer un nombre moins important de n\oe uds partagés mais nous ne l'avons pas fait à cause de la complexité de calcul.
-En effet, il y a déjà $k(|V|-k)$ sous-flots partageant $k-1$ n\oe uds avec un candidat.
+Pour le voisinage aux n\oe{}uds, il est impossible de considérer l'ensemble de tous les ensembles de n\oe{}uds car il est beaucoup trop grand.
+De plus, il est probable que ces groupes de n\oe{}uds ne soient même pas connexes dans le graphe agrégé si le flot de liens est peu dense.
+C'est pourquoi, si $V(C_i)$ est constitué de $k$ n\oe{}uds, nous nous limitons à l'ensemble des groupes de $k$ n\oe{}uds qui partagent $k-1$ n\oe{}uds avec $V(C_i)$.
+De cette manière, uniquement des groupes de n\oe{}uds similaires au candidat sont considérés.
+Cette comparaison nous semble plus stricte mais plus équitable que celles utilisant l'ensemble des groupes de n\oe{}uds ou des groupes de n\oe{}uds pris aléatoirement.
+Il serait possible de considérer un nombre moins important de n\oe{}uds partagés mais nous ne l'avons pas fait à cause de la complexité de calcul.
+En effet, il y a déjà $k(|V|-k)$ sous-flots partageant $k-1$ n\oe{}uds avec un candidat.
 
 Pour le voisinage au temps de début (resp. à la durée), nous considérons toutes les valeurs possibles de temps de début (resp. durée) dans un intervalle donné.
-Chacune de ces valeurs donne lieu à un sous-flot induit ayant les mêmes n\oe uds et la même durée (resp. temps de début) que le sous-flot induit par les liens du groupe candidat.
+Chacune de ces valeurs donne lieu à un sous-flot induit ayant les mêmes n\oe{}uds et la même durée (resp. temps de début) que le sous-flot induit par les liens du groupe candidat.
 Ensuite, nous calculons la densité de chacun de ces sous-flots voisins.
 Pus formellement, l'ensemble des densités des sous-flots voisins se définit de la manière suivante.
 Soit $I_{d\acute{e}but}$ et $I_{dur\acute{e}e}$ deux intervalles représentant respectivement les valeurs de temps de début et de durée que nous allons considérer et $C_i$ un groupe de liens.
@@ -188,7 +188,7 @@ Comme ces valeurs sont peu informatives, nous préférons nous limiter à un int
 \bigskip
 
 Au final, nous capturons pour chaque voisinage les valeurs de densités des sous-flots voisins.
-Pour le voisinage aux n\oe uds, il y a $k(|V|-k)$ valeurs de densité différentes.
+Pour le voisinage aux n\oe{}uds, il y a $k(|V|-k)$ valeurs de densité différentes.
 Pour le voisinage au temps de début (resp. à la durée), nous avons une fonction de la densité qui dépend du temps de début (resp. de la durée).
 
 
@@ -210,7 +210,7 @@ En trait plein (resp. pointillé), trois candidats du jeu de données Rollernet 
 \label{fig:distrib_dens}
 \end{figure}
 
-Pour le voisinage aux n\oe uds qui est représenté par un ensemble, $S$, de valeurs de densité, le score d'un candidat $C_i$ est:
+Pour le voisinage aux n\oe{}uds qui est représenté par un ensemble, $S$, de valeurs de densité, le score d'un candidat $C_i$ est:
 
 \begin{equation}
 p_{noeud}(C_i)= \dfrac{\sum_{\delta \in S} \mathbf{1}_{\delta \le \delta^*}}{|S|}\,,
@@ -237,35 +237,35 @@ Le choix des seuils est décrit plus amplement dans la section~\ref{sec:groupe_d
 \subsection{Algorithme de calcul des scores}
 Nous avons défini formellement les trois voisinages mais il faut encore définir un algorithme efficace pour les calculer.
 En effet même s'il n'est pas nécessaire de construire explicitement les sous-flots des voisinages, il est nécessaire de considérer l'ensemble des sous-flots.
-Cette nécessité est simple à remplir dans le cas du voisinage aux n\oe uds car il existe un nombre fini de sous-flots voisins.
+Cette nécessité est simple à remplir dans le cas du voisinage aux n\oe{}uds car il existe un nombre fini de sous-flots voisins.
 Pour les voisinages au temps de début et à la durée, il existe une infinité de sous-flots voisins car le temps est continu.
 
-\subsubsection{Voisinage aux n\oe uds}
-Pour ce voisinage, il est nécessaire d'analyser des sous-flots durant l'intervalle, $[\beta(C_i),\psi(C_i)]$, mais pour différents ensembles n\oe uds, $V'$.
+\subsubsection{Voisinage aux n\oe{}uds}
+Pour ce voisinage, il est nécessaire d'analyser des sous-flots durant l'intervalle, $[\beta(C_i),\psi(C_i)]$, mais pour différents ensembles n\oe{}uds, $V'$.
 Il existe plusieurs stratégies possibles pour calculer la densité  de ces sous-flots. 
 
 La première méthode consiste à manipuler chaque sous-flot de manière indépendante et de calculer leur densité.
-Pour extraire le sous-flot induit par un ensemble de n\oe uds sur un intervalle de temps,
-il est judicieux de d'abord considérer le sous-flot sur les n\oe uds puis d'intégrer le temps  car la construction du sous-flot induit par un ensemble de n\oe uds est plus rapide.
-Le calcul de la densité d'un sous-flot induit par un ensemble de n\oe uds $V'$, sur intervalle de temps $[\beta(C_i),\psi(C_i)]$ est alors dépendant du nombre de liens existant entre les n\oe uds de $V'$ avant $\psi(C_i)$ et de la taille de $V'$: $\tilde{C}_{V'}=O(|L_{\alpha..\psi(C_i)}(V'^2)|log(|V'|))$.
-$|L_{\alpha..\psi(C_i)}(V'^2)|$ correspond au parcourt de l'ensemble des liens ayant un de leur n\oe uds dans $V'$ et dont il faut vérifier  qu'ils intersectent l'intervalle $[\beta(C_i),\psi(C_i)]$.
-Pour chacun de ces liens, il faut également tester que l'autre n\oe ud du lien appartienne également à $V'$ ce qui se fait en $log(|V'|)$.
-Pour calculer l'ensemble du voisinage pour un groupe de n\oe uds de taille $k$, il est alors nécessaire de répéter ce processus pour chaque ensemble de n\oe uds ce qui donne une complexité de $O(k(|V|-k) \tilde{C}_{V'})$.
+Pour extraire le sous-flot induit par un ensemble de n\oe{}uds sur un intervalle de temps,
+il est judicieux de d'abord considérer le sous-flot sur les n\oe{}uds puis d'intégrer le temps  car la construction du sous-flot induit par un ensemble de n\oe{}uds est plus rapide.
+Le calcul de la densité d'un sous-flot induit par un ensemble de n\oe{}uds $V'$, sur intervalle de temps $[\beta(C_i),\psi(C_i)]$ est alors dépendant du nombre de liens existant entre les n\oe{}uds de $V'$ avant $\psi(C_i)$ et de la taille de $V'$: $\tilde{C}_{V'}=O(|L_{\alpha..\psi(C_i)}(V'^2)|log(|V'|))$.
+$|L_{\alpha..\psi(C_i)}(V'^2)|$ correspond au parcourt de l'ensemble des liens ayant un de leur n\oe{}uds dans $V'$ et dont il faut vérifier  qu'ils intersectent l'intervalle $[\beta(C_i),\psi(C_i)]$.
+Pour chacun de ces liens, il faut également tester que l'autre n\oe{}ud du lien appartienne également à $V'$ ce qui se fait en $log(|V'|)$.
+Pour calculer l'ensemble du voisinage pour un groupe de n\oe{}uds de taille $k$, il est alors nécessaire de répéter ce processus pour chaque ensemble de n\oe{}uds ce qui donne une complexité de $O(k(|V|-k) \tilde{C}_{V'})$.
 C'est cette méthode que nous avons implémentée.
 Elle est d'ailleurs facilement parallélisable.
 
-La deuxième méthode consisterait à tirer parti de la ressemblance des ensembles de n\oe uds dans le voisinage.
-La première étape est alors de calculer $d_{t..t'}(V'^2)$, le degré moyen du groupe de n\oe uds initial.
-Puis lors de l'évaluation d'un groupe de n\oe uds voisin $V''$, nous savons que $V'$ et $V''$ ne diffèrent que sur un n\oe ud, $v'$ qui est remplacé par $v''$.
+La deuxième méthode consisterait à tirer parti de la ressemblance des ensembles de n\oe{}uds dans le voisinage.
+La première étape est alors de calculer $d_{t..t'}(V'^2)$, le degré moyen du groupe de n\oe{}uds initial.
+Puis lors de l'évaluation d'un groupe de n\oe{}uds voisin $V''$, nous savons que $V'$ et $V''$ ne diffèrent que sur un n\oe{}ud, $v'$ qui est remplacé par $v''$.
 Pour calculer la densité de $V''$ sur $[\beta(C_i),\psi(C_i)]$, il suffit de mettre à jour $d_{\beta(C_i)..\psi(C_i)}(V'^2)$ en fonction des liens qui ne sont plus pris en compte et des nouveaux liens pris en compte.
 C'est à dire qu'il faut considérer $|L_{\alpha..\psi(C_i)}({v'} \cap V')|$ suppressions de liens et  $|L_{\alpha..\psi(C_i)}({v''} \cap V'')|$ ajouts de liens.
-Pour évaluer l'ensemble des voisinages, il suffit de répéter ce processus pour chaque groupe de n\oe uds.
+Pour évaluer l'ensemble des voisinages, il suffit de répéter ce processus pour chaque groupe de n\oe{}uds.
 Cette méthode peut également être parallélisée.
 
 
 \subsubsection{Voisinage à la durée}
-Pour le voisinage à la durée, l'ensemble de n\oe uds est fixe et il faut de manière continue augmenter la durée du sous-flot voisin.
-Pour réussir à faire cela, il est nécessaire de se baser encore une fois sur le degré temporel de l'ensemble de n\oe uds en question.
+Pour le voisinage à la durée, l'ensemble de n\oe{}uds est fixe et il faut de manière continue augmenter la durée du sous-flot voisin.
+Pour réussir à faire cela, il est nécessaire de se baser encore une fois sur le degré temporel de l'ensemble de n\oe{}uds en question.
 
 La densité dépend d'une part de la somme des degrés du groupe candidat, $D_{\beta(C_i)..\psi(C_i)}(V')$, et d'autre part de la la durée de l'intervalle.
 Comme les degrés temporels sont des fonctions constantes par morceaux, la somme des degrés, qui est l'intégrale des degrés, est une fonction linéaire par morceaux dont les points de changement sont les instants où un lien apparaît ou disparaît.
@@ -307,7 +307,7 @@ La complexité est donc $O(|L_{\alpha..\omega-\Delta}(V'^2)|)$ où $\Delta$ est 
 \section{Jeux de données}
 \label{sec:groupe_dense_data}
 Nous appliquons notre méthode sur quatre jeux de données différents.
-La table~\ref{tab:data_spec_groupe_dense} liste le nombre de n\oe uds, le nombre de liens et la durée de chaque jeu de données.
+La table~\ref{tab:data_spec_groupe_dense} liste le nombre de n\oe{}uds, le nombre de liens et la durée de chaque jeu de données.
 
 \begin{table}
 \centering
@@ -324,7 +324,7 @@ Reality Mining & 94 & 44975 & 9 mois\\
 Babouins & 28 & 95616 & 14 jours\\
 \hline
 \end{tabular}
-\caption{nombre de n\oe uds $|V|$, nombre de liens $|E|$ et durée de chaque jeu de données.}
+\caption{nombre de n\oe{}uds $|V|$, nombre de liens $|E|$ et durée de chaque jeu de données.}
 \label{tab:data_spec_groupe_dense} 
 \end{table}
 
@@ -362,7 +362,7 @@ Nous pourrions utiliser le flot de liens avec des durées ajoutées artificielle
 
 Pour chaque jeu de données, nous appliquons notre méthode pour capturer les groupes d'interactions pertinents.
 Comme présenté dans la section~\ref{sec:groupe_dense_method}, la première étape est de trouver une partition, $\mathcal{C}$, des liens via la méthode de Louvain sur une projection du flot de liens en un graphe statique.
-Quelques statistiques obtenues pour chaque partition sont listées dans la table~\ref{tab:partition_spec_gd}, notamment les nombres de n\oe uds et de liens médians.
+Quelques statistiques obtenues pour chaque partition sont listées dans la table~\ref{tab:partition_spec_gd}, notamment les nombres de n\oe{}uds et de liens médians.
 La première chose qui est frappante est qu'il existe énormément de très petits groupes.
 On remarque également que seul le jeu de données Rollernet se distingue des autres en ayant des groupes plus gros.
 Cette différence est probablement due au flot de liens qui contient beaucoup de liens pour une durée de seulement trois heures.
@@ -379,17 +379,17 @@ Reality Mining & 5737 (474) & 2 (12) & 1 (36) \\
 Babouin & 37671 (1249)  &  2 (7)  & 1 (16) \\
 \hline
 \end{tabular}
-\caption{$|\mathcal{C}|$: nombre de groupes dans la partition, $\langle|V|\rangle$ médiane du nombre de n\oe uds dans un groupe, $\langle|L|\rangle$ médiane du nombre de liens dans un groupe.
+\caption{$|\mathcal{C}|$: nombre de groupes dans la partition, $\langle|V|\rangle$ médiane du nombre de n\oe{}uds dans un groupe, $\langle|L|\rangle$ médiane du nombre de liens dans un groupe.
 Les valeurs en parenthèses correspondent à la valeur quand uniquement les groupes d'au moins $10$ liens sont pris en compte.}
 \label{tab:partition_spec_gd}       % Give a unique label
 \end{table}
 
 
-Afin d'avoir une vision plus précise, nous présentons dans la figure~\ref{fig:distri_group_SP} les distributions cumulatives inverses du nombre de n\oe uds, du nombre de liens, de la durée et de la densité des groupes candidats dans le jeu de données Socio Pattern.
+Afin d'avoir une vision plus précise, nous présentons dans la figure~\ref{fig:distri_group_SP} les distributions cumulatives inverses du nombre de n\oe{}uds, du nombre de liens, de la durée et de la densité des groupes candidats dans le jeu de données Socio Pattern.
 Les distributions sont toutes hétérogènes sauf pour la densité.
-Les irrégularités dans la distribution de la densité sont dues aux petits candidats; typiquement un groupe de 2 liens entre 3 n\oe uds a une densité de $0.33$ et un groupe avec un seul lien\,\footnote{Ils représentent $83\%$ de tous les candidats.} a une densité de 1.
+Les irrégularités dans la distribution de la densité sont dues aux petits candidats; typiquement un groupe de 2 liens entre 3 n\oe{}uds a une densité de $0.33$ et un groupe avec un seul lien\,\footnote{Ils représentent $83\%$ de tous les candidats.} a une densité de 1.
 Les distributions pour les autres jeux de données sont en appendice pages \pageref{fig:distri_group_rollernet} à \pageref{fig:distri_group_RM} dans les figures~\ref{fig:distri_group_rollernet},\ref{fig:distri_group_baboon} et \ref{fig:distri_group_RM}
-Pour ces jeux de données, les distributions du nombre de liens, du nombre de n\oe uds et de la durée sont également hétérogènes mais les distributions de densité sont légèrement moins irrégulières.
+Pour ces jeux de données, les distributions du nombre de liens, du nombre de n\oe{}uds et de la durée sont également hétérogènes mais les distributions de densité sont légèrement moins irrégulières.
 
 \groupcharac{Sociopattern}{Socio Pattern}{SP}{}
 
@@ -416,7 +416,7 @@ On remarque également que les distributions cumulatives inverses chutent toutes
 
 \percentile{Sociopattern}{Socio Pattern}{SP}{}
 
-Nous utilisons pour le vosinage au temps de début, à la durée et aux n\oe uds les valeurs de seuils suivantes: $0.998$, $0.85$ et $0.98$.
+Nous utilisons pour le voisinage au temps de début, à la durée et aux n\oe{}uds les valeurs de seuils suivantes: $0.998$, $0.85$ et $0.98$.
 Pour les autres jeux de données, les distributions de scores sont présentées en appendice page \pageref{fig:dit_rollernet} à \pageref{fig:dit_RM} dans les figures~\ref{fig:dit_rollernet},\ref{fig:dit_baboon} et \ref{fig:dit_RM}.
 Elles sont similaires à celles obtenues pour Socio Pattern mis à part pour le jeu de données Rollernet dont les scores sont plus faibles.
 Cette différence est sûrement due à la structure plus dense du flot de liens dans le cas de Rollernet.
@@ -456,25 +456,25 @@ Nous avons choisi ces jeux de données pour une analyse manuelle car des méta-d
 
 \subsubsection{Étude manuelle d'un groupe de Socio Pattern}
 Dans les données Socio Pattern, la classe de chaque participant est connue et nous savons également quand commencent les premiers cours et quand ont lieu les pauses.
-Le groupe que nous considérons contient $50$ liens entre $17$ n\oe uds et dure environ $15$ minutes, ce qui en fait un des plus gros groupes trouvés.
+Le groupe que nous considérons contient $50$ liens entre $17$ n\oe{}uds et dure environ $15$ minutes, ce qui en fait un des plus gros groupes trouvés.
 Comme ce groupe commence à 7h44 le deuxième lundi de la capture, il précède le premier cours de la journée qui a lieu à 8h.
 De plus parmi les élèves participants à ce groupe, $16$ font partie de la même classe.
 C'est pourquoi il est fort probable que ce groupe corresponde à un regroupement d'élèves avant le premier cours.
 
 Cette analyse est une première étape mais elle ne suffit pas.
-En effet, il est possible que ce regroupement ait en réalité concerné d'autres n\oe uds, duré plus longtemps ou même commencé à un autre instant.
+En effet, il est possible que ce regroupement ait en réalité concerné d'autres n\oe{}uds, duré plus longtemps ou même commencé à un autre instant.
 C'est pourquoi nous avons développé les notions de voisinages et nous avons calculé les scores associés à ce groupe.
 
-\subsubsection*{Voisinage aux n\oe uds}
+\subsubsection*{Voisinage aux n\oe{}uds}
 Pour ce voisinage, le groupe a un score de $0.987$.
-Cela implique que ce groupe a une densité plus importante que $98.7\%$ des sous-flots ayant des n\oe uds similaires et exactement le même intervalle de temps.
-Dans le cas de ce groupe à 17 n\oe uds, il y a $2771=17(180-17)$ sous-flots dans le voisinage aux n\oe uds.
-Ce score élevé nous permet d'être raisonnablement sûr que cet ensemble de n\oe uds est véritablement important dans cet intervalle de temps.
+Cela implique que ce groupe a une densité plus importante que $98.7\%$ des sous-flots ayant des n\oe{}uds similaires et exactement le même intervalle de temps.
+Dans le cas de ce groupe à 17 n\oe{}uds, il y a $2771=17(180-17)$ sous-flots dans le voisinage aux n\oe{}uds.
+Ce score élevé nous permet d'être raisonnablement sûr que cet ensemble de n\oe{}uds est véritablement important dans cet intervalle de temps.
 
 \subsubsection*{Voisinage au temps de début}
 Pour ce voisinage, la densité en fonction du temps de début est présentée dans la figure~\ref{fig:g9522_debut}.
 Les cycles circadiens sont clairement visibles ainsi que le week-end.
-Par ailleurs, on remarque qu'avec une densité de $0.04$ le groupe est plus dense que tous les sous-flots ayant la même durée et les même n\oe uds mais un temps de début différent.
+Par ailleurs, on remarque qu'avec une densité de $0.04$ le groupe est plus dense que tous les sous-flots ayant la même durée et les même n\oe{}uds mais un temps de début différent.
 C'est pourquoi le groupe obtient un score de $1$ pour ce voisinage.
 Il est donc également pertinent vis-à-vis de ce voisinage.
 
@@ -489,8 +489,8 @@ Tout d'abord, on se rend compte que considérer des durées plus longues n'est p
 En effet pour ces jeux de données, la fonction de densité tend vers $0$ lorsque la durée est très longue.
 C'est pourquoi, augmenter l'intervalle de durée pris en compte ne fait qu'augmenter les scores sans apporter d'information.
 De plus, il est possible qu'avec avec une durée arbitraire pour définir un sous-flot du voisinage, il n'existe aucun groupe de liens exhibant exactement cette durée.
-En effet, un sous-flot induit par un ensemble de n\oe uds, $V'$, sur un intervalle donné, $I$, peut mener à considérer des liens sur seulement une partie de leur durée.
-C'est le cas notamment si un lien, $(b,e,u,v) \in E$, relie deux n\oe uds de $V'$ et qu'il commence pendant l'intervalle $I$ mais finit après.
+En effet, un sous-flot induit par un ensemble de n\oe{}uds, $V'$, sur un intervalle donné, $I$, peut mener à considérer des liens sur seulement une partie de leur durée.
+C'est le cas notamment si un lien, $(b,e,u,v) \in E$, relie deux n\oe{}uds de $V'$ et qu'il commence pendant l'intervalle $I$ mais finit après.
 C'est pourquoi trouver un groupe de liens avec un score parfait pour la durée est plus surprenant.
 
 \bigskip
@@ -523,22 +523,22 @@ En pointillé, la densité du groupe est rappelée.
 Dans les données Rollernet, nous connaissons le rôle des participants.
 Certains des participants ne sont connus que comme membres d'une association de roller mais d'autres ont des rôles plus précis, \emph{e.g.} membre organisateur à l'arrière gauche du peloton.
 Ce genre d'information aide lors de l'étude d'un groupe.
-Le groupe que nous considérons contient $38$ liens, $9$ n\oe uds et dure pendant environ $5$ minutes.
+Le groupe que nous considérons contient $38$ liens, $9$ n\oe{}uds et dure pendant environ $5$ minutes.
 Ce groupe de liens commence juste au début de la randonnée et $8$ des membres du groupe font partie des membres organisateurs à l'arrière de la randonnée.
 Le dernier fait partie des membres organisateurs mais à l'avant.
 Ce groupe pourrait indiquer une discussion rapide avant le début du tour.
 Comme pour le groupe de Socio Pattern, nous analysons les scores obtenus par ce groupe.
 
 
-\subsubsection*{Voisinage aux n\oe uds}
-Pour ce voisinage, le groupe a un score de $0.99$ ce qui indique une fois de plus que cet ensemble de n\oe uds est important lorsque l'on considère le même intervalle de temps.
-Il y a par ailleurs $477=9(62-9)$ sous-flots considérés pour ce candidat dans le voisinage aux n\oe uds.
+\subsubsection*{Voisinage aux n\oe{}uds}
+Pour ce voisinage, le groupe a un score de $0.99$ ce qui indique une fois de plus que cet ensemble de n\oe{}uds est important lorsque l'on considère le même intervalle de temps.
+Il y a par ailleurs $477=9(62-9)$ sous-flots considérés pour ce candidat dans le voisinage aux n\oe{}uds.
 
 \subsubsection*{Voisinage au temps de début}
 Pour le voisinage au temps de début, le groupe a un score de $0.85$, voir la figure~\ref{fig:g7_debut}.
 Comme le jeu de données Rollernet est plus court et plus dense que Socio Pattern, la densité est beaucoup plus stable en fonction du temps de début.
 Cela se reflète d'ailleurs sur le score obtenu qui est plus faible.
-Cependant comme le groupe de liens en question apparait 5 minutes après le début de la randonnée, il correspond tout de même à un maximum local de la densité.
+Cependant comme le groupe de liens en question apparaît 5 minutes après le début de la randonnée, il correspond tout de même à un maximum local de la densité.
 
 
 \subsubsection*{Voisinage à la durée}
@@ -612,7 +612,7 @@ Or, il se peut par exemple que le sous-flot optimum dans le voisinage au temps d
 
 \subsection{Caractéristiques des groupes pertinents}
 
-Afin d'avoir une vision plus précise des groupes capturés comme pertinents, nous présentons les distributions cumulatives inverses du nombre de liens, de n\oe uds, de la durée et de la densité pour ces groupes dans la figure~\ref{fig:distri_group_SP_filter}.
+Afin d'avoir une vision plus précise des groupes capturés comme pertinents, nous présentons les distributions cumulatives inverses du nombre de liens, de n\oe{}uds, de la durée et de la densité pour ces groupes dans la figure~\ref{fig:distri_group_SP_filter}.
 Les distributions sont encore une fois hétérogènes sauf pour la densité.
 Les distributions pour les autres jeux de données sont présentées en appendice pages \pageref{fig:distri_group_rollernet_filter} à \pageref{fig:distri_group_RM_filter} dans les figures~\ref{fig:distri_group_rollernet_filter},\ref{fig:distri_group_baboon_filter} et \ref{fig:distri_group_RM_filter}.
 En plus de ces distributions, nous avons également étudié comment ces groupes de liens représentent le flot de liens et comment ils se répartissent dans le temps et la topologie du flot de liens.
@@ -639,17 +639,17 @@ Représentativité & $17.7\%$ & $95.4\%$ & $80.9\%$ & $39\%$ \\
 
 
 \subsubsection{Caractéristiques topologiques}
-Pour la répartition topologique des groupes, la distribution du nombre de groupes pertinents par n\oe ud est présentée dans la figure~\ref{fig:PropNode_SP} pour le jeu de données Socio Pattern.
-Tous les n\oe uds appartiennent à au moins un groupe et quelques n\oe uds appartiennent même à plus de $20$ groupes.
-Avec une moyenne de $7.4$ groupes par n\oe uds, les groupes pertinents forment donc une structure très recouvrante sur les n\oe uds.
+Pour la répartition topologique des groupes, la distribution du nombre de groupes pertinents par n\oe{}ud est présentée dans la figure~\ref{fig:PropNode_SP} pour le jeu de données Socio Pattern.
+Tous les n\oe{}uds appartiennent à au moins un groupe et quelques n\oe{}uds appartiennent même à plus de $20$ groupes.
+Avec une moyenne de $7.4$ groupes par n\oe{}uds, les groupes pertinents forment donc une structure très recouvrante sur les n\oe{}uds.
 Pour les autres jeux données voir les figures~\ref{fig:PropNode_rollernet},\ref{fig:PropNode_baboon} et \ref{fig:PropNode_RM}.
-Nous observons également sur ces jeux de données un structure très chevauchante sur les n\oe uds, en particulier pour le jeu de donnée Babouin.
-Cette différence est sûrement due au nombre relativement faible de n\oe uds comparé au nombre de liens: $28$ n\oe uds pour $95\ 616$ liens.
+Nous observons également sur ces jeux de données un structure très chevauchante sur les n\oe{}uds, en particulier pour le jeu de donnée Babouin.
+Cette différence est sûrement due au nombre relativement faible de n\oe{}uds comparé au nombre de liens: $28$ n\oe{}uds pour $95\ 616$ liens.
 
 \bigskip
 
-Il aurait peut-être été possible de détecter cette structure par une méthode capturant des communautés chevauchantes de n\oe uds dans un graphe.
-Afin de tester cette hypothèse, nous créons un graphe agrégé pondéré tel que le poids d'un lien entre deux n\oe uds soit égal à la somme des durées des liens entre ces deux n\oe uds dans le flot de liens.
+Il aurait peut-être été possible de détecter cette structure par une méthode capturant des communautés chevauchantes de n\oe{}uds dans un graphe.
+Afin de tester cette hypothèse, nous créons un graphe agrégé pondéré tel que le poids d'un lien entre deux n\oe{}uds soit égal à la somme des durées des liens entre ces deux n\oe{}uds dans le flot de liens.
 Ainsi, le poids des liens permet de garder une partie de l'information temporelle.
 Pour la détection de communautés chevauchantes, nous avons utilisé l'algorithme bigclam proposé par Yang~\emph{et al.}~\cite{Yang2013}.
 Nous l'avons décrit dans la section~\ref{subsec:cover}.
@@ -658,15 +658,15 @@ C'est pourquoi il est nécessaire de transformer le graphe pondéré en graphe n
 Comme aucune valeur singulière n'est apparue lors de l'étude de la distribution des poids des liens, nous avons avons créé plusieurs graphes non pondérés selon la règle suivante.
 Un lien existe dans le graphe non pondéré si le poids associé au lien est supérieur ou égal à $\lambda\%$ des poids de tous les liens du graphe pondéré.
 Ainsi en faisant varier $\lambda$, il est possible de prendre en compte dans une certaine mesure la pondération.
-Une fois les graphes construits, nous appliquons l'algorithme \emph{bigclam} sur chaque graphe et obtenons des partitions chevauchantes de n\oe uds.
+Une fois les graphes construits, nous appliquons l'algorithme \emph{bigclam} sur chaque graphe et obtenons des partitions chevauchantes de n\oe{}uds.
 
-Nous utilisons l'indice de Jaccard afin de comparer les partitions chevauchantes obtenues par \emph{bigclam} et celle définie par les n\oe uds induits par les groupes pertinents.
+Nous utilisons l'indice de Jaccard afin de comparer les partitions chevauchantes obtenues par \emph{bigclam} et celle définie par les n\oe{}uds induits par les groupes pertinents.
 L'indice de Jaccard, défini dans la section~\ref{sec:def_graphe}, nous permet de trouver, pour chaque groupe pertinent, le groupe trouvé par \emph{bigclam} qui est le plus proche.
 La table~\ref{tab:Jaccard} liste les similarités médianes et maximales entre les groupes pertinents et ceux trouvés par \emph{bigclam} selon la valeur de $\lambda$ utilisée.
 Lorsque l'on étudie cette table, on remarque que les groupes pertinents et les groupes trouvés par \emph{bigclam} sont différents car les indices de Jaccard médians sont très faibles.
 Il y a toutefois quelques groupes pertinents qui sont retrouvés par \emph{bigclam} dans certains jeu de données.
 Seulement, cela n'arrive que pour quelques valeurs de $\lambda$ et très peu de groupes.
-C'est pourquoi notre méthode permet de mettre en valeur une structure des n\oe uds qui n'est pas retrouvée par une méthode classique sur le graphe agrégé.
+C'est pourquoi notre méthode permet de mettre en valeur une structure des n\oe{}uds qui n'est pas retrouvée par une méthode classique sur le graphe agrégé.
 
 \begin{table*}
 \centering
@@ -675,7 +675,7 @@ C'est pourquoi notre méthode permet de mettre en valeur une structure des n\oe 
 \hline Socio Pattern & 0.30 (0.55)  & 0.30 (0.55)  & 0.30 (0.55)  & 0.30 (0.55)  & 0.29 (0.54) & 0.33 (\textbf{0.85})  \\ 
 \hline Rollernet & 0.40 (0.52) & 0.39 (0.64) & 0.41 (0.54) & 0.37 (0.54) & 0.31 (0.57)  &  0.26 (0.75) \\ 
 \hline Reality Mining & 0.42 (0.76)  & 0.42 (0.77) & 0.36 (\textbf{0.88}) & 0.42 (\textbf{0.86}) & 0.38 (\textbf{0.87})  & 0.36 (\textbf{1}) \\ 
-\hline Baboons & 0.33 (\textbf{0.95}) & 0.38 (\textbf{1}) & 0.40 (\textbf{0.84}) & 0.46 (\textbf{0.94}) & 0.46 (\textbf{0.93}) & 0.44 (\textbf{0.85}) \\ 
+\hline Babouin & 0.33 (\textbf{0.95}) & 0.38 (\textbf{1}) & 0.40 (\textbf{0.84}) & 0.46 (\textbf{0.94}) & 0.46 (\textbf{0.93}) & 0.44 (\textbf{0.85}) \\ 
 \hline 
 \end{tabular} 
 \caption{Indice de Jaccard médian (et maximum) entre les groupes pertinents et les groupes trouvés par \emph{bigclam} dans le graphe agrégé où les liens ayant un poids inférieur à $\lambda\%$ des liens ont été retirés.
@@ -706,19 +706,19 @@ Il est toutefois intéressant de noter que les deux structures sont chevauchante
 Dans ce chapitre, nous nous sommes intéressés à la détection de groupes de liens pertinents dans un flot de liens.
 \`A l'inverse des méthodes existantes, nous considérons pleinement l'information temporelle et nous n'utilisons aucune agrégation pour évaluer nos résultats.
 Cette différence a été permise par l'utilisation du formalisme de flot et de ses métriques mélangeant vraiment structure et temps.
-De plus, notre méthode ne capture pas des ensembles de n\oe uds et des intervalles de temps mais des ensembles de liens.
+De plus, notre méthode ne capture pas des ensembles de n\oe{}uds et des intervalles de temps mais des ensembles de liens.
 
-Pour capturer des groupes de liens, nous avons proposé une transformation du flot de liens en un graphe statique non pondéré tel que les liens sont transformés en n\oe uds dans le graphe.
-Deux n\oe uds dans le graphe sont reliés si les liens correspondants dans le flot ont au moins un n\oe ud et un instant de temps en commun.
+Pour capturer des groupes de liens, nous avons proposé une transformation du flot de liens en un graphe statique non pondéré tel que les liens sont transformés en n\oe{}uds dans le graphe.
+Deux n\oe{}uds dans le graphe sont reliés si les liens correspondants dans le flot ont au moins un n\oe{}ud et un instant de temps en commun.
 C'est pourquoi, rechercher une communauté dans le graphe statique permet de trouver des groupes liens connectés temporellement et structurellement.
-Nous utilisons l'algorithme de Louvain qui permet de capturer des partitions de n\oe uds dans un graphe.
+Nous utilisons l'algorithme de Louvain qui permet de capturer des partitions de n\oe{}uds dans un graphe.
 Nous obtenons ainsi un ensemble de groupes de liens potentiellement pertinents.
 
 Afin de trouver les groupes pertinents parmi l'ensemble des groupes de la partition trouvée par Louvain, nous avons proposé un critère évaluant la pertinence du sous-flot défini par les liens du groupe.
 Un sous-flot est jugé pertinent en fonction de scores comparant la densité du sous-flot et la densité des sous-flots proches temporellement et topologiquement.
-Un sous-flot peut être caractérisé par les n\oe uds participants à ce sous-flot, l'instant d'apparition du premier lien du sous-flot et la durée du sous-flot.
+Un sous-flot peut être caractérisé par les n\oe{}uds participants à ce sous-flot, l'instant d'apparition du premier lien du sous-flot et la durée du sous-flot.
 Il est donc naturel de considérer trois voisinages.
-Chaque voisinage est alors composé de sous-flots différant du sous-flot initial sur un seul aspect: l'ensemble de n\oe uds, le temps début ou la durée.
+Chaque voisinage est alors composé de sous-flots différant du sous-flot initial sur un seul aspect: l'ensemble de n\oe{}uds, le temps début ou la durée.
 Le score d'un groupe de liens dans un voisinage est ainsi défini par la proportion de sous-flots étant moins denses que lui.
 Finalement, le groupe de liens est jugé pertinent si ces scores sont plus élevés que des seuils qui sont fixés \emph{a posteriori}.
 Ainsi, modifier ces seuils ne modifient pas les groupes candidats mais uniquement les groupes qui sont jugés pertinents.
@@ -736,11 +736,11 @@ Cependant il existe des méta-données pour deux des jeux de données.
 De cette manière, nous avons pu analyser manuellement quelques groupes considérés comme pertinents par notre méthode.
 Nous avons observé que les groupes étudiés correspondaient à des événements existants dans ces jeux de données comme le regroupement d'étudiants avant le premier cours de la semaine.
 Nous avons également étudié comment l'ensemble des groupes pertinents se répartissent dans le temps et la topologie du réseau.
-Nous avons observé qu'ils sont très chevauchants sur les n\oe uds et sur le temps mais qu'ils ne concernent cependant qu'une fraction du temps total.
+Nous avons observé qu'ils sont très chevauchants sur les n\oe{}uds et sur le temps mais qu'ils ne concernent cependant qu'une fraction du temps total.
 
 
 Afin de tester la nouveauté de la structure que nous capturons, nous avons appliqué un algorithme de détection de communautés chevauchantes, \emph{bigclam}, sur le graphe agrégé.
-Il apparait que parmi l'ensemble des groupes pertinents seulement quelques un sont retrouvés par \emph{bigclam}.
+Il apparaît que parmi l'ensemble des groupes pertinents seulement quelques un sont retrouvés par \emph{bigclam}.
 Ce résultat illustre l'importance de prendre en compte le temps lors de l'étude d'un réseau.
 
 
@@ -765,7 +765,7 @@ Cependant, le comportement que nous avons observé n'est pas forcément universe
 
 Il serait également intéressant de remettre en question la méthode de détection utilisée.
 Nous utilisons l'algorithme de Louvain sur la projection du flot de liens en un graphe statique.
-D'une part, il est possible d'utiliser d'autres algorithmes de détection de communautés en tant que partition de n\oe uds tels que ceux listés dans la sous-section~\ref{subsec:Part_noeuds}.
+D'une part, il est possible d'utiliser d'autres algorithmes de détection de communautés en tant que partition de n\oe{}uds tels que ceux listés dans la sous-section~\ref{subsec:Part_noeuds}.
 Mais il est également possible de considérer les couvertures comme une liste de candidats potentiels.
 Il serait par exemple possible d'appliquer \emph{bigclam} sur la projection.
 D'autre part, il est également nécessaire de réfléchir à l'impact sur les groupes candidats de l'utilisation de la projection du flot en un graphe car il est possible qu'un groupe pertinent ne soit pas détectable dans la projection.
@@ -785,10 +785,10 @@ Même si cette approche ne permet pas la détection directe de groupes pertinent
 Nous avons comparé nos résultats uniquement à une méthode statique car les méthodes de l'état de l'art sur les réseaux dynamiques manipulent principalement des séries de graphes .
 Or, le changement de formalisme impacte fortement l'objet d'étude.
 Dans une série de graphes, il y a une agrégation temporelle.
-L'identité d'un lien est donc perdue lors de l'agrégation et il est ainsi délicat de comparer des groupes de liens dans un flot de liens et des groupes de n\oe uds dans une série de graphes.
+L'identité d'un lien est donc perdue lors de l'agrégation et il est ainsi délicat de comparer des groupes de liens dans un flot de liens et des groupes de n\oe{}uds dans une série de graphes.
 Pour pouvoir appliquer les méthodes de série de graphes, il est donc d'abord nécessaire de construire une ou plusieurs transformations du flot de lien en série de graphes.
 \`A partir de cette série de graphes, il est alors possible d'appliquer les méthodes existantes pour trouver des communautés dans chaque graphe.
-Il serait alors intéressant de calculer les scores obtenus par les sous-flots induit par les n\oe uds d'une communauté sur l'intervalle de temps où la communauté à été détectée dans la série de graphes.
+Il serait alors intéressant de calculer les scores obtenus par les sous-flots induit par les n\oe{}uds d'une communauté sur l'intervalle de temps où la communauté à été détectée dans la série de graphes.
 
 
 Cette approche permettrait de comparer plus en profondeur les résultats mais pas de les valider.
