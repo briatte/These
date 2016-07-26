@@ -8,7 +8,7 @@
 %L'étude de la structure des réseaux est un sujet qui est étudié depuis assez longtemps \REF.
 %Ces études ont, dans un premier temps, permis de trouver comment caractériser une structure puis, dans un second temps, de proposer des méthodes de détections de ces structures.
 
-Nous nous intéressons ici à une archive de courriels publiquement disponibles\footnote{\url{https://lists.debian.org/debian-user/}}.
+Nous nous intéressons ici à une archive de courriels publiquement disponible\,\footnote{\url{https://lists.debian.org/debian-user/}}.
 Cette archive contient l'ensemble des courriels échangés par différent utilisateurs pour résoudre un problème survenu lors de l'utilisation de Debian.
 Typiquement, une personne ayant un problème lors de l'installation envoie un courriel à la liste afin de demander de l'aide.
 Toute personne inscrite sur la liste reçoit ce courriel et peut y répondre ce qui donne lieu à une discussion visible par tous.
@@ -16,7 +16,7 @@ Ces discussions ont déjà été étudiées dans le passé~\cite{dorat2007,sowe2
 
 Or, ces données se représentent naturellement sous forme de flot de liens en associant chaque personne à un n\oe{}ud et chaque courriel entre deux personnes à un lien dans le flot de liens à l'instant où le courriel a été envoyé.
 L'avantage de ces données de communications est que nous connaissons la discussion (\emph{thread}) dans laquelle a lieu chaque message.
-Une discussion est un ensemble de courriels dont tout les messages répondent à un message précédent de la discussion excepté pour le premier qui a initié la discussion et que nous appelons \emph{racine}.
+Une discussion est un ensemble de courriels dont tous les messages répondent à un message précédent de la discussion excepté pour le premier qui a initié la discussion et que nous appelons \emph{racine}.
 Ainsi, nous étudions la structure des discussions dans le flot liens représentant les courriels envoyés sur la liste.
 
 Utiliser le formalisme de flot de liens est particulièrement intéressant car cette liste de diffusion existe depuis 1994.
@@ -58,18 +58,18 @@ La majorité des courriels filtrés l'ont été car ils appartiennent à une dis
 
 \section{Caractéristiques élémentaires des discussions}
 
-Les caractéristiques les plus élémentaires des discussions sont le nombre de courriels, le nombre de personnes, le nombre de paires de personnes distinctes en interaction directes et leur durée.
+Les caractéristiques les plus élémentaires des discussions sont le nombre de courriels, le nombre de personnes, le nombre de paires de personnes distinctes en interaction directe et leur durée.
 Dans la figure~\ref{fig:dists_discussion}, sont présentées les distributions cumulatives inverses de ces quantités et on remarque qu'elles sont toutes hétérogènes.
 On remarque que les données filtrées ne diffèrent pas qualitativement des données brutes.
 
 \begin{figure}
 \centering
-	\includegraphics[angle=-90, width=0.49\linewidth]{img/mailing/sizes-ccdf.eps}
-	\includegraphics[angle=-90, width=0.49\linewidth]{img/mailing/durations-ccdf.eps}\\
-	\includegraphics[angle=-90, width=0.49\linewidth]{img/mailing/authors-ccdf.eps}
-	\includegraphics[angle=-90, width=0.49\linewidth]{img/mailing/authorpairs-ccdf.eps}
+	\includegraphics[width=0.4\linewidth]{img/mailing/sizes-ccdf.eps}
+	\includegraphics[width=0.4\linewidth]{img/mailing/durations-ccdf.eps}\\
+	\includegraphics[width=0.4\linewidth]{img/mailing/authors-ccdf.eps}
+	\includegraphics[width=0.4\linewidth]{img/mailing/authorpairs-ccdf.eps}
 	
-	\caption{Distribution cumulative inverse de différentes caractéristiques pour les données brutes (ligne pleine) et filtrées (ligne pointillé). En haut à gauche: nombre de courriels dans une discussion; en haut à droite: durée d'une discussion; en bas à gauche: nombre de personnes dans une discussion; en bas à droite: nombre de paires d'auteurs distinct dans une .}
+	\caption{Distribution cumulative inverse de différentes caractéristiques pour les données brutes (ligne pleine) et filtrées (ligne pointillé). En haut à gauche: nombre de courriels dans une discussion; en haut à droite: durée d'une discussion; en bas à gauche: nombre de personnes dans une discussion; en bas à droite: nombre de paires d'auteurs distinct dans une discussion.}
 	\label{fig:dists_discussion}
 \end{figure}
 
@@ -81,8 +81,9 @@ Nous avons également étudié la corrélation entre ces différentes notions et
 
 
 \begin{figure}
-	\includegraphics[angle=-90, width=0.49\linewidth]{img/mailing/sizes-durations-corr.eps}
-	\includegraphics[angle=-90, width=0.49\linewidth]{img/mailing/sizes-authors-corr.eps}
+	\centering
+	\includegraphics[width=0.4\linewidth]{img/mailing/sizes-durations-corr.eps}
+	\includegraphics[width=0.4\linewidth]{img/mailing/sizes-authors-corr.eps}
 	\caption{Gauche: Corrélations entre le nombre de courriels et la durée d'une discussion. Droite: Corrélation entre le nombre de courriels et le nombre d'auteurs dans une discussion.}
 	\label{fig:corr_discussion}
 \end{figure}
@@ -103,7 +104,7 @@ Or, on observe que $21\%$ des contacts sont renouvelés en moins de 30 jours.
 La participation est donc relativement élevée.
 \begin{figure}
 	\centering
-	\includegraphics[width=0.49\linewidth]{img/mailing/ict-ccdf.eps}
+	\includegraphics[width=0.4\linewidth]{img/mailing/ict-ccdf.eps}
 	\caption{Distribution des temps inter-contacts dans le fil de discussions.}
 	\label{fig:ict_discussion}
 \end{figure}
@@ -125,7 +126,7 @@ En couvrant un spectre aussi large de $\Delta$, on observe que la $\Delta$-densi
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.48\linewidth]{img/mailing/global_loglog.eps}
+	\includegraphics[width=0.4\linewidth]{img/mailing/global_loglog.eps}
 	\caption{Évolution de la $\Delta$-densité (en vert) du flot de liens pour $\Delta$ de $60$ seconde à $20$ ans. En rouge, la densité dans le graphe agrégé.}
 	\label{fig:dens_fil_discusion}
 \end{figure}
@@ -141,7 +142,7 @@ Bien que notable, ce fait est attendu notamment car le flot dure beaucoup plus l
 \begin{figure}
 \centering
 %\subfloat[Inverse cumulative distribution of intra-threads density.]{
-	\includegraphics[width=0.48\linewidth]{img/mailing/delta.eps}
+	\includegraphics[width=0.4\linewidth]{img/mailing/delta.eps}
 %}
 
 \caption{Distribution cumulative inverse de la $\Delta$-densité des discussions pour différentes valeurs de $\Delta$.}
@@ -198,7 +199,7 @@ Un autre facteur est aussi la durée considérée qui est plus longue que la dur
 \begin{figure}
 \centering
 %\subfloat[Inverse cumulative distribution of inter-threads density.]{
-	\includegraphics[width=0.48\linewidth]{img/mailing/inter_delta.eps}
+	\includegraphics[width=0.4\linewidth]{img/mailing/inter_delta.eps}
 %}
 \caption{Distribution cumulative inverse de la $\Delta$-densité inter discussions pour différentes valeurs de $\Delta$s.}
 \label{fig:inter_dens_discussion}
@@ -212,22 +213,22 @@ Pour $\Delta=20\ ans$ dans la figure~\ref{fig:corel_inter_discussion_20}, la dif
 On remarque tout de même que pour $\Delta=1\ an$, la différence reste notable.
  
 
-\begin{figure}
+\begin{figure}[h]
 \centering
-	\begin{subfigure}{0.48\textwidth}
+	\begin{subfigure}{0.4\textwidth}
 		\includegraphics[width=\linewidth]{img/mailing/DensityCurve/120/mean.eps}
 		\caption{$\Delta= $1 minute}		
 	\end{subfigure}
-	\begin{subfigure}{0.48\textwidth}
+	\begin{subfigure}{0.4\textwidth}
 		\includegraphics[width=\linewidth]{img/mailing/DensityCurve/172800/mean.eps}
 		\caption{$\Delta= $1 jour}		
 	\end{subfigure}
 	
-	\begin{subfigure}{0.48\textwidth}
+	\begin{subfigure}{0.4\textwidth}
 		\includegraphics[width=\linewidth]{img/mailing/DensityCurve/63072000/mean.eps}
 		\caption{$\Delta= $1 an}		
 	\end{subfigure}
-	\begin{subfigure}{0.48\textwidth}
+	\begin{subfigure}{0.4\textwidth}
 		\includegraphics[width=\linewidth]{img/mailing/DensityCurve/1261440000/mean.eps}
 		\caption{$\Delta= $20 ans}	
 		\label{fig:corel_inter_discussion_20}	
@@ -258,9 +259,9 @@ On observe également que, même pour les discussions durant moins d'un jour ($8
 
 \begin{figure}
 \centering
-	\includegraphics[width=0.45\textwidth]{img/mailing/degree_temp}
+	\includegraphics[width=0.4\textwidth]{img/mailing/degree_temp}
 	\hspace*{0.025\textwidth}
-	\includegraphics[width=0.45\textwidth]{img/mailing/degree_nodes}
+	\includegraphics[width=0.4\textwidth]{img/mailing/degree_nodes}
 	\caption{Gauche: Corrélation entre le degré des discussions dans le graphe de chevauchement temporel et leur durée. Droite: Corrélation entre le degré des discussions dans le graphe de chevauchement topologique et leur nombre de participants.}
 	\label{fig:x-y-graphs_discu}
 \end{figure}
@@ -312,7 +313,7 @@ Le lien $(x,y)$ du groupe violet du flot à gauche donne lieu au lien $(\textcol
 
 \begin{figure}
 \centering
-	\includegraphics[width=0.45\linewidth]{img/mailing/quotient-density}
+	\includegraphics[width=0.4\linewidth]{img/mailing/quotient-density}
 	\caption{$\Delta$-densité du flot de liens et du flot de liens quotient en fonction de $\Delta$ pour $\Delta=1mn, 1h, 12h, 1j, 7j, 30j, 1\ an$ et $20\ ans$.}
 	\label{fig:quotient-stream-density}
 \end{figure}
@@ -347,7 +348,7 @@ Les groupes denses dans le graphe représentent donc des groupes de liens connec
 
 \begin{figure}
 \centering
-\includegraphics[width=0.6\linewidth]{img/mailing/Transformation.eps}
+\includegraphics[width=0.55\linewidth]{img/mailing/Transformation.eps}
 \caption{Transformation d'un flot de liens avec 4 n\oe{}uds (a-d) et 6 liens à gauche en un graphe à droite à 6 n\oe{}uds. La couleur d' un n\oe{}ud dans le graphe indique le lien du flot qu'il représente.}
 \label{fig:Transformation}
 \end{figure}%
@@ -437,11 +438,11 @@ En revanche, la précision est très faible car un groupe $\mathfrak{D}_j$ conti
 \centering
 
 \hfill
-	\begin{subfigure}{0.4\textwidth}
+	\begin{subfigure}{0.45\textwidth}
 		\includegraphics[width=\linewidth]{img/mailing/Detection/Rappel_0.eps}
 		\caption{}		
 	\end{subfigure}\hfill
-	\begin{subfigure}{0.4\textwidth}
+	\begin{subfigure}{0.45\textwidth}
 		\includegraphics[width=\linewidth]{img/mailing/Detection/Precision_0.eps}
 		\caption{}		
 	\end{subfigure}\hfill
@@ -478,27 +479,26 @@ La précision quant à elle augmente légèrement mais cela est dû à la baisse
 Il semble donc qu'il ne soit pas possible avec cette approche de retrouver automatiquement les discussions.
 
 
-\begin{figure}
+\begin{figure} [h]
 \centering
-	\hfill
-	\begin{subfigure}{0.4\textwidth}
+
+	\begin{subfigure}{0.45\textwidth}
 		\includegraphics[width=\linewidth]{img/mailing/Detection/Rappel_1.eps}
 		\caption{niveau 1}		
 	\end{subfigure}
-	\begin{subfigure}{0.4\textwidth}
+	\begin{subfigure}{0.45\textwidth}
 		\includegraphics[width=\linewidth]{img/mailing/Detection/Precision_1.eps}
 		\caption{niveau 1}		
-	\end{subfigure}\hfill
+	\end{subfigure}
 	
-	\hfill
-	\begin{subfigure}{0.4\textwidth}
+	\begin{subfigure}{0.45\textwidth}
 		\includegraphics[width=\linewidth]{img/mailing/Detection/Rappel_2.eps}
 		\caption{niveau 2}		
 	\end{subfigure}
-	\begin{subfigure}{0.4\textwidth}
+	\begin{subfigure}{0.45\textwidth}
 		\includegraphics[width=\linewidth]{img/mailing/Detection/Precision_2.eps}
 		\caption{niveau 2}		
-	\end{subfigure}\hfill
+	\end{subfigure}
 
 \caption{(A,B,C) Rappel des discussions vis-à-vis des groupes trouvés par Louvain à différent niveaux récursifs.
 (B,D,F) Précision des groupes trouvés vis-à-vis des discussions.
@@ -536,7 +536,7 @@ Les groupes trouvés sont plus gros et plus denses que la structure des discussi
 Il semble donc qu'il existe une autre structure que celle des discussions.
 
 Cependant, ces observations ne remettent pas en cause les conclusions faites sur les discussions pour plusieurs raisons.
-Tout d'abord, les flots de lien étudiés ne sont pas exactement les-mêmes ($L\neq \mathfrak{L}$).
+Tout d'abord, les flots de liens étudiés ne sont pas exactement les-mêmes ($L\neq \mathfrak{L}$).
 Ce changement de flot est nécessaire pour le fonctionnement de la méthode de détection mais cela change l'objet d'étude.
 Ensuite, les deux structures ne sont pas complètement différentes car les groupes trouvés semblent en fait agréger plusieurs discussions.
 Malheureusement, nous n'avons pas réussi avec notre méthode à isoler chaque discussion malgré notre approche récursive.
@@ -547,9 +547,9 @@ Pourtant, il semble que la structure trouvée ait du sens au vu des valeurs de d
 Ce jeux de données de courriels est intéressant.
 D'une part, il couvre une très longue période de temps et, d'autre part, il existe de nombreuses informations associées.
 Nous avons utilisé ici la connaissance de la discussion associée à chaque courriel pour étudier la notion de communautés.
-D'autres notions pourraient être développées en s'appuyant sur ce jeu de donnée, notamment les notions de centralité et de rôle des n\oe{}uds.
+D'autres notions pourraient être développées en s'appuyant sur ce jeu de données, notamment les notions de centralité et de rôle des n\oe{}uds.
 Grâce à la durée du jeu de données, il serait intéressant de mesurer l'évolution de l'implication et du rôle d'une personne.
-Il serait ainsi possible de mieux comprendre la participation de personnes à un projet cet ampleur.
+Il serait ainsi possible de mieux comprendre la participation de personnes à un projet de cette ampleur.
 
 Il y a également le texte brut du mail qui est accessible et dont nous n'avons pas tiré parti.
 Il serait sûrement intéressant pour des linguistes de quantifier l'évolution du vocabulaire.

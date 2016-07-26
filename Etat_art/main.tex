@@ -62,6 +62,7 @@ Nous listons les notations utilisées dans le tableau~\ref{tab:notation_groupe_n
 
 \begin{table}
   \centering
+  \hspace*{-17.225pt}
     \begin{tabular}{|c|c|}
      \hline
     \rule[-1ex]{0pt}{4ex} Notation & Définition \\
@@ -167,7 +168,7 @@ Le choix de la normalisation dans le cas chevauchant semble cependant toujours o
 \resume{
 Il est intéressant de noter que la littérature sur la comparaison de structures est assez restreinte comparé à celle sur la détection de communautés.
 En effet, il semble qu'uniquement 3 similarités soient couramment utilisées: la similarité se basant sur Jaccard, l'Omega index et la NMI.
-Tout les indices de similarité ont été étendus aux couvertures de manière assez convaincantes.
+Tout les indices de similarité ont été étendus aux couvertures de manière assez convaincante.
 Il est également important de noter l'existence d'implémentations librement accessible de la majeure partie de ces métriques\, \footnote{\url{https://github.com/aaronmcdaid/Overlapping-NMI}}\,\footnote{\url{http://scikit-learn.org/stable/modules/clustering.html\#clustering-evaluation}}.
 }
 
@@ -567,7 +568,7 @@ Plusieurs travaux~\cite{DeDomenico2013,Kivela2014,Boccaletti2014} décrivent les
 \paragraph{Détection de communautés}
 Grâce au formalisme de graphe multicouches, il est possible de traiter le temps de manière un peu plus fine que dans les séries de graphes car il permet de mieux suivre l'évolution des n\oe{}uds.
 Comme un graphe multicouches est un graphe, il est possible d'adapter les méthodes existantes pour tenir compte des différents types de liens.
-C'est le cas d'infomap~\cite{DeDomenico2014}, de la modularité~\cite{Mucha2010,Bassett2013,Bazzi2016} et du SBM~\cite{Stanley,Peixoto2015c}.
+C'est le cas d'infomap~\cite{de2015identifying}, de la modularité~\cite{Mucha2010,Bassett2013,Bazzi2016} et du SBM~\cite{Stanley,Peixoto2015c}.
 
 
 \resume{
@@ -724,13 +725,13 @@ Les structures capturées permettent de mieux comprendre l'organisation généra
 
 Avec l'émergence de nouvelles données incorporant l'information temporelle, il est pertinent d'adapter la théorie des graphes pour prendre en compte le temps.
 L'extension temporelle des graphes est un champ de recherche très récent et il n'y a pas à douter que de nombreuses méthodes de détection de communautés dans ce contexte vont voir le jour.
-Cependant, tout les formalismes existants ne sont pas équivalents et ils limitent parfois les solutions possibles.
+Cependant, tous les formalismes existants ne sont pas équivalents et ils limitent parfois les solutions possibles.
 
 
 Il y a d'une part les formalismes se rapprochant de la théorie des graphes: séries de graphes, tenseurs 3d et graphes multicouches.
 Ces formalismes sont proches des graphes statiques et il est même possible d'y appliquer des méthodes statiques.
 En revanche, la prise en compte du temps n'est que partielle.
-Il y a toujours une forme agrégation temporelle et il n'est pas possible d'avoir une vision très fine de l'objet d'étude.
+Il y a toujours une forme d'agrégation temporelle et il n'est pas possible d'avoir une vision très fine de l'objet d'étude.
 De plus, les solutions existantes reposent sur le suivi de communautés qui ne semble pas être un problème résolu.
 
 

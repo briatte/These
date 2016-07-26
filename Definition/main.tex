@@ -9,7 +9,7 @@ Nous avons décrit rapidement le formalisme de flot de liens dans le chapitre pr
 Nous nous attachons maintenant à définir plus formellement les flots de liens et quelques notions utilisées dans le reste de cette thèse.
 Un flot de liens est défini par un triplet $L=(T,V,E)$ où $T=[\alpha, \omega]$ est un intervalle de temps, $V$ un ensemble de $n$ n\oe{}uds et $E\subseteq T\times T \times V \times V$ un ensemble de $m$ liens.
 Les liens de $E$ sont des quadruplets $(b,e,u,v)$, signifiant que le lien $(u, v)$ existe sur l'intervalle $[b,e] \subseteq [\alpha,\omega]$.
-Nous dénotons le nombre de liens dans le flot par $|L|=|E|=m$ et sa durée par $\bar{L}=\omega-\alpha$.
+Nous notons le nombre de liens dans le flot par $|L|=|E|=m$ et sa durée par $\bar{L}=\omega-\alpha$.
 De manière analogue, la durée d'un lien $l=(b,e,u,v) \in E$ est notée   $\bar{l}=e-b$.
 On note $\beta(E)= min_{(b,e,u,v) \in E} (b)$ et $\psi(E)= max_{(b,e,u,v) \in E} (e)$ l'apparition du premier lien et la disparition du dernier lien dans le flot de liens.
 
@@ -22,13 +22,13 @@ Afin de définir la simplification, nous nous aidons de la fonction de présence
 $L'=(T,V,E')= \sigma(L)$ est la simplification de $L=(T,V,E)$ si et seulement si $L'$ est simple et si $\forall u,v \in V,\ \forall t\in T, \zeta_{L}(u,v,t)= \zeta_{L'}(u,v,t)$.
 
 Il est parfois nécessaire d'augmenter la durée des liens.
-C'est notamment utile lorsque les liens sont de la forme $(t,t,u,v)$, ce qui est le cas lorsqu'on étudie des envoies de courriels par exemple.
-Nous notons $\xi(L,\Delta)=L'$ le fait d'augmenter de $\Delta$ la durée de chaque lien.
+C'est notamment utile lorsque les liens sont de la forme $(t,t,u,v)$, ce qui est le cas lorsqu'on étudie des envois de courriels par exemple.
+Nous notons $\xi(L,\Delta)$ l'augmentation de la durée de chaque lien de $\Delta$.
 Il y a plusieurs moyens d'augmenter de $\Delta$ un intervalle $[b,e]$.
 Nous considérons l'ajout symétrique c'est à dire qu'un intervalle $[b,e]$ est transformé en l'intervalle $[b-\Delta/2,e+\Delta/2]$.
 
 Enfin, il est parfois intéressant d'agréger l'information temporelle pour créer un graphe statique.
-Un graphe $G=(V,E')=G(L)$ est le graphe agrégé de $L$ si et seulement si $\forall (u,v) \in E',\ \exists b,e \in T$ tel que $(b,e,u,v) \in E$.
+Un graphe $G=(V,E')=G(L)$ est le graphe agrégé de $L$ si et seulement si $\forall (u,v) \in E',\ \exists b,e \in T$ tel que $(b,e,u,v) \in E$ et réciproquement.
 
 
 %Une fois défini les flots de liens, nous pouvons commencer à définir différentes opérations pour les analyser.
@@ -163,7 +163,7 @@ Lorsque cela n'est pas ambigu, nous notons $d_{\alpha..\omega}(u) = d(u)$.
 Il est intéressant de noter dans cette formulation que si tous les liens durent tout au long du flot de liens alors le degré dans le graphe agrégé et le degré moyen dans le flot de liens sont égaux, c'est-à-dire  $d_{\alpha..\omega}(u) = d_{G(L)}(u), \forall u \in V$.
 
 \`A partir du degré, il est possible de définir beaucoup de notions différentes et notamment la densité.
-Pour rappel, la densité dans un graphe est définie par $\delta(G)=2m/(n(n-1))=d(V)/n(n-1)$ et est égale à la probabilité qu'il existe un lien entre 2 n\oe{}uds.
+Pour rappel, la densité dans un graphe est définie par $\delta(G)=2m/(n(n-1))=d(V)/n(n-1)$ et est égale à la probabilité qu'il existe un lien entre 2 n\oe{}uds pris au hasard.
 Si l'on transpose l'idée au formalisme de flot de liens, la densité dans un flot de liens est la probabilité qu'il existe un lien entre 2 n\oe{}uds à un instant donné aléatoire.
 Cela se traduit par la formule suivante:
 \begin{equation}
@@ -195,8 +195,8 @@ Un lien est $(t,t,u,v)$ est transformé en un lien $(t-\Delta,t,u,v)$.
 
 Le calcul de la densité d'un flot est linéaire en le nombre de liens car il est dépendant du calcul de $d_{\alpha..\omega}(V)$  qui est fait de manière linéaire.
 
-\section{Liste des notations pour les flots de liens}
-\begin{table}[h]
+
+\begin{table}
 	\centering
 	\begin{tabular}{|c|c|}
 	\hline Symbole & description \\
@@ -225,6 +225,9 @@ Le calcul de la densité d'un flot est linéaire en le nombre de liens car il es
 	\end{tabular} 
 		\caption{Liste des notations pour les flots de liens}
 \end{table}
+
+\bigskip
+D'autres notions ont par ailleurs été définies dans les flots de liens  dans la thèse de Tiphaine Viard~\cite{viard2016flots}.
 
 \section{Manipulation concrète des flots de liens}
 

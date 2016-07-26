@@ -6,7 +6,7 @@ Nous avons vu dans le chapitre précédent que la génération de graphes ayant 
 Pour être utile à la validation de fonctions de qualité, un générateur doit être capable de construire des graphes ayant des caractéristiques vraisemblables de structures communautaires.
 Pour ce faire, plusieurs contraintes peuvent être considérées.
 Ce domaine de recherche est d'ailleurs toujours actif~\cite{Tabourier2011,Obradovic2014} car il est parfois nécessaire d'intégrer de nouvelles contraintes sur les graphes générés.
-Il existe cependant peu de méthodes pour générer des réseaux dynamiques, que ce soit sous la forme de série de graphes, de graphes temporel ou de flots de liens.
+Il existe cependant peu de méthodes pour générer des réseaux dynamiques, que ce soit sous la forme de série de graphes, de graphe temporel ou de flot de liens.
 
 
 Dans ce chapitre, nous présentons un premier générateur de flots de liens sans durée avec une structure communautaire sur les liens.
@@ -34,7 +34,7 @@ Puis, nous faisons une première proposition pour une fonction de qualité éval
 Le chapitre est organisé de la manière suivante.
 Dans la section~\ref{sec:versqualite_existant}, nous revenons sur les travaux existants qui traitent de la génération de réseaux dynamiques.
 Puis dans la section~\ref{sec:versqualite_methode}, nous présentons notre méthode de génération de flots de liens.
-Enfin dans la section~\ref{sec:versqualite_Applications}, nous présentons l'utilisation du générateur pour tester des méthodes de détection de communautés statique et la définition d'une fonction de qualité.
+Enfin dans la section~\ref{sec:versqualite_Applications}, nous présentons l'utilisation du générateur pour tester des méthodes de détection de communautés statiques et la définition d'une fonction de qualité.
 
 \section{Travaux existants}
 \label{sec:versqualite_existant}
@@ -60,10 +60,9 @@ Cependant, elles sont plus restreintes car elles présupposent des contraintes s
 \begin{figure}
 \centering
 \includegraphics[width=0.4\linewidth]{img/Qualite/Granell.png}
-\caption{Représentation schématique d'évolution possible d'une structure communautaire de séries de graphes pouvant être générées par la méthode de Granell~\emph{et al.}~\cite{Granell2015a}.\protect\footnotemark.}
+\caption{Représentation schématique d'évolution possible d'une structure communautaire de séries de graphes pouvant être générées par la méthode de Granell~\emph{et al.}~\cite{Granell2015a}. Image provenant de~\cite{Granell2015a}.}
 \label{fig:qualite_Grannell}
 \end{figure}
-\footnotetext{Image provenant de \url{http://journals.aps.org/pre/abstract/10.1103/PhysRevE.92.012805}.}
 
 Ces méthodes génèrent aisément des structures communautaires mais ne permettent de générer que des séries de graphes.
 
@@ -268,7 +267,7 @@ Avec ces paramètres fixés, nous faisons varier le chevauchement topologique de
 \end{figure}
 
 \bigskip
-Pour ces trois types de flots de liens, nous avons appliqué, Louvain, une méthode d'optimisation de modularité~\cite{Blondel2008a} et CarOp, une méthode égo-centrée~\cite{Danisch2012} sur une projection du flot de liens en un graphe statique.
+Pour ces trois types de flots de liens, nous avons appliqué Louvain, une méthode d'optimisation de modularité~\cite{Blondel2008a} et CarOp, une méthode égo-centrée~\cite{Danisch2012} sur une projection du flot de liens en un graphe statique.
 La méthode CarOp permet de trouver une communauté égo-centrée à partir d'un n\oe{}ud du graphe.
 Il est donc nécessaire de fournir un lien initial qui servira à retrouver les communautés générées.
 Nous choisissons pour chaque communauté générée un lien apparaissant au milieu de sa duré de vie; par exemple un lien à l'instant $15$ est choisi pour initialiser une communauté qui sera \emph{a priori} proche de la communauté $3$.
@@ -374,13 +373,13 @@ Q_L(\mathcal{V}) = \dfrac{1}{\omega-\alpha} \int_{\alpha}^{\omega} Q_{G(L_t)}(\m
 
 Cette formulation met en avant l'intégrale de la modularité du graphe mais la modularité, elle même, est une somme sur les groupes de n\oe{}uds.
 Nous transformons donc l'équation précédente pour mettre en avant la modularité d'un groupe de n\oe{}uds sur un intervalle de temps.
-Si dans la partition temporelle un groupe de n\oe{}ud $V'$ est une communauté sur un intervalle $[\beta, \psi]$ alors sa qualité,$Q_L(V', \beta, \psi)$, peut se calculer de la manière suivante:
+Si dans la partition temporelle un groupe de n\oe{}ud $V'$ est une communauté sur un intervalle $[\beta, \psi]$ alors sa qualité, $Q_L(V', \beta, \psi)$, peut se calculer de la manière suivante:
 
 \begin{equation}
-Q_L(V', \beta, \psi)  = \int_{\beta}^{\psi} \! \dfrac{d_{in}(t,V')}{d(t,V)} - \left( \dfrac{d(V',t)}{d(V,t)} \right)^2  \, dt\, .
+Q_L(V', \beta, \psi)  = \int_{\beta}^{\psi} \! \dfrac{d_{in}(t,V')}{d(t,V)} - \left( \dfrac{d(V',t)}{d(V,t)} \right)^2  \, dt\, ,
 \end{equation}
 
-$d_(t,V')$ et $d_{in}(t,V')$ sont définis dans la section~\ref{sec:def_densite} et sont respectivement la somme des degrés temporels des n\oe{}uds de $V_i$ et la somme des degrés temporels des n\oe{}uds de $V_i$ lorsqu'uniquement les liens inclus dans $V_i \times V_i$ sont considérés.
+$d(t,V')$ et $d_{in}(t,V')$ sont définis dans la section~\ref{sec:def_densite} et sont respectivement la somme des degrés temporels des n\oe{}uds de $V_i$ et la somme des degrés temporels des n\oe{}uds de $V_i$ lorsqu'uniquement les liens inclus dans $V_i \times V_i$ sont considérés.
 Avec cette formulation, on voit apparaître le degré temporel dans le calcul de cette version temporelle de la modularité d'un groupe.
 La vérité de terrain générée n'est cependant pas une partition temporelle des n\oe{}uds mais une partition de liens du flot de liens.
 Il faut donc adapter la formulation précédente pour manipuler des groupes de liens au lieu de groupes de n\oe{}uds sur un intervalle de temps.
@@ -500,7 +499,7 @@ Pour la vérité de terrain, le chevauchement topologique diminue la qualité al
 
 \resume{
 La transposition de la modularité permet d'évaluer des partitions de liens d'un flot de liens.
-Cette fonction de qualité réussie à évaluer la vérité de terrain comme la meilleure fonction de qualité dans certaines conditions; lorsque les liens durent suffisamment longtemps.
+Cette fonction de qualité réussit à évaluer la vérité de terrain comme la meilleure fonction de qualité dans certaines conditions, lorsque les liens durent suffisamment longtemps.
 Cependant, ces travaux ne sont que préliminaires et il est nécessaire d'étudier d'autres cas de figure avant de comprendre cette fonction de qualité.
 Il est en particulier important de tester d'autres partitions trouvées empiriquement, notamment avec un algorithme d'optimisation dédié.
 }
@@ -538,7 +537,7 @@ Pour qu'un générateur soit utile, il doit générer des structures vraisemblab
 Il est par exemple peu judicieux d'utiliser un graphe généré selon le modèle de Erdös-Rényi pour représenter un réseau social.
 C'est une question que nous n'avons pas abordée jusqu'à maintenant mais qui est primordiale.
 Le modèle de génération que nous utilisons est très général.
-C'est le choix des paramètres qui rend les flots de liens générés vraisemblable ou non.
+C'est le choix des paramètres qui rend les flots de liens générés vraisemblables ou non.
 Il faut donc étudier comment fixer ses paramètres.
 
 Il est par exemple possible de changer l'activité des communautés pour que leur densité et leur durée soient similaires à celles observées dans un jeu de données.
@@ -554,10 +553,10 @@ Encore une fois pour répondre à ce genre de question, il est nécessaire de s'
 Enfin, une des hypothèses de notre générateur est l'équivalence des n\oe{}uds au sein d'une communauté.
 Or, il se peut que certains n\oe{}uds participent plus que d'autres.
 Un moyen de prendre en compte cette diversité est d'incorporer un système d'attachement préférentiel.
-Dans les graphes, le système préférentiel se définit de la manière suivante.
+Dans les graphes, l'attachement préférentiel se définit de la manière suivante.
 Chaque n\oe{}ud a un score de popularité~\footnote{Le degré est généralement utilisé comme score de popularité.} qui détermine la propension des autres n\oe{}uds à créer un lien avec lui.
 Ainsi plus un n\oe{}ud est populaire, plus il a de liens avec les autres n\oe{}uds.
-Dans le cadre de la génération de flot de liens, il serait possible que le processus de génération des liens entre deux n\oe{}uds ne dépende plus uniquement de la communauté mais également de la popularité respective des n\oe{}uds.
+Dans le cadre de la génération de flots de liens, il serait possible que le processus de génération des liens entre deux n\oe{}uds ne dépende plus uniquement de la communauté mais également de la popularité respective des n\oe{}uds.
 Cette popularité, temporelle ou non, devrait également être fixée par l'utilisateur mais elle permettrait de mettre en avant un leader au sein d'une communauté.
 
 

@@ -11,7 +11,7 @@ Il s'agit donc d'un problème légèrement différent de la détection de partit
 
 Toute la difficulté pour réussir à trouver les groupes pertinents est de trouver une définition de la pertinence.
 La notion de densité, que nous avons utilisée précédemment, est une première approche mais ce n'est pas suffisant.
-En effet, il peut exister de grand groupes pertinents mais peu denses et de petits groupes très denses mais peu pertinents.
+En effet, il peut exister de grands groupes pertinents mais peu denses et de petits groupes très denses mais peu pertinents.
 Il n'est pas possible de faire la différence entre ces deux catégories en utilisant juste la densité.
 C'est pourquoi, nous utilisons une notion de voisinage.
 Un groupe est alors pertinent s'il est plus dense que son voisinage.
@@ -37,7 +37,7 @@ Enfin, les jeux de données que nous utilisons sont présentés dans la section~
 \begin{figure}
 \centering
 \includegraphics[width=\linewidth]{img/GroupeDense/GroupExample/Zone_dense.eps}
-\caption{Exemple de flots de liens avec 3 groupes denses représenté par la couleur des liens (\textcolor{brique}{\textbf{rouge}}, \textcolor{vert_turquoise}{\textbf{vert}} et \textcolor{bleu_window}{\textbf{bleu}}).
+\caption{Exemple de flots de liens avec 3 groupes denses représentés par la couleur des liens (\textcolor{brique}{\textbf{rouge}}, \textcolor{vert_turquoise}{\textbf{vert}} et \textcolor{bleu_window}{\textbf{bleu}}).
 }
 \label{fig:exemple_groupe_dens}
 \end{figure}
@@ -141,15 +141,15 @@ Cette différence entre les voisinages est illustrée dans la figure~\ref{fig:vo
 		\caption{Groupe de liens initial}
 	\end{subfigure}\hspace*{0.05cm}
 
-	\begin{subfigure}{0.31\textwidth}
+	\begin{subfigure}{0.32\textwidth}
 		\includegraphics[height=3cm]{img/GroupeDense/GroupExample/Voisinage/Variable_Nodes.eps}
 		\caption{Voisinage sur les n\oe{}uds}
-	\end{subfigure}\hspace*{0.02cm}
-	\begin{subfigure}{0.31\textwidth}
+	\end{subfigure}
+	\begin{subfigure}{0.32\textwidth}
 		\includegraphics[height=3cm]{img/GroupeDense/GroupExample/Voisinage/Variable_duration.eps}
 		\caption{Voisinage sur la durée}
-	\end{subfigure}\hspace*{0.02cm}
-	\begin{subfigure}{0.31\textwidth}
+	\end{subfigure}
+	\begin{subfigure}{0.32\textwidth}
 		\includegraphics[height=3cm]{img/GroupeDense/GroupExample/Voisinage/Variable_start.eps}
 		\caption{Voisinage sur le temps de début}
 	\end{subfigure}	
@@ -716,17 +716,17 @@ Nous obtenons ainsi un ensemble de groupes de liens potentiellement pertinents.
 
 Afin de trouver les groupes pertinents parmi l'ensemble des groupes de la partition trouvée par Louvain, nous avons proposé un critère évaluant la pertinence du sous-flot défini par les liens du groupe.
 Un sous-flot est jugé pertinent en fonction de scores comparant la densité du sous-flot et la densité des sous-flots proches temporellement et topologiquement.
-Un sous-flot peut être caractérisé par les n\oe{}uds participants à ce sous-flot, l'instant d'apparition du premier lien du sous-flot et la durée du sous-flot.
+Un sous-flot peut être caractérisé par les n\oe{}uds participant à ce sous-flot, l'instant d'apparition du premier lien du sous-flot et la durée du sous-flot.
 Il est donc naturel de considérer trois voisinages.
-Chaque voisinage est alors composé de sous-flots différant du sous-flot initial sur un seul aspect: l'ensemble de n\oe{}uds, le temps début ou la durée.
+Chaque voisinage est alors composé de sous-flots différant du sous-flot initial sur un seul aspect: l'ensemble de n\oe{}uds, le temps de début ou la durée.
 Le score d'un groupe de liens dans un voisinage est ainsi défini par la proportion de sous-flots étant moins denses que lui.
 Finalement, le groupe de liens est jugé pertinent si ces scores sont plus élevés que des seuils qui sont fixés \emph{a posteriori}.
-Ainsi, modifier ces seuils ne modifient pas les groupes candidats mais uniquement les groupes qui sont jugés pertinents.
+Ainsi, modifier ces seuils ne modifie pas les groupes candidats mais uniquement les groupes qui sont jugés pertinents.
 
 
 Nous avons appliqué notre méthode sur quatre jeux de données réels représentant des interactions entre individus.
 Deux d'entre eux sont des interactions entre étudiants.
-Un est un réseau de participant à une randonnée roller à Paris et le dernier est un réseau de babouins.
+Un est un réseau de participants à une randonnée roller à Paris et le dernier est un réseau de babouins.
 Ils proviennent ainsi de contextes radicalement différents.
 Cela se traduit notamment sur la densité  globale des flots de liens.
 Pour tous ces jeux de données, nous avons réussi à capturer des groupes ayant des scores très élevés.
@@ -782,17 +782,17 @@ Même si cette approche ne permet pas la détection directe de groupes pertinent
 
 \subsubsection{Amélioration de la validation des résultats}
 
-Nous avons comparé nos résultats uniquement à une méthode statique car les méthodes de l'état de l'art sur les réseaux dynamiques manipulent principalement des séries de graphes .
+Nous avons comparé nos résultats uniquement à une méthode statique car les méthodes de l'état de l'art sur les réseaux dynamiques manipulent principalement des séries de graphes.
 Or, le changement de formalisme impacte fortement l'objet d'étude.
 Dans une série de graphes, il y a une agrégation temporelle.
 L'identité d'un lien est donc perdue lors de l'agrégation et il est ainsi délicat de comparer des groupes de liens dans un flot de liens et des groupes de n\oe{}uds dans une série de graphes.
-Pour pouvoir appliquer les méthodes de série de graphes, il est donc d'abord nécessaire de construire une ou plusieurs transformations du flot de lien en série de graphes.
+Pour pouvoir appliquer les méthodes de série de graphes, il est donc d'abord nécessaire de construire une ou plusieurs transformations du flot de liens en série de graphes.
 \`A partir de cette série de graphes, il est alors possible d'appliquer les méthodes existantes pour trouver des communautés dans chaque graphe.
 Il serait alors intéressant de calculer les scores obtenus par les sous-flots induit par les n\oe{}uds d'une communauté sur l'intervalle de temps où la communauté à été détectée dans la série de graphes.
 
 
 Cette approche permettrait de comparer plus en profondeur les résultats mais pas de les valider.
 Comme il n'existe pas de données avec une vérité de terrain, une approche prometteuse serait de créer des modèles génératifs de flots de liens permettant de définir des contraintes sur la densité.
-Ainsi, il serait alors possible de tester de manière quantitative notre méthode.
+Il serait alors possible de tester de manière quantitative notre méthode.
 Cela permettrait de plus d'ouvrir la voie pour des méthodes de détection de communautés de liens dans les flots de liens.
 Nous abordons le problème de la détection de communautés de liens dans les graphes dans le chapitre suivant et nous esquissons des pistes de générations de flots de liens avec une structure dans le chapitre~\ref{versQualite}.
