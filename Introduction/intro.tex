@@ -7,16 +7,16 @@ Avec cette définition, le nombre d'objets pouvant être considérés comme un r
 Il peut s'agir de réseaux sociaux constitués de personnes communiquant entre elles, de réseaux de routes entre des villes, de réseaux d'ordinateurs échangeant de l'information ou bien même de réseaux de neurones collaborant entre eux via leurs synapses.
 Les réseaux complexes sont donc un très vaste sujet d'étude et les graphes y ont une place prépondérante.
 En effet, les graphes sont constitués de n\oe{}uds et de liens où chaque lien relie deux n\oe{}uds.
-Ainsi, il est naturel de représenter un réseau de personnes par un graphe dans lequel une personne est représentée par un n\oe{}ud et une interaction entre deux personnes par un lien entre deux n\oe{}uds.
+Par exemple, il est naturel de représenter un réseau de personnes par un graphe dans lequel une personne est représentée par un n\oe{}ud et une interaction entre deux personnes par un lien entre deux n\oe{}uds.
 
 Les questions posées sur les réseaux complexes donnent lieu à de nombreux axes de recherche liés aux graphes.
 La recherche de structures communautaires dans les graphes en est un exemple et il s'agit d'ailleurs d'un sujet activement étudié.
 On peut définir intuitivement une communauté comme étant un sous-ensemble d’éléments densément connectés entre eux mais peu densément connectés avec le reste du réseau.
-Dans le cas d'un réseau de personnes, une communauté est un groupe de personnes, par exemple un groupe d'amis communiquant beaucoup entre eux.
-Avec l'ensemble des communautés existantes dans un réseau, il est ainsi simple d'étudier un réseau dans sa globalité.
-La recherche de communautés est donc un moyen de construire une vue d'ensemble du réseau.
+Dans le cas d'un réseau de personnes, une communauté est un groupe de personnes, par exemple un groupe d'amis, communiquant beaucoup entre eux.
+\`A partir de l'ensemble des communautés existantes dans un réseau, il est plus simple d'étudier un réseau dans sa globalité.
+Les communautés forment donc une vue d'ensemble d'un réseau.
 Cette vue d'ensemble devient cruciale lorsque le réseau étudié est grand; jusqu'à un milliard d'utilisateurs dans le cas de Facebook.
-Or, de plus en plus de jeux de données de tailles comparable sont disponible depuis plusieurs années.
+Or, de plus en plus de jeux de données de tailles comparables sont disponibles depuis plusieurs années.
 
 
 Il n'est cependant pas toujours possible de représenter un réseau par un graphe.
@@ -33,16 +33,16 @@ Il est nécessaire de distinguer les instants pendant lesquels les liens existen
 Or, un graphe ne permet pas de tirer parti de cette information temporelle car tous les liens sont équivalents. 
 Il faut donc transformer la notion même de graphe afin de tenir compte de la temporalité du réseau.
 Les graphes temporels sont une extension des graphes qui considèrent l'ensemble des ajouts et retraits de liens via une fonction de présence.
-Ils sont particulièrement adaptés pour étudier les réseaux dynamiques car une structure de graphe existe à chaque instant mais ils le sont moins pour l'analyse de séquences d'interactions.
+Ils sont particulièrement adaptés pour étudier les réseaux dynamiques car une structure de graphe existe à chaque instant, mais ils le sont moins pour l'analyse de séquences d'interactions.
 L'approche que nous utilisons est la manipulation de flots de liens qui sont des ensembles de quadruplets $(b, e, u, v)$, où chaque quadruplet représente un lien entre les n\oe{}uds $u$ et $v$ existant durant l'intervalle $[b,e]$.
 Avec ce formalisme, on représente ainsi facilement que deux personnes ont interagi durant un intervalle de temps donné.
 
 
-Avec toute l'information temporelle, on peut décrire une séquence d'interactions de manière plus fine qu'avec un graphe.
+Avec toute l'information temporelle, il est possible de décrire une séquence d'interactions de manière plus fine qu'avec un graphe.
 Par exemple dans un réseau de personnes, une fête de famille ou une réunion de travail se matérialisent dans le flot de liens par des ensembles d'interactions reliant un ensemble de personnes durant un intervalle de temps.
 Ces ensembles d'interactions sont particuliers car ils concernent un nombre réduit de n\oe{}uds durant un court intervalle de temps.
 Avec un graphe, ces interactions ne sont plus distinguables de l'ensemble des interactions ayant eu lieu à d'autres moments.
-C'est pourquoi, le formalisme de flots de liens permet une description plus fine de ce type de structure.
+C'est pourquoi le formalisme de flots de liens permet une description plus fine de ce type de structure.
 Pour arriver à ce résultat, il est nécessaire de pouvoir évaluer les caractéristiques d'un flot de liens.
 Nous construisons donc de nouveaux concepts et métriques adaptés à ce contexte en nous inspirant de la théorie des graphes.
 
@@ -57,7 +57,7 @@ Dans cette thèse, nous nous attachons donc à la découverte des possibilités 
 \section*{Plan du manuscrit}
 
 
-Dans le chapitre~\ref{chap:etat_art}, nous présentons l'état de l'art en deux parties: la détection de communautés dans les graphes et les formalismes étendant la théorie des graphes pour prendre en compte le temps.
+Dans le chapitre~\ref{chap:etat_art}, nous présentons l'état de l'art en deux parties: la détection de communautés dans les graphes et les formalismes étendant la théorie des graphes pour prendre en compte la notion du temps.
 La première partie est importante pour comprendre en détail les différentes définitions de communautés qui existent et les algorithmes de détection qui en découlent.
 La deuxième partie sur les extensions de graphes est primordiale pour comprendre les intuitions derrière chaque extension et ce qu'elles impliquent en terme de structures détectables.
 Nous présentons l'ensemble des définitions et notations que nous utilisons pour étudier un flot de liens dans le chapitre~\ref{chap:def_flot}.
@@ -71,8 +71,8 @@ Ces travaux sont à mettre en parallèle avec les résultats décrivant les stru
 
 \`A partir de ces observations, nous développons, dans le chapitre~\ref{groupesDense}, une méthode permettant de trouver automatiquement des ensembles d'interactions qui sont jugés pertinents.
 Un ensemble d'interactions est jugé pertinent s’il est plus dense que son voisinage temporel et topologique.
-Ainsi, nous évaluons si les liens ayant eu lieu entre différents n\oe{}uds sur un intervalle donné sont surprenants.
-Les  ensembles de liens pertinents forment ainsi une structure partielle du flot de liens car certains liens ne sont dans aucun groupe pertinent.
+Nous évaluons si les liens ayant eu lieu entre différents n\oe{}uds sur un intervalle donné sont surprenants vis-à-vis de leurs voisinages.
+Les  ensembles de liens pertinents forment ainsi une structure partielle du flot de liens excluant certains liens qui ne sont dans aucun groupe pertinent.
 Nous testons cette méthode sur quatre jeux de données réels.
 Ces travaux forment une part importante de cette thèse sur les structures communautaires dans les flots de liens.
 
@@ -85,4 +85,4 @@ Fort des observations faites dans l'ensemble de ces travaux, nous esquissons de 
 Nous proposons dans ce chapitre un modèle de génération de flots de liens et nous testons différentes méthodes de détection et d'évaluation de la structure générée.
 
 
-Enfin nous revenons dans le chapitre~\ref{Conclusion} sur les travaux réalisés au cours de cette thèse et des contributions apportées avant de présenter quelques pistes de recherches qu'ouvrent nos travaux.
+Enfin, nous revenons dans le chapitre~\ref{Conclusion} sur les travaux réalisés au cours de cette thèse et les contributions apportées avant de présenter quelques pistes de recherches qu'ouvrent nos travaux.

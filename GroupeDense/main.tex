@@ -9,11 +9,11 @@ Le but ici est de réussir à extraire parmi ces groupes ceux qui sont pertinent
 En ce sens, nous nous posons la question de la décomposition partielle d'un flot de liens en sous-flots pertinents.
 Il s'agit donc d'un problème légèrement différent de la détection de partition car d'une part, certains liens peuvent n'appartenir à aucun groupe et, d'autre part, les groupes doivent être pertinents.
 
-Toute la difficulté pour réussir à trouver les groupes pertinents est de trouver une définition de la pertinence.
-La notion de densité, que nous avons utilisée précédemment, est une première approche mais ce n'est pas suffisant.
+Toute la difficulté pour trouver les groupes pertinents est de réussir à mesurer la pertinence d'un groupe.
+La notion de densité utilisée précédemment est une première approche mais ce n'est pas suffisant.
 En effet, il peut exister de grands groupes pertinents mais peu denses et de petits groupes très denses mais peu pertinents.
 Il n'est pas possible de faire la différence entre ces deux catégories en utilisant juste la densité.
-C'est pourquoi, nous utilisons une notion de voisinage.
+C'est pourquoi nous utilisons une notion de voisinage.
 Un groupe est alors pertinent s'il est plus dense que son voisinage.
 Ainsi, un groupe peu dense peut être pertinent s'il est plus dense que son voisinage.
 Comme le but est de pouvoir décrire le flot de liens, nous nous limitons aux groupes ayant une taille supérieure à un minimum donné.
@@ -47,7 +47,7 @@ Enfin, les jeux de données que nous utilisons sont présentés dans la section~
 
 Comme nous l'avons vu dans le chapitre~\ref{chap:etat_art}, il existe assez peu de méthodes cherchant des structures dans un formalisme sans perte d'information.
 
-Mitra~\emph{et al.}~\cite{Mitra2012a} et Speidel~\emph{et al.}~\cite{Speidel2015} ont développé une méthode de détection de communautés mais dans les réseaux diachroniques.
+Mitra~\emph{et al.}~\cite{Mitra2012a} et Speidel~\emph{et al.}~\cite{Speidel2015} ont proposé des méthodes de détection de communautés mais dans les réseaux diachroniques.
 Dans un tel réseau, ce sont les n\oe{}uds qui ont un \emph{timestamp} et non les liens.
 Ce cas de figure s'applique parfaitement aux réseaux de citations car une citation relie bien deux publications apparues à deux dates spécifiques.
 Cependant ce genre de situation est particulier et ne peut pas être trivialement représenté par le formalisme de flot de liens.
@@ -65,7 +65,7 @@ Cependant, la méthode capture le sous-graphe à un instant $t$ tel qu'il ait le
 La notion de densité est donc statique car elle ne considère que la structure de graphe à un instant.
 
 
-Enfin les travaux de Rozenshtein~\emph{et. al}~\cite{rozenshtein2014} sont ceux qui se rapprochent le plus de notre méthode.
+Les travaux de Rozenshtein~\emph{et. al}~\cite{rozenshtein2014} sont ceux qui se rapprochent le plus de notre méthode.
 Leur méthode utilise le formalisme de flots de liens et ne suppose pas de structure de graphe à un instant donné.
 Elle capture un groupe de n\oe{}uds et plusieurs intervalles disjoints de telle sorte que ce groupe de n\oe{}uds dans le graphe agrégé sur ces intervalles ait le degré moyen le plus élevé.
 Plus formellement, un groupe de n\oe{}uds $V'\subset V$ et un ensemble d'intervalles $\{I_1,..,I_k\} = \mathcal{I} \subset T$ doivent maximiser $\tilde{d}_\mathcal{G}(V')$ où  $\mathcal{G}= \bigcup G(L_t),\,\forall t \in \mathcal{I}$.
@@ -75,6 +75,12 @@ Par ailleurs, leur méthode repose sur plusieurs paramètres qui doivent être f
 Le premier paramètre permet d'éviter d'utiliser une infinité d'intervalles qui seraient chacun centré sur un lien.
 Le second paramètre permet d'éviter de considérer tout le graphe agrégé et ainsi d'imposer la prise en compte du temps.
 Ainsi, leur méthode dépend de manière non triviale du choix des paramètres.
+
+Enfin, il existe les travaux conduits dans l'équipe~\cite{viard:hal-01208330,Viard2016} sur la détection de delta-cliques dans les flots de liens sans durée, c'est à dire un ensemble de $(b,b,u,v)$.
+Pour un delta donné, une delta-clique est un ensemble de n\oe{}uds et un intervalle de temps, tels que toutes les paires de n\oe{}uds dans cet ensemble interagissent au moins tous les delta sur cet intervalle.
+Cela est équivalent à trouver des ensemble de n\oe{}uds sur un intervalle de temps ayant une densité égale à $1$ dans le flot de liens où chaque lien a une durée delta\,\footnote{Un lien $(b,b,u,v)$ doit être transformé en $(b-\Delta,b,u,v)$.}.
+Leur méthode est donc très proche mais elle ne capture que des groupes de densité $1$ et ne prend pas en compte leurs voisinages.
+
 
 \bigskip
 
@@ -101,7 +107,7 @@ En particulier, il peut y avoir beaucoup de très petits groupes de $1$ ou $2$ l
 Ces groupes ne sont pas pris en compte car nous fixons une taille minimum des groupes fixée \emph{a priori}.
 
 Par ailleurs, l'algorithme de Louvain optimise de manière gloutonne la modularité dans la projection du flot de liens en un graphe statique et non une métrique de flot de liens directement.
-C'est pourquoi, certains candidats peuvent être une bonne communauté dans le graphe mais un groupe non pertinent dans le flot de liens.
+C'est pourquoi certains candidats peuvent être une bonne communauté dans le graphe mais un groupe non pertinent dans le flot de liens.
 Cet phénomène est d'autant plus important que la modularité ne prend pas en compte le voisinage d'un groupe.
 Par exemple dans la figure~\ref{fig:exemple_groupe_dens}, les liens dans l'intervalle $[4,8]$ forment une composante connexe dans la projection et ils sont considérés comme une communauté par l'algorithme de Louvain.
 Or, ces liens ne sont pas un groupe pertinent car ils sont beaucoup moins denses que les liens durant l'intervalle $[0,4]$ ou l'intervalle $[7,11]$.
@@ -163,7 +169,7 @@ Cette différence entre les voisinages est illustrée dans la figure~\ref{fig:vo
 
 Pour le voisinage aux n\oe{}uds, il est impossible de considérer l'ensemble de tous les ensembles de n\oe{}uds car il est beaucoup trop grand.
 De plus, il est probable que ces groupes de n\oe{}uds ne soient même pas connexes dans le graphe agrégé si le flot de liens est peu dense.
-C'est pourquoi, si $V(C_i)$ est constitué de $k$ n\oe{}uds, nous nous limitons à l'ensemble des groupes de $k$ n\oe{}uds qui partagent $k-1$ n\oe{}uds avec $V(C_i)$.
+C'est pourquoi si $V(C_i)$ est constitué de $k$ n\oe{}uds, nous nous limitons à l'ensemble des groupes de $k$ n\oe{}uds qui partagent $k-1$ n\oe{}uds avec $V(C_i)$.
 De cette manière, uniquement des groupes de n\oe{}uds similaires au candidat sont considérés.
 Cette comparaison nous semble plus stricte mais plus équitable que celles utilisant l'ensemble des groupes de n\oe{}uds ou des groupes de n\oe{}uds pris aléatoirement.
 Il serait possible de considérer un nombre moins important de n\oe{}uds partagés mais nous ne l'avons pas fait à cause de la complexité de calcul.
@@ -244,7 +250,7 @@ Pour les voisinages au temps de début et à la durée, il existe une infinité 
 Pour ce voisinage, il est nécessaire d'analyser des sous-flots durant l'intervalle, $[\beta(C_i),\psi(C_i)]$, mais pour différents ensembles n\oe{}uds, $V'$.
 Il existe plusieurs stratégies possibles pour calculer la densité  de ces sous-flots. 
 
-La première méthode consiste à manipuler chaque sous-flot de manière indépendante et de calculer leur densité.
+La première méthode consiste à manipuler chaque sous-flot indépendamment et de calculer leur densité.
 Pour extraire le sous-flot induit par un ensemble de n\oe{}uds sur un intervalle de temps,
 il est judicieux de d'abord considérer le sous-flot sur les n\oe{}uds puis d'intégrer le temps  car la construction du sous-flot induit par un ensemble de n\oe{}uds est plus rapide.
 Le calcul de la densité d'un sous-flot induit par un ensemble de n\oe{}uds $V'$, sur intervalle de temps $[\beta(C_i),\psi(C_i)]$ est alors dépendant du nombre de liens existant entre les n\oe{}uds de $V'$ avant $\psi(C_i)$ et de la taille de $V'$: $\tilde{C}_{V'}=O(|L_{\alpha..\psi(C_i)}(V'^2)|log(|V'|))$.
@@ -265,11 +271,11 @@ Cette méthode peut également être parallélisée.
 
 \subsubsection{Voisinage à la durée}
 Pour le voisinage à la durée, l'ensemble de n\oe{}uds est fixe et il faut de manière continue augmenter la durée du sous-flot voisin.
-Pour réussir à faire cela, il est nécessaire de se baser encore une fois sur le degré temporel de l'ensemble de n\oe{}uds en question.
+Pour réussir à faire cela, il est nécessaire de se baser encore une fois sur le degré temporel de l'ensemble de n\oe{}uds en question et en particulier la somme des degrés, $D_{\beta(C_i)..\psi(C_i)}(V')$.
 
-La densité dépend d'une part de la somme des degrés du groupe candidat, $D_{\beta(C_i)..\psi(C_i)}(V')$, et d'autre part de la la durée de l'intervalle.
+La densité dépend d'une part de la somme des degrés du groupe candidat et d'autre part de la la durée de l'intervalle.
 Comme les degrés temporels sont des fonctions constantes par morceaux, la somme des degrés, qui est l'intégrale des degrés, est une fonction linéaire par morceaux dont les points de changement sont les instants où un lien apparaît ou disparaît.
-C'est pourquoi, il est possible de définir la densité en fonction de la durée par une fonction par morceaux, voir l'exemple dans la figure~\ref{fig:calcul_var_dure}.
+C'est pourquoi il est possible de définir la densité en fonction de la durée par une fonction par morceaux, voir l'exemple dans la figure~\ref{fig:calcul_var_dure}.
 L'idée est de mettre à jour la somme des degrés en fonction de l'apparition et disparition des liens tout en tenant compte de la durée du sous-flot qui augmente linéairement.
 La complexité est donc $O(|L_{\beta(C_i)..\beta(C_i)+\Delta_{max}}(V'^2)|)$ si le degré de temporel du groupe est connu.
 
@@ -329,7 +335,7 @@ Babouins & 28 & 95616 & 14 jours\\
 \end{table}
 
 \begin{description}
-\item[Socio Pattern~\cite{Fournet2014}]\footnote{\url{http://www.sociopatterns.org}} contient le réseau dynamique d'étudiants d'une école préparatoire à Marseille en 2012. Durant l'expérience, $180$ étudiants de $5$ classes ont porté pendant $9$ jours des capteurs de proximité.
+\item[Socio Pattern~\cite{Fournet2014}]\footnote{\url{http://www.sociopatterns.org}} contient le réseau dynamique d'étudiants à Marseille dans une école préparatoire en 2012. Durant l'expérience, $180$ étudiants de $5$ classes ont porté pendant $9$ jours des capteurs de proximité.
 Ainsi, il est possible de savoir quand deux étudiants interagissent. 
 Dans ce jeu de données, la classe de chaque étudiant est connue.\\
 
@@ -409,7 +415,7 @@ Pour séparer les groupes qui sont pertinents des autres, nous utilisons des seu
 Un candidat est ensuite considéré comme pertinent si ses scores sont au dessus des seuils choisis.
 Baisser les valeurs des seuils entraîne la capture de plus de groupes mais cela ne change ni les groupes candidats ni leurs scores.
 Ainsi, si un groupe est considéré comme pertinent pour un seuil donné alors il le sera également pour tout autre seuil inférieur.
-C'est pourquoi, nous fixons les seuils après avoir étudié les distributions cumulatives inverses de score pour chaque voisinage.
+C'est pourquoi nous fixons les seuils après avoir étudié les distributions cumulatives inverses de score pour chaque voisinage.
 Ces distributions sont représentées pour le jeu de données Socio Pattern dans la figure~\ref{fig:dit_SP}.
 Pour ce jeu de données, les scores sont très élevés, c'est-à-dire proches de $1$, quel que soit le voisinage considéré.
 On remarque également que les distributions cumulatives inverses chutent toutes à partir d'une certaine valeur de score, que nous utilisons comme seuil.
@@ -487,7 +493,7 @@ Ce n'est pas complètement surprenant car la durée du sous-flot impacte la dens
 Par ailleurs, il est important de noter deux chose lorsque l'on observe cette courbe.
 Tout d'abord, on se rend compte que considérer des durées plus longues n'est pas vraiment utile.
 En effet pour ces jeux de données, la fonction de densité tend vers $0$ lorsque la durée est très longue.
-C'est pourquoi, augmenter l'intervalle de durée pris en compte ne fait qu'augmenter les scores sans apporter d'information.
+C'est pourquoi augmenter l'intervalle de durée pris en compte ne fait qu'augmenter les scores sans apporter d'information.
 De plus, il est possible qu'avec avec une durée arbitraire pour définir un sous-flot du voisinage, il n'existe aucun groupe de liens exhibant exactement cette durée.
 En effet, un sous-flot induit par un ensemble de n\oe{}uds, $V'$, sur un intervalle donné, $I$, peut mener à considérer des liens sur seulement une partie de leur durée.
 C'est le cas notamment si un lien, $(b,e,u,v) \in E$, relie deux n\oe{}uds de $V'$ et qu'il commence pendant l'intervalle $I$ mais finit après.
@@ -670,6 +676,7 @@ C'est pourquoi notre méthode permet de mettre en valeur une structure des n\oe{
 
 \begin{table*}
 \centering
+\hspace*{-15.75pt}
 \begin{tabular}{|c|c|c|c|c|c|c|}
 \hline  \rule[-1ex]{0pt}{3.5ex}  & $\lambda= 0.05$ &$\lambda= 0.1$ & $\lambda=0.2$ & $\lambda=0.3$ & $\lambda=0.5$ & $\lambda=0.7$ \\ 
 \hline Socio Pattern & 0.30 (0.55)  & 0.30 (0.55)  & 0.30 (0.55)  & 0.30 (0.55)  & 0.29 (0.54) & 0.33 (\textbf{0.85})  \\ 
@@ -704,13 +711,13 @@ Il est toutefois intéressant de noter que les deux structures sont chevauchante
 \subsection{Conclusion}
 
 Dans ce chapitre, nous nous sommes intéressés à la détection de groupes de liens pertinents dans un flot de liens.
-\`A l'inverse des méthodes existantes, nous considérons pleinement l'information temporelle et nous n'utilisons aucune agrégation pour évaluer nos résultats.
+\`A l'inverse de méthodes existantes, nous considérons pleinement l'information temporelle et nous n'utilisons pas d'agrégation pour évaluer nos résultats.
 Cette différence a été permise par l'utilisation du formalisme de flot et de ses métriques mélangeant vraiment structure et temps.
 De plus, notre méthode ne capture pas des ensembles de n\oe{}uds et des intervalles de temps mais des ensembles de liens.
 
 Pour capturer des groupes de liens, nous avons proposé une transformation du flot de liens en un graphe statique non pondéré tel que les liens sont transformés en n\oe{}uds dans le graphe.
 Deux n\oe{}uds dans le graphe sont reliés si les liens correspondants dans le flot ont au moins un n\oe{}ud et un instant de temps en commun.
-C'est pourquoi, rechercher une communauté dans le graphe statique permet de trouver des groupes liens connectés temporellement et structurellement.
+C'est pourquoi rechercher une communauté dans le graphe statique permet de trouver des groupes liens connectés temporellement et structurellement.
 Nous utilisons l'algorithme de Louvain qui permet de capturer des partitions de n\oe{}uds dans un graphe.
 Nous obtenons ainsi un ensemble de groupes de liens potentiellement pertinents.
 
@@ -756,8 +763,8 @@ Il serait intéressant de voir si notre méthode est capable de filtrer automati
 Nous n'avons cependant pas encore poursuivi cet axe de recherche car la prise en compte des petits groupes impacterait fortement la distribution des scores et donc le choix des seuils.
 De plus, les seuils nécessitent déjà une connaissances des données.
 
-C'est pourquoi, il serait intéressant de pouvoir automatiser le choix de seuil.
-Lors de l'application de notre méthode, nous avons à chaque fois observé une forte décroissance dans la distribution des scores.
+C'est pourquoi il serait intéressant de pouvoir automatiser le choix de seuil.
+Lors de l'application de notre méthode, nous avons systématiquement observé une forte décroissance dans la distribution des scores.
 Une méthode prometteuse serait donc de se baser sur la détection de point d'inflexion pour déterminer les seuils.
 Il est par exemple possible de détecter les moments où la dérivée seconde est nulle.
 Cependant, le comportement que nous avons observé n'est pas forcément universel et il faudrait donc étudier des flots de liens provenant de différents contextes avant de généraliser cette approche.

@@ -93,14 +93,14 @@ Par contre, on observe que les petites discussions ont des durées très variabl
 Dans la partie droite de la figure~\ref{fig:corr_discussion} présentant la corrélation entre le nombre de courriels et d'auteurs, on observe un autre fait attendu~\cite{dorat2007} qui est qu'une discussion est constituée, en général, de plus de messages que de participants.
 Ainsi lors d'une discussion, c'est un petit nombre de personnes qui échangent potentiellement beaucoup de messages. 
 
-Enfin, il est intéressant d'observer la dynamique des échanges entre deux personnes.
+Enfin, il est intéressant d'observer la dynamique des échanges entre chaque paire de personnes.
 Soit $\tau(u,v) = (t_{i+1}-t_i)_{i=0..k+1}$ la séquence des temps inter-contacts des $k$ liens entre les n\oe{}uds $u$ et $v$, où $t_0$ est le temps entre $\alpha$ et le premier lien et $t_{k+1}$ est le temps entre le dernier lien et $\omega$.
 Il s'agit du temps écoulé avant que deux personnes se contactent à nouveau, indépendamment peu importe la conversation.
 Dans la figure~\ref{fig:ict_discussion} est représentée la distribution cumulative inverse du temps inter-contacts. 
-$21\%$ des temps inter-contacts sont inférieurs à 30 jours ($2.6\times 10^6 s$).
+On observe que $21\%$ des temps inter-contacts sont inférieurs à 30 jours ($2.6\times 10^6 s$).
 Ce chiffre bien que relativement faible est tout de même important car il s'agit de discussions ouvertes où tout le monde peut participer. 
 En particulier, une personne peut envoyer une demande d'aide à un moment donné et ne plus jamais échanger avec les même personnes.
-Or, on observe que $21\%$ des contacts sont renouvelés en moins de 30 jours.
+Or, $21\%$ des contacts sont renouvelés en moins de 30 jours.
 La participation est donc relativement élevée.
 \begin{figure}
 	\centering
@@ -164,8 +164,7 @@ Pour un graphe $G=(V,E)$ et une communauté $C_i$ de la partition $C = \{C_j\}_{
 Il s'agit simplement de la probabilité qu'un lien existe entre un n\oe{}ud de $C_i$ et un n\oe{}ud d'une autre communauté.
 Encore une fois, cette notion n'a pas de sens direct dans le formalisme de flot de liens et il est nécessaire de l'adapter.
 Pour ce faire, nous définissons la $\Delta$-densité inter discussions entre deux discussions $D_i$ et $D_j$: $\delta^{inter}_{\Delta}(D_i,D_j)$.
-Soit $\Delta_{ij}=\xi(\Delta,D_i \cup D_j)$ et $L_{inter}(D_i, D_j) = (T',V',E')$ avec 
-$V'= V(\Delta_{ij})$, $T'=[\beta(\Delta_{ij}), \psi(\Delta_{ij})]$, et $E' = \xi(\Delta,E) \setminus \Delta_{ij}$.
+Soit $\Delta_{ij}=\xi(\Delta,D_i \cup D_j)$ et $L_{inter}(D_i, D_j) = (T',V',E')$ avec  $T'=[\beta(\Delta_{ij}),\psi(\Delta_{ij})]$, $V'= V(\Delta_{ij})$ et $E' = \xi(\Delta,E) \setminus \Delta_{ij}$.
 Avec ces notation, $\delta^{inter}_{\Delta}(D_i,D_j)$ est égale à $\delta^{inter}_{\Delta}(D_i,D_j) = \delta(L_{inter}(D_i, D_j))$.
 Il s'agit donc de la densité du flot inter discussions qui est constitué des liens entre les n\oe{}uds induits par $D_i$ et $D_j$ qui n'appartiennent ni à $D_i$ ni à $D_j$.
 Dans la figure~\ref{fig:inter_dens_discussion_ex}, un exemple de flot inter discussion est représenté.
@@ -205,8 +204,9 @@ Un autre facteur est aussi la durée considérée qui est plus longue que la dur
 \label{fig:inter_dens_discussion}
 \end{figure}
 
+\bigskip
 
-Afin de comparer plus aisément $\Delta$-densité et $\Delta$-densité inter discussions, la corrélation entre ces deux mesures est présentée dans la figure~\ref{fig:corel_inter_discussion} pour différentes valeurs de $\Delta$.
+Pour comparer aisément $\Delta$-densité et $\Delta$-densité inter discussions, la corrélation entre ces deux mesures est présentée dans la figure~\ref{fig:corel_inter_discussion} pour différentes valeurs de $\Delta$.
 On remarque que les discussions sont effectivement plus denses intérieurement qu'avec les autres discussions.
 La différence est de plusieurs ordres de grandeur lorsque $\Delta$ est petit et elle diminue lorsque $\Delta$ croît.
 Pour $\Delta=20\ ans$ dans la figure~\ref{fig:corel_inter_discussion_20}, la différence n'est plus visible car à cette échelle de temps, l'ancrage temporel des discussions n'est plus décisif.
@@ -290,7 +290,7 @@ Le graphe quotient permet de facilement étudier, dans un graphe, les relations 
 %\label{fig:corel_inter}
 \end{figure}
 
-Nous étendons ici cette notion de graphe quotient aux flots de liens.
+Nous étendons maintenant cette notion de graphe quotient aux flots de liens.
 Nous définissons le flot quotient, $Q=(T_Q,V_Q,E_Q)$, induit par une partition $P=\{{P_i}\}_{1..k}$ en $k$ sous-flots de la manière suivante.
 Chaque sous-flot $P_i$ est représenté par un n\oe{}ud dans $V_Q$.
 Il existe un lien $(t,P_i,P_j)$ dans $E_Q$ s'il existe $(t_1,u,v) \in P_i$, $(t_2,u,v') \in P_j$ et $(t_3,u,v'') \in P_i$ avec $t_1 \leq t_2 \leq t_3$.
@@ -342,7 +342,7 @@ Afin de créer une transformation du flot vers un graphe, nous définissons un a
 \`A partir de $\mathfrak{L}$, nous créons un graphe non-orienté et non-pondéré $\mathcal{G} = (\mathcal{V},\mathcal{E})$.
 
 Chaque lien du flot est représenté par un n\oe{}ud.
-Deux liens $(b,e,u,v)$ et $(b',e',u',v') \in \mathfrak{L}$ sont connectés dans le graphe s'ils partagent un n\oe{}ud et si les intervalles s'intersectent, \emph{i.e.} $\{u,v\} \cap \{u',v'\} \neq \emptyset$ et $[b,e]\cap[b',e'] \neq \emptyset$, voir la figure~\ref{fig:Transformation}.
+Deux liens $(b,e,u,v)$ et $(b',e',u',v')$ du flot de liens sont reliés dans le graphe s'ils partagent un n\oe{}ud et si les intervalles s'intersectent, \emph{i.e.} $\{u,v\} \cap \{u',v'\} \neq \emptyset$ et $[b,e]\cap[b',e'] \neq \emptyset$, voir la figure~\ref{fig:Transformation}.
 Ainsi, un lien dans le graphe représente une connexion structurelle et temporelle entre deux liens du flot de liens.
 Les groupes denses dans le graphe représentent donc des groupes de liens connectés temporellement et topologiquement dans le flot.
 
@@ -374,7 +374,7 @@ Un fois $\mathcal{G}$ construit, on peut appliquer un algorithme de détection d
 
 Avec cette construction, $\mathcal{G}$ contient plus d'1 millions de liens entre 316 569 n\oe{}uds pour les 116 999 discussions présentes.
 Sur ce graphe, nous avons appliqué l'algorithme de Louvain~\cite{Blondel2008a} qui optimise la modularité.
-D'autres algorithmes peuvent également être appliqués s'ils capturent des groupes de n\oe{}uds disjoints et qu'ils passent à l'échelle.
+D'autres algorithmes peuvent être appliqués s'ils capturent des groupes de n\oe{}uds disjoints et s'ils passent à l'échelle.
 Les groupes trouvés par Louvain sont des communautés dans $\mathcal{G}$.
 Par conséquent, ils sont censé être densément connectés dans $\mathcal{G}$.
 Comme un lien de $\mathcal{G}$ correspond à une connexion temporelle et topologique dans le flot, on peut espérer qu'ils correspondent à des groupes denses dans le flot.
@@ -411,7 +411,7 @@ On remarque tout de suite que $\mathfrak{D}$ contient des groupes beaucoup plus 
 
 
 Ces deux structures sont donc très différentes mais cela pourrait être dû à l'algorithme de Louvain qui n'est pas adapté pour trouver des groupes denses.
-C'est pourquoi, nous avons également observé la densité des groupes de $D$ et $\mathfrak{D}$ dans le flot $\mathfrak{L}$.
+C'est pourquoi nous avons également observé la densité des groupes de $D$ et $\mathfrak{D}$ dans le flot $\mathfrak{L}$.
 Le résultat est visible dans la figure~\ref{fig:dens_mail_louvain}.
 Comme les liens de $\mathfrak{L}$ ont une durée, il est possible d'utiliser directement la densité au lieu de la $\Delta$-densité utilisée précédemment.
 On remarque que les groupes de $\mathfrak{D}$, bien que plus gros, sont plus denses que les groupes de $D$.
@@ -547,8 +547,8 @@ Pourtant, il semble que la structure trouvée ait du sens au vu des valeurs de d
 Ce jeux de données de courriels est intéressant.
 D'une part, il couvre une très longue période de temps et, d'autre part, il existe de nombreuses informations associées.
 Nous avons utilisé ici la connaissance de la discussion associée à chaque courriel pour étudier la notion de communautés.
-D'autres notions pourraient être développées en s'appuyant sur ce jeu de données, notamment les notions de centralité et de rôle des n\oe{}uds.
-Grâce à la durée du jeu de données, il serait intéressant de mesurer l'évolution de l'implication et du rôle d'une personne.
+D'autres notions pourraient être développées grâce sur ce jeu de données, notamment les notions de centralité et de rôle des n\oe{}uds.
+Grâce à la durée de presque $20$ ans du jeu de données, il serait intéressant de mesurer l'évolution de l'implication et du rôle d'une personne.
 Il serait ainsi possible de mieux comprendre la participation de personnes à un projet de cette ampleur.
 
 Il y a également le texte brut du mail qui est accessible et dont nous n'avons pas tiré parti.

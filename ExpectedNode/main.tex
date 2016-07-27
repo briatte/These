@@ -29,7 +29,7 @@ Ainsi, les partitions de liens peuvent capturer des situations assez variées.
 
 Il est également possible de manipuler des partitions chevauchantes ou couvertures.
 Dans ce cas, chaque n\oe{}ud peut appartenir à plusieurs communautés.
-Pour répondre à ce problème de nombreux algorithmes ont été proposés pour la détection et l'évaluation de couvertures de n\oe{}uds, voir la section~\ref{subsec:cover}.
+Face à ce problème de nombreux algorithmes ont été proposés pour la détection et l'évaluation de couvertures de n\oe{}uds, voir la section~\ref{subsec:cover}.
 Les couvertures sont une généralisation des partitions et aucune méthode ne fait encore consensus pour les évaluer car leur structure est complexe, voir la sous-section~\ref{subsec:cover}.
 Les partitions de liens, quant à elles, restent des objets plus simples à manipuler.
 De plus, elles permettent de mettre en avant une autre structure ayant également du sens.
@@ -104,18 +104,18 @@ Il n'est donc pas trivial d'utiliser le \emph{line-graph} pour trouver des commu
 Il est nécessaire d'adapter les outils à ce type de graphe.
 \begin{figure}
 \centering
-	\hfill
+
 	\begin{subfigure}{0.4\textwidth}
 		\includegraphics[height=3cm]{img/ExpectedNodes/Example/transfo_clique}
 		\caption{}
 		\label{fig:ex_lineG_clique}	
-	\end{subfigure}\hfill
+	\end{subfigure}\hspace*{0.1\textwidth}
 	\begin{subfigure}{0.4\textwidth}
 		\includegraphics[height=3cm]{img/ExpectedNodes/Example/transfo_etoile}
 		\caption{}
 		\label{fig:ex_lineG_etoile}	
 	\end{subfigure}
-	\hfill		
+	
 
 	\caption{Exemple de construction du \emph{line-graph} d'une clique en (A) et d'une étoile en (B).}
 	\label{fig:fail_construction_lineG}
@@ -187,7 +187,8 @@ Ainsi, il suffit de construire le \emph{line-graph} approprié puis d'utiliser u
 
 
 Pour construire les \emph{line-graphs}  $LG_1$, $LG_2$ et $LG_3$, nous définissons $B\in \mathcal{M}_{n,m}$ la matrice d'incidence du graphe $G$: un élément $B_{i\alpha}$ de cette matrice $|V| \times |E|$ est égal à $1$ si le lien $\alpha$ est relié au n\oe{}ud $i$ et 0 sinon.
-Les matrices $LG_1$, $LG_2$ et $LG_3$ sont alors définies de la manière suivante:
+Les matrices $LG_1$, $LG_2$ et $LG_3$ sont alors définies de la manière suivante.
+
 \begin{center}
 	\begin{tabular}{|c|c|c|c|}
 		\hline  & $x=1$ & $x=2$ &  $x=3$\\ 
@@ -195,6 +196,7 @@ Les matrices $LG_1$, $LG_2$ et $LG_3$ sont alors définies de la manière suivan
 		\hline 
 	\end{tabular} 
 \end{center}
+
 Soit $k_x(\alpha)= \sum_{\beta}LG_x(\alpha,\beta)$ le degré pondéré dans le line graphe $LG_x$ du n\oe{}ud représentant le lien $\alpha$ et $W_x = \sum_{\alpha,\beta \in |E|}LG_x(\alpha,\beta)$ la somme des poids des liens. Pour $x \in \{1,2,3\}$, la fonction de qualité $Evans_x$ est définie de la manière suivante:
 \begin{eqnarray}
 Evans_x(\mathcal{L}) = \dfrac{1}{W_x} \sum_{L_i \in \mathcal{L}} \sum_{e_1,e_2 \in L_i^2} LG_x    (e_1,e_2) -  \dfrac{k_x(e_1) k_x(e_2)}{W}.
@@ -273,7 +275,7 @@ Avec cette formulation, pour un groupe de taille $|L|$, plus le nombre de n\oe{}
 
 $Q_{in}$ permet d'évaluer la qualité interne d'un groupe mais il faut aussi tenir compte du voisinage.
 En effet, observer une clique a l'intérieur d'une autre clique n'est absolument pas surprenant.
-C'est pourquoi, nous définissons également une qualité externe.
+C'est pourquoi nous définissons également une qualité externe.
 Le but est d'évaluer comment sont répartis les liens et n\oe{}uds adjacents.
 Pour ce faire, nous allons également comparer le nombre de n\oe{}uds adjacents observé au nombre espéré dans le modèle de configuration.
 Cependant à l'inverse de la qualité interne, la qualité externe est \textbf{mauvaise} si jamais le nombre de n\oe{}uds adjacent est plus faible qu'espéré.
@@ -385,7 +387,7 @@ Ces répartitions sont illustrées dans la figure~\ref{fig:1C}.
 \end{figure}
 
 
-Comme le graphe est un graphe complet, la meilleure solution est d'avoir un seul groupe contenant l'ensemble des liens, \textit{i.e.} la partition triviale devrait avoir une meilleur évaluation que les autres partitions.
+Comme le graphe est complet, la meilleure solution est d'avoir un seul groupe contenant l'ensemble des liens, \textit{i.e.} la partition triviale devrait avoir une meilleure évaluation que les autres partitions.
 La figure~\ref{fig:1Cres} présente les résultats.
 Pour chaque valeur de $p$ et chaque fonction de qualité, nous calculons les évaluations des partitions en deux et en trois groupes ainsi que l'évaluation de la partition triviale.
 L'évaluation de la partition triviale n'est pas dépendante de $p$ et n'est calculée qu'une seule fois.
@@ -551,7 +553,7 @@ Pour \emph{Expected Nodes}, ce changement intervient lorsque le chevauchement d�
 \subsection{Graphe LFR}
 Nous utilisons maintenant un jeu de test plus évolué.
 Il n'existe pas à notre connaissance de générateur de graphe aléatoire avec une structure communautaire sur les liens.
-C'est pourquoi, nous utilisons le générateur proposé par Lancichinetti~\textit{et al.}~\cite{Lancichinetti2009b}.
+Nous utilisons donc le générateur proposé par Lancichinetti~\textit{et al.}~\cite{Lancichinetti2009b}.
 Ce générateur aléatoire permet de générer des graphes ayant une structure communautaire chevauchante sur les n\oe{}uds.
 Comme nous voulons évaluer une partition de liens, il est nécessaire de transformer cette vérité de terrain.
 Nous introduisons deux transformations de la couverture des n\oe{}uds en deux partitions de liens, $TA$ et $TB$, voir figure~\ref{fig:Trans}.
@@ -570,7 +572,7 @@ Soit l'interaction a son propre type car on considère qu'elle est unique.
 Enfin, deux personnes peuvent partager plus qu'une communauté si les deux sont dans les communautés \emph{travail} et \emph{amis}.
 Dans ce cas, l'interaction peut être due à l'un de ces deux groupes indépendamment.
 
-On définit maintenant de manière plus formelle cette transformation qui est également illustrée dans la figure~\ref{fig:Trans}.
+Nous définissons maintenant de manière plus formelle cette transformation qui est illustrée dans la figure~\ref{fig:Trans}.
 Soit $u,v \in V$, $C_{u,v}$ désigne l'intersection des communautés de $u$ et $v$ dans la couverture et $U_{u,v}$ désigne leur union.
 Nous définissons le groupe d'un lien $(u,v) \in E$ dans $TA$ et $TB$ de la manière suivante:
 \begin{description}
@@ -636,8 +638,8 @@ Ces $720$ groupes semblent plus petits mais aussi plus denses que ceux de $TA$ o
 En particulier, les liens intra-communautés peuvent être séparés en plusieurs groupes, comme dans la figure~\ref{fig:LFR_ExempleLC}.
 Les quatre partitions sont donc différentes et mettent en avant différentes caractéristiques.
 
-Nous procédons maintenant à l'évaluation de ces partitions par les différentes fonctions de qualité.
-Comme le processus de génération de graphe est aléatoire, les évaluations présentées dans la figure~\ref{fig:LF} représentent $30$ générations.
+Nous procédons maintenant à l'évaluation de ces partitions par les fonctions de qualité.
+Comme la génération de graphes est aléatoire, les évaluations présentées dans la figure~\ref{fig:LF} représentent $30$ générations.
 On remarque tout d'abord que ni $TA$ ni $TB$ n'a la meilleure évaluation selon $EvansX$ (figures~\ref{fig:LFE1} à ~\ref{fig:LFE3}) ou \emph{Partition Density} (figure~\ref{fig:LFAhn}) même si $TA$ et $TB$ représentent nos vérités de terrain.
 Dans le cas de $EvansX$, ce sont les partitions $EX$ qui obtiennent les meilleures évaluations.
 Cela prouve l'efficacité de l'algorithme pour optimiser $EvansX$ mais remet en cause la pertinence des critères $EX$ pour mettre en avant la vérité de terrain.
@@ -695,7 +697,7 @@ Pour ces raisons, nous pensons que \emph{Expected Nodes} est une mesure qui perm
 Jusqu'à maintenant, nous avons évalué \emph{Expected Nodes} sans nous attacher ni à son calcul ni à son optimisation.
 Nous discutons maintenant de la complexité de calcul d'\emph{Expected Nodes} pour une partition donnée.
 Le calcul de la qualité interne \ref{eq:qin} nécessite d'évaluer la probabilité qu'un n\oe{}ud soit tiré.
-Ce calcul de probabilité nécessite d'évaluer pour un n\oe{}ud $u$: $1 - \dfrac{ \binom{2|E|-d(u)}{2|L|} }{ \binom{2|E|}{2|L|} }$, ce qui peut être assez coûteux.
+Ce calcul nécessite d'évaluer pour un n\oe{}ud $u$: $1 - \dfrac{ \binom{2|E|-d(u)}{2|L|} }{ \binom{2|E|}{2|L|} }$, ce qui peut être assez coûteux.
 Ce calcul correspond à une loi hypergéométrique.
 Or sous certaines conditions, une loi hypergéométrique peut être approché par une loi binomiale ce qui simplifie le calcul à: $1 - (1- \dfrac{|L|}{|E|})^{|L|}$ ce qui est plus rapide.
 Lors de nos tests, le biais induit par cette approximation reste assez faible, de l'ordre de $0.01\%$ en moyenne.
@@ -770,7 +772,7 @@ Bien qu'il soit possible d'améliorer légèrement les vérités de terrain, la 
 
 \subsection{Perspectives}
 
-Les perspectives autour d'\emph{Expected Nodes} sont nombreuses et portent sur deux points: d'une part le calcul et l'optimisation d'\emph{Expected Nodes} et d'autre part les cas d'applications possibles.
+Les perspectives autour d'\emph{Expected Nodes} sont nombreuses et portent principalement sur deux points: d'une part le calcul et l'optimisation d'\emph{Expected Nodes} et d'autre part les cas d'applications possibles.
 
 \subsubsection{Amélioration de l'optimisation d'\emph{Expected Nodes}}
 
@@ -823,7 +825,7 @@ Par ailleurs avec ce changement, l'algorithme n'est plus déterministe car il d�
 Il faudrait donc être très prudent vis-à-vis de ses aspects, lors du test de cette technique.
 
 \subsubsection{Cas d'utilisation d'\emph{Expected Nodes}}
-Nous avons parlé de moyens possibles pour trouver une méthode d'optimisation efficace d'\emph{Expected Nodes}.
+Nous avons parlé des moyens possibles pour trouver une méthode d'optimisation efficace d'\emph{Expected Nodes}.
 Il est également nécessaire de revenir sur l'utilisation d'\emph{Expected Nodes}.
 Nous avons testé \emph{Expected Nodes} sur un algorithme largement utilisé dans la littérature et les résultats sont encourageants.
 Il y a cependant une différence majeure dans la manière dont nous avons testé \emph{Expected Nodes} vis-à-vis des autres fonctions de qualités.

@@ -3,11 +3,11 @@
 \chaptermark{État de l'art}
 \minitoc
 \label{chap:etat_art}
-Dans cette thèse, nous étudions deux axes de recherches liés aux graphes qui sont orthogonaux.
+Dans cette thèse, nous étudions deux axes de recherche liés aux graphes qui sont orthogonaux.
 Avant de présenter ces deux axes de recherches dans les sections~\ref{sec:intro_communaute} et \ref{sec:intro_extension_temporelle}, nous revenons dans la section~\ref{sec:def_graphe} sur quelques définitions et notations utiles pour manipuler des graphes.
 
 Le premier axe de recherche est la détection de structures dans les graphes et plus particulièrement de communautés.
-Une communauté est une partie du graphe telle qu'il existe beaucoup de liens à l'intérieur de la communauté et moins avec le reste du graphe.
+Une communauté est une partie du graphe telle qu'il existe de nombreux liens à l'intérieur de la communauté et moins de liens entre cette communauté et le reste du graphe.
 Cependant aucune définition ne fait l'unanimité.
 La notion de communauté dépend du contexte et de la méthode.
 Malgré cette définition floue, des structures communautaires ont été trouvées dans de nombreux graphes dans plusieurs domaines tels que le réseau constitué des régions du cerveau \cite{DeReus2014}, un réseau de distribution d'eau \cite{DiNardo2015} et un réseau d'interactions d'animaux \cite{Farine2015}.
@@ -15,7 +15,7 @@ Ces notions de communautés et les méthodes de détection sont définies dans l
 
 Le second axe de recherche est la prise en compte du temps dans la théorie des graphes.
 La première approche fût de complètement ignorer l'information temporelle et de considérer que tous les liens apparaissent en même temps; on parle alors de graphe agrégé.
-Cependant, la modélisation d'un réseau sous la forme d'un graphe agrégé manque de pertinence, lorsque le réseau change trop au cours du temps~\cite{Holme2015b}.
+Cependant, l'utilisation d'un graphe agrégé manque de pertinence, lorsque le réseau change trop au cours du temps~\cite{Holme2015b}.
 Si tel est le cas, certaines structures présentes dans le graphe peuvent n'être que des artefacts de l'agrégation temporelle.
 Imaginons par exemple un graphe représentant les alliances politiques dans un pays sur une longue période.
 Si toutes les alliances politiques sont agrégées, alors les personnes changeant de parti politique seront faussement considérées comme influentes car connectées à plusieurs partis alors qu'elles peuvent ne plus avoir de contact dans leur ancien parti.
@@ -62,7 +62,7 @@ Nous listons les notations utilisées dans le tableau~\ref{tab:notation_groupe_n
 
 \begin{table}
   \centering
-  \hspace*{-17.225pt}
+  \hspace*{-18.225pt}
     \begin{tabular}{|c|c|}
      \hline
     \rule[-1ex]{0pt}{4ex} Notation & Définition \\
@@ -283,14 +283,14 @@ C'est pourquoi une version tenant compte du degré des n\oe{}uds a été propos�
 Enfin d'après des récents travaux~\cite{Newman2016}, il semblerait que le DSBM et l'optimisation de la modularité soient liés.
 
 \subsubsection{Méthodes utilisant des marches aléatoires}
-Il existe d'autres approches que celles utilisant un modèle nul ou un modèle génératif.
+Il existe d'autres approches que celles basées sur un modèle nul ou sur un modèle génératif.
 Notamment, il y a les méthodes utilisant les marches aléatoires \cite{Pons2005,Rosvall2008}.
 Ces méthodes tirent parti du fait que si une communauté est densément connectée alors un marcheur aléatoire devrait y rester assez longtemps.
 En particulier, la méthode Infomap~\cite{Rosvall2008} repose sur une idée très élégante qui est la suivante.
 Une partition de n\oe{}uds est une carte du graphe et, en ce sens, elle doit aider sa lecture.
 
-Une carte est efficace si elle permet de mieux comprendre l'objet d'étude en réduisant sa complexité.
-Dans une carte d'un pays, les départements découpent l'espace en zones disjointes et la majorité des routes se trouvent à l'intérieur des départements.
+Une carte est efficace si elle permet de mieux comprendre l'objet d'étude, c'est à dire en réduisant sa complexité.
+Dans une carte d'un pays, les départements découpent l'espace en zones disjointes et la majorité des routes sont à l'intérieur des départements.
 Dans une carte, il est courant qu'un nom de ville soit unique dans un département mais qu'un même nom puisse être utilisé dans plusieurs départements.
 De plus, un voyageur se déplaçant aléatoirement sur les routes a peu de chance de sortir d'un département.
 Pour décrire, \emph{a posteriori}, l'ensemble des villes traversées par ce voyageur, il suffit alors de donner le département initial puis la liste des villes visitées.
@@ -313,7 +313,7 @@ En général, un n\oe{}ud prend comme label celui qui est le plus présent parmi
 Au bout d'un certain nombre d'itérations ou une fois à l'équilibre, il ne reste que quelques labels dans le graphe et ils représentent les communautés.
 
 
-\resume{Il existe de très nombreuses méthodes pour la détection de communautés en tant que partition de n\oe{}uds. Il semble que les méthodes d'optimisation de \textbf{modularité}, la méthode \textbf{infomap} et  les \textbf{Stochastic Block Model} soient les plus utilisées dans la littérature.}
+\resume{Il existe de très nombreuses méthodes pour la détection de communautés en tant que partition de n\oe{}uds. Il semble que les méthodes d'optimisation de \textbf{modularité}, la méthode \textbf{Infomap} et  les \textbf{Stochastic Block Model} soient les plus utilisées dans la littérature.}
 
 \subsection{Couverture de n\oe{}uds}
 \label{subsec:cover}
@@ -403,7 +403,7 @@ Afin de ne pas étendre un groupe indéfiniment, un ajout n'est fait que s'il am
 Ainsi dans ce type d'algorithme, il y a deux critères important:
 le choix des communautés initiales et le critère d'évaluation.
 Dans la majorité des cas, chaque n\oe{}ud constitue initialement une communauté. 
-OSLOM\cite{Lancichinetti2011a} diffère de cette situation car OSLOM utilise comme point de départ une partition trouvée par l'algorithme de Louvain ou par infomap.
+La méthode OSLOM~\cite{Lancichinetti2011a} diffère de cette situation car elle utilise comme point de départ une partition trouvée par l'algorithme de Louvain ou par Infomap.
 
 Les fonctions de qualité applicables sont très nombreuses et nous n'en mentionnerons que trois.
 Tout d'abord, il est possible d'utiliser le degré relatif~\cite{Luo2008} d'un groupe comme critère.
@@ -431,7 +431,7 @@ Ces méthodes semblent très prometteuses car elles permettent de traiter effica
 La littérature sur la détection de couverture de n\oe{}uds est encore très récente.
 Il est donc délicat de commencer à tirer des conclusions.
 Cependant, il semble que les extensions de la modularité ne soient pas réellement capables de trouver des couvertures de n\oe{}uds.
-En plus d'infomap, c'est surtout les méthodes utilisant des modèles génératifs et celles utilisant des fonctions de qualité locales qui semblent les plus à même de capturer des couvertures de n\oe{}uds pertinentes.
+En plus d'Infomap, c'est surtout les méthodes utilisant des modèles génératifs et celles utilisant des fonctions de qualité locales qui semblent les plus à même de capturer des couvertures de n\oe{}uds pertinentes.
 Les modèles génératifs ne semblent en effet plus limités à de petits graphes.
 Les méthodes utilisant des fonctions de qualité locales sont quant à elle très rapides et le choix de la fonction de qualité permet de s'adapter au contexte.
 }
@@ -501,7 +501,7 @@ La détection d'intervalle pertinent est donc un vaste sujet de recherche~\cite{
 La notion même de temps est importante.
 Albano~\emph{et al.}~\cite{Albano2014} propose d'utiliser une autre mesure que la seconde mais plutôt le nombre de changements comme mesure du temps.
 Ainsi, le temps n'avance pas si aucun changement n'a lieu et au contraire il avance beaucoup si énormément de changements apparaissent.
-Cette manière de procéder se rapproche des travaux de Lamport~\cite{Lamport1978} dans les systèmes distribués.
+Cette notion de temps se rapproche de celle de Lamport~\cite{Lamport1978} dans ses travaux sur les systèmes distribués.
 
 \paragraph{Détection de communautés}
 Dans ce contexte de série de graphes, il y a eu assez tôt des méthodes de détection de communautés~\cite{Hopcroft2004,Sun2007,Lin2008,Asur2009}.
@@ -509,7 +509,7 @@ Il est, en effet, assez naturel d'appliquer une méthode de détection statique 
 Le suivi de communautés consiste à comprendre comment une communauté donnée évolue, étant donné une série de graphes et une série de partitions.
 Palla~\emph{et al.}~\cite{Palla2007} ont été parmi les premiers à décrire les évolutions possibles d'une communauté.
 Muni d'indicateurs de similarité tels que l'indice de Jaccard, voir la section~\ref{def:graphe_comparaison}, il est possible de trouver les communautés les plus proches aux instants précédent et suivant.
-\`A partir de ces informations, six type d'évolutions d'une communauté sont définis:
+\`A partir de ces informations, six types d'évolutions d'une communauté sont définis:
 \begin{description}
 \item[Naissance] Une nouvelle communauté apparaît.
 \item[Agrandissement] La communauté continue d'exister et s'agrandit.
@@ -519,12 +519,12 @@ Muni d'indicateurs de similarité tels que l'indice de Jaccard, voir la section~
 \item[Mort] Une communauté cesse d'exister dans les graphes suivants.
 \end{description}
 
-Ce type de méthodes souffre souvent de l'instabilité des méthodes de détection~\cite{Aynaud2010,Harenberg2014a}.
+Ce type de méthodes souffre de l'instabilité des méthodes de détection~\cite{Aynaud2010,Harenberg2014a}.
 Si les partitions changent complètement entre deux graphes consécutifs, alors il est difficile de faire un réel suivi de communautés.
 C'est pourquoi des méthodes essayent de forcer une certaine stabilité de la partition en ajoutant un coût de transition~\cite{Chakrabarti2006,Chen2013,Kalavathi2015}.
 Une approche détournée pour garder une certaine stabilité est d'utiliser la partition trouvée précédemment comme base de recherche pour l'intervalle suivant~\cite{Lancichinetti2011a}.
 
-Des extensions des Stochastic Block Models ont également été proposées par différents auteurs dans le cadre des séries de graphes.
+Des extensions du SBM ont également été proposées par différents auteurs dans le cadre des séries de graphes.
 Yang~\emph{et al.}~\cite{Yang2011} sont parmi les premiers à considérer ce cas de figure.
 Ils considèrent que la probabilité d'un lien entre deux communautés est fixe et que ce qui change est l'affiliation des n\oe{}uds au cours du temps.
 Ce processus de changement de communauté suit alors une chaîne de Markov cachée.
@@ -560,7 +560,7 @@ Les liens inter-couches représentent un lien entre deux n\oe{}uds sur deux inte
 Ces derniers sont utilisés pour identifier un même n\oe{}ud sur plusieurs intervalles et sont en général limités à relier deux couches consécutives.
 
 Les graphes multicouches représentent les données évoluant dans le temps mais ils modélisent aussi très bien d'autres situations.
-Par exemple, ils permettent de représenter facilement les différents moyens de transport dans une ville où chaque moyen de transport (bus, voiture, métro ...) est représenté par une couche.
+Par exemple, ils représentent facilement les différents moyens de transport dans une ville où chaque moyen de transport (bus, voiture, métro ...) est représenté par une couche.
 Plusieurs travaux~\cite{DeDomenico2013,Kivela2014,Boccaletti2014} décrivent les graphes multicouches et leurs applications.
 
 
@@ -568,7 +568,7 @@ Plusieurs travaux~\cite{DeDomenico2013,Kivela2014,Boccaletti2014} décrivent les
 \paragraph{Détection de communautés}
 Grâce au formalisme de graphe multicouches, il est possible de traiter le temps de manière un peu plus fine que dans les séries de graphes car il permet de mieux suivre l'évolution des n\oe{}uds.
 Comme un graphe multicouches est un graphe, il est possible d'adapter les méthodes existantes pour tenir compte des différents types de liens.
-C'est le cas d'infomap~\cite{de2015identifying}, de la modularité~\cite{Mucha2010,Bassett2013,Bazzi2016} et du SBM~\cite{Stanley,Peixoto2015c}.
+C'est le cas d'Infomap~\cite{de2015identifying}, de la modularité~\cite{Mucha2010,Bassett2013,Bazzi2016} et du SBM~\cite{Stanley,Peixoto2015c}.
 
 
 \resume{
@@ -685,14 +685,14 @@ Ils permettent de capturer un ensemble de n\oe{}uds et plusieurs intervalles de 
 Bien que la mesure utilisée ne tienne pas directement compte du temps, leur méthode permet ainsi de mettre en évidence une partie du flot de liens.
 
 Il existe également des travaux conduits dans l'équipe~\cite{Viard2016,viard:hal-01208330} sur la notion de clique  dans les flots de liens sans durée, c'est à dire un ensemble de $(b,b,u,v)$.
-Ils généralisent la notion de cliques à ces flots de liens: pour un delta donné, une delta-clique est un ensemble de n\oe{}uds et un intervalle de temps, tels que toutes les paires de n\oe{}uds dans cet ensemble interagissent au moins tous les delta sur cet intervalle.
+Ils généralisent la notion de clique à ces flots de liens: pour un delta donné, une delta-clique est un ensemble de n\oe{}uds et un intervalle de temps, tels que toutes les paires de n\oe{}uds dans cet ensemble interagissent au moins tous les delta sur cet intervalle.
 Dans ce cadre, ils proposent un premier algorithme permettant d’énumérer les delta-cliques.
 Ils ont de plus appliqué leur algorithme avec succès sur différents jeux de données.
 
 
 
-Une méthode de type Stochastic Block Model a été proposée par Matias~\emph{et al.}~\cite{Matias2015a}.
-Elle est très proche de celle proposé par Corneli~\emph{et al.}~\cite{Corneli2016}.
+Une méthode de type SBM a été proposée par Matias~\emph{et al.}~\cite{Matias2015a}.
+Elle est très proche de celle proposée par Corneli~\emph{et al.}~\cite{Corneli2016}.
 En effet, l'affiliation des n\oe{}uds est fixe et c'est l'activité d'une communauté qui change au cours du temps.
 La grosse différence ici est que l'activité varie de manière continue dans le temps.
 Ainsi l'apparition d'un lien dépend de la réalisation d'un processus de Poisson non homogène qui change selon les communautés.
@@ -720,7 +720,7 @@ Ainsi, les deux formalismes coexistent et répondent à des besoins différents.
 
 Dans un graphe statique, il existe de très nombreuses méthodes capturant une structure des n\oe{}uds soit via une partition soit via une couverture.
 L'abondance de méthodes existantes s'explique par la diversité des définitions de communautés existantes.
-Les structures capturées permettent de mieux comprendre l'organisation générale du graphe mais aussi de mieux comprendre le type d'un n\oe{}ud.
+Les structures capturées permettent de mieux comprendre l'organisation du graphe mais aussi de mieux comprendre le type d'un n\oe{}ud.
 
 
 Avec l'émergence de nouvelles données incorporant l'information temporelle, il est pertinent d'adapter la théorie des graphes pour prendre en compte le temps.

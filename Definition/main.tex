@@ -5,7 +5,7 @@
 \section{Définition}
 \label{sec:definition}
 
-Nous avons décrit rapidement le formalisme de flot de liens dans le chapitre précédent.
+Nous avons décrit le formalisme de flot de liens dans le chapitre précédent.
 Nous nous attachons maintenant à définir plus formellement les flots de liens et quelques notions utilisées dans le reste de cette thèse.
 Un flot de liens est défini par un triplet $L=(T,V,E)$ où $T=[\alpha, \omega]$ est un intervalle de temps, $V$ un ensemble de $n$ n\oe{}uds et $E\subseteq T\times T \times V \times V$ un ensemble de $m$ liens.
 Les liens de $E$ sont des quadruplets $(b,e,u,v)$, signifiant que le lien $(u, v)$ existe sur l'intervalle $[b,e] \subseteq [\alpha,\omega]$.
@@ -21,7 +21,7 @@ Nous définissons également cette opération que nous nommons simplification: $
 Afin de définir la simplification, nous nous aidons de la fonction de présence $\zeta_{L}(u,v,t)$ d'un flot de liens qui est égale à $1$ si au moins un lien existe dans $L$ entre $u$ et $v$ à l'instant $t$ et $0$ sinon.
 $L'=(T,V,E')= \sigma(L)$ est la simplification de $L=(T,V,E)$ si et seulement si $L'$ est simple et si $\forall u,v \in V,\ \forall t\in T, \zeta_{L}(u,v,t)= \zeta_{L'}(u,v,t)$.
 
-Il est parfois nécessaire d'augmenter la durée des liens.
+Il est parfois nécessaire d'augmenter la durée de chaque lien.
 C'est notamment utile lorsque les liens sont de la forme $(t,t,u,v)$, ce qui est le cas lorsqu'on étudie des envois de courriels par exemple.
 Nous notons $\xi(L,\Delta)$ l'augmentation de la durée de chaque lien de $\Delta$.
 Il y a plusieurs moyens d'augmenter de $\Delta$ un intervalle $[b,e]$.
@@ -170,7 +170,7 @@ Cela se traduit par la formule suivante:
 \delta(L)= \dfrac{2 \sum_{l \in E}\bar{l}}{n(n-1) (\omega-\alpha)}.
 \end{equation}
 
-Il se trouve que cette formulation est complètement équivalente à la densité moyenne des graphes $G(L_t)$:
+Cette formulation est équivalente à la densité moyenne des graphes $G(L_t)$:
 
 \begin{equation*}
 \dfrac{1}{\omega-\alpha} \int_{\alpha}^{\omega} \delta(G(L_t)) dt=
@@ -264,7 +264,7 @@ Afin de pouvoir améliorer une visualisation, il est nécessaire de pouvoir quan
 Empiriquement, on se rend vite compte que ce sont les longs traits verticaux qui rendent la visualisation complexe.
 Il faut donc les limiter.
 
-C'est pourquoi nous décidons d'évaluer un ordonnancement en fonction de la somme des longueurs des traits représentant les liens.
+C'est pourquoi nous décidons d'évaluer un ordonnancement par la somme des longueurs des traits représentant les liens.
 Avec la fonction d'ordre $Ordre: V \longmapsto \mathbb{N}$, trouver le meilleur ordonnancement se résume à résoudre:
 
 \begin{equation}
@@ -272,7 +272,7 @@ Avec la fonction d'ordre $Ordre: V \longmapsto \mathbb{N}$, trouver le meilleur 
 \end{equation}
 
 Malheureusement, trouver l'optimum ne semble pas trivial et il n'est pas envisageable de tester l'ensemble des ordres.
-C'est pourquoi, nous utilisons un algorithme probabiliste qui teste des permutations aléatoires.
+C'est pourquoi nous utilisons un algorithme probabiliste qui teste des permutations aléatoires.
 Une permutation est appliquée si elle améliore l'évaluation de la visualisation.
 Il s'agit bien sûr d'une première approche qu'il est possible d'améliorer.
 

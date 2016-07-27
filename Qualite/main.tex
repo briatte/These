@@ -42,10 +42,10 @@ Enfin dans la section~\ref{sec:versqualite_Applications}, nous présentons l'uti
 Comme nous l'avons vu dans le chapitre~\ref{chap:etat_art}, les méthodes proposées sont différentes selon le formalisme utilisé.
 
 \subsection{Séries de graphes}
-Dans le cas de séries de graphes, il est possible de générer un graphe en fonction du graphe précédant dans la série.
-Par exemple, les \emph{edge-Markovian dynamic graphs}~\cite{Clementi2008} génèrent l'apparition et la disparition de liens à l'aide d'un processus de Markov à deux états: lien présent ou lien absent.
+Dans le cas de séries de graphes, il est possible de générer un graphe en fonction du graphe précédant dans la série de graphes.
+C'est le cas des \emph{edge-Markovian dynamic graphs}~\cite{Clementi2008} qui génèrent l'apparition et la disparition de liens à l'aide d'un processus de Markov à deux états: lien présent ou lien absent.
 
-Les \emph{activity driven model}~\cite{Perra2012,Laurent2015a,Moinet2015} reposent également sur le graphe généré à l'instant précédent.
+Les \emph{activity driven model}~\cite{Perra2012,Laurent2015a,Moinet2015} utilisent aussi le graphe généré à l'instant précédent lors de la génération du graphe suivant.
 Dans ce genre de modèles, un lien est créé entre deux n\oe{}uds en fonction de la propension intrinsèque de ces n\oe{}uds à créer des liens~\footnote{Le degré dans le graphe précédent est généralement utilisé.} et potentiellement de l'existence ou de l'absence de ce lien dans le graphe précédent.
 Ce genre de modèles capture très bien l'hétérogénéité des n\oe{}uds mais ne permet pas de générer une structure communautaire.
 
@@ -55,7 +55,7 @@ C'est ce que propose de Granell~\emph{et al.}~\cite{Granell2015a} qui utilise le
 Après chaque génération, des modifications sont appliquées au SBM pour représenter l'accroissement, le rétrécissement, la séparation ou la fusion de communautés.
 Voir l'illustration dans la figure~\ref{fig:qualite_Grannell}.
 Les méthodes de SBM sur des séries de graphes, évoquées dans la sous-section~\ref{subsec:perte_info}, peuvent également être utilisées pour la génération.
-Cependant, elles sont plus restreintes car elles présupposent des contraintes sur l'évolution du SBM afin qu'il soit identifiable.
+Cependant, elles présupposent souvent des contraintes sur l'évolution du SBM afin qu'il soit identifiable.
 
 \begin{figure}
 \centering
@@ -64,7 +64,7 @@ Cependant, elles sont plus restreintes car elles présupposent des contraintes s
 \label{fig:qualite_Grannell}
 \end{figure}
 
-Ces méthodes génèrent aisément des structures communautaires mais ne permettent de générer que des séries de graphes.
+Ces méthodes génèrent ainsi aisément des structures communautaires mais ne permettent de générer que des séries de graphes.
 
 \subsection{Flots de liens}
 
@@ -85,13 +85,13 @@ Il n'agit pas de structure communautaire explicite et elles ne peuvent pas être
 
 
 
-Barrat~\emph{et al.}~\cite{Barrat2013a} proposent une autre méthode basée sur l'utilisation de marches aléatoires.
+Barrat~\emph{et al.}~\cite{Barrat2013a} proposent une méthode basée sur l'utilisation de marches aléatoires.
 Ils utilisent un graphe statique pondéré et orienté qui représente l'ensemble des interactions qui pourront exister dans le flot de liens.
 Ce graphe peut provenir de données réelles ou être généré.
 \`A partir de ce graphe, différentes marches aléatoires sont simulées.
 Chaque marche est caractérisée par un temps de début, un n\oe{}ud de départ, un nombre de sauts et les temps séparant chaque saut.
-Ces caractéristiques peuvent être définies arbitrairement ou selon des distributions données.
-Chaque marche donne lieu à une liste d'interactions: $\{(t_1,u0,u1), ..., (t_k,u_{k-1}, u_k)\}$ pour une marche de $k$ sauts.
+Ces caractéristiques peuvent être définies arbitrairement ou selon des distributions apprises sur des jeux de données.
+Chaque marche de $k$ sauts donne lieu à une liste d'interactions formant une chaîne: $\{(t_1,u0,u1), ..., (t_k,u_{k-1}, u_k)\}$.
 Lors de la marche aléatoire, le prochain lien est choisi en fonction de son poids dans le graphe pondéré et le poids du lien choisi est décrémenté de $1$ dans le graphe pondéré.
 Un lien ne peut être choisi que si son poids est supérieur à $0$.
 L'union des marches simulées forme ainsi le flot de liens.
@@ -101,7 +101,7 @@ Si le graphe statique utilisé possède une structure communautaire, il est poss
 Cependant cette dépendance ne permet pas de générer des structures communautaires qui soient invisibles dans le graphe statique.
 Dans l'exemple \emph{Merge-Split} de la figure~\ref{fig:qualite_Grannell}, il existe deux communautés aux instants $t=0$ et $t=\tau$ mais ces deux communautés sont fusionnées à l'instant $t=\tau/2$.
 Il existe donc une structure communautaire dans le réseau dynamique initial mais cette structure n'est pas directement identifiable dans le graphe agrégé.
-C'est pourquoi, il se peut qu'il n'existe aucune structure communautaire dans le flot de liens généré à partir de ce graphe statique.
+C'est pourquoi il se peut qu'il n'existe aucune structure communautaire dans le flot de liens généré à partir de ce graphe statique.
 
 
 \resume{
@@ -113,7 +113,7 @@ Dans le cadre de flots de liens, les générateurs ne permettent pas ou alors qu
 \label{sec:versqualite_methode}
 
 Nous définissons maintenant notre générateur de flots de liens sans durée ayant une structure communautaire.
-Notre approche est similaire au SBM car nous considérons que l'apparition de liens entre deux n\oe{}uds ne dépend que des communautés auxquelles ils appartiennent.
+Notre approche est similaire au SBM car l'apparition de liens entre deux n\oe{}uds ne dépend que des communautés auxquelles ils appartiennent.
 Plus ils ont de communautés en commun, plus il existera de liens entre ces n\oe{}uds.
 S'ils n'ont aucune communauté en commun, alors il n'y aura pas ou peu de liens entre ces n\oe{}uds.
 Tout comme le SBM, nous utilisons un graphe d'affiliation des n\oe{}uds aux communautés où il existe un lien entre un n\oe{}ud et une communauté si le n\oe{}ud appartient à la communauté.
@@ -147,7 +147,7 @@ Or, cette hypothèse d'activité constante au cours du temps n'est pas cohérent
 Par exemple, les réunions de familles sont souvent calmes au début puis deviennent plus animées par la suite.
 Il faut donc pouvoir faire varier l'intensité de l'activité au cours du temps.
 Si $\lambda$ varie, alors un processus de Poisson non-homogène est simulé.
-C'est pourquoi, nous considérons des processus de Poisson non-homogènes pour générer des liens au sein d'une communauté.
+C'est pourquoi nous considérons des processus de Poisson non-homogènes pour générer des liens au sein d'une communauté.
 
 \bigskip
 
@@ -267,7 +267,7 @@ Avec ces paramètres fixés, nous faisons varier le chevauchement topologique de
 \end{figure}
 
 \bigskip
-Pour ces trois types de flots de liens, nous avons appliqué Louvain, une méthode d'optimisation de modularité~\cite{Blondel2008a} et CarOp, une méthode égo-centrée~\cite{Danisch2012} sur une projection du flot de liens en un graphe statique.
+Pour ces trois types de flots de liens, nous avons appliqué Louvain, une méthode d'optimisation de modularité~\cite{Blondel2008a} et CarOp, une méthode égocentrée~\cite{Danisch2012} sur une projection du flot de liens en un graphe statique.
 La méthode CarOp permet de trouver une communauté égo-centrée à partir d'un n\oe{}ud du graphe.
 Il est donc nécessaire de fournir un lien initial qui servira à retrouver les communautés générées.
 Nous choisissons pour chaque communauté générée un lien apparaissant au milieu de sa duré de vie; par exemple un lien à l'instant $15$ est choisi pour initialiser une communauté qui sera \emph{a priori} proche de la communauté $3$.

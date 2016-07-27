@@ -49,17 +49,17 @@ Ces travaux ont donné lieu à une première publication dans une conférence na
 
 \`A partir de cette structure partielle, il est intéressant d'essayer de détecter une partition complète du flot de liens.
 La détection de structure dans un réseau dynamique ou non nécessite un moyen d'évaluer le résultat obtenu.
-C'est pourquoi, nous avons étudié plus en détails la détection de communautés sous la forme de partitions de liens et ce dans le cas statique et dynamique.
+C'est pourquoi nous avons étudié plus en détails la détection de communautés sous la forme de partitions de liens et ce dans le cas statique et dynamique.
 Comme nous l'avons vu dans le chapitre~\ref{chap:etat_art}, il existe assez peu de méthodes de détection de communautés sous la forme de partitions de liens et aucune ne s'est vraiment attachée à reproduire ce qui a fait le succès de la modularité.
-C'est pourquoi, dans le chapitre~\ref{chap:Expected_Node}, nous avons proposé une nouvelle méthode pour l'évaluation d'une partition de liens dans le cas statique qui se base également sur la notion de modèle nul.
+C'est pourquoi dans le chapitre~\ref{chap:Expected_Node}, nous avons proposé une nouvelle méthode pour l'évaluation d'une partition de liens dans le cas statique qui se base également sur la notion de modèle nul.
 Un groupe de liens est ainsi une bonne communauté s'il induit moins de n\oe{}uds qu'attendu dans le modèle nul.
 De plus, un groupe de liens est également évalué en fonction de son voisinage.
 Cette fois ci, un voisinage est jugé bon lorsqu'il consiste en moins de n\oe{}uds adjacents qu'attendu dans le modèle nul car le voisinage doit être peu dense.
 
 Nous avons mené des tests sur des graphes ayant une structure simple: une clique ou deux cliques se chevauchant et sur des graphes générés aléatoirement.
-Sur ces exemples, notre fonction de qualité, \emph{Expected Nodes}, est la seule à différencier la vérité de terrain d'autres partitions moins pertinentes.
+Sur ces exemples, notre fonction de qualité, \emph{Expected} \emph{Nodes}, est la seule à différencier la vérité de terrain d'autres partitions moins pertinentes.
 Ces travaux ont été publiés dans une conférence nationale~\cite{Gaumont2014} et une conférence internationale~\cite{Gaumont2015}.
-Fort de ces premiers constats, nous avons implémenté un premier algorithme d'optimisation d'\emph{Expected Nodes}.
+Fort de ces premiers constats, nous avons implémenté un premier algorithme optimisant \emph{Expected Nodes}.
 Cependant malgré nos efforts pour rendre plus efficace l'évaluation d'\emph{Expected Nodes}, notre algorithme n'est pas adapté à l'étude de grands graphes.
 
 \bigskip
