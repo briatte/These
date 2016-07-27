@@ -51,7 +51,7 @@ Ce genre de modèles capture très bien l'hétérogénéité des n\oe{}uds mais 
 
 
 Il est également possible d'appliquer un modèle génératif sur chaque graphe de la série indépendamment.
-C'est ce que propose de Granell~\emph{et al.}~\cite{Granell2015a} qui utilise le SBM pour générer un graphe.
+C'est ce que propose de Granell \emph{et al.}~\cite{Granell2015a} qui utilise le SBM pour générer un graphe.
 Après chaque génération, des modifications sont appliquées au SBM pour représenter l'accroissement, le rétrécissement, la séparation ou la fusion de communautés.
 Voir l'illustration dans la figure~\ref{fig:qualite_Grannell}.
 Les méthodes de SBM sur des séries de graphes, évoquées dans la sous-section~\ref{subsec:perte_info}, peuvent également être utilisées pour la génération.
@@ -60,7 +60,7 @@ Cependant, elles présupposent souvent des contraintes sur l'évolution du SBM a
 \begin{figure}
 \centering
 \includegraphics[width=0.4\linewidth]{img/Qualite/Granell.png}
-\caption{Représentation schématique d'évolution possible d'une structure communautaire de séries de graphes pouvant être générées par la méthode de Granell~\emph{et al.}~\cite{Granell2015a}. Image provenant de~\cite{Granell2015a}.}
+\caption{Représentation schématique d'évolution possible d'une structure communautaire de séries de graphes pouvant être générées par la méthode de Granell \emph{et al.}~\cite{Granell2015a}. Image provenant de~\cite{Granell2015a}.}
 \label{fig:qualite_Grannell}
 \end{figure}
 
@@ -75,17 +75,17 @@ D'autre part, les temps inter-contacts ne semblent pas suivre un processus de Ma
 
 Toutes ces méthodes génèrent des flots de liens mais ne considèrent aucune structure.
 Quelques méthodes se distinguent de ces travaux et génèrent une structure même s'il ne s'agit pas forcément de structure communautaire.
-C'est le cas des travaux de Starnini~\emph{et al.}\cite{Starnini2013} et de Zhang~\emph{et al.}~\cite{Zhang2015a}.
+C'est le cas des travaux de Starnini \emph{et al.}\cite{Starnini2013} et de Zhang \emph{et al.}~\cite{Zhang2015a}.
 Dans ces méthodes, un flot de liens est généré à partir d'un système multi-agents où chaque agent se déplace dans un espace 2D borné.
 Un lien existe entre deux agents lorsqu'ils sont à distance de communication.
-Dans le modèle de Zhang~\emph{et al.}, la direction prise par chaque agent n'est pas aléatoire mais en fonction de l'agent voisin étant le plus attractif.
+Dans le modèle de Zhang \emph{et al.}, la direction prise par chaque agent n'est pas aléatoire mais en fonction de l'agent voisin étant le plus attractif.
 Il s'agit donc d'un modèle de mobilité préférentielle.
 Bien que ces méthodes génèrent des structures.
 Il n'agit pas de structure communautaire explicite et elles ne peuvent pas être représentées sur les liens du flot de liens.
 
 
 
-Barrat~\emph{et al.}~\cite{Barrat2013a} proposent une méthode basée sur l'utilisation de marches aléatoires.
+Barrat \emph{et al.}~\cite{Barrat2013a} proposent une méthode basée sur l'utilisation de marches aléatoires.
 Ils utilisent un graphe statique pondéré et orienté qui représente l'ensemble des interactions qui pourront exister dans le flot de liens.
 Ce graphe peut provenir de données réelles ou être généré.
 \`A partir de ce graphe, différentes marches aléatoires sont simulées.
@@ -222,7 +222,7 @@ Afin de faciliter l'utilisation de ce générateur, nous utilisons différentes 
 \subsection{Étude de méthodes statiques appliquées aux flots de liens}
 \label{sec:versqualite_statique}
 
-Lors de la génération de graphes statiques avec structure communautaire chevauchante, il y a principalement deux critères impactant une réalisation: le chevauchement de la structure et le rapport entre densité intérieure et extérieure à une communauté.
+Lors de la génération de graphes statiques avec structure communautaire chevauchante, il y a principalement deux critères influençant une réalisation: le chevauchement de la structure et le rapport entre densité intérieure et extérieure à une communauté.
 Dans le cas des flots de liens, il faut aussi ajouter le chevauchement temporel.
 Afin de faciliter l'étude, nous ne générons aucun lien en dehors des communautés définies.
 C'est pourquoi les différentes situations dépendent uniquement du recouvrement topologique et temporel des communautés.
@@ -267,8 +267,8 @@ Avec ces paramètres fixés, nous faisons varier le chevauchement topologique de
 \end{figure}
 
 \bigskip
-Pour ces trois types de flots de liens, nous avons appliqué Louvain, une méthode d'optimisation de modularité~\cite{Blondel2008a} et CarOp, une méthode égocentrée~\cite{Danisch2012} sur une projection du flot de liens en un graphe statique.
-La méthode CarOp permet de trouver une communauté égo-centrée à partir d'un n\oe{}ud du graphe.
+Pour ces trois types de flots de liens, nous avons appliqué Louvain, une méthode d'optimisation de modularité~\cite{Blondel2008a} et CarOp, une méthode \emph{ego}-centrée~\cite{Danisch2012} sur une projection du flot de liens en un graphe statique.
+La méthode CarOp permet de trouver une communauté \emph{ego}-centrée à partir d'un n\oe{}ud du graphe.
 Il est donc nécessaire de fournir un lien initial qui servira à retrouver les communautés générées.
 Nous choisissons pour chaque communauté générée un lien apparaissant au milieu de sa duré de vie; par exemple un lien à l'instant $15$ est choisi pour initialiser une communauté qui sera \emph{a priori} proche de la communauté $3$.
 
@@ -295,7 +295,7 @@ Dans la situation la plus simple représentée dans la figure~\ref{fig:versquali
 Dans la situation représentée dans la figure~\ref{fig:versqualite_gen_test2}, la vérité de terrain est retrouvée par CarOp mais non par Louvain.
 Dans les partitions trouvées par Louvain, la communauté $3$ n'est jamais détectée peu importe la valeur de $\lambda$ utilisée pour la projection.
 Selon la valeur de $\lambda$, les liens de la communauté $3$ sont soit distribués entre les autres communautés soit répartis en plusieurs communautés autonomes.
-Comme cette méthode optimise la modularité sur une structure proche du \emph{line-graph} d'un multigraphe, elle est similaire aux méthodes proposées par Evans~\emph{et al.}~\cite{Evans2009} que nous avons présentées dans la section~\ref{sec:expected_travaux}.
+Comme cette méthode optimise la modularité sur une structure proche du \emph{line-graph} d'un multigraphe, elle est similaire aux méthodes proposées par Evans \emph{et al.}~\cite{Evans2009} que nous avons présentées dans la section~\ref{sec:expected_travaux}.
 Elle souffre donc des mêmes biais\,\footnote{Plus une clique d'un graphe est grande, moins sa transformation dans le \emph{line-graph} est dense.}.
 
 Dans la situation représentée dans la figure~\ref{fig:versqualite_gen_test3}, la vérité de terrain est retrouvée par Louvain mais non par CarOp.

@@ -47,25 +47,25 @@ Enfin, les jeux de données que nous utilisons sont présentés dans la section~
 
 Comme nous l'avons vu dans le chapitre~\ref{chap:etat_art}, il existe assez peu de méthodes cherchant des structures dans un formalisme sans perte d'information.
 
-Mitra~\emph{et al.}~\cite{Mitra2012a} et Speidel~\emph{et al.}~\cite{Speidel2015} ont proposé des méthodes de détection de communautés mais dans les réseaux diachroniques.
+Mitra \emph{et al.}~\cite{Mitra2012a} et Speidel \emph{et al.}~\cite{Speidel2015} ont proposé des méthodes de détection de communautés mais dans les réseaux diachroniques.
 Dans un tel réseau, ce sont les n\oe{}uds qui ont un \emph{timestamp} et non les liens.
 Ce cas de figure s'applique parfaitement aux réseaux de citations car une citation relie bien deux publications apparues à deux dates spécifiques.
 Cependant ce genre de situation est particulier et ne peut pas être trivialement représenté par le formalisme de flot de liens.
 C'est pourquoi nous ne pouvons utiliser la même méthode. 
 
 Il existe également des méthodes capturant la partie la plus dense d'un réseau.
-C'est le cas de Bogdanov~\emph{et al.}~\cite{Bogdanov2011} qui considèrent  un graphe dont la topologie n'évolue pas mais dont les poids des liens changent entre $-1$ et $1$ en fonction du temps.
+C'est le cas de Bogdanov \emph{et al.}~\cite{Bogdanov2011} qui considèrent  un graphe dont la topologie n'évolue pas mais dont les poids des liens changent entre $-1$ et $1$ en fonction du temps.
 Ce formalisme est encore une fois très différent de celui de flot de liens.
 De plus, la notion de densité utilisée ne tient pas vraiment compte du temps car un groupe de n\oe{}uds sur un intervalle est évalué par la somme des liens entre ces n\oe{}uds sur tout l'intervalle.
 
 
-Epasto~\emph{et. al}~\cite{Epasto2015} capturent le sous-graphe le plus dense dans un graphe temporel.
+Epasto \emph{et al.}~\cite{Epasto2015} capturent le sous-graphe le plus dense dans un graphe temporel.
 Ainsi, le temps est bien pris en compte dans le formalisme.
 Cependant, la méthode capture le sous-graphe à un instant $t$ tel qu'il ait le degré moyen le plus élevé parmi l'ensemble des sous-graphes sur tous les instants.
 La notion de densité est donc statique car elle ne considère que la structure de graphe à un instant.
 
 
-Les travaux de Rozenshtein~\emph{et. al}~\cite{rozenshtein2014} sont ceux qui se rapprochent le plus de notre méthode.
+Les travaux de Rozenshtein \emph{et al.}~\cite{rozenshtein2014} sont ceux qui se rapprochent le plus de notre méthode.
 Leur méthode utilise le formalisme de flots de liens et ne suppose pas de structure de graphe à un instant donné.
 Elle capture un groupe de n\oe{}uds et plusieurs intervalles disjoints de telle sorte que ce groupe de n\oe{}uds dans le graphe agrégé sur ces intervalles ait le degré moyen le plus élevé.
 Plus formellement, un groupe de n\oe{}uds $V'\subset V$ et un ensemble d'intervalles $\{I_1,..,I_k\} = \mathcal{I} \subset T$ doivent maximiser $\tilde{d}_\mathcal{G}(V')$ où  $\mathcal{G}= \bigcup G(L_t),\,\forall t \in \mathcal{I}$.
@@ -488,7 +488,7 @@ Il est donc également pertinent vis-à-vis de ce voisinage.
 Pour finir, le groupe a un score de $0.95$ pour le voisinage à la durée et donc le groupe a capturé une durée  pertinente.
 La densité en fonction de la durée des sous-flots voisins est présentée dans la figure~\ref{fig:g9522_duree}.
 La densité du sous-flot est légèrement plus importante si une durée plus courte est utilisée.
-Ce n'est pas complètement surprenant car la durée du sous-flot impacte la densité.
+Ce n'est pas complètement surprenant car la durée du sous-flot influence la densité.
 
 Par ailleurs, il est important de noter deux chose lorsque l'on observe cette courbe.
 Tout d'abord, on se rend compte que considérer des durées plus longues n'est pas vraiment utile.
@@ -657,7 +657,7 @@ Cette différence est sûrement due au nombre relativement faible de n\oe{}uds c
 Il aurait peut-être été possible de détecter cette structure par une méthode capturant des communautés chevauchantes de n\oe{}uds dans un graphe.
 Afin de tester cette hypothèse, nous créons un graphe agrégé pondéré tel que le poids d'un lien entre deux n\oe{}uds soit égal à la somme des durées des liens entre ces deux n\oe{}uds dans le flot de liens.
 Ainsi, le poids des liens permet de garder une partie de l'information temporelle.
-Pour la détection de communautés chevauchantes, nous avons utilisé l'algorithme bigclam proposé par Yang~\emph{et al.}~\cite{Yang2013}.
+Pour la détection de communautés chevauchantes, nous avons utilisé l'algorithme bigclam proposé par Yang \emph{et al.}~\cite{Yang2013}.
 Nous l'avons décrit dans la section~\ref{subsec:cover}.
 Cette méthode ne considère que des graphes non pondérés.
 C'est pourquoi il est nécessaire de transformer le graphe pondéré en graphe non pondéré.
@@ -702,7 +702,7 @@ Dans le jeu de données Socio Pattern, c'est notamment le cas lors des pauses ou
 Durant ces instants, il peut y avoir jusqu'à quatre groupes présents en même temps.
 Ces instants importants sont visibles via notre méthode mais ils sont bien évidemment facilement identifiables par d'autres méthodes plus simples telles que le degré temporel.
 
-De manière globale, la structure temporelle des groupes pertinents est très différente de la structure topologique car une part importante du temps n'est impactée par aucun groupe pertinent.
+De manière globale, la structure temporelle des groupes pertinents est très différente de la structure topologique car une part importante du temps n'est concernée par aucun groupe pertinent.
 Il est toutefois intéressant de noter que les deux structures sont chevauchantes. 
 
 
@@ -760,7 +760,7 @@ Les axes de recherche associés à ces travaux sont principalement de deux types
 Notre méthode n'est pas encore automatique car il est nécessaire de fixer les seuils des scores et la taille minimum d'un groupe.
 La taille minimum ne semble pas être très délicate à choisir.
 Il serait intéressant de voir si notre méthode est capable de filtrer automatiquement les petits groupes.
-Nous n'avons cependant pas encore poursuivi cet axe de recherche car la prise en compte des petits groupes impacterait fortement la distribution des scores et donc le choix des seuils.
+Nous n'avons cependant pas encore poursuivi cet axe de recherche car la prise en compte des petits groupes modifierait fortement la distribution des scores et donc le choix des seuils.
 De plus, les seuils nécessitent déjà une connaissances des données.
 
 C'est pourquoi il serait intéressant de pouvoir automatiser le choix de seuil.
@@ -790,7 +790,7 @@ Même si cette approche ne permet pas la détection directe de groupes pertinent
 \subsubsection{Amélioration de la validation des résultats}
 
 Nous avons comparé nos résultats uniquement à une méthode statique car les méthodes de l'état de l'art sur les réseaux dynamiques manipulent principalement des séries de graphes.
-Or, le changement de formalisme impacte fortement l'objet d'étude.
+Or, le changement de formalisme modifie fortement l'objet d'étude.
 Dans une série de graphes, il y a une agrégation temporelle.
 L'identité d'un lien est donc perdue lors de l'agrégation et il est ainsi délicat de comparer des groupes de liens dans un flot de liens et des groupes de n\oe{}uds dans une série de graphes.
 Pour pouvoir appliquer les méthodes de série de graphes, il est donc d'abord nécessaire de construire une ou plusieurs transformations du flot de liens en série de graphes.

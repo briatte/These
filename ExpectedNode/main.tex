@@ -148,10 +148,10 @@ D'autre part, transformer une partition de liens en couverture de n\oe{}uds impo
 Par exemple dans l'exemple de la figure~\ref{fig:Partition_Couverture}, il n'est pas évident que la communauté \textcolor{briquered}{\textbf{rouge}} constituée des deux n\oe{}uds centraux soit une communauté légitime.
 Selon le contexte, elle peut être considérée comme un artefact de la transformation.
 La transformation d'une partition n'est donc pas un acte neutre.
-Cet aspect a d'ailleurs été mis en avant par Esquivel~\emph{et al}~\cite{Esquivel2011}.
+Cet aspect a d'ailleurs été mis en avant par Esquivel \emph{et al.}~\cite{Esquivel2011}.
 Face à ce problème, nos travaux ainsi que quelques méthodes existantes proposent des méthodes évaluant directement les partitions de liens.
 
-Ahn~\emph{et al.}~\cite{Ahn2010a} sont parmi les premiers à avoir proposé une méthode détectant les communautés de liens.
+Ahn \emph{et al.}~\cite{Ahn2010a} sont parmi les premiers à avoir proposé une méthode détectant les communautés de liens.
 Leur méthode \emph{link clustering} est une méthode hiérarchique d'agglomération.
 Elle construit un dendrogramme en agglomérant de manière itérative les groupes de liens en fonction de leur similarité, calculée par l'indice de Jaccard.
 Afin de décider de la coupe du dendrogramme et de la partition résultante, la fonction \emph{Partition Density} est utilisée.
@@ -179,7 +179,7 @@ Une première proposition de Kim~\cite{Kim2014a} a été faite dans ce sens.
 
 
 
-Evans~\emph{et al.}~\cite{Evans2009} proposent trois fonctions de qualité pour évaluer les partitions de liens.
+Evans \emph{et al.}~\cite{Evans2009} proposent trois fonctions de qualité pour évaluer les partitions de liens.
 Leurs fonctions de qualité sont basées sur trois marches aléatoires qui se déroulent sur les liens du graphe.
 L'approche est similaire à la modularité car la modularité peut également être définie à l'aide d'une marche aléatoire sur les n\oe{}uds du graphe~\cite{Delvenne2010}.
 Leurs trois fonctions de qualité peuvent être calculées et optimisées sur le graphe mais les auteurs ont montré que l'on pouvait, de manière complètement équivalente, utiliser la modularité sur des \emph{line-graph} pondérés ($LG_1$, $LG_2$, $LG_3$).
@@ -202,8 +202,8 @@ Soit $k_x(\alpha)= \sum_{\beta}LG_x(\alpha,\beta)$ le degré pondéré dans le l
 Evans_x(\mathcal{L}) = \dfrac{1}{W_x} \sum_{L_i \in \mathcal{L}} \sum_{e_1,e_2 \in L_i^2} LG_x    (e_1,e_2) -  \dfrac{k_x(e_1) k_x(e_2)}{W}.
 \end{eqnarray}
 
-Kim \emph{et al.}~\cite{Kim2011} ont exploré une extension du concept de \emph{Minimum Length Description} (MDL) introduit par Rosvall~\emph{et al.}~\cite{Rosvall2008} qui est une méthode provenant de la théorie de l'information.
-Cette extension de la \emph{MDL} évalue directement une partition de liens, contrairement à l'extension proposée par Esquivel~\emph{et al.}~\cite{Esquivel2011}.
+Kim \emph{et al.}~\cite{Kim2011} ont exploré une extension du concept de \emph{Minimum Length Description} (MDL) introduit par Rosvall \emph{et al.}~\cite{Rosvall2008} qui est une méthode provenant de la théorie de l'information.
+Cette extension de la \emph{MDL} évalue directement une partition de liens, contrairement à l'extension proposée par Esquivel \emph{et al.}~\cite{Esquivel2011}.
 Un avantage de leur méthode est de pouvoir comparer la qualité d'une partition de liens et d'une partition de n\oe{}uds avec leur \emph{MDL} respective.
 Cependant, leur méthode ne semble favoriser les communautés de liens que dans des cas très limités.
 
@@ -277,8 +277,8 @@ $Q_{in}$ permet d'évaluer la qualité interne d'un groupe mais il faut aussi te
 En effet, observer une clique a l'intérieur d'une autre clique n'est absolument pas surprenant.
 C'est pourquoi nous définissons également une qualité externe.
 Le but est d'évaluer comment sont répartis les liens et n\oe{}uds adjacents.
-Pour ce faire, nous allons également comparer le nombre de n\oe{}uds adjacents observé au nombre espéré dans le modèle de configuration.
-Cependant à l'inverse de la qualité interne, la qualité externe est \textbf{mauvaise} si jamais le nombre de n\oe{}uds adjacent est plus faible qu'espéré.
+Pour ce faire, nous allons également comparer le nombre de n\oe{}uds adjacents observé au nombre attendu dans le modèle de configuration.
+Cependant à l'inverse de la qualité interne, la qualité externe est \textbf{mauvaise} si jamais le nombre de n\oe{}uds adjacent est plus faible qu'attendu.
 En effet, s'il y a beaucoup de liens adjacents pour peu de n\oe{}uds, alors cela indique que le voisinage du groupe est dense et devrait être inclus dans le groupe.
 Le cas idéal est que chaque lien adjacent soit relié à un n\oe{}ud différent.
 
@@ -293,7 +293,7 @@ L'espérance du nombre de n\oe{}uds adjacents se définit de la manière suivant
 \end{equation}
 
 Une illustration de ce processus est présentée dans la figure~\ref{fig:retourt_ext}.
-Sur cette illustration, le groupe $L$ a un très mauvais voisinage et cela se reflète par un nombre de n\oe{}uds adjacents observés plus faible qu'espéré.
+Sur cette illustration, le groupe $L$ a un très mauvais voisinage et cela se reflète par un nombre de n\oe{}uds adjacents observés plus faible qu'attendu.
 En particulier, ce sont les liens adjacents reliant deux n\oe{}uds internes qui pénalisent l'évaluation car ils comptent chacun pour deux demi-liens adjacents.
 
 \begin{figure}
@@ -798,8 +798,8 @@ Dans sa version courante, l'algorithme est trop coûteux pour traiter des graphe
 La force de l'algorithme de Louvain réside dans l'existence d'une expression analytique pour le gain de fusion de deux communautés, qui est rapide à évaluer.
 Dans notre algorithme, la lenteur est justement due au calcul du gain qui est très coûteux.
 En effet, nous ne calculons pas directement le gain d'un mouvement mais la différence entre la qualité courante et la qualité résultant du mouvement.
-C'est une différence importante car, dans notre cas, il faut calculer à partir de zéro la qualité des communautés impactées.
-Une manière de résoudre ce problème serait de ne pas partir de zéro mais de calculer localement les changements ayant un impact.
+C'est une différence importante car, dans notre cas, il faut calculer à partir de zéro la qualité des communautés concernées.
+Une manière de résoudre ce problème serait de ne pas partir de zéro mais de calculer localement les changements ayant modifiés la communauté.
 Prenons le cas de la fusion de communautés $A$ et $B$.
 Cela est simple pour la qualité interne car elle ne dépend que du nombre de n\oe{}uds et de liens internes.
 Le nouveau nombre de liens, après fusion, est simplement la somme des liens des communauté initiales.
