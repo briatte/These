@@ -26,13 +26,13 @@ L'aspect temporel des discussions est donc important.
 
 \section{Pré-traitement sur le jeu de données}
 Bien qu'accessible sur internet, ce jeu de données nécessite un ensemble de traitements avant de pouvoir exploiter les $724\ 985$ courriels que contenait l'archive en janvier 2015.
-Tout d'abords, les données ne sont pas sous la forme d'un flot de liens avec la structure des conversations.
+Tout d'abord, les données ne sont pas sous la forme d'un flot de liens avec la structure des conversations.
 Les données sont accessibles via le site internet et ne sont pas structurées.
 Pour avoir ces informations sous la forme d'un flots de liens, un script d'extraction a été développé\,\footnote{\url{https://bitbucket.org/nGaumont/mailarchiver}}.
 Lors de l'extraction, $2\ 269$ courriels n'ont pas pu être pris en compte car certaines informations étaient manquantes ou mal formées, typiquement à cause de la date ou d'un fuseau horaire non reconnu.
 
 Une fois les informations brutes récupérées, il faut les transformer en un flot de liens cohérent.
-Pour chaque message $m$, nous extrayons son auteur $a(m)$, l'instant $t(m)$ auquel le message a été posté\,\footnote{Cet instant est convertit en $timestamp$ en tenant compte des fuseaux horaires.}, le message auquel il répond $p(m)$ trouvé via le champ \textsc{In-Reply-To}, son destinataire $a(p(m))$ et la discussion $D(m)$ dans laquelle il apparaît.
+Pour chaque message $m$, nous extrayons son auteur $a(m)$, l'instant $t(m)$ auquel le message a été posté\,\footnote{Cet instant est converti en $timestamp$ en tenant compte des fuseaux horaires.}, le message auquel il répond $p(m)$ trouvé via le champ \textsc{In-Reply-To}, son destinataire $a(p(m))$ et la discussion $D(m)$ dans laquelle il apparaît.
 Comme les messages \emph{racines} ne répondent à aucun autre, nous imposons $p(m)=m$.
 L'ensemble de liens du flot est donc $\{(t(m),a(m),a(p(m)))\}_m$.
 Nous ne prenons pas en compte la direction des liens.
@@ -42,9 +42,9 @@ Un message peut être filtré pour différentes raisons: le courriel apparaît a
 Cette dernière condition permet notamment d'éviter la présence de boucles dans le flot.
 Cela concerne principalement les \emph{racines}.
 Il s'agit de vérifications simple auxquelles il faut ajouter les vérifications sur la cohérence de la structure des discussions.
-Ainsi, une discussion est entièrement retirée du jeu de données s'il manque la \emph{racine}, si un de ses messages a été retiré à l'étape précédente.
+Ainsi, une discussion est entièrement retirée du jeu de données s'il manque la \emph{racine} ou si un de ses messages a été retiré à l'étape précédente.
 Après ces vérifications, environ $7\%$ des discussions sont retirées.
-\`A cela, il faut également tenir compte de notre temps d'observation qui est partiel.
+Avec cela, il faut également tenir compte de notre temps d'observation qui est partiel.
 En effet, une discussion dont le dernier message a lieu 1 semaine avant la fin de la capture peut ne pas être terminée.
 De même, une discussion durant très longtemps n'a qu'une faible probabilité d'être capturée en entier.
 Pour corriger ces biais, nous filtrons également les discussions ayant débutées trop récemment ou durant trop longtemps.
@@ -136,7 +136,7 @@ Elle est surtout utile pour comparer les valeurs de $\Delta$-densité des sous-f
 Ainsi dans la figure~\ref{fig:intra_dens_discussion}, est présentée la distribution cumulative inverse de la $\Delta$-densité des discussions pour différentes valeurs de $\Delta$.
 On remarque que les différentes valeurs de $\Delta$ ne semblent pas influencer qualitativement la distribution de $\Delta$-densité.
 Cette courbe met surtout en évidence que les discussions sont des structures beaucoup plus denses que le flot.
-En effet, la densité médiane des discussions est, selon la valeur de $\Delta$, entre $2.69 \times 10^{-4}$ et $0.28$ alors que le flot a une $\Delta$-densité variant entre $1.05  \times 10^{-10}$ et $3.42 \times 10^{-5}$.
+En effet, la densité médiane des discussions est, selon la valeur de $\Delta$, entre $2.69 \times 10^{-4}$ et $0.28$ alors que le flot a une $\Delta$-densité variant entre $1.05  \times 10^{-10}$ et $3.139 \times 10^{-4}$.
 La $\Delta$-densité des discussions est donc en moyenne $10^{5}$ fois plus élevée que celle du flot.
 Bien que notable, ce fait est attendu notamment car le flot dure beaucoup plus longtemps et concerne beaucoup plus de n\oe{}uds que les discussions.
 \begin{figure}
@@ -164,8 +164,8 @@ Pour un graphe $G=(V,E)$ et une communauté $C_i$ de la partition $C = \{C_j\}_{
 Il s'agit simplement de la probabilité qu'un lien existe entre un n\oe{}ud de $C_i$ et un n\oe{}ud d'une autre communauté.
 Encore une fois, cette notion n'a pas de sens direct dans le formalisme de flot de liens et il est nécessaire de l'adapter.
 Pour ce faire, nous définissons la $\Delta$-densité inter discussions entre deux discussions $D_i$ et $D_j$: $\delta^{inter}_{\Delta}(D_i,D_j)$.
-Soit $\Delta_{ij}=\xi(\Delta,D_i \cup D_j)$ et $L_{inter}(D_i, D_j) = (T',V',E')$ avec  $T'=[\beta(\Delta_{ij}),\psi(\Delta_{ij})]$, $V'= V(\Delta_{ij})$ et $E' = \xi(\Delta,E) \setminus \Delta_{ij}$.
-Avec ces notation, $\delta^{inter}_{\Delta}(D_i,D_j)$ est égale à $\delta^{inter}_{\Delta}(D_i,D_j) = \delta(L_{inter}(D_i, D_j))$.
+Soit $\Delta_{ij}=\xi(D_i \cup D_j,\Delta)$ et $L_{inter}(D_i, D_j) = (T',V',E')$ avec  $T'=[\beta(D_i \cup D_j) - \Delta/2,\psi(D_i \cup D_j) + \Delta/2]$, $V'= V(\Delta_{ij})$ et $E' = \xi(E,\Delta) \setminus \Delta_{ij}$.
+Avec ces notation, $\delta^{inter}_{\Delta}(D_i,D_j)$ est égale à: $\delta^{inter}_{\Delta}(D_i,D_j) = \delta(L_{inter}(D_i, D_j))$.
 Il s'agit donc de la densité du flot inter discussions qui est constitué des liens entre les n\oe{}uds induits par $D_i$ et $D_j$ qui n'appartiennent ni à $D_i$ ni à $D_j$.
 Dans la figure~\ref{fig:inter_dens_discussion_ex}, un exemple de flot inter discussion est représenté.
 Il est important de noter que le nombre de liens pris en compte dans le flot inter-discussions varie selon le $\Delta$ utilisé.
@@ -189,10 +189,10 @@ Afin d'obtenir la $\Delta$-densité inter discussions entre $D_i$ et tout les au
 
 La distribution cumulative inverse de la $\Delta$-densité inter discussions est présentée dans la figure~\ref{fig:inter_dens_discussion} pour différentes valeurs de $\Delta$.
 Bien que similaire, le comportement de la $\Delta$-densité inter discussions diffère qualitativement de celui de la $\Delta$-densité.
-La $\Delta$-densité inter discussions croît également en fonction de $\Delta$ mais il y a toujours une différence notable entre $\Delta= 1\  mois$ et $\Delta= 1\ an$ ce qui n'est pas le cas pour la $\Delta$-densité.
+La $\Delta$-densité inter discussions croît également en fonction de $\Delta$ mais il y a toujours une différence notable entre $\Delta= 30\  jours$ et $\Delta= 1\ an$ ce qui n'est pas le cas pour la $\Delta$-densité.
 Cette différence est normale car lors du calcul de $\Delta$-densité le nombre de liens considérés est fixe peu importe $\Delta$ alors qu'il croît avec $\Delta$ lors du calcul de $\Delta$-densité inter discussions.
 Cet effet est visible dans la figure~\ref{fig:inter_dens_discussion_ex}.
-Le lien $(c,d)$ qui apparaît peu avant $\beta$ n'est pas pris en compte si $\Delta$ est proche de $0$ alors qu'il est en parti pris en compte lorsqu'un $\Delta$ plus grand est considéré, ce qui est le cas dans la figure.
+Le lien $(c,d)$ qui apparaît peu avant $\beta$ n'est pas pris en compte si $\Delta$ est proche de $0$ alors qu'il est en partie pris en compte lorsqu'un $\Delta$ plus grand est considéré, ce qui est le cas dans la figure.
 
 Un autre facteur est aussi la durée considérée qui est plus longue que la durée des discussions.
 \begin{figure}
@@ -242,9 +242,9 @@ On remarque tout de même que pour $\Delta=1\ an$, la différence reste notable.
 
 \subsection{Répartition temporelle et structurelle des discussions}
 
-Nous avons étudié la densité des discussions et entre les discussions mais il est également intéressant d'observer comment ces discussions sont réparties topologiquement et temporellement.
+Nous avons étudié la densité interne aux discussions et entre les discussions mais il est également intéressant d'observer comment ces discussions sont réparties topologiquement et temporellement.
 Pour étudier la répartition des discussions dans le temps, nous construisons un graphe d'intervalle~\cite{Lekkeikerker} $X=(V_X,E_X)$ représentant le chevauchement temporel.
-Chaque discussion du flot devient un n\oe{}ud de $V_X$ et le lien $(i,j)$ existe dans $E_X$ si les discussions $D_i$ et $D_j$ correspondantes ont eu lieu au même instant, \emph{i.e.} $[\alpha_i, \omega_i] \cap [\alpha_j, \omega_j] \neq \emptyset$.
+Chaque discussion du flot devient un n\oe{}ud de $V_X$ et le lien $(i,j)$ existe dans $E_X$ si les discussions $D_i$ et $D_j$ correspondantes se recouvrent temporellement, \emph{i.e.} $[\alpha_i, \omega_i] \cap [\alpha_j, \omega_j] \neq \emptyset$.
 De manière similaire, nous définissons le graphe de chevauchement topologique $Y=(V_Y,E_Y)$.
 Les n\oe{}uds de ce graphe représentent encore une fois les discussions du flot et un lien existe entre deux discussions si au moins une personne a participé aux deux, \emph{i.e.} $V(D_i) \cap V(D_j) \neq \emptyset$.
 
@@ -293,13 +293,13 @@ Le graphe quotient permet de facilement étudier, dans un graphe, les relations 
 Nous étendons maintenant cette notion de graphe quotient aux flots de liens.
 Nous définissons le flot quotient, $Q=(T_Q,V_Q,E_Q)$, induit par une partition $P=\{{P_i}\}_{1..k}$ en $k$ sous-flots de la manière suivante.
 Chaque sous-flot $P_i$ est représenté par un n\oe{}ud dans $V_Q$.
-Il existe un lien $(t,P_i,P_j)$ dans $E_Q$ s'il existe $(t_1,u,v) \in P_i$, $(t_2,u,v') \in P_j$ et $(t_3,u,v'') \in P_i$ avec $t_1 \leq t_2 \leq t_3$.
+Il existe un lien $(t_2,P_i,P_j)$ dans $E_Q$ s'il existe $(t_1,u,v) \in P_i$, $(t_2,u,v') \in P_j$ et $(t_3,u,v'') \in P_i$ avec $t_1 \leq t_2 \leq t_3$.
 En d'autre termes, il y a un lien dans $E_Q$ si un n\oe{}ud $u$ a un lien dans $P_j$ qui apparaît entre deux autres de ses liens du groupe $P_i$.
 
 Le flot quotient induit par les discussions dans le jeu de données contient $12\ 281\ 269$ liens impliquant $68\ 524$ discussions différentes.
 Comme le jeu de données contient $116\ 999$ discussions, il y a donc $48\ 475$ discussions sans lien et qui ne seront pas prises en compte par la suite.
 Ce nombre de discussions non-reliées est élevé comparé à ce qui est obtenu dans un graphe.
-En effet dans un graphe, un n\oe{}ud de degré $0$ correspond à une communauté qui est une composante connexe (ou une union de composantes connexes).
+En effet dans un graphe, un n\oe{}ud de degré $0$ correspond à une communauté qui est une composante connexe.
 En ajoutant l'information temporelle, les discussions sont séparées par le temps dans le flot.
 C'est pourquoi un grand nombre de discussions n'ont pas de liens dans le flot quotient.
 Ce phénomène est d'autant plus vrai pour les petites discussions.
@@ -319,18 +319,18 @@ Le lien $(x,y)$ du groupe violet du flot à gauche donne lieu au lien $(\textcol
 \end{figure}
 
 La figure~\ref{fig:quotient-stream-density} présente la $\Delta$-densité du flot de liens initial et du flot quotient pour différentes valeurs de $\Delta$.
-Le flot initial et le flot quotient ont le même comportant de densité mais le flot quotient est moins $\Delta$-dense que le flot initial.
+Le flot initial et le flot quotient ont le même comportement de densité mais le flot quotient est moins $\Delta$-dense que le flot initial.
 Ce résultat diffère par rapport à ce qui est obtenu dans un graphe.
-Cela est dû au nombre de n\oe{}uds qui augmente dans le flot quotient.
+Cela est dû au nombre de n\oe{}uds qui est plus important dans le flot quotient que dans le flot original.
 Mais le flot quotient contient tout de même beaucoup de liens. 
-En effet, le degré moyen dans le flot quotient est en moyenne 25 fois plus élevé que dans le flot.
+En effet, le degré moyen dans le flot quotient est en moyenne 25 fois plus élevé que dans le flot original.
 
 
 \section{Détection de structures denses}
 
 \`A partir du constat que les discussions forment une structure particulière, il est naturel d'essayer de les retrouver automatiquement. 
-Pour y parvenir, il faut un moyen capable de trouver des sous-flots denses dans le flots.
-C'est à dire une méthode capturant des groupes de liens qui soient proche temporellement et topologiquement.
+Pour y parvenir, il faut un moyen capable de trouver des sous-flots denses dans le flot.
+C'est à dire une méthode capturant des groupes de liens qui soient proches temporellement et topologiquement.
 Il serait tentant d'optimiser directement la densité dans le flot mais ce n'est pas envisageable car un groupe constitué d'un unique lien a une densité de $1$.
 Il faut donc trouver une autre méthode.
 C'est pourquoi nous avons construit une autre projection du flot en un graphe statique afin d'y appliquer une méthode de détection de communautés.
@@ -339,12 +339,12 @@ Le problème est alors de réussir à créer une transformation de telle sorte q
 \subsection{Méthode de détection}
 \label{sec:fail_mailing}
 Afin de créer une transformation du flot vers un graphe, nous définissons un autre flot de liens, $\mathfrak{L}$, dont les liens ont une durée.
-\`A partir de $\mathfrak{L}$, nous créons un graphe non-orienté et non-pondéré $\mathcal{G} = (\mathcal{V},\mathcal{E})$.
+\`A partir de $\mathfrak{L}$, nous créons un graphe non-orienté et non-pondéré $\mathcal{G} = (\mathcal{V},\mathcal{E})$. Nous commençons par décrire comment $\mathcal{G}$ est défini à partir de $\mathfrak{L}$.
 
-Chaque lien du flot est représenté par un n\oe{}ud.
-Deux liens $(b,e,u,v)$ et $(b',e',u',v')$ du flot de liens sont reliés dans le graphe s'ils partagent un n\oe{}ud et si les intervalles s'intersectent, \emph{i.e.} $\{u,v\} \cap \{u',v'\} \neq \emptyset$ et $[b,e]\cap[b',e'] \neq \emptyset$, voir la figure~\ref{fig:Transformation}.
+Chaque lien de $\mathfrak{L}$ est correspond à un n\oe{}ud de $\mathcal{G}$.
+Deux liens $(b,e,u,v)$ et $(b',e',u',v')$ du flot de liens sont reliés dans $\mathcal{G}$ s'ils partagent un n\oe{}ud et si les intervalles s'intersectent, \emph{i.e.} $\{u,v\} \cap \{u',v'\} \neq \emptyset$ et $[b,e]\cap[b',e'] \neq \emptyset$, voir la figure~\ref{fig:Transformation}.
 Ainsi, un lien dans le graphe représente une connexion structurelle et temporelle entre deux liens du flot de liens.
-Les groupes denses dans le graphe représentent donc des groupes de liens connectés temporellement et topologiquement dans le flot.
+Les groupes denses dans $\mathcal{G}$ représentent donc des groupes de liens connectés temporellement et topologiquement dans $\mathfrak{L}$.
 
 \begin{figure}
 \centering
@@ -353,17 +353,17 @@ Les groupes denses dans le graphe représentent donc des groupes de liens connec
 \label{fig:Transformation}
 \end{figure}%
 
-Il faut donc trouver une manière d'ajouter une durée à chaque lien pour créer $\mathfrak{L}$.
+Nous étudions maintenant comment ajouter une durée à chaque lien pour créer $\mathfrak{L}$.
 Lors du calcul de la densité dans la section~\ref{delta_densite}, nous avions ajouté une durée arbitraire $\Delta$.
 Ici, il n'est pas très pertinent d'appliquer la même logique.
-En effet, si on utilise un $\Delta$ faible, alors il n'y aura que très peu de liens dans $\mathcal{E}$ et les n\oe{}uds représentant les liens d'une discussions ne seront pas forcément connexes.
-Il parait illusoire d'espérer retrouver les discussions dans $\mathcal{G}$ si elles ne sont même pas connexes.
+En effet, si on utilise un $\Delta$ faible, alors il n'y aura que très peu de liens dans $\mathcal{L}$ et les n\oe{}uds représentant les liens d'une discussions ne seront pas forcément reliés.
+Il parait illusoire d'espérer retrouver les discussions dans $\mathcal{G}$ si elles n'appartiennent pas à la même composante connexe.
 Si $\Delta$ est très grand alors toute information temporelle est perdue et cela revient à calculer le \emph{line-graph} du graphe agrégé.
 C'est pourquoi nous adoptons une autre manière d'ajouter une durée sur les liens.
 
 Pour chaque message $m$, nous connaissons $p(m)$, le message auquel il répond dans la discussion.
 Nous définissons alors les liens de $\mathfrak{L}$ qui ont une durée de la manière suivante: ${(t(p(m)),t(m),a(m),a(p(m))}_m$.
-Ainsi, deux messages, $m_1$ et $m_2$, se succédant dans une discussion sont par définition reliés topologiquement car $a(m_1)= a(p(m_2))$.
+Ainsi, deux messages $m_1$ et $m_2$ se succédant dans une discussion sont par définition reliés topologiquement car $a(m_1)= a(p(m_2))$.
 Ces deux messages sont aussi reliés temporellement car  nous avons la relation suivante:
 \begin{align*}
 [t(p(m_1)),t(m_1)]\cap [\mathbf{t(p(m_2))},t(m_2)] &= \\
@@ -416,7 +416,7 @@ Le résultat est visible dans la figure~\ref{fig:dens_mail_louvain}.
 Comme les liens de $\mathfrak{L}$ ont une durée, il est possible d'utiliser directement la densité au lieu de la $\Delta$-densité utilisée précédemment.
 On remarque que les groupes de $\mathfrak{D}$, bien que plus gros, sont plus denses que les groupes de $D$.
 Cependant la distribution cumulative inverse cache les effets de la taille sur la densité.
-Or à nombre de liens égal (entre $2$ et $160$), on remarque que les groupes trouvés par Louvain sont  plus denses en moyenne ,$0.46$ contre $0.38$. 
+Or, une analyse manuelle montre qu'à nombre de liens égal (entre $2$ et $160$) les groupes trouvés par Louvain sont  plus denses en moyenne, $0.46$ contre $0.38$. 
 La médiane est également plus élevée: $0.34$ contre $0.33$.
 En revanche, les plus gros groupes ($\mathcal{D}_j|>160$) trouvés par Louvain ont une densité plus faible ce qui peut être dû à leur taille.
 
@@ -458,11 +458,11 @@ La couleur du point indique le nombre de groupes ayant la même taille.}
 Il semble donc que la partition $\mathfrak{D}$ soit proche de $D$ mais que ses groupes soient plus gros.
 Pour circonvenir à ce problème, nous appliquons de manière récursive l'algorithme de Louvain sur chaque graphe induit par un groupe $\mathfrak{D}_j$.
 Ce processus permet de subdiviser chaque groupe $\mathfrak{D}_j$.
-Le niveau $0$ est la première partition trouvée par l'algorithme de Louvain dans $\mathfrak{G}$, c'est-à-dire $\mathfrak{D}_{0,j}=\mathfrak{D}_j$.
+Le niveau $0$ est la première partition trouvée par l'algorithme de Louvain dans $\mathcal{G}$, c'est-à-dire $\mathfrak{D}_{0,j}=\mathfrak{D}_j$.
 Soit $\mathfrak{D}_{h,j'}$ un groupe trouvé au niveau $h$, par construction, il est inclus dans un groupe trouvé au niveau $h-1$, c'est à dire $\mathfrak{D}_{h,j'} \subseteq \mathfrak{D}_{h-1,j}$.
 
 
-Soit $D_i \in D$, notons $\mathfrak{D}_{h,\tilde{i}}$ le groupe trouvé par la méthode de Louvain au niveau $h$ qui soit le plus proche de $D_i$ au niveau $h$, c'est-à-dire $|\mathfrak{D}_{h,\tilde{i}}\cap D_i|= \max_{j} |\mathfrak{D}_{h,j} \cap D_i|$.
+Soit $D_i \in D$, notons $\mathfrak{D}_{h,\tilde{i}}$ le groupe trouvé par la méthode de Louvain au niveau $h$ qui soit le plus proche de $D_i$, c'est-à-dire $|\mathfrak{D}_{h,\tilde{i}}\cap D_i|= \max_{j} |\mathfrak{D}_{h,j} \cap D_i|$.
 Avec ces définitions, on observe la relation suivante: $\mathfrak{D}_{h,\tilde{i}}\cap D_i \subseteq \mathfrak{D}_{h-1,\tilde{i}}\cap D_i$.
 La définition de $rappel$ de l'équation~\ref{eq:rappel} n'est donc pas adaptée pour les niveaux inférieurs et nous l'adaptons de la manière suivante:
 
@@ -500,8 +500,8 @@ Il semble donc qu'il ne soit pas possible avec cette approche de retrouver autom
 		\caption{niveau 2}		
 	\end{subfigure}
 
-\caption{(A,B,C) Rappel des discussions vis-à-vis des groupes trouvés par Louvain à différent niveaux récursifs.
-(B,D,F) Précision des groupes trouvés vis-à-vis des discussions.
+\caption{(A,C) Rappel des discussions vis-à-vis des groupes trouvés par Louvain à différent niveaux récursifs.
+(B,D) Précision des groupes trouvés vis-à-vis des discussions.
 Chaque point représente la moyenne du rappel (resp. précision) pour les discussions (resp. groupes) ayant la même taille.
 La couleur du point indique le nombre de groupes ayant la même taille.
 }
