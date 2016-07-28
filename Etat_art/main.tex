@@ -18,7 +18,7 @@ La première approche fut de complètement ignorer l'information temporelle et d
 Cependant, l'utilisation d'un graphe agrégé manque de pertinence, lorsque le réseau change trop au cours du temps~\cite{Holme2015b}.
 Si tel est le cas, certaines structures présentes dans le graphe peuvent n'être que des artefacts de l'agrégation temporelle.
 Imaginons par exemple un graphe représentant les alliances politiques dans un pays sur une longue période.
-Si toutes les alliances politiques sont agrégées, alors les personnes changeant de parti politique seront faussement considérées comme influentes car connectées à plusieurs partis alors qu'elles peuvent ne plus avoir de contact dans leur ancien parti.
+Si toutes les alliances politiques sont agrégées, alors les personnes changeant de parti politique seront faussement considérées comme influentes car connectées à plusieurs partis alors qu'elles peuvent, en réalité, ne plus avoir de contact dans leur ancien parti.
 Ainsi, il n'est plus possible d'observer la répartition des alliances politiques dans ce genre de réseau si l'agrégation temporelle est trop importante~\cite{Mucha2010}.
 
 Si on prend en compte le temps, alors il est possible de détecter des structures plus fines que dans le cas statique.
@@ -37,7 +37,7 @@ Ceci est en opposition avec les graphes multiples où il peut exister plusieurs 
 
 Par convention, nous notons $n=|V|$ le nombre de n\oe{}uds et $m=|E|$ le nombre de liens.
 On suppose en général que $V=\{1, ..., n\}$.
-Il est possible de représenter un graphe $G$ par une matrice carrée $A$ de taille $n$ où l'élément $A_{i,j} \ \forall i,j \in V$ est égale à $1$ si un lien relie les n\oe{}uds $i$ et $j$ et $0$ sinon.
+Il est possible de représenter un graphe $G$ par une matrice carrée $A$ de taille $n$ où l'élément $A_{i,j} \ \forall i,j \in V$ est égal à $1$ si un lien relie les n\oe{}uds $i$ et $j$ et $0$ sinon.
 Avec ces notations, nous définissons les notions suivantes:
 \begin{description}
 \item[Degré] Le degré d'un n\oe{}ud $i$, noté $d_i$, est égal au nombre de liens reliés à $i$: $d_i = \sum_{j \in V} A_{i,j}$;
@@ -46,7 +46,7 @@ Avec ces notations, nous définissons les notions suivantes:
 \item[Chemin] Un chemin dans un graphe est une suite de liens $((u_1,v_1),...,(u_k,v_k))$ telle sorte $v_{i}=u_{i+1} \ \forall i \in [1,k-1]$;
 \item[Chemin] Un cycle est un chemin dont les premier et dernier n\oe{}uds sont identiques;
 \item[Graphe connexe] Un graphe est dit connexe s'il existe un chemin entre toutes les paires de n\oe{}uds du graphe;
-\item[Composante Connexe] Une composante connexe est un ensemble de n\oe{}uds $V'\subseteq V$ qui est connexe et maximal, c'est-à-dire qu'il n'est pas possible d'ajouter un n\oe{}ud dans $V'$ de telle sorte que $V'$ soit connexe;
+\item[Composante connexe] Une composante connexe est un ensemble de n\oe{}uds $V'\subseteq V$ qui est connexe et maximal, c'est-à-dire qu'il n'est pas possible d'ajouter un n\oe{}ud dans $V'$ de telle sorte que $V'$ soit connexe;
 \item[Arbre] Un arbre est un graphe connexe sans cycle; il contient $n-1$ liens pour $n$ n\oe{}uds;
 \item[Clique] Une clique, aussi appelée graphe complet, est le graphe le plus dense et elle est composée de $\dfrac{n(n-1)}{2}$ liens pour $n$ n\oe{}uds;
 \item[Sous-graphe] Un graphe $G'=(V',E')$ est un sous-graphe de $G$ si et seulement si $V' \subseteq V$ et $E' \subseteq E$;
@@ -99,7 +99,7 @@ Nous listons les notations utilisées dans le tableau~\ref{tab:notation_groupe_n
 Nous définissons ici les structures de partitions et de couvertures appliquées au cadre spécifique des graphes.
 Une partition de n\oe{}uds, $\mathcal{V}$, est un ensemble d'ensembles de n\oe{}uds: $\mathcal{V}= \{V_1,..., V_k\}$ tel que $\forall i \in [1,k]\ V_i \subseteq V$ et tel que:
 \begin{enumerate}
-\item La partition \emph{recouvre} l'ensemble des n\oe{}uds: $\bigcup_{i} V_i = V$.
+\item La partition \emph{recouvre} la totalité des n\oe{}uds: $\bigcup_{i} V_i = V$.
 \item Les ensembles de n\oe{}uds sont disjoints: $V_i \cap V_j = \emptyset\ \forall i,j \in [1,k],\ i \neq j$.
 \end{enumerate}
 Afin de manipuler une partition, nous définissons $\mathcal{V}(u)=V_i$ si et seulement si $u \in V_i$.
@@ -107,20 +107,20 @@ Afin de manipuler une partition, nous définissons $\mathcal{V}(u)=V_i$ si et se
 
 Une couverture est une extension des partitions car elle relâche la contrainte sur l'intersection.
 Ainsi, une couverture de n\oe{}uds, $\mathcal{V}$, est aussi un ensemble d'ensembles de n\oe{}uds.
-L'union des ensembles doit également être égale à $V$ mais en revanche deux ensembles de n\oe{}uds peuvent partager des n\oe{}uds: $\exists i,j \in [1,k],\ i \neq j\ V_i \cap V_j \neq \emptyset$.
+L'union des ensembles doit également être égal à $V$ mais en revanche deux ensembles de n\oe{}uds peuvent partager des n\oe{}uds: $\forall i,j \in [1,k], |V_i \cap V_j\ \geq 0$.
 Une couverture est parfois aussi appelée partition chevauchante.
 
 Nous avons détaillé les notions de partitions et couvertures de n\oe{}uds mais les mêmes définitions valent pour les partitions et couvertures de liens.
-Enfin, il existe d'autres structures possibles comme les structures non-exhaustives où un élément peut n'appartenir à aucun ensemble.
+Enfin, il existe d'autres structures possibles, comme les structures non-exhaustives pour lesquelles un élément peut n'appartenir à aucun ensemble.
 
 \subsection{Comparaison de partitions et couvertures}
 Il est souvent utile de pouvoir comparer deux partitions ou deux couvertures entre elles.
-Le but est de calculer une similarité entre deux structures de telle sorte que la similarité est égale à $1$ si les deux structures sont identiques et qu'elle soit égale à $0$ ou $-1$ si elles sont complètement différentes.
-Il existe pour ce faire des méthodes tirant parti de la structure d'ensembles et celles provenant de la théorie de l'information.
+Le but est de calculer une similarité entre deux structures de telle sorte que la similarité soit égal à $1$ si les deux structures sont identiques et qu'elle soit égal à $0$ ou $-1$ si elles sont complètement différentes.
+Il existe pour ce faire des méthodes tirant parti de la structure d'ensembles et d'autres provenant de la théorie de l'information.
 
 \paragraph{Approches ensemblistes}
 \label{def:graphe_comparaison}
-Il est possible de comparer deux ensembles $X$ et $Y$ en utilisant l'indice de Jaccard, $\mathbb{J}(X,Y) = \dfrac{|X \cap Y|}{|X \cup Y|}$, ou le \emph{F1 score} $F_1(X,Y) = 2\dfrac{|X \cap Y|}{|X| + |Y|}$.
+Il est possible de comparer deux ensembles $X$ et $Y$ en utilisant l'indice de Jaccard, $\mathbb{J}(X,Y) = \dfrac{|X \cap Y|}{|X \cup Y|}$, ou le \emph{F1 score}, $F_1(X,Y) = 2\dfrac{|X \cap Y|}{|X| + |Y|}$.
 Avec l'indice de Jaccard ou le \emph{F1 score}, il est possible de mesurer la similarité entre deux partitions $\mathcal{X}$ et $\mathcal{Y}$:
 \begin{equation}
 sim(\mathcal{X},\mathcal{Y})=\frac{1}{|\mathcal{X}|}\sum_{X \in \mathcal{X}}\max_{Y\in \mathcal{Y}}\mathbb{J}(X,Y).
@@ -137,39 +137,45 @@ Cette méthode peut s'appliquer indifféremment aux partitions et aux couverture
 
 On peut également utiliser le \emph{Rand Index}~\cite{Rand1971} qui lui ne s'applique qu'aux partitions.
 Il mesure le nombre de paires de n\oe{}uds qui sont classées de la même manière dans les deux partitions; c'est à dire pour deux n\oe{}uds $u$ et $v$ soit $\mathcal{X}(u)=\mathcal{X}(v)$ et $\mathcal{Y}(u)=\mathcal{Y}(v)$ soit $\mathcal{X}(u)\neq \mathcal{X}(v)$ et $\mathcal{Y}(u)\neq \mathcal{Y}(v)$.
-Plus formellement, soient $a_{11}$ le nombre de paires de n\oe{}uds de telle sorte qu'ils soient dans le même ensemble dans les deux partitions, $a_{00}$ le nombre de paires de n\oe{}uds de telle sorte qu'ils soient dans des ensembles différents dans les deux partitions et $a_{10}$ (resp. $a_{01}$) le nombre de paires de n\oe{}uds de telle qu'ils soient dans le même ensemble dans $\mathcal{X}$(resp. $\mathcal{Y}$) et dans deux ensembles différents dans $\mathcal{Y}$ (resp. $\mathcal{X}$).
+Plus formellement, soient
+\begin{itemize}
+\item $a_{11}$ le nombre de paires de n\oe{}uds de telle sorte qu'ils soient dans le même ensemble dans les deux partitions;
+\item $a_{00}$ le nombre de paires de n\oe{}uds de telle sorte qu'ils soient dans des ensembles différents dans les deux partitions;
+\item $a_{10}$ (resp. $a_{01}$) le nombre de paires de n\oe{}uds de telle sorte qu'ils soient dans le même ensemble dans $\mathcal{X}$(resp. $\mathcal{Y}$) et dans deux ensembles différents dans $\mathcal{Y}$ (resp. $\mathcal{X}$).
+\end{itemize}
 Avec ces notations, le \emph{Rand Index} est défini de la manière suivante:
 
 \begin{equation}
 RI(\mathcal{X},\mathcal{Y}) = \dfrac{a_{11} + a_{00}}{a_{11}+a_{01}+a_{10}+ a_{00}}
 \end{equation}
 Cependant, $a_{00}$ est souvent très grand comparé à $a_{11}$ car il est courant de ne pas mettre deux n\oe{}uds dans la même communauté.
-C'est pourquoi une version ajustée du \emph{Rand Index} (ARI) a été proposée~\cite{Hubert1985}.
+\`A cause de cela, le \emph{Rand Index} peut être proche de $1$ même pour des partitions assez différentes.
+Pour palier à ce problème, le \emph{Adjusted Rand Index} (ARI)~\cite{Hubert1985} a été proposé .
 Le \emph{Rand Index} et sa version ajustée permettent de comparer des partitions.
 Porumbel \emph{et al.}~\cite{Porumbel2011} ont proposé l'Omega Index qui est une extension de l'ARI pour les couvertures.
 
 \paragraph{Approche venant de la théorie de l'information}
 On peut considérer que l'assignation d'un élément à un ensemble est une variable aléatoire.
-Dans ce cas, la probabilité d'un élément d'être dans un ensemble $X \in \mathcal{X}$ est $P(X)= n_X/|V|$.
+Dans ce cas, la probabilité qu'un élément a d'être dans un ensemble $X \in \mathcal{X}$ est $P(X)= n_X/|V|$.
 De manière similaire, la probabilité jointe est $P(X,Y) = |X \cap Y|/|V|$.
 Avec ces définitions, il est possible de calculer l'entropie d'une partition, $H(\mathcal{X})$, l'entropie conditionnelle, $H(\mathcal{X}|\mathcal{Y})$ et l'information mutuelle $I(\mathcal{X},\mathcal{Y})$.
 Cette dernière est définie par $I(\mathcal{X}, \mathcal{Y}) = H(\mathcal{X}) - H(\mathcal{X}|\mathcal{Y})$.
-L'entropie, $H(\mathcal{X})$, et l'entropie conditionnelle, $H(\mathcal{X}|\mathcal{Y})$, sont définies dans le sens de Shanon par: 
+L'entropie, $H(\mathcal{X})$, et l'entropie conditionnelle, $H(\mathcal{X}|\mathcal{Y})$, sont selon la définition de Shanon: 
 \begin{equation}
 H(\mathcal{X}) = - \sum_{X \in \mathcal{X}} P(X)\log(P(X)),\quad H(\mathcal{X}|\mathcal{Y}) = -\sum_{X \in \mathcal{X},\ Y \in \mathcal{Y}} P(X, Y) \log \dfrac{P(X,Y)}{P(Y)}.
 \end{equation}
-Afin de normaliser l'information mutuelle, Danon \emph{et al.}~\cite{Danon2005a} ont défini l'information mutuelle normalisée ($NMI_{shanon}$):
+Afin de normaliser l'information mutuelle, Danon \emph{et al.}~\cite{Danon2005a} ont défini l'information mutuelle normalisée (NMI$_{shanon}$):
 \begin{equation}
  NMI_{shanon}(\mathcal{X},\mathcal{Y}) = \dfrac{2I(\mathcal{X},\mathcal{Y})}{H(\mathcal{X})+H(\mathcal{Y})}.
 \end{equation}
 
 Lancichinetti \emph{et al.} l'ont par la suite étendue pour prendre en compte les couvertures~\cite{Lancichinetti2009d}.
-Le choix de la normalisation dans le cas chevauchant semble cependant toujours ouvert~\cite{McDaid2011,Zhang2015c}.
+Le choix de la normalisation dans le cas chevauchant est cependant toujours ouvert~\cite{McDaid2011,Zhang2015c}.
 
 \resume{
-Il est intéressant de noter que la littérature sur la comparaison de structures est assez restreinte comparée à celle sur la détection de communautés.
-En effet, il semble qu'uniquement 3 similarités soient couramment utilisées: la similarité se basant sur Jaccard, l'Omega index et la NMI.
-Tout les indices de similarité ont été étendus aux couvertures de manière assez convaincante.
+Il est intéressant de noter que la littérature sur la comparaison de partitions et de couvertures est assez restreinte comparée à celle sur la détection de communautés (présentée ci-après).
+En effet, il semble qu'uniquement 3 similarités soient couramment utilisées: la similarité se basant sur l'indice de Jaccard, l'Omega Index et la NMI.
+Tous les indices de similarité ont été étendus aux couvertures de manière assez convaincante.
 Il est également important de noter l'existence d'implémentations librement accessibles de la majeure partie de ces métriques\, \footnote{\url{https://github.com/aaronmcdaid/Overlapping-NMI}}\,\footnote{\url{http://scikit-learn.org/stable/modules/clustering.html\#clustering-evaluation}}.
 }
 
@@ -250,7 +256,7 @@ La modularité est définie de la manière suivante pour une partition $\mathcal
 \begin{equation}
 Q(\mathcal{C}) = \dfrac{1}{2m}\sum_{i,j \in V} \left(A_{ij} - \dfrac{d_id_j}{2m}\right)\ \delta_{\mathcal{C}(i)=\mathcal{C}(j)} \ ,
 \end{equation}
-où $\delta_{C(i)=C(j)}$ est égale à $1$ si $i$ et $j$ sont dans la même communauté et $0$ sinon.
+où $\delta_{C(i)=C(j)}$ est égal à $1$ si $i$ et $j$ sont dans la même communauté et $0$ sinon.
 Il s'agit pour deux n\oe{}uds d'une même communauté de comparer la présence ou l'absence d'un lien, $A_{ij}$, à la probabilité que ces n\oe{}uds soient reliés dans le modèle de configuration, $\dfrac{d_id_j}{2m}$.
 L'idée sous-jacente est que les n\oe{}uds d'une communauté devraient partager plus de liens que ce qui est attendu dans le modèle de configuration.
 De très nombreux travaux ont par la suite étudié les caractéristiques de la modularité et son optimisation.
@@ -279,7 +285,7 @@ Avec un jeu de paramètres donné, il est possible de calculer la vraisemblance 
 Trouver une partition de n\oe{}uds dans ce contexte est alors équivalent à trouver le jeu de paramètres qui est le plus vraisemblablement à l'origine du graphe.
 
 
-Dans le SBM, tout les n\oe{}uds sont considérés comme équivalents en particulier vis-à-vis du degré ce qui n'est pas le cas dans beaucoup de graphes provenant de données réelles.
+Dans le SBM, tous les n\oe{}uds sont considérés comme équivalents en particulier vis-à-vis du degré ce qui n'est pas le cas dans beaucoup de graphes provenant de données réelles.
 C'est pourquoi une version tenant compte du degré des n\oe{}uds a été proposée: le Degree-corrected Stochastic Block Model (DSBM)~\cite{Karrer2011}.
 Enfin d'après des récents travaux~\cite{Newman2016}, il semblerait que le DSBM et l'optimisation de la modularité soient liés.
 
@@ -454,7 +460,7 @@ En effet, il n'est pas possible de différencier le comportement observé le mat
 De plus, imaginons que la capture ait duré plusieurs mois voire plusieurs années.
 Dans ce cas de figure, il ne sera plus possible de dégager un comportement général des élèves car il aura changé durant ce laps de temps.
 En particulier, de nouveaux groupes d'amis se seront formés et d'autres auront disparu.
-Tout ces changements influencent le graphe agrégé et tendent au fur et à mesure à le rapprocher d'une clique ce qui le rend complètement inexploitable.
+Tous ces changements influencent le graphe agrégé et tendent au fur et à mesure à le rapprocher d'une clique ce qui le rend complètement inexploitable.
 Le temps est donc une dimension qu'il est nécessaire de prendre en compte.
 
 Le domaine de l'épidémiologie est un très bon exemple de l'importance du temps.

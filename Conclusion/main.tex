@@ -5,13 +5,12 @@
 
 Dans cette thèse, nous nous sommes efforcés de décrire et de capturer les structures des séquences d'interactions tout en nous basant sur une base formelle la plus solide possible.
 Nous avons utilisé le formalisme de flot de liens qui relie les propriétés temporelles et topologiques des séquences d'interactions.
-Ce formalisme est suffisamment expressif pour définir des métriques évaluant des groupes de liens sans déformer ou perdre de l'information sur leur dynamique.
+Ce formalisme est suffisamment expressif pour définir des métriques évaluant des groupes de liens sans déformer ou perdre d'information sur leur dynamique.
 Les notions de degré et de densité, que nous avons présentées dans le chapitre~\ref{chap:def_flot}, en sont des exemples.
 En plus d'aider à définir ces notions, nous les avons également implémentées dans une libraire de manipulation de flots de liens\,\footnote{\url{https://bitbucket.org/nGaumont/liblinkstream/}}.
-Ainsi avec d'une part un formalisme clairement défini et d'autre part une implémentation accessible, on peut espérer faciliter l'utilisation de la densité mais surtout permettre à quiconque d'étendre ce formalisme en définissant d'autres métriques.
+Ainsi avec, d'une part, un formalisme clairement défini et, d'autre part, une implémentation accessible, nous espérons faciliter l'utilisation de la densité et surtout permettre à quiconque d'étendre ce formalisme en définissant d'autres métriques.
 
-\`A partir de ce formalisme, nous avons décrit les structures existantes dans les flots de liens, dans le chapitre~\ref{chap:mailing}.
-Pour ce faire, il est nécessaire de connaître une séquence d'interactions où la structure est connue.
+\`A partir de ce formalisme, nous avons décrit une structure communautaire connue d'une séquence d'interactions, dans le chapitre~\ref{chap:mailing}.
 Il n'en existait\,\footnote{Un jeu de données représentant le forum \emph{reddit} a été rendu public juillet 2015.} aucune au début de cette thèse, à notre connaissance.
 C'est pourquoi nous avons collecté un jeu de données regroupant les courriels d'une liste de diffusion.
 Ce jeu de données est très intéressant de par sa temporalité, presque 20 ans, et par sa précision, de l'ordre de la seconde.
@@ -19,24 +18,24 @@ Grâce à ces informations, nous avons pu étudier la structure de discussions d
 Nous avons notamment pu mettre en évidence que les discussions sont plus densément connectées en interne qu'avec le reste du flot de liens.
 Ces travaux ont donné lieu à une publication dans une conférence internationale~\cite{Gaumont2016}.
 Suite à ce constat, nous avons essayé de retrouver automatiquement les discussions via une projection du flot de liens en un graphe statique.
-Bien que la partition trouvée ne corresponde pas exactement aux discussions, les groupes de la partition n'ont pas des caractéristiques triviales notamment en terme de taille et de densité.
+Bien que la partition trouvée ne corresponde pas exactement aux discussions, les caractéristiques des groupes de la partition ne sont pas triviales, notamment leur taille et leur densité.
 
 
 \bigskip
 
-Dans le chapitre~\ref{groupesDense}, nous avons étudié plus en détail comment évaluer la pertinence de groupes de liens et nous avons utilisé les groupes détectés dans la projection du flot de liens en un graphe statique comme candidats en tant que groupes pertinents.
-Le but est de réussir à identifier les groupes pertinents parmi les groupes de cette partition.
-Cette identification est nécessaire car il se peut que parmi tous ces groupes de liens certains ne soient pas pertinents.
+Dans le chapitre~\ref{groupesDense}, nous avons étudié plus en détail comment évaluer la pertinence de groupes de liens, en particulier les groupes détectés précédemment.
+Le but est d'identifier les groupes pertinents parmi les groupes de cette partition.
+Cette identification est nécessaire car certains groupes peuvent ne pas être pertinents.
 En effet, ils ne sont pas obtenus directement sur le flot de liens mais sur une projection de ce flot en un graphe statique.
-Or, il y a perte d'information lorsque l'on manipule un graphe statique au lieu d'un flot de liens.
+Or, il y a une perte d'information lorsque l'on manipule un graphe statique au lieu d'un flot de liens.
 
 Comme nous l'avons constaté dans les chapitres~\ref{chap:def_flot} et \ref{chap:mailing}, la densité permet d'évaluer un groupe mais, seule, elle ne suffit pas pour définir un groupe pertinent.
 En effet, un groupe n'est pertinent que par rapport au reste du flot de liens.
 Par exemple, un groupe ayant une densité de $0.4$ est très pertinent dans un flot de liens ayant une densité globale de $0.01$ mais il ne l'est pas du tout si le flot de liens a une densité de $0.6$.
 Pour évaluer un groupe, il est donc nécessaire de prendre en compte le contexte dans lequel il apparaît.
-Nous avons défini trois voisinages constitués de sous-flots différant du sous-flot du groupe soit sur le temps de début, soit sur la durée, soit sur l'ensemble de n\oe{}uds.
+Nous avons défini trois voisinages constitués de sous-flots différant du sous-flot du groupe, soit sur le temps de début, soit sur la durée, soit sur l'ensemble de n\oe{}uds concernés.
 Un groupe est ensuite jugé pertinent si le groupe est plus dense qu'une grande partie de ses voisinages.
-Nous avons appliqué notre méthode sur quatre jeux de données et nous avons pu valider manuellement quelques groupes grâce aux méta-données existantes.
+Nous avons appliqué notre méthode d'évaluation de la pertinence à quatre jeux de données et nous avons pu valider manuellement quelques groupes grâce aux méta-données existantes.
 
 La structure résultant des groupes pertinents est une partition partielle des liens du flot de liens.
 Cependant en observant les n\oe{}uds induits et les instants de présence des groupes, nous avons constaté que les groupes forment une structure très chevauchante sur les n\oe{}uds et uniquement partiellement chevauchante sur le temps.
@@ -52,19 +51,19 @@ La détection de structure dans un réseau dynamique ou non nécessite un moyen 
 C'est pourquoi nous avons étudié plus en détails la détection de communautés sous la forme de partitions de liens et ce dans le cas statique et dynamique.
 Comme nous l'avons vu dans le chapitre~\ref{chap:etat_art}, il existe assez peu de méthodes de détection de communautés sous la forme de partitions de liens et aucune ne s'est vraiment attachée à reproduire ce qui a fait le succès de la modularité.
 C'est pourquoi dans le chapitre~\ref{chap:Expected_Node}, nous avons proposé une nouvelle méthode pour l'évaluation d'une partition de liens dans le cas statique qui se base également sur la notion de modèle nul.
-Un groupe de liens est ainsi une bonne communauté s'il induit moins de n\oe{}uds qu'attendu dans le modèle nul.
+Un groupe de liens est ainsi une bonne communauté s'il induit moins de n\oe{}uds qu'attendus dans le modèle nul.
 De plus, un groupe de liens est également évalué en fonction de son voisinage.
-Cette fois ci, un voisinage est jugé bon lorsqu'il consiste en moins de n\oe{}uds adjacents qu'attendu dans le modèle nul car le voisinage doit être peu dense.
+Cette fois ci, un voisinage est jugé bon lorsqu'il consiste en plus de n\oe{}uds adjacents qu'attendus dans le modèle nul car le voisinage doit être peu dense.
 
 Nous avons mené des tests sur des graphes ayant une structure simple: une clique ou deux cliques se chevauchant et sur des graphes générés aléatoirement.
 Sur ces exemples, notre fonction de qualité, \emph{Expected} \emph{Nodes}, est la seule à différencier la vérité de terrain d'autres partitions moins pertinentes.
 Ces travaux ont été publiés dans une conférence nationale~\cite{Gaumont2014} et une conférence internationale~\cite{Gaumont2015}.
-Fort de ces premiers constats, nous avons implémenté un premier algorithme optimisant \emph{Expected Nodes}.
-Cependant malgré nos efforts pour rendre plus efficace l'évaluation d'\emph{Expected Nodes}, notre algorithme n'est pas adapté à l'étude de grands graphes.
+Forts de ces premiers constats, nous avons implémenté un premier algorithme optimisant \emph{Expected Nodes}.
+Cependant malgré nos efforts pour rendre plus efficace l'évaluation d'\emph{Expected Nodes}, notre algorithme n'est pas encore adapté à l'étude de grands graphes.
 
 \bigskip
 
-Forts de nos observations dans le cas dynamique et de notre proposition dans le cas statique, nous avons considéré les partitions de liens dans les flots de liens dans le chapitre~\ref{versQualite}.
+Forts de nos observations dans le cas dynamique et de notre proposition dans le cas statique, nous avons considéré la détection et l'évaluation de partitions de liens dans les flots de liens dans le chapitre~\ref{versQualite}.
 Pour ce faire, nous nous sommes intéressés à la génération de flots de liens avec une structure donnée et à la manière d'évaluer une telle partition.
 Pour générer un flot de liens, nous nous inspirons du \emph{Stochactic Block Model}.
 Ainsi, les liens entre deux n\oe{}uds sont générés dans le cadre d'une communauté commune et le temps d'attente entre deux apparitions d'un lien dépend de l'activité de cette communauté.
@@ -72,7 +71,7 @@ Ainsi, il est possible de générer des flots de liens très variés tout en aya
 
 \`A partir de ce mécanisme de génération, nous avons dans un premier temps mis en avant l'inefficacité de certaines méthodes statiques dans une projection du flot de liens pour retrouver la structure générée.
 Dans un second temps, nous avons esquissé de premiers travaux étudiant des extensions de la modularité dans les flots de liens.
-Ces résultats nous ont permis d'entrevoir de nombreuses possibilités pour définir une fonction de qualité dans les flots de liens.
+Ces résultats nous ont permis d'entrevoir de nombreuses possibilités pour définir d'autres fonctions de qualité dans les flots de liens.
 
 \section{Perspectives}
 

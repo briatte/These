@@ -52,7 +52,7 @@ La limite pour considérer une discussion trop récente ou trop longue a été f
 Toutes les discussions qui ont débutées moins de 4 ans avant la capture du jeu de données ne sont donc pas prises en comptes.
 
 
-Une fois tout ces messages filtrés, nous obtenons un flot de liens avec $316\ 569$ liens entre $34\ 648$ personnes pendant presque 19 ans et $116\ 999$ discussions.
+Une fois tous ces messages filtrés, nous obtenons un flot de liens avec $316\ 569$ liens entre $34\ 648$ personnes pendant presque 19 ans et $116\ 999$ discussions.
 Mis à part les $237\ 664$ messages de début de discussion, ce sont $168\ 482$ courriels qui ont été filtrés soit environ $23\%$.
 La majorité des courriels filtrés l'ont été car ils appartiennent à une discussion trop récente.
 
@@ -165,7 +165,7 @@ Il s'agit simplement de la probabilité qu'un lien existe entre un n\oe{}ud de $
 Encore une fois, cette notion n'a pas de sens direct dans le formalisme de flot de liens et il est nécessaire de l'adapter.
 Pour ce faire, nous définissons la $\Delta$-densité inter discussions entre deux discussions $D_i$ et $D_j$: $\delta^{inter}_{\Delta}(D_i,D_j)$.
 Soit $\Delta_{ij}=\xi(D_i \cup D_j,\Delta)$ et $L_{inter}(D_i, D_j) = (T',V',E')$ avec  $T'=[\beta(D_i \cup D_j) - \Delta/2,\psi(D_i \cup D_j) + \Delta/2]$, $V'= V(\Delta_{ij})$ et $E' = \xi(E,\Delta) \setminus \Delta_{ij}$.
-Avec ces notation, $\delta^{inter}_{\Delta}(D_i,D_j)$ est égale à: $\delta^{inter}_{\Delta}(D_i,D_j) = \delta(L_{inter}(D_i, D_j))$.
+Avec ces notation, $\delta^{inter}_{\Delta}(D_i,D_j)$ est égal à: $\delta^{inter}_{\Delta}(D_i,D_j) = \delta(L_{inter}(D_i, D_j))$.
 Il s'agit donc de la densité du flot inter discussions qui est constitué des liens entre les n\oe{}uds induits par $D_i$ et $D_j$ qui n'appartiennent ni à $D_i$ ni à $D_j$.
 Dans la figure~\ref{fig:inter_dens_discussion_ex}, un exemple de flot inter discussion est représenté.
 Il est important de noter que le nombre de liens pris en compte dans le flot inter-discussions varie selon le $\Delta$ utilisé.
@@ -181,7 +181,7 @@ Il est important de noter que le nombre de liens pris en compte dans le flot int
 
 
 
-Afin d'obtenir la $\Delta$-densité inter discussions entre $D_i$ et tout les autres discussions, nous utilisons la moyenne des densité inter discussion entre $D_i$ et les autres discussions, soit:
+Afin d'obtenir la $\Delta$-densité inter discussions entre $D_i$ et toutes les autres discussions, nous utilisons la moyenne des densité inter discussion entre $D_i$ et les autres discussions, soit:
 
 \begin{equation}
 	\delta^{inter}_{\Delta}(D_i) = \frac{1}{|C|-1}\sum_{j,i\ne j} \delta^{inter}_{\Delta}(D_i,D_j).
@@ -356,7 +356,7 @@ Les groupes denses dans $\mathcal{G}$ représentent donc des groupes de liens co
 Nous étudions maintenant comment ajouter une durée à chaque lien pour créer $\mathfrak{L}$.
 Lors du calcul de la densité dans la section~\ref{delta_densite}, nous avions ajouté une durée arbitraire $\Delta$.
 Ici, il n'est pas très pertinent d'appliquer la même logique.
-En effet, si on utilise un $\Delta$ faible, alors il n'y aura que très peu de liens dans $\mathcal{L}$ et les n\oe{}uds représentant les liens d'une discussions ne seront pas forcément reliés.
+En effet, si on utilise un $\Delta$ faible, alors il n'y aura que très peu de liens dans $\mathcal{G}$ et les n\oe{}uds représentant les liens d'une discussions ne seront pas forcément reliés.
 Il parait illusoire d'espérer retrouver les discussions dans $\mathcal{G}$ si elles n'appartiennent pas à la même composante connexe.
 Si $\Delta$ est très grand alors toute information temporelle est perdue et cela revient à calculer le \emph{line-graph} du graphe agrégé.
 C'est pourquoi nous adoptons une autre manière d'ajouter une durée sur les liens.

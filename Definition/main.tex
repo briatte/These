@@ -18,7 +18,7 @@ Enfin de manière analogue aux graphes et aux multigraphes, nous définissons le
 Un flot de liens est simple si pour tout $l_1=(b,e,u,v) \in E$ et $l_2=(b',e',u, v) \in E$, $[b,e]\cap [b', e'] = \emptyset$ si $l_1 \neq l_2$.
 Dans les graphes, il est possible de transformer un multigraphe en graphe simple.
 Nous définissons également cette opération que nous nommons simplification: $\sigma(L)$.
-Afin de définir la simplification, nous nous aidons de la fonction de présence $\zeta_{L}(u,v,t)$ d'un flot de liens qui est égale à $1$ si au moins un lien existe dans $L$ entre $u$ et $v$ à l'instant $t$ et $0$ sinon.
+Afin de définir la simplification, nous nous aidons de la fonction de présence $\zeta_{L}(u,v,t)$ d'un flot de liens qui est égal à $1$ si au moins un lien existe dans $L$ entre $u$ et $v$ à l'instant $t$ et $0$ sinon.
 $L'=(T,V,E')= \sigma(L)$ est la simplification de $L=(T,V,E)$ si et seulement si $L'$ est simple et si $\forall u,v \in V,\ \forall t\in T, \zeta_{L}(u,v,t)= \zeta_{L'}(u,v,t)$.
 
 Il est parfois nécessaire d'augmenter la durée de chaque lien.
@@ -163,7 +163,7 @@ Lorsque cela n'est pas ambigu, nous notons $d_{\alpha..\omega}(u) = d(u)$.
 Il est intéressant de noter dans cette formulation que si tous les liens durent tout au long du flot de liens alors le degré dans le graphe agrégé et le degré moyen dans le flot de liens sont égaux, c'est-à-dire  $d_{\alpha..\omega}(u) = d_{G(L)}(u), \forall u \in V$.
 
 \`A partir du degré, il est possible de définir beaucoup de notions différentes et notamment la densité.
-Pour rappel, la densité dans un graphe est définie par $\delta(G)=2m/(n(n-1))=d(V)/n(n-1)$ et est égale à la probabilité qu'il existe un lien entre 2 n\oe{}uds pris au hasard.
+Pour rappel, la densité dans un graphe est définie par $\delta(G)=2m/(n(n-1))=d(V)/n(n-1)$ et est égal à la probabilité qu'il existe un lien entre 2 n\oe{}uds pris au hasard.
 Si l'on transpose l'idée au formalisme de flot de liens, la densité dans un flot de liens est la probabilité qu'il existe un lien entre 2 n\oe{}uds à un instant donné aléatoire.
 Cela se traduit par la formule suivante:
 \begin{equation}

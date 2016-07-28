@@ -339,7 +339,7 @@ Moins le nombre de triangles est élevé, meilleure sera la qualité externe.
 
 Enfin il est intéressant de noter que la qualité du groupe contenant tous les liens est nulle.
 En effet comme dit précédemment, $Q_{in}(E)$est  égal à zéro, voir l'équation \ref{eq:nbsommet_esp}.
-De plus, si le groupe contient tout les liens alors il n'y a plus de liens adjacents et donc seule  $Q_{in}(E)$ influe sur $Q(E)$.
+De plus, si le groupe contient tous les liens alors il n'y a plus de liens adjacents et donc seule  $Q_{in}(E)$ influe sur $Q(E)$.
 
 
 
@@ -367,7 +367,7 @@ La première est la partition triviale où tous les liens sont dans un unique gr
 Nous définissons également deux familles de partitions: une séparant les liens en deux groupes et une séparant les liens en 3 groupes.
 Soit $V'$ un ensemble de $p$ n\oe{}uds où $p$ est un paramètre $p<|V|$.
 Les deux familles de partitions placent les liens de $V' \times V'$ dans un groupe.
-Pour la partition en 2 groupes, tout les autres liens sont mis dans un second groupe.
+Pour la partition en 2 groupes, tous les autres liens sont mis dans un second groupe.
 Pour la partition en 3 groupes, les liens de $V' \times V\setminus V'$ sont dans un second groupe et les liens de $V \setminus V' \times V\setminus V'$ sont dans un troisième.
 Ces répartitions sont illustrées dans la figure~\ref{fig:1C}.
 
@@ -442,7 +442,7 @@ La fonction $Evans3$ diffère légèrement des deux autres car elle a une amplit
 Le second jeu de test est un peu plus évolué puisqu'il s'agit deux cliques de $100$ n\oe{}uds chacune se chevauchant de plus en plus.
 Ainsi, nous générons les graphes en fonction du nombre de n\oe{}uds appartenant aux deux cliques.
 Sur ce graphe, nous définissons également plusieurs partitions.
-La première est la partition triviale où tout les liens sont dans un unique groupe.
+La première est la partition triviale où tous les liens sont dans un unique groupe.
 Nous définissons également cinq autres partitions qui contiennent 2, 3 ou 5 groupes.
 Soit $V_1$ l'ensemble de n\oe{}uds de la première clique, $V_2$ celui de la deuxième clique et $V_{12}=V_1 \cap V_2$ l'ensemble de n\oe{}uds commun à $V_1$ et $V_2$.
 Cette taxonomie des n\oe{}uds est illustrée dans la figure~\ref{fig:2Ctaxo}.
@@ -703,7 +703,7 @@ Or sous certaines conditions, une loi hypergéométrique peut être approché pa
 Lors de nos tests, le biais induit par cette approximation reste assez faible, de l'ordre de $0.01\%$ en moyenne.
 Ce changement de calcul est équivalent à considérer un tirage avec remise au lieu de tirage sans remise.
 De plus cette probabilité ne dépend que du degré du n\oe{}ud et du nombre de liens dans le groupe.
-Donc, tout les n\oe{}uds ayant le même degré donnent lieu à la même probabilité.
+Donc, tous les n\oe{}uds ayant le même degré donnent lieu à la même probabilité.
 Si l'on considère que l'évaluation de la probabilité pour un n\oe{}ud peut se faire en $O(1)$ alors, pour un groupe donné, il est possible de calculer sa qualité en $O(|\{d_G(v)\}_{v \in V}|)$.
 Cette formulation est très efficace lorsque beaucoup de n\oe{}uds ont le même degré.
 Enfin comme la qualité d'un groupe ne dépend que de sa taille, on peut calculer la qualité d'une partition $\mathcal{L}$ en $O(\{|L_i|\}_{L_i \in \mathcal{L}})$.
