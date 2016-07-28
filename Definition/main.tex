@@ -13,7 +13,7 @@ Nous notons le nombre de liens dans le flot par $|L|=|E|=m$ et sa durée par $\b
 De manière analogue, la durée d'un lien $l=(b,e,u,v) \in E$ est notée   $\bar{l}=e-b$.
 On note $\beta(E)= min_{(b,e,u,v) \in E} (b)$ et $\psi(E)= max_{(b,e,u,v) \in E} (e)$ l'apparition du premier lien et la disparition du dernier lien dans le flot de liens.
 
-Nous considérons les flots de liens non orientés et sans boucles, \emph{i.e.}$(b,e,u,v)=(b,e,v,u)$ et $u \neq v$.
+Nous considérons les flots de liens non orientés et sans boucles, \emph{i.e.} $(b,e,u,v)=(b,e,v,u)$ et $u \neq v$.
 Enfin de manière analogue aux graphes et aux multigraphes, nous définissons les flots de liens simples.
 Un flot de liens est simple si pour tout $l_1=(b,e,u,v) \in E$ et $l_2=(b',e',u, v) \in E$, $[b,e]\cap [b', e'] = \emptyset$ si $l_1 \neq l_2$.
 Dans les graphes, il est possible de transformer un multigraphe en graphe simple.
@@ -81,11 +81,11 @@ Par exemple avec $V' \subset V$, $L_{t..t'}(V'\,^2)$ est le sous-flot correspond
 
 \bigskip
 
-Un sous-flot induit par un ensemble de paires de n\oe{}uds peut être construit de manière quasiment linéaire en nombre de liens dans le sous-flot.
+Un sous-flot induit par un ensemble de paires de n\oe{}uds peut être construit de manière quasiment linéaire en le nombre de liens dans le sous-flot.
 Pour un ensemble de paires de n\oe{}uds $S= V_1 \times V_2$, il suffit d'itérer sur l'ensemble des liens qui sont reliés aux n\oe{}uds de $V_1$ et de vérifier que l'autre n\oe{}ud du lien appartient à $V_2$. ce qui se fait en $O(\log(|V_2|))$ pour chaque lien.
 Le parcours des liens reliés à $V_1$ peut être fait en $O(|L(V_1 \times V)|)$ si chaque n\oe{}ud a la connaissance des liens auxquels il est relié.
 Si tel est le cas alors il est possible de construire le sous-flot en $O(|L(V_1\times V)|\log(|V_2|))$.
-Il faut tout de fois distinguer le cas où $S= V_1 \times V$ car il n'est alors pas nécessaire de faire la vérification et la complexité est alors $O(|L(V_1\times V)|)$.
+Il faut toutefois distinguer le cas où $S= V_1 \times V$ car il n'est alors pas nécessaire de faire la vérification et la complexité est alors $O(|L(V_1\times V)|)$.
 
 Pour l'intervalle de temps, la situation est plus compliquée car il n'est pas facile de connaître l'ensemble des liens existant à un instant donné.
 Il est possible de les trier par ordre d'apparition ou de disparition mais il n'y a pas d'ordre total sur la présence des liens.
@@ -148,7 +148,7 @@ Avec ces définitions, il est aussi possible définir les notions de degré temp
 Les degrés temporels d'un n\oe{}ud, d'un ensemble de n\oe{}uds ou de liens peuvent se calculer rapidement.
 Il faut pour ce faire considérer les liens appartenant au sous-flot induit respectivement par un n\oe{}ud, ensemble de liens ou un ensemble de paires de n\oe{}uds.
 Il faut d'abord transformer les liens $(b,e,u,v)$ du sous-flot en une suite de modifications de la forme $(b,+1)$ et $(e,-1)$ ce qui a une complexité en $O(m)$.
-Une fois cette liste créée, il suffit d'ordonner ces modifications dans l'ordre temporel, ce qui peut être fait en temps $O(2m\log(2m))$, puis d'itérer sur l'ensemble des modification en sommant au fur et à mesure les apparitions et disparitions de lien, ce qui peut être fait en temps $O(2m)$.
+Une fois cette liste créée, il suffit d'ordonner ces modifications temporellement, ce qui peut être fait en temps $O(2m\log(2m))$, puis d'itérer sur l'ensemble des modification en sommant au fur et à mesure les apparitions et disparitions de lien, ce qui peut être fait en temps $O(2m)$.
 Ainsi, le degré temporel à un instant $t$ est égal à la valeur de la somme des modification à cet instant.
 \bigskip
 
@@ -251,7 +251,7 @@ De plus, il est possible de choisir la couleur des liens de manière manuelle ou
 \begin{figure}
 \centering
 \includegraphics[width=\linewidth]{img/Intro/Dessin_Flot.eps}
-\caption{Exemple d'une visualisation d'un flot de liens sans durées entre $15$ n\oe{}ds au cours du temps qui a été généré par notre librairie.
+\caption{Exemple d'une visualisation d'un flot de liens sans durées entre $15$ n\oe{}uds au cours du temps qui a été généré par notre librairie.
 La couleur des liens a été fixée par l'utilisateur de la librairie.
 }
 \label{fig:exemple_Flot_de_liens_lib}

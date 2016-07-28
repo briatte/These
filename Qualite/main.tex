@@ -42,7 +42,7 @@ Enfin dans la section~\ref{sec:versqualite_Applications}, nous présentons l'uti
 Comme nous l'avons vu dans le chapitre~\ref{chap:etat_art}, les méthodes proposées sont différentes selon le formalisme utilisé.
 
 \subsection{Séries de graphes}
-Dans le cas de séries de graphes, il est possible de générer un graphe en fonction du graphe précédant dans la série de graphes.
+Dans le cas de séries de graphes, il est possible de générer un graphe en fonction du graphe précédent dans la série de graphes.
 C'est le cas des \emph{edge-Markovian dynamic graphs}~\cite{Clementi2008} qui génèrent l'apparition et la disparition de liens à l'aide d'un processus de Markov à deux états: lien présent ou lien absent.
 
 Les \emph{activity driven model}~\cite{Perra2012,Laurent2015a,Moinet2015} utilisent aussi le graphe généré à l'instant précédent lors de la génération du graphe suivant.
@@ -70,7 +70,7 @@ Ces méthodes génèrent ainsi aisément des structures communautaires mais ne p
 
 Dans les flots de liens, il n'existe pas à notre connaissance de travaux étudiant la génération de flots de liens avec une structure communautaire.
 Il existe principalement des méthodes étudiant les distributions de temps inter-contacts~\cite{Malmgren2008,Malmgren2009,Vestergaard2014}.
-Il y a dans la littérature un large consensus sur le fait que la distribution des temps inter-contacts est souvent à queue lourde (\emph{heavy-tailed}) dans les jeux de données réels\cite{Karsai2011,Karsai2012a,Kivela2015}.
+Il y a dans la littérature un large consensus sur le fait que la distribution des temps inter-contacts est souvent à queue lourde (\emph{heavy-tailed}) dans les jeux de données réels~\cite{Karsai2011,Karsai2012a,Kivela2015}.
 D'autre part, les temps inter-contacts ne semblent pas suivre un processus de Markov simple car il y a des corrélations et des effets de mémoire entre les apparitions de liens.
 
 Toutes ces méthodes génèrent des flots de liens mais ne considèrent aucune structure.
@@ -80,8 +80,7 @@ Dans ces méthodes, un flot de liens est généré à partir d'un système multi
 Un lien existe entre deux agents lorsqu'ils sont à distance de communication.
 Dans le modèle de Zhang \emph{et al.}, la direction prise par chaque agent n'est pas aléatoire mais en fonction de l'agent voisin étant le plus attractif.
 Il s'agit donc d'un modèle de mobilité préférentielle.
-Bien que ces méthodes génèrent des structures.
-Il n'agit pas de structure communautaire explicite et elles ne peuvent pas être représentées sur les liens du flot de liens.
+Bien que ces méthodes génèrent des structures; il ne s'agit pas de structure communautaire explicite et elles ne peuvent pas être représentées sur les liens du flot de liens.
 
 
 
@@ -295,14 +294,14 @@ Dans la situation la plus simple représentée dans la figure~\ref{fig:versquali
 Dans la situation représentée dans la figure~\ref{fig:versqualite_gen_test2}, la vérité de terrain est retrouvée par CarOp mais non par Louvain.
 Dans les partitions trouvées par Louvain, la communauté $3$ n'est jamais détectée peu importe la valeur de $\lambda$ utilisée pour la projection.
 Selon la valeur de $\lambda$, les liens de la communauté $3$ sont soit distribués entre les autres communautés soit répartis en plusieurs communautés autonomes.
-Comme cette méthode optimise la modularité sur une structure proche du \emph{line-graph} d'un multigraphe, elle est similaire aux méthodes proposées par Evans \emph{et al.}~\cite{Evans2009} que nous avons présentées dans la section~\ref{sec:expected_travaux}.
+Comme cette méthode optimise la modularité sur une structure proche du \emph{line-graph} d'un multigraphe, elle est similaire aux méthodes proposées par Evans et Lambiotte~\cite{Evans2009} que nous avons présentées dans la section~\ref{sec:expected_travaux}.
 Elle souffre donc des mêmes biais\,\footnote{Plus une clique d'un graphe est grande, moins sa transformation dans le \emph{line-graph} est dense.}.
 
 Dans la situation représentée dans la figure~\ref{fig:versqualite_gen_test3}, la vérité de terrain est retrouvée par Louvain mais non par CarOp.
 Comme les communautés sont petites, la méthode de Louvain arrive à capturer les différentes communautés.
 La méthode CarOp, quant à elle, n'est pas capable de différencier les communautés $1$ et $2$.
 Ces deux communautés sont fusionnées en une seule par CarOp.
-CarOp utilise la proximité des liens dans la projection.
+En effet, CarOp utilise la proximité des liens dans la projection.
 Or, un lien au début de la communauté $1$ est plus proche des liens au débuts de la communauté $2$ que des liens à la fin de la communauté $1$.
 C'est pourquoi CarOp ne différencie pas les communautés $1$ et $2$.
 
@@ -338,7 +337,7 @@ Il faut définir un graphe biparti d'affiliation des individus aux communautés 
 Afin de simplifier ce processus, il est possible de s'appuyer sur un générateur de graphe biparti.
 
 De manière analogue au graphe, un graphe biparti peut être généré de telle sorte qu'il ait une densité donnée ou qu'il ait une distribution des degrés particulière.
-Nous faisons le choix de générer des graphes biparti où le degré moyen des n\oe{}uds est fixé et où chaque individu est relié à au moins une communauté.
+Nous faisons le choix de générer des graphes bipartis où le degré moyen des n\oe{}uds est fixé et où chaque individu est relié à au moins une communauté.
 Ainsi, un degré moyen de $1$ implique qu'il n'y a aucun chevauchement entre les communautés.
 Un degré moyen de $1.8$ implique qu'un n\oe{}ud d'une communauté est relié en moyenne à $0.8$ autres communautés et donc qu'une communauté de taille $k$ partage des n\oe{}uds avec au maximum $0.8k$ autres communautés.
 
@@ -389,7 +388,7 @@ Q_L(C_i)  = \int_{\beta(C_i)}^{\psi(C_i)} \! \dfrac{d(t,C_i)}{d(t,V)} -  \left( 
 \label{}
 \end{equation}
 Il s'agit de l'intégrale de la différence entre la probabilité qu'un lien appartienne à $C_i$ et la probabilité qu'il existe un lien entre les n\oe{}uds induits par $C_i$.
-La qualité d'une partition de liens $\mathcal{C}$:
+On définit enfin la qualité d'une partition de liens $\mathcal{C}$:
 \begin{equation}
 Q_L(\mathcal{C}) = \dfrac{1}{\omega-\alpha} \sum_{C_i \in C} Q_L(C_i)\, .
 \label{eq:temp_modu_liens}
@@ -417,7 +416,7 @@ Nous n'utilisons pas CarOp car elle ne retourne pas directement une partition de
 
 Les liens du flot de liens généré n'ont pas de durée.
 Or, pour utiliser le degré temporel, il est nécessaire que les liens aient une durée.
-Nous ajoutons donc une durée $\Delta$ à chaque lien ($\xi(L,\Delta)$) et il est alors nécessaire de simplifier le flot de liens résultant ($\sigma(L)$).
+Nous ajoutons donc une durée $\Delta$ à chaque lien ($\xi(L,\Delta)$) et il est alors nécessaire de simplifier le flot de liens résultant ($\sigma(\xi(L,\Delta))$).
 La simplification d'un flot de liens revient à remplacer deux liens $(b,e,u,v)$ et $(b',e',u,v)$ se chevauchant temporellement par un lien $(min(b,b'),max(e,e'),u,v)$.
 Cela ne pose pas de problème lorsque ces liens appartiennent à la même communauté.
 C'est est problématique lorsqu'ils n'appartiennent pas à la même communauté.
@@ -429,7 +428,7 @@ Cette situation est illustrée dans la figure~\ref{fig:qualite_simplification}.
 	\includegraphics[width=0.65\linewidth]{img/Qualite/inter_flot.eps}
 %}
 \caption{Flot de liens avec deux communautés en \textcolor{olivegreen}{\textbf{vert}} et  \textcolor{briquered}{\textbf{rouge}} où chaque lien a une durée égal à $1.5$.
-La simplification de ce flot de liens est problématique pour le lien entre $b$ et $c$ à l'instant $6$.}
+La simplification de ce flot de liens est problématique pour les liens entre $b$ et $c$ à l'instant $6$.}
 \label{fig:qualite_simplification}
 \end{figure}
 
@@ -443,7 +442,7 @@ Afin de tester plusieurs $\Delta$ rapidement, nous nous sommes appuyés sur l'ou
 Pour la génération, nous considérons $100$ n\oe{}uds entre $10$ communautés durant chacune $20$ unité de temps avec une activité constante de $0.1$.
 Avec une activité de $0.1$, il y a en moyenne deux liens appartenant à la communauté pour chaque paire de n\oe{}uds.
 Nous choisissons une durée totale du flot de liens de $50$ ou $200$ pour contrôler le chevauchement temporel.
-Nous choisissons un degré moyen dans le biparti de $1.1$ ou $2$ pour contrôler le chevauchement temporel.
+Nous choisissons un degré moyen dans le biparti de $1.1$ ou $2$ pour contrôler le chevauchement topologique.
 Les flots de liens ainsi générés ont entre $1 200$ et $4 000$ liens selon le chevauchement choisi.
 
 Les valeurs de qualité pour chaque situation et chaque partition en fonction de la durée des liens sont présentées dans la figure~\ref{fig:versqualite_fonc_test}.
@@ -507,7 +506,7 @@ Il est en particulier important de tester d'autres partitions trouvées empiriqu
 \section{Conclusion}
 
 Dans ce chapitre, nous nous sommes intéressés à la génération de flots de liens avec une structure communautaire sur les liens.
-Il s'agit de la première méthode de ce genre car les méthodes existantes se focalisent sur la génération de flot de liens ayant des distributions des temps inter-contact similaires à celles observées dans les jeux de données réelles.
+Il s'agit de la première méthode de ce genre car les méthodes existantes se focalisent sur la génération de flot de liens ayant des distributions des temps inter-contact similaires à celles observées dans les jeux de données réels.
 Notre approche est différente.
 Nous modélisons l'existence de groupes de n\oe{}uds communiquant pendant des intervalles de temps donnés.
 Ainsi, il est possible de simuler des événements durant lesquels des liens apparaissent entre les personnes concernées par ces événements.
@@ -551,11 +550,11 @@ Il se pose alors la question de la cohérence entre la durée d'un lien et le pr
 Encore une fois pour répondre à ce genre de question, il est nécessaire de s'appuyer sur des observations empiriques.
 
 Enfin, une des hypothèses de notre générateur est l'équivalence des n\oe{}uds au sein d'une communauté.
-Or, il se peut que certains n\oe{}uds participent plus que d'autres.
+Il se peut en effet que certains n\oe{}uds participent plus que d'autres.
 Un moyen de prendre en compte cette diversité est d'incorporer un système d'attachement préférentiel.
 Dans les graphes, l'attachement préférentiel se définit de la manière suivante.
 Chaque n\oe{}ud a un score de popularité~\footnote{Le degré est généralement utilisé comme score de popularité.} qui détermine la propension des autres n\oe{}uds à créer un lien avec lui.
-Ainsi plus un n\oe{}ud est populaire, plus il a de liens avec les autres n\oe{}uds.
+Ainsi plus un n\oe{}ud est populaire, plus il acquiert de liens avec les autres n\oe{}uds.
 Dans le cadre de la génération de flots de liens, il serait possible que le processus de génération des liens entre deux n\oe{}uds ne dépende plus uniquement de la communauté mais également de la popularité respective des n\oe{}uds.
 Cette popularité, temporelle ou non, devrait également être fixée par l'utilisateur mais elle permettrait de mettre en avant un leader au sein d'une communauté.
 

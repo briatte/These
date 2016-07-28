@@ -30,14 +30,14 @@ Ainsi, les partitions de liens peuvent capturer des situations assez variées.
 Il est également possible de manipuler des partitions chevauchantes ou couvertures.
 Dans ce cas, chaque n\oe{}ud peut appartenir à plusieurs communautés.
 Face à ce problème de nombreux algorithmes ont été proposés pour la détection et l'évaluation de couvertures de n\oe{}uds, voir la section~\ref{subsec:cover}.
-Les couvertures sont une généralisation des partitions et aucune méthode ne fait encore consensus pour les évaluer car leur structure est complexe, voir la sous-section~\ref{subsec:cover}.
+Les couvertures sont une généralisation des partitions et aucune méthode ne fait encore consensus pour les évaluer car leur structure est complexe.
 Les partitions de liens, quant à elles, restent des objets plus simples à manipuler.
 De plus, elles permettent de mettre en avant une autre structure ayant également du sens.
 
 
 
 Il apparaît donc que les partitions de liens sont des objets à part entière.
-Pour ce faire, il est nécessaire d'adapter les outils d'analyse pour évaluer directement les partitions de liens.
+Pour les étudier, il est nécessaire d'adapter les outils d'analyse pour évaluer directement les partitions de liens.
 Nous développons ici une approche similaire à ce qui est fait pour les partitions de n\oe{}uds et la modularité~\cite{Newman2004}.
 Le but est de créer une fonction de qualité permettant d'évaluer une partition de liens d'un graphe.
 
@@ -92,7 +92,7 @@ Prenons pour l'exemple, la clique qui est la meilleure communauté possible et l
 Le but est d'observer comment ces structures sont transformées dans le \emph{line-graph}.
 Ces situations sont représentées dans la figure~\ref{fig:fail_construction_lineG}.
 L'étoile dans la figure~\ref{fig:ex_lineG_etoile} est transformée en une clique de 4 n\oe{}uds.
-Une des pires structures communautaires d'un graphe est transformée dans le \emph{line-graph} en la meilleur structure communautaire.
+Une des pires structures communautaires d'un graphe est transformée dans le \emph{line-graph} en la meilleure structure communautaire.
 En effet, chaque n\oe{}ud de degré $k$ du graphe initial donne lieu à une clique de taille $k$ dans le \emph{line-graph}.
 Les cliques du \emph{line-graph} ne sont donc pas forcément des communautés dans le graphe.
 Dans le cas de la clique de taille $4$ dans la figure~\ref{fig:ex_lineG_clique}, on remarque que le \emph{line-graph} est composé de $6$ n\oe{}uds et de uniquement $12$ liens.
@@ -148,7 +148,7 @@ D'autre part, transformer une partition de liens en couverture de n\oe{}uds impo
 Par exemple dans l'exemple de la figure~\ref{fig:Partition_Couverture}, il n'est pas évident que la communauté \textcolor{briquered}{\textbf{rouge}} constituée des deux n\oe{}uds centraux soit une communauté légitime.
 Selon le contexte, elle peut être considérée comme un artefact de la transformation.
 La transformation d'une partition n'est donc pas un acte neutre.
-Cet aspect a d'ailleurs été mis en avant par Esquivel \emph{et al.}~\cite{Esquivel2011}.
+Cet aspect a d'ailleurs été mis en avant par Esquivel et Rosvall~\cite{Esquivel2011}.
 Face à ce problème, nos travaux ainsi que quelques méthodes existantes proposent des méthodes évaluant directement les partitions de liens.
 
 Ahn \emph{et al.}~\cite{Ahn2010a} sont parmi les premiers à avoir proposé une méthode détectant les communautés de liens.
@@ -160,7 +160,7 @@ Pour une partition de liens donnée $\mathcal{L}$, la \emph{Partition Density} e
 D(\mathcal{L}) = \dfrac{\sum_{L \in \mathcal{L}}|L|D(L)}{m},\ avec \quad  D(L) = \dfrac{|L|- min_D(|V_{in}|) }{max_D(|V_{in}|) - min_D(|V_{in}|)},
 \end{equation}
 
-où $min_D(N) = N - 1$ est le nombre minimum de liens nécessaire pour relier $N$ n\oe{}uds et $max_D(N) = \dfrac{N(N - 1)}{2}$ est le nombre maximum de liens qu'il puisse exister entre $N$ n\oe{}uds.
+où $min_D(N) = N - 1$ est le nombre minimum de liens nécessaire pour relier $N$ n\oe{}uds et $max_D(N) = \dfrac{N(N - 1)}{2}$ est le nombre maximum de liens qui puissent exister entre $N$ n\oe{}uds.
 Malgré son nom la \emph{Partition Density} n'est pas une densité mais le nombre de liens du groupe normalisé par le nombre de liens minimum et maximum possible pour un groupe de $|V_{in}|$ n\oe{}uds.
 Après simplification, on obtient la formule suivante:
 
@@ -174,12 +174,12 @@ D'autres chercheurs~\cite{Li2013,Shi2013} ont par la suite utilisé la \emph{Par
 Leurs solutions semblent pour l'instant difficilement utilisables car leurs algorithmes reposent sur de nombreux critères et sont limités à de petits graphes.
 
 Par ailleurs, la \emph{Partition Density} ne peut pas être directement appliquée aux graphes pondérés.
-Une première proposition de Kim~\cite{Kim2014a} a été faite dans ce sens.
+Une première proposition de Kim et Kim~\cite{Kim2014a} a été faite dans ce sens.
 
 
 
 
-Evans \emph{et al.}~\cite{Evans2009} proposent trois fonctions de qualité pour évaluer les partitions de liens.
+Evans et Lambiotte~\cite{Evans2009} proposent trois fonctions de qualité pour évaluer les partitions de liens.
 Leurs fonctions de qualité sont basées sur trois marches aléatoires qui se déroulent sur les liens du graphe.
 L'approche est similaire à la modularité car la modularité peut également être définie à l'aide d'une marche aléatoire sur les n\oe{}uds du graphe~\cite{Delvenne2010}.
 Leurs trois fonctions de qualité peuvent être calculées et optimisées sur le graphe mais les auteurs ont montré que l'on pouvait, de manière complètement équivalente, utiliser la modularité sur des \emph{line-graph} pondérés ($LG_1$, $LG_2$, $LG_3$).
@@ -202,8 +202,8 @@ Soit $k_x(\alpha)= \sum_{\beta}LG_x(\alpha,\beta)$ le degré pondéré dans le l
 Evans_x(\mathcal{L}) = \dfrac{1}{W_x} \sum_{L_i \in \mathcal{L}} \sum_{e_1,e_2 \in L_i^2} LG_x    (e_1,e_2) -  \dfrac{k_x(e_1) k_x(e_2)}{W}.
 \end{eqnarray}
 
-Kim \emph{et al.}~\cite{Kim2011} ont exploré une extension du concept de \emph{Minimum Length Description} (MDL) introduit par Rosvall \emph{et al.}~\cite{Rosvall2008} qui est une méthode provenant de la théorie de l'information.
-Cette extension de la \emph{MDL} évalue directement une partition de liens, contrairement à l'extension proposée par Esquivel \emph{et al.}~\cite{Esquivel2011}.
+Kim et Jeong~\cite{Kim2011} ont exploré une extension du concept de \emph{Minimum Length Description} (MDL) introduit par Rosvall et Bergstrom~\cite{Rosvall2008} qui est une méthode provenant de la théorie de l'information.
+Cette extension de la \emph{MDL} évalue directement une partition de liens, contrairement à l'extension proposée par Esquivel et Rosvall~\cite{Esquivel2011}.
 Un avantage de leur méthode est de pouvoir comparer la qualité d'une partition de liens et d'une partition de n\oe{}uds avec leur \emph{MDL} respective.
 Cependant, leur méthode ne semble favoriser les communautés de liens que dans des cas très limités.
 
@@ -231,7 +231,7 @@ Si le groupe de liens a moins de n\oe{}uds internes qu'attendu alors cela indiqu
 
 Il est donc nécessaire de calculer l'espérance du nombre de n\oe{}uds interne, $\mu_{G}$, d'un groupe de liens, $L$, dans le modèle de configuration.
 Afin d'y parvenir, il est nécessaire de comprendre en détail le modèle de configuration.
-Le modèle de configuration permet de mélanger les liens d'un graphe de tel sorte que les n\oe{}uds aient toujours autant de liaisons que dans le graphe initial.
+Le modèle de configuration permet de mélanger les liens d'un graphe de telle sorte que les n\oe{}uds aient toujours autant de liaisons que dans le graphe initial.
 Un moyen de se représenter ce mélange est présenté dans la figure~\ref{fig:exemple_modele_configuration}.
 De manière imagée, il s'agit de couper tous les liens en deux pour créer des demi-liens.
 Puis, il suffit de reconnecter aléatoirement tous les demi-liens pour obtenir une génération du modèle de configuration.
@@ -354,7 +354,7 @@ D'autres choix de pondération pour $Q_{in}$, $Q_{ext}$ et $Q_G$ ont été test�
 \label{sec:expected_comp}
 Nous évaluons maintenant \emph{Expected Nodes} en utilisant trois jeux de test.
 Sur ces jeux de test, nous appliquons également des fonctions de qualités reconnues:
-\emph{Partition Density}~\cite{Ahn2010a} et les fonctions de qualité proposées par Evans \emph{et al.}~\cite{Evans2009} que nous nommons $Evans1$, $Evans2$ et $Evans3$.
+\emph{Partition Density}~\cite{Ahn2010a} et les fonctions de qualité proposées par Evans et Lambiotte~\cite{Evans2009} que nous nommons $Evans1$, $Evans2$ et $Evans3$.
 Pour chaque graphe de test, nous créons empiriquement plusieurs partitions de liens et nous évaluons chaque partition avec toutes les fonctions de qualité.
 
 \subsection{Cas du graphe complet}
@@ -387,12 +387,13 @@ Ces répartitions sont illustrées dans la figure~\ref{fig:1C}.
 \end{figure}
 
 
-Comme le graphe est complet, la meilleure solution est d'avoir un seul groupe contenant l'ensemble des liens, \textit{i.e.} la partition triviale devrait avoir une meilleure évaluation que les autres partitions.
+Comme le graphe est complet, la meilleure solution est d'avoir un seul groupe contenant l'ensemble des liens, \emph{i.e.} la partition triviale devrait avoir une meilleure évaluation que les autres partitions.
 La figure~\ref{fig:1Cres} présente les résultats.
 Pour chaque valeur de $p$ et chaque fonction de qualité, nous calculons les évaluations des partitions en deux et en trois groupes ainsi que l'évaluation de la partition triviale.
 L'évaluation de la partition triviale n'est pas dépendante de $p$ et n'est calculée qu'une seule fois.
-Tout d'abord, la construction de cet exemple est symétrique pour la partition en deux groupes.
-En effet, la partition en deux groupes lorsque $p$ est égal à $24$ est complètement équivalente à la partition en deux groupes lorsque $p$ est égal à $76$.
+Tout d'abord, la construction de cet exemple est symétrique pour les partitions en trois groupes.
+En effet, la partition en trois groupes lorsque $p$ est égal à $24$ est complètement équivalente à la partition en deux groupes lorsque $p$ est égal à $76$.
+Pour les partition en deux groupes, ces deux situations diffèrent par liens de $V' \times V\setminus V'$.
 Par ailleurs, il est possible de définir formellement la qualité de  chacune de ces partitions selon toutes les fonctions de qualité.
 Cependant, la complexité des équations, surtout pour \emph{Expected Nodes} et $Evans_x$, rend le résultat difficilement interprétable.
 
@@ -432,22 +433,22 @@ La fonction $Evans3$ diffère légèrement des deux autres car elle a une amplit
 		\caption{\'Evaluation des 5 fonctions de qualité sur un graphe complet  de $100$ n\oe{}uds pour trois type de partitions.
 		Les partitions testées sont présentées dans la section~\ref{Completegraph}.
 		Par définition, les résultats pour $Evans1$ et $Evans2$ sont identiques.
-		Les lignes en gris, noir et pointillées représentent respectivement la partition triviale, les partitions en deux groupes et les partitions en trois groupes.}
+		Les lignes en gris, pointillées et noires représentent respectivement la partition triviale, les partitions en deux groupes et les partitions en trois groupes.}
 		\label{fig:1Cres}
 \end{figure}
 
 \subsection{Cas de deux cliques chevauchantes}
 \label{subsec:2cliques}
 
-Le second jeu de test est un peu plus évolué puisqu'il s'agit deux cliques de $100$ n\oe{}uds chacune se chevauchant de plus en plus.
+Le second jeu de test est un peu plus évolué puisqu'il s'agit deux cliques de $100$ n\oe{}uds chacune se chevauchant plus ou moins fortement.
 Ainsi, nous générons les graphes en fonction du nombre de n\oe{}uds appartenant aux deux cliques.
-Sur ce graphe, nous définissons également plusieurs partitions.
+Sur chaque graphe, nous définissons également plusieurs partitions.
 La première est la partition triviale où tous les liens sont dans un unique groupe.
 Nous définissons également cinq autres partitions qui contiennent 2, 3 ou 5 groupes.
-Soit $V_1$ l'ensemble de n\oe{}uds de la première clique, $V_2$ celui de la deuxième clique et $V_{12}=V_1 \cap V_2$ l'ensemble de n\oe{}uds commun à $V_1$ et $V_2$.
+Soit $V_1$ l'ensemble des n\oe{}uds de la première clique, $V_2$ celui de la deuxième clique et $V_{12}=V_1 \cap V_2$ l'ensemble de n\oe{}uds commun à $V_1$ et $V_2$.
 Cette taxonomie des n\oe{}uds est illustrée dans la figure~\ref{fig:2Ctaxo}.
 
-Par abus de notations, nous notons également $V_{11}=V_1\setminus V_2$ et  $V_{22}=V_2\setminus V_1$
+Par abus de notations, nous notons également $V_{11}=V_1\setminus V_2$ et  $V_{22}=V_2\setminus V_1$.
 Il y a deux partitions en deux groupes: la partition $2A$ et $2B$.
 Dans la partition $2A$, les liens entre les n\oe{}uds de $V_{22}$ forment un groupe alors que le reste des liens forme l'autre groupe.
 Dans la partition $2B$, les liens entre les n\oe{}uds de $V_{1}$ forment un groupe alors que le reste des liens forme l'autre groupe.
@@ -497,7 +498,7 @@ Ces partitions sont illustrées dans la figure~\ref{fig:2C}.
 	\label{fig:2C}
 \end{figure}
 
-Pour chaque graphe en fonction du chevauchement $p$, nous testons ces cinq partitions mais aussi la partition $LC$ trouvée par \textit{link clustering}~\cite{Ahn2010a} et les partitions $EX$ trouvées par les méthodes de Evans \textit{et al.}~\cite{Evans2009}.
+Pour chaque graphe en fonction du chevauchement $p$, nous évaluons ces cinq partitions mais aussi la partition $LC$ trouvée par \emph{link clustering}~\cite{Ahn2010a} et les partitions $EX$ trouvées par les méthodes de Evans et Lambiotte~\cite{Evans2009}.
 Ces algorithmes optimisent respectivement \emph{Parition Density}, \emph{Evans1}, \emph{Evans2} et \emph{Evans3}.
 Ces partitions sont ensuite évaluées par les fonctions de qualité \emph{Partition Density}, $Evans1$, $Evans2$, $Evans3$ et \emph{Expected Node}.
 La figure~\ref{fig:2Cres} présente les résultats.
@@ -550,10 +551,10 @@ La principale différence entre ces deux fonctions de qualité est la proportion
 Dans le cas de \emph{Partition density}, ce changement intervient lorsque le chevauchement dépasse $40$ n\oe{}uds.
 Pour \emph{Expected Nodes}, ce changement intervient lorsque le chevauchement dépasse $30$ n\oe{}uds.
 
-\subsection{Graphe LFR}
+\subsection{Graphe LF}
 Nous utilisons maintenant un jeu de test plus évolué.
 Il n'existe pas à notre connaissance de générateur de graphe aléatoire avec une structure communautaire sur les liens.
-Nous utilisons donc le générateur proposé par Lancichinetti~\textit{et al.}~\cite{Lancichinetti2009b}.
+Nous utilisons donc le générateur proposé par Lancichinetti et Fortunato~\cite{Lancichinetti2009b}.
 Ce générateur aléatoire permet de générer des graphes ayant une structure communautaire chevauchante sur les n\oe{}uds.
 Comme nous voulons évaluer une partition de liens, il est nécessaire de transformer cette vérité de terrain.
 Nous introduisons deux transformations de la couverture des n\oe{}uds en deux partitions de liens, $TA$ et $TB$, voir figure~\ref{fig:Trans}.
@@ -596,7 +597,7 @@ Le degré est tiré selon une loi exponentielle de paramètre $-2$ et la taille 
 Enfin, 90\% des liens sont à l'intérieur d'une communauté et les 10\% restant sont répartis de manière aléatoire.
 Avec ces paramètres, il y a en moyenne $5620$ liens intra-communauté, $625$ liens inter-communauté et seulement $5$ liens chevauchants.
 
-Pour chaque graphe généré, nous testons les partitions $TA$ et $TB$ mais aussi la partition $LC$ trouvée par \textit{link clustering}~\cite{Ahn2010a} et les partitions $EX$ trouvées par les méthodes de Evans \textit{et al.}~\cite{Evans2009}.
+Pour chaque graphe généré, nous testons les partitions $TA$ et $TB$ mais aussi la partition $LC$ trouvée par \emph{link clustering}~\cite{Ahn2010a} et les partitions $EX$ trouvées par les méthodes de Evans et Lambiotte~\cite{Evans2009}.
 Ces partitions sont ensuite évaluées par les fonctions de qualité \emph{Partition Density}, $Evans1$, $Evans2$, $Evans3$ et \emph{Expected Node}.
 Une illustration d'un graphe généré et des exemples de groupes capturés par $LC$ et $E2$ sont présentés dans la figure~\ref{fig:LFR_Exemple}.
 
@@ -617,7 +618,7 @@ Une illustration d'un graphe généré et des exemples de groupes capturés par 
 		\label{fig:LFR_ExempleLC}	
 	\end{subfigure}
 
-	\caption{Exemple de graphe généré par le LFR en (A) avec une communauté de liens intra-communauté de la vérité de terrain mise en avant en vert.
+	\caption{Exemple de graphe généré par le LF en (A) avec une communauté de liens intra-communauté de la vérité de terrain mise en avant en vert.
 	En (B) zoom sur le groupe le plus proche dans $E2$ dont les liens sont en verts.
 	En (C) zoom sur le groupe le plus proche dans $LC$ dont les liens sont en verts.
 	Dans la figure (C), les liens de la communauté de la vérité de terrain sont en gris. }
@@ -634,7 +635,7 @@ Ensuite, nous remarquons que les partitions $EX$ diffèrent de $TA$ et de $TB$ u
 En effet s'ils ne sont pas pris en compte lors de la comparaison, alors $EX$, $TA$ et $TB$ sont identiques.
 Il semble en effet que les liens inter-communautés soient arbitrairement distribués entre les plus grosses communautés adjacentes pour les partitions $EX$, ce qui est visible dans la figure~\ref{fig:LFR_ExempleE2}.
 Enfin, la partition $LC$, bien que proche de $TA$ et $TB$, est un peu plus différente.
-Ces $720$ groupes semblent plus petits mais aussi plus denses que ceux de $TA$ ou $TB$.
+Ses $720$ groupes semblent plus petits mais aussi plus denses que ceux de $TA$ ou $TB$.
 En particulier, les liens intra-communautés peuvent être séparés en plusieurs groupes, comme dans la figure~\ref{fig:LFR_ExempleLC}.
 Les quatre partitions sont donc différentes et mettent en avant différentes caractéristiques.
 
@@ -653,7 +654,7 @@ Enfin selon \emph{Expected Nodes}, les partitions $EX$ ont une faible qualité e
 En effet en étant intégrés à une communauté adjacente, ils augmentent fortement le nombre de n\oe{}uds internes ce qui fait baisser $Q_{in}$.
 
 Avec ce test, nous mettons en évidence les limites des fonctions de qualité existantes.
-Les fonctions de qualité $EvansX$ ne peuvent pas permettre de capturer les vérités de terrain générées par LFR.
+Les fonctions de qualité $EvansX$ ne peuvent pas permettre de capturer les vérités de terrain générées par LF.
 En effet, l'algorithme de Louvain est capable de trouver des partitions ayant une évaluation plus élevée que la vérité de terrain.
 La \emph{Partition Density}, quant à elle, souffre surtout de son incapacité à différencier clairement des partitions différentes.
 Cela se matérialise par des évaluations très similaires pour les vérités de terrain et la partition $LC$.
@@ -723,15 +724,14 @@ Le code pour évaluer une partition de liens d'un graphe avec \emph{Expected Nod
 Malgré ce coût élevé, nous avons développé un premier algorithme d'optimisation glouton de \emph{Expected Node}.
 Le principe de fonctionnement est le suivant.
 Chaque lien est initialement dans son propre groupe.
-Puis à chaque itération, on considère deux types de modification de la solution courante.
-Soit la meilleure fusion de deux communautés soit le meilleur changement de communauté d'un seul lien.
+Puis à chaque itération, on considère deux types de modification de la solution courante: soit la meilleure fusion de deux communautés soit le meilleur changement de communauté d'un seul lien.
 On fusionne ou change de communauté un lien si cela améliore la qualité de la partition.
 Les fusions considérées sont les fusions entre des communautés adjacentes.
 Les changement de liens se font également uniquement avec une communauté adjacente.
 On continue de modifier la solution courante tant qu'elle est améliorable par un de ces mouvements.
 Malheureusement cette approche souffre de deux problèmes majeurs.
 Tout d'abord le calcul du gain est coûteux et rend impossible l'étude de grands jeux de données.
-Ensuite dans nos tests dans les graphes générés par LFR, il semble que cette méthode reste bloquée sur des optimum locaux bien plus faibles que la vérité de terrain, voir la figure~\ref{fig:LF_bis_EN} où la qualité de la partition trouvée par notre algorithme, noté $EN$, est présentée.
+Ensuite dans nos tests dans les graphes générés par LF, il semble que cette méthode reste bloquée sur des optimum locaux bien plus faibles que la vérité de terrain, voir la figure~\ref{fig:LF_bis_EN} où la qualité de la partition trouvée par notre algorithme, notée $EN$, est présentée.
 Il faudrait donc tester d'autres heuristiques d'optimisation mais aussi travailler sur une méthode de calcul du gain plus optimisée.
 
 Malgré ces limitations, nous avons tout de même tiré parti de cet algorithme naïf afin de tester si une partition donnée peut être améliorée.
@@ -766,7 +766,7 @@ Pour montrer la pertinence de cette nouvelle fonction de qualité, nous évaluon
 Nous montrons que, sur nos jeux de tests, \emph{Expected Nodes} semble être la plus à même de capturer la vérité de terrain et de différencier des partitions différentes.
 Malgré le coût de calcul élevé d'\emph{Expected Nodes}, nous avons implémenté un premier algorithme d'optimisation agglomératif.
 Cet algorithme n'est, pour l'instant, pas capable d'obtenir des partitions avec des scores élevés.
-Cependant il nous a permis de vérifier que les vérités de terrain générées par LFR sont des quasi-optimum locaux selon \emph{Expected Nodes}.
+Cependant il nous a permis de vérifier que les vérités de terrain générées par LF sont des quasi-optimum locaux selon \emph{Expected Nodes}.
 Bien qu'il soit possible d'améliorer légèrement les vérités de terrain, la structure de l'optimum local est très proche de la partition initiale.
 
 
@@ -793,7 +793,7 @@ Plus globalement, les mouvement faisant intervenir plusieurs liens d'un seul cou
 
 
 \paragraph{Diminuer le coût de calcul du gain}
-Ici, il ne s'agit pas d'améliorer la performance de l'algorithme en terme de qualité obtenue mais de le rendre plus rapide.
+Ici, il ne s'agit pas d'améliorer la performance de l'algorithme en termes de qualité obtenue mais de le rendre plus rapide.
 Dans sa version courante, l'algorithme est trop coûteux pour traiter des graphes ayant plus de quelques dizaines de milliers de liens.
 La force de l'algorithme de Louvain réside dans l'existence d'une expression analytique pour le gain de fusion de deux communautés, qui est rapide à évaluer.
 Dans notre algorithme, la lenteur est justement due au calcul du gain qui est très coûteux.
@@ -808,7 +808,7 @@ La situation est plus complexe pour la qualité externe.
 Le nouveau nombre de liens adjacents n'est pas simplement une somme.
 De même, l'identité et le degré des nouveaux n\oe{}uds adjacents dans $G \setminus (A \cup B)$ ne sont pas triviaux à calculer.
 Il faudrait des parcours locaux sur $(A \cup B)$ et son voisinage pour arriver à mettre à jours ces données nécessaires au calcul de $Q_{ext}$. 
-Si ce parcours est fait suffisamment soigneusement, il est sûrement possible de gagner en terme de vitesse d'exécution.
+Si ce parcours est fait suffisamment soigneusement, il est sûrement possible de gagner en termes de vitesse d'exécution.
 
 
 \paragraph{Changer la stratégie d'optimisation}
@@ -840,7 +840,7 @@ Nous avons parlé jusqu'à maintenant de l'application d'\emph{Expected Nodes} s
 La question de la pondération est délicate à prendre en compte pour \emph{Expected Nodes}.
 En effet, notre méthode repose sur des tirages aléatoires de demi-liens.
 La notion de tirage est intrinsèquement liée à des valeurs entières.
-En effet, il n'existe pas à ma connaissance de pendant continu à la loi hypergéométrique;
+En effet, il n'existe pas à notre connaissance de pendant continu à la loi hypergéométrique;
 on ne tire pas aléatoirement $0.6$ demi-liens parmi $14.3$ demi-liens possibles.
 L'application d'\emph{Expected Nodes} à un graphe pondéré semble donc compromise.
 Cependant, il devrait être trivialement possible de considérer des multigraphes.

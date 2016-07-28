@@ -8,7 +8,7 @@ Nous avons utilisé le formalisme de flot de liens qui relie les propriétés te
 Ce formalisme est suffisamment expressif pour définir des métriques évaluant des groupes de liens sans déformer ou perdre d'information sur leur dynamique.
 Les notions de degré et de densité, que nous avons présentées dans le chapitre~\ref{chap:def_flot}, en sont des exemples.
 En plus d'aider à définir ces notions, nous les avons également implémentées dans une libraire de manipulation de flots de liens\,\footnote{\url{https://bitbucket.org/nGaumont/liblinkstream/}}.
-Ainsi avec, d'une part, un formalisme clairement défini et, d'autre part, une implémentation accessible, nous espérons faciliter l'utilisation de la densité et surtout permettre à quiconque d'étendre ce formalisme en définissant d'autres métriques.
+Ainsi avec, d'une part, un formalisme clairement défini et, d'autre part, une implémentation accessible, nous espérons faciliter l'utilisation de ces notions et surtout permettre à quiconque d'étendre ce formalisme en définissant d'autres métriques.
 
 \`A partir de ce formalisme, nous avons décrit une structure communautaire connue d'une séquence d'interactions, dans le chapitre~\ref{chap:mailing}.
 Il n'en existait\,\footnote{Un jeu de données représentant le forum \emph{reddit} a été rendu public juillet 2015.} aucune au début de cette thèse, à notre connaissance.
@@ -26,12 +26,12 @@ Bien que la partition trouvée ne corresponde pas exactement aux discussions, le
 Dans le chapitre~\ref{groupesDense}, nous avons étudié plus en détail comment évaluer la pertinence de groupes de liens, en particulier les groupes détectés précédemment.
 Le but est d'identifier les groupes pertinents parmi les groupes de cette partition.
 Cette identification est nécessaire car certains groupes peuvent ne pas être pertinents.
-En effet, ils ne sont pas obtenus directement sur le flot de liens mais sur une projection de ce flot en un graphe statique.
+En effet, ils ne sont pas obtenus directement sur le flot de liens, mais sur une projection de ce flot en un graphe statique.
 Or, il y a une perte d'information lorsque l'on manipule un graphe statique au lieu d'un flot de liens.
 
 Comme nous l'avons constaté dans les chapitres~\ref{chap:def_flot} et \ref{chap:mailing}, la densité permet d'évaluer un groupe mais, seule, elle ne suffit pas pour définir un groupe pertinent.
 En effet, un groupe n'est pertinent que par rapport au reste du flot de liens.
-Par exemple, un groupe ayant une densité de $0.4$ est très pertinent dans un flot de liens ayant une densité globale de $0.01$ mais il ne l'est pas du tout si le flot de liens a une densité de $0.6$.
+Par exemple, un groupe ayant une densité de $0.4$ est très pertinent dans un flot de liens ayant une densité globale de $0.01$, mais il ne l'est pas du tout si le flot de liens a une densité de $0.6$.
 Pour évaluer un groupe, il est donc nécessaire de prendre en compte le contexte dans lequel il apparaît.
 Nous avons défini trois voisinages constitués de sous-flots différant du sous-flot du groupe, soit sur le temps de début, soit sur la durée, soit sur l'ensemble de n\oe{}uds concernés.
 Un groupe est ensuite jugé pertinent si le groupe est plus dense qu'une grande partie de ses voisinages.
@@ -40,7 +40,7 @@ Nous avons appliqué notre méthode d'évaluation de la pertinence à quatre jeu
 La structure résultant des groupes pertinents est une partition partielle des liens du flot de liens.
 Cependant en observant les n\oe{}uds induits et les instants de présence des groupes, nous avons constaté que les groupes forment une structure très chevauchante sur les n\oe{}uds et uniquement partiellement chevauchante sur le temps.
 Nous avons testé si une méthode statique pouvait retrouver cette même structure chevauchante et nous avons constaté qu'uniquement quelques groupes pertinents étaient capturés par la méthode statique.
-Ceci montre que nous avons mis avant une structure nouvelle via la partition partielle que sont les groupes pertinents.
+Ceci montre que nous avons mis en avant une structure nouvelle via la partition partielle que sont les groupes pertinents.
 Ces travaux ont donné lieu à une première publication dans une conférence nationale~\cite{gaumont:hal-01305118} et sont soumis au journal \emph{Social Network Analysis and Mining}.
 
 
@@ -57,7 +57,7 @@ Cette fois ci, un voisinage est jugé bon lorsqu'il consiste en plus de n\oe{}ud
 
 Nous avons mené des tests sur des graphes ayant une structure simple: une clique ou deux cliques se chevauchant et sur des graphes générés aléatoirement.
 Sur ces exemples, notre fonction de qualité, \emph{Expected} \emph{Nodes}, est la seule à différencier la vérité de terrain d'autres partitions moins pertinentes.
-Ces travaux ont été publiés dans une conférence nationale~\cite{Gaumont2014} et une conférence internationale~\cite{Gaumont2015}.
+Ces travaux ont été publiés dans une conférence nationale~\cite{Gaumont2014} et un \emph{workshop} international~\cite{Gaumont2015}.
 Forts de ces premiers constats, nous avons implémenté un premier algorithme optimisant \emph{Expected Nodes}.
 Cependant malgré nos efforts pour rendre plus efficace l'évaluation d'\emph{Expected Nodes}, notre algorithme n'est pas encore adapté à l'étude de grands graphes.
 
@@ -80,13 +80,13 @@ De manière plus générale, il y a deux axes distincts de poursuite des travaux
 
 \subsection{Extensions du formalisme de flot de liens}
 
-Le formalisme de flot de liens est assez général pour représenter beaucoup de situations différentes mais il y en a cependant certaines qui ne sont pas parfaitement représentées par un flot de liens classique.
+Le formalisme de flot de liens est assez général pour représenter beaucoup de situations différentes, mais il y en a cependant certaines qui ne sont pas parfaitement représentées par un flot de liens classique.
 Il s'agit d'extensions similaires à celles existantes dans les graphes.
 Il serait intéressant de considérer l'orientation des liens et les flots de liens bipartis.
 Ces ajouts peuvent se faire de manière assez simple: respectivement $(b,e,u,v)\neq (b,e,v,u)$ et $\forall (b,e,u,v) \in E, partie(u)\neq partie(v)$ avec $partie(u) \in \{1,2\}$.
 Il est alors seulement nécessaire d'adapter les notions de degré et de densité pour tenir compte de ces spécificités.
 
-L'ajout de poids sur les liens est bien sûr une extension possible mais il y a cependant deux extensions possibles: soit le poids est fixe; soit il peut changer au cours du temps.
+L'ajout de poids sur les liens est bien sûr une extension possible, mais il y a cependant deux extensions possibles: soit le poids est fixe; soit il peut changer au cours du temps.
 Le second cas englobe le premier et permet de représenter beaucoup plus de situations comme par exemple les flots de liens non simples, \emph{i.e.} plusieurs liens peuvent exister en même temps entre deux n\oe{}uds.
 
 Nous avons principalement discuté des notions de degré et de densité dans cette thèse.
@@ -126,12 +126,12 @@ Le but serait alors d'avoir une fonction ne prenant en compte que le voisinage i
 
 Enfin, il serait intéressant d'étudier les problèmes connexes à la détection de communautés de liens.
 La compression de l'information en est un exemple car une structure communautaire peut être vue comme un \emph{résumé} de l'objet d'étude initial.
-Avec ce point de vue, il se pose alors la question de la perte d'information induite par l'utilisation d'une structure communautaire pour représenter le flot de liens globale.
+Avec ce point de vue, il se pose alors la question de la perte d'information induite par l'utilisation d'une structure communautaire pour représenter le flot de liens global.
 
 La prédiction de liens est un autre exemple.
 Dans un graphe, la prédiction de liens consiste en trouver les paires de n\oe{}uds qui devraient être reliées dans le graphe.
 Comme les n\oe{}uds d'une communauté sont densément reliés entre eux, connaître la structure communautaire aide à prédire les paires de n\oe{}uds qui devraient être reliées.
-Dans les flots de liens, la situation est tout de fois plus complexe car, en plus de prédire une interaction, il faut également prédire le temps d'apparition et la durée de l'interaction.
+Dans les flots de liens, la situation est toutefois plus complexe car, en plus de prédire une interaction, il faut également prédire le temps d'apparition et la durée de l'interaction.
 
 
 

@@ -169,7 +169,7 @@ Afin de normaliser l'information mutuelle, Danon \emph{et al.}~\cite{Danon2005a}
  NMI_{shanon}(\mathcal{X},\mathcal{Y}) = \dfrac{2I(\mathcal{X},\mathcal{Y})}{H(\mathcal{X})+H(\mathcal{Y})}.
 \end{equation}
 
-Lancichinetti \emph{et al.} l'ont par la suite étendue pour prendre en compte les couvertures~\cite{Lancichinetti2009d}.
+Lancichinetti et Fortunato l'ont par la suite étendue pour prendre en compte les couvertures~\cite{Lancichinetti2009d}.
 Le choix de la normalisation dans le cas chevauchant est cependant toujours ouvert~\cite{McDaid2011,Zhang2015c}.
 
 \resume{
@@ -304,7 +304,7 @@ Pour décrire, \emph{a posteriori}, l'ensemble des villes traversées par ce voy
 Il n'est pas nécessaire de répéter le département pour chaque ville si le voyageur n'en est pas sorti.
 En ce sens, la découpe d'un pays en départements permet de réduire la complexité de la description du voyage.
 Il s'agit donc d'un problème lié à la théorie de l'information et de sa compression.
-De manière similaire, Rosval \emph{et al.} utilise des marcheurs aléatoires se déplaçant sur les n\oe{}uds du graphe et les communautés comme zones du graphe.
+De manière similaire, Rosvall et Bergstrom utilise des marcheurs aléatoires se déplaçant sur les n\oe{}uds du graphe et les communautés comme zones du graphe.
 Si les communautés sont bien formées, alors les marcheurs aléatoires restent bloqués à l'intérieur des communautés et la description de leur marche est courte.
 La longueur de cette description devient alors la signature de la partition et plus la signature est courte, meilleure la partition est.
 
@@ -365,7 +365,7 @@ Dans~\cite{Gopalan2013a}, les auteurs utilisent la même méthode mais en échan
 Il existe d'autres méthodes à base de modèle génératif~\cite{Ball2011,Yang2013}.
 Ces méthodes se basent sur des graphes d'affiliations~\cite{BreigerRonald1974}.
 Un graphe d'affiliation est un graphe biparti entre les n\oe{}uds d'une part et les communautés d'autre part.
-Dans la méthode de Ball \emph{et al.}~\cite{Ball2011}, ce graphe d'affiliation est pondéré et la pondération représente la propension d'un n\oe{}ud à créer des liens dans un groupe donné tandis que pour Yang \emph{et al.} il s'agit du facteur d'appartenance du n\oe{}ud au groupe.
+Dans la méthode de Ball \emph{et al.}~\cite{Ball2011}, ce graphe d'affiliation est pondéré et la pondération représente la propension d'un n\oe{}ud à créer des liens dans un groupe donné tandis que pour Yang et Leskovec~\cite{Yang2013} il s'agit du facteur d'appartenance du n\oe{}ud au groupe.
 Une fois le graphe d'affiliation défini, il est nécessaire de savoir recréer la matrice d'adjacence et, en ce sens, ces méthodes se rapprochent des méthodes de factorisation en matrices non-négatives~\cite{Lee1999}.
 Le but de la factorisation non-négative d'une matrice donnée est d'être capable de trouver deux matrices dont les entrées sont non-négatives telles que leur combinaison permette de retrouver la matrice initiale.
 
@@ -389,7 +389,7 @@ Il s'agit sûrement avec le SBM de la méthode étant la moins "déformée" par 
 En effet, il suffit de relâcher la contrainte sur le fait qu'un n\oe{}ud n'appartienne qu'à un seul groupe.
 Il est toujours possible de décrire un trajet par un nom de groupe puis une liste de n\oe{}uds visités dans le même groupe.
 Ainsi, la notion de longueur de description est toujours valide dans ce contexte.
-Ce travail d'extension a été fait par Esquivel \emph{et al.}~\cite{Esquivel2011}.
+Ce travail d'extension a été fait par Esquivel et Rosvall~\cite{Esquivel2011}.
 
 \subsubsection{Méthodes utilisant des communautés \emph{ego}-centrées}
 On a vu avec la modularité qu'il est assez difficile de définir une fonction de qualité évaluant une couverture de n\oe{}uds en fonction des caractéristiques des groupes.
@@ -536,8 +536,8 @@ Yang \emph{et al.}~\cite{Yang2011} sont parmi les premiers à considérer ce cas
 Ils considèrent que la probabilité d'un lien entre deux communautés est fixe et que ce qui change est l'affiliation des n\oe{}uds au cours du temps.
 Ce processus de changement de communauté suit alors une chaîne de Markov cachée.
 \`A l'inverse, Corneli \emph{et al.}~\cite{Corneli2016} considèrent une partition de n\oe{}uds fixe tout au long du temps et c'est l'activité entre deux communautés qui change selon l'intervalle de temps.
-Xu \emph{et al.}~\cite{Xu2014} permettent à l'affiliation et à l'activité entre deux communautés de changer selon l'intervalle de temps.
-Cependant, il semblerait que cette relaxation se fasse au dépens de l'identifiabilité des paramètres d'après Matias \emph{et al.}~\cite{Matias2015}.
+Xu et Hero~\cite{Xu2014} permettent à l'affiliation et à l'activité entre deux communautés de changer selon l'intervalle de temps.
+Cependant, il semblerait que cette relaxation se fasse au dépens de l'identifiabilité des paramètres d'après Matias et Miele~\cite{Matias2015}.
 Ils ont donc proposé une nouvelle méthode afin de résoudre ce problème.
 De plus, leur méthode permet de traiter des séries de graphes pondérés.
 
@@ -641,7 +641,7 @@ Le but est de construire un objet ne présupposant aucune structure et qui stock
 Même si le formalisme ne présuppose aucune contrainte structurelle, il se peut en revanche que le réseau représenté en ait.
 Par exemple dans les télécommunications, une personne ne peut appeler qu'une ou deux personnes en même temps.
 Plusieurs travaux~\cite{Holme2013a,Holme2015b,Holme2015e} font un tour d'horizon des méthodes existantes pour étudier les flots de liens qui sont souvent appelés \emph{temporal networks} mais il n'existe, à notre connaissance, qu'un seul travail donnant un fondement théorique solide aux flots de liens.
-Il s'agit de Batagel \emph{et al.}~\cite{Batagelj2016} qui se basent sur l'algèbre.
+Il s'agit de Batagel et Praprotnik~\cite{Batagelj2016} qui se basent sur l'algèbre.
 Malheureusement avec une formulation purement algébrique, il semble difficile de transcrire l'ensemble des notions de graphes pour l'instant.
 \bigskip
 
