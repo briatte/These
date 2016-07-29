@@ -183,16 +183,17 @@ Il est également important de noter l'existence d'implémentations librement ac
 \section{Communautés dans les graphes}
 \label{sec:intro_communaute}
 
-Ce champ de recherche est très vaste et il est illusoire de vouloir énumérer les méthodes existantes dans ce domaine car elles sont extrêmement nombreuses et les caractéristiques voulues d'une communauté peuvent varier selon le contexte~\cite{Leskovec2008,Coscia2011,Yang2015,Jeub2015}.
-Les méthodes se séparent tout de même en plusieurs catégories selon qu'elles capturent une partition ou une couverture de n\oe{}uds.
+La détection de communautés dans les graphes est un très vaste champ de recherche et il serait illusoire de prétendre énumérer les méthodes existantes dans ce domaine: elles sont extrêmement nombreuses.
+Aussi les critères permettant la caractérisation d'une communauté peuvent varier selon le contexte~\cite{Leskovec2008,Coscia2011,Yang2015,Jeub2015}.
+Ces méthodes se séparent tout de même en plusieurs catégories selon qu'elles capturent une partition ou une couverture de n\oe{}uds.
 Ces deux structures correspondent à deux visions possibles de l'organisation d'un graphe et du réseau sous-jacent.
 Nous présentons ces deux catégories dans les sous-sections suivantes.
-Il existe également une troisième catégorie qui est la détection de communautés sous la forme de partitions de liens que nous traitons dans le chapitre~\ref{chap:Expected_Node}.
+Il en existe également une troisième catégorie qui est la détection de communautés sous la forme de partitions de liens que nous traitons dans le chapitre~\ref{chap:Expected_Node}\,\footnote{La détection de couvertures de liens est encore très peu étudié.}.
 
 \subsection{Partitions de n\oe{}uds}
 \label{subsec:Part_noeuds}
-Afin de mieux comprendre ce que peut capturer une partition de n\oe{}uds, il est plus facile de partir d'un exemple.
-Dans l'étude de Stehlé \emph{et al.}~\cite{Stehle2011}, des enfants d'une école primaire ont eu pendant 2 jours des capteurs enregistrant lorsque deux enfants sont à une distance de moins de 1 mètre 50.
+Afin de mieux comprendre ce que peut capturer une partition de n\oe{}uds, il est plus facile de s'appuyer sur un exemple.
+Dans l'étude de Stehlé \emph{et al.}~\cite{Stehle2011}, des enfants d'une école primaire ont porté pendant $2$ jours des capteurs enregistrant lorsque deux enfants sont à une distance de moins de 1 mètre 50.
 Ce dispositif permet de mesurer les interactions entre élèves et de construire le graphe des relations à l'école.
 Un lien existe entre deux élèves s'ils ont interagi au moins une fois ensemble.
 Une illustration du graphe obtenu est visible dans la figure~\ref{fig:ecole_primaire}.
