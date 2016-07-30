@@ -54,7 +54,7 @@ Cependant ce genre de situation est particulier et ne peut pas être trivialemen
 C'est pourquoi nous ne pouvons utiliser la même méthode. 
 
 Il existe également des méthodes capturant la partie la plus dense d'un réseau.
-C'est le cas de Bogdanov \emph{et al.}~\cite{Bogdanov2011} qui considèrent  un graphe dont la topologie n'évolue pas mais dont les poids des liens changent entre $-1$ et $1$ en fonction du temps.
+C'est le cas de Bogdanov \emph{et al.}~\cite{Bogdanov2011} qui considèrent un graphe dont la topologie n'évolue pas mais dont les poids des liens changent entre $-1$ et $1$ en fonction du temps.
 Ce formalisme est encore une fois très différent de celui de flot de liens.
 De plus, la notion de densité utilisée ne tient pas vraiment compte du temps car un groupe de n\oe{}uds sur un intervalle est évalué par la somme des liens entre ces n\oe{}uds sur tout l'intervalle.
 
@@ -68,7 +68,7 @@ La notion de densité est donc statique car elle ne considère que la structure 
 Les travaux de Rozenshtein \emph{et al.}~\cite{rozenshtein2014} sont ceux qui se rapprochent le plus de notre méthode.
 Leur méthode utilise le formalisme de flots de liens et ne suppose pas de structure de graphe à un instant donné.
 Elle capture un groupe de n\oe{}uds et plusieurs intervalles disjoints de telle sorte que ce groupe de n\oe{}uds dans le graphe agrégé sur ces intervalles ait le degré moyen le plus élevé.
-Plus formellement, un groupe de n\oe{}uds $V'\subset V$ et un ensemble d'intervalles $\{I_1,..,I_k\} = \mathcal{I} \subset T$ doivent maximiser $\tilde{d}_\mathcal{G}(V')$ où  $\mathcal{G}= \bigcup G(L_t),\,\forall t \in \mathcal{I}$.
+Plus formellement, un groupe de n\oe{}uds $V'\subset V$ et un ensemble d'intervalles $\{I_1,..,I_k\} = \mathcal{I} \subset T$ doivent maximiser $\tilde{d}_\mathcal{G}(V')$ où $\mathcal{G}= \bigcup G(L_t),\,\forall t \in \mathcal{I}$.
 Ainsi même si la méthode permet de capturer un groupe de n\oe{}uds sur des intervalles de temps, elle évalue un candidat sur un graphe agrégé pour appliquer une métrique de graphe.
 Le temps n'a donc une influence qu'indirecte sur l'évaluation.
 Par ailleurs, leur méthode repose sur plusieurs paramètres qui doivent être fixés \emph{a priori}: le nombre maximum d'intervalles disjoints et la durée cumulée maximum de ces intervalles.
@@ -132,7 +132,7 @@ Il s'agit de la densité des n\oe{}uds induits par $C_i$ sur la durée du groupe
 Ces deux quantités ne sont pas complètement équivalentes car les deux sous-flots sont différents, en particulier $L(C_i) \subseteq L_{\beta(C_i)..\psi(C_i)}(V(C_i)^2)$.
 De cette inclusion découle le fait $\delta(L(C_i)) \leq \delta(V(C_i),\beta(C_i), \bar{C_i})$.
 C'est le cas dans l'exemple de la figure~\ref{fig:exemple_groupe_dens} si l'on calcule la densité des liens noirs.
-Dans ce cas,  tous les n\oe{}uds sont induits par ces liens et l'intervalle de temps est égal à $[2,11]$.
+Dans ce cas, tous les n\oe{}uds sont induits par ces liens et l'intervalle de temps est égal à $[2,11]$.
 Le sous-flot induit par $V$ sur $[2,11]$ comprend l'ensemble des liens noirs mais aussi des liens \textcolor{vert_turquoise}{\textbf{verts}} et \textcolor{bleu_window}{\textbf{bleus}}.
 
 
@@ -248,13 +248,13 @@ Pour les voisinages au temps de début et à la durée, il existe une infinité 
 
 \subsubsection{Voisinage aux n\oe{}uds}
 Pour ce voisinage, il est nécessaire d'analyser des sous-flots durant l'intervalle, $[\beta(C_i),\psi(C_i)]$, mais pour différents ensembles n\oe{}uds, $V'$.
-Il existe plusieurs stratégies possibles pour calculer la densité  de ces sous-flots. 
+Il existe plusieurs stratégies possibles pour calculer la densité de ces sous-flots. 
 
 La première méthode consiste à manipuler chaque sous-flot indépendamment et de calculer leur densité.
 Pour extraire le sous-flot induit par un ensemble de n\oe{}uds sur un intervalle de temps,
-il est judicieux de d'abord considérer le sous-flot sur les n\oe{}uds puis d'intégrer le temps  car la construction du sous-flot induit par un ensemble de n\oe{}uds est plus rapide.
+il est judicieux de d'abord considérer le sous-flot sur les n\oe{}uds puis d'intégrer le temps car la construction du sous-flot induit par un ensemble de n\oe{}uds est plus rapide.
 Le calcul de la densité d'un sous-flot induit par un ensemble de n\oe{}uds $V'$, sur intervalle de temps $[\beta(C_i),\psi(C_i)]$ est alors dépendant du nombre de liens existant entre les n\oe{}uds de $V'$ avant $\psi(C_i)$ et de la taille de $V'$: $\tilde{C}_{V'}=O(|L_{\alpha..\psi(C_i)}(V'^2)|log(|V'|))$.
-$|L_{\alpha..\psi(C_i)}(V'^2)|$ correspond au parcours de l'ensemble des liens ayant un de leur n\oe{}uds dans $V'$ et dont il faut vérifier  qu'ils intersectent l'intervalle $[\beta(C_i),\psi(C_i)]$.
+$|L_{\alpha..\psi(C_i)}(V'^2)|$ correspond au parcours de l'ensemble des liens ayant un de leur n\oe{}uds dans $V'$ et dont il faut vérifier qu'ils intersectent l'intervalle $[\beta(C_i),\psi(C_i)]$.
 Pour chacun de ces liens, il faut également tester que l'autre n\oe{}ud du lien appartienne également à $V'$ ce qui se fait en $log(|V'|)$.
 Pour calculer l'ensemble du voisinage pour un groupe de n\oe{}uds de taille $k$, il est alors nécessaire de répéter ce processus pour chaque ensemble de n\oe{}uds ce qui donne une complexité de $O(k(|V|-k) \tilde{C}_{V'})$.
 C'est cette méthode que nous avons implémentée.
@@ -264,7 +264,7 @@ La deuxième méthode consisterait à tirer parti de la ressemblance des ensembl
 La première étape est alors de calculer $d_{t..t'}(V'^2)$, le degré moyen du groupe de n\oe{}uds initial.
 Puis lors de l'évaluation d'un groupe de n\oe{}uds voisin $V''$, nous savons que $V'$ et $V''$ ne diffèrent que sur un n\oe{}ud, $v'$ qui est remplacé par $v''$.
 Pour calculer la densité de $V''$ sur $[\beta(C_i),\psi(C_i)]$, il suffit de mettre à jour $d_{\beta(C_i)..\psi(C_i)}(V'^2)$ en fonction des liens qui ne sont plus pris en compte et des nouveaux liens pris en compte.
-C'est à dire qu'il faut considérer $|L_{\alpha..\psi(C_i)}({v'} \cap V')|$ suppressions de liens et  $|L_{\alpha..\psi(C_i)}({v''} \cap V'')|$ ajouts de liens.
+C'est à dire qu'il faut considérer $|L_{\alpha..\psi(C_i)}({v'} \cap V')|$ suppressions de liens et $|L_{\alpha..\psi(C_i)}({v''} \cap V'')|$ ajouts de liens.
 Pour évaluer l'ensemble des voisinages, il suffit de répéter ce processus pour chaque groupe de n\oe{}uds.
 Cette méthode peut également être parallélisée.
 
@@ -322,10 +322,10 @@ La table~\ref{tab:data_spec_groupe_dense} liste le nombre de n\oe{}uds, le nombr
 % For LaTeX tables use
 \begin{tabular}{|c|c|c|c|}
 \hline  \rule[-1ex]{0pt}{3.5ex}
-Datasets & $|V|$ & $|E|$ & $\omega - \alpha$  \\
+Datasets & $|V|$ & $|E|$ & $\omega - \alpha$\\
 \hline
 Socio Pattern & 180 & 19774 & 9 jours \\
-Rollernet & 62 & 15803 &  3 heures\\
+Rollernet & 62 & 15803 & 3 heures\\
 Reality Mining & 94 & 44975 & 9 mois\\
 Babouins & 28 & 95616 & 14 jours\\
 \hline
@@ -377,17 +377,17 @@ Cette différence est probablement due au flot de liens qui contient beaucoup de
 \centering
 \begin{tabular}{|c|c|c|c|}
 \hline \rule[-1ex]{0pt}{3.5ex}
-Jeux de données & $|\mathcal{C}|$ & $\langle|V|\rangle$  & $\langle|L|\rangle$ \\
+Jeux de données & $|\mathcal{C}|$ & $\langle|V|\rangle$ & $\langle|L|\rangle$ \\
 \hline
-Socio Pattern & 12532 (155) & 2 (9) & 1 (15) \\
-Rollernet& 559 (75) & 2 (31) & 1 (194) \\
-Reality Mining & 5737 (474) & 2 (12) & 1 (36) \\
-Babouin & 37671 (1249)  &  2 (7)  & 1 (16) \\
+Socio Pattern & 12532 (155) & 2 (9) & 1 (15)\\
+Rollernet& 559 (75) & 2 (31) & 1 (194)\\
+Reality Mining & 5737 (474) & 2 (12) & 1 (36)\\
+Babouin & 37671 (1249) & 2 (7) & 1 (16)\\
 \hline
 \end{tabular}
 \caption{$|\mathcal{C}|$: nombre de groupes dans la partition, $\langle|V|\rangle$ médiane du nombre de n\oe{}uds dans un groupe, $\langle|L|\rangle$ médiane du nombre de liens dans un groupe.
 Les valeurs en parenthèses correspondent à la valeur quand uniquement les groupes d'au moins $10$ liens sont pris en compte.}
-\label{tab:partition_spec_gd}       % Give a unique label
+\label{tab:partition_spec_gd} % Give a unique label
 \end{table}
 
 
@@ -431,16 +431,16 @@ Enfin, la table~\ref{tab:thresholds} liste les seuils utilisés pour chaque jeu 
 \centering
 \begin{tabular}{|c|c|c|c|c|}
 \hline \rule[-1ex]{0pt}{3.5ex}
-Jeux de données & $p_{noeuds}$ & $p_{d\acute{e}but}$  & $p_{dure\acute{e}e}$  \\
+Jeux de données & $p_{noeuds}$ & $p_{d\acute{e}but}$ & $p_{dure\acute{e}e}$\\
 \hline
 Socio Pattern & 0.98 & 0.998 & 0.85 \\
 Rollernet& 0.9 & 0.7 & 0.6 \\
-Reality Mining & 0.97  & 0.98 & 0.8 \\
-Babouin & 0.95  &  0.99  & 0.85 \\
+Reality Mining & 0.97 & 0.98 & 0.8 \\
+Babouin & 0.95 & 0.99 & 0.85 \\
 \hline
 \end{tabular}
-\caption{$p_{noeuds}$, $p_{d\acute{e}but}$ et  $p_{dur\acute{e}e}$: seuils utilités pour chaque voisinage.}
-\label{tab:thresholds}       % Give a unique label
+\caption{$p_{noeuds}$, $p_{d\acute{e}but}$ et $p_{dur\acute{e}e}$: seuils utilités pour chaque voisinage.}
+\label{tab:thresholds} % Give a unique label
 \end{table}
 
 Un candidat est écarté si un de ses scores est en dessous du seuil correspondant. 
@@ -485,7 +485,7 @@ C'est pourquoi le groupe obtient un score de $1$ pour ce voisinage.
 Il est donc également pertinent vis-à-vis de ce voisinage.
 
 \subsubsection*{Voisinage à la durée}
-Pour finir, le groupe a un score de $0.95$ pour le voisinage à la durée et donc le groupe capturé a une durée  pertinente.
+Pour finir, le groupe a un score de $0.95$ pour le voisinage à la durée et donc le groupe capturé a une durée pertinente.
 La densité en fonction de la durée des sous-flots voisins est présentée dans la figure~\ref{fig:g9522_duree}.
 La densité du sous-flot est légèrement plus importante si une durée légèrement plus courte est utilisée.
 Ce n'est pas complètement surprenant car la durée du sous-flot influence la densité.
@@ -519,7 +519,7 @@ Dans ce contexte, nous obtenons que ce groupe est effectivement extrêmement sou
 \end{subfigure}
 \caption{
 Densités du voisinage d'un groupe dans Socio Pattern.
-En trait plein: la fonction $d(V(C_i),z,\bar{C_i})$ en (A) et la fonction  $d(V(C_i),\beta(C_i),y)$ en (B).
+En trait plein: la fonction $d(V(C_i),z,\bar{C_i})$ en (A) et la fonction $d(V(C_i),\beta(C_i),y)$ en (B).
 En pointillé, la densité du groupe est rappelée.
 }
 \label{fig:Sp_g9522_exemple}
@@ -572,7 +572,7 @@ Comme Rollernet est globalement plus dense, il est moins surprenant d'observer d
 \end{subfigure}
 \caption{
 Densités du voisinage d'un groupe dans Rollernet.
-En trait plein: la fonction $d(V(C_i),z,\bar{C_i})$ en (A) et la fonction  $d(V(C_i),\beta(C_i),y)$ en (B).
+En trait plein: la fonction $d(V(C_i),z,\bar{C_i})$ en (A) et la fonction $d(V(C_i),\beta(C_i),y)$ en (B).
 En pointillé, la densité du groupe est rappelée.
 }
 \label{fig:Rollernet_exemple}
@@ -583,7 +583,7 @@ En pointillé, la densité du groupe est rappelée.
 
 
 \bigskip
-Pour résumer, il y a $12\ 532$  groupes candidats initialement dans le cas de Socio Pattern.
+Pour résumer, il y a $12\ 532$ groupes candidats initialement dans le cas de Socio Pattern.
 Parmi eux, $155$ ont plus de $10$ liens et $136$ sont considérés comme pertinents.
 La table~\ref{tab:res_exec} résume le nombre final de groupes pertinents capturés pour chaque jeu de données.
 
@@ -592,11 +592,11 @@ La table~\ref{tab:res_exec} résume le nombre final de groupes pertinents captur
 \centering
 \begin{tabular}{|c|c|c|}
 \hline \rule[-1ex]{0pt}{3.5ex}
- & $N_c$ & temps d'exécution \\
+ & $N_c$ & temps d'exécution\\
 \hline
-Socio Pattern & 136 &  2 min \\
-Rollernet& 37 &  4 min \\
-Reality Mining & 394 & 1h \\
+Socio Pattern & 136 & 2 min\\
+Rollernet& 37 & 4 min\\
+Reality Mining & 394 & 1h\\
 Babouin & 1023 & 52 min\\
 \hline
 \end{tabular}
@@ -633,7 +633,7 @@ On remarque notamment que même si peu de groupes sont capturés, ils représent
 \centering
 \begin{tabular}{|c|c|c|c|c|}
 \hline \rule[-1ex]{0pt}{3.5ex}
- & Socio Pattern & Rollernet  & Reality Mining & Babouin \\
+ & Socio Pattern & Rollernet & Reality Mining & Babouin \\
 \hline
 Représentativité & $17.7\%$ & $95.4\%$ & $80.9\%$ & $39\%$ \\
 
@@ -735,7 +735,7 @@ Nous avons appliqué notre méthode sur quatre jeux de données réels représen
 Deux d'entre eux sont des interactions entre étudiants.
 Un est un réseau de participants à une randonnée roller à Paris et le dernier est un réseau de babouins.
 Ils proviennent ainsi de contextes radicalement différents.
-Cela se traduit notamment sur la densité  globale des flots de liens.
+Cela se traduit notamment sur la densité globale des flots de liens.
 Pour tous ces jeux de données, nous avons réussi à capturer des groupes ayant des scores très élevés.
 
 La validation de ces résultats est délicate car il n'existe pas de vérité de terrain sur ces données et il n'existe aucun algorithme similaire.

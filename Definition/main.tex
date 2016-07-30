@@ -10,7 +10,7 @@ Nous nous attachons maintenant à définir plus formellement les flots de liens 
 Un flot de liens est défini par un triplet $L=(T,V,E)$ où $T=[\alpha, \omega]$ est un intervalle de temps, $V$ un ensemble de $n$ n\oe{}uds et $E\subseteq T\times T \times V \times V$ un ensemble de $m$ liens.
 Les liens de $E$ sont des quadruplets $(b,e,u,v)$, signifiant que le lien $(u, v)$ existe sur l'intervalle $[b,e] \subseteq [\alpha,\omega]$.
 Nous notons le nombre de liens dans le flot par $|L|=|E|=m$ et sa durée par $\bar{L}=\omega-\alpha$.
-De manière analogue, la durée d'un lien $l=(b,e,u,v) \in E$ est notée   $\bar{l}=e-b$.
+De manière analogue, la durée d'un lien $l=(b,e,u,v) \in E$ est notée $\bar{l}=e-b$.
 On note $\beta(E)= min_{(b,e,u,v) \in E} (b)$ et $\psi(E)= max_{(b,e,u,v) \in E} (e)$ l'apparition du premier lien et la disparition du dernier lien dans le flot de liens.
 
 Nous considérons les flots de liens non orientés et sans boucles, \emph{i.e.} $(b,e,u,v)=(b,e,v,u)$ et $u \neq v$.
@@ -36,7 +36,7 @@ Un graphe $G=(V,E')=G(L)$ est le graphe agrégé de $L$ si et seulement si $\for
 
 \section{Sous-flots}
 Dans les graphes, il existe la notion de sous graphes, voir la section~\ref{sec:def_graphe}, que nous étendons également aux flots de liens.
-Un flot de liens $L'=(T',V',E')$ est un sous-flot de $L$, ce que l'on note $L' \subseteq L$, si et seulement si $T'\subseteq T$, $V'\subseteq V$ et  $\forall u,v \in V,\ \forall t\in T, \zeta_{L'}(u,v,t) \leq \zeta_{L}(u,v,t)$.
+Un flot de liens $L'=(T',V',E')$ est un sous-flot de $L$, ce que l'on note $L' \subseteq L$, si et seulement si $T'\subseteq T$, $V'\subseteq V$ et $\forall u,v \in V,\ \forall t\in T, \zeta_{L'}(u,v,t) \leq \zeta_{L}(u,v,t)$.
 Cette notion est en particulier utile pour définir des sous-flots induits par différents ensembles d'éléments.
 Nous illustrons ces notions dans les figures~\ref{fig:exemple_sous_flot1} et \ref{fig:exemple_sous_flot2} avec le flot initial dans la figure~\ref{fig:exemple_sous_flot_init}.
  
@@ -52,7 +52,7 @@ Enfin, nous définissons $L_{t..t'}=([t, t'], V,E')$, le sous-flot de $L$ induit
 Il est également possible de définir $L_{t..t'}$ via la fonction de présence: $\forall u,v \in V,\ \forall x \in [t,t']\  \zeta_{L_{t..t'}}(u,v,x) = \zeta_{L}(u,v,x)$.
 Tous les liens qui sont présents durant au moins un instant de l'intervalle $[t, t']$ sont dans le sous-flot.
 Un exemple de sous-flot induit par un intervalle de temps est présenté dans la figure~\ref{fig:exemple_sous_flot2}.
-Il est intéressant de noter que le sous-flot $L_{t..t}$, que l'on note $L_t$, est équivalent au graphe statique à l'instant $t$,  que nous notons $G(L_t)$.
+Il est intéressant de noter que le sous-flot $L_{t..t}$, que l'on note $L_t$, est équivalent au graphe statique à l'instant $t$, que nous notons $G(L_t)$.
 Ce graphe statique à un instant correspond au formalisme de graphe temporel présenté précédemment.
 
 
@@ -70,7 +70,7 @@ Ce graphe statique à un instant correspond au formalisme de graphe temporel pr�
 	\end{subfigure}\hspace{0.1\linewidth}
 	\begin{subfigure}{0.25\linewidth}
 		\includegraphics[width=\linewidth]{img/Intro/sous_flots2.eps}\hfill
-		\caption{Sous-flot induit par le temps:  $L_{t..t'}$}
+		\caption{Sous-flot induit par le temps: $L_{t..t'}$}
 		\label{fig:exemple_sous_flot2}	
 	\end{subfigure}
 	\caption{Exemple de différents sous-flots, (B) et (C), du flot initial en (A). Les liens en noirs sont les liens sélectionnés dans le sous-flot. }
@@ -160,7 +160,7 @@ d_{t..t'}(u)= \dfrac{D_{t..t'}(u)}{t'-t}\, .
 \end{equation}
 
 Lorsque cela n'est pas ambigu, nous notons $d_{\alpha..\omega}(u) = d(u)$.
-Il est intéressant de noter dans cette formulation que si tous les liens durent tout au long du flot de liens alors le degré dans le graphe agrégé et le degré moyen dans le flot de liens sont égaux, c'est-à-dire  $d_{\alpha..\omega}(u) = d_{G(L)}(u), \forall u \in V$.
+Il est intéressant de noter dans cette formulation que si tous les liens durent tout au long du flot de liens alors le degré dans le graphe agrégé et le degré moyen dans le flot de liens sont égaux, c'est-à-dire $d_{\alpha..\omega}(u) = d_{G(L)}(u), \forall u \in V$.
 
 \`A partir du degré, il est possible de définir beaucoup de notions différentes et notamment la densité.
 Pour rappel, la densité dans un graphe est définie par $\delta(G)=2m/(n(n-1))=d(V)/n(n-1)$ et est égal à la probabilité qu'il existe un lien entre 2 n\oe{}uds pris au hasard.
@@ -193,18 +193,18 @@ Les auteurs considèrent l'ajout de temps arbitraire sur chaque lien.
 Leur formulation est équivalente à la densité suivante: $\delta( \sigma(\xi(L,\Delta)))$ si l'augmentation de la durée ne se fait pas de manière symétrique.
 Un lien est $(t,t,u,v)$ est transformé en un lien $(t-\Delta,t,u,v)$.
 
-Le calcul de la densité d'un flot est linéaire en le nombre de liens car il est dépendant du calcul de $d_{\alpha..\omega}(V)$  qui est fait de manière linéaire.
+Le calcul de la densité d'un flot est linéaire en le nombre de liens car il est dépendant du calcul de $d_{\alpha..\omega}(V)$ qui est fait de manière linéaire.
 
 
 \begin{table}
 	\centering
 	\begin{tabular}{|c|c|}
-	\hline Symbole & description \\
-	\hline $L$ & Flot de liens \\ 
-	$T$ & intervalle de temps  \\
+	\hline Symbole & description\\
+	\hline $L$ & Flot de liens\\ 
+	$T$ & intervalle de temps\\
 	$V$ & ensemble de n\oe{}uds\\
 	$E$ & ensemble de liens: $(b,e,u,v)$ \\
-	$|L|,|E|$ & nombre de liens dans le flot \\
+	$|L|,|E|$ & nombre de liens dans le flot\\
 	$\beta(E)$ & temps d'apparition du premier lien\\
 	$\psi(E)$ & temps de disparition du dernier lien\\
 	$\xi(L,\Delta)$ & augmentation de la durée de chaque lien de $\Delta$\\
@@ -227,7 +227,7 @@ Le calcul de la densité d'un flot est linéaire en le nombre de liens car il es
 \end{table}
 
 \bigskip
-D'autres notions ont par ailleurs été définies dans les flots de liens  dans la thèse de Tiphaine Viard~\cite{viard2016flots}.
+D'autres notions ont par ailleurs été définies dans les flots de liens dans la thèse de Tiphaine Viard~\cite{viard2016flots}.
 
 \section{Manipulation concrète des flots de liens}
 
@@ -244,7 +244,7 @@ Comme le but de cette librairie est d'être généraliste, l'implémentation n'e
 Ainsi, il est aisé d'étendre la librairie afin de permettre le calcul de nouvelles notions.
  
 
-Un intérêt de cette implémentation est de permettre, en python, la génération de visualisation\,\footnote{Pour  l'instant, uniquement un export en svg est possible.}, voir le dessin dans la figure~\ref{fig:exemple_Flot_de_liens_lib}.
+Un intérêt de cette implémentation est de permettre, en python, la génération de visualisation\,\footnote{Pour l'instant, uniquement un export en svg est possible.}, voir le dessin dans la figure~\ref{fig:exemple_Flot_de_liens_lib}.
 Parmi les possibilités offertes par la visualisation, il est possible de n'afficher qu'une partie des n\oe{}uds ou de ne garder qu'un sous intervalle de temps.
 De plus, il est possible de choisir la couleur des liens de manière manuelle ou en fonction d'une partition de liens.
 

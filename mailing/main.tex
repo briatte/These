@@ -119,7 +119,7 @@ Le but est d'évaluer si cette structure de flot peut se rapprocher d'une struct
 Comme dit précédemment, les communautés sont souvent définies comme étant des structures devant être densément connectées.
 C'est pourquoi nous nous attachons à étudier la densité des discussions.
 
-Comme ces données se modélisent par un flot de liens où les liens n'ont pas de durée, nous étudions la densité non pas dans le flot de liens initial mais dans $\sigma(\xi(L,\Delta))$  pour différentes valeurs de $\Delta$ entre 1 seconde et 20 ans.
+Comme ces données se modélisent par un flot de liens où les liens n'ont pas de durée, nous étudions la densité non pas dans le flot de liens initial mais dans $\sigma(\xi(L,\Delta))$ pour différentes valeurs de $\Delta$ entre 1 seconde et 20 ans.
 La notation $\delta{\alpha..\omega}(\sigma(\xi(L,\Delta)))$ est cependant très lourde et nous la simplifions par $\delta_{\Delta}(L)$ et nous parlons donc de $\Delta$-densité.
 Tout d'abord dans la figure~\ref{fig:dens_fil_discusion} est représentée la $\Delta$-densité globale du le flot.
 En couvrant un spectre aussi large de $\Delta$, on observe que la $\Delta$-densité est croissante avec $\Delta$ mais surtout on observe bien la convergence de $\Delta$-densité vers $3.139\times 10^{-4}$, la densité du graphe agrégé, lorsque $\Delta$ est proche de $\omega - \alpha$.
@@ -132,7 +132,7 @@ En couvrant un spectre aussi large de $\Delta$, on observe que la $\Delta$-densi
 \end{figure}
 
 Cependant, la $\Delta$-densité du flot n'apporte que peu d'informations en elle-même.
-Elle est surtout utile pour comparer les valeurs de $\Delta$-densité des sous-flots que sont les discussions, c'est-à-dire  $\delta(\sigma(\xi(\Delta,D_i)))$.
+Elle est surtout utile pour comparer les valeurs de $\Delta$-densité des sous-flots que sont les discussions, c'est-à-dire $\delta(\sigma(\xi(\Delta,D_i)))$.
 Ainsi dans la figure~\ref{fig:intra_dens_discussion}, est présentée la distribution cumulative inverse de la $\Delta$-densité des discussions pour différentes valeurs de $\Delta$.
 On remarque que les différentes valeurs de $\Delta$ ne semblent pas influencer qualitativement la distribution de $\Delta$-densité.
 Cette courbe met surtout en évidence que les discussions sont des structures beaucoup plus denses que le flot.
@@ -151,7 +151,7 @@ Bien que notable, ce fait est attendu notamment car le flot dure beaucoup plus l
 
 Afin d'aller plus loin dans l'étude de cette structure, il faut revenir à une définition plus précise de ce qu'est une bonne communauté.
 En soit, une valeur de densité n'est pas suffisante pour définir une structure communautaire.
-En effet, une discussion ayant une densité de $0.8$ peut  ne pas être une communauté tandis qu'une autre ayant une densité proche de zéro peut être une communauté.
+En effet, une discussion ayant une densité de $0.8$ peut ne pas être une communauté tandis qu'une autre ayant une densité proche de zéro peut être une communauté.
 Il faut définir un point de comparaison pour effectivement affirmer qu'une structure est particulièrement dense.
 La prise en compte de la densité globale est un début mais n'est pas suffisante.
 
@@ -164,7 +164,7 @@ Pour un graphe $G=(V,E)$ et une communauté $C_i$ de la partition $C = \{C_j\}_{
 Il s'agit simplement de la probabilité qu'un lien existe entre un n\oe{}ud de $C_i$ et un n\oe{}ud d'une autre communauté.
 Encore une fois, cette notion n'a pas de sens direct dans le formalisme de flot de liens et il est nécessaire de l'adapter.
 Pour ce faire, nous définissons la $\Delta$-densité inter discussions entre deux discussions $D_i$ et $D_j$: $\delta^{inter}_{\Delta}(D_i,D_j)$.
-Soit $\Delta_{ij}=\xi(D_i \cup D_j,\Delta)$ et $L_{inter}(D_i, D_j) = (T',V',E')$ avec  $T'=[\beta(D_i \cup D_j) - \Delta/2,\psi(D_i \cup D_j) + \Delta/2]$, $V'= V(\Delta_{ij})$ et $E' = \xi(E,\Delta) \setminus \Delta_{ij}$.
+Soit $\Delta_{ij}=\xi(D_i \cup D_j,\Delta)$ et $L_{inter}(D_i, D_j) = (T',V',E')$ avec $T'=[\beta(D_i \cup D_j) - \Delta/2,\psi(D_i \cup D_j) + \Delta/2]$, $V'= V(\Delta_{ij})$ et $E' = \xi(E,\Delta) \setminus \Delta_{ij}$.
 Avec ces notation, $\delta^{inter}_{\Delta}(D_i,D_j)$ est égal à: $\delta^{inter}_{\Delta}(D_i,D_j) = \delta(L_{inter}(D_i, D_j))$.
 Il s'agit donc de la densité du flot inter discussions qui est constitué des liens entre les n\oe{}uds induits par $D_i$ et $D_j$ qui n'appartiennent ni à $D_i$ ni à $D_j$.
 Dans la figure~\ref{fig:inter_dens_discussion_ex}, un exemple de flot inter discussion est représenté.
@@ -175,7 +175,7 @@ Il est important de noter que le nombre de liens pris en compte dans le flot int
 %\subfloat[Inverse cumulative distribution of inter-threads density.]{
 	\includegraphics[width=0.65\linewidth]{img/mailing/inter_flot.eps}
 %}
-\caption{Le flot entre les discussions \textcolor{olivegreen}{\textbf{verte}} et  \textcolor{briquered}{\textbf{rouge}} est constitué des liens ou partie de liens en \textbf{noir}. Les liens en \textcolor{gray}{\textbf{gris}} ne sont pas pris en compte.}
+\caption{Le flot entre les discussions \textcolor{olivegreen}{\textbf{verte}} et \textcolor{briquered}{\textbf{rouge}} est constitué des liens ou partie de liens en \textbf{noir}. Les liens en \textcolor{gray}{\textbf{gris}} ne sont pas pris en compte.}
 \label{fig:inter_dens_discussion_ex}
 \end{figure}
 
@@ -364,7 +364,7 @@ C'est pourquoi nous adoptons une autre manière d'ajouter une durée sur les lie
 Pour chaque message $m$, nous connaissons $p(m)$, le message auquel il répond dans la discussion.
 Nous définissons alors les liens de $\mathfrak{L}$ qui ont une durée de la manière suivante: ${(t(p(m)),t(m),a(m),a(p(m))}_m$.
 Ainsi, deux messages $m_1$ et $m_2$ se succédant dans une discussion sont par définition reliés topologiquement car $a(m_1)= a(p(m_2))$.
-Ces deux messages sont aussi reliés temporellement car  nous avons la relation suivante:
+Ces deux messages sont aussi reliés temporellement car nous avons la relation suivante:
 \begin{align*}
 [t(p(m_1)),t(m_1)]\cap [\mathbf{t(p(m_2))},t(m_2)] &= \\
 [t(p(m_1)),t(m_1)]\cap [\mathbf{t(m_1)},t(m_2)] &= [t(m_1)] \neq \emptyset.
@@ -416,7 +416,7 @@ Le résultat est visible dans la figure~\ref{fig:dens_mail_louvain}.
 Comme les liens de $\mathfrak{L}$ ont une durée, il est possible d'utiliser directement la densité au lieu de la $\Delta$-densité utilisée précédemment.
 On remarque que les groupes de $\mathfrak{D}$, bien que plus gros, sont plus denses que les groupes de $D$.
 Cependant la distribution cumulative inverse cache les effets de la taille sur la densité.
-Or, une analyse manuelle montre qu'à nombre de liens égal (entre $2$ et $160$) les groupes trouvés par Louvain sont  plus denses en moyenne, $0.46$ contre $0.38$. 
+Or, une analyse manuelle montre qu'à nombre de liens égal (entre $2$ et $160$) les groupes trouvés par Louvain sont plus denses en moyenne, $0.46$ contre $0.38$. 
 La médiane est également plus élevée: $0.34$ contre $0.33$.
 En revanche, les plus gros groupes ($\mathcal{D}_j|>160$) trouvés par Louvain ont une densité plus faible ce qui peut être dû à leur taille.
 
@@ -429,7 +429,7 @@ rappel(D_i)= \max_{j} \frac{|\mathfrak{D}_j \cap D_i|}{|D_i|}.
 \label{eq:rappel}
 \end{equation*}
 
-Dans la figure~\ref{fig:rec_inclusion_niveau0}, sont présentées la $pr\acute{e}cision$  des groupes et le $rappel$ des discussions en fonctions de leur taille.
+Dans la figure~\ref{fig:rec_inclusion_niveau0}, sont présentées la $pr\acute{e}cision$ des groupes et le $rappel$ des discussions en fonctions de leur taille.
 Chaque point représente la moyenne de la $pr\acute{e}cision$ (resp. $rappel$) pour les groupes (resp. discussions) d'une taille donnée.
 On voit qu'il y a un important rappel et ce même pour les grandes discussions, ce qui veut dire qu'en général une discussion $D_i$ est totalement incluse dans un groupe $\mathfrak{D}_j$.
 En revanche, la précision est très faible car un groupe $\mathfrak{D}_j$ contient plusieurs discussions, ce qui est cohérent avec la taille très importante des groupes de $\mathfrak{D}_j$.
@@ -471,7 +471,7 @@ rappel(D_i,h)= \max_{j} \frac{|\mathfrak{D}_{h,j} \cap D_i|}{|D_i \cap \mathfrak
 \end{equation}
 
 Ainsi, le $rappel$ au niveau $h$ prend en compte le maximum d'élément qu'il est possible de trouver à ce niveau.
-La définition de $pr\acute{e}cision$ ne pose quant à  elle pas de problème.
+La définition de $pr\acute{e}cision$ ne pose quant à elle pas de problème.
 La figure~\ref{fig:rec_inclusion} représente le $rappel$ adapté et la $pr\acute{e}cision$ pour le premier et deuxième niveau de récursion de la même manière que pour la figure~\ref{fig:rec_inclusion_niveau0}.
 On remarque que, dès le premier niveau, le rappel baisse et que ce phénomène s'amplifie fortement au niveau suivant.
 Cela implique que les discussions ne sont plus incluses dans un groupe mais au contraire réparties dans plusieurs.
@@ -522,7 +522,7 @@ Nous avons à chaque fois testé un ensemble de valeurs de $\Delta$ variant d'un
 Il semble donc que la $\Delta$-densité soit relativement robuste vis-à-vis de $\Delta$ dans ce contexte.
 
 Nous avons tout d'abord observé que les discussions forment une structure plus dense que le flot de liens.
-De manière encore plus forte, nous avons constaté, grâce à la  $\Delta$-densité inter discussion, que les discussions sont plus denses en interne qu'en externe.
+De manière encore plus forte, nous avons constaté, grâce à la $\Delta$-densité inter discussion, que les discussions sont plus denses en interne qu'en externe.
 C'est une caractéristique importante des communautés que l'on trouve dans les graphes mais qui n'avait pas été observée dans un contexte temporel.
 \`A partir de ces observations, nous avons également observé les relations entre les discussions.
 Via le graphe de chevauchement temporel, nous avons validé le fait que différentes discussions ont lieu en même temps et que par conséquent une agrégation temporelle entraînerait une perte d'information.

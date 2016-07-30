@@ -3,14 +3,14 @@
 \chaptermark{État de l'art}
 \minitoc
 \label{chap:etat_art}
-Dans cette thèse, nous étudions deux axes de recherche orthogonaux qui sont liés aux graphes.
-Avant de présenter ces deux axes dans les sections~\ref{sec:intro_communaute} et \ref{sec:intro_extension_temporelle}, nous revenons dans la section~\ref{sec:def_graphe} sur quelques définitions et notations utiles pour manipuler des graphes.
+Dans cette thèse, nous étudions deux axes de recherche orthogonaux qui sont liés aux graphes: la détection de communautés et les extensions temporelles des graphes.
+Ceux-ci seront présentés dans les sections~\ref{sec:intro_communaute} et \ref{sec:intro_extension_temporelle} après que nous soyons revenus, dans l section~\ref{sec:def_graphe}, sur quelques définitions et notations utiles pour manipuler des graphes.
 
 Le premier axe de recherche est la détection de structures dans les graphes et plus particulièrement de communautés.
 Une communauté est une partie du graphe telle qu'il existe de nombreux liens à l'intérieur de la communauté et moins de liens entre cette communauté et le reste du graphe.
 Cependant aucune définition ne fait l'unanimité.
 La notion de communauté dépend du contexte et de la méthode.
-Malgré cette définition floue, des structures communautaires ont été trouvées dans de nombreux graphes dans plusieurs domaines tels que le réseau constitué des régions du cerveau \cite{DeReus2014}, un réseau de distribution d'eau \cite{DiNardo2015} et un réseau d'interactions d'animaux \cite{Farine2015}.
+Malgré cette définition floue, des structures communautaires ont été trouvées dans de nombreux graphes dans différents domaines tels que le réseau constitué des régions du cerveau \cite{DeReus2014}, un réseau de distribution d'eau \cite{DiNardo2015} et un réseau d'interactions d'animaux \cite{Farine2015}.
 Ces notions de communautés et les méthodes de détection sont définies dans la section~\ref{sec:intro_communaute}.
 
 Le second axe de recherche est la prise en compte du temps dans la théorie des graphes.
@@ -21,15 +21,15 @@ Imaginons par exemple un graphe représentant les alliances politiques dans un p
 Si toutes les alliances politiques sont agrégées, alors les personnes changeant de parti politique seront faussement considérées comme influentes car connectées à plusieurs partis alors qu'elles peuvent, en réalité, ne plus avoir de contact dans leur ancien parti.
 Ainsi, il n'est plus possible d'observer la répartition des alliances politiques dans ce genre de réseau si l'agrégation temporelle est trop importante~\cite{Mucha2010}.
 
-Si on prend en compte le temps, alors il est possible de détecter des structures plus fines que dans le cas statique.
-En effet, il devient possible de détecter des instants où l'organisation générale change~\cite{Rosvall2010}, de comprendre quels sont les instants où un n\oe{}ud est important~\cite{Magnien2015,Costa2015,Takaguchi2016}, ou bien de détecter des groupes temporels~\cite{Cazabet2010}.
+Si l'on prend en compte le temps, alors il devient possible de détecter des structures plus fines que dans le cas statique.
+En effet, on peut détecter des instants où l'organisation générale change~\cite{Rosvall2010}, comprendre quels sont les instants où un n\oe{}ud est important~\cite{Magnien2015,Costa2015,Takaguchi2016}, ou bien détecter des groupes temporels~\cite{Cazabet2010}.
 Pour ce faire, plusieurs extensions de la théorie des graphes ont été proposées et elles sont présentées dans la section~\ref{sec:intro_extension_temporelle}.
 
 
 \section{Définitions dans les graphes}
 \label{sec:def_graphe}
 
-Un graphe $G$ est défini par un couple $(V, E)$  où $V$ est un ensemble de n\oe{}uds et $E \subseteq V \times V$ est un ensemble de liens, chaque lien étant une paire de n\oe{}uds.
+Un graphe $G$ est défini par un couple $(V, E)$ où $V$ est un ensemble de n\oe{}uds et $E \subseteq V \times V$ est un ensemble de liens, chaque lien étant une paire de n\oe{}uds.
 Sauf mention contraire, nous considérons des graphes non-orientés, c'est-à-dire pour toute paire de n\oe{}uds $u,v \in V$, les liens $(u,v)$ et $(v,u)$ sont équivalents.
 Nous considérons également uniquement des liens non-pondérés, c'est-à-dire qu'un lien est soit présent soit absent.
 Enfin, nous ne considérons que des graphes simples, c'est-à-dire qu'il n'existe au maximum qu'un seul lien entre deux n\oe{}uds et aucun lien de la forme $(u,u)$.
@@ -44,13 +44,13 @@ Avec ces notations, nous définissons les notions suivantes:
 \item[Densité] La densité, $\delta(G)$ d'un graphe est la probabilité que deux n\oe{}uds pris au hasard soient reliés par un lien: $\delta(G)=\dfrac{2m}{n(n-1)}$;
 \item[Degré moyen] Le degré moyen $\tilde{\delta}(G)$ est égal à : $\tilde{\delta}(G)=\dfrac{2m}{n}$;
 \item[Chemin] Un chemin dans un graphe est une suite de liens $((u_1,v_1),...,(u_k,v_k))$ telle sorte $v_{i}=u_{i+1} \ \forall i \in [1,k-1]$;
-\item[Chemin] Un cycle est un chemin dont les premier et dernier n\oe{}uds sont identiques;
+\item[Cycle] Un cycle est un chemin dont les premier et dernier n\oe{}uds sont identiques;
 \item[Graphe connexe] Un graphe est dit connexe s'il existe un chemin entre toutes les paires de n\oe{}uds du graphe;
 \item[Composante connexe] Une composante connexe est un ensemble de n\oe{}uds $V'\subseteq V$ qui est connexe et maximal, c'est-à-dire qu'il n'est pas possible d'ajouter un n\oe{}ud dans $V'$ de telle sorte que $V'$ soit connexe;
 \item[Arbre] Un arbre est un graphe connexe sans cycle; il contient $n-1$ liens pour $n$ n\oe{}uds;
 \item[Clique] Une clique, aussi appelée graphe complet, est le graphe le plus dense et elle est composée de $\dfrac{n(n-1)}{2}$ liens pour $n$ n\oe{}uds;
 \item[Sous-graphe] Un graphe $G'=(V',E')$ est un sous-graphe de $G$ si et seulement si $V' \subseteq V$ et $E' \subseteq E$;
-\item[Graphe induit] Le graphe induit par un ensemble de n\oe{}uds $V' \subseteq V$ est défini par $V'$ et $E'= E \cap (V' \times V')$.  
+\item[Graphe induit] Le graphe induit par un ensemble de n\oe{}uds $V' \subseteq V$ est défini par $V'$ et $E'= E \cap (V' \times V')$.
 \end{description}
 
 
@@ -150,7 +150,7 @@ RI(\mathcal{X},\mathcal{Y}) = \dfrac{a_{11} + a_{00}}{a_{11}+a_{01}+a_{10}+ a_{0
 \end{equation}
 Cependant, $a_{00}$ est souvent très grand comparé à $a_{11}$ car il est courant de ne pas mettre deux n\oe{}uds dans la même communauté.
 \`A cause de cela, le \emph{Rand Index} peut être proche de $1$ même pour des partitions assez différentes.
-Pour palier à ce problème, le \emph{Adjusted Rand Index} (ARI)~\cite{Hubert1985} a été proposé .
+Pour remédier à ce problème, le \emph{Adjusted Rand Index} (ARI)~\cite{Hubert1985} a été proposé .
 Le \emph{Rand Index} et sa version ajustée permettent de comparer des partitions.
 Porumbel \emph{et al.}~\cite{Porumbel2011} ont proposé l'Omega Index qui est une extension de l'ARI pour les couvertures.
 
@@ -160,7 +160,7 @@ Dans ce cas, la probabilité qu'un élément a d'être dans un ensemble $X \in \
 De manière similaire, la probabilité jointe est $P(X,Y) = |X \cap Y|/|V|$.
 Avec ces définitions, il est possible de calculer l'entropie d'une partition, $H(\mathcal{X})$, l'entropie conditionnelle, $H(\mathcal{X}|\mathcal{Y})$ et l'information mutuelle $I(\mathcal{X},\mathcal{Y})$.
 Cette dernière est définie par $I(\mathcal{X}, \mathcal{Y}) = H(\mathcal{X}) - H(\mathcal{X}|\mathcal{Y})$.
-L'entropie, $H(\mathcal{X})$, et l'entropie conditionnelle, $H(\mathcal{X}|\mathcal{Y})$, sont selon la définition de Shanon: 
+L'entropie, $H(\mathcal{X})$, et l'entropie conditionnelle, $H(\mathcal{X}|\mathcal{Y})$, sont, selon la définition de Shanon: 
 \begin{equation}
 H(\mathcal{X}) = - \sum_{X \in \mathcal{X}} P(X)\log(P(X)),\quad H(\mathcal{X}|\mathcal{Y}) = -\sum_{X \in \mathcal{X},\ Y \in \mathcal{Y}} P(X, Y) \log \dfrac{P(X,Y)}{P(Y)}.
 \end{equation}
@@ -188,7 +188,7 @@ Aussi les critères permettant la caractérisation d'une communauté peuvent var
 Ces méthodes sont tout de même réparties en plusieurs catégories selon qu'elles capturent une partition ou une couverture de n\oe{}uds.
 Ces deux structures correspondent à deux visions possibles de l'organisation d'un graphe et du réseau sous-jacent.
 Nous présentons ces deux catégories dans les sous-sections suivantes.
-Il en existe également une troisième catégorie qui est la détection de communautés sous la forme de partitions de liens que nous traitons dans le chapitre~\ref{chap:Expected_Node}\,\footnote{La détection de couvertures de liens est encore très peu étudié.}.
+Il en existe également une troisième qui est la détection de communautés sous la forme de partitions de liens que nous traitons dans le chapitre~\ref{chap:Expected_Node}\,\footnote{La détection de couvertures de liens est encore très peu étudié.}.
 
 \subsection{Partitions de n\oe{}uds}
 \label{subsec:Part_noeuds}
@@ -200,12 +200,13 @@ Une illustration du graphe obtenu est visible dans la figure~\ref{fig:ecole_prim
 La classe de chaque élève est également connue.
 Comme chaque élève appartient à une et une seule classe, les classes forment une partition des élèves.
 Cette partition est une bonne structure communautaire car on remarque que les élèves d'une même classe interagissent beaucoup entre eux mais peu avec les élèves des autres classes.
-Cela se remarque particulièrement bien pour la classe $3A$.
+Cela se remarque bien pour la classe $3A$.
 Il existe beaucoup de liens entre les élèves de la classe $3A$ mais aucun avec les élèves de la classe $5A$ par exemple.
+En cela, la structure en classes constitue une vérité de terrain.
 
 \begin{figure}
 \centering
-\includegraphics[width=0.6\linewidth]{img/Intro/ecole_primaire}
+\includegraphics[width=0.7\linewidth]{img/Intro/ecole_primaire}
 \caption{Graphe de contact des enfants d'une école primaire. L'épaisseur du lien représente la durée d'interaction entre deux élèves. La couleur représente la classe de chaque élève et la taille représente le degré du n\oe{}ud. Les professeurs sont en gris.\protect\footnotemark}
 \label{fig:ecole_primaire}
 \end{figure}
@@ -213,11 +214,11 @@ Il existe beaucoup de liens entre les élèves de la classe $3A$ mais aucun avec
 
 Afin de capturer des partitions de n\oe{}uds, beaucoup de méthodes existent.
 Des états de l'art sont d'ailleurs régulièrement publiés~\cite{Fortunato2010,Plantie2013a, Malliaros2013a, Harenberg2014a}.
-Afin d'aider le lecteur, nous détaillons ici quelques unes des méthodes les plus utilisées.
+Afin de faciliter la compréhension du sujet, nous détaillons ici quelques unes des méthodes les plus utilisées.
 
 \subsubsection{Méthodes utilisant un modèle}
 \label{def:Modularite}
-Comme une communauté est souvent définie comme devant être très densément connectée, le problème est de trouver une fonction capable d'évaluer la qualité d'une communauté.
+Une communauté étant souvent définie comme devant être très densément connectée, le problème est de trouver une fonction capable d'évaluer la qualité d'une communauté.
 Pour ce faire, il faut définir une métrique qui mesure la densité, \emph{e.g.} le nombre de liens dans un groupe.
 Puis, il est nécessaire de définir comment évaluer cette métrique.
 
@@ -233,25 +234,25 @@ Il est donc nécessaire de trouver une autre approche.
 
 \bigskip
 
-Plutôt que de normaliser une métrique par ses valeurs minimum et maximum, il est intéressant de considérer l'écart à une valeur attendue.
+Plutôt que de normaliser une métrique par ses valeurs minimale et maximale, il est intéressant de considérer l'écart à une valeur attendue.
 L'idée est la suivante: quelle serait la valeur attendue de la métrique considérée si le graphe n'avait pas de structure communautaire?
 Le problème est alors de "retirer" la structure communautaire du graphe ou bien de définir un ensemble de graphes similaires au graphe initial mais n'ayant pas de structure communautaire.
 Ce processus définit alors ce qu'on appelle un \emph{modèle nul}.
-Détecter des communautés se traduit ainsi en trouver des groupes qui s'éloignent du modèle nul où il n'existe pas de communauté.
+Détecter des communautés revient alors à trouver des groupes qui s'éloignent du modèle nul pour lequel il n'existe pas de communauté.
 
 Ce changement est astucieux car il est relativement aisé de définir des graphes n'ayant pas de structure.
-Il suffit de créer des graphes complètement aléatoires~\cite{Erdos1959} où les liens du graphes sont tirés de manière uniforme.
+Il suffit de créer des graphes complètement aléatoires~\cite{Erdos1959} dont les liens sont tirés de manière uniforme.
 Afin que les graphes aléatoires puissent être comparés au graphe initial, des contraintes sont généralement ajoutées et donnent lieu à différents modèles nuls.
-Le premier modèle nul de graphe est celui de Erdös-Rényi~\cite{Erdos1959} où le nombre de liens et le nombre de n\oe{}uds des graphes aléatoires doivent être les mêmes que dans le graphe initial.
+Le premier modèle nul de graphe est celui de Erdös-Rényi~\cite{Erdos1959} dans lequel le nombre de liens et le nombre de n\oe{}uds des graphes aléatoires doivent être les mêmes que dans le graphe initial.
 Un autre modèle très couramment utilisé est le modèle de configuration~\cite{Bender1978a}.
 Dans ce modèle, la distribution des degrés est également fixe.
-Le modèle de configuration est utilisé car il a été observé que les graphes provenant de données réelles ont une distribution des degrés très éloignée d'une distribution uniforme.
-C'est pourquoi l'ajout de la contrainte sur les degrés permet de considérer des graphes plus proche du graphe initial. 
-Il existe bien évidement d'autres modèles possibles considérant d'autres contraintes~\cite{Newman2009}.
+Le modèle de configuration est privilégié car il a été observé que les graphes provenant de données réelles ont une distribution des degrés très éloignée d'une distribution uniforme.
+C'est pourquoi l'ajout de la contrainte sur les degrés permet de considérer des graphes plus proches du graphe initial. 
+Il existe d'autres modèles possibles considérant d'autres contraintes, notamment sur le nombre de cliques de taille 3 (nommées triangles en théorie des graphes)~\cite{Newman2009}.
 
 \paragraph{Modularité}
 La modularité~\cite{Newman2004} est une fonction qui associe à chaque partition de n\oe{}uds une valeur entre $-1$ et $1$.
-Plus la valeur de modularité d'une partition est élevée, plus la partition est censée capturer une bonne structure communautaire.
+Plus la valeur de modularité d'une partition est élevée, plus la partition est censée détecter une bonne structure communautaire.
 La modularité est définie de la manière suivante pour une partition $\mathcal{C}$:
 
 \begin{equation}
@@ -260,14 +261,15 @@ Q(\mathcal{C}) = \dfrac{1}{2m}\sum_{i,j \in V} \left(A_{ij} - \dfrac{d_id_j}{2m}
 où $\delta_{C(i)=C(j)}$ est égal à $1$ si $i$ et $j$ sont dans la même communauté et $0$ sinon.
 Il s'agit pour deux n\oe{}uds d'une même communauté de comparer la présence ou l'absence d'un lien, $A_{ij}$, à la probabilité que ces n\oe{}uds soient reliés dans le modèle de configuration, $\dfrac{d_id_j}{2m}$.
 L'idée sous-jacente est que les n\oe{}uds d'une communauté devraient partager plus de liens que ce qui est attendu dans le modèle de configuration.
-De très nombreux travaux ont par la suite étudié les caractéristiques de la modularité et son optimisation.
-Tout d'abords, il a été montré que l'optimisation de la modularité est un problème NP-Complet~\cite{Brandes2007}.
-Il est donc nécessaire de recourir à des heuristiques afin de trouver rapidement une partition proche de l'optimum.
+De très nombreux travaux ont étudié les caractéristiques de la modularité et son optimisation.
+Tout d'abord, il a été montré que l'optimisation de la modularité est un problème NP-Complet~\cite{Brandes2007}.
+Il est donc nécessaire de recourir à des heuristiques\,\footnote{Une heuristique est une méthode de calcul qui fournit rapidement (en temps polynomial) une solution réalisable, pas nécessairement optimale, pour un problème d'optimisation.} afin de trouver rapidement une partition proche de l'optimum.
 Parmi l'ensemble des algorithmes existants, l'algorithme de Louvain~\cite{Blondel2008a} est l'un des plus rapide.
 Il existe également des variantes de cet algorithme~\cite{Huang2015,Traag2015c}.
 
 D'autres travaux se sont attachés à l'étude de la modularité.
-Il a été montré que la modularité souffre du problème de \emph{limite de résolution}~\cite{Fortunato2007,Lancichinetti2011} car le modèle de configuration présuppose une répartition uniforme des tailles des communautés.
+Il a été montré que la modularité souffre du problème de limite de résolution~\cite{Fortunato2007,Lancichinetti2011}: il n'est pas possible de détecter de petites communautés lorsque le graphe est grand.
+Cela est dû au modèle de configuration qui présuppose une répartition uniforme des tailles des communautés.
 Il a par ailleurs été montré que la modularité n'offre pas de maximum clair et que beaucoup de partitions différentes ont des évaluations proches~\cite{Good2010}.
 Pour répondre à ces problèmes, il existe différentes variantes de la modularité~\cite{Reichardt2006,Delvenne2010}.
 
@@ -275,69 +277,68 @@ Pour répondre à ces problèmes, il existe différentes variantes de la modular
 %La fonction Surprise~\cite{Aldecoa2011,Traag2015b} est une autre fonction de qualité qui se base quant à elle sur le modèle de Erdös-Rényi pour évaluer la surprise d'observer un groupe de n\oe{}uds relié par $l$ liens.
 
 \paragraph{\emph{Stochastic Block Model}}
-Nous avons défini précédemment la notion de modèle nul permettant de se comparer à l'absence de communautés.
-Il est également possible de modéliser une structure communautaire puis de vérifier \emph{a posteriori} si ce modèle pourrait être à l'origine du graphe observé.
+Nous avons défini précédemment la notion de modèle nul permettant de comparer une structure d'un graphe à l'absence de communautés.
+Il est également possible d'utiliser un modèle génératif modélisant une structure communautaire puis de vérifier \emph{a posteriori} si ce modèle pourrait être à l'origine du graphe observé.
 Le problème de détection de communauté est alors un problème d'inférence qui est traité avec des outils statistiques tel que le \emph{stochastic block model} (SBM)~\cite{Holland1983a,Nowicki2001}.
 L'idée derrière le SBM est la suivante: la probabilité que deux n\oe{}uds soient reliés dépend uniquement de leur groupe respectif.
-Si le graphe a une structure communautaire\,\footnote{Il est également possible de représenter d'autres type de structures.}, alors deux n\oe{}uds d'une même communauté devraient avoir une forte chance d'être connectés.
+Si le graphe a une structure communautaire\,\footnote{Le SBM permet également de représenter d'autres type de structures.}, alors deux n\oe{}uds d'une même communauté devraient avoir une forte probabilité d'être connectés.
 \`A l'inverse, deux n\oe{}uds de deux communautés différentes devraient avoir une probabilité assez faible d'être connectés.
 Le SBM est défini par de nombreux paramètres: le nombre de groupes, l'assignation d'un groupe à chaque n\oe{}ud et les probabilités d'interactions entre les groupes.
 Avec un jeu de paramètres donné, il est possible de calculer la vraisemblance que ce jeu de paramètres soit à l'origine du graphe.
 Trouver une partition de n\oe{}uds dans ce contexte est alors équivalent à trouver le jeu de paramètres qui est le plus vraisemblablement à l'origine du graphe.
 
 
-Dans le SBM, tous les n\oe{}uds sont considérés comme équivalents en particulier vis-à-vis du degré ce qui n'est pas le cas dans beaucoup de graphes provenant de données réelles.
+Dans le SBM, tous les n\oe{}uds sont considérés comme équivalents en particulier vis-à-vis du degré, ce qui peu courant avec des graphes provenant de données réelles.
 C'est pourquoi une version tenant compte du degré des n\oe{}uds a été proposée: le Degree-corrected Stochastic Block Model (DSBM)~\cite{Karrer2011}.
-Enfin d'après des récents travaux~\cite{Newman2016}, il semblerait que le DSBM et l'optimisation de la modularité soient liés.
+Enfin d'après des récents travaux~\cite{Newman2016}, il semblerait qu'optimiser la vraisemblance du DSBM et la modularité soient des problèmes équivalents.
 
 \subsubsection{Méthodes utilisant des marches aléatoires}
 Il existe d'autres approches que celles basées sur un modèle nul ou sur un modèle génératif.
-Notamment, il y a les méthodes utilisant les marches aléatoires \cite{Pons2005,Rosvall2008}.
-Ces méthodes tirent parti du fait que si une communauté est densément connectée alors un marcheur aléatoire devrait y rester assez longtemps.
+Il y a notamment les méthodes utilisant les marches aléatoires \cite{Pons2005,Rosvall2008}.
+Ces méthodes partent de l'observation qu'un marcheur aléatoire reste longtemps dans une communauté densément connectée.
 
-En particulier, la méthode Infomap~\cite{Rosvall2008} repose sur une idée très élégante qui est la suivante.
-Une partition de n\oe{}uds est une carte du graphe et, en ce sens, elle doit aider sa lecture.
-Une carte est efficace si elle permet de mieux comprendre l'objet d'étude, c'est à dire en réduisant sa complexité.
-Dans une carte d'un pays, les départements découpent l'espace en zones disjointes et la majorité des routes sont à l'intérieur des départements.
-Dans une carte, il est courant qu'un nom de ville soit unique dans un département mais qu'un même nom puisse être utilisé dans plusieurs départements.
-De plus, un voyageur se déplaçant aléatoirement sur les routes a peu de chance de sortir d'un département.
+En particulier, la méthode Infomap~\cite{Rosvall2008} repose sur l'idée très élégante est suivante:
+une partition de n\oe{}uds est une carte du graphe et, en ce sens, elle doit aider sa lecture.
+Une carte est efficace si elle permet de mieux comprendre l'objet d'étude, c'est à dire si elle réduit sa complexité.
+Considérons la carte de France, les départements découpent l'espace en zones disjointes et la majorité des routes sont à l'intérieur des départements.
+Aussi, il est courant qu'un nom de ville soit unique dans un département mais qu'il puisse être utilisé dans plusieurs départements.
+De plus, un voyageur se déplaçant aléatoirement sur les routes a peu de chance de sortir d'un département dans un temps donnée.
 Pour décrire, \emph{a posteriori}, l'ensemble des villes traversées par ce voyageur, il suffit alors de donner le département initial puis la liste des villes visitées.
 Il n'est pas nécessaire de répéter le département pour chaque ville si le voyageur n'en est pas sorti.
 En ce sens, la découpe d'un pays en départements permet de réduire la complexité de la description du voyage.
 Il s'agit donc d'un problème lié à la théorie de l'information et de sa compression.
-De manière similaire, Rosvall et Bergstrom utilise des marcheurs aléatoires se déplaçant sur les n\oe{}uds du graphe et les communautés comme zones du graphe.
+De manière similaire, Rosvall et Bergstrom utilisent des marcheurs aléatoires se déplaçant sur les n\oe{}uds du graphe et les communautés comme zones du graphe.
 Si les communautés sont bien formées, alors les marcheurs aléatoires restent bloqués à l'intérieur des communautés et la description de leur marche est courte.
 La longueur de cette description devient alors la signature de la partition et plus la signature est courte, meilleure la partition est.
 
-Le phénomène de résolution limite a également été étudié dans le cadre de Infomap~\cite{Kawamoto2015}.
-Il semble que cet effet existe également dans Infomap mais qu'il soit beaucoup moins prononcé.
+Le phénomène de limite de résolution a également été étudié dans le cadre de Infomap~\cite{Kawamoto2015} mais il est beaucoup moins prononcé.
 
 \paragraph{Autres méthodes}
 Il existe bien d'autres méthodes pour détecter des communautés en tant que partition des n\oe{}uds.
 Les méthodes spectrales~\cite{Donetti2004,Mitrovic2009} se basent sur les vecteurs propres de la représentation d'un graphe sous la forme d'une matrice.
-De manière moins formelle, il existe également les méthodes de propagation de labels (LPA)~\cite{Raghavan2007a,Li2014c}.
-Dans ces méthodes, chaque n\oe{}ud a initialement un label puis à chaque itération chaque n\oe{}ud prend comme label un des labels de ses voisins.
-En général, un n\oe{}ud prend comme label celui qui est le plus présent parmi ses voisins.
+De manière moins formelle, il existe également les méthodes de \emph{Label Propagation Algorithm} (LPA)~\cite{Raghavan2007a,Li2014c}.
+Dans ces méthodes, chaque n\oe{}ud a initialement un label puis à chaque itération chaque n\oe{}ud prend comme label l'un des labels de ses voisins.
+En général, un n\oe{}ud prend comme label celui qui est le plus représenté parmi ses voisins.
 Au bout d'un certain nombre d'itérations ou une fois à l'équilibre, il ne reste que quelques labels dans le graphe et ils représentent les communautés.
 
 
-\resume{Il existe de très nombreuses méthodes pour la détection de communautés en tant que partition de n\oe{}uds. Il semble que les méthodes d'optimisation de \textbf{modularité}, la méthode \textbf{Infomap} et  les \textbf{Stochastic Block Model} soient les plus utilisées dans la littérature.}
+\resume{Il existe de très nombreuses méthodes pour la détection de communautés en tant que partition de n\oe{}uds. Il semble que les méthodes d'optimisation de \textbf{modularité}, la méthode \textbf{Infomap} et les \textbf{Stochastic Block Model} soient les plus utilisées dans la littérature.}
 
 \subsection{Couverture de n\oe{}uds}
 \label{subsec:cover}
 Jusqu'à maintenant, nous avons considéré les communautés comme des partitions de n\oe{}uds.
-Or, les partitions sont très restrictives et ne peuvent pas capturer toutes les situations possibles.
+Or, les partitions sont très restrictives et ne peuvent pas représenter toutes les situations possibles.
 Prenons l'exemple d'un graphe reflétant des interactions entre personnes.
 Il existe des communautés qui sont disjointes comme le travail et la famille mais bien souvent des personnes appartiennent à plusieurs groupes, voir l'exemple dans la figure~\ref{fig:ex_overlap_communaute}.
 Ainsi le groupe des personnes faisant du sport et le groupe des personnes travaillant ensemble peuvent ne pas être disjoints.
 Si tel est le cas, alors il n'est plus possible de représenter ces communautés avec une partition.
 Il est nécessaire de manipuler une couverture de n\oe{}uds.
-Ainsi dans l'exemple dans la figure~\ref{fig:ex_overlap_communaute}, les n\oe{}uds rouges appartiennent à deux groupes au lieu d'un seul.
+Ainsi dans l'exemple de la figure~\ref{fig:ex_overlap_communaute}, les n\oe{}uds rouges appartiennent à deux groupes au lieu d'un seul.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.31\linewidth]{img/Intro/Illustration_of_overlapping_communities.jpg}
-	\caption{Exemple graphe avec une structure communautaire chevauchante représentée par les couleurs\,\protect\footnotemark.}
+	\caption{Exemple de graphe avec une structure communautaire chevauchante représentée par les couleurs\,\protect\footnotemark.}
 	\label{fig:ex_overlap_communaute}
 \end{figure}
 \footnotetext{Image provenant de \url{https://en.wikipedia.org/wiki/Clique_percolation_method}.}
@@ -345,14 +346,14 @@ Ainsi dans l'exemple dans la figure~\ref{fig:ex_overlap_communaute}, les n\oe{}u
 Une fois encore, la littérature est très vaste dans ce domaine et nous ne ferons pas une liste exhaustive des méthodes existantes.
 Il existe de nombreux états de l'art dans le domaine~\cite{ Kanawati2014, Xie2013,Bandyopadhyay2015, Hric2014a}.
 
-Une des premières méthodes de détection de couverture de n\oe{}uds est la \emph{Clique Percolation Method} (CPM)~\cite{Palla2005}.
+Une des plus anciennes méthodes de détection de couverture de n\oe{}uds est la \emph{Clique Percolation Method} (CPM)~\cite{Palla2005}.
 L'algorithme CPM repose sur le principe de transitivité qui serait à l'origine des communautés: si $i$ et $j$ sont reliés par un lien, alors un n\oe{}ud $k$ qui serait relié à $i$ aurait une forte chance d'être également connecté à $j$.
-Il s'agit de la formalisation du proverbe "Les amis de mes amis sont mes amis".
+Il s'agit de la formalisation du proverbe "Les amis de mes amis sont aussi mes amis".
 Si ce principe est réellement à l'origine des communautés, alors les communautés doivent être composées de plusieurs cliques.
 C'est pourquoi CPM cherche l'ensemble des cliques d'une taille $k$ donnée\,\footnote{En général, $k$ est compris entre 3 et 5 pour des raisons de coût de calcul.} puis fusionne toutes les cliques qui partagent suffisamment de n\oe{}uds, en général $k-1$. 
-Comme cette méthode est relativement coûteuse, Kumpula \emph{et al.}~\cite{Kumpula2008} ont repris le même mécanisme en optimisant le mode de calcul.
+Comme cette méthode est relativement coûteuse en temps de calcul, Kumpula \emph{et al.}~\cite{Kumpula2008} ont repris le même mécanisme en optimisant le mode de calcul.
 
-\subsubsection{Extension des méthodes de détection de partitions}
+\subsubsection{Extensions des méthodes de détection de partitions}
 
 La majorité des méthodes existantes pour les partitions ont été adaptées pour manipuler les couvertures de n\oe{}uds.
 Il existe notamment plusieurs extensions de la modularité~\cite{Shen2009,Nicosia2009}.
@@ -361,46 +362,46 @@ Par conséquent, ces extensions sont beaucoup moins utilisées que la modularit�
 
 \paragraph{Stochastic Block Model}
 En revanche, le SBM s'adapte très bien aux couvertures de n\oe{}uds.
-Une extension du SBM est le Mix-Membership Stochastic Block Model (MMSBM)\cite{Airoldi2008} qui permet à un n\oe{}ud d'avoir plusieurs groupes.
+Une extension du SBM est le \emph{Mix-Membership Stochastic Block Model} (MMSBM)~\cite{Airoldi2008} qui permet à un n\oe{}ud d'être assigné plusieurs groupes.
 Dans~\cite{Gopalan2013a}, les auteurs utilisent la même méthode mais en échantillonnant le graphe initial afin de réduire le coût de calcul.
-Il existe d'autres méthodes à base de modèle génératif~\cite{Ball2011,Yang2013}.
-Ces méthodes se basent sur des graphes d'affiliations~\cite{BreigerRonald1974}.
+Il existe d'autres méthodes utilisant des modèles génératifs~\cite{Ball2011,Yang2013}.
+Ces méthodes se basent sur des graphes d'affiliation~\cite{BreigerRonald1974}.
 Un graphe d'affiliation est un graphe biparti entre les n\oe{}uds d'une part et les communautés d'autre part.
-Dans la méthode de Ball \emph{et al.}~\cite{Ball2011}, ce graphe d'affiliation est pondéré et la pondération représente la propension d'un n\oe{}ud à créer des liens dans un groupe donné tandis que pour Yang et Leskovec~\cite{Yang2013} il s'agit du facteur d'appartenance du n\oe{}ud au groupe.
+Dans la méthode de Ball \emph{et al.}~\cite{Ball2011}, ce graphe d'affiliation est pondéré et la pondération représente la propension d'un n\oe{}ud à créer des liens dans un groupe donné tandis que pour Yang et Leskovec~\cite{Yang2013}, il s'agit du facteur d'appartenance du n\oe{}ud au groupe.
 Une fois le graphe d'affiliation défini, il est nécessaire de savoir recréer la matrice d'adjacence et, en ce sens, ces méthodes se rapprochent des méthodes de factorisation en matrices non-négatives~\cite{Lee1999}.
-Le but de la factorisation non-négative d'une matrice donnée est d'être capable de trouver deux matrices dont les entrées sont non-négatives telles que leur combinaison permette de retrouver la matrice initiale.
+Le but de la factorisation non-négative d'une matrice donnée est de trouver deux matrices dont les valeurs sont non-négatives telles que leur combinaison permette de retrouver la matrice initiale.
 
 Jusqu'à récemment ce genre de technique généralisant le SBM ne pouvait s'appliquer qu'à des graphes relativement petits.
-Cependant les méthodes récentes~\cite{Gopalan2013a, Yang2013} arrivent à traiter des graphes ayant énormément de liens, de l'ordre $10^{9}$ à $10^{12}$ liens.
+Cependant, de nouvelles méthodes~\cite{Gopalan2013a, Yang2013} arrivent à traiter des graphes ayant énormément de liens, de l'ordre $10^{9}$ à $10^{12}$ liens.
 
 
 
 \paragraph{Propagation de label}
 Des méthodes ont étendu la propagation de label aux couvertures de n\oe{}uds~\cite{Gregory2010,Xie2011}.
 Le principal changement est qu'un n\oe{}ud ne stocke plus un unique label mais soit plusieurs labels, soit des fréquences d'apparition de labels.
-Ainsi à la fin de l'algorithme, il suffit de choisir les labels les plus fréquents.
-Cependant ce mécanisme de propagation change radicalement l'idée initiale.
+Ainsi à la fin de l'algorithme, les communautés d'un n\oe{}ud sont les labels les plus fréquents.
+Cependant, ce mécanisme de propagation change radicalement l'idée initiale.
 En effet, la diffusion d'un label n'est plus directement contrainte par la diffusion des autres labels.
 Dans cette nouvelle configuration, il est possible qu'un label soit présent dans tous les n\oe{}uds.
-De plus selon les auteurs de ces méthodes, des communautés non connexes peuvent apparaître ce qui nécessite l’ajout d’un mécanisme de \emph{post-processing}.
+De plus, selon les auteurs de ces méthodes, des communautés non connexes peuvent apparaître, ce qui nécessite l’ajout d’un mécanisme de \emph{post-processing} pour les filtrer.
 
 
 \paragraph{Infomap}
-Il s'agit sûrement avec le SBM de la méthode étant la moins "déformée" par l'adaptation aux couvertures de n\oe{}uds.
+Il s'agit sûrement, avec le SBM, de la méthode étant la moins "déformée" par l'adaptation aux couvertures de n\oe{}uds.
 En effet, il suffit de relâcher la contrainte sur le fait qu'un n\oe{}ud n'appartienne qu'à un seul groupe.
-Il est toujours possible de décrire un trajet par un nom de groupe puis une liste de n\oe{}uds visités dans le même groupe.
+Il est toujours possible de décrire un trajet par le nom de groupe puis une liste de n\oe{}uds visités dans le même groupe.
 Ainsi, la notion de longueur de description est toujours valide dans ce contexte.
 Ce travail d'extension a été fait par Esquivel et Rosvall~\cite{Esquivel2011}.
 
 \subsubsection{Méthodes utilisant des communautés \emph{ego}-centrées}
 On a vu avec la modularité qu'il est assez difficile de définir une fonction de qualité évaluant une couverture de n\oe{}uds en fonction des caractéristiques des groupes.
 C'est pourquoi certaines méthodes s'affranchissent complètement de fonction de qualité globale et se concentrent sur des propriétés locales.
-Dans cette philosophie, on peut distinguer les méthodes se basant sur des fonctions de proximité et celle utilisant des fonctions de qualité locales.
+Avec cette approche, nous distinguons les méthodes se basant sur des fonctions de proximité et celle utilisant des fonctions de qualité locales.
 
-Dans le premier cas, le but est de mesurer la proximité entre tous les n\oe{}uds et un n\oe{}ud appelé \emph{ego}.
+Dans le premier cas, le but est de mesurer la proximité entre tous les n\oe{}uds et un n\oe{}ud appelé \emph{ego} choisi arbitrairement.
 Puis une fois les n\oe{}uds ordonnés selon leur similarité, il suffit de définir une coupe pour séparer les n\oe{}uds appartenant à la même communauté que l'\emph{ego} et les autres.
 Le choix de la coupe se fait, en général, en fonction de la présence de forte décroissance de la similarité.
-Pour obtenir une couverture de n\oe{}uds, il est nécessaire d'appliquer ce processus \emph{ego}-centré sur plusieurs \emph{ego}.
+Pour obtenir une couverture de n\oe{}uds, il est nécessaire d'appliquer ce processus \emph{ego}-centré sur plusieurs \emph{ego}, qu'il est nécessaire de choisir.
 Danisch \emph{et al.}~\cite{Danisch2012} utilisent une méthode de diffusion pour mesurer la similarité, alors que Whang \emph{et al.}~\cite{Whang2013} utilisent le \emph{Personalized Page Rank}.
 Ces méthodes ne sont cependant pas à même d'évaluer les communautés qu'elles trouvent.
 \bigskip
@@ -410,12 +411,17 @@ Il s'agit d'algorithmes qui initialement considèrent de très petites communaut
 Afin de ne pas étendre un groupe indéfiniment, un ajout n'est fait que s'il améliore la fonction de qualité locale.
 Ainsi dans ce type d'algorithme, il y a deux critères important:
 le choix des communautés initiales et le critère d'évaluation.
-Dans la majorité des cas, chaque n\oe{}ud constitue initialement une communauté. 
-La méthode OSLOM~\cite{Lancichinetti2011a} diffère de cette situation car elle utilise comme point de départ une partition trouvée par l'algorithme de Louvain ou par Infomap.
+Dans la majorité des cas, chaque n\oe{}ud constitue en lui-même initialement une communauté. 
+La méthode OSLOM~\cite{Lancichinetti2011a} diffère car elle utilise comme point de départ une partition trouvée par l'algorithme de Louvain ou par Infomap.
 
-Les fonctions de qualité applicables sont très nombreuses et nous n'en mentionnerons que trois.
+Les fonctions de qualité applicables sont très nombreuses et nous n'en mentionnerons que trois les plus courantes.
 Tout d'abord, il est possible d'utiliser le degré relatif~\cite{Luo2008} d'un groupe comme critère.
-Il s'agit du ratio entre le nombre $l_{in}$ de liens internes à un groupe de n\oe{}uds et le nombre de liens total $l_{in}+l_{out}$: $ \dfrac{l_{in}}{l_{in}+l_{out}}$.
+Il s'agit du ratio entre le nombre $l_{in}$ de liens internes à un groupe de n\oe{}uds et le nombre de liens total de ce groupe de n\oe{}uds: 
+\begin{equation}
+ degr\acute{e}\ relatif = \dfrac{l_{in}}{l_{in}+l_{out}}\,.
+\end{equation}
+
+
 En effet, plus le degré relatif est élevé, plus le groupe est dense comparé à son voisinage et plus il a de fortes chances d'être une bonne communauté. 
 Cette formulation est assez proche de la conductance ou coupe normalisée~\cite{Shi2000}:
 \begin{equation}
@@ -430,8 +436,8 @@ cohesion=\dfrac{\Delta_3}{ {k \choose 3} } \times \frac{\Delta_3}{\Delta_3+\Delt
 \end{equation}
 où $\Delta_3$ est le nombre de triangles dont les 3 n\oe{}uds sont à l'intérieur du groupe et $\Delta_2$ est le nombre de triangles dont uniquement 2 n\oe{}uds sont à l'intérieur du groupe.
 
-D'autres méthodes d'initialisation ainsi que fonctions de qualité sont détaillées dans l'article de Kanawati~\cite{Kanawati2014}.
-Ces méthodes semblent très prometteuses car elles permettent de traiter efficacement de très grands graphes tout comme les algorithme de propagations de label mais elles profitent des fonctions de qualité locales qui permettent d'une certaine manière d'évaluer le résultat obtenu.
+D'autres méthodes d'initialisation ainsi que des fonctions de qualité sont détaillées dans l'article de Kanawati~\cite{Kanawati2014}.
+Ces méthodes semblent très prometteuses car elles permettent de traiter efficacement de très grands graphes, tout comme les algorithmes de propagation de label, mais en profitant des fonctions de qualité locales. Ces fonctions de qualité locales permettent d'une certaine manière d'évaluer le résultat obtenu.
 
 
 
@@ -439,37 +445,36 @@ Ces méthodes semblent très prometteuses car elles permettent de traiter effica
 La littérature sur la détection de couverture de n\oe{}uds est encore très récente.
 Il est donc délicat de commencer à tirer des conclusions.
 Cependant, il semble que les extensions de la modularité ne soient pas réellement capables de trouver des couvertures de n\oe{}uds.
-En plus d'Infomap, c'est surtout les méthodes utilisant des modèles génératifs et celles utilisant des fonctions de qualité locales qui semblent les plus à même de capturer des couvertures de n\oe{}uds pertinentes.
-Les modèles génératifs ne semblent en effet plus limités à de petits graphes.
-Les méthodes utilisant des fonctions de qualité locales sont quant à elle très rapides et le choix de la fonction de qualité permet de s'adapter au contexte.
+En plus d'Infomap, ce sont surtout les méthodes utilisant des modèles génératifs et celles utilisant des fonctions de qualité locales qui semblent les plus à même de capturer des couvertures de n\oe{}uds pertinentes.
+Les modèles génératifs ne semblent plus limités à de petits graphes.
+Les méthodes utilisant des fonctions de qualité locales sont quant à elles très rapides et le choix de la fonction de qualité permet de s'adapter au contexte.
 }
 
 
-\section{Extension temporelle des graphes}
+\section{Extensions temporelles des graphes}
 \label{sec:intro_extension_temporelle}
 
 Les graphes sont utilisés pour représenter une situation ou résoudre un problème réel.
-Dans la section précédente, nous nous sommes attachés à présenter une partie des méthodes considérant le problème de la détection de communautés recouvrantes ou non.
-Cependant toutes ces méthodes reposent sur la validité de la représentation du problème par un graphe.
+Dans la section précédente, nous nous sommes attachés à présenter une partie des méthodes traitant du problème de la détection de communautés recouvrantes ou non.
+Cependant, toutes ces méthodes reposent sur l'hypothèse de la validité de la représentation du problème par un graphe.
 Cette hypothèse est justifiée dans énormément de cas mais elle ne l'est plus lorsque l'objet d'étude évolue de manière significative.
 
 Afin d'illustrer ce propos, nous nous appuyons sur le même exemple de réseau de personnes que nous avons présenté dans la sous-section~\ref{subsec:Part_noeuds} et qui est illustré dans la figure~\ref{fig:ecole_primaire}.
 Dans cet exemple, deux élèves sont reliés dans le graphe s'ils ont interagi au moins une fois au cours de la capture.
-Comme la capture n'a duré que deux jours, il est fort probable que les élèves n'aient pas changé d'habitude durant la capture.
-En étudiant le graphe agrégé, il est possible de mettre en avant l'organisation générale des élèves mais déjà de l'information a été perdue.
-En effet, il n'est pas possible de différencier le comportement observé le matin de celui observé le soir car l'ensemble des interactions sont agrégées dans le graphe.
-De plus, imaginons que la capture ait duré plusieurs mois voire plusieurs années.
-Dans ce cas de figure, il ne sera plus possible de dégager un comportement général des élèves car il aura changé durant ce laps de temps.
+Comme la capture n'a duré que deux jours, il est fort probable que les élèves n'aient pas changé leurs habitudes durant la capture.
+En étudiant le graphe agrégé, il est possible de mettre en avant l'organisation générale des élèves mais, de l'information a déjà été perdue.
+En effet, il n'est pas possible de différencier le comportement observé le matin de celui observé le soir.
+De plus, imaginons que la capture ait duré plusieurs mois voire plusieurs années, il ne sera plus possible de dégager un comportement général des élèves car il aura changé durant ce laps de temps.
 En particulier, de nouveaux groupes d'amis se seront formés et d'autres auront disparu.
 Tous ces changements influencent le graphe agrégé et tendent au fur et à mesure à le rapprocher d'une clique ce qui le rend complètement inexploitable.
 Le temps est donc une dimension qu'il est nécessaire de prendre en compte.
 
 Le domaine de l'épidémiologie est un très bon exemple de l'importance du temps.
-Un modèle épidémique représente la propagation d'une maladie dans une population en fonction des contacts qui existent.
-Il est donc tout naturel de s'appuyer initialement sur un graphe où les n\oe{}uds représentent des personnes et les liens représentent les interactions entre personnes.
+Un modèle épidémique représente la propagation d'une maladie dans une population en fonction des contacts qui existent entre les personnes.
+Il est donc tout naturel de s'appuyer initialement sur un graphe dont les n\oe{}uds représentent des personnes et les liens représentent les interactions entre personnes.
 En plus du graphe, il est nécessaire d'ajouter l'état de chaque n\oe{}ud, \emph{e.g.} sain ou infecté.
 Ainsi, un n\oe{}ud sain ne peut devenir infecté que s'il est relié à un n\oe{}ud infecté dans le graphe.
-Ce genre de modèles met donc en avant un chemin de diffusion, \emph{e.g.} une suite de personnes transmettant la maladie à l'autre.
+Ce genre de modèles met donc en avant un chemin de diffusion, \emph{e.g.} une suite de personnes transmettant la maladie de l'un à l'autre.
 
 Les premiers travaux~\cite{pastor2001}
 s'appuient sur un graphe d'interactions de personnes agrégeant toute l'information temporelle.
@@ -493,13 +498,13 @@ Des états de l'art dans ce domaine ont d'ailleurs déjà été esquissés~\cite
 \label{fig:exemple_TVG}
 \end{figure}
 La première solution qui a été apportée ne prend le temps en compte que partiellement.
-Il s'agit de manipuler une série de graphes où chaque graphe représente le réseau durant un intervalle de temps donné.
+Il s'agit de manipuler une série de graphes dont chaque graphe représente le réseau durant un intervalle de temps donné.
 Ainsi, il est possible d'appliquer les outils de la théorie des graphes sur chaque intervalle.
 Cependant chaque intervalle de temps est représenté par un graphe agrégé.
 Il y a donc toujours une perte d'information.
-Plus formellement, une série de graphe est définie par $\mathcal{G}=\{G_i\}_{i < T}$ où $T$ est un entier, voir l'illustration~\ref{fig:exemple_TVG}.
+Plus formellement, une série de graphe est définie par $\mathcal{G}=\{G_i\}_{i < T}$ où $T$ est un entier, voir la figure~\ref{fig:exemple_TVG}.
 
-Cette définition initiale laisse le choix sur la découpe du temps en intervalle.
+Cette définition initiale laisse le choix de la découpe du temps en intervalle.
 Il est possible de choisir des intervalles de tailles égales ou non et disjoints ou chevauchants~\cite{Wang2012}.
 Utiliser des intervalles à durée variable permet de mieux tenir compte de la dynamique.
 Par exemple lors de l'étude d'interactions de personnes, il est très courant d'observer une très faible activité la nuit et une plus forte la journée.
@@ -507,7 +512,7 @@ Un graphe agrégeant ce qui se passe sur un intervalle de 5h sera vide dans le p
 La détection d'intervalles pertinents est donc un vaste sujet de recherche~\cite{Rosvall2010,Krings2012,Ribeiro2013,Caceres2013,Peel2015,de2016detection}.
 
 La notion même de temps est importante.
-Albano \emph{et al.}~\cite{Albano2014} proposent d'utiliser une autre mesure que la seconde, à savoir le nombre de changements comme mesure du temps.
+Albano \emph{et al.}~\cite{Albano2014} proposent d'utiliser une autre mesure qu'une unité temporelle, à savoir le nombre de changements comme mesure du temps.
 Ainsi, le temps n'avance pas si aucun changement n'a lieu et au contraire il avance beaucoup si énormément de changements se produisent.
 Cette notion de temps se rapproche de celle de Lamport~\cite{Lamport1978} dans ses travaux sur les systèmes distribués.
 
@@ -516,14 +521,14 @@ Dans ce contexte de série de graphes, il y a eu assez tôt des méthodes de dé
 Il est, en effet, assez naturel d'appliquer une méthode de détection statique sur chaque graphe puis d'essayer de faire du suivi de communautés.
 Le suivi de communautés consiste à comprendre comment une communauté donnée évolue, étant donné une série de graphes et une série de partitions.
 Palla \emph{et al.}~\cite{Palla2007} ont été parmi les premiers à décrire les évolutions possibles d'une communauté.
-Muni d'indicateurs de similarité tels que l'indice de Jaccard, voir la section~\ref{def:graphe_comparaison}, il est possible de trouver les communautés les plus proches aux instants précédent et suivant.
+Muni d'indicateurs de similarité tels que l'indice de Jaccard (voir la section~\ref{def:graphe_comparaison}) il est possible de trouver les communautés les plus proches aux instants précédant et suivant.
 \`A partir de ces informations, six types d'évolutions d'une communauté sont définis:
 \begin{description}
-\item[Naissance] Une nouvelle communauté apparaît.
-\item[Agrandissement] La communauté continue d'exister et s'agrandit.
-\item[Fusion] Deux communautés fusionnent pour donner lieu à une nouvelle communauté.
-\item[Division] Une communauté se sépare en deux nouvelles communautés à l'étape suivante.
-\item[Rétrécissement] La communauté continue d'exister mais perd quelques n\oe{}uds.
+\item[Naissance] Une nouvelle communauté apparaît;
+\item[Agrandissement] La communauté continue d'exister et s'agrandit;
+\item[Fusion] Deux communautés fusionnent pour donner lieu à une nouvelle communauté;
+\item[Division] Une communauté se sépare en deux nouvelles communautés à l'étape suivante;
+\item[Rétrécissement] La communauté continue d'exister mais perd quelques n\oe{}uds;
 \item[Mort] Une communauté cesse d'exister dans les graphes suivants.
 \end{description}
 
@@ -533,20 +538,19 @@ C'est pourquoi des méthodes essayent de forcer une certaine stabilité de la pa
 Une approche détournée pour garder une certaine stabilité est d'utiliser la partition trouvée précédemment comme base de recherche pour l'intervalle suivant~\cite{Aynaud2010,Lancichinetti2011a}.
 
 Des extensions du SBM ont également été proposées par différents auteurs dans le cadre des séries de graphes.
-Yang \emph{et al.}~\cite{Yang2011} sont parmi les premiers à considérer ce cas de figure.
+Yang \emph{et al.}~\cite{Yang2011} sont parmi les premiers à considérer s'y attacher.
 Ils considèrent que la probabilité d'un lien entre deux communautés est fixe et que ce qui change est l'affiliation des n\oe{}uds au cours du temps.
 Ce processus de changement de communauté suit alors une chaîne de Markov cachée.
 \`A l'inverse, Corneli \emph{et al.}~\cite{Corneli2016} considèrent une partition de n\oe{}uds fixe tout au long du temps et c'est l'activité entre deux communautés qui change selon l'intervalle de temps.
 Xu et Hero~\cite{Xu2014} permettent à l'affiliation et à l'activité entre deux communautés de changer selon l'intervalle de temps.
 Cependant, il semblerait que cette relaxation se fasse au dépens de l'identifiabilité des paramètres d'après Matias et Miele~\cite{Matias2015}.
 Ils ont donc proposé une nouvelle méthode afin de résoudre ce problème.
-De plus, leur méthode permet de traiter des séries de graphes pondérés.
+De plus, cette méthode permet, de plus, de traiter des séries de graphes pondérés.
 
-\subsubsection{Tenseur 3D}
-Les tenseurs 3D ne sont pas en soi différents des séries de graphes.
+\subsubsection{Tenseurs 3D}
 Il est possible de voir un graphe comme une matrice carrée d'adjacence.
-Il est donc normal de concevoir une série de graphes comme un tenseur appartenant à $\mathcal{R}_{nnT}$.
-Ce changement de point de vue permet ainsi d'appliquer les méthodes d'algèbre linéaire, notamment la décomposition de tenseur.
+Il en découle la conception d'une série de graphes comme un tenseur appartenant à $\mathcal{R}_{nnT}$.
+Ce changement de point de vue permet l'application de méthodes d'algèbre linéaire, notamment la décomposition de tenseur.
 C'est la méthode proposée par Gauvin \emph{et al.}~\cite{Gauvin2014} pour étudier la structure communautaire des interactions d'élèves.
 Cependant ce genre de décomposition semble moins expressive que les SBM.
 
@@ -566,6 +570,7 @@ Par conséquent, un graphe multicouches est un graphe où il existe deux types d
 Les liens intra-couches représentent un connexion entre deux n\oe{}uds durant un intervalle de temps.
 Les liens inter-couches représentent un lien entre deux n\oe{}uds sur deux intervalles différents.
 Ces derniers sont utilisés pour identifier un même n\oe{}ud sur plusieurs intervalles et sont en général limités à relier deux couches consécutives.
+En jouant sur les pondérations des liens intra- et inter-couches, il est possible de faire varier l'importance du temps.
 
 Les graphes multicouches représentent les données évoluant dans le temps mais ils modélisent aussi très bien d'autres situations.
 Par exemple, ils représentent facilement les différents moyens de transport dans une ville où chaque moyen de transport (bus, voiture, métro ...) est représenté par une couche.
@@ -580,16 +585,15 @@ C'est le cas d'Infomap~\cite{de2015identifying}, de la modularité~\cite{Mucha20
 
 
 \resume{
-Les séries de graphes, les tenseurs et les graphes multicouches permettent de prendre en compte le temps tout en autorisant l'utilisation de méthodes conçues sur un graphe statique.
-Or, ces approches reposent sur une découpe du temps en sous-intervalles durant lesquels le temps n'est plus pris en compte afin d'obtenir un graphe statique.
-Il peut, en effet, être délicat de définir ces intervalles de temps.
-De plus, la construction des graphes agrégés entraîne une perte d'information temporelle et cela a une influence sur la précision temporelle des structures communautaires qui sont manipulables.
-Il n'est pas envisageable d'augmenter le nombre d'intervalles de temps car cela induirait d'une part des graphes agrégés avec très peu de liens et d'autre part le temps de calcul serait très fortement augmenté.
+Les séries de graphes, les tenseurs 3D et les graphes multicouches permettent de prendre en compte le temps tout en autorisant l'utilisation de méthodes conçues pour des graphes statiques.
+Or, ces approches reposent sur une découpe du temps en sous-intervalles durant lesquels le temps n'est plus pris en compte.
+Il peut être délicat de définir ces intervalles de temps: la construction des graphes agrégés entraîne une perte d'information temporelle et cela a une influence sur la précision temporelle des structures communautaires qui sont manipulables.
+Il n'est pas envisageable d'augmenter le nombre d'intervalles de temps car, d'une part, des graphes agrégés auraient très peu de liens et, d'autre part, le temps de calcul serait très fortement augmenté.
 }
 
-\subsection{Extension sans perte d'information temporelle}
+\subsection{Extensions sans perte d'information temporelle}
 \label{subsec:pasperte_info}
-\subsubsection{Graphe temporel}
+\subsubsection{Graphes temporels}
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.9\linewidth]{img/Intro/evolvingGraph.eps}
@@ -600,7 +604,7 @@ Il n'est pas envisageable d'augmenter le nombre d'intervalles de temps car cela 
 Les graphes temporels (\emph{Time Varying Graph} ou \emph{Evolving Graph})
 permettent de tenir compte de l'ensemble de l'information temporelle.
 Pour cela au lieu de considérer des intervalles de temps, ils considèrent l'ensemble des modifications qui affectent le graphe: les ajouts et retraits de liens.
-En pratique, cela revient à considérer sur chaque lien une fonction de présence en fonction de temps qui vaut $1$ à un instant $t$ si le lien existe à cet instant et $0$ sinon.
+En pratique, cela revient à considérer sur chaque lien une fonction de présence dépendant du temps qui vaut $1$ à un instant $t$ si le lien existe à cet instant et $0$ sinon.
 Ainsi, il est possible de connaître la structure de graphe à chaque instant.
 Ce formalisme est présenté dans différents travaux~\cite{Casteigts2011,Wehmuth2015} et illustré dans la figure~\ref{fig:exemple_evolving}.
 Dans cette figure, on voit apparaître l'ordre de modification du graphe.
@@ -622,11 +626,11 @@ Après chaque modification, ils considèrent également la possibilité de crée
 Ainsi, ils assurent une meilleure qualité de la partition au cours de l'évolution.
 
 
-\subsubsection{Flot de liens}
+\subsubsection{Flots de liens}
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.9\linewidth]{img/Intro/Flot_de_liens.eps}
-\caption{Flot de liens entre $6$ n\oe{}uds, représentés sur l'axe des ordonnées, au cours du temps représenté sur l'axe des abscisses.
+\caption{Flot de liens entre $6$ n\oe{}uds ( en ordonnées) au cours du temps (en abscisses).
 Dans l'exemple, il existe un lien entre $a$ et $b$ durant l'intervalle $[4,6]$.
 }
 \label{fig:exemple_Flot_de_liens}
@@ -635,26 +639,26 @@ Dans les graphes temporels, toute l'information temporelle est gardée.
 Cependant, l'intuition derrière cette méthode est qu'il existe une structure de graphe à chaque instant.
 Cette hypothèse n'est pas toujours vérifiée, en particulier lorsque les liens apparaissent et disparaissent très rapidement.
 C'est le cas des appels téléphoniques qui durent rarement plus d'une heure ou bien de manière plus frappante avec les SMS et les courriels qui n'ont même pas de durée.
-Dans ces contextes, il n'est pas possible de supposer qu'à chaque instant une structure de graphe existe.
-Il faut donc un formalisme et des mesures qui s'adaptent à ce contexte.
+Dans ces contextes, il n'est pas possible de supposer qu'à chaque instant une structure de graphe pertinente existe.
+
+Il faut donc un formalisme et des métriques qui s'adaptent à ce contexte.
 C'est pour répondre à ce besoin que le formalisme de flot de liens a été pensé.
 Le but est de construire un objet ne présupposant aucune structure et qui stocke toute l'information disponible.
-Même si le formalisme ne présuppose aucune contrainte structurelle, il se peut en revanche que le réseau représenté en ait.
+Même si le formalisme ne présuppose aucune contrainte structurelle, il se peut que le réseau représenté en ait.
 Par exemple dans les télécommunications, une personne ne peut appeler qu'une ou deux personnes en même temps.
-Plusieurs travaux~\cite{Holme2013a,Holme2015b,Holme2015e} font un tour d'horizon des méthodes existantes pour étudier les flots de liens qui sont souvent appelés \emph{temporal networks} mais il n'existe, à notre connaissance, qu'un seul travail donnant un fondement théorique solide aux flots de liens.
+Plusieurs travaux~\cite{Holme2013a,Holme2015b,Holme2015e} présentent des méthodes existantes pour étudier les flots de liens (également appelés \emph{temporal networks}) mais il n'existe, à notre connaissance, qu'un seul travail donnant un fondement théorique solide aux flots de liens.
 Il s'agit de Batagel et Praprotnik~\cite{Batagelj2016} qui se basent sur l'algèbre.
 Malheureusement avec une formulation purement algébrique, il semble difficile de transcrire l'ensemble des notions de graphes pour l'instant.
 \bigskip
 
-Prenons l'exemple des appels téléphoniques, c'est-à-dire qui parle avec qui à quelle heure et pendant combien de temps.
-Un appel peut donc être représenté par un quadruplet $(b,e,u,v)$ où $b$ (resp. $e$) est le début (resp. la fin) de l'appel et $u$ et $v$ représentent des personnes.
-Il est donc possible de modéliser des appels téléphoniques par un ensemble de quadruplets.
+Prenons l'exemple des appels téléphoniques modélisable par un ensemble de quadruplets.
+Un appel est représenté par un quadruplet $(b,e,u,v)$ où $b$ (resp. $e$) est le début (resp. la fin) de l'appel et $u$ et $v$ représentent des personnes en contact.
 De cette manière, aucune information n'est perdue et, en ce sens, flots de liens et graphes temporels sont équivalents. 
 Cependant, ce changement de perspective induit une réflexion différente selon le formalisme considéré.
 
 Les différences dans les méthodes de représentation des graphes temporels de la figure~\ref{fig:exemple_evolving} et celle des flots de liens de la figure~\ref{fig:exemple_Flot_de_liens} illustrent bien ce changement de perspective, bien que les deux figures ne représentent pas le même réseau.
 Dans l'exemple de la figure~\ref{fig:exemple_Flot_de_liens}, les n\oe{}uds sont représentés sur l'axe des ordonnées et le temps sur l'axe des abscisses.
-Un lien dans cette visualisation est représenté par un arc vertical reliant deux axes de n\oe{}uds et un trait horizontal représentant la durée du lien.
+Un lien dans cette visualisation est représenté par un arc vertical reliant deux n\oe{}uds et un trait horizontal représentant la durée du lien.
 Ainsi dans l'exemple, il existe un lien entre les n\oe{}uds $a$ et $b$ dans l'intervalle $[4,6]$.
 
 Dans un graphe temporel, on abordera plus souvent les questions d'évolution de communautés de n\oe{}uds ou de l'importance d'un n\oe{}ud.
@@ -665,22 +669,21 @@ De manière très manichéenne et inexacte, le formalisme de graphe temporel pou
 
 
 
-Avec ce formalisme, la majorité des travaux sont encore descriptifs car ce type d'objet n'a jamais été étudié sous cet angle.
+Avec ce formalisme, la majorité des travaux sont seulement descriptifs car la structure n'a jamais été étudiée dans ce type d'objet.
 De nombreux travaux ont étudié le temps séparant l'apparition de deux liens pour un n\oe{}ud~\cite{Malmgren2008,Malmgren2009}.
 Il semblerait que ces temps inter-contacts soient très hétérogènes et que de nombreuses connexions apparaissent dans un faible intervalle de temps suivie de longues durées sans activité.
 On parle alors de temps inter-contact \emph{bursty}.
-Les effets des temps inter-contacts sur les phénomènes de diffusions et de marches aléatoires sont très étudiés~\cite{Karsai2011,Karsai2012a,Starnini2012b,Rocha2013}.
-Il semble cependant ne pas y avoir de conclusion définitive sur le sujet car la diffusion peut être accélérée ou ralentie par les temps inter-contacts selon la structure sous-jacente.
+Les effets des temps inter-contacts sur les phénomènes de contagions et de marches aléatoires sont très étudiés~\cite{Karsai2011,Karsai2012a,Starnini2012b,Rocha2013}.
+Il n'y a cependant pas de conclusion définitive sur le sujet car la diffusion peut être accélérée ou ralentie par les temps inter-contacts selon la structure sous-jacente.
 
-Il existe également quelques méthodes qui s'intéressent plus à la structure des flots de liens.
-Des études~\cite{Kovanen2011a,Kovanen2013a} s'intéressent à la présence de motifs.
-Un motif dans un graphe est un petit sous-graphe comme le triangle qui est l'un des motifs les plus étudiés.
+Il existe également quelques travaux qui s'intéressent plus à la structure des flots de liens, notamment à la présence de motifs~\cite{Kovanen2011a,Kovanen2013a}.
+Dans un graphe, un motif est un petit sous-graphe, comme le triangle, qui est l'un des motifs les plus étudiés.
 Dans les flots de liens, le temps est également pris en compte dans les motifs.
 Il y a donc plusieurs variantes temporelles d'un même motif dans un graphe.
-Prenons l'exemple d'un chemin entre quatre n\oe{}uds $A$, $B$, $C$ et $D$ qui est représenté dans le graphe par  $\{(A,B), (B,C), (C,D)\}$.
-Dans un flot de liens, il existe deux variantes à ce motif soit
+Prenons l'exemple d'un chemin entre quatre n\oe{}uds $A$, $B$, $C$ et $D$ qui est représenté dans le graphe par $\{(A,B), (B,C), (C,D)\}$.
+Dans un flot de liens, il existe au moins deux variantes à ce motif soit
 $\{(t_1,A,B), (t_2,B,C), (t_3,C,D)\}$ soit $\{(t_1,A,B), (t_2,C,D), (t_3,B,C)\}$ avec $t_1<t_2<t_3$.
-Dans un cas,  une information peut être propagée au fur et à mesure de $A$ vers $D$ tandis que dans l'autre ce n'est pas possible.
+Dans un cas, une information peut être propagée au fur et à mesure de $A$ vers $D$ tandis que dans l'autre ce n'est pas possible.
 L'étude de la fréquence d'apparition de ces motifs dans le cas temporel permet d'observer si le flot de liens a une structure particulière. 
 
 
@@ -689,9 +692,9 @@ L'étude de la fréquence d'apparition de ces motifs dans le cas temporel permet
 Il existe peu de méthodes détectant des structures décrivant l'ensemble d'un flot de liens.
 Rozenshtein \emph{et al.}~\cite{rozenshtein2014} se penchent sur la détection de la zone la plus dense dans les flots de liens.
 Ils permettent de capturer un ensemble de n\oe{}uds et plusieurs intervalles de temps disjoints tels que ces n\oe{}uds sur ces intervalles aient le degré moyen le plus élevé dans le graphe agrégé sur ces intervalles.
-Bien que la mesure utilisée ne tienne pas directement compte du temps, leur méthode permet ainsi de mettre en évidence une partie du flot de liens.
+Bien que la mesure utilisée ne tienne pas directement compte du temps, la méthode permet de mettre en évidence une partie du flot de liens.
 
-Il existe également des travaux conduits dans l'équipe~\cite{Viard2016,viard:hal-01208330} sur la notion de clique  dans les flots de liens sans durée, c'est à dire un ensemble de $(b,b,u,v)$.
+Il existe également des travaux conduits dans l'équipe~\cite{Viard2016,viard:hal-01208330} sur la notion de clique dans les flots de liens sans durée, c'est à dire un ensemble de $(b,b,u,v)$.
 Ils généralisent la notion de clique à ces flots de liens: pour un delta donné, une delta-clique est un ensemble de n\oe{}uds et un intervalle de temps, tels que toutes les paires de n\oe{}uds dans cet ensemble interagissent au moins tous les delta sur cet intervalle.
 Dans ce cadre, ils proposent un premier algorithme permettant d’énumérer les delta-cliques.
 Ils ont de plus appliqué leur algorithme avec succès sur différents jeux de données.

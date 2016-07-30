@@ -53,7 +53,7 @@ Pour un groupe de liens $L \in \mathcal{L}$, on pose $V_{in}=\{u \in V, \exists 
 \centering
 \includegraphics[width=0.4\linewidth]{img/ExpectedNodes/exemple2}
 \caption{Exemple d'un groupe de liens $L$ (en \textcolor{semilightblue}{\textbf{bleu}}). Les liens \textcolor{pinkyred}{\textbf{rouges}} sont les liens adjacents $L_{out}$.
-Les n\oe{}uds internes $V_{in}$ sont en \textcolor{semilightblue}{\textbf{bleu}} et les n\oe{}uds adjacents $V_{out}$ en  \textcolor{pinkyred}{\textbf{rouge}}.}
+Les n\oe{}uds internes $V_{in}$ sont en \textcolor{semilightblue}{\textbf{bleu}} et les n\oe{}uds adjacents $V_{out}$ en \textcolor{pinkyred}{\textbf{rouge}}.}
 \label{fig:example_def_expected}
 \end{figure}
 
@@ -186,7 +186,7 @@ Leurs trois fonctions de qualité peuvent être calculées et optimisées sur le
 Ainsi, il suffit de construire le \emph{line-graph} approprié puis d'utiliser un algorithme existant d'optimisation de la modularité tel que l'algorithme de \emph{Louvain}~\cite{Blondel2008a}.
 
 
-Pour construire les \emph{line-graphs}  $LG_1$, $LG_2$ et $LG_3$, nous définissons $B\in \mathcal{M}_{n,m}$ la matrice d'incidence du graphe $G$: un élément $B_{i\alpha}$ de cette matrice $|V| \times |E|$ est égal à $1$ si le lien $\alpha$ est relié au n\oe{}ud $i$ et 0 sinon.
+Pour construire les \emph{line-graphs} $LG_1$, $LG_2$ et $LG_3$, nous définissons $B\in \mathcal{M}_{n,m}$ la matrice d'incidence du graphe $G$: un élément $B_{i\alpha}$ de cette matrice $|V| \times |E|$ est égal à $1$ si le lien $\alpha$ est relié au n\oe{}ud $i$ et 0 sinon.
 Les matrices $LG_1$, $LG_2$ et $LG_3$ sont alors définies de la manière suivante.
 
 \begin{center}
@@ -248,7 +248,7 @@ Donc afin d'étudier comment un groupe de $|L|$ liens est transformé dans le mo
 Un n\oe{}ud est interne à $L$ si au moins un de ses liens appartient à $L$.
 Ainsi pour calculer la probabilité qu'un n\oe{}ud soit interne dans le modèle de configuration, il faut donc calculer la probabilité qu'au moins un de ses demi-liens soit choisi lors du tirage aléatoire et sans remise de $2|L|$ demi-liens parmi les $2|E|$ demi-liens du graphe.
 Soit $B_u$ la variable aléatoire correspondant au nombre de fois où le n\oe{}ud $u$ est tiré.
-Cette variable suit une loi  hypergéométrique $B_u \sim \mathcal{G}\left(2|E|,d_G(u),2m\right)$.
+Cette variable suit une loi hypergéométrique $B_u \sim \mathcal{G}\left(2|E|,d_G(u),2m\right)$.
 Avec cette notation, on définie $\mu_G$ de la manière suivante:
 
 \begin{equation}
@@ -260,7 +260,7 @@ Voici quelques propriétés de la fonction $\mu_{G}(|L|)$ :
 \begin{itemize}
 \item La fonction $\mu_{G}$ dépend uniquement de la séquence de degrés $\{d_G(v)\}_{v \in V}$ et du nombre de liens.
 %On peut montrer que cette fonction est Schur-concave, ainsi plus les degrés sont uniformément répartis plus il sera surprenant d'observer un groupe de liens correspondant à peu de n\oe{}uds.
-\item Pour une distribution de degrés donnée, la fonction   $\mu_{G}(|L|)$ est une fonction croissante de $|E|$.
+\item Pour une distribution de degrés donnée, la fonction $\mu_{G}(|L|)$ est une fonction croissante de $|E|$.
 \item Si $L=E$, alors le nombre de n\oe{}uds attendus est bien égal à $|V|$.
 \item On a $\mu_{G}(1)\leq 2$, en effet le modèle nul n'interdit pas la présence de boucle.
 \end{itemize}
@@ -338,8 +338,8 @@ Dans une situation plus générale, la qualité d'un lien isolé dépend du nomb
 Moins le nombre de triangles est élevé, meilleure sera la qualité externe.
 
 Enfin il est intéressant de noter que la qualité du groupe contenant tous les liens est nulle.
-En effet comme dit précédemment, $Q_{in}(E)$est  égal à zéro, voir l'équation \ref{eq:nbsommet_esp}.
-De plus, si le groupe contient tous les liens alors il n'y a plus de liens adjacents et donc seule  $Q_{in}(E)$ influe sur $Q(E)$.
+En effet comme dit précédemment, $Q_{in}(E)$ est égal à zéro, voir l'équation \ref{eq:nbsommet_esp}.
+De plus, si le groupe contient tous les liens alors il n'y a plus de liens adjacents et donc seule $Q_{in}(E)$ influe sur $Q(E)$.
 
 
 
@@ -394,7 +394,7 @@ L'évaluation de la partition triviale n'est pas dépendante de $p$ et n'est cal
 Tout d'abord, la construction de cet exemple est symétrique pour les partitions en trois groupes.
 En effet, la partition en trois groupes lorsque $p$ est égal à $24$ est complètement équivalente à la partition en deux groupes lorsque $p$ est égal à $76$.
 Pour les partition en deux groupes, ces deux situations diffèrent par liens de $V' \times V\setminus V'$.
-Par ailleurs, il est possible de définir formellement la qualité de  chacune de ces partitions selon toutes les fonctions de qualité.
+Par ailleurs, il est possible de définir formellement la qualité de chacune de ces partitions selon toutes les fonctions de qualité.
 Cependant, la complexité des équations, surtout pour \emph{Expected Nodes} et $Evans_x$, rend le résultat difficilement interprétable.
 
 
@@ -430,7 +430,7 @@ La fonction $Evans3$ diffère légèrement des deux autres car elle a une amplit
 		\caption{\label{fig:1CMod}\emph{Expected Nodes}}		
 	\end{subfigure}
 		
-		\caption{\'Evaluation des 5 fonctions de qualité sur un graphe complet  de $100$ n\oe{}uds pour trois type de partitions.
+		\caption{\'Evaluation des 5 fonctions de qualité sur un graphe complet de $100$ n\oe{}uds pour trois type de partitions.
 		Les partitions testées sont présentées dans la section~\ref{Completegraph}.
 		Par définition, les résultats pour $Evans1$ et $Evans2$ sont identiques.
 		Les lignes en gris, pointillées et noires représentent respectivement la partition triviale, les partitions en deux groupes et les partitions en trois groupes.}
@@ -448,7 +448,7 @@ Nous définissons également cinq autres partitions qui contiennent 2, 3 ou 5 gr
 Soit $V_1$ l'ensemble des n\oe{}uds de la première clique, $V_2$ celui de la deuxième clique et $V_{12}=V_1 \cap V_2$ l'ensemble de n\oe{}uds commun à $V_1$ et $V_2$.
 Cette taxonomie des n\oe{}uds est illustrée dans la figure~\ref{fig:2Ctaxo}.
 
-Par abus de notations, nous notons également $V_{11}=V_1\setminus V_2$ et  $V_{22}=V_2\setminus V_1$.
+Par abus de notations, nous notons également $V_{11}=V_1\setminus V_2$ et $V_{22}=V_2\setminus V_1$.
 Il y a deux partitions en deux groupes: la partition $2A$ et $2B$.
 Dans la partition $2A$, les liens entre les n\oe{}uds de $V_{22}$ forment un groupe alors que le reste des liens forme l'autre groupe.
 Dans la partition $2B$, les liens entre les n\oe{}uds de $V_{1}$ forment un groupe alors que le reste des liens forme l'autre groupe.
@@ -658,7 +658,7 @@ Les fonctions de qualité $EvansX$ ne peuvent pas permettre de capturer les vér
 En effet, l'algorithme de Louvain est capable de trouver des partitions ayant une évaluation plus élevée que la vérité de terrain.
 La \emph{Partition Density}, quant à elle, souffre surtout de son incapacité à différencier clairement des partitions différentes.
 Cela se matérialise par des évaluations très similaires pour les vérités de terrain et la partition $LC$.
-Il en résulte que la \emph{Partition Density} ne semble pas à même de différencier clairement des partitions  clairement non similaires.
+Il en résulte que la \emph{Partition Density} ne semble pas à même de différencier clairement des partitions clairement non similaires.
 Lors de ces tests, \emph{Expected Nodes} ne semble pas souffrir de ces défauts.
 Pour ces raisons, nous pensons que \emph{Expected Nodes} est une mesure qui permet de bien évaluer les partitions de liens.
 

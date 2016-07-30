@@ -11,7 +11,7 @@ En plus de définir ces notions, nous les avons également implémentées dans u
 Ainsi avec, d'une part, un formalisme clairement défini et, d'autre part, une implémentation accessible, nous espérons faciliter l'utilisation de ces notions et surtout permettre à quiconque d'étendre ce formalisme en définissant d'autres métriques.
 
 \`A partir de ce formalisme, nous avons décrit une structure communautaire connue d'une séquence d'interactions, dans le chapitre~\ref{chap:mailing}.
-Il n'existait\,\footnote{Un jeu de données représentant le forum \emph{reddit} a été rendu public juillet 2015.} aucun jeu de de données  au début de cette thèse, à notre connaissance.
+Il n'existait\,\footnote{Un jeu de données représentant le forum \emph{reddit} a été rendu public juillet 2015.} aucun jeu de de données au début de cette thèse, à notre connaissance.
 C'est pourquoi nous avons collecté un jeu de données regroupant les courriels d'une liste de diffusion.
 Ce jeu de données est très intéressant de par sa temporalité, presque 20 ans, et de par sa précision, de l'ordre de la seconde.
 Grâce à ces informations, nous avons étudié la structure de discussions du point de vue de la densité.
@@ -50,7 +50,7 @@ La détection de partitions de liens, dans un réseau dynamique ou non, nécessi
 C'est pourquoi nous avons étudié plus en détails la détection de communautés sous la forme de partitions de liens, dans les cas statique et dynamique.
 
 
-Dans le chapitre~\ref{chap:Expected_Node},  nous avons considéré le cas statique et avons proposé une nouvelle méthode, \emph{Expected Nodes}, pour l'évaluation d'une partition de liens.
+Dans le chapitre~\ref{chap:Expected_Node}, nous avons considéré le cas statique et avons proposé une nouvelle méthode, \emph{Expected Nodes}, pour l'évaluation d'une partition de liens.
 Il existe, en effet, assez peu de méthodes de détection de partitions de liens dans les graphes et aucune ne s'est vraiment attachée à utiliser ce qui a fait le succès de la modularité: un modèle nul.
 Notre fonction de qualité, \emph{Expected Nodes}, comble ce manque en utilisant le même modèle nul que la modularité.
 Ainsi, un groupe de liens est une bonne communauté s'il induit moins de n\oe{}uds qu'attendus dans le modèle nul.
@@ -68,7 +68,7 @@ Cependant malgré nos efforts pour rendre plus efficace l'évaluation d'\emph{Ex
 Forts de notre proposition dans le cas statique, nous avons considéré la détection et l'évaluation de partitions de liens dans les flots de liens dans le chapitre~\ref{versQualite}.
 Pour ce faire, nous nous sommes intéressés à la génération de flots de liens avec une structure donnée et à la manière d'évaluer une telle partition.
 Pour générer un flot de liens, nous nous inspirons du \emph{Stochactic Block Model}.
-Ainsi, les liens entre deux n\oe{}uds donnés sont générés  si les n\oe{}uds appartiennent à une même communauté.
+Ainsi, les liens entre deux n\oe{}uds donnés sont générés si les n\oe{}uds appartiennent à une même communauté.
 Les temps séparant les apparitions de ces liens dépendent de l'activité de cette communauté.
 Ainsi, il est possible de générer des flots de liens très variés tout en ayant une vérité de terrain sur les liens.
 
@@ -97,7 +97,7 @@ Il existe bien évidement d'autres notions qui ont déjà été définies dans u
 Il est envisageable d'intégrer ces notions dans le formalisme de flots de liens afin de rendre l'ensemble des notions cohérentes entre elles.
 Par exemple, nous pourrions définir une mesure de centralité locale en comparant le degré temporel d'un n\oe{}ud vis-à-vis du degré temporel moyen de ses voisins.
 
-En plus de l'extension des métriques de la théorie  des graphes, il est intéressant de considérer d'autres types de mesures.
+En plus de l'extension des métriques de la théorie des graphes, il est intéressant de considérer d'autres types de mesures.
 En effet, les flots de liens regroupent de l'information structurelle et temporelle.
 Or en étendant les métriques de la théorie des graphes, nous apportons principalement de l'information structurelle.
 \`A l'opposé de ce processus, le traitement du signal est focalisé sur l'information temporelle.

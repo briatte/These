@@ -6,12 +6,12 @@ Nous avons vu dans le chapitre précédent que la génération de graphes ayant 
 Pour être utile à la validation de fonctions de qualité, un générateur doit être capable de construire des graphes ayant des caractéristiques vraisemblables de structures communautaires.
 Pour ce faire, plusieurs contraintes peuvent être considérées.
 Ce domaine de recherche est d'ailleurs toujours actif~\cite{Tabourier2011,Obradovic2014} car il est parfois nécessaire d'intégrer de nouvelles contraintes sur les graphes générés.
-Il existe cependant peu de méthodes pour générer des réseaux dynamiques, que ce soit sous la forme de série de graphes, de graphe temporel ou de flot de liens.
+Il existe cependant peu de méthodes pour générer des réseaux dynamiques, que ce soit sous la forme de séries de graphes, de graphes temporels ou de flots de liens.
 
 
 Dans ce chapitre, nous présentons un premier générateur de flots de liens sans durée avec une structure communautaire sur les liens.
-L'intuition derrière ce générateur est la suivante.
-Dans un réseau de personnes, une interaction existe entre deux personnes dans le cadre d'un intérêt commun délimité dans le temps.
+L'intuition qui sous tend ce générateur est la suivante:
+dans un réseau de personnes, une interaction existe entre deux personnes dans le cadre d'un intérêt commun délimité dans le temps.
 Ce point commun peut être un entraînement de sport, le travail ou une réunion de famille.
 Par exemple, des collègues communiquent principalement pendant la journée et rarement le soir.
 Au contraire, un groupe d'amis communiquent principalement le soir et le week end.
@@ -22,7 +22,7 @@ De plus comme un lien est généré à cause d'un intérêt commun, il est possi
 Pour générer un flot de liens, il suffit alors de répartir des points d'intérêt à chaque personne puis de générer des liens entre deux personnes lorsqu'un intérêt commun les relie.
 C'est selon ce principe que nous construisons notre générateur de flots de liens avec structure communautaire sur les liens.
 
-En modifiant la répartition des point d'intérêts  dans le temps et entre les personnes, il est ainsi possible de générer des flots de liens très divers.
+En modifiant la répartition des point d'intérêts dans le temps et entre les personnes, il est ainsi possible de générer des flots de liens très divers.
 
 \bigskip
 Nous explorons les possibilités ouvertes par ce générateur via deux pistes distinctes.
@@ -31,8 +31,7 @@ Puis, nous faisons une première proposition pour une fonction de qualité éval
 
 \bigskip
 
-Le chapitre est organisé de la manière suivante.
-Dans la section~\ref{sec:versqualite_existant}, nous revenons sur les travaux existants qui traitent de la génération de réseaux dynamiques.
+Le chapitre est organisé de la manière suivante: dans la section~\ref{sec:versqualite_existant}, nous revenons sur les travaux existants qui traitent de la génération de réseaux dynamiques.
 Puis dans la section~\ref{sec:versqualite_methode}, nous présentons notre méthode de génération de flots de liens.
 Enfin dans la section~\ref{sec:versqualite_Applications}, nous présentons l'utilisation du générateur pour tester des méthodes de détection de communautés statiques et la définition d'une fonction de qualité.
 
@@ -51,7 +50,7 @@ Ce genre de modèles capture très bien l'hétérogénéité des n\oe{}uds mais 
 
 
 Il est également possible d'appliquer un modèle génératif sur chaque graphe de la série indépendamment.
-C'est ce que propose de Granell \emph{et al.}~\cite{Granell2015a} qui utilise le SBM pour générer un graphe.
+C'est ce que proposent de Granell \emph{et al.}~\cite{Granell2015a} qui utilisent le SBM pour générer un graphe.
 Après chaque génération, des modifications sont appliquées au SBM pour représenter l'accroissement, le rétrécissement, la séparation ou la fusion de communautés.
 Voir l'illustration dans la figure~\ref{fig:qualite_Grannell}.
 Les méthodes de SBM sur des séries de graphes, évoquées dans la sous-section~\ref{subsec:perte_info}, peuvent également être utilisées pour la génération.
@@ -80,7 +79,7 @@ Dans ces méthodes, un flot de liens est généré à partir d'un système multi
 Un lien existe entre deux agents lorsqu'ils sont à distance de communication.
 Dans le modèle de Zhang \emph{et al.}, la direction prise par chaque agent n'est pas aléatoire mais en fonction de l'agent voisin étant le plus attractif.
 Il s'agit donc d'un modèle de mobilité préférentielle.
-Bien que ces méthodes génèrent des structures; il ne s'agit pas de structure communautaire explicite et elles ne peuvent pas être représentées sur les liens du flot de liens.
+Bien que ces méthodes génèrent des structures, il ne s'agit pas de structures communautaires explicites et elles ne peuvent pas être représentées sur les liens du flot de liens.
 
 
 
@@ -114,13 +113,13 @@ Dans le cadre de flots de liens, les générateurs ne permettent pas ou alors qu
 Nous définissons maintenant notre générateur de flots de liens sans durée ayant une structure communautaire.
 Notre approche est similaire au SBM car l'apparition de liens entre deux n\oe{}uds ne dépend que des communautés auxquelles ils appartiennent.
 Plus ils ont de communautés en commun, plus il existera de liens entre ces n\oe{}uds.
-S'ils n'ont aucune communauté en commun, alors il n'y aura pas ou peu de liens entre ces n\oe{}uds.
+S'ils n'ont aucune communauté en commun, alors, il n'y aura pas ou peu de liens entre ces n\oe{}uds.
 Tout comme le SBM, nous utilisons un graphe d'affiliation des n\oe{}uds aux communautés où il existe un lien entre un n\oe{}ud et une communauté si le n\oe{}ud appartient à la communauté.
 
-Dans le cadre de notre générateur, une communauté représente un intérêt et une personne peut naturellement avoir plusieurs intérêts.
+Dans le cadre de notre générateur, une communauté représente un intérêt, et une personne peut naturellement avoir plusieurs intérêts.
 Ainsi en reprenant l'exemple précédent, il existe dans le graphe d'affiliation autant de n\oe{}uds que de personnes et il existe une communauté représentant les entraînements de sport du mercredi soir, une représentant une réunion de famille, \emph{etc}.
 
-De ce graphe biparti, les approches statiques déduisent la probabilité que deux n\oe{}uds soient reliés par un lien.
+De ce graphe biparti, les approches statiques infèrent la probabilité que deux n\oe{}uds soient reliés par un lien.
 Dans le contexte de flots de liens, il ne suffit pas de calculer la probabilité qu'un lien apparaisse dans le cadre d'une communauté.
 Il faut générer un ensemble d'interactions temporelles entre ces deux n\oe{}uds au sein de cette communauté.
 C'est pourquoi à chaque communauté est associé un processus stochastique de génération de liens dépendant du temps.
@@ -160,8 +159,7 @@ La fonction de répartition associée est $P [N(b) - N(a) \leq x]= 1 - ^{-\Lambd
 Pour des valeurs de $a$ et $x$ fixées, cette fonction de répartition est une fonction continue, croissante avec $b$ et elle est injective.
 Cette fonction est également surjective si elle est strictement croissante, c'est à dire si $\Lambda_{a,b}$ est strictement croissant.
 
-Le processus pour générer un ensemble de liens entre deux n\oe{}uds dans une communauté est le suivant.
-La génération commence à l'instant $t_0=\alpha$ puis il est nécessaire de générer $t_1$, l'instant d'apparition du prochain lien.
+Le processus pour générer un ensemble de liens entre deux n\oe{}uds dans une communauté est le suivant: la génération commence à l'instant $t_0=\alpha$, puis il est nécessaire de générer $t_1$, l'instant d'apparition du prochain lien.
 Cet instant est le premier instant $t'$ tel que $N(t')- N(t_0)=1$ et il est relié à la probabilité suivante: $P [N(t_1) - N(t_0) \leq 1] = 1]=1-e^{-\Lambda_{t_0,t_1}}$.
 Or, cette application est bijective.
 Il est donc possible de retrouver à partir d'une probabilité l'instant lié à cette probabilité.
@@ -189,7 +187,7 @@ Nous discutons maintenant des caractéristiques de ce générateur.
 Tout d'abord au sein d'une communauté, il est possible de représenter énormément d'activités temporelles différentes.
 Une intensification (resp. baisse) des interactions au cours du temps est représentée par une activité croissante (resp. décroissante).
 Il est possible de représenter des réunions cycliques par une activité périodique. 
-Ce modèle d'activation des liens reste  cependant une approximation car il n'y a aucune prise en compte des possibles corrélations au sein d'une communauté.
+Ce modèle d'activation des liens reste cependant une approximation car il n'y a aucune prise en compte des possibles corrélations au sein d'une communauté.
 De même, les paires de n\oe{}uds d'une communauté correspondent des processus indépendants et identiquement distribués.
 Il n'y a donc au sein d'une communauté aucune différence entre les n\oe{}uds.
 Il n'est, de plus, pas possible de représenter l'intégration progressive de n\oe{}uds dans une communauté.
@@ -213,7 +211,7 @@ Afin de faciliter l'utilisation de ce générateur, nous utilisons différentes 
 %Les paramètres générant le flot de liens peuvent être minutieusement choisis afin que le flot de liens exhibe des caractéristiques spécifiques.
 %C'est cette approche que nous utilisons pour tester deux méthodes de détection statique dans la sous-section~\ref{sec:versqualite_statique}.
 %
-%Les paramètre peuvent être choisi aléatoirement selon certain critère  afin de générer des structures plus diverses.
+%Les paramètre peuvent être choisi aléatoirement selon certain critère afin de générer des structures plus diverses.
 %C'est cette approche que nous utilisons pour l'étude de fonctions de qualité dans la sous-section~\ref{sec:versqualite_qualite}.
 
 
@@ -282,23 +280,23 @@ Ainsi, les poids dans la projection sont répartis entre $0$ et $1$.
 Plus $\lambda$ a une valeur importante, plus le poids d'un lien est faible.
 Par exemple pour $\lambda=3$, une séparation temporelle de $1$ unité de temps donne lieu à poids de $0.05$ dans la projection.
 Dans cette situation, le graphe de la projection ne capture plus vraiment de relations topologiques car un lien n'est alors relié avec un poids non négligeable qu'avec ses voisins les plus proches.
-Dans le cas inverse quand $\lambda$ est égal à zéro, la projection du flot de liens est complètement identique au \emph{line-graph} du multigraphe agrégé.
+Dans le cas inverse, quand $\lambda$ est égal à zéro, la projection du flot de liens est complètement identique au \emph{line-graph} du multigraphe agrégé.
 Dans la suite, nous avons à chaque fois fait varier $\lambda$ de manière exhaustive.
 
-Lors de nos tests,  nous nous sommes appuyés sur notre outil de visualisation pour comparer visuellement\,\footnote{Une évaluation plus quantitative avec la \emph{NMI} est possible mais ne semble pas nécessaire à cette étape.} la vérité de terrain, les partitions trouvées par Louvain et CarOp selon le $\lambda$ choisi.
+Lors de nos tests, nous nous sommes appuyés sur notre outil de visualisation pour comparer visuellement\,\footnote{Une évaluation plus quantitative avec la \emph{NMI} est possible mais ne semble pas nécessaire à cette étape.} la vérité de terrain, les partitions trouvées par Louvain et CarOp selon le $\lambda$ choisi.
 
 \bigskip
 
 Dans la situation la plus simple représentée dans la figure~\ref{fig:versqualite_gen_test1}, nous observons que les deux méthodes sont capables de retrouver la vérité de terrain.
 
 Dans la situation représentée dans la figure~\ref{fig:versqualite_gen_test2}, la vérité de terrain est retrouvée par CarOp mais non par Louvain.
-Dans les partitions trouvées par Louvain, la communauté $3$ n'est jamais détectée peu importe la valeur de $\lambda$ utilisée pour la projection.
-Selon la valeur de $\lambda$, les liens de la communauté $3$ sont soit distribués entre les autres communautés soit répartis en plusieurs communautés autonomes.
+Dans les partitions trouvées par Louvain, la communauté $3$ n'est jamais détectée, peu importe la valeur de $\lambda$ utilisée pour la projection.
+Selon la valeur de $\lambda$, les liens de la communauté $3$ sont soit distribués entre les autres communautés, soit répartis en plusieurs communautés autonomes.
 Comme cette méthode optimise la modularité sur une structure proche du \emph{line-graph} d'un multigraphe, elle est similaire aux méthodes proposées par Evans et Lambiotte~\cite{Evans2009} que nous avons présentées dans la section~\ref{sec:expected_travaux}.
 Elle souffre donc des mêmes biais\,\footnote{Plus une clique d'un graphe est grande, moins sa transformation dans le \emph{line-graph} est dense.}.
 
 Dans la situation représentée dans la figure~\ref{fig:versqualite_gen_test3}, la vérité de terrain est retrouvée par Louvain mais non par CarOp.
-Comme les communautés sont petites, la méthode de Louvain arrive à capturer les différentes communautés.
+Comme les communautés sont petites, la méthode de Louvain arrive à détecter les différentes communautés.
 La méthode CarOp, quant à elle, n'est pas capable de différencier les communautés $1$ et $2$.
 Ces deux communautés sont fusionnées en une seule par CarOp.
 En effet, CarOp utilise la proximité des liens dans la projection.
@@ -315,16 +313,16 @@ C'est pourquoi CarOp ne différencie pas les communautés $1$ et $2$.
 
 \resume{
 Il s'agit de premiers tests sur des méthodes existantes de détection de communautés sur des projections du flot de liens en graphes pondérés.
-Les méthodes que nous avons testées ne permettent pas de capturer la vérité de terrain dans l'ensemble des situations générées.
+Les méthodes que nous avons testées ne permettent pas de détecter la vérité de terrain dans l'ensemble des situations générées.
 Ce fait est attendu car nous les appliquons sur des projections du flot de liens.
-Il est toutefois intéressant de noter qu'il est possible de retrouver la vérité de terrain par une méthode statique sous certaines conditions qu'il reste encore à pleinement comprendre.
+Il est toutefois intéressant de noter qu'il est possible de retrouver la vérité de terrain par une méthode statique sous certaines conditions qui restent encore à pleinement comprendre.
 }
 
 \subsection{Vers des fonctions de qualité dans les flots de liens}
 \label{sec:versqualite_qualite}
 
-Les approches statiques ne permettent pas toujours de capturer la vérité de terrain.
-Nous faisons donc une première proposition de fonction de qualité évaluant les partitions de liens des flots de liens et nous nous appuyons sur notre générateur et des partitions trouvées empiriquement pour étudier les caractéristiques de cette fonction de qualité.
+Les approches statiques ne permettent pas toujours de détecter la vérité de terrain.
+Nous faisons donc une première proposition de fonction de qualité évaluant les partitions de liens des flots de liens et nous nous appuyons sur notre générateur et sur des partitions trouvées empiriquement pour étudier les caractéristiques de cette fonction de qualité.
 
 
 
@@ -342,7 +340,6 @@ Ainsi, un degré moyen de $1$ implique qu'il n'y a aucun chevauchement entre les
 Un degré moyen de $1.8$ implique qu'un n\oe{}ud d'une communauté est relié en moyenne à $0.8$ autres communautés et donc qu'une communauté de taille $k$ partage des n\oe{}uds avec au maximum $0.8k$ autres communautés.
 
 Pour l'activité des communautés, nous imposons la même activité constante et la même durée d'activité pour toutes les communautés.
-Les communautés se différencient ainsi par le moment où cet intervalle commence.
 Il suffit de décider du moment où l'intervalle débute pour définir l'activité d'une communauté.
 Pour une durée fixe $\Delta$, nous choisissons de tirer de manière uniforme le temps de début d'une communauté dans $[\alpha,\omega-\Delta]$.
 Ainsi, plus le flot de liens est long par rapport à la durée d'activité des communautés, moins il y aura de chevauchement temporel.
@@ -361,7 +358,7 @@ Une des formulations pour la calculer est la suivante:
 Q_G(\mathcal{V}) =  \sum_{i=1}^{k} Q_G(V_i) =\sum_{i=1}^{k} \left( \dfrac{d_{in}(V_i)}{2m}- \left(\dfrac{d(V_i)}{2m}\right)^2\right)\,.
 \end{equation}
 Pour rappel, $d(V_i)$ est la somme des degrés des n\oe{}uds de $V_i$ et $d_{in}(V_i)$ est la somme des degrés des n\oe{}uds de $V_i$ lorsqu'uniquement les liens inclus dans $V_i \times V_i$ sont considérés.
-Il est possible de généraliser la modularité aux flots de liens en manipulant une partition des n\oe{}uds à chaque instant.
+Il est possible de généraliser la modularité aux flots de liens en considérant une partition des n\oe{}uds à chaque instant.
 Cette partition temporelle, $\mathcal{V}(t)$, doit respecter les contraintes d'une partition pour tout instant $t \in [\alpha,\omega]$.
 Avec ces notations, on peut calculer la modularité moyenne de $\mathcal{V}(t)$ sur un flot de liens $L$:
 
@@ -370,7 +367,7 @@ Q_L(\mathcal{V}) = \dfrac{1}{\omega-\alpha} \int_{\alpha}^{\omega} Q_{G(L_t)}(\m
 \label{eq:temp_modu}
 \end{equation}
 
-Cette formulation met en avant l'intégrale de la modularité du graphe mais la modularité, elle même, est une somme sur les groupes de n\oe{}uds.
+Cette formulation met en avant l'intégrale de la modularité du graphe mais la modularité elle même est une somme sur les groupes de n\oe{}uds.
 Nous transformons donc l'équation précédente pour mettre en avant la modularité d'un groupe de n\oe{}uds sur un intervalle de temps.
 Si dans la partition temporelle un groupe de n\oe{}ud $V'$ est une communauté sur un intervalle $[\beta, \psi]$ alors sa qualité, $Q_L(V', \beta, \psi)$, peut se calculer de la manière suivante:
 
@@ -379,7 +376,7 @@ Q_L(V', \beta, \psi)  = \int_{\beta}^{\psi} \! \dfrac{d_{in}(t,V')}{d(t,V)} - \l
 \end{equation}
 
 $d(t,V')$ et $d_{in}(t,V')$ sont définis dans la section~\ref{sec:def_densite} et sont respectivement la somme des degrés temporels des n\oe{}uds de $V_i$ et la somme des degrés temporels des n\oe{}uds de $V_i$ lorsqu'uniquement les liens inclus dans $V_i \times V_i$ sont considérés.
-Avec cette formulation, on voit apparaître le degré temporel dans le calcul de cette version temporelle de la modularité d'un groupe.
+Avec cette formulation, on voit apparaître le degré temporel dans le calcul de cette version de la modularité d'un groupe.
 La vérité de terrain générée n'est cependant pas une partition temporelle des n\oe{}uds mais une partition de liens du flot de liens.
 Il faut donc adapter la formulation précédente pour manipuler des groupes de liens au lieu de groupes de n\oe{}uds sur un intervalle de temps.
 Ainsi, nous définissons la modularité d'un groupe de liens $C_i$:
@@ -410,16 +407,16 @@ Elle semble donc être une bonne candidate pour évaluer une partition de liens.
 
 Avec le générateur d'une part et la modularité temporelle d'autre part, nous avons procédé de manière analogue à ce que nous avons fait pour \emph{Expected Nodes} dans la section~\ref{sec:expected_comp}.
 Nous générons plusieurs types de flots de liens en contrôlant le chevauchement temporel et topologique.
-Pour chaque flot de liens généré, nous comparons la qualité de trois partitions de liens: la vérité de terrain ($V$), la partition trouvée par la méthode de Louvain sur la projection pondérée du flot de liens ($Lo$)\,\footnote{Nous l'avons définie dans la section~\ref{sec:versqualite_statique}.} et la partition triviale où chaque lien est dans sa propre communauté ($S$).
+Pour chaque flot de liens généré, nous comparons la qualité de trois partitions de liens: \emph{i)} la vérité de terrain ($V$), \emph{ii)} la partition trouvée par la méthode de Louvain sur la projection pondérée du flot de liens ($Lo$)\,\footnote{Nous l'avons définie dans la section~\ref{sec:versqualite_statique}.} et \emph{iii)} la partition triviale où chaque lien est dans sa propre communauté ($S$).
 La partition $Lo$ est obtenue de la même manière que dans la section~\ref{sec:versqualite_statique}, c'est-à-dire en gardant la meilleure partition parmi celles trouvées via différentes valeurs de $\lambda$ choisies pour la projection.
-Nous n'utilisons pas CarOp car elle ne retourne pas directement une partition de liens mais une couverture de liens.
+Nous n'utilisons pas CarOp car elle ne redonne pas directement une partition de liens mais une couverture de liens.
 
 Les liens du flot de liens généré n'ont pas de durée.
 Or, pour utiliser le degré temporel, il est nécessaire que les liens aient une durée.
 Nous ajoutons donc une durée $\Delta$ à chaque lien ($\xi(L,\Delta)$) et il est alors nécessaire de simplifier le flot de liens résultant ($\sigma(\xi(L,\Delta))$).
 La simplification d'un flot de liens revient à remplacer deux liens $(b,e,u,v)$ et $(b',e',u,v)$ se chevauchant temporellement par un lien $(min(b,b'),max(e,e'),u,v)$.
 Cela ne pose pas de problème lorsque ces liens appartiennent à la même communauté.
-C'est est problématique lorsqu'ils n'appartiennent pas à la même communauté.
+C'est délicat lorsqu'ils n'appartiennent pas à la même communauté.
 Cette situation est illustrée dans la figure~\ref{fig:qualite_simplification}.
 
 \begin{figure}
@@ -427,7 +424,7 @@ Cette situation est illustrée dans la figure~\ref{fig:qualite_simplification}.
 %\subfloat[Inverse cumulative distribution of inter-threads density.]{
 	\includegraphics[width=0.65\linewidth]{img/Qualite/inter_flot.eps}
 %}
-\caption{Flot de liens avec deux communautés en \textcolor{olivegreen}{\textbf{vert}} et  \textcolor{briquered}{\textbf{rouge}} où chaque lien a une durée égal à $1.5$.
+\caption{Flot de liens avec deux communautés en \textcolor{olivegreen}{\textbf{vert}} et \textcolor{briquered}{\textbf{rouge}} où chaque lien a une durée égale à $1.5$.
 La simplification de ce flot de liens est problématique pour les liens entre $b$ et $c$ à l'instant $6$.}
 \label{fig:qualite_simplification}
 \end{figure}
@@ -439,15 +436,15 @@ Afin de tester plusieurs $\Delta$ rapidement, nous nous sommes appuyés sur l'ou
 
 
 \bigskip
-Pour la génération, nous considérons $100$ n\oe{}uds entre $10$ communautés durant chacune $20$ unité de temps avec une activité constante de $0.1$.
+Pour la génération, nous considérons $100$ n\oe{}uds et $10$ communautés durant chacune $20$ unité de temps avec une activité constante de $0.1$.
 Avec une activité de $0.1$, il y a en moyenne deux liens appartenant à la communauté pour chaque paire de n\oe{}uds.
 Nous choisissons une durée totale du flot de liens de $50$ ou $200$ pour contrôler le chevauchement temporel.
 Nous choisissons un degré moyen dans le biparti de $1.1$ ou $2$ pour contrôler le chevauchement topologique.
-Les flots de liens ainsi générés ont entre $1 200$ et $4 000$ liens selon le chevauchement choisi.
+Les flots de liens ainsi générés ont entre $1\ 200$ et $4\ 000$ liens selon le chevauchement choisi.
 
 Les valeurs de qualité pour chaque situation et chaque partition en fonction de la durée des liens sont présentées dans la figure~\ref{fig:versqualite_fonc_test}.
-On remarque également que la vérité de terrain est la meilleure partition peu importe le cas de figure lorsque $\Delta$ est supérieur à 2.
-Lorsqu'il y a un important chevauchement topologique, figure~\ref{fig:versqualite_fonc_test3} et \ref{fig:versqualite_fonc_test4}, la vérité de terrain a toutefois une qualité plus faible.
+On remarque également que la vérité de terrain est la meilleure partition, peu importe le cas de figure lorsque $\Delta$ est supérieur à 2.
+Lorsqu'il y a un important chevauchement topologique, figure~\ref{fig:versqualite_fonc_test3} et \ref{fig:versqualite_fonc_test4}, la vérité de terrain a toutefois une qualité plus faible selon la fonction de qualité.
 C'est en particulier visible dans la figure~\ref{fig:versqualite_fonc_test3} où le chevauchement temporel est également important.
 Dans cette situation, la qualité obtenue par la vérité de terrain est négative alors que la partition contenant l'ensemble des liens a une qualité nulle.
 Avoir une qualité négative dans ce cas de figure n'est toute fois pas complètement surprenant car la structure est difficilement discernable avec des chevauchements si importants.
@@ -471,6 +468,7 @@ Enfin, la partition où chaque lien est dans sa propre communauté obtient toujo
 		\label{fig:versqualite_fonc_test2}
 	\end{subfigure}
 	
+	\vspace*{0.7cm}
 	\begin{subfigure}{0.495\textwidth}
 		\includegraphics[width=\textwidth]{img/Qualite/Fonc/comp_50_T_50_O_2_Q_1.eps}
 		\caption{$O=2$ \& $T=50$}
@@ -481,8 +479,8 @@ Enfin, la partition où chaque lien est dans sa propre communauté obtient toujo
 		\caption{$O=2$ \& $T=200$}
 		\label{fig:versqualite_fonc_test4}
 	\end{subfigure}	
-	\caption{Évaluation en fonction de la durée $\Delta$ ajoutée à chaque lien de la partition vérité de terrain ($V$), de la partition trouvée par la méthode de Louvain ($Lo$) et de la partition où chaque lien est dans sa propre communauté $(S)$.
-	Les trois figures correspondent à différents choix de chevauchement topologique $(O)$ et temporel ($T$).}
+	\caption{Évaluation, en fonction de la durée $\Delta$ ajoutée à chaque lien, \emph{i)} de la partition vérité de terrain ($V$), \emph{ii)} de la partition trouvée par la méthode de Louvain ($Lo$) et \emph{iii)} de la partition où chaque lien est dans sa propre communauté $(S)$.
+	Les quatre schémas correspondent à différents choix de chevauchement topologique $(O)$ et temporel ($T$).}
 	\label{fig:versqualite_fonc_test}
 \end{figure}
 \bigskip
@@ -494,7 +492,7 @@ Ce phénomène pourrait être dû au fait qu'il n'existe que très peu de liens 
 
 Le chevauchement topologique semble également avoir un impact plus important sur les évaluations que le chevauchement temporel.
 Cet impact n'est en revanche pas le même pour toutes les partitions.
-Pour la vérité de terrain, le chevauchement topologique diminue la qualité alors que pour la partition où chaque est lien est dans sa propre communauté le chevauchement temporel augmente la qualité.
+Pour la vérité de terrain, le chevauchement topologique diminue la qualité alors que pour la partition où chaque est lien est dans sa propre communauté, le chevauchement temporel augmente la qualité.
 
 \resume{
 La transposition de la modularité permet d'évaluer des partitions de liens d'un flot de liens.
@@ -507,29 +505,36 @@ Il est en particulier important de tester d'autres partitions trouvées empiriqu
 
 Dans ce chapitre, nous nous sommes intéressés à la génération de flots de liens avec une structure communautaire sur les liens.
 Il s'agit de la première méthode de ce genre car les méthodes existantes se focalisent sur la génération de flot de liens ayant des distributions des temps inter-contact similaires à celles observées dans les jeux de données réels.
+
+\bigskip
+
 Notre approche est différente.
 Nous modélisons l'existence de groupes de n\oe{}uds communiquant pendant des intervalles de temps donnés.
 Ainsi, il est possible de simuler des événements durant lesquels des liens apparaissent entre les personnes concernées par ces événements.
 Pour ce faire, notre méthode s'inspire du SBM.
-Il faut définir un graphe biparti d'affiliation des n\oe{}uds aux communautés et l'activité temporelle de chaque communauté.
+Il faut définir \emph{i)} un graphe biparti d'affiliation des n\oe{}uds aux communautés et \emph{ii)} l'activité temporelle de chaque communauté.
 Une fois ces paramètres définis, des liens entre deux n\oe{}uds sont générés en fonction de processus de Poisson non-homogènes qui sont spécifiques aux communautés partagées par ces deux n\oe{}uds.
+
+\bigskip
 
 Grâce à ce générateur, nous avons pu tester deux méthodes de détection de communautés sur des projections du flot de liens en graphes statiques pondérés.
 Ces premiers résultats sont très intéressants car ces méthodes sont parfois à même de retrouver la vérité de terrain alors qu'elles se basent sur un graphe statique.
 Cependant lorsque le chevauchement topologique est important, les méthodes statiques que nous avons testées n'ont pas retrouvé la vérité de terrain.
 Il est donc nécessaire de proposer des méthodes pour évaluer et capturer des partitions de liens dans les flots de liens.
 
+\bigskip
+
 Nous avons donc proposé une première fonction de qualité proche de la modularité.
 Nous l'avons testée sur des flots de liens présentant différents chevauchement topologiques et temporels.
 Sur chaque flot de liens, nous avons évalué la vérité de terrain, une partition trouvée empiriquement et une partition triviale.
 Les résultats sont encourageants car la vérité de terrain est souvent évaluée comme la meilleure partition.
 Cependant, il est nécessaire d'étudier d'autres cas de figure avant de comprendre cette fonction de qualité.
-En particulier, il est important de tester d'autres partitions afin de s'assurer que la vérité de terrain soit proche de l'optimum.
+En particulier, il est important de tester d'autres partitions afin de s'assurer que la qualité de la vérité de terrain soit proche de l'optimum.
 
 
 \subsection{Perspectives}
 Ces premiers travaux concernent un domaine qui n'a, à notre connaissance, jamais été étudié auparavant.
-Il y a donc de nombreuses poursuites pour l'amélioration de ce générateur.
+Il y a donc de nombreuses possibilités pour l'amélioration de ce générateur.
 
 
 Pour qu'un générateur soit utile, il doit générer des structures vraisemblables.
@@ -545,18 +550,17 @@ Pour ce faire, les données de courriels du chapitre~\ref{chap:mailing} et les g
 
 En plus de ces premiers aspects, il est également possible de modifier le modèle de génération pour le rendre plus flexible au prix de l'ajout d'autres paramètres.
 Par exemple, les liens générés n'ont pas de durée.
-Il serait intéressant de tirer la durée d'un lien selon une distribution donnée.
-Il se pose alors la question de la cohérence entre la durée d'un lien et le processus de Poisson non-homogène sous-jacent: est-il normal de générer un lien de longue durée durant une activité faible de la communauté?
-Encore une fois pour répondre à ce genre de question, il est nécessaire de s'appuyer sur des observations empiriques.
+Il serait utile de tirer la durée d'un lien selon une distribution donnée.
+Se pose alors la question de la cohérence entre la durée d'un lien et le processus de Poisson non-homogène sous-jacent: est-il normal de générer un lien de longue durée durant une activité faible de la communauté?
+Pour répondre à ce genre de question, il est nécessaire de s'appuyer sur des observations empiriques.
 
 Enfin, une des hypothèses de notre générateur est l'équivalence des n\oe{}uds au sein d'une communauté.
-Il se peut en effet que certains n\oe{}uds participent plus que d'autres.
+Il se peut en effet que certains n\oe{}uds soient plus actifs que d'autres.
 Un moyen de prendre en compte cette diversité est d'incorporer un système d'attachement préférentiel.
-Dans les graphes, l'attachement préférentiel se définit de la manière suivante.
-Chaque n\oe{}ud a un score de popularité~\footnote{Le degré est généralement utilisé comme score de popularité.} qui détermine la propension des autres n\oe{}uds à créer un lien avec lui.
+Dans les graphes, l'attachement préférentiel se définit de la manière suivante: chaque n\oe{}ud a un score de "popularité"~\footnote{Le degré est généralement utilisé comme score de popularité.} qui détermine la propension des autres n\oe{}uds à créer un lien avec lui.
 Ainsi plus un n\oe{}ud est populaire, plus il acquiert de liens avec les autres n\oe{}uds.
 Dans le cadre de la génération de flots de liens, il serait possible que le processus de génération des liens entre deux n\oe{}uds ne dépende plus uniquement de la communauté mais également de la popularité respective des n\oe{}uds.
-Cette popularité, temporelle ou non, devrait également être fixée par l'utilisateur mais elle permettrait de mettre en avant un leader au sein d'une communauté.
+Cette "popularité", temporelle ou non, devrait également être fixée par l'utilisateur mais elle permettrait de mettre en avant un n\oe{}ud dominant au sein d'une communauté.
 
 
 
