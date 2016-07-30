@@ -694,15 +694,15 @@ Rozenshtein \emph{et al.}~\cite{rozenshtein2014} se penchent sur la détection d
 Ils permettent de capturer un ensemble de n\oe{}uds et plusieurs intervalles de temps disjoints tels que ces n\oe{}uds sur ces intervalles aient le degré moyen le plus élevé dans le graphe agrégé sur ces intervalles.
 Bien que la mesure utilisée ne tienne pas directement compte du temps, la méthode permet de mettre en évidence une partie du flot de liens.
 
-Il existe également des travaux conduits dans l'équipe~\cite{Viard2016,viard:hal-01208330} sur la notion de clique dans les flots de liens sans durée, c'est à dire un ensemble de $(b,b,u,v)$.
+Il existe également des travaux conduits au sein de l'équipe~\cite{Viard2016,viard:hal-01208330} sur la notion de cliques dans les flots de liens sans durée, c'est à dire un ensemble de $(b,b,u,v)$.
 Ils généralisent la notion de clique à ces flots de liens: pour un delta donné, une delta-clique est un ensemble de n\oe{}uds et un intervalle de temps, tels que toutes les paires de n\oe{}uds dans cet ensemble interagissent au moins tous les delta sur cet intervalle.
-Dans ce cadre, ils proposent un premier algorithme permettant d’énumérer les delta-cliques.
-Ils ont de plus appliqué leur algorithme avec succès sur différents jeux de données.
+Dans ce cadre, un premier algorithme permettant d’énumérer les delta-cliques a été proposé.
+Cet algorithme a, de plus, été appliqué avec succès sur différents jeux de données.
 
 
 
 Une méthode de type SBM a été proposée par Matias \emph{et al.}~\cite{Matias2015a}.
-Elle est très proche de celle proposée par Corneli \emph{et al.}~\cite{Corneli2016}.
+Elle est très proche de celle proposée par Corneli \emph{et al.}~\cite{Corneli2016}, citée précédemment.
 En effet, l'affiliation des n\oe{}uds est fixe et c'est l'activité d'une communauté qui change au cours du temps.
 La grosse différence ici est que l'activité varie de manière continue dans le temps.
 Ainsi l'apparition d'un lien dépend de la réalisation d'un processus de Poisson non homogène qui change selon les communautés.
@@ -718,7 +718,7 @@ Ils ont donc un pouvoir expressif plus important que les formalismes présentés
 Formellement, flots de liens et graphes temporels sont équivalent dans le sens où un graphe temporel peut être représenté en un flot de liens et \emph{vice versa}.
 En revanche, ils diffèrent dans le point de vue considéré.
 Dans un graphe temporel, on suppose en général qu'il existe une structure de graphe représentant le réseau à chaque instant et les métriques de graphes sont pertinentes.
-Dans un flot de liens, il n'existe en général pas de structure pertinente à un instant donné et par conséquent les métriques de graphes ne sont pas pertinentes dans ce contexte.
+Dans un flot de liens, il n'existe en général pas de structure pertinente à un instant donné et par conséquent les métriques de graphes ne sont pas pertinentes.
 Cette différence implique d'utiliser des mesures différentes et, en particulier, de créer de nouvelles métriques pour les flots de liens.
 Cela explique notamment pourquoi il n'existe pour l'instant qu'assez peu de travaux traitant de la structure des flots de liens.
 Cette différence de perspective entraîne également un déplacement du centre d'intérêt.
@@ -728,17 +728,17 @@ Ainsi, les deux formalismes coexistent et répondent à des besoins différents.
 
 \section{Bilan}
 
-Dans un graphe statique, il existe de très nombreuses méthodes capturant une structure des n\oe{}uds soit via une partition soit via une couverture.
+Pour les graphes statiques, il existe de très nombreuses méthodes capturant une structure des n\oe{}uds soit via une partition soit via une couverture.
 L'abondance de méthodes existantes s'explique par la diversité des définitions de communautés existantes.
 Les structures capturées permettent de mieux comprendre l'organisation du graphe mais aussi de mieux comprendre le type d'un n\oe{}ud.
 
 
 Avec l'émergence de nouvelles données incorporant l'information temporelle, il est pertinent d'adapter la théorie des graphes pour prendre en compte le temps.
-L'extension temporelle des graphes est un champ de recherche très récent et il n'y a pas à douter que de nombreuses méthodes de détection de communautés dans ce contexte vont voir le jour.
+L'extension temporelle des graphes est un champ de recherche très récent et de nombreuses méthodes de détection de communautés dans ce contexte vont voir le jour.
 Cependant, tous les formalismes existants ne sont pas équivalents et ils limitent parfois les solutions possibles.
 
 
-Il y a d'une part les formalismes se rapprochant de la théorie des graphes: séries de graphes, tenseurs 3d et graphes multicouches.
+Il y a d'une part les formalismes se rapprochant de la théorie des graphes: séries de graphes, tenseurs 3D et graphes multicouches.
 Ces formalismes sont proches des graphes statiques et il est même possible d'y appliquer des méthodes statiques.
 En revanche, la prise en compte du temps n'est que partielle.
 Il y a toujours une forme d'agrégation temporelle et il n'est pas possible d'avoir une vision très fine de l'objet d'étude.
@@ -757,9 +757,10 @@ Il semble donc plus aisé d'utiliser un flot de liens qu'un graphe temporel lors
 
 
 Au cours de cette thèse, nous nous intéressons à la structure communautaire que peuvent former les liens dans le temps.
-Nous ne pouvons pas utiliser ni les formalismes basés sur une agrégation temporelle à cause de la perte d'information ni le formalisme de graphe temporel car il considère des situations assez différentes de celles que nous étudions.
+Nous ne pouvons utiliser, ni les formalismes basés sur une agrégation temporelle à cause de la perte d'information, ni le formalisme de graphe temporel car ils considèrent des situations assez différentes de celles que nous étudions.
 C'est pourquoi le formalisme de flot de liens semble être le plus adapté pour étudier la structure des liens.
 Il n'existe que peu de travaux définissant formellement les flots de liens et traitant de leur structure.
-C'est pourquoi dans le chapitre~\ref{chap:def_flot}, nous définissons plus formellement ce qu'est un flot de liens ainsi que les métriques utilisées tout au long de cette thèse avant de présenter nos travaux sur la structure des liens dans les chapitres suivants.
+C'est pourquoi dans le chapitre~\ref{chap:def_flot}, nous définissons plus formellement ce qu'est un flot de liens ainsi que les métriques utilisées tout au long de cette thèse.
+Nous présentons dans les chapitres suivants nos travaux sur les structures de liens.
 
 
