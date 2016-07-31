@@ -8,15 +8,16 @@
 %L'étude de la structure des réseaux est un sujet qui est étudié depuis assez longtemps \REF.
 %Ces études ont, dans un premier temps, permis de trouver comment caractériser une structure puis, dans un second temps, de proposer des méthodes de détections de ces structures.
 
-Nous nous intéressons ici à une archive de courriels publiquement disponible\,\footnote{\url{https://lists.debian.org/debian-user/}}.
-Cette archive contient l'ensemble des courriels échangés par différent utilisateurs pour résoudre un problème survenu lors de l'utilisation de Debian.
-Typiquement, une personne ayant un problème lors de l'installation envoie un courriel à la liste afin de demander de l'aide.
-Toute personne inscrite sur la liste reçoit ce courriel et peut y répondre ce qui donne lieu à une discussion visible par tous.
-Ces discussions ont déjà été étudiées dans le passé~\cite{dorat2007,sowe2006,wang2014} mais cela a été fait en utilisant des méthodes statiques uniquement.
+Nous nous intéressons ici à une archive de courriels disponible publiquement\,\footnote{\url{https://lists.debian.org/debian-user/}}.
+Cette archive contient l'ensemble des courriels échangés par différents utilisateurs pour résoudre un problème survenu lors de l'utilisation de Debian.
+Une personne rencontrant un problème lors de l'installation envoie un courriel à la liste afin de demander de l'aide.
+Toute personne inscrite sur la liste reçoit ce courriel et peut y répondre, ce qui donne lieu à une discussion visible par tous.
+Ces discussions ont déjà été étudiées dans le passé~\cite{dorat2007,sowe2006,wang2014} mais par l'utilisation de méthodes statiques uniquement.
 
 Or, ces données se représentent naturellement sous forme de flot de liens en associant chaque personne à un n\oe{}ud et chaque courriel entre deux personnes à un lien dans le flot de liens à l'instant où le courriel a été envoyé.
+Comme un courriel n'a pas de durée, nous représentons, par abus de notations, un lien par le triplet $(t,u,v)$ au lieu de $(t,t,u,v)$.
 L'avantage de ces données de communications est que nous connaissons la discussion (\emph{thread}) dans laquelle a lieu chaque message.
-Une discussion est un ensemble de courriels dont tous les messages répondent à un message précédent de la discussion excepté pour le premier qui a initié la discussion et que nous appelons \emph{racine}.
+Une discussion est un ensemble de courriels dont tous les messages répondent à un message précédent de la discussion excepté pour le premier qui est la racine de la discussion et qui ne répond à personne.
 Ainsi, nous étudions la structure des discussions dans le flot liens représentant les courriels envoyés sur la liste.
 
 Utiliser le formalisme de flot de liens est particulièrement intéressant car cette liste de diffusion existe depuis 1994.
@@ -26,30 +27,29 @@ L'aspect temporel des discussions est donc important.
 
 \section{Pré-traitement sur le jeu de données}
 Bien qu'accessible sur internet, ce jeu de données nécessite un ensemble de traitements avant de pouvoir exploiter les $724\ 985$ courriels que contenait l'archive en janvier 2015.
-Tout d'abord, les données ne sont pas sous la forme d'un flot de liens avec la structure des conversations.
-Les données sont accessibles via le site internet et ne sont pas structurées.
+Tout d'abord, les données accessibles par le site internet ne sont pas  structurées sous la forme d'un flot de liens avec la structure des conversations.
 Pour avoir ces informations sous la forme d'un flots de liens, un script d'extraction a été développé\,\footnote{\url{https://bitbucket.org/nGaumont/mailarchiver}}.
 Lors de l'extraction, $2\ 269$ courriels n'ont pas pu être pris en compte car certaines informations étaient manquantes ou mal formées, typiquement à cause de la date ou d'un fuseau horaire non reconnu.
 
 Une fois les informations brutes récupérées, il faut les transformer en un flot de liens cohérent.
 Pour chaque message $m$, nous extrayons son auteur $a(m)$, l'instant $t(m)$ auquel le message a été posté\,\footnote{Cet instant est converti en $timestamp$ en tenant compte des fuseaux horaires.}, le message auquel il répond $p(m)$ trouvé via le champ \textsc{In-Reply-To}, son destinataire $a(p(m))$ et la discussion $D(m)$ dans laquelle il apparaît.
-Comme les messages \emph{racines} ne répondent à aucun autre, nous imposons $p(m)=m$.
+Pour les messages racines qui ne répondent à aucun autre, nous imposons $p(m)=m$.
 L'ensemble de liens du flot est donc $\{(t(m),a(m),a(p(m)))\}_m$.
 Nous ne prenons pas en compte la direction des liens.
 
 Une fois le flot créé, il est encore nécessaire de vérifier sa cohérence.
 Un message peut être filtré pour différentes raisons: le courriel apparaît avant le message auquel il est censé répondre, le message auquel il répond n'est pas présent dans l'archive, l'auteur et le destinataire sont la même personne.
 Cette dernière condition permet notamment d'éviter la présence de boucles dans le flot.
-Cela concerne principalement les \emph{racines}.
-Il s'agit de vérifications simple auxquelles il faut ajouter les vérifications sur la cohérence de la structure des discussions.
-Ainsi, une discussion est entièrement retirée du jeu de données s'il manque la \emph{racine} ou si un de ses messages a été retiré à l'étape précédente.
+Elle concerne principalement les racines.
+Il s'agit de vérifications simples auxquelles il faut ajouter les vérifications sur la cohérence de la structure des discussions.
+Ainsi, une discussion est entièrement retirée du jeu de données s'il manque sa racine ou si l'un de ses messages a été retiré à l'étape précédente.
 Après ces vérifications, environ $7\%$ des discussions sont retirées.
 Avec cela, il faut également tenir compte de notre temps d'observation qui est partiel.
 En effet, une discussion dont le dernier message a lieu 1 semaine avant la fin de la capture peut ne pas être terminée.
-De même, une discussion durant très longtemps n'a qu'une faible probabilité d'être capturée en entier.
-Pour corriger ces biais, nous filtrons également les discussions ayant débutées trop récemment ou durant trop longtemps.
+De même, une discussion qui dure très longtemps n'a qu'une faible probabilité d'être capturée en entier.
+Pour corriger ces biais, nous filtrons également les discussions ayant débutées trop récemment ou qui durent trop longtemps.
 La limite pour considérer une discussion trop récente ou trop longue a été fixé à $4$ ans ($1.26\times 10^8 s$) car nous avons constaté qu'uniquement quelques discussions dépassent ce seuil sur la distribution de durées des discussions dans la figure~\ref{fig:dists_discussion}.
-Toutes les discussions qui ont débutées moins de 4 ans avant la capture du jeu de données ne sont donc pas prises en comptes.
+Toutes les discussions qui ont débutées moins de 4 ans avant le début de la capture du jeu de données ne sont donc pas prises en comptes.
 
 
 Une fois tous ces messages filtrés, nous obtenons un flot de liens avec $316\ 569$ liens entre $34\ 648$ personnes pendant presque 19 ans et $116\ 999$ discussions.
@@ -58,9 +58,8 @@ La majorité des courriels filtrés l'ont été car ils appartiennent à une dis
 
 \section{Caractéristiques élémentaires des discussions}
 
-Les caractéristiques les plus élémentaires des discussions sont le nombre de courriels, le nombre de personnes, le nombre de paires de personnes distinctes en interaction directe et leur durée.
-Dans la figure~\ref{fig:dists_discussion}, sont présentées les distributions cumulatives inverses de ces quantités et on remarque qu'elles sont toutes hétérogènes.
-On remarque que les données filtrées ne diffèrent pas qualitativement des données brutes.
+Les caractéristiques élémentaires des discussions sont le nombre de courriels, le nombre de personnes, le nombre de paires de personnes distinctes en interaction directe et leur durée.
+Dans la figure~\ref{fig:dists_discussion}, sont présentées les distributions cumulatives inverses de ces quantités et on remarque: \emph{i)} elles sont toutes hétérogènes et \emph{ii)} les données filtrées ne diffèrent pas qualitativement des données brutes.
 
 \begin{figure}
 \centering
@@ -69,43 +68,43 @@ On remarque que les données filtrées ne diffèrent pas qualitativement des don
 	\includegraphics[width=0.4\linewidth]{img/mailing/authors-ccdf.eps}
 	\includegraphics[width=0.4\linewidth]{img/mailing/authorpairs-ccdf.eps}
 	
-	\caption{Distribution cumulative inverse de différentes caractéristiques pour les données brutes (ligne pleine) et filtrées (ligne pointillé). En haut à gauche: nombre de courriels dans une discussion; en haut à droite: durée d'une discussion; en bas à gauche: nombre de personnes dans une discussion; en bas à droite: nombre de paires d'auteurs distinct dans une discussion.}
+	\caption{Distribution cumulative inverse de différentes caractéristiques des les données brutes (ligne pleine) et filtrées (ligne en pointillé). En haut à gauche: nombre de courriels dans une discussion; en haut à droite: durée d'une discussion; en bas à gauche: nombre de personnes dans une discussion; en bas à droite: nombre de paires de personnes en interaction distinctes dans une discussion.}
 	\label{fig:dists_discussion}
 \end{figure}
 
-La distribution des durées des discussions montre que la majorité des discussions dure environ une journée ou moins ($10^5$ secondes équivaut à moins de 28 heures).
-Par ailleurs, on remarque qu'il n'existe que quelques discussions durant plus d'un an.
+La distribution des durées des discussions montre que la majorité des discussions dure environ une journée ou moins ($10^5$ secondes équivalent à moins de 28 heures).
+Par ailleurs, il n'existe que quelques discussions qui durent plus d'un an.
 
 Ces premières observations sont nécessaires mais pas suffisantes pour comprendre les caractéristiques d'une discussion.
-Nous avons également étudié la corrélation entre ces différentes notions et une partie d'entre elles sont présentées dans la figure~\ref{fig:corr_discussion}.
+Nous avons également étudié les corrélations entre ces différentes notions, lesquelles sont en partie présentées dans la figure~\ref{fig:corr_discussion}.
 
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.4\linewidth]{img/mailing/sizes-durations-corr.eps}
 	\includegraphics[width=0.4\linewidth]{img/mailing/sizes-authors-corr.eps}
-	\caption{Gauche: Corrélations entre le nombre de courriels et la durée d'une discussion. Droite: Corrélation entre le nombre de courriels et le nombre d'auteurs dans une discussion.}
+	\caption{Gauche: Corrélation entre le nombre de courriels et la durée d'une discussion. Droite: Corrélation entre le nombre de courriels et le nombre de personnes dans une discussion.}
 	\label{fig:corr_discussion}
 \end{figure}
 
-La corrélation entre la durée et le nombre de courriels, dans la figure~\ref{fig:corr_discussion} partie gauche, met en évidence que plus une discussion est grande en nombre de courriels plus elle dure longtemps, ce qui est attendu.
+Comme attendu, nous observons dans la partie gauche de la figure~\ref{fig:corr_discussion} que plus une discussion est grande en nombre de courriels plus elle dure longtemps, ce qui est attendu.
 Par contre, on observe que les petites discussions ont des durées très variables. 
-Dans la partie droite de la figure~\ref{fig:corr_discussion} présentant la corrélation entre le nombre de courriels et d'auteurs, on observe un autre fait attendu~\cite{dorat2007} qui est qu'une discussion est constituée, en général, de plus de messages que de participants.
+Dans la partie droite de la figure~\ref{fig:corr_discussion} présentant la corrélation entre le nombre de courriels et celui de personnes, nous observons un autre fait attendu~\cite{dorat2007}: une discussion est constituée, en général, de plus de messages que de participants.
 Ainsi lors d'une discussion, c'est un petit nombre de personnes qui échangent potentiellement beaucoup de messages. 
 
 Enfin, il est intéressant d'observer la dynamique des échanges entre chaque paire de personnes.
-Soit $\tau(u,v) = (t_{i+1}-t_i)_{i=0..k+1}$ la séquence des temps inter-contacts des $k$ liens entre les n\oe{}uds $u$ et $v$, où $t_0$ est le temps entre $\alpha$ et le premier lien et $t_{k+1}$ est le temps entre le dernier lien et $\omega$.
-Il s'agit du temps écoulé avant que deux personnes se contactent à nouveau, indépendamment peu importe la conversation.
-Dans la figure~\ref{fig:ict_discussion} est représentée la distribution cumulative inverse du temps inter-contacts. 
+Soit $\tau(u,v) = \{t_{i+1}-t_i\}_{i=0..k+1}$ la séquence des temps inter-contacts des $k$ liens entre les n\oe{}uds $u$ et $v$, où $t_0$ est le temps entre $\alpha$ et le premier lien et $t_{k+1}$ est le temps entre le dernier lien et $\omega$.
+Il s'agit du temps écoulé avant que deux personnes se contactent à nouveau, peu importe la conversation.
+Dans la figure~\ref{fig:ict_discussion} est représentée la distribution cumulative inverse du temps inter-contacts dans le flot de liens. 
 On observe que $21\%$ des temps inter-contacts sont inférieurs à 30 jours ($2.6\times 10^6 s$).
 Ce chiffre bien que relativement faible est tout de même important car il s'agit de discussions ouvertes où tout le monde peut participer. 
 En particulier, une personne peut envoyer une demande d'aide à un moment donné et ne plus jamais échanger avec les même personnes.
-Or, $21\%$ des contacts sont renouvelés en moins de 30 jours.
+Or, $21\%$ des contacts directs sont renouvelés en moins de 30 jours.
 La participation est donc relativement élevée.
 \begin{figure}
 	\centering
 	\includegraphics[width=0.4\linewidth]{img/mailing/ict-ccdf.eps}
-	\caption{Distribution des temps inter-contacts dans le fil de discussions.}
+	\caption{Distribution des temps inter-contacts dans le flot de liens.}
 	\label{fig:ict_discussion}
 \end{figure}
 
@@ -116,15 +115,15 @@ La participation est donc relativement élevée.
 
 Jusqu'à maintenant aucune notion intrinsèquement liée aux flots de liens n'a été utilisée pour caractériser les discussions.
 Le but est d'évaluer si cette structure de flot peut se rapprocher d'une structure communautaire.
-Comme dit précédemment, les communautés sont souvent définies comme étant des structures devant être densément connectées.
+Comme dit précédemment, les communautés sont souvent définies comme des structures devant être densément connectées.
 C'est pourquoi nous nous attachons à étudier la densité des discussions.
 
-Comme ces données se modélisent par un flot de liens où les liens n'ont pas de durée, nous étudions la densité non pas dans le flot de liens initial mais dans $\sigma(\xi(L,\Delta))$ pour différentes valeurs de $\Delta$ entre 1 seconde et 20 ans.
+Ces données se modélisent par un flot de liens où les liens n'ont pas de durée, nous étudions donc la densité non pas dans le flot de liens initial mais dans $\sigma(\xi(L,\Delta))$ pour différentes valeurs de $\Delta$ entre 1 seconde et 20 ans.
 La notation $\delta{\alpha..\omega}(\sigma(\xi(L,\Delta)))$ est cependant très lourde et nous la simplifions par $\delta_{\Delta}(L)$ et nous parlons donc de $\Delta$-densité.
 Tout d'abord dans la figure~\ref{fig:dens_fil_discusion} est représentée la $\Delta$-densité globale du le flot.
 En couvrant un spectre aussi large de $\Delta$, on observe que la $\Delta$-densité est croissante avec $\Delta$ mais surtout on observe bien la convergence de $\Delta$-densité vers $3.139\times 10^{-4}$, la densité du graphe agrégé, lorsque $\Delta$ est proche de $\omega - \alpha$.
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=0.4\linewidth]{img/mailing/global_loglog.eps}
 	\caption{Évolution de la $\Delta$-densité (en vert) du flot de liens pour $\Delta$ de $60$ seconde à $20$ ans. En rouge, la densité dans le graphe agrégé.}
@@ -132,11 +131,11 @@ En couvrant un spectre aussi large de $\Delta$, on observe que la $\Delta$-densi
 \end{figure}
 
 Cependant, la $\Delta$-densité du flot n'apporte que peu d'informations en elle-même.
-Elle est surtout utile pour comparer les valeurs de $\Delta$-densité des sous-flots que sont les discussions, c'est-à-dire $\delta(\sigma(\xi(\Delta,D_i)))$.
+Elle est surtout utile pour comparer les valeurs de $\Delta$-densité des sous-flots que sont les discussions, c'est-à-dire $\delta(\sigma(\xi(D_i,\Delta)))$.
 Ainsi dans la figure~\ref{fig:intra_dens_discussion}, est présentée la distribution cumulative inverse de la $\Delta$-densité des discussions pour différentes valeurs de $\Delta$.
 On remarque que les différentes valeurs de $\Delta$ ne semblent pas influencer qualitativement la distribution de $\Delta$-densité.
 Cette courbe met surtout en évidence que les discussions sont des structures beaucoup plus denses que le flot.
-En effet, la densité médiane des discussions est, selon la valeur de $\Delta$, entre $2.69 \times 10^{-4}$ et $0.28$ alors que le flot a une $\Delta$-densité variant entre $1.05  \times 10^{-10}$ et $3.139 \times 10^{-4}$.
+En effet, la densité médiane des discussions varie, selon la valeur de $\Delta$, entre $2.69 \times 10^{-4}$ et $0.28$ alors que le flot a une $\Delta$-densité variant entre $1.05  \times 10^{-10}$ et $3.14 \times 10^{-4}$.
 La $\Delta$-densité des discussions est donc en moyenne $10^{5}$ fois plus élevée que celle du flot.
 Bien que notable, ce fait est attendu notamment car le flot dure beaucoup plus longtemps et concerne beaucoup plus de n\oe{}uds que les discussions.
 \begin{figure}
@@ -150,24 +149,34 @@ Bien que notable, ce fait est attendu notamment car le flot dure beaucoup plus l
 \end{figure}
 
 Afin d'aller plus loin dans l'étude de cette structure, il faut revenir à une définition plus précise de ce qu'est une bonne communauté.
-En soit, une valeur de densité n'est pas suffisante pour définir une structure communautaire.
+En elle-même, une valeur de densité n'est pas suffisante pour définir une structure communautaire.
 En effet, une discussion ayant une densité de $0.8$ peut ne pas être une communauté tandis qu'une autre ayant une densité proche de zéro peut être une communauté.
 Il faut définir un point de comparaison pour effectivement affirmer qu'une structure est particulièrement dense.
 La prise en compte de la densité globale est un début mais n'est pas suffisante.
 
 Une autre définition d'une communauté est qu'elle devrait être plus densément connectée à l'intérieur qu'avec les autres communautés adjacentes.
-Pour un graphe $G=(V,E)$ et une communauté $C_i$ de la partition $C = \{C_j\}_{j_1..k}$ de $V$ en $k$ communautés, cela se traduit par le calcul de la densité entre les communautés, $\delta^{inter}(C_i)$ :
+Pour un graphe $G=(V,E)$ et une communauté $C_i$ de la partition $\mathcal{C} = \{C_j\}_{j_1..k}$ de $V$ en $k$ communautés, cela se traduit par le calcul de la densité entre les communautés, $\delta^{inter}(C_i)$ :
 
 \begin{equation}
 	\delta^{inter}(C_i) = \frac{1}{|C|-1}\sum_{j, i\ne j}\frac{|\{(u,v)\in E\mbox{ t.q. }u\in C_i\mbox{ et }v\in C_j\}|}{|C_i|\cdot |C_j|}.
 \end{equation}
-Il s'agit simplement de la probabilité qu'un lien existe entre un n\oe{}ud de $C_i$ et un n\oe{}ud d'une autre communauté.
+Il s'agit de la probabilité qu'un lien existe entre un n\oe{}ud de $C_i$ et un n\oe{}ud d'une autre communauté.
 Encore une fois, cette notion n'a pas de sens direct dans le formalisme de flot de liens et il est nécessaire de l'adapter.
-Pour ce faire, nous définissons la $\Delta$-densité inter discussions entre deux discussions $D_i$ et $D_j$: $\delta^{inter}_{\Delta}(D_i,D_j)$.
-Soit $\Delta_{ij}=\xi(D_i \cup D_j,\Delta)$ et $L_{inter}(D_i, D_j) = (T',V',E')$ avec $T'=[\beta(D_i \cup D_j) - \Delta/2,\psi(D_i \cup D_j) + \Delta/2]$, $V'= V(\Delta_{ij})$ et $E' = \xi(E,\Delta) \setminus \Delta_{ij}$.
-Avec ces notation, $\delta^{inter}_{\Delta}(D_i,D_j)$ est égal à: $\delta^{inter}_{\Delta}(D_i,D_j) = \delta(L_{inter}(D_i, D_j))$.
-Il s'agit donc de la densité du flot inter discussions qui est constitué des liens entre les n\oe{}uds induits par $D_i$ et $D_j$ qui n'appartiennent ni à $D_i$ ni à $D_j$.
-Dans la figure~\ref{fig:inter_dens_discussion_ex}, un exemple de flot inter discussion est représenté.
+Pour ce faire, nous définissons la $\Delta$-densité inter-discussions entre deux discussions $D_i$ et $D_j$: $\delta^{inter}_{\Delta}(D_i,D_j)$.
+Soient $\Delta_{ij}=\xi(D_i \cup D_j,\Delta)$ et $L_{inter}(D_i, D_j) = (T',V',E')$ avec:
+
+\begin{itemize}
+\item  $T'=[\beta(D_i \cup D_j) - \Delta/2,\psi(D_i \cup D_j) + \Delta/2]$, $V'= V(\Delta_{ij})$;
+\item  $E' = \xi(E,\Delta) \setminus \Delta_{ij}$.
+\end{itemize}
+Avec ces notation, $\delta^{inter}_{\Delta}(D_i,D_j)$ est égale à:
+
+\begin{equation}
+ \delta^{inter}_{\Delta}(D_i,D_j) = \delta(L_{inter}(D_i, D_j))\, .
+\end{equation}
+
+Il s'agit donc de la densité du flot inter-discussions qui est constitué des liens entre les n\oe{}uds induits par $D_i$ et $D_j$ qui n'appartiennent ni à $D_i$ ni à $D_j$.
+Dans la figure~\ref{fig:inter_dens_discussion_ex}, un exemple de flot inter-discussion est représenté.
 Il est important de noter que le nombre de liens pris en compte dans le flot inter-discussions varie selon le $\Delta$ utilisé.
 
 \begin{figure}
@@ -175,39 +184,39 @@ Il est important de noter que le nombre de liens pris en compte dans le flot int
 %\subfloat[Inverse cumulative distribution of inter-threads density.]{
 	\includegraphics[width=0.65\linewidth]{img/mailing/inter_flot.eps}
 %}
-\caption{Le flot entre les discussions \textcolor{olivegreen}{\textbf{verte}} et \textcolor{briquered}{\textbf{rouge}} est constitué des liens ou partie de liens en \textbf{noir}. Les liens en \textcolor{gray}{\textbf{gris}} ne sont pas pris en compte.}
+\caption{Exemple de flot inter-discussion.
+Le flot entre les discussions \textcolor{olivegreen}{\textbf{verte}} et \textcolor{briquered}{\textbf{rouge}} est constitué des liens ou partie de liens en \textbf{noir}. Les liens en \textcolor{gray}{\textbf{gris}} ne sont pas pris en compte.}
 \label{fig:inter_dens_discussion_ex}
 \end{figure}
 
 
 
-Afin d'obtenir la $\Delta$-densité inter discussions entre $D_i$ et toutes les autres discussions, nous utilisons la moyenne des densité inter discussion entre $D_i$ et les autres discussions, soit:
+Afin d'obtenir la $\Delta$-densité inter-discussions entre $D_i$ et toutes les autres discussions, nous utilisons la moyenne des $\Delta$-densités inter-discussion entre $D_i$ et les autres discussions, soit:
 
 \begin{equation}
 	\delta^{inter}_{\Delta}(D_i) = \frac{1}{|C|-1}\sum_{j,i\ne j} \delta^{inter}_{\Delta}(D_i,D_j).
 \end{equation}
 
-La distribution cumulative inverse de la $\Delta$-densité inter discussions est présentée dans la figure~\ref{fig:inter_dens_discussion} pour différentes valeurs de $\Delta$.
-Bien que similaire, le comportement de la $\Delta$-densité inter discussions diffère qualitativement de celui de la $\Delta$-densité.
-La $\Delta$-densité inter discussions croît également en fonction de $\Delta$ mais il y a toujours une différence notable entre $\Delta= 30\  jours$ et $\Delta= 1\ an$ ce qui n'est pas le cas pour la $\Delta$-densité.
-Cette différence est normale car lors du calcul de $\Delta$-densité le nombre de liens considérés est fixe peu importe $\Delta$ alors qu'il croît avec $\Delta$ lors du calcul de $\Delta$-densité inter discussions.
-Cet effet est visible dans la figure~\ref{fig:inter_dens_discussion_ex}.
-Le lien $(c,d)$ qui apparaît peu avant $\beta$ n'est pas pris en compte si $\Delta$ est proche de $0$ alors qu'il est en partie pris en compte lorsqu'un $\Delta$ plus grand est considéré, ce qui est le cas dans la figure.
+La distribution cumulative inverse de la $\Delta$-densité inter-discussions est présentée dans la figure~\ref{fig:inter_dens_discussion} pour différentes valeurs de $\Delta$.
+Bien que similaire, le comportement de la $\Delta$-densité inter-discussions diffère qualitativement de celui de la $\Delta$-densité.
+La $\Delta$-densité inter-discussions croît aussi en fonction de $\Delta$ mais il y a toujours une différence notable entre $\Delta= 30\  jours$ et $\Delta= 1\ an$ ce qui n'est pas le cas pour la $\Delta$-densité.
+Cette différence s'explique parce que quelque soit le $\Delta$, le nombre de liens considérés pour la $\Delta$-densité est fixe, au contraire, il croît avec $\Delta$ pour la $\Delta$-densité inter-discussion.
+Cet effet est visible dans la figure~\ref{fig:inter_dens_discussion_ex}: le lien $(c,d)$ qui apparaît peu avant $\beta$ est en partie pris en compte, alors qu'il ne le serait pas avec un $\Delta$ plus proche de 0.
 
-Un autre facteur est aussi la durée considérée qui est plus longue que la durée des discussions.
+Un autre facteur est aussi la durée considérée qui est plus longue que la durée des discussions ce qui peut diminuer la densité.
 \begin{figure}
 \centering
 %\subfloat[Inverse cumulative distribution of inter-threads density.]{
 	\includegraphics[width=0.4\linewidth]{img/mailing/inter_delta.eps}
 %}
-\caption{Distribution cumulative inverse de la $\Delta$-densité inter discussions pour différentes valeurs de $\Delta$s.}
+\caption{Distribution cumulative inverse de la $\Delta$-densité inter-discussions pour différentes valeurs de $\Delta$ en secondes.}
 \label{fig:inter_dens_discussion}
 \end{figure}
 
 \bigskip
 
-Pour comparer aisément $\Delta$-densité et $\Delta$-densité inter discussions, la corrélation entre ces deux mesures est présentée dans la figure~\ref{fig:corel_inter_discussion} pour différentes valeurs de $\Delta$.
-On remarque que les discussions sont effectivement plus denses intérieurement qu'avec les autres discussions.
+Pour comparer aisément $\Delta$-densité et $\Delta$-densité inter-discussions, nous présentons dans la figure~\ref{fig:corel_inter_discussion} la corrélation entre ces deux mesures pour différentes valeurs de $\Delta$.
+Nous remarquons que les discussions sont effectivement plus denses intérieurement qu'avec les autres discussions.
 La différence est de plusieurs ordres de grandeur lorsque $\Delta$ est petit et elle diminue lorsque $\Delta$ croît.
 Pour $\Delta=20\ ans$ dans la figure~\ref{fig:corel_inter_discussion_20}, la différence n'est plus visible car à cette échelle de temps, l'ancrage temporel des discussions n'est plus décisif.
 On remarque tout de même que pour $\Delta=1\ an$, la différence reste notable.
@@ -234,7 +243,7 @@ On remarque tout de même que pour $\Delta=1\ an$, la différence reste notable.
 		\label{fig:corel_inter_discussion_20}	
 	\end{subfigure}
 
-\caption{Corrélations entre $\Delta$-densité et $\Delta$-densité inter discussions pour différentes valeurs de $\Delta$. Une discussion est en vert (resp. rouge) si elle a une $\Delta$-densité plus (resp. moins) élevée que sa $\Delta$-densité inter discussions.}
+\caption{Corrélations entre $\Delta$-densité et $\Delta$-densité inter-discussions pour différentes valeurs de $\Delta$. Une discussion est en vert (resp. rouge) si elle a une $\Delta$-densité plus (resp. moins) élevée que sa $\Delta$-densité inter-discussions.}
 \label{fig:corel_inter_discussion}
 \end{figure}
 
@@ -248,11 +257,12 @@ Chaque discussion du flot devient un n\oe{}ud de $V_X$ et le lien $(i,j)$ existe
 De manière similaire, nous définissons le graphe de chevauchement topologique $Y=(V_Y,E_Y)$.
 Les n\oe{}uds de ce graphe représentent encore une fois les discussions du flot et un lien existe entre deux discussions si au moins une personne a participé aux deux, \emph{i.e.} $V(D_i) \cap V(D_j) \neq \emptyset$.
 
+Par construction, ces graphes contiennent beaucoup d'information sur les relations entre les discussions.
 Ces deux graphes sont constitués de 116 999 n\oe{}uds et d'environ 2 millions de liens pour le graphe de chevauchement temporel et d'environ 63 millions de liens pour le graphe de chevauchement topologique.
-Par construction, ces graphes contiennent beaucoup d'informations sur les relations entre les discussions.
 
 
-Dans la figure~\ref{fig:x-y-graphs_discu}(gauche), est représentée la corrélation entre le degré d'une discussion dans le graphe de chevauchement temporel $X$ et sa durée.
+
+Dans la figure~\ref{fig:x-y-graphs_discu} (gauche), est représentée la corrélation entre le degré d'une discussion dans le graphe de chevauchement temporel $X$ et sa durée.
 Il y a une corrélation évidente entre ces deux notions lorsque les discussions ont une durée supérieure à $10^5$ secondes.
 Plus une discussion dure longtemps, plus elle a de chance d'avoir lieu en même temps que beaucoup d'autres discussions.
 On observe également que, même pour les discussions durant moins d'un jour ($8.6 \times 10^4$\,s), il peut y avoir jusqu'à une centaine d'autres discussions actives sur la même période.
@@ -515,14 +525,14 @@ La couleur du point indique le nombre de groupes ayant la même taille.
 Nous avons utilisé le modèle de flot de liens pour étudier une archive de courriels provenant du projet Debian.
 Grâce au modèle de flot de liens, nous avons étudié des notions clefs pour mieux comprendre la répartition temporelle et topologique des discussions.
 Nous avons étudié la notion de $\Delta$-densité sur les discussions en elles mêmes.
-Puis, nous avons étudié les relations entre les discussions avec la $\Delta$-densité inter discussions, les projections en graphe de chevauchement temporel ou topologique et le flot quotient.
+Puis, nous avons étudié les relations entre les discussions avec la $\Delta$-densité inter-discussions, les projections en graphe de chevauchement temporel ou topologique et le flot quotient.
 
 Cette étude repose en grande partie sur la notion de $\Delta$-densité qui nécessite un paramètre fixé arbitrairement.
 Nous avons à chaque fois testé un ensemble de valeurs de $\Delta$ variant d'une seconde jusqu'à parfois 20 ans et, lors de ces tests, aucune valeur $\Delta$ caractéristique n'a pu être identifiée.
 Il semble donc que la $\Delta$-densité soit relativement robuste vis-à-vis de $\Delta$ dans ce contexte.
 
 Nous avons tout d'abord observé que les discussions forment une structure plus dense que le flot de liens.
-De manière encore plus forte, nous avons constaté, grâce à la $\Delta$-densité inter discussion, que les discussions sont plus denses en interne qu'en externe.
+De manière encore plus forte, nous avons constaté, grâce à la $\Delta$-densité inter-discussion, que les discussions sont plus denses en interne qu'en externe.
 C'est une caractéristique importante des communautés que l'on trouve dans les graphes mais qui n'avait pas été observée dans un contexte temporel.
 \`A partir de ces observations, nous avons également observé les relations entre les discussions.
 Via le graphe de chevauchement temporel, nous avons validé le fait que différentes discussions ont lieu en même temps et que par conséquent une agrégation temporelle entraînerait une perte d'information.
