@@ -88,7 +88,7 @@ En particulier, il est nécessaire que la notion de communauté dans le \emph{li
 Or, un \emph{line-graph} a une structure très différente du graphe initial.
 
 
-Prenons pour exemples, la clique qui est la meilleure communauté possible et l'étoile qui est une des pires communautés possibles.
+Prenons pour exemples, la clique qui est la meilleure communauté et l'étoile qui est une des pires communautés possibles.
 Le but est d'observer comment ces structures sont transformées dans le \emph{line-graph}.
 Ces situations sont représentées dans la figure~\ref{fig:fail_construction_lineG}.
 L'étoile dans la figure~\ref{fig:ex_lineG_etoile} est transformée en une clique de 4 n\oe{}uds.
@@ -379,7 +379,7 @@ Ces répartitions sont illustrées dans la figure~\ref{fig:1C}.
 \end{figure}
 
 
-Comme le graphe est complet, la meilleure solution est d'avoir un seul groupe contenant l'ensemble des liens et la partition triviale devrait avoir une meilleure évaluation que les autres partitions.
+Comme le graphe est complet, la meilleure solution est d'avoir un seul groupe contenant l'ensemble des liens et la partition triviale devrait donc avoir une meilleure évaluation que les autres partitions.
 La figure~\ref{fig:1Cres} présente les résultats.
 Pour chaque valeur de $p$ et chaque fonction de qualité, nous calculons les évaluations des partitions en deux et en trois groupes ainsi que l'évaluation de la partition triviale.
 L'évaluation de la partition triviale n'est pas dépendante de $p$ et n'est calculée qu'une seule fois.
@@ -705,7 +705,7 @@ Il est donc assez rapide de calculer $Q_{in}$.
 
 
 En revanche, la situation est complètement différente pour $Q_{ext}$, même si le processus de calcul est similaire.
-On peut appliquer l'approximation de la loi hypergéométrique par une loi binomiale mais deux n\oe{}uds de même degré ne vont plus forcément avoir la même probabilité d'être tirés.
+On peut aussi appliquer l'approximation de la loi hypergéométrique par une loi binomiale mais deux n\oe{}uds de même degré ne vont plus forcément avoir la même probabilité d'être tirés.
 En effet, $Q_{ext}$ n'utilise pas le graphe initial mais le graphe $G\setminus L_i$.
 Pour chaque n\oe{}ud, il faut évaluer son degré dans ce nouveau graphe.
 Le calcul de $Q_{ext}$ pour un groupe se fait donc en $O(n)$.

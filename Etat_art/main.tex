@@ -19,7 +19,7 @@ Cependant, l'utilisation d'un graphe agrégé manque de pertinence, lorsque le r
 Si tel est le cas, certaines structures présentes dans le graphe peuvent n'être que des artefacts de l'agrégation temporelle.
 Imaginons par exemple un graphe représentant les alliances politiques dans un pays sur une longue période.
 Si toutes les alliances politiques sont agrégées, alors les personnes changeant de parti politique seront faussement considérées comme influentes car connectées à plusieurs partis alors qu'elles peuvent, en réalité, ne plus avoir de contact dans leur ancien parti.
-Ainsi, il n'est plus possible d'observer la répartition des alliances politiques dans ce genre de réseau si l'agrégation temporelle est trop importante~\cite{Mucha2010}.
+Il n'est plus possible d'observer la répartition des alliances politiques dans ce genre de réseau si l'agrégation temporelle est trop importante~\cite{Mucha2010}.
 
 Si l'on prend en compte le temps, alors il devient possible de détecter des structures plus fines que dans le cas statique.
 En effet, on peut détecter des instants où l'organisation générale change~\cite{Rosvall2010}, comprendre quels sont les instants où un n\oe{}ud est important~\cite{Magnien2015,Costa2015,Takaguchi2016}, ou bien détecter des groupes temporels~\cite{Cazabet2010}.
@@ -219,7 +219,8 @@ Afin de faciliter la compréhension du sujet, nous détaillons ici quelques unes
 
 \subsubsection{Méthodes utilisant un modèle}
 \label{def:Modularite}
-Une communauté étant souvent définie comme devant être très densément connectée, le problème est de trouver une fonction capable d'évaluer la qualité d'une communauté.
+Une communauté est souvent définie comme densément connectée.
+Le problème est de trouver une fonction capable d'évaluer la qualité d'une communauté.
 Pour ce faire, il faut définir une métrique qui mesure la densité, \emph{e.g.} le nombre de liens dans un groupe.
 Puis, il est nécessaire de définir comment évaluer cette métrique.
 
@@ -365,7 +366,7 @@ Par conséquent, ces extensions sont beaucoup moins utilisées que la modularit�
 En revanche, le SBM s'adapte très bien aux couvertures de n\oe{}uds.
 Une extension du SBM est le \emph{Mix-Membership Stochastic Block Model} (MMSBM)~\cite{Airoldi2008} qui permet à un n\oe{}ud d'être assigné plusieurs groupes.
 Dans~\cite{Gopalan2013a}, les auteurs utilisent la même méthode mais en échantillonnant le graphe initial afin de réduire le coût de calcul.
-Il existe d'autres méthodes utilisant des modèles génératifs~\cite{Ball2011,Yang2013}.
+D'autres méthodes utilisent des modèles génératifs~\cite{Ball2011,Yang2013}.
 Ces méthodes se basent sur des graphes d'affiliation~\cite{BreigerRonald1974}.
 Un graphe d'affiliation est un graphe biparti entre les n\oe{}uds d'une part et les communautés d'autre part.
 Dans la méthode de Ball \emph{et al.}~\cite{Ball2011}, ce graphe d'affiliation est pondéré et la pondération représente la propension d'un n\oe{}ud à créer des liens dans un groupe donné tandis que pour Yang et Leskovec~\cite{Yang2013}, il s'agit du facteur d'appartenance du n\oe{}ud au groupe.
@@ -458,7 +459,7 @@ Les méthodes utilisant des fonctions de qualité locales sont quant à elles tr
 Les graphes sont utilisés pour représenter une situation ou résoudre un problème réel.
 Dans la section précédente, nous nous sommes attachés à présenter une partie des méthodes traitant du problème de la détection de communautés recouvrantes ou non.
 Cependant, toutes ces méthodes reposent sur l'hypothèse de la validité de la représentation du problème par un graphe.
-Cette hypothèse est justifiée dans énormément de cas mais elle ne l'est plus lorsque l'objet d'étude évolue de manière significative.
+Elle est justifiée dans énormément de cas mais elle ne l'est plus lorsque l'objet d'étude évolue de manière significative.
 
 Afin d'illustrer ce propos, nous nous appuyons sur le même exemple de réseau de personnes que nous avons présenté dans la sous-section~\ref{subsec:Part_noeuds} et qui est illustré dans la figure~\ref{fig:ecole_primaire}.
 Dans cet exemple, deux élèves sont reliés dans le graphe s'ils ont interagi au moins une fois au cours de la capture.
@@ -549,7 +550,7 @@ Ils ont donc proposé une nouvelle méthode afin de résoudre ce problème.
 De plus, cette méthode permet, de plus, de traiter des séries de graphes pondérés.
 
 \subsubsection{Tenseurs 3D}
-Il est possible de voir un graphe comme une matrice carrée d'adjacence.
+On peut voir un graphe comme une matrice carrée d'adjacence.
 Il en découle la conception d'une série de graphes comme un tenseur appartenant à $\mathcal{R}_{nnT}$.
 Ce changement de point de vue permet l'application de méthodes d'algèbre linéaire, notamment la décomposition de tenseur.
 C'est la méthode proposée par Gauvin \emph{et al.}~\cite{Gauvin2014} pour étudier la structure communautaire des interactions d'élèves.
@@ -674,8 +675,8 @@ Avec ce formalisme, la majorité des travaux sont seulement descriptifs car la s
 De nombreux travaux ont étudié le temps séparant l'apparition de deux liens pour un n\oe{}ud~\cite{Malmgren2008,Malmgren2009}.
 Il semblerait que ces temps inter-contacts soient très hétérogènes et que de nombreuses connexions apparaissent dans un faible intervalle de temps suivie de longues durées sans activité.
 On parle alors de temps inter-contact \emph{bursty}.
-Les effets des temps inter-contacts sur les phénomènes de contagions et de marches aléatoires sont très étudiés~\cite{Karsai2011,Karsai2012a,Starnini2012b,Rocha2013}.
-Il n'y a cependant pas de conclusion définitive sur le sujet car la diffusion peut être accélérée ou ralentie par les temps inter-contacts selon la structure sous-jacente.
+Les effets de ces temps inter-contacts sur les phénomènes de contagions et de marches aléatoires sont très étudiés~\cite{Karsai2011,Karsai2012a,Starnini2012b,Rocha2013}.
+Le problème reste cependant ouvert car la diffusion peut être accélérée ou ralentie par les temps inter-contacts selon la structure sous-jacente.
 
 Il existe également quelques travaux qui s'intéressent plus à la structure des flots de liens, notamment à la présence de motifs~\cite{Kovanen2011a,Kovanen2013a}.
 Dans un graphe, un motif est un petit sous-graphe, comme le triangle, qui est l'un des motifs les plus étudiés.
