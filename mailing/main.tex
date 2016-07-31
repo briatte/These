@@ -81,15 +81,22 @@ Nous avons également étudié les corrélations entre ces différentes notions,
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.4\linewidth]{img/mailing/sizes-durations-corr.eps}
-	\includegraphics[width=0.4\linewidth]{img/mailing/sizes-authors-corr.eps}
-	\caption{Gauche: Corrélation entre le nombre de courriels et la durée d'une discussion. Droite: Corrélation entre le nombre de courriels et le nombre de personnes dans une discussion.}
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width=\linewidth]{img/mailing/sizes-durations-corr.eps}
+		\caption{\label{fig:corr_discussion_duration}}		
+	\end{subfigure}
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width=\linewidth]{img/mailing/sizes-authors-corr.eps}
+		\caption{\label{fig:corr_discussion_author}}
+	\end{subfigure}
+
+	\caption{En (A): Corrélation entre le nombre de courriels et la durée d'une discussion. En (B): Corrélation entre le nombre de courriels et le nombre de personnes dans une discussion.}
 	\label{fig:corr_discussion}
 \end{figure}
 
-Comme attendu, nous observons dans la partie gauche de la figure~\ref{fig:corr_discussion} que plus une discussion est grande en nombre de courriels plus elle dure longtemps, ce qui est attendu.
+Comme attendu, nous observons dans la figure~\ref{fig:corr_discussion_duration} que plus une discussion est grande en nombre de courriels plus elle dure longtemps, ce qui est attendu.
 Par contre, on observe que les petites discussions ont des durées très variables. 
-Dans la partie droite de la figure~\ref{fig:corr_discussion} présentant la corrélation entre le nombre de courriels et celui de personnes, nous observons un autre fait attendu~\cite{dorat2007}: une discussion est constituée, en général, de plus de messages que de participants.
+Dans la figure~\ref{fig:corr_discussion_author} présentant la corrélation entre le nombre de courriels et celui de personnes, nous observons un autre fait attendu~\cite{dorat2007}: une discussion est constituée, en général, de plus de messages que de participants.
 Ainsi lors d'une discussion, c'est un petit nombre de personnes qui échangent potentiellement beaucoup de messages. 
 
 Enfin, il est intéressant d'observer la dynamique des échanges entre chaque paire de personnes.
@@ -262,28 +269,36 @@ Ces deux graphes sont constitués de 116 999 n\oe{}uds et d'environ 2 millions d
 
 
 
-Dans la figure~\ref{fig:x-y-graphs_discu} (gauche), est représentée la corrélation entre le degré d'une discussion dans le graphe de chevauchement temporel $X$ et sa durée.
+Dans la figure~\ref{fig:x-y-graphs_discu_temp}, est représentée la corrélation entre le degré d'une discussion dans le graphe de chevauchement temporel $X$ et sa durée.
 Il y a une corrélation évidente entre ces deux notions lorsque les discussions ont une durée supérieure à $10^5$ secondes.
-Plus une discussion dure longtemps, plus elle a de chance d'avoir lieu en même temps que beaucoup d'autres discussions.
-On observe également que, même pour les discussions durant moins d'un jour ($8.6 \times 10^4$\,s), il peut y avoir jusqu'à une centaine d'autres discussions actives sur la même période.
+Plus une discussion dure longtemps, plus elle a de chance d'avoir lieu en même temps que d'autres discussions.
+Nous observons également que, même pour les discussions durant moins d'un jour ($8.6 \times 10^4$\,s), il peut y avoir jusqu'à une centaine d'autres discussions actives sur la même période.
 
 \begin{figure}
 \centering
-	\includegraphics[width=0.4\textwidth]{img/mailing/degree_temp}
-	\hspace*{0.025\textwidth}
-	\includegraphics[width=0.4\textwidth]{img/mailing/degree_nodes}
-	\caption{Gauche: Corrélation entre le degré des discussions dans le graphe de chevauchement temporel et leur durée. Droite: Corrélation entre le degré des discussions dans le graphe de chevauchement topologique et leur nombre de participants.}
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width=\linewidth]{img/mailing/degree_temp}
+		\caption{\label{fig:x-y-graphs_discu_temp}}		
+	\end{subfigure}
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width=\linewidth]{img/mailing/degree_nodes}
+		\caption{\label{fig:x-y-graphs_discu_node}}	
+	\end{subfigure}
+	
+	
+	\caption{En (A): Corrélation entre le degré des discussions dans le graphe de chevauchement temporel et leur durée. En (B): Corrélation entre le degré des discussions dans le graphe de chevauchement topologique et leur nombre de participants.}
 	\label{fig:x-y-graphs_discu}
 \end{figure}
 
-La figure~\ref{fig:x-y-graphs_discu}(droite) présente la corrélation entre le degré d'une discussion dans le graphe de chevauchement topologique $Y$ et son nombre de participants.
+La figure~\ref{fig:x-y-graphs_discu_node}  présente la corrélation entre le degré d'une discussion dans le graphe de chevauchement topologique $Y$ et son nombre de participants.
 La corrélation est moins nette mais il y a tout de même une tendance.
-Par contre, on remarque de manière frappante que même une petite discussion peut partager des n\oe{}uds avec énormément d'autres discussions.
+Par contre, nous remarquons de manière frappante que même une petite discussion peut partager des n\oe{}uds avec énormément d'autres discussions.
 
 
 \subsection{Flot quotient}
 
-Le graphe quotient est une autre notion clef pour étudier les relations entre les communautés d'un graphe $G=(V,E)$.
+
+Le graphe quotient, qui est équivalent au graphe de chevauchement topologique, est une autre notion clef pour étudier les relations entre les communautés d'un graphe $G=(V,E)$.
 Soit une partition $C= \{C_i\}_{1 .. k}$ des n\oe{}uds de $G$ en $k$ communautés, chaque communauté est représentée dans le graphe quotient $\bar{G}$ par un n\oe{}ud dans $V$.
 Il y a un lien entre deux communauté $C_i$ et $C_j$ dans $E$ s'il existe au moins un lien entre un n\oe{}ud de $C_i$ et un n\oe{}ud de $C_j$.
 Voir une illustration sur la figure~\ref{fig:graph-quotient}.
@@ -301,23 +316,21 @@ Le graphe quotient permet de facilement étudier, dans un graphe, les relations 
 \end{figure}
 
 Nous étendons maintenant cette notion de graphe quotient aux flots de liens.
-Nous définissons le flot quotient, $Q=(T_Q,V_Q,E_Q)$, induit par une partition $P=\{{P_i}\}_{1..k}$ en $k$ sous-flots de la manière suivante.
-Chaque sous-flot $P_i$ est représenté par un n\oe{}ud dans $V_Q$.
+Nous définissons le flot quotient, $Q=(T_Q,V_Q,E_Q)$, induit par une partition $P=\{{P_i}\}_{1..k}$ en $k$ sous-flots de la manière suivante: chaque sous-flot $P_i$ est représenté par un n\oe{}ud dans $V_Q$.
 Il existe un lien $(t_2,P_i,P_j)$ dans $E_Q$ s'il existe $(t_1,u,v) \in P_i$, $(t_2,u,v') \in P_j$ et $(t_3,u,v'') \in P_i$ avec $t_1 \leq t_2 \leq t_3$.
 En d'autre termes, il y a un lien dans $E_Q$ si un n\oe{}ud $u$ a un lien dans $P_j$ qui apparaît entre deux autres de ses liens du groupe $P_i$.
 
 Le flot quotient induit par les discussions dans le jeu de données contient $12\ 281\ 269$ liens impliquant $68\ 524$ discussions différentes.
 Comme le jeu de données contient $116\ 999$ discussions, il y a donc $48\ 475$ discussions sans lien et qui ne seront pas prises en compte par la suite.
-Ce nombre de discussions non-reliées est élevé comparé à ce qui est obtenu dans un graphe.
+Ce nombre de discussions non-reliées est élevé comparé à ce qui pourrait être obtenu dans un graphe quotient.
 En effet dans un graphe, un n\oe{}ud de degré $0$ correspond à une communauté qui est une composante connexe.
-En ajoutant l'information temporelle, les discussions sont séparées par le temps dans le flot.
-C'est pourquoi un grand nombre de discussions n'ont pas de liens dans le flot quotient.
-Ce phénomène est d'autant plus vrai pour les petites discussions.
+En ajoutant l'information temporelle, des discussions liées par leurs participants peuvent être séparées par le temps et les n\oe{}uds les représentant dans le flot ne seront alors pas liés.
+Ce phénomène est d'autant plus vrai pour les discussions courtes.
 
 
 
 Il faut aussi noter qu'il y a environ 20 fois plus de liens dans le flot quotient que dans le flot initial.
-Cela est normal car un lien dans le flot peut donner lieu à plusieurs liens dans le flot quotient.
+Cela s'explique par le fait qu'un lien dans le flot peut donner lieu à plusieurs liens dans le flot quotient.
 Ce cas est visible dans la figure~\ref{fig:graph-quotient}. 
 Le lien $(x,y)$ du groupe violet du flot à gauche donne lieu au lien $(\textcolor{plum}{violet}, \textcolor{red}{rouge})$ et au lien $(\textcolor{plum}{violet}, \textcolor{oliveGreen}{vert})$ dans le flot quotient à droite. 
 
@@ -330,10 +343,8 @@ Le lien $(x,y)$ du groupe violet du flot à gauche donne lieu au lien $(\textcol
 
 La figure~\ref{fig:quotient-stream-density} présente la $\Delta$-densité du flot de liens initial et du flot quotient pour différentes valeurs de $\Delta$.
 Le flot initial et le flot quotient ont le même comportement de densité mais le flot quotient est moins $\Delta$-dense que le flot initial.
-Ce résultat diffère par rapport à ce qui est obtenu dans un graphe.
-Cela est dû au nombre de n\oe{}uds qui est plus important dans le flot quotient que dans le flot original.
-Mais le flot quotient contient tout de même beaucoup de liens. 
-En effet, le degré moyen dans le flot quotient est en moyenne 25 fois plus élevé que dans le flot original.
+Ce résultat diffère de ce qui pourrait être obtenu avec un graphe quotient.
+Cela est dû au nombre de n\oe{}uds qui est beaucoup plus important dans le flot quotient que dans le flot original, même si, le degré moyen dans le flot quotient est en moyenne 25 fois plus élevé que dans le flot original.
 
 
 \section{Détection de structures denses}
@@ -344,19 +355,19 @@ C'est à dire une méthode identifiant des groupes de liens qui soient proches t
 Il serait tentant d'optimiser directement la densité dans le flot mais ce n'est pas envisageable car un groupe constitué d'un unique lien a une densité de $1$.
 Il faut donc trouver une autre méthode.
 C'est pourquoi nous avons construit une autre projection du flot en un graphe statique afin d'y appliquer une méthode de détection de communautés.
-Le problème est alors de réussir à créer une transformation de telle sorte que les informations temporelles et topologiques ne soient pas complètement détruites.
+L'enjeu est alors de réussir à créer une transformation de telle sorte que les informations temporelles et topologiques ne soient pas complètement perdues.
 
 \subsection{Méthode de détection}
 \label{sec:fail_mailing}
 Afin de créer une transformation du flot vers un graphe, nous définissons un autre flot de liens, $\mathfrak{L}$, dont les liens ont une durée.
 \`A partir de $\mathfrak{L}$, nous créons un graphe non-orienté et non-pondéré $\mathcal{G} = (\mathcal{V},\mathcal{E})$. Nous commençons par décrire comment $\mathcal{G}$ est défini à partir de $\mathfrak{L}$.
 
-Chaque lien de $\mathfrak{L}$ est correspond à un n\oe{}ud de $\mathcal{G}$.
+Chaque un n\oe{}ud de $\mathcal{G}$ correspond à lien de $\mathfrak{L}$.
 Deux liens $(b,e,u,v)$ et $(b',e',u',v')$ du flot de liens sont reliés dans $\mathcal{G}$ s'ils partagent un n\oe{}ud et si les intervalles s'intersectent, \emph{i.e.} $\{u,v\} \cap \{u',v'\} \neq \emptyset$ et $[b,e]\cap[b',e'] \neq \emptyset$ (voir la figure~\ref{fig:Transformation}).
 Ainsi, un lien dans le graphe représente une connexion structurelle et temporelle entre deux liens du flot de liens.
 Les groupes denses dans $\mathcal{G}$ représentent donc des groupes de liens connectés temporellement et topologiquement dans $\mathfrak{L}$.
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[width=0.55\linewidth]{img/mailing/Transformation.eps}
 \caption{Transformation d'un flot de liens avec 4 n\oe{}uds (a-d) et 6 liens à gauche en un graphe à droite à 6 n\oe{}uds. La couleur d' un n\oe{}ud dans le graphe indique le lien du flot qu'il représente.}
@@ -368,7 +379,7 @@ Lors du calcul de la densité dans la section~\ref{delta_densite}, nous avions a
 Ici, il n'est pas très pertinent d'appliquer la même logique.
 En effet, si on utilise un $\Delta$ faible, alors il n'y aura que très peu de liens dans $\mathcal{G}$ et les n\oe{}uds représentant les liens d'une discussions ne seront pas forcément reliés.
 Il parait illusoire d'espérer retrouver les discussions dans $\mathcal{G}$ si elles n'appartiennent pas à la même composante connexe.
-Si $\Delta$ est très grand alors toute information temporelle est perdue et cela revient à calculer le \emph{line-graph} du graphe agrégé.
+Si $\Delta$ est très grand alors toute information temporelle est perdue et cela revient à calculer le \emph{line-graph}\,\footnote{Nous définissons le \emph{line-graph} dans le chapitre~\ref{chap:Expected_Node}.} du multigraphe agrégé.
 C'est pourquoi nous adoptons une autre manière d'ajouter une durée sur les liens.
 
 Pour chaque message $m$, nous connaissons $p(m)$, le message auquel il répond dans la discussion.
@@ -388,6 +399,7 @@ D'autres algorithmes peuvent être appliqués s'ils détectent des groupes de n\
 Les groupes trouvés par Louvain sont des communautés dans $\mathcal{G}$.
 Par conséquent, ils sont censé être densément connectés dans $\mathcal{G}$.
 Comme un lien de $\mathcal{G}$ correspond à une connexion temporelle et topologique dans le flot, on peut espérer qu'ils correspondent à des groupes denses dans le flot.
+C'est ce que nous cherchons à montrer ensuite.
 
 \subsection{Comparaison des partitions}
 
@@ -414,7 +426,7 @@ On remarque tout de suite que $\mathfrak{D}$ contient des groupes beaucoup plus 
 		\includegraphics[width=\linewidth]{img/mailing/Detection/densite}
 		\caption{\label{fig:dens_mail_louvain}}		
 	\end{subfigure}
-\caption{Distribution cumulative inverses du nombre de liens (a), du nombre de n\oe{}uds (b), de la durée (c) et de la densité (d) pour les groupes trouvés par Louvain et les discussions.}
+\caption{Distributions cumulatives inverses du nombre de liens (A), du nombre de n\oe{}uds (B), de la durée (C) et de la densité (D) pour les groupes trouvés par Louvain et les discussions.}
 \label{fig:carac_mail_louvain}
 \end{figure}
 
@@ -427,11 +439,11 @@ Comme les liens de $\mathfrak{L}$ ont une durée, il est possible d'utiliser dir
 On remarque que les groupes de $\mathfrak{D}$, bien que plus gros, sont plus denses que les groupes de $D$.
 Cependant la distribution cumulative inverse cache les effets de la taille sur la densité.
 Or, une analyse manuelle montre qu'à nombre de liens égal (entre $2$ et $160$) les groupes trouvés par Louvain sont plus denses en moyenne, $0.46$ contre $0.38$. 
-La médiane est également plus élevée: $0.34$ contre $0.33$.
+La médiane est également légèrement plus élevée: $0.34$ contre $0.33$.
 En revanche, les plus gros groupes ($\mathcal{D}_j|>160$) trouvés par Louvain ont une densité plus faible ce qui peut être dû à leur taille.
 
 Si les groupes de $\mathfrak{D}$ sont plus denses, c'est peut-être car ils regroupent plusieurs discussions de $D$ dans un groupe.
-Pour comparer deux partitions, l'indice de Jaccard est classiquement utilisé pour calculer la $pr\acute{e}cision$ et le $rappel$ qui sont définis de la manière suivante:
+Pour comparer deux partitions, l'indice de Jaccard est classiquement utilisé pour calculer la précision et le rappel qui sont définis de la manière suivante:
 
 \begin{equation*}
 pr\acute{e}cision(\mathfrak{D}_j)= \max_{i} \frac{|\mathfrak{D}_j \cap D_i|}{|\mathfrak{D}_j|}\,, \quad \qquad
@@ -439,8 +451,8 @@ rappel(D_i)= \max_{j} \frac{|\mathfrak{D}_j \cap D_i|}{|D_i|}.
 \label{eq:rappel}
 \end{equation*}
 
-Dans la figure~\ref{fig:rec_inclusion_niveau0}, sont présentées la $pr\acute{e}cision$ des groupes et le $rappel$ des discussions en fonctions de leur taille.
-Chaque point représente la moyenne de la $pr\acute{e}cision$ (resp. $rappel$) pour les groupes (resp. discussions) d'une taille donnée.
+Dans la figure~\ref{fig:rec_inclusion_niveau0}, sont présentées la précision des groupes capturés et le rappel des discussions en fonctions de leur taille.
+Chaque point représente la moyenne de la précision (resp. rappel) pour les groupes (resp. discussions) d'une taille donnée.
 On voit qu'il y a un important rappel et ce même pour les grandes discussions, ce qui veut dire qu'en général une discussion $D_i$ est totalement incluse dans un groupe $\mathfrak{D}_j$.
 En revanche, la précision est très faible car un groupe $\mathfrak{D}_j$ contient plusieurs discussions, ce qui est cohérent avec la taille très importante des groupes de $\mathfrak{D}_j$.
 
@@ -474,15 +486,15 @@ Soit $\mathfrak{D}_{h,j'}$ un groupe trouvé au niveau $h$, par construction, il
 
 Soit $D_i \in D$, notons $\mathfrak{D}_{h,\tilde{i}}$ le groupe trouvé par la méthode de Louvain au niveau $h$ qui soit le plus proche de $D_i$, c'est-à-dire $|\mathfrak{D}_{h,\tilde{i}}\cap D_i|= \max_{j} |\mathfrak{D}_{h,j} \cap D_i|$.
 Avec ces définitions, on observe la relation suivante: $\mathfrak{D}_{h,\tilde{i}}\cap D_i \subseteq \mathfrak{D}_{h-1,\tilde{i}}\cap D_i$.
-La définition de $rappel$ de l'équation~\ref{eq:rappel} n'est donc pas adaptée pour les niveaux inférieurs et nous l'adaptons de la manière suivante:
+La définition de rappel de l'équation~\ref{eq:rappel} n'est donc pas adaptée pour les niveaux inférieurs et nous l'adaptons de la manière suivante:
 
 \begin{equation}
 rappel(D_i,h)= \max_{j} \frac{|\mathfrak{D}_{h,j} \cap D_i|}{|D_i \cap \mathfrak{D}_{h-1,\tilde{j}}|}.
 \end{equation}
 
-Ainsi, le $rappel$ au niveau $h$ prend en compte le maximum d'élément qu'il est possible de trouver à ce niveau.
-La définition de $pr\acute{e}cision$ ne pose quant à elle pas de problème.
-La figure~\ref{fig:rec_inclusion} représente le $rappel$ adapté et la $pr\acute{e}cision$ pour le premier et deuxième niveau de récursion de la même manière que pour la figure~\ref{fig:rec_inclusion_niveau0}.
+Ainsi, le rappel au niveau $h$ prend en compte le maximum d'élément qu'il est possible de trouver à ce niveau.
+La définition de précision ne pose quant à elle pas de problème.
+La figure~\ref{fig:rec_inclusion} représente le rappel adapté et la précision pour le premier et deuxième niveau de récursion de la même manière que pour la figure~\ref{fig:rec_inclusion_niveau0}.
 On remarque que, dès le premier niveau, le rappel baisse et que ce phénomène s'amplifie fortement au niveau suivant.
 Cela implique que les discussions ne sont plus incluses dans un groupe mais au contraire réparties dans plusieurs.
 La précision quant à elle augmente légèrement mais cela est dû à la baisse de la taille des groupes trouvés.
@@ -523,29 +535,29 @@ La couleur du point indique le nombre de groupes ayant la même taille.
 \subsubsection{Conclusion}
 
 Nous avons utilisé le modèle de flot de liens pour étudier une archive de courriels provenant du projet Debian.
-Grâce au modèle de flot de liens, nous avons étudié des notions clefs pour mieux comprendre la répartition temporelle et topologique des discussions.
-Nous avons étudié la notion de $\Delta$-densité sur les discussions en elles mêmes.
-Puis, nous avons étudié les relations entre les discussions avec la $\Delta$-densité inter-discussions, les projections en graphe de chevauchement temporel ou topologique et le flot quotient.
+Grâce au modèle de flot de liens, nous avons proposé des notions clefs pour mieux comprendre la répartition temporelle et topologique des discussions.
+Nous avons notamment étudié la notion de $\Delta$-densité sur les discussions en elles mêmes.
+Puis, nous avons étudié les relations entre les discussions avec la $\Delta$-densité inter-discussions, les projections en graphes de chevauchement temporel ou topologique et le flot quotient.
 
-Cette étude repose en grande partie sur la notion de $\Delta$-densité qui nécessite un paramètre fixé arbitrairement.
+Cette étude repose en grande partie sur la notion de $\Delta$-densité qui nécessite de fixer arbitrairement $\Delta$.
 Nous avons à chaque fois testé un ensemble de valeurs de $\Delta$ variant d'une seconde jusqu'à parfois 20 ans et, lors de ces tests, aucune valeur $\Delta$ caractéristique n'a pu être identifiée.
-Il semble donc que la $\Delta$-densité soit relativement robuste vis-à-vis de $\Delta$ dans ce contexte.
+La $\Delta$-densité est donc relativement robuste vis-à-vis de $\Delta$ dans ce jeu de données.
 
-Nous avons tout d'abord observé que les discussions forment une structure plus dense que le flot de liens.
+Ces métriques nous ont permis d'observer que les discussions forment une structure plus dense que le flot de liens.
 De manière encore plus forte, nous avons constaté, grâce à la $\Delta$-densité inter-discussion, que les discussions sont plus denses en interne qu'en externe.
-C'est une caractéristique importante des communautés que l'on trouve dans les graphes mais qui n'avait pas été observée dans un contexte temporel.
-\`A partir de ces observations, nous avons également observé les relations entre les discussions.
+C'est une caractéristique importante des communautés que l'on trouve dans les graphes mais qui n'avait pas encore été observée dans un contexte temporel.
+Forts de ces découvertes, nous avons poursuivi la recherche par l'étude des relations à un niveau plus macro: celles entre les discussions.
 Via le graphe de chevauchement temporel, nous avons validé le fait que différentes discussions ont lieu en même temps et que par conséquent une agrégation temporelle entraînerait une perte d'information.
-De même via le graphe de chevauchement topologique, on remarque que la structure est très recouvrante sur les n\oe{}uds, rendant ainsi l'utilisation de partitions statiques de n\oe{}uds difficilement envisageable pour décrire les discussions.
+De même via le graphe de chevauchement topologique, nous avons mis en évidence une structure très recouvrante sur les n\oe{}uds, rendant l'utilisation de partitions statiques de n\oe{}uds difficilement envisageable pour décrire les discussions.
 
 
 Par la suite, nous avons mis en place un première méthode de détection de partition de liens.
-Cette méthode se base sur la projection du flot de liens en un graphe statique sur lequel nous appliquons un algorithme de détection de communautés.
-Nous avons avec cette méthode mis en évidence des groupes denses.
-Les groupes trouvés sont plus gros et plus denses que la structure des discussions.
-Il semble donc qu'il existe une autre structure que celle des discussions.
+Cette méthode se base sur la projection du flot de liens en un graphe statique sur lequel nous appliquons un algorithme de détection de communautés provenant de la théorie des graphes.
+Nous avons, avec cette méthode, mis en évidence des groupes denses.
+Les groupes trouvés sont plus gros et plus denses que la structure des discussions mais les incluant.
+Il semble donc qu'il existe une autre structure pertinente que celle des discussions et il serait intéressant de mettre au jour son sens.
 
-Cependant, ces observations ne remettent pas en cause les conclusions faites sur les discussions pour plusieurs raisons.
+Ces observations ne remettent d'ailleurs pas en cause les conclusions faites sur les discussions, pour plusieurs raisons.
 Tout d'abord, les flots de liens étudiés ne sont pas exactement les-mêmes ($L\neq \mathfrak{L}$).
 Ce changement de flot est nécessaire pour le fonctionnement de la méthode de détection mais cela change l'objet d'étude.
 Ensuite, les deux structures ne sont pas complètement différentes car les groupes trouvés semblent en fait agréger plusieurs discussions.
@@ -563,11 +575,13 @@ Il serait ainsi possible de mieux comprendre la participation de personnes à un
 
 Il y a également le texte brut du mail qui est accessible et dont nous n'avons pas tiré parti.
 Il serait sûrement intéressant pour des linguistes de quantifier l'évolution du vocabulaire.
-De même, nous nous sommes focalisé sur la liste de discussion anglaise, alors qu'il est possible avec le script d'extraction de considérer les listes de discussions dans d'autres langues.
-Il pourrait être intéressant de comparer les structures de ces deux sources de données.
+De même, nous nous sommes focalisés sur la liste de discussion anglaise, alors qu'il est possible avec le script d'extraction de considérer les listes de discussions dans d'autres langues.
+Il pourrait être intéressant de comparer les structures obtenues pour différentes langues.
 
 \bigskip
 
-Dans le cadre de la manipulation de flot de liens, une perspective importante est la compréhension plus en détail de la structure de liens que nous avons détectée.
+
+
+Lors la manipulation de flot de liens, un enjeu important est la compréhension de la structure de liens que nous avons détectée.
 C'est cette perspective que nous poursuivons dans le chapitre suivant.
 
