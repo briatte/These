@@ -50,7 +50,8 @@ Avec ces notations, nous définissons les notions suivantes:
 \item[Arbre] Un arbre est un graphe connexe sans cycle; il contient $n-1$ liens pour $n$ n\oe{}uds;
 \item[Clique] Une clique, aussi appelée graphe complet, est le graphe le plus dense et elle est composée de $\dfrac{n(n-1)}{2}$ liens pour $n$ n\oe{}uds;
 \item[Sous-graphe] Un graphe $G'=(V',E')$ est un sous-graphe de $G$ si et seulement si $V' \subseteq V$ et $E' \subseteq E$;
-\item[Graphe induit] Le graphe induit par un ensemble de n\oe{}uds $V' \subseteq V$ est défini par $V'$ et $E'= E \cap (V' \times V')$.
+\item[Graphe induit] Le graphe induit par un ensemble de n\oe{}uds $V' \subseteq V$ est défini par $V'$ et $E'= E \cap (V' \times V')$;
+\item[Multigraphe] Un multigraphe est un graphe dans lequel plusieurs liens peuvent apparaître entre deux n\oe{}uds $u$ et $v$.
 \end{description}
 
 
@@ -75,7 +76,7 @@ Nous listons les notations utilisées dans le tableau~\ref{tab:notation_groupe_n
         \hline
         \rule[-1ex]{0pt}{4ex} $l_{in}(X)=|E \cap (X \times X)|$ & nombre de liens entre les n\oe{}uds de $X$\\
         \hline
-        \rule[-1ex]{0pt}{4ex} $l_{out}(X)=|E \cap (X \times V \setminus X)|$ & nombre de liens entre les n\oe{}uds de $X$ et de $V \setminus X$ \\
+        \rule[-1ex]{0pt}{4ex} $l_{out}(X)=|E \cap (X \times (V \setminus X))|$ & nombre de liens entre les n\oe{}uds de $X$ et de $(V \setminus X)$ \\
         \hline
         \rule[-1ex]{0pt}{4ex} $l(X)=l_{in}(X)+l_{out}(X)$ & nombre de liens reliés aux n\oe{}uds de $X$\\
         \hline
@@ -83,7 +84,7 @@ Nous listons les notations utilisées dans le tableau~\ref{tab:notation_groupe_n
         \hline
         \rule[-1ex]{0pt}{4ex} $d_{in}(X)=\sum_{u \in X} d_{in}(u,X)=2l_{in}(X)$ & somme des degrés internes des n\oe{}uds dans $X$ \\
         \hline
-        \rule[-1ex]{0pt}{4ex} $d_{out}(u,X)=|\{(u,v) \in E,\ v \in V \setminus X\}|$ & nombre de liens entre $u$ et $V \setminus X$ \\
+        \rule[-1ex]{0pt}{4ex} $d_{out}(u,X)=|\{(u,v) \in E,\ v \in (V \setminus X)\}|$ & nombre de liens entre $u$ et $(V \setminus X)$ \\
         \hline
        \rule[-1ex]{0pt}{4ex}  $d_{out}(X)=\sum_{u \in X} d_{out}(u,X)=l_{out}(X)$ & somme des degrés externes des n\oe{}uds dans $X$ \\
         \hline
@@ -185,14 +186,14 @@ Il est également important de noter l'existence d'implémentations librement ac
 
 La détection de communautés dans les graphes est un très vaste champ de recherche et il serait illusoire de prétendre énumérer les méthodes existantes dans ce domaine: elles sont extrêmement nombreuses.
 Aussi les critères permettant la caractérisation d'une communauté peuvent varier selon le contexte~\cite{Leskovec2008,Coscia2011,Yang2015,Jeub2015}.
-Ces méthodes sont tout de même réparties en plusieurs catégories selon qu'elles capturent une partition ou une couverture de n\oe{}uds.
+Ces méthodes sont tout de même réparties en plusieurs catégories selon qu'elles identifient une partition ou une couverture de n\oe{}uds.
 Ces deux structures correspondent à deux visions possibles de l'organisation d'un graphe et du réseau sous-jacent.
 Nous présentons ces deux catégories dans les sous-sections suivantes.
 Il en existe également une troisième qui est la détection de communautés sous la forme de partitions de liens que nous traitons dans le chapitre~\ref{chap:Expected_Node}\,\footnote{La détection de couvertures de liens est encore très peu étudié.}.
 
 \subsection{Partitions de n\oe{}uds}
 \label{subsec:Part_noeuds}
-Afin de mieux comprendre ce que peut capturer une partition de n\oe{}uds, il est plus facile de s'appuyer sur un exemple.
+Afin de mieux comprendre ce que peut représenter une partition de n\oe{}uds, il est plus facile de s'appuyer sur un exemple.
 Dans l'étude de Stehlé \emph{et al.}~\cite{Stehle2011}, des enfants d'une école primaire ont porté pendant $2$ jours des capteurs enregistrant lorsque deux enfants sont à une distance de moins de 1 mètre 50.
 Ce dispositif permet de mesurer les interactions entre élèves et de construire le graphe des relations à l'école.
 Un lien existe entre deux élèves s'ils ont interagi au moins une fois ensemble.
@@ -212,7 +213,7 @@ En cela, la structure en classes constitue une vérité de terrain.
 \end{figure}
 \footnotetext{Image provenant de \url{http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0023176}.}
 
-Afin de capturer des partitions de n\oe{}uds, beaucoup de méthodes existent.
+Afin de détecter des partitions de n\oe{}uds, beaucoup de méthodes existent.
 Des états de l'art sont d'ailleurs régulièrement publiés~\cite{Fortunato2010,Plantie2013a, Malliaros2013a, Harenberg2014a}.
 Afin de faciliter la compréhension du sujet, nous détaillons ici quelques unes des méthodes les plus utilisées.
 
@@ -445,7 +446,7 @@ Ces méthodes semblent très prometteuses car elles permettent de traiter effica
 La littérature sur la détection de couverture de n\oe{}uds est encore très récente.
 Il est donc délicat de commencer à tirer des conclusions.
 Cependant, il semble que les extensions de la modularité ne soient pas réellement capables de trouver des couvertures de n\oe{}uds.
-En plus d'Infomap, ce sont surtout les méthodes utilisant des modèles génératifs et celles utilisant des fonctions de qualité locales qui semblent les plus à même de capturer des couvertures de n\oe{}uds pertinentes.
+En plus d'Infomap, ce sont surtout les méthodes utilisant des modèles génératifs et celles utilisant des fonctions de qualité locales qui semblent les plus à même d'identifier des couvertures de n\oe{}uds pertinentes.
 Les modèles génératifs ne semblent plus limités à de petits graphes.
 Les méthodes utilisant des fonctions de qualité locales sont quant à elles très rapides et le choix de la fonction de qualité permet de s'adapter au contexte.
 }
@@ -502,7 +503,7 @@ Il s'agit de manipuler une série de graphes dont chaque graphe représente le r
 Ainsi, il est possible d'appliquer les outils de la théorie des graphes sur chaque intervalle.
 Cependant chaque intervalle de temps est représenté par un graphe agrégé.
 Il y a donc toujours une perte d'information.
-Plus formellement, une série de graphe est définie par $\mathcal{G}=\{G_i\}_{i < T}$ où $T$ est un entier, voir la figure~\ref{fig:exemple_TVG}.
+Plus formellement, une série de graphe est définie par $\mathcal{G}=\{G_i\}_{i < T}$ où $T$ est un entier (voir la figure~\ref{fig:exemple_TVG}).
 
 Cette définition initiale laisse le choix de la découpe du temps en intervalle.
 Il est possible de choisir des intervalles de tailles égales ou non et disjoints ou chevauchants~\cite{Wang2012}.
@@ -565,7 +566,7 @@ Les liens pleins (resp. pointillés) sont les liens intra-couches (resp. inter-c
 \end{figure}
 La construction de graphes multicouches (\emph{multilayer} ou \emph{multiplex}) est proche de l'idée des séries de graphes.
 Tout comme les séries de graphes, des n\oe{}uds et des liens sont créés à chaque intervalle pour représenter ce qui s'est déroulé durant l'intervalle de temps.
-Cependant, le graphe multicouches ajoute des liens entre les n\oe{}uds de deux intervalles, voir l'illustration~\ref{fig:exemple_multiplex}.
+Cependant, le graphe multicouches ajoute des liens entre les n\oe{}uds de deux intervalles (voir l'illustration~\ref{fig:exemple_multiplex}).
 Par conséquent, un graphe multicouches est un graphe où il existe deux types de liens, les liens intra-couches et les inter-couches et il existe $T$ répliques d'un même n\oe{}ud, une par intervalle de temps.
 Les liens intra-couches représentent un connexion entre deux n\oe{}uds durant un intervalle de temps.
 Les liens inter-couches représentent un lien entre deux n\oe{}uds sur deux intervalles différents.
@@ -663,7 +664,7 @@ Ainsi dans l'exemple, il existe un lien entre les n\oe{}uds $a$ et $b$ dans l'in
 
 Dans un graphe temporel, on abordera plus souvent les questions d'évolution de communautés de n\oe{}uds ou de l'importance d'un n\oe{}ud.
 Dans un flot de liens, on s'intéressera plus souvent au temps nécessaire pour que deux n\oe{}uds soient de nouveau en contact ou à l'importance d'un lien.
-De manière très manichéenne et inexacte, le formalisme de graphe temporel pousse à étudier les relations et leur évolution alors que celui de flot de liens mets plus l'accent sur les interactions et leur dynamique.
+De manière très manichéenne et inexacte, le formalisme de graphe temporel pousse à étudier les relations et leur évolution alors que celui de flot de liens met plus l'accent sur les interactions et leur dynamique.
 
 \bigskip
 
@@ -691,7 +692,7 @@ L'étude de la fréquence d'apparition de ces motifs dans le cas temporel permet
 \paragraph{Détection de structures}
 Il existe peu de méthodes détectant des structures décrivant l'ensemble d'un flot de liens.
 Rozenshtein \emph{et al.}~\cite{rozenshtein2014} se penchent sur la détection de la zone la plus dense dans les flots de liens.
-Ils permettent de capturer un ensemble de n\oe{}uds et plusieurs intervalles de temps disjoints tels que ces n\oe{}uds sur ces intervalles aient le degré moyen le plus élevé dans le graphe agrégé sur ces intervalles.
+Ils permettent de détecter un ensemble de n\oe{}uds et plusieurs intervalles de temps disjoints tels que ces n\oe{}uds aient le degré moyen le plus élevé dans le graphe agrégé sur ces intervalles.
 Bien que la mesure utilisée ne tienne pas directement compte du temps, la méthode permet de mettre en évidence une partie du flot de liens.
 
 Il existe également des travaux conduits au sein de l'équipe~\cite{Viard2016,viard:hal-01208330} sur la notion de cliques dans les flots de liens sans durée, c'est à dire un ensemble de $(b,b,u,v)$.
@@ -728,9 +729,9 @@ Ainsi, les deux formalismes coexistent et répondent à des besoins différents.
 
 \section{Bilan}
 
-Pour les graphes statiques, il existe de très nombreuses méthodes capturant une structure des n\oe{}uds soit via une partition soit via une couverture.
+Pour les graphes statiques, il existe de très nombreuses méthodes détectant une structure des n\oe{}uds soit via une partition soit via une couverture.
 L'abondance de méthodes existantes s'explique par la diversité des définitions de communautés existantes.
-Les structures capturées permettent de mieux comprendre l'organisation du graphe mais aussi de mieux comprendre le type d'un n\oe{}ud.
+Les structures identifiées permettent de mieux comprendre l'organisation du graphe mais aussi de mieux comprendre le type d'un n\oe{}ud.
 
 
 Avec l'émergence de nouvelles données incorporant l'information temporelle, il est pertinent d'adapter la théorie des graphes pour prendre en compte le temps.
@@ -742,10 +743,10 @@ Il y a d'une part les formalismes se rapprochant de la théorie des graphes: sé
 Ces formalismes sont proches des graphes statiques et il est même possible d'y appliquer des méthodes statiques.
 En revanche, la prise en compte du temps n'est que partielle.
 Il y a toujours une forme d'agrégation temporelle et il n'est pas possible d'avoir une vision très fine de l'objet d'étude.
-De plus, les solutions existantes reposent sur le suivi de communautés qui ne semble pas être un problème résolu.
+De plus, les solutions existantes reposent sur le suivi de communautés qui est problème ouvert.
 
 
-D'autre part, les formalismes de graphes temporels et de flots de liens capturent toute l'information temporelle.
+D'autre part, les formalismes de graphes temporels et de flots de liens modélisent toute l'information temporelle.
 Ils ne souffrent donc pas de perte d'information.
 Ces deux formalismes, bien qu'équivalents, ne présupposent pas la même structure sur les données sous-jacentes.
 Dans un graphe temporel, les liens durent assez longtemps et par conséquent il existe une structure de graphe pertinente à chaque instant.
@@ -757,7 +758,7 @@ Il semble donc plus aisé d'utiliser un flot de liens qu'un graphe temporel lors
 
 
 Au cours de cette thèse, nous nous intéressons à la structure communautaire que peuvent former les liens dans le temps.
-Nous ne pouvons utiliser, ni les formalismes basés sur une agrégation temporelle à cause de la perte d'information, ni le formalisme de graphe temporel car ils considèrent des situations assez différentes de celles que nous étudions.
+Nous ne pouvons utiliser, ni les formalismes basés sur une agrégation temporelle à cause de la perte d'information, ni le formalisme de graphe temporel car ils modélisent des situations assez différentes de celles que nous étudions.
 C'est pourquoi le formalisme de flot de liens semble être le plus adapté pour étudier la structure des liens.
 Il n'existe que peu de travaux définissant formellement les flots de liens et traitant de leur structure.
 C'est pourquoi dans le chapitre~\ref{chap:def_flot}, nous définissons plus formellement ce qu'est un flot de liens ainsi que les métriques utilisées tout au long de cette thèse.

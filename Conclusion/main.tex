@@ -3,22 +3,24 @@
 
 \section{Résumé et contributions apportées}
 
-Dans cette thèse, nous nous sommes efforcés de décrire et de capturer les structures des séquences d'interactions tout en nous basant sur une base formelle la plus solide possible.
+Dans cette thèse, nous nous sommes efforcés de décrire et de détecter les structures des séquences d'interactions tout en nous basant sur une base formelle la plus solide possible.
 Nous avons utilisé le formalisme de flot de liens qui relie les propriétés temporelles et topologiques des séquences d'interactions.
 Ce formalisme est suffisamment expressif pour définir des métriques évaluant des groupes de liens sans déformer ou perdre d'information sur leur dynamique.
 Les notions de degré et de densité, que nous avons présentées dans le chapitre~\ref{chap:def_flot}, en sont des exemples.
-En plus de définir ces notions, nous les avons également implémentées dans une libraire de manipulation de flots de liens\,\footnote{\url{https://linkstream.ngaumont.fr/}}.
-Ainsi avec, d'une part, un formalisme clairement défini et, d'autre part, une implémentation accessible, nous espérons faciliter l'utilisation de ces notions et surtout permettre à quiconque d'étendre ce formalisme en définissant d'autres métriques.
+Non content de définir ces notions, nous les avons également implémentées dans une libraire de manipulation de flots de liens\,\footnote{\url{https://linkstream.ngaumont.fr/}}.
+Ainsi, avec d'une part, un formalisme clairement défini et, d'autre part, une implémentation accessible, nous espérons faciliter l'utilisation de ces notions et surtout permettre à quiconque d'étendre ce formalisme en définissant d'autres métriques.
 
-\`A partir de ce formalisme, nous avons décrit une structure communautaire connue d'une séquence d'interactions, dans le chapitre~\ref{chap:mailing}.
+\bigskip
+
+\`A partir de ce formalisme, nous avons décrit une structure communautaire connue d'une séquence d'interactions dans le chapitre~\ref{chap:mailing}.
 Il n'existait\,\footnote{Un jeu de données représentant le forum \emph{reddit} a été rendu public juillet 2015.} aucun jeu de de données au début de cette thèse, à notre connaissance.
 C'est pourquoi nous avons collecté un jeu de données regroupant les courriels d'une liste de diffusion.
-Ce jeu de données est très intéressant de par sa temporalité, presque 20 ans, et de par sa précision, de l'ordre de la seconde.
+Ce jeu de données est très intéressant pour sa temporalité, presque 20 ans, et pour sa précision, de l'ordre de la seconde.
 Grâce à ces informations, nous avons étudié la structure de discussions du point de vue de la densité.
 Nous avons notamment mis en évidence que les discussions sont plus densément connectées en interne qu'avec le reste du flot de liens.
 Ces travaux ont donné lieu à une publication dans un \emph{workshop} international~\cite{Gaumont2016}.
 Suite à ce constat, nous avons essayé de retrouver automatiquement les discussions via une projection du flot de liens en un graphe statique.
-Bien que la partition trouvée ne corresponde pas exactement aux discussions, les caractéristiques des groupes de la partition sont remarquables, notamment leur taille et leur densité.
+Bien que la partition trouvée ne corresponde pas exactement aux discussions, les caractéristiques des groupes de la partition sont remarquables, notamment par leur taille et leur densité.
 
 
 \bigskip
@@ -30,15 +32,16 @@ Or, il y a une perte d'information lorsque l'on manipule un graphe statique au l
 
 Comme nous l'avons constaté dans les chapitres~\ref{chap:def_flot} et \ref{chap:mailing}, la densité permet d'évaluer un groupe mais, seule, elle ne suffit pas pour définir un groupe pertinent.
 En effet, un groupe n'est pertinent que par rapport au reste du flot de liens.
-Par exemple, un groupe ayant une densité de $0.4$ est très pertinent dans un flot de liens ayant une densité globale de $0.01$, mais il ne l'est pas du tout si le flot de liens a une densité de $0.6$.
 Pour évaluer un groupe, il est donc nécessaire de prendre en compte le contexte dans lequel il apparaît.
-Nous avons défini trois voisinages constitués de sous-flots différant du sous-flot du groupe, soit sur le temps de début, soit sur la durée, soit sur l'ensemble de n\oe{}uds concernés.
+Nous avons défini trois voisinages constitués de sous-flots différant du sous-flot du groupe, soit sur le temps de début, soit sur la durée, soit sur l'ensemble des n\oe{}uds concernés.
 Un groupe est jugé pertinent s'il est plus dense qu'une grande partie de ses voisinages.
 Nous avons appliqué notre méthode d'évaluation de la pertinence à quatre jeux de données et nous avons validé manuellement quelques groupes grâce aux méta-données existantes.
 
+\bigskip
+
 La structure résultant de la sélection des groupes pertinents est une partition partielle des liens du flot de liens.
 Cependant, en observant les n\oe{}uds induits et les instants de présence des groupes, nous avons constaté que les groupes forment une structure très chevauchante sur les n\oe{}uds et uniquement partiellement chevauchante sur le temps.
-Nous avons vérifié qu'une méthode statique ne permettait pas de retrouver cette même structure chevauchante: seuls quelques groupes pertinents sont capturés par une telle méthode.
+Nous avons vérifié qu'une méthode statique ne permettait pas de retrouver cette même structure chevauchante: seuls quelques groupes pertinents sont identifiés par une telle méthode.
 En conséquence, la partition partielle des groupes pertinents met en avant une structure nouvelle.
 Ces travaux ont donné lieu à une première publication dans une conférence nationale~\cite{gaumont:hal-01305118} et sont actuellement soumis au journal \emph{Social Network Analysis and Mining}.
 
@@ -46,9 +49,10 @@ Ces travaux ont donné lieu à une première publication dans une conférence na
 \bigskip
 
 Après la détection de structures partielles, nous nous sommes attachés à la détection et à l'évaluation de partitions complètes.
-La détection de partitions de liens, dans un réseau dynamique ou non, nécessite en effet un moyen d'évaluer le résultat obtenu.
+La détection de partitions de liens, dans un réseau dynamique ou non, requière un moyen d'évaluer le résultat obtenu.
 C'est pourquoi nous avons étudié plus en détails la détection de communautés sous la forme de partitions de liens, dans les cas statique et dynamique.
 
+\bigskip
 
 Dans le chapitre~\ref{chap:Expected_Node}, nous avons considéré le cas statique et avons proposé une nouvelle méthode, \emph{Expected Nodes}, pour l'évaluation d'une partition de liens.
 Il existe, en effet, assez peu de méthodes de détection de partitions de liens dans les graphes et aucune ne s'est vraiment attachée à utiliser ce qui a fait le succès de la modularité: un modèle nul.
@@ -56,6 +60,8 @@ Notre fonction de qualité, \emph{Expected Nodes}, comble ce manque en utilisant
 Ainsi, un groupe de liens est une bonne communauté s'il induit moins de n\oe{}uds qu'attendus dans le modèle nul.
 De plus, un groupe de liens est également évalué en fonction de ses liens adjacents, qui devraient être peu denses.
 Ils le sont s'ils induisent plus de n\oe{}uds qu'attendus dans le modèle nul.
+
+\bigskip
 
 Nous avons mené des tests sur des graphes ayant une structure simple: une clique ou deux cliques se chevauchant et sur des graphes générés aléatoirement.
 Sur ces exemples, notre fonction de qualité, \emph{Expected} \emph{Nodes}, est la seule capable de différencier la partition représentant la vérité de terrain d'autres partitions moins pertinentes.
@@ -65,94 +71,108 @@ Cependant malgré nos efforts pour rendre plus efficace l'évaluation d'\emph{Ex
 
 \bigskip
 
-Forts de notre proposition dans le cas statique, nous avons considéré la détection et l'évaluation de partitions de liens dans les flots de liens dans le chapitre~\ref{versQualite}.
+Faisant suite à notre proposition dans le cas statique, nous avons considéré la détection et l'évaluation de partitions de liens dans les flots de liens dans le chapitre~\ref{versQualite}.
 Pour ce faire, nous nous sommes intéressés à la génération de flots de liens avec une structure donnée et à la manière d'évaluer une telle partition.
 Pour générer un flot de liens, nous nous inspirons du \emph{Stochactic Block Model}.
 Ainsi, les liens entre deux n\oe{}uds donnés sont générés si les n\oe{}uds appartiennent à une même communauté.
 Les temps séparant les apparitions de ces liens dépendent de l'activité de cette communauté.
-Ainsi, il est possible de générer des flots de liens très variés tout en ayant une vérité de terrain sur les liens.
+Ainsi, il est possible de générer différents flots de liens ayant une vérité de terrain sur les liens.
 
-\`A partir de ce mécanisme de génération, nous avons, dans un premier temps, mis en avant l'inefficacité de certaines méthodes à retrouver la structure générée via des projections du flot de liens.
-Dans un second temps, nous avons esquissé des premiers travaux étudiant une extension de la modularité dans les flots de liens.
+\bigskip
+
+\`A partir de ce mécanisme de génération, nous avons, dans un premier temps, mis en avant l'inadéquation de certaines méthodes à retrouver la structure générée via des projections du flot de liens.
+Dans un second temps, nous avons travaillé sur une extension de la modularité dans les flots de liens.
 Ces résultats nous ont permis d'entrevoir de nombreuses possibilités pour définir d'autres fonctions de qualité dans les flots de liens.
 
 \section{Perspectives}
 
-L'ensemble de ces travaux ouvre de nombreuses pistes de recherche que nous avons déjà évoquées à la fin de chaque chapitre.
+L'ensemble de ces travaux ouvre de nombreuses pistes de recherche que nous avons évoquées à la fin de chaque chapitre.
 De manière plus générale, il y a deux axes distincts de poursuite des travaux de cette thèse: l'extension du formalisme de flot de liens et l'approfondissement des applications dans les flots de liens.
 
 \subsection{Extensions du formalisme de flot de liens}
 
-Le formalisme de flot de liens est assez général pour représenter beaucoup de situations différentes, mais il y en a cependant certaines qui ne sont pas parfaitement représentées par un flot de liens classique.
+Le formalisme de flot de liens est assez général pour représenter beaucoup de situations différentes, mais cependant, certaines ne sont pas parfaitement représentées par un flot de liens classique.
 Il s'agit d'extensions similaires à celles existantes dans les graphes: les flots de liens orientés et les flots de liens bipartis.
-Ces extensions peuvent se faire assez simplement: respectivement $(b,e,u,v)\neq (b,e,v,u)$ et $\forall (b,e,u,v) \in E, partie(u)\neq partie(v)$ avec $partie(x) \in \{1,2\} \forall x \in V$.
-Il est alors seulement nécessaire d'adapter les notions de degré et de densité pour tenir compte de ces spécificités.
+Ces extensions peuvent se faire de la manière suivante: respectivement $(b,e,u,v)\neq (b,e,v,u)$ et $\forall (b,e,u,v) \in E, partie(u)\neq partie(v)$ avec $partie(x) \in \{1,2\} \forall x \in V$.
+Il est seulement nécessaire d'adapter les notions de degré et de densité pour tenir compte de ces spécificités.
+
+\bigskip
 
 L'ajout de poids sur les liens est bien sûr une extension possible.
-Elle peut se matérialiser par : un poids fixe ou un poids changeant au cours du temps.
-Le second cas englobe le premier et permet de représenter beaucoup plus de situations, notamment les flots de liens non simples, \emph{i.e.} plusieurs liens peuvent exister en même temps entre deux n\oe{}uds.
+Elle peut se matérialiser par un poids fixe ou un poids changeant au cours du temps.
+Ce second point englobe le premier et permet de représenter beaucoup plus de situations, notamment les flots de liens non simples, \emph{i.e.} plusieurs liens peuvent exister en même temps entre deux n\oe{}uds.
 
-Nous avons principalement discuté des notions de degré et de densité dans cette thèse.
-Il existe bien évidement d'autres notions qui ont déjà été définies dans un cadre temporel comme les notions de chemin et de centralité.
+\bigskip
+
+Nous avons principalement travaillé les notions de degré et de densité dans cette thèse.
+Il existe d'autres notions qui ont déjà été définies dans un cadre temporel comme les notions de chemin et de centralité.
 Il est envisageable d'intégrer ces notions dans le formalisme de flots de liens afin de rendre l'ensemble des notions cohérentes entre elles.
 Par exemple, nous pourrions définir une mesure de centralité locale en comparant le degré temporel d'un n\oe{}ud vis-à-vis du degré temporel moyen de ses voisins.
 
-En plus de l'extension des métriques de la théorie des graphes, il est intéressant de considérer d'autres types de mesures.
+\bigskip
+
+On peut considérer d'autres type de mesures que l'extension des métriques de la théorie des graphes.
 En effet, les flots de liens regroupent de l'information structurelle et temporelle.
-Or en étendant les métriques de la théorie des graphes, nous apportons principalement de l'information structurelle.
+En étendant les métriques de la théorie des graphes, nous apportons principalement de l'information structurelle.
 \`A l'opposé de ce processus, le traitement du signal est focalisé sur l'information temporelle.
-Il serait très enrichissant de tirer parti de ce domaine pour compléter les méthodes d'analyses des flots de liens.
+Il serait pertinent de tirer parti de ce domaine pour compléter les méthodes d'analyses des flots de liens.
 Il est par exemple possible de considérer un flot de liens comme un signal.
 Comprendre ce que signifie une transformée de Fourrier dans ce contexte nous ouvrirait sans doute de nouveaux horizons.
+
+\bigskip
 
 Beaucoup de ces pistes sont d'ores et déjà explorées dans la thèse de Tiphaine Viard~\cite{viard2016flots}.
 
 \subsection{Approfondissement des applications dans les flots de liens}
 Dans cette thèse, nous avons étudié les groupes de liens comme structure communautaire.
 Cette notion, bien que très spécifique, apporte de nombreuses perspectives sur la notion de communauté et la génération de flots de liens, comme nous l'avons évoqué à la fin du chapitre~\ref{groupesDense} et dans le chapitre~\ref{versQualite}.
-Mais il y a bien d'autres pistes.
+D'autres pistes pourraient être explorées.
 
-Il serait, par exemple, intéressant d'étudier la comparaison de groupes de liens.
+\bigskip
+
+Il serait utile d'étudier la comparaison de groupes de liens.
 L'approche naïve utilisant l'indice de Jaccard n'est pas satisfaisante.
 En effet, deux groupes de liens n'ayant aucun lien en commun peuvent partager exactement les même n\oe{}uds induits et apparaître dans le même intervalle et donc être similaires.
 Cela ne sera pas relevé grâce à l'indice de Jaccard.
 Il faut donc une similarité tirant parti de la topologie et du temps.
-Si une telle similarité existe, alors il serait très intéressant d'étudier le graphe entre les groupes pertinents pondéré par leur similarité et orienté par le temps.
+Si une telle similarité existe, alors l'étude du graphe entre les groupes pertinents pondéré par leur similarité et orienté par le temps serait à poursuivre.
 Dans ce graphe, nous pouvons espérer trouver des groupes de liens proches dans le temps ayant des n\oe{}uds similaires.
 Ainsi, il serait possible de caractériser l'évolution des communautés.
-Par exemple, un groupe de liens reliés à deux autres représenterait alors la séparation d'une communauté en deux nouvelles communautés.
+Ainsi, un groupe de liens reliés à deux autres représenterait alors la séparation d'une communauté en deux nouvelles communautés.
 Cette méthode serait alors proche des méthodes existantes évaluant l'évolution des communautés dans les séries de graphes que nous avons présentées dans le chapitre~\ref{chap:etat_art}.
 
+\bigskip
 
 Par ailleurs dans le chapitre~\ref{versQualite}, nous avons défini une fonction de qualité globale pour évaluer une partition de lien.
 Il serait intéressant de poursuivre la piste inverse, en définissant une fonction de qualité locale.
 Le but serait alors d'avoir une fonction ne prenant en compte que le voisinage immédiat d'un groupe de liens pour l'évaluer, contrairement à notre notion de pertinence qui prend en compte tout le voisinage.
 
-Enfin, il existe encore de nombreux problèmes proche de la détection de communautés à étudier.
+\bigskip
+
+Enfin, il existe encore de nombreux problèmes proches de la détection de communautés à étudier.
 L'un de ces problèmes connexes est la compression de l'information.
 En effet, une structure communautaire peut être vue comme un \emph{résumé} du flot de liens.
 Avec ce postulat, se pose alors la question de la perte d'information induite par l'utilisation de la structure communautaire pour représenter le flot de liens global.
 
-Un autre de ces problèmes est celui de la prédiction de liens.
-Dans un graphe, la prédiction de liens consiste en trouver les paires de n\oe{}uds qui devraient être reliées dans le graphe.
-Comme les n\oe{}uds d'une communauté sont densément reliés entre eux, connaître la structure communautaire aide à prédire les paires de n\oe{}uds qui devraient être reliées.
-Dans les flots de liens, la situation est toutefois plus complexe car, en plus de prédire une interaction, il faut également prédire le temps d'apparition et la durée de l'interaction.
+\bigskip
 
+Un autre de ces problèmes est celui de la prédiction de liens.
+Dans un graphe, la prédiction de liens consiste en trouver les paires de n\oe{}uds qui devraient être reliés dans le graphe.
+Comme les n\oe{}uds d'une communauté sont densément reliés entre eux, connaître la structure communautaire aide à prédire les paires de n\oe{}uds qui devraient être reliés.
+Dans les flots de liens, la situation est toutefois plus complexe car, en plus de prédire une interaction, il faut également prédire le temps d'apparition et la durée de l'interaction.
 
 
 \bigskip
 
 \resume{
-Au cours de cette thèse, nous avons étudié le problème de la détection de communautés dans les séquences d'interactions.
-La prise en compte de la dynamique dans la littérature est encore récente et il n'existe aucune taxonomie faisant consensus.
-Chaque avancée implique souvent la redéfinition de notions propres, ce qui se fait au détriment de leur cohérence globale.
-Il s'agit d'un frein pour le développement de méthodes de détection de communautés dans les séquences d'interactions.
-Autant que d'étudier la détection de communautés, les travaux de cette thèse permettent aussi de mieux définir le problème.
-Il est ainsi important de comprendre les différences entre les formalismes de série de graphes, de graphe temporels et de flot de liens.
+Dans cette thèse, nous avons étudié le problème de la détection de communautés dans les séquences d'interactions.
+La prise en compte de la dynamique dans la littérature est encore récente et il n'existe aucune taxonomie faisant consensus, ce qui freine l'élaboration de nouvelles méthodes.
+La détection de communautés n'est pas le seul des objectifs de cette thèse, qui traite aussi de l'identification des problèmes à résoudre.
+Il est important de comprendre les différences entre les formalismes de série de graphes, de graphe temporels et de flot de liens.
 Le choix du formalisme influe la définition même d'une communauté.
 Nous avons pris le parti de considérer le formalisme de flots de liens et avec ce formalisme, de considérer les partitions de liens comme structures communautaires.
-De ce présupposé, nous avons défini plusieurs métriques et décrit une structure communautaire existante avant de proposer une méthode d'évaluation de la pertinence d'un groupe.
-Enfin nous avons esquissé des premiers travaux de génération de flots de liens avec une structure communautaire.\\
-\hspace*{1.4em} Afin de mener ces travaux liant théorie et application, nous avons constamment voulu partager les résultats obtenus: les données récoltées, la théorie proposée et l'implémentation développée.
-Avec cette démarche, nous espérons ainsi faciliter les échanges entre chercheurs pour faire avancer la recherche dans ce domaine où encore beaucoup reste à faire tant au niveau théorique que pratique.
+\`A partir de ce présupposé, nous avons défini plusieurs métriques et décrit une structure communautaire existante avant de proposer une méthode d'évaluation de la pertinence d'un groupe.
+Enfin, nous avons entamé les premiers travaux de génération de flots de liens avec une structure communautaire.\\
+\hspace*{1.4em} En menant ces travaux liant théorie et application, nous avons constamment voulu partager les résultats obtenus: les données récoltées, la théorie proposée et l'implémentation développée.
+Avec cette démarche, nous espérons ainsi faciliter les échanges entre chercheurs pour faire avancer la recherche dans ce domaine ouvert où beaucoup reste à faire, tant au niveau théorique que pratique.
 }

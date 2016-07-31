@@ -330,7 +330,7 @@ En effet, le degré moyen dans le flot quotient est en moyenne 25 fois plus éle
 
 \`A partir du constat que les discussions forment une structure particulière, il est naturel d'essayer de les retrouver automatiquement. 
 Pour y parvenir, il faut un moyen capable de trouver des sous-flots denses dans le flot.
-C'est à dire une méthode capturant des groupes de liens qui soient proches temporellement et topologiquement.
+C'est à dire une méthode identifiant des groupes de liens qui soient proches temporellement et topologiquement.
 Il serait tentant d'optimiser directement la densité dans le flot mais ce n'est pas envisageable car un groupe constitué d'un unique lien a une densité de $1$.
 Il faut donc trouver une autre méthode.
 C'est pourquoi nous avons construit une autre projection du flot en un graphe statique afin d'y appliquer une méthode de détection de communautés.
@@ -342,7 +342,7 @@ Afin de créer une transformation du flot vers un graphe, nous définissons un a
 \`A partir de $\mathfrak{L}$, nous créons un graphe non-orienté et non-pondéré $\mathcal{G} = (\mathcal{V},\mathcal{E})$. Nous commençons par décrire comment $\mathcal{G}$ est défini à partir de $\mathfrak{L}$.
 
 Chaque lien de $\mathfrak{L}$ est correspond à un n\oe{}ud de $\mathcal{G}$.
-Deux liens $(b,e,u,v)$ et $(b',e',u',v')$ du flot de liens sont reliés dans $\mathcal{G}$ s'ils partagent un n\oe{}ud et si les intervalles s'intersectent, \emph{i.e.} $\{u,v\} \cap \{u',v'\} \neq \emptyset$ et $[b,e]\cap[b',e'] \neq \emptyset$, voir la figure~\ref{fig:Transformation}.
+Deux liens $(b,e,u,v)$ et $(b',e',u',v')$ du flot de liens sont reliés dans $\mathcal{G}$ s'ils partagent un n\oe{}ud et si les intervalles s'intersectent, \emph{i.e.} $\{u,v\} \cap \{u',v'\} \neq \emptyset$ et $[b,e]\cap[b',e'] \neq \emptyset$ (voir la figure~\ref{fig:Transformation}).
 Ainsi, un lien dans le graphe représente une connexion structurelle et temporelle entre deux liens du flot de liens.
 Les groupes denses dans $\mathcal{G}$ représentent donc des groupes de liens connectés temporellement et topologiquement dans $\mathfrak{L}$.
 
@@ -374,7 +374,7 @@ Un fois $\mathcal{G}$ construit, on peut appliquer un algorithme de détection d
 
 Avec cette construction, $\mathcal{G}$ contient plus d'1 millions de liens entre 316 569 n\oe{}uds pour les 116 999 discussions présentes.
 Sur ce graphe, nous avons appliqué l'algorithme de Louvain~\cite{Blondel2008a} qui optimise la modularité.
-D'autres algorithmes peuvent être appliqués s'ils capturent des groupes de n\oe{}uds disjoints et s'ils passent à l'échelle.
+D'autres algorithmes peuvent être appliqués s'ils détectent des groupes de n\oe{}uds disjoints et s'ils passent à l'échelle.
 Les groupes trouvés par Louvain sont des communautés dans $\mathcal{G}$.
 Par conséquent, ils sont censé être densément connectés dans $\mathcal{G}$.
 Comme un lien de $\mathcal{G}$ correspond à une connexion temporelle et topologique dans le flot, on peut espérer qu'ils correspondent à des groupes denses dans le flot.
@@ -558,6 +558,6 @@ Il pourrait être intéressant de comparer les structures de ces deux sources de
 
 \bigskip
 
-Dans le cadre de la manipulation de flot de liens, une perspective importante est la compréhension plus en détail de la structure de liens que nous avons capturée.
+Dans le cadre de la manipulation de flot de liens, une perspective importante est la compréhension plus en détail de la structure de liens que nous avons détectée.
 C'est cette perspective que nous poursuivons dans le chapitre suivant.
 

@@ -46,7 +46,7 @@ C'est le cas des \emph{edge-Markovian dynamic graphs}~\cite{Clementi2008} qui g�
 
 Les \emph{activity driven model}~\cite{Perra2012,Laurent2015a,Moinet2015} utilisent aussi le graphe généré à l'instant précédent lors de la génération du graphe suivant.
 Dans ce genre de modèles, un lien est créé entre deux n\oe{}uds en fonction de la propension intrinsèque de ces n\oe{}uds à créer des liens~\footnote{Le degré dans le graphe précédent est généralement utilisé.} et potentiellement de l'existence ou de l'absence de ce lien dans le graphe précédent.
-Ce genre de modèles capture très bien l'hétérogénéité des n\oe{}uds mais ne permet pas de générer une structure communautaire.
+Ce genre de modèles représente très bien l'hétérogénéité des n\oe{}uds mais ne permet pas de générer une structure communautaire.
 
 
 Il est également possible d'appliquer un modèle génératif sur chaque graphe de la série indépendamment.
@@ -283,7 +283,7 @@ Dans cette situation, le graphe de la projection ne capture plus vraiment de rel
 Dans le cas inverse, quand $\lambda$ est égal à zéro, la projection du flot de liens est complètement identique au \emph{line-graph} du multigraphe agrégé.
 Dans la suite, nous avons à chaque fois fait varier $\lambda$ de manière exhaustive.
 
-Lors de nos tests, nous nous sommes appuyés sur notre outil de visualisation pour comparer visuellement\,\footnote{Une évaluation plus quantitative avec la \emph{NMI} est possible mais ne semble pas nécessaire à cette étape.} la vérité de terrain, les partitions trouvées par Louvain et CarOp selon le $\lambda$ choisi.
+Lors de nos tests, nous nous sommes appuyés sur notre outil de visualisation pour comparer visuellement\,\footnote{Une évaluation plus quantitative avec la \emph{NMI} est possible mais ne semble pas nécessaire car les différences entre les partitions sont clairement visibles dans la visualisation.} la vérité de terrain, les partitions trouvées par Louvain et CarOp selon le $\lambda$ choisi.
 
 \bigskip
 
@@ -413,7 +413,7 @@ Nous n'utilisons pas CarOp car elle ne redonne pas directement une partition de 
 
 Les liens du flot de liens généré n'ont pas de durée.
 Or, pour utiliser le degré temporel, il est nécessaire que les liens aient une durée.
-Nous ajoutons donc une durée $\Delta$ à chaque lien ($\xi(L,\Delta)$) et il est alors nécessaire de simplifier le flot de liens résultant ($\sigma(\xi(L,\Delta))$).
+Nous ajoutons donc une durée $\Delta$ à chaque lien ($\xi(L,\Delta)$) et il est alors nécessaire de simplifier le flot de liens résultant ($\sigma(\xi(L,\Delta))$), afin de pouvoir utiliser la notion de degré temporel.
 La simplification d'un flot de liens revient à remplacer deux liens $(b,e,u,v)$ et $(b',e',u,v)$ se chevauchant temporellement par un lien $(min(b,b'),max(e,e'),u,v)$.
 Cela ne pose pas de problème lorsque ces liens appartiennent à la même communauté.
 C'est délicat lorsqu'ils n'appartiennent pas à la même communauté.
@@ -520,7 +520,7 @@ Une fois ces paramètres définis, des liens entre deux n\oe{}uds sont généré
 Grâce à ce générateur, nous avons pu tester deux méthodes de détection de communautés sur des projections du flot de liens en graphes statiques pondérés.
 Ces premiers résultats sont très intéressants car ces méthodes sont parfois à même de retrouver la vérité de terrain alors qu'elles se basent sur un graphe statique.
 Cependant lorsque le chevauchement topologique est important, les méthodes statiques que nous avons testées n'ont pas retrouvé la vérité de terrain.
-Il est donc nécessaire de proposer des méthodes pour évaluer et capturer des partitions de liens dans les flots de liens.
+Il est donc nécessaire de proposer des méthodes pour évaluer et identifier des partitions de liens dans les flots de liens.
 
 \bigskip
 

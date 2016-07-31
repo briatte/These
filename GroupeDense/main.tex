@@ -4,7 +4,7 @@
 \label{groupesDense}
 Nous avons vu précédemment qu'il est possible de trouver des groupes de liens dans un flot de liens via l'intermédiaire d'une projection du flot de liens en un graphe statique.
 Pour ce faire, nous avons appliqué l'algorithme de Louvain sur la projection pour obtenir une partition des liens en communautés.
-Parmi l'ensemble des communautés, il se peut que certaines capturent des structures plus importantes et plus pertinentes que d'autres.
+Parmi l'ensemble des communautés, il se peut que certaines identifient des structures plus importantes et plus pertinentes que d'autres.
 Le but ici est de réussir à extraire parmi ces groupes ceux qui sont pertinents.
 En ce sens, nous nous posons la question de la décomposition partielle d'un flot de liens en sous-flots pertinents.
 Il s'agit donc d'un problème légèrement différent de la détection de partition car d'une part, certains liens peuvent n'appartenir à aucun groupe et, d'autre part, les groupes doivent être pertinents.
@@ -15,7 +15,7 @@ En effet, il peut exister de grands groupes pertinents mais peu denses et de pet
 Il n'est pas possible de faire la différence entre ces deux catégories en utilisant uniquement la densité.
 C'est pourquoi nous utilisons une notion de voisinage.
 Un groupe est alors pertinent s'il est plus dense que son voisinage.
-Ainsi, un groupe peu dense peut être pertinent s'il est plus dense que son voisinage.
+Par exemple, un groupe ayant une densité de $0.4$ est très pertinent dans un flot de liens ayant une densité globale de $0.01$, mais il ne l'est pas du tout si le flot de liens a une densité de $0.6$.
 Comme le but est de pouvoir décrire le flot de liens, nous nous limitons aux groupes ayant une taille supérieure à un minimum donné.
 Un exemple de flot avec une décomposition en groupes pertinents est présenté dans la figure~\ref{fig:exemple_groupe_dens}.
 
@@ -53,23 +53,23 @@ Ce cas de figure s'applique parfaitement aux réseaux de citations car une citat
 Cependant ce genre de situation est particulier et ne peut pas être trivialement représenté par le formalisme de flot de liens.
 C'est pourquoi nous ne pouvons utiliser la même méthode. 
 
-Il existe également des méthodes capturant la partie la plus dense d'un réseau.
+Il existe également des méthodes identifiant la partie la plus dense d'un réseau.
 C'est le cas de Bogdanov \emph{et al.}~\cite{Bogdanov2011} qui considèrent un graphe dont la topologie n'évolue pas mais dont les poids des liens changent entre $-1$ et $1$ en fonction du temps.
 Ce formalisme est encore une fois très différent de celui de flot de liens.
 De plus, la notion de densité utilisée ne tient pas vraiment compte du temps car un groupe de n\oe{}uds sur un intervalle est évalué par la somme des liens entre ces n\oe{}uds sur tout l'intervalle.
 
 
-Epasto \emph{et al.}~\cite{Epasto2015} capturent le sous-graphe le plus dense dans un graphe temporel.
+Epasto \emph{et al.}~\cite{Epasto2015} détectent le sous-graphe le plus dense dans un graphe temporel.
 Ainsi, le temps est bien pris en compte dans le formalisme.
-Cependant, la méthode capture le sous-graphe à un instant $t$ tel qu'il ait le degré moyen le plus élevé parmi l'ensemble des sous-graphes sur tous les instants.
+Cependant, la méthode identifie le sous-graphe à un instant $t$ tel qu'il ait le degré moyen le plus élevé parmi l'ensemble des sous-graphes sur tous les instants.
 La notion de densité est donc statique car elle ne considère que la structure de graphe à un instant.
 
 
 Les travaux de Rozenshtein \emph{et al.}~\cite{rozenshtein2014} sont ceux qui se rapprochent le plus de notre méthode.
 Leur méthode utilise le formalisme de flots de liens et ne suppose pas de structure de graphe à un instant donné.
-Elle capture un groupe de n\oe{}uds et plusieurs intervalles disjoints de telle sorte que ce groupe de n\oe{}uds dans le graphe agrégé sur ces intervalles ait le degré moyen le plus élevé.
+Elle détecte un groupe de n\oe{}uds et plusieurs intervalles disjoints de telle sorte que ce groupe de n\oe{}uds dans le graphe agrégé sur ces intervalles ait le degré moyen le plus élevé.
 Plus formellement, un groupe de n\oe{}uds $V'\subset V$ et un ensemble d'intervalles $\{I_1,..,I_k\} = \mathcal{I} \subset T$ doivent maximiser $\tilde{d}_\mathcal{G}(V')$ où $\mathcal{G}= \bigcup G(L_t),\,\forall t \in \mathcal{I}$.
-Ainsi même si la méthode permet de capturer un groupe de n\oe{}uds sur des intervalles de temps, elle évalue un candidat sur un graphe agrégé pour appliquer une métrique de graphe.
+Ainsi même si la méthode permet de détecter un groupe de n\oe{}uds sur des intervalles de temps, elle évalue un candidat sur un graphe agrégé pour appliquer une métrique de graphe.
 Le temps n'a donc une influence qu'indirecte sur l'évaluation.
 Par ailleurs, leur méthode repose sur plusieurs paramètres qui doivent être fixés \emph{a priori}: le nombre maximum d'intervalles disjoints et la durée cumulée maximum de ces intervalles.
 Le premier paramètre permet d'éviter d'utiliser une infinité d'intervalles qui seraient chacun centré sur un lien.
@@ -79,7 +79,7 @@ Ainsi, leur méthode dépend de manière non triviale du choix des paramètres.
 Enfin, des travaux conduits dans l'équipe~\cite{viard:hal-01208330,Viard2016} ont étudié la détection de delta-cliques dans les flots de liens sans durée, c'est à dire un ensemble de $(b,b,u,v)$.
 Pour un delta donné, une delta-clique est un ensemble de n\oe{}uds et un intervalle de temps, tels que toutes les paires de n\oe{}uds dans cet ensemble interagissent au moins tous les delta sur cet intervalle.
 Cela est équivalent à trouver des ensemble de n\oe{}uds sur un intervalle de temps ayant une densité égal à $1$ dans le flot de liens où chaque lien a une durée delta\,\footnote{Un lien $(b,b,u,v)$ doit être transformé en $(b-\Delta,b,u,v)$.}.
-Leur méthode est donc très proche mais elle ne capture que des groupes de densité $1$ et ne prend pas en compte leurs voisinages.
+Leur méthode est donc très proche mais elle ne détecte que des groupes de densité $1$ et ne prend pas en compte leurs voisinages.
 
 
 \bigskip
@@ -88,8 +88,8 @@ Pour résumer, il existe des méthodes cherchant la structure la plus dense dans
 Cependant, ces méthodes utilisent des métriques de graphe pour évaluer un groupe de n\oe{}uds.
 Le temps n'est donc pas complètement pris en compte dans l'évaluation.
 De manière plus importante, ces méthodes évaluent de manière absolue un groupe sans prendre en compte son voisinage.
-Enfin, nous capturons plusieurs groupes de liens alors que les autres méthodes capturent un groupe n\oe{}uds.
-Certaines de ces méthodes peuvent être étendues pour capturer les $k$ groupes de n\oe{}uds les plus denses mais cela se fait au prix de l'ajout d'un paramètre pour contrôler le chevauchement entre deux groupes.
+Enfin, nous identifions plusieurs groupes de liens alors que les autres méthodes détectent un groupe n\oe{}uds.
+Certaines de ces méthodes peuvent être étendues pour identifier les $k$ groupes de n\oe{}uds les plus denses mais cela se fait au prix de l'ajout d'un paramètre pour contrôler le chevauchement entre deux groupes.
 
 
 \section{Détection de groupes pertinents}
@@ -97,7 +97,7 @@ Certaines de ces méthodes peuvent être étendues pour capturer les $k$ groupes
 
 Nous avons défini dans le chapitre précédent~\ref{sec:fail_mailing} une projection du flot de liens en un graphe statique.
 Dans cette projection, chaque lien du flot est représenté par un n\oe{}ud.
-Deux liens $(b,e,u,v)$ et $(b',e',u',v') \in L$ sont reliés dans le graphe s'ils partagent un n\oe{}ud et si les intervalles s'intersectent, \emph{i.e.} $\{u,v\} \cap \{u',v'\} \neq \emptyset$ et $[b,e]\cap[b',e'] \neq \emptyset$, voir la figure~\ref{fig:Transformation}.
+Deux liens $(b,e,u,v)$ et $(b',e',u',v') \in L$ sont reliés dans le graphe s'ils partagent un n\oe{}ud et si les intervalles s'intersectent, \emph{i.e.} $\{u,v\} \cap \{u',v'\} \neq \emptyset$ et $[b,e]\cap[b',e'] \neq \emptyset$ (voir la figure~\ref{fig:Transformation}).
 Sur cette projection, nous appliquons l'algorithme de Louvain pour la détection de communautés.
 Les communautés trouvées par l'algorithme sont des groupes potentiellement pertinents et nous les appelons donc groupes candidats.
 
@@ -193,7 +193,7 @@ En effet lorsque la durée considérée est proche de $\omega-\alpha$ alors la d
 Comme ces valeurs sont peu informatives, nous préférons nous limiter à un intervalle de durée plus restreint.
 \bigskip
 
-Au final, nous capturons pour chaque voisinage les valeurs de densités des sous-flots voisins.
+Au final, nous calculons pour chaque voisinage les valeurs de densités des sous-flots voisins.
 Pour le voisinage aux n\oe{}uds, il y a $k(|V|-k)$ valeurs de densité différentes.
 Pour le voisinage au temps de début (resp. à la durée), nous avons une fonction de la densité qui dépend du temps de début (resp. de la durée).
 
@@ -366,7 +366,7 @@ Enfin, nous n'utilisons pas le jeu de données de courriels utilisé précédemm
 \section{Application}
 \label{sec:groupe_dense_result}
 
-Pour chaque jeu de données, nous appliquons notre méthode pour capturer les groupes d'interactions pertinents.
+Pour chaque jeu de données, nous appliquons notre méthode pour détecter les groupes d'interactions pertinents.
 Comme présenté dans la section~\ref{sec:groupe_dense_method}, la première étape est de trouver une partition, $\mathcal{C}$, des liens via la méthode de Louvain sur une projection du flot de liens en un graphe statique.
 Quelques statistiques obtenues pour chaque groupe de la partition sont listées dans la table~\ref{tab:partition_spec_gd}, notamment les nombres de n\oe{}uds et de liens médians.
 La première chose qui est frappante est qu'il existe énormément de très petits groupes.
@@ -413,7 +413,7 @@ Même si cela filtre énormément de groupes, il reste tout de même beaucoup de
 
 Pour séparer les groupes qui sont pertinents des autres, nous utilisons des seuils.
 Un candidat est ensuite considéré comme pertinent si ses scores sont au dessus des seuils choisis.
-Baisser les valeurs des seuils entraîne la capture de plus de groupes mais cela ne change ni les groupes candidats ni leurs scores.
+Baisser les valeurs des seuils entraîne la détection de plus de groupes mais cela ne change ni les groupes candidats ni leurs scores.
 Ainsi, si un groupe est considéré comme pertinent pour un seuil donné alors il le sera également pour tout autre seuil inférieur.
 C'est pourquoi nous fixons les seuils après avoir étudié les distributions cumulatives inverses de score pour chaque voisinage.
 Ces distributions sont représentées pour le jeu de données Socio Pattern dans la figure~\ref{fig:dit_SP}.
@@ -541,14 +541,14 @@ Pour ce voisinage, le groupe a un score de $0.99$ ce qui indique une fois de plu
 Il y a par ailleurs $477=9(62-9)$ sous-flots considérés pour ce candidat dans le voisinage aux n\oe{}uds.
 
 \subsubsection*{Voisinage au temps de début}
-Pour le voisinage au temps de début, le groupe a un score de $0.85$, voir la figure~\ref{fig:g7_debut}.
+Pour le voisinage au temps de début, le groupe a un score de $0.85$ (voir la figure~\ref{fig:g7_debut}).
 Comme le jeu de données Rollernet est plus court et plus dense que Socio Pattern, la densité est beaucoup plus stable en fonction du temps de début.
 Cela se reflète d'ailleurs sur le score obtenu qui est plus faible.
 Cependant comme le groupe de liens en question apparaît 5 minutes après le début de la randonnée, il correspond tout de même à un maximum local de la densité.
 
 
 \subsubsection*{Voisinage à la durée}
-Pour le voisinage à la durée, le groupe a un score de $0.86$, voir la figure~\ref{fig:g7_duree}.
+Pour le voisinage à la durée, le groupe a un score de $0.86$ (voir la figure~\ref{fig:g7_duree}).
 Encore une fois, le profil de la densité est plus lisse que dans le cas de Socio Pattern et une durée un peu plus courte donnerait lieu à une densité plus élevée. 
 Enfin on remarque que, même si Rollernet est beaucoup plus dense que Socio Pattern, la densité décroît tout de même en fonction de la durée considérée.
 
@@ -622,7 +622,7 @@ Afin d'avoir une vision plus précise des groupes capturés comme pertinents, no
 Les distributions sont encore une fois hétérogènes sauf pour la densité.
 Les distributions pour les autres jeux de données sont présentées en appendice pages \pageref{fig:distri_group_rollernet_filter} à \pageref{fig:distri_group_RM_filter} dans les figures~\ref{fig:distri_group_rollernet_filter},\ref{fig:distri_group_baboon_filter} et \ref{fig:distri_group_RM_filter}.
 En plus de ces distributions, nous avons également étudié comment ces groupes de liens représentent le flot de liens et comment ils se répartissent dans le temps et la topologie du flot de liens.
-Par exemple, les $136$ groupes pertinents du jeux de données Socio Pattern capturent $3\ 507$ liens, soit $17.7\%$ du flot de liens initial.
+Par exemple, les $136$ groupes pertinents du jeux de données Socio Pattern sont constitués de $3\ 507$ liens, soit $17.7\%$ du flot de liens initial.
 Les groupes pertinents sont donc bien une structure partielle du flot de liens.
 Les valeurs de représentativité sont présentées dans la table~\ref{tab:res_representativite}.
 On remarque notamment que même si peu de groupes sont capturés, ils représentent une plus grande proportion des liens du flots de liens pour les autres jeux de données.
@@ -654,7 +654,7 @@ Cette différence est sûrement due au nombre relativement faible de n\oe{}uds c
 
 \bigskip
 
-Il aurait peut-être été possible de détecter cette structure par une méthode capturant des communautés chevauchantes de n\oe{}uds dans un graphe.
+Il aurait peut-être été possible de détecter cette structure par une méthode identifiant des communautés chevauchantes de n\oe{}uds dans un graphe.
 Afin de tester cette hypothèse, nous créons un graphe agrégé pondéré tel que le poids d'un lien entre deux n\oe{}uds soit égal à la somme des durées des liens correspondants dans le flot de liens.
 Ainsi, le poids des liens permet de garder une partie de l'information temporelle.
 Pour la détection de communautés chevauchantes, nous avons utilisé l'algorithme bigclam proposé par Yang et Leskovec~\cite{Yang2013}.
@@ -713,12 +713,12 @@ Il est toutefois intéressant de noter que les deux structures sont chevauchante
 Dans ce chapitre, nous nous sommes intéressés à la détection de groupes de liens pertinents dans un flot de liens.
 \`A l'inverse de méthodes existantes, nous considérons pleinement l'information temporelle et nous n'utilisons pas d'agrégation pour évaluer nos résultats.
 Cette différence a été permise par l'utilisation du formalisme de flot et de ses métriques mélangeant vraiment structure et temps.
-De plus, notre méthode ne capture pas des ensembles de n\oe{}uds et des intervalles de temps mais des ensembles de liens.
+De plus, notre méthode n'identifie pas des ensembles de n\oe{}uds et des intervalles de temps mais des ensembles de liens.
 
-Pour capturer des groupes de liens, nous avons proposé une transformation du flot de liens en un graphe statique non pondéré tel que les liens sont transformés en n\oe{}uds dans le graphe.
+Pour détecter des groupes de liens, nous avons proposé une transformation du flot de liens en un graphe statique non pondéré tel que les liens sont transformés en n\oe{}uds dans le graphe.
 Deux n\oe{}uds dans le graphe sont reliés si les liens correspondants dans le flot ont au moins un n\oe{}ud et un instant de temps en commun.
 C'est pourquoi rechercher une communauté dans le graphe statique permet de trouver des groupes liens connectés temporellement et structurellement.
-Nous utilisons l'algorithme de Louvain qui permet de capturer des partitions de n\oe{}uds dans un graphe.
+Nous utilisons l'algorithme de Louvain qui permet d'identifier des partitions de n\oe{}uds dans un graphe.
 Nous obtenons ainsi un ensemble de groupes de liens potentiellement pertinents.
 
 Afin de trouver les groupes pertinents parmi l'ensemble des groupes de la partition trouvée par Louvain, nous avons proposé un critère évaluant la pertinence du sous-flot défini par les liens du groupe.
@@ -736,7 +736,7 @@ Deux d'entre eux sont des interactions entre étudiants.
 Un est un réseau de participants à une randonnée roller à Paris et le dernier est un réseau de babouins.
 Ils proviennent ainsi de contextes radicalement différents.
 Cela se traduit notamment sur la densité globale des flots de liens.
-Pour tous ces jeux de données, nous avons réussi à capturer des groupes ayant des scores très élevés.
+Pour tous ces jeux de données, nous avons réussi à détecter des groupes ayant des scores très élevés.
 
 La validation de ces résultats est délicate car il n'existe pas de vérité de terrain sur ces données et il n'existe aucun algorithme similaire.
 Cependant il existe des méta-données pour deux des jeux de données.
@@ -746,7 +746,7 @@ Nous avons également étudié comment l'ensemble des groupes pertinents se rép
 Nous avons observé qu'ils sont très chevauchants sur les n\oe{}uds et sur le temps mais qu'ils ne concernent cependant qu'une fraction du temps total.
 
 
-Afin de tester la nouveauté de la structure que nous capturons, nous avons appliqué un algorithme de détection de communautés chevauchantes, \emph{bigclam}, sur le graphe agrégé.
+Afin de tester la nouveauté de la structure que nous identifions, nous avons appliqué un algorithme de détection de communautés chevauchantes, \emph{bigclam}, sur le graphe agrégé.
 Il apparaît que parmi l'ensemble des groupes pertinents seulement quelques un sont retrouvés par \emph{bigclam}.
 Ce résultat illustre l'importance de prendre en compte le temps lors de l'étude d'un réseau.
 
