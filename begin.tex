@@ -28,6 +28,10 @@ headsepline, % Uncomment to get a line under the header
 \usepackage{subcaption}
 \usepackage{glossaries}
 \usepackage{hyperref}
+
+
+
+
 \usepackage{palatino} % Use the Palatino font by default
 \usepackage{minitoc}
 
@@ -64,6 +68,17 @@ headsepline, % Uncomment to get a line under the header
 \definecolor{bleu_transparent}{HTML}{0088B1}
 %-------------------------------
 
+\definecolor{mylinkcolor}{HTML}{323232}
+\definecolor{mycitecolor}{HTML}{656565} %4e787d
+\definecolor{myurlcolor}{HTML}{323232}
+\newcommand\myshade{100}
+\hypersetup{
+  linktocpage=true,
+  linkcolor  = mylinkcolor!\myshade!black,
+  citecolor  = mycitecolor!\myshade!black,
+  urlcolor   = myurlcolor!\myshade!black,
+  colorlinks = true,
+}
 
  
 \usepackage[textsize=footnotesize,obeyFinal]{todonotes}
